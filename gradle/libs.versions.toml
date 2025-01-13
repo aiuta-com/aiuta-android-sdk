@@ -20,7 +20,7 @@ dokka = "1.9.10"
 
 exifinterface = "1.3.7"
 
-gradle-plugin-android = "8.2.2"
+gradle-plugin-android = "8.8.0"
 gradle-plugin-jetbrains-compose = "1.5.12"
 gradle-plugin-mavenPublish = "0.28.0"
 gradle-plugin-jreleaser = "1.15.0"
