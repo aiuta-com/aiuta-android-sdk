@@ -1,12 +1,15 @@
 import com.aiuta.fashionsdk.publicModules
-import com.aiuta.fashionsdk.setupBomPublishing
-import com.android.build.gradle.LibraryExtension
+import com.aiuta.fashionsdk.setupPublishing
+import com.vanniktech.maven.publish.JavaPlatform
 
 plugins {
     id("java-platform")
+    id("com.vanniktech.maven.publish.base")
 }
 
-setupBomPublishing<LibraryExtension>()
+setupPublishing {
+    configure(JavaPlatform())
+}
 
 dependencies {
     constraints {

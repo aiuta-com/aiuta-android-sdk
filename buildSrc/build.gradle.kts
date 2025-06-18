@@ -15,7 +15,7 @@ dependencies {
     implementation(libs.gradlePlugin.android)
     implementation(libs.gradlePlugin.kotlin)
     implementation(libs.gradlePlugin.kotlin.compose)
-    implementation(libs.gradlePlugin.jreleaser)
+    implementation(libs.gradlePlugin.vanniktech.publish)
 }
 
 // Target JVM 17.

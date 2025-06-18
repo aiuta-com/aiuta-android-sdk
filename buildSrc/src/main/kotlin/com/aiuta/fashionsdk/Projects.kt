@@ -6,6 +6,9 @@ import com.android.build.gradle.BaseExtension
 import com.android.build.gradle.LibraryExtension
 import com.android.build.gradle.TestExtension
 import com.android.build.gradle.internal.dsl.BaseAppModuleExtension
+import com.vanniktech.maven.publish.AndroidSingleVariantLibrary
+import com.vanniktech.maven.publish.JavadocJar.Dokka
+import com.vanniktech.maven.publish.KotlinMultiplatform
 import org.gradle.api.Project
 import org.gradle.kotlin.dsl.apply
 import org.gradle.kotlin.dsl.assign
@@ -28,7 +31,15 @@ fun Project.androidLibrary(
     }
     if (project.name in publicModules) {
         apply(plugin = "org.jetbrains.dokka")
-        setupAndroidPublishing<LibraryExtension>()
+        apply(plugin = "com.vanniktech.maven.publish.base")
+        setupPublishing {
+            val platform = if (project.plugins.hasPlugin("org.jetbrains.kotlin.multiplatform")) {
+                KotlinMultiplatform(Dokka("dokkaHtml"))
+            } else {
+                AndroidSingleVariantLibrary()
+            }
+            configure(platform)
+        }
     }
     if (composeLibrary) {
         apply(plugin = "org.jetbrains.kotlin.plugin.compose")

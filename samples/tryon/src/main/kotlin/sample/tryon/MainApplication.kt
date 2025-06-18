@@ -20,6 +20,6 @@ class MainApplication : Application() {
     companion object {
         lateinit var aiuta: Aiuta
 
-        const val API_KEY = "OLDDEMO"
+        const val API_KEY = "YOUR_API_KEY_HERE"
     }
 }
