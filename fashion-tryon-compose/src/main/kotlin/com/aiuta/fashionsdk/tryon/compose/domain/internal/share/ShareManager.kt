@@ -68,21 +68,24 @@ internal class ShareManager(
 
         return try {
             withContext(workerDispatcher) {
-                val mutableBitmap = bitmap.copy(bitmap.config, true)
-                val modifierBitmap =
-                    try {
-                        watermarkRes?.let {
-                            context.addWatermark(
-                                source = mutableBitmap,
-                                watermarkRes = watermarkRes,
-                            )
-                        } ?: mutableBitmap
-                    } catch (e: Exception) {
-                        // Failed to add watermark
-                        mutableBitmap
-                    }
+                val mutableBitmap = bitmap.config?.let { bitmap.copy(it, true) }
 
-                context.getUriFromBitmap(bmp = modifierBitmap, isCache = true)
+                mutableBitmap?.let {
+                    val modifierBitmap =
+                        try {
+                            watermarkRes?.let {
+                                context.addWatermark(
+                                    source = mutableBitmap,
+                                    watermarkRes = watermarkRes,
+                                )
+                            } ?: mutableBitmap
+                        } catch (e: Exception) {
+                            // Failed to add watermark
+                            mutableBitmap
+                        }
+
+                    context.getUriFromBitmap(bmp = modifierBitmap, isCache = true)
+                }
             }
         } catch (e: Exception) {
             // Failed get bitmap

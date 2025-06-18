@@ -166,5 +166,5 @@ internal fun <T : BaseExtension> Project.android(action: T.() -> Unit) {
 }
 
 private fun BaseExtension.lint(action: Lint.() -> Unit) {
-    (this as CommonExtension<*, *, *, *, *>).lint(action)
+    (this as CommonExtension<*, *, *, *, *, *>).lint(action)
 }

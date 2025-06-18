@@ -113,7 +113,7 @@ internal fun ColumnScope.GeneratedOperationsSheet() {
 
             generatedOperation?.let {
                 OperationItem(
-                    modifier = sharedOperationsModifier.animateItemPlacement(),
+                    modifier = sharedOperationsModifier.animateItem(),
                     generatedOperation = generatedOperation,
                     onClick = {
                         with(controller) {
