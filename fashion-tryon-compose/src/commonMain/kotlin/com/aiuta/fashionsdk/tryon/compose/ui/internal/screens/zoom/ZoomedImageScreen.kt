@@ -41,10 +41,10 @@ import com.aiuta.fashionsdk.tryon.compose.domain.internal.share.rememberShareMan
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.components.icons.AiutaLoadingComponent
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.components.zoomable.zoomable
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.controller.composition.LocalController
+import com.aiuta.fashionsdk.tryon.compose.ui.internal.screens.base.transition.isTransitionActiveListener
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.screens.zoom.controller.FitterContentScale
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.screens.zoom.controller.ZoomImageController
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.screens.zoom.controller.closeZoomImageScreen
-import com.aiuta.fashionsdk.tryon.compose.ui.internal.screens.zoom.controller.isTransitionActiveListener
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.screens.zoom.utils.TRANSITION_ANIM_DURATION
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.screens.zoom.utils.toDp
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.screens.zoom.utils.toIntOffset
@@ -66,19 +66,17 @@ internal fun ZoomedImageScreen(
     val theme = LocalTheme.current
     val isTransitionActive = screenState.isTransitionActiveListener()
 
-    val initialOffset =
-        remember {
-            screenState.sharedImage.value.parentImageOffset.copy(
-                x = screenState.sharedImage.value.parentImageOffset.x,
-            )
-        }
+    val initialOffset = remember {
+        screenState.transitionModel.value.parentImageOffset.copy(
+            x = screenState.transitionModel.value.parentImageOffset.x,
+        )
+    }
 
     val sharedElementProgress = remember { Animatable(if (isTransitionActive.value) 0f else 1f) }
 
-    val contentScale =
-        remember {
-            FitterContentScale(sharedElementProgress)
-        }
+    val contentScale = remember {
+        FitterContentScale(sharedElementProgress)
+    }
 
     val backgroundColor =
         remember {
@@ -117,7 +115,7 @@ internal fun ZoomedImageScreen(
         remember {
             derivedStateOf {
                 lerp(
-                    screenState.sharedImage.value.imageSize,
+                    screenState.transitionModel.value.imageSize,
                     screenState.maxSize,
                     sharedElementProgress.value,
                 )
@@ -128,7 +126,7 @@ internal fun ZoomedImageScreen(
         remember {
             derivedStateOf {
                 lerp(
-                    screenState.sharedImage.value.initialCornerRadius,
+                    screenState.transitionModel.value.initialCornerRadius,
                     0.dp,
                     sharedElementProgress.value,
                 )
@@ -194,15 +192,14 @@ private fun ZoomedImageScreenContent(
                         screenState.closeZoomImageScreen(scope)
                     },
                 ),
-            imageUrl = screenState.sharedImage.value.imageUrl,
+            imageUrl = screenState.transitionModel.value.imageUrl,
             shapeDp = cornerRadius.value,
             contentScale = contentScale,
             contentDescription = null,
         )
 
         Row(
-            modifier =
-            Modifier
+            modifier = Modifier
                 .align(Alignment.TopStart)
                 .fillMaxWidth()
                 .windowInsetsPadding(WindowInsets.statusBars)
@@ -212,8 +209,7 @@ private fun ZoomedImageScreenContent(
             horizontalArrangement = Arrangement.SpaceBetween,
         ) {
             AiutaIcon(
-                modifier =
-                Modifier
+                modifier = Modifier
                     .size(24.dp)
                     .clickableUnindicated {
                         screenState.closeZoomImageScreen(scope)
@@ -241,8 +237,7 @@ private fun ZoomedImageScreenContent(
                                 scope.launch {
                                     isShareActive.value = true
 
-                                    val imageUrls =
-                                        listOfNotNull(screenState.sharedImage.value.imageUrl)
+                                    val imageUrls = listOfNotNull(screenState.transitionModel.value.imageUrl)
                                     val skuIds = listOf(controller.activeProductItem.value.id)
                                     val shareText = shareFeature.dataProvider?.let { provider ->
                                         provider::getShareText.safeInvoke(skuIds)
@@ -250,7 +245,7 @@ private fun ZoomedImageScreenContent(
 
                                     shareManager.shareImages(
                                         content = shareText?.getOrNull(),
-                                        pageId = screenState.sharedImage.value.originPageId,
+                                        pageId = screenState.transitionModel.value.originPageId,
                                         productId = controller.activeProductItem.value.id,
                                         imageUrls = imageUrls,
                                         watermark = watermarkPainter,

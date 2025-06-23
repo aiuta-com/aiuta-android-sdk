@@ -15,12 +15,11 @@ import com.aiuta.fashionsdk.tryon.compose.ui.internal.controller.navigateBack
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.navigation.NavigationContainer
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.navigation.NavigationInitialisation
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.navigation.NavigationScreen
+import com.aiuta.fashionsdk.tryon.compose.ui.internal.screens.base.transition.disableSharingState
+import com.aiuta.fashionsdk.tryon.compose.ui.internal.screens.base.transition.isSharingEnable
+import com.aiuta.fashionsdk.tryon.compose.ui.internal.screens.base.transition.isTransitionActive
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.screens.zoom.ZoomedImageScreen
-import com.aiuta.fashionsdk.tryon.compose.ui.internal.screens.zoom.controller.ZoomImageState
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.screens.zoom.controller.closeZoomImageScreen
-import com.aiuta.fashionsdk.tryon.compose.ui.internal.screens.zoom.controller.disableZoomState
-import com.aiuta.fashionsdk.tryon.compose.ui.internal.screens.zoom.controller.isTransitionActive
-import com.aiuta.fashionsdk.tryon.compose.ui.internal.screens.zoom.controller.isZoomEnable
 
 /**
  * Entry point for the fashion try-on flow.
@@ -55,13 +54,13 @@ public fun AiutaTryOnFlow(
 
         // Move screen here, because full view should be on the top of navigation
         with(controller) {
-            if (zoomImageController.zoomState.value == ZoomImageState.ENABLE) {
+            if (zoomImageController.isSharingEnable()) {
                 ZoomedImageScreen(
                     modifier = modifier,
                     screenState = zoomImageController,
                     onTransitionFinished = {
                         if (!zoomImageController.isTransitionActive()) {
-                            zoomImageController.disableZoomState()
+                            zoomImageController.disableSharingState()
                         }
                     },
                 )
@@ -70,7 +69,7 @@ public fun AiutaTryOnFlow(
 
         BackHandler {
             when {
-                controller.zoomImageController.isZoomEnable() -> {
+                controller.zoomImageController.isSharingEnable() -> {
                     controller.zoomImageController.closeZoomImageScreen(scope)
                 }
 
