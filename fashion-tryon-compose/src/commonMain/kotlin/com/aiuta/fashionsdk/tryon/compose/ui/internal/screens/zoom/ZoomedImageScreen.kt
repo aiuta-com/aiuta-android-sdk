@@ -15,7 +15,6 @@ import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.State
-import androidx.compose.runtime.derivedStateOf
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.rememberCoroutineScope
@@ -24,26 +23,26 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.geometry.Offset
 import androidx.compose.ui.geometry.Size
-import androidx.compose.ui.geometry.lerp
 import androidx.compose.ui.graphics.Color
-import androidx.compose.ui.graphics.lerp
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.platform.LocalDensity
 import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.IntOffset
 import androidx.compose.ui.unit.dp
-import androidx.compose.ui.unit.lerp
 import com.aiuta.fashionsdk.configuration.features.share.AiutaShareFeature
 import com.aiuta.fashionsdk.tryon.compose.domain.internal.share.rememberShareManagerV2
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.components.icons.AiutaLoadingComponent
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.components.zoomable.zoomable
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.controller.composition.LocalController
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.screens.base.transition.ui.BaseSharedImageScreen
+import com.aiuta.fashionsdk.tryon.compose.ui.internal.screens.base.transition.utils.animateColorAsLerp
+import com.aiuta.fashionsdk.tryon.compose.ui.internal.screens.base.transition.utils.animateDpAsLerp
+import com.aiuta.fashionsdk.tryon.compose.ui.internal.screens.base.transition.utils.animateOffsetAsLerp
+import com.aiuta.fashionsdk.tryon.compose.ui.internal.screens.base.transition.utils.animateSizeAsLerp
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.screens.zoom.controller.FitterContentScale
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.screens.zoom.controller.ZoomImageController
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.screens.zoom.controller.closeZoomImageScreen
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.screens.zoom.utils.toDp
-import com.aiuta.fashionsdk.tryon.compose.ui.internal.screens.zoom.utils.toIntOffset
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.utils.features.dataprovider.safeInvoke
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.utils.features.provideFeature
 import com.aiuta.fashionsdk.tryon.compose.uikit.composition.LocalTheme
@@ -73,60 +72,35 @@ internal fun ZoomedImageScreen(
             FitterContentScale(sharedElementProgress)
         }
 
-        val backgroundColor =
-            remember {
-                derivedStateOf {
-                    lerp(
-                        Color.Transparent,
-                        Color.Black,
-                        sharedElementProgress.value,
-                    )
-                }
-            }
+        val backgroundColor = animateColorAsLerp(
+            start = Color.Transparent,
+            stop = Color.Black,
+            progress = sharedElementProgress,
+        )
 
-        val interfaceColor =
-            remember {
-                derivedStateOf {
-                    lerp(
-                        Color.Transparent,
-                        theme.color.onDark,
-                        sharedElementProgress.value,
-                    )
-                }
-            }
+        val interfaceColor = animateColorAsLerp(
+            start = Color.Transparent,
+            stop = theme.color.onDark,
+            progress = sharedElementProgress,
+        )
 
-        val imageOffset =
-            remember {
-                derivedStateOf {
-                    lerp(
-                        initialOffset,
-                        Offset.Zero,
-                        sharedElementProgress.value,
-                    ).toIntOffset()
-                }
-            }
+        val imageOffset = animateOffsetAsLerp(
+            start = initialOffset,
+            stop = Offset.Zero,
+            progress = sharedElementProgress,
+        )
 
-        val imageSize =
-            remember {
-                derivedStateOf {
-                    lerp(
-                        screenState.transitionModel.value.imageSize,
-                        screenState.maxSize,
-                        sharedElementProgress.value,
-                    )
-                }
-            }
+        val imageSize = animateSizeAsLerp(
+            start = screenState.transitionModel.value.imageSize,
+            stop = screenState.maxSize,
+            progress = sharedElementProgress,
+        )
 
-        val cornerRadius =
-            remember {
-                derivedStateOf {
-                    lerp(
-                        screenState.transitionModel.value.initialCornerRadius,
-                        0.dp,
-                        sharedElementProgress.value,
-                    )
-                }
-            }
+        val cornerRadius = animateDpAsLerp(
+            start = screenState.transitionModel.value.initialCornerRadius,
+            stop = 0.dp,
+            progress = sharedElementProgress,
+        )
 
         ZoomedImageScreenContent(
             modifier = modifier,
