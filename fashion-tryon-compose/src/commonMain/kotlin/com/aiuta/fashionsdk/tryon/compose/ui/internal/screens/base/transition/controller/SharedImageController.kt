@@ -1,10 +1,13 @@
-package com.aiuta.fashionsdk.tryon.compose.ui.internal.screens.base.transition
+package com.aiuta.fashionsdk.tryon.compose.ui.internal.screens.base.transition.controller
 
 import androidx.compose.runtime.Immutable
 import androidx.compose.runtime.MutableState
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.ui.geometry.Size
 import androidx.compose.ui.unit.Constraints
+import com.aiuta.fashionsdk.tryon.compose.ui.internal.screens.base.transition.model.SharedImageState
+import com.aiuta.fashionsdk.tryon.compose.ui.internal.screens.base.transition.model.SharedImageTransitionModel
+import com.aiuta.fashionsdk.tryon.compose.ui.internal.screens.base.transition.model.SharedImageTransitionState
 
 @Immutable
 internal abstract class SharedImageController<T : SharedImageTransitionModel>(
@@ -20,7 +23,9 @@ internal abstract class SharedImageController<T : SharedImageTransitionModel>(
     }
 
     public val state: MutableState<SharedImageState> = mutableStateOf(SharedImageState.DISABLE)
-    public val transitionState: MutableState<SharedImageTransitionState> = mutableStateOf(SharedImageTransitionState.IDLE)
+    public val transitionState: MutableState<SharedImageTransitionState> = mutableStateOf(
+        SharedImageTransitionState.IDLE,
+    )
 
     public abstract val transitionModel: MutableState<T>
 }

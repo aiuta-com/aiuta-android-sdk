@@ -1,4 +1,4 @@
-package com.aiuta.fashionsdk.tryon.compose.ui.internal.screens.base.transition
+package com.aiuta.fashionsdk.tryon.compose.ui.internal.screens.base.transition.model
 
 import androidx.compose.ui.geometry.Offset
 import androidx.compose.ui.geometry.Size

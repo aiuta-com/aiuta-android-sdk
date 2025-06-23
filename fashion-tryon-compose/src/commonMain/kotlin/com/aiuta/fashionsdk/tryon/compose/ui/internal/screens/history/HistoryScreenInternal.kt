@@ -56,7 +56,7 @@ import com.aiuta.fashionsdk.tryon.compose.ui.internal.controller.composition.Loc
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.controller.composition.LocalController
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.controller.deactivateSelectMode
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.controller.isSelectModeActive
-import com.aiuta.fashionsdk.tryon.compose.ui.internal.screens.base.transition.openScreen
+import com.aiuta.fashionsdk.tryon.compose.ui.internal.screens.base.transition.controller.openScreen
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.screens.history.analytic.sendHistoryEvent
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.screens.history.components.SelectorCard
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.screens.history.components.common.HistoryAppBar
@@ -68,6 +68,8 @@ import com.aiuta.fashionsdk.tryon.compose.ui.internal.utils.features.dataprovide
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.utils.features.provideFeature
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.utils.paging.LazyPagingItems
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.utils.paging.collectAsLazyPagingItems
+import com.aiuta.fashionsdk.tryon.compose.ui.internal.utils.paging.itemContentType
+import com.aiuta.fashionsdk.tryon.compose.ui.internal.utils.paging.itemKey
 import com.aiuta.fashionsdk.tryon.compose.uikit.composition.LocalTheme
 import com.aiuta.fashionsdk.tryon.compose.uikit.resources.AiutaIcon
 import com.aiuta.fashionsdk.tryon.compose.uikit.resources.AiutaImage
@@ -140,22 +142,21 @@ private fun HistoryScreenInternal(modifier: Modifier = Modifier) {
             items(
                 span = { GridItemSpan(1) },
                 count = generatedImages.itemCount,
-                key = { generatedImages[it]?.id ?: 0 },
-                contentType = { generatedImages.itemSnapshotList.getOrNull(it) },
+                key = generatedImages.itemKey { it.id },
+                contentType = generatedImages.itemContentType { "HISTORY_CONTENT_TYPE" },
             ) { index ->
                 val generatedImage = generatedImages[index]
 
                 var parentImageOffset by remember { mutableStateOf(Offset.Unspecified) }
                 var imageSize by remember { mutableStateOf(Size.Zero) }
 
-                val isLoading =
-                    remember {
-                        derivedStateOf {
-                            loadingActionsController.loadingGenerationsHolder.contain(
-                                generatedImage,
-                            )
-                        }
+                val isLoading = remember {
+                    derivedStateOf {
+                        loadingActionsController.loadingGenerationsHolder.contain(
+                            generatedImage,
+                        )
                     }
+                }
                 val isSelectModeActive = controller.isSelectModeActive().value && !isLoading.value
 
                 ImageContainer(

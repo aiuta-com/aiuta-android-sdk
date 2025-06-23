@@ -9,7 +9,7 @@ import androidx.compose.ui.unit.Constraints
 import com.aiuta.fashionsdk.tryon.compose.domain.models.internal.zoom.ZoomImageUiModel
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.components.zoomable.ZoomState
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.components.zoomable.rememberZoomState
-import com.aiuta.fashionsdk.tryon.compose.ui.internal.screens.base.transition.SharedImageController
+import com.aiuta.fashionsdk.tryon.compose.ui.internal.screens.base.transition.controller.SharedImageController
 
 @Composable
 internal fun rememberZoomImageController(

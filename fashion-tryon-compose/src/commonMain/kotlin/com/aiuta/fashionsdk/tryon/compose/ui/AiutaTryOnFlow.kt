@@ -15,9 +15,7 @@ import com.aiuta.fashionsdk.tryon.compose.ui.internal.controller.navigateBack
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.navigation.NavigationContainer
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.navigation.NavigationInitialisation
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.navigation.NavigationScreen
-import com.aiuta.fashionsdk.tryon.compose.ui.internal.screens.base.transition.disableSharingState
-import com.aiuta.fashionsdk.tryon.compose.ui.internal.screens.base.transition.isSharingEnable
-import com.aiuta.fashionsdk.tryon.compose.ui.internal.screens.base.transition.isTransitionActive
+import com.aiuta.fashionsdk.tryon.compose.ui.internal.screens.base.transition.controller.isSharingEnable
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.screens.zoom.ZoomedImageScreen
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.screens.zoom.controller.closeZoomImageScreen
 
@@ -58,11 +56,6 @@ public fun AiutaTryOnFlow(
                 ZoomedImageScreen(
                     modifier = modifier,
                     screenState = zoomImageController,
-                    onTransitionFinished = {
-                        if (!zoomImageController.isTransitionActive()) {
-                            zoomImageController.disableSharingState()
-                        }
-                    },
                 )
             }
         }

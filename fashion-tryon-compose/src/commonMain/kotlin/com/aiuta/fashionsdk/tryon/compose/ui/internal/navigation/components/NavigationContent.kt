@@ -40,6 +40,7 @@ internal fun NavigationContent(modifier: Modifier = Modifier) {
                 leftToRightTransition
             }
         },
+        contentKey = { it.id },
     ) { targetScreen ->
         when (targetScreen) {
             is NavigationScreen.Splash -> {
