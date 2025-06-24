@@ -1,6 +1,9 @@
+@file:OptIn(ExperimentalSharedTransitionApi::class)
+
 package com.aiuta.fashionsdk.tryon.compose.ui.internal.screens.history
 
 import androidx.compose.animation.AnimatedVisibility
+import androidx.compose.animation.ExperimentalSharedTransitionApi
 import androidx.compose.animation.fadeIn
 import androidx.compose.animation.fadeOut
 import androidx.compose.foundation.background
@@ -49,14 +52,14 @@ import com.aiuta.fashionsdk.analytics.events.AiutaAnalyticsPageId
 import com.aiuta.fashionsdk.configuration.features.share.AiutaShareFeature
 import com.aiuta.fashionsdk.tryon.compose.domain.internal.share.rememberShareManagerV2
 import com.aiuta.fashionsdk.tryon.compose.domain.models.internal.generated.images.GeneratedImageUIModel
-import com.aiuta.fashionsdk.tryon.compose.domain.models.internal.zoom.ZoomImageUiModel
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.analytic.sendPageEvent
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.components.icons.AiutaBoxedLoadingIcon
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.controller.composition.LocalAiutaTryOnLoadingActionsController
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.controller.composition.LocalController
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.controller.deactivateSelectMode
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.controller.isSelectModeActive
-import com.aiuta.fashionsdk.tryon.compose.ui.internal.screens.base.transition.controller.openScreen
+import com.aiuta.fashionsdk.tryon.compose.ui.internal.controller.navigateTo
+import com.aiuta.fashionsdk.tryon.compose.ui.internal.navigation.NavigationScreen
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.screens.history.analytic.sendHistoryEvent
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.screens.history.components.SelectorCard
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.screens.history.components.common.HistoryAppBar
@@ -116,19 +119,17 @@ private fun HistoryScreenInternal(modifier: Modifier = Modifier) {
         horizontalPadding = horizontalPadding,
     )
 
-    val generatedImages =
-        controller
-            .generatedImageInteractor
-            .generatedImagesFlow()
-            .collectAsLazyPagingItems()
+    val generatedImages = controller
+        .generatedImageInteractor
+        .generatedImagesFlow()
+        .collectAsLazyPagingItems()
 
     val sharedRadius = theme.image.shapes.imageS
 
     HistoryScreenListeners(generatedImages = generatedImages)
 
     Box(
-        modifier =
-        modifier
+        modifier = modifier
             .fillMaxSize()
             .background(color = theme.color.background),
     ) {
@@ -182,15 +183,20 @@ private fun HistoryScreenInternal(modifier: Modifier = Modifier) {
                             }
 
                             else -> {
-                                controller.zoomImageController.openScreen(
-                                    model = ZoomImageUiModel(
-                                        imageSize = imageSize,
-                                        initialCornerRadius = sharedRadius,
-                                        imageUrl = generatedImage?.imageUrl,
-                                        parentImageOffset = parentImageOffset,
-                                        originPageId = AiutaAnalyticsPageId.HISTORY,
+                                controller.navigateTo(
+                                    newScreen = NavigationScreen.ImageListViewer(
+                                        pickedIndex = index,
                                     ),
                                 )
+//                                controller.zoomImageController.openScreen(
+//                                    model = ZoomImageUiModel(
+//                                        imageSize = imageSize,
+//                                        initialCornerRadius = sharedRadius,
+//                                        imageUrl = generatedImage?.imageUrl,
+//                                        parentImageOffset = parentImageOffset,
+//                                        originPageId = AiutaAnalyticsPageId.HISTORY,
+//                                    ),
+//                                )
                             }
                         }
                     },

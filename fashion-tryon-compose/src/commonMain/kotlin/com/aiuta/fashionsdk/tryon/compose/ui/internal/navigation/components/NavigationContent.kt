@@ -9,10 +9,12 @@ import com.aiuta.fashionsdk.tryon.compose.ui.internal.controller.composition.Loc
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.controller.navigateTo
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.navigation.NavigationScreen
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.navigation.screenPosition
+import com.aiuta.fashionsdk.tryon.compose.ui.internal.navigation.solveTransitionAnimation
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.navigation.transition.leftToRightTransition
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.navigation.transition.rightToLeftTransition
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.screens.consent.ConsentScreen
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.screens.history.HistoryScreen
+import com.aiuta.fashionsdk.tryon.compose.ui.internal.screens.list.ImageListScreen
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.screens.model.ModelSelectorScreen
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.screens.onboarding.OnboardingScreen
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.screens.preonboarding.PreOnboardingScreen
@@ -25,19 +27,22 @@ internal fun NavigationContent(modifier: Modifier = Modifier) {
     val controller = LocalController.current
     val sharedModifier = Modifier.fillMaxSize()
 
-    val transition =
-        updateTransition(
-            targetState = controller.currentScreen.value,
-            label = "navigation transition",
-        )
+    val transition = updateTransition(
+        targetState = controller.currentScreen.value,
+        label = "navigation transition",
+    )
 
     transition.AnimatedContent(
         modifier = modifier,
         transitionSpec = {
-            if (screenPosition(initialState) < screenPosition(targetState)) {
-                rightToLeftTransition
-            } else {
-                leftToRightTransition
+            val destinationsTransition = solveTransitionAnimation()
+
+            when {
+                // Solve custom transition animation
+                destinationsTransition != null -> destinationsTransition
+                // Default
+                screenPosition(initialState) < screenPosition(targetState) -> rightToLeftTransition
+                else -> leftToRightTransition
             }
         },
         contentKey = { it.id },
@@ -90,6 +95,13 @@ internal fun NavigationContent(modifier: Modifier = Modifier) {
             is NavigationScreen.GenerationResult -> {
                 GenerationResultScreen(
                     modifier = sharedModifier,
+                )
+            }
+
+            is NavigationScreen.ImageListViewer -> {
+                ImageListScreen(
+                    modifier = sharedModifier,
+                    args = targetScreen,
                 )
             }
         }
