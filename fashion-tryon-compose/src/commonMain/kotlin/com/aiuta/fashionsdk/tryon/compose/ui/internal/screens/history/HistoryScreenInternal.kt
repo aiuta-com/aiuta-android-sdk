@@ -30,7 +30,6 @@ import androidx.compose.runtime.derivedStateOf
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
-import androidx.compose.runtime.rememberCoroutineScope
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
@@ -49,8 +48,6 @@ import coil3.request.ImageRequest
 import coil3.size.SizeResolver.Companion.ORIGINAL
 import com.aiuta.fashionsdk.analytics.events.AiutaAnalyticsHistoryEventType
 import com.aiuta.fashionsdk.analytics.events.AiutaAnalyticsPageId
-import com.aiuta.fashionsdk.configuration.features.share.AiutaShareFeature
-import com.aiuta.fashionsdk.tryon.compose.domain.internal.share.rememberShareManagerV2
 import com.aiuta.fashionsdk.tryon.compose.domain.models.internal.generated.images.GeneratedImageUIModel
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.analytic.sendPageEvent
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.components.icons.AiutaBoxedLoadingIcon
@@ -60,6 +57,8 @@ import com.aiuta.fashionsdk.tryon.compose.ui.internal.controller.deactivateSelec
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.controller.isSelectModeActive
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.controller.navigateTo
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.navigation.NavigationScreen
+import com.aiuta.fashionsdk.tryon.compose.ui.internal.screens.base.share.ShareElement
+import com.aiuta.fashionsdk.tryon.compose.ui.internal.screens.base.share.onShare
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.screens.history.analytic.sendHistoryEvent
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.screens.history.components.SelectorCard
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.screens.history.components.common.HistoryAppBar
@@ -67,8 +66,6 @@ import com.aiuta.fashionsdk.tryon.compose.ui.internal.screens.history.controller
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.screens.history.models.SelectorMode
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.screens.history.utils.calculateMinGridItemWidth
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.screens.history.utils.deleteGeneratedImages
-import com.aiuta.fashionsdk.tryon.compose.ui.internal.utils.features.dataprovider.safeInvoke
-import com.aiuta.fashionsdk.tryon.compose.ui.internal.utils.features.provideFeature
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.utils.paging.LazyPagingItems
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.utils.paging.collectAsLazyPagingItems
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.utils.paging.itemContentType
@@ -76,9 +73,7 @@ import com.aiuta.fashionsdk.tryon.compose.ui.internal.utils.paging.itemKey
 import com.aiuta.fashionsdk.tryon.compose.uikit.composition.LocalTheme
 import com.aiuta.fashionsdk.tryon.compose.uikit.resources.AiutaIcon
 import com.aiuta.fashionsdk.tryon.compose.uikit.resources.AiutaImage
-import com.aiuta.fashionsdk.tryon.compose.uikit.resources.painter.painterResource
 import com.aiuta.fashionsdk.tryon.compose.uikit.utils.clickableUnindicated
-import kotlinx.coroutines.launch
 
 @Composable
 internal fun HistoryScreen(modifier: Modifier = Modifier) {
@@ -298,16 +293,7 @@ private fun BoxScope.HistoryScreenInterface(
     val controller = LocalController.current
     val loadingActionsController = LocalAiutaTryOnLoadingActionsController.current
 
-    val shareFeature = provideFeature<AiutaShareFeature>()
-
-    val scope = rememberCoroutineScope()
     val generatedImages = getGeneratedImages()
-    val shareManager = rememberShareManagerV2()
-    val isShareActive = remember { mutableStateOf(false) }
-
-    val watermarkPainter = shareFeature?.watermark?.images?.logo?.let { logo ->
-        painterResource(logo)
-    }
 
     AnimatedVisibility(
         modifier =
@@ -321,55 +307,40 @@ private fun BoxScope.HistoryScreenInterface(
         enter = fadeIn(),
         exit = fadeOut(),
     ) {
-        SelectorCard(
-            modifier = Modifier.fillMaxWidth(),
-            selectionMode = controller.selectorState,
-            isActionActive = !controller.selectorHolder.isEmpty(),
-            onSelectAll = {
-                controller.selectorHolder.reset(generatedImages.itemSnapshotList.items)
-                controller.selectorState.value = SelectorMode.ALL_IS_SELECTED
-            },
-            onDeselectAll = {
-                controller.selectorHolder.removeAll()
-                controller.selectorState.value = SelectorMode.ALL_IS_NOT_SELECTED
-            },
-            onCancel = {
-                controller.deactivateSelectMode()
-            },
-            isShareLoading = isShareActive.value,
-            onShare = {
-                scope.launch {
-                    isShareActive.value = true
-
-                    val imageUrls = controller
-                        .selectorHolder
-                        .getList()
-                        .map { it.imageUrl }
-
-                    val skuIds = listOf(controller.activeProductItem.value.id)
-                    val shareText = shareFeature?.dataProvider?.let { provider ->
-                        provider::getShareText.safeInvoke(skuIds)
-                    }
-
-                    shareManager.shareImages(
-                        content = shareText?.getOrNull(),
-                        pageId = AiutaAnalyticsPageId.HISTORY,
-                        productId = controller.activeProductItem.value.id,
-                        imageUrls = imageUrls,
-                        watermark = watermarkPainter,
-                    )
-
-                    // Deactivate
-                    isShareActive.value = false
+        ShareElement {
+            SelectorCard(
+                modifier = Modifier.fillMaxWidth(),
+                selectionMode = controller.selectorState,
+                isActionActive = !controller.selectorHolder.isEmpty(),
+                onSelectAll = {
+                    controller.selectorHolder.reset(generatedImages.itemSnapshotList.items)
+                    controller.selectorState.value = SelectorMode.ALL_IS_SELECTED
+                },
+                onDeselectAll = {
+                    controller.selectorHolder.removeAll()
+                    controller.selectorState.value = SelectorMode.ALL_IS_NOT_SELECTED
+                },
+                onCancel = {
                     controller.deactivateSelectMode()
-                }
-            },
-            onDelete = {
-                controller.sendHistoryEvent(AiutaAnalyticsHistoryEventType.GENERATED_IMAGE_DELETED)
-                controller.deleteGeneratedImages(
-                    loadingActionsController = loadingActionsController,
-                )
-            },
-        )
+                },
+                isShareLoading = isShareActive.value,
+                onShare = {
+                    onShare(
+                        activeProductItems = listOf(controller.activeProductItem.value),
+                        imageUrls = controller
+                            .selectorHolder
+                            .getList()
+                            .map { it.imageUrl },
+                        pageId = AiutaAnalyticsPageId.HISTORY,
+                    )
+                },
+                onDelete = {
+                    controller.sendHistoryEvent(AiutaAnalyticsHistoryEventType.GENERATED_IMAGE_DELETED)
+                    controller.deleteGeneratedImages(
+                        loadingActionsController = loadingActionsController,
+                    )
+                },
+            )
+        }
     }
 }

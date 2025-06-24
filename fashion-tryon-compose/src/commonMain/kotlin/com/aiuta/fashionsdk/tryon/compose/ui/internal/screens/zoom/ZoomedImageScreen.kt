@@ -15,7 +15,6 @@ import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.State
-import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.rememberCoroutineScope
 import androidx.compose.ui.Alignment
@@ -29,11 +28,11 @@ import androidx.compose.ui.platform.LocalDensity
 import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.IntOffset
 import androidx.compose.ui.unit.dp
-import com.aiuta.fashionsdk.configuration.features.share.AiutaShareFeature
-import com.aiuta.fashionsdk.tryon.compose.domain.internal.share.rememberShareManagerV2
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.components.icons.AiutaLoadingComponent
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.components.zoomable.zoomable
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.controller.composition.LocalController
+import com.aiuta.fashionsdk.tryon.compose.ui.internal.screens.base.share.ShareElement
+import com.aiuta.fashionsdk.tryon.compose.ui.internal.screens.base.share.onShare
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.screens.base.transition.ui.BaseSharedImageScreen
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.screens.base.transition.utils.animateColorAsLerp
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.screens.base.transition.utils.animateDpAsLerp
@@ -43,14 +42,10 @@ import com.aiuta.fashionsdk.tryon.compose.ui.internal.screens.zoom.controller.Fi
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.screens.zoom.controller.ZoomImageController
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.screens.zoom.controller.closeZoomImageScreen
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.screens.zoom.utils.toDp
-import com.aiuta.fashionsdk.tryon.compose.ui.internal.utils.features.dataprovider.safeInvoke
-import com.aiuta.fashionsdk.tryon.compose.ui.internal.utils.features.provideFeature
 import com.aiuta.fashionsdk.tryon.compose.uikit.composition.LocalTheme
 import com.aiuta.fashionsdk.tryon.compose.uikit.resources.AiutaIcon
 import com.aiuta.fashionsdk.tryon.compose.uikit.resources.AiutaImage
-import com.aiuta.fashionsdk.tryon.compose.uikit.resources.painter.painterResource
 import com.aiuta.fashionsdk.tryon.compose.uikit.utils.clickableUnindicated
-import kotlinx.coroutines.launch
 
 @Composable
 internal fun ZoomedImageScreen(
@@ -129,11 +124,7 @@ private fun ZoomedImageScreenContent(
     val controller = LocalController.current
     val theme = LocalTheme.current
 
-    val shareFeature = provideFeature<AiutaShareFeature>()
-
     val scope = rememberCoroutineScope()
-    val shareManager = rememberShareManagerV2()
-    val isShareActive = remember { mutableStateOf(false) }
 
     Box(
         modifier = modifier.background(color = backgroundColor.value),
@@ -179,13 +170,7 @@ private fun ZoomedImageScreenContent(
                 tint = interfaceColor.value,
             )
 
-            shareFeature?.let {
-                val watermarkPainter = shareFeature
-                    .watermark
-                    ?.images
-                    ?.logo
-                    ?.let { logo -> painterResource(logo) }
-
+            ShareElement {
                 AiutaLoadingComponent(
                     isLoading = isShareActive.value,
                     circleSize = 24.dp,
@@ -194,26 +179,11 @@ private fun ZoomedImageScreenContent(
                     Text(
                         modifier = Modifier
                             .clickableUnindicated(enabled = !isShareActive.value) {
-                                scope.launch {
-                                    isShareActive.value = true
-
-                                    val imageUrls =
-                                        listOfNotNull(screenState.transitionModel.value.imageUrl)
-                                    val skuIds = listOf(controller.activeProductItem.value.id)
-                                    val shareText = shareFeature.dataProvider?.let { provider ->
-                                        provider::getShareText.safeInvoke(skuIds)
-                                    }
-
-                                    shareManager.shareImages(
-                                        content = shareText?.getOrNull(),
-                                        pageId = screenState.transitionModel.value.originPageId,
-                                        productId = controller.activeProductItem.value.id,
-                                        imageUrls = imageUrls,
-                                        watermark = watermarkPainter,
-                                    )
-
-                                    isShareActive.value = false
-                                }
+                                onShare(
+                                    activeProductItem = controller.activeProductItem.value,
+                                    imageUrl = screenState.transitionModel.value.imageUrl,
+                                    pageId = screenState.transitionModel.value.originPageId,
+                                )
                             },
                         text = shareFeature.strings.shareButton,
                         style = theme.button.typography.buttonM,
