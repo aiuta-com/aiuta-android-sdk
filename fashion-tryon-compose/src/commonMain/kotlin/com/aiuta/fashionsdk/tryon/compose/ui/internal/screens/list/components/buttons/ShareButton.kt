@@ -1,4 +1,4 @@
-package com.aiuta.fashionsdk.tryon.compose.ui.internal.screens.list.components
+package com.aiuta.fashionsdk.tryon.compose.ui.internal.screens.list.components.buttons
 
 import androidx.compose.animation.AnimatedContent
 import androidx.compose.animation.fadeIn
