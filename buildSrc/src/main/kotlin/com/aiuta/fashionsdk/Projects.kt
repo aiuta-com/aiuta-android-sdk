@@ -105,6 +105,8 @@ private fun <T : BaseExtension> Project.androidBase(
                 "ObsoleteLintCustomCheck",
                 "MonochromeLauncherIcon",
                 "IconLocation",
+                // Renovate bot checks deps updates
+                "NewerVersionAvailable"
             )
         }
         action()
