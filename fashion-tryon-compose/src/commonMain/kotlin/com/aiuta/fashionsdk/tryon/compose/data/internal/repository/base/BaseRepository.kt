@@ -2,6 +2,7 @@ package com.aiuta.fashionsdk.tryon.compose.data.internal.repository.base
 
 import com.aiuta.fashionsdk.tryon.compose.domain.internal.time.TimeSaver
 import kotlin.time.Duration
+import kotlin.time.ExperimentalTime
 import kotlinx.coroutines.sync.Mutex
 import kotlinx.coroutines.sync.withLock
 import kotlinx.datetime.TimeZone
@@ -67,6 +68,7 @@ internal abstract class BaseRepository(
      * @return false, if [delay] is BIGGER OR EQUAL than delta between current time and last saved by [timeKey]
      * @return null, if time has not saved yet
      */
+    @OptIn(ExperimentalTime::class)
     private suspend fun isPassedTimeLimit(
         timeKey: String,
         delay: Duration,

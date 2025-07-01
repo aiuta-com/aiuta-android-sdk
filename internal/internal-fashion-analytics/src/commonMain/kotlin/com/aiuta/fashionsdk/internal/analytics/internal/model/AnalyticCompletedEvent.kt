@@ -1,7 +1,8 @@
 package com.aiuta.fashionsdk.internal.analytics.internal.model
 
 import com.aiuta.fashionsdk.analytics.events.AiutaAnalyticsEvent
-import kotlinx.datetime.Clock
+import kotlin.time.Clock
+import kotlin.time.ExperimentalTime
 import kotlinx.datetime.TimeZone
 import kotlinx.datetime.toLocalDateTime
 import kotlinx.serialization.SerialName
@@ -17,6 +18,7 @@ internal data class AnalyticCompletedEvent(
     val localDateTime: String,
 )
 
+@OptIn(ExperimentalTime::class)
 internal fun currentLocalDateTime(): String {
     val currentInstant = Clock.System.now()
     val currentDateTime = currentInstant.toLocalDateTime(TimeZone.currentSystemDefault())

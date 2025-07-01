@@ -6,12 +6,14 @@ import androidx.compose.ui.graphics.drawscope.CanvasDrawScope
 import androidx.compose.ui.graphics.painter.Painter
 import androidx.compose.ui.unit.Density
 import androidx.compose.ui.unit.LayoutDirection
-import kotlinx.datetime.Clock
+import kotlin.time.Clock
+import kotlin.time.ExperimentalTime
 
 internal const val PAGE_ID_KEY = "pageIdKey"
 internal const val PRODUCT_ID_KEY = "productIdKey"
 internal const val SHARE_REQUEST_CODE = 100
 
+@OptIn(ExperimentalTime::class)
 internal fun generateImageFileName(
     extension: String = "jpeg",
 ) = "image_${Clock.System.now().toEpochMilliseconds()}.$extension"

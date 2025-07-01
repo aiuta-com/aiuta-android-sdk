@@ -4,10 +4,12 @@ import java.io.File
 import java.io.FileNotFoundException
 import java.io.FileOutputStream
 import java.io.IOException
+import kotlin.time.Clock
+import kotlin.time.ExperimentalTime
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext
-import kotlinx.datetime.Clock
 import kotlinx.datetime.TimeZone
+import kotlinx.datetime.number
 import kotlinx.datetime.toLocalDateTime
 
 /**
@@ -98,6 +100,7 @@ internal suspend inline fun File.writeByteArray(
  *
  * @return [String] with name of file. By default, will be `2015-12-31-12-30-123.jpeg`, for example
  */
+@OptIn(ExperimentalTime::class)
 internal fun generateFileName(
     fileNameAdditional: String = "",
     fileExtension: String = "jpeg",
@@ -105,7 +108,7 @@ internal fun generateFileName(
     val dateTime = Clock.System.now().toLocalDateTime(TimeZone.currentSystemDefault())
     val datePrefix =
         with(dateTime) {
-            "$year-$monthNumber-$dayOfMonth-$hour-$minute-$second-$nanosecond"
+            "$year-${month.number}-$day-$hour-$minute-$second-$nanosecond"
         }
     return "$datePrefix$fileNameAdditional.$fileExtension"
 }
