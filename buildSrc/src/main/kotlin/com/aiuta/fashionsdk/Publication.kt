@@ -6,13 +6,12 @@ import com.aiuta.fashionsdk.groupId as currentGroupId
 import com.aiuta.fashionsdk.artifactId as currentArtifactId
 import com.aiuta.fashionsdk.versionName as currentVersionName
 import com.vanniktech.maven.publish.MavenPublishBaseExtension
-import com.vanniktech.maven.publish.SonatypeHost
 
 fun Project.setupPublishing(
     action: MavenPublishBaseExtension.() -> Unit = {},
 ) {
     extensions.configure<MavenPublishBaseExtension> {
-        publishToMavenCentral(SonatypeHost.CENTRAL_PORTAL)
+        publishToMavenCentral()
         signAllPublications()
         action()
 
