@@ -657,13 +657,13 @@ public final class com/aiuta/fashionsdk/configuration/features/picker/history/st
 }
 
 public abstract interface class com/aiuta/fashionsdk/configuration/features/picker/history/styles/AiutaImagePickerUploadsHistoryFeatureStyles {
-	public abstract fun getChangePhotoButtonStyle ()Lcom/aiuta/fashionsdk/configuration/features/styles/AiutaButtonsStyle;
+	public abstract fun getChangePhotoButtonStyle ()Lcom/aiuta/fashionsdk/configuration/features/styles/AiutaComponentStyle;
 }
 
 public final class com/aiuta/fashionsdk/configuration/features/picker/history/styles/AiutaImagePickerUploadsHistoryFeatureStyles$Default : com/aiuta/fashionsdk/configuration/features/picker/history/styles/AiutaImagePickerUploadsHistoryFeatureStyles {
 	public static final field $stable I
 	public fun <init> ()V
-	public fun getChangePhotoButtonStyle ()Lcom/aiuta/fashionsdk/configuration/features/styles/AiutaButtonsStyle;
+	public fun getChangePhotoButtonStyle ()Lcom/aiuta/fashionsdk/configuration/features/styles/AiutaComponentStyle;
 }
 
 public abstract interface class com/aiuta/fashionsdk/configuration/features/picker/images/AiutaImagePickerFeatureImages {
@@ -804,21 +804,15 @@ public abstract interface class com/aiuta/fashionsdk/configuration/features/shar
 	public abstract fun getLogo ()Lcom/aiuta/fashionsdk/compose/resources/drawable/AiutaDrawableResource;
 }
 
-public final class com/aiuta/fashionsdk/configuration/features/styles/AiutaButtonsStyle : java/lang/Enum {
-	public static final field BLURRED Lcom/aiuta/fashionsdk/configuration/features/styles/AiutaButtonsStyle;
-	public static final field PRIMARY Lcom/aiuta/fashionsdk/configuration/features/styles/AiutaButtonsStyle;
+public final class com/aiuta/fashionsdk/configuration/features/styles/AiutaComponentStyle : java/lang/Enum {
+	public static final field BLURRED Lcom/aiuta/fashionsdk/configuration/features/styles/AiutaComponentStyle;
+	public static final field BLURRED_WITH_OUTLINE Lcom/aiuta/fashionsdk/configuration/features/styles/AiutaComponentStyle;
+	public static final field BRAND Lcom/aiuta/fashionsdk/configuration/features/styles/AiutaComponentStyle;
+	public static final field CONTRAST Lcom/aiuta/fashionsdk/configuration/features/styles/AiutaComponentStyle;
+	public static final field CONTRAST_INVERTED Lcom/aiuta/fashionsdk/configuration/features/styles/AiutaComponentStyle;
 	public static fun getEntries ()Lkotlin/enums/EnumEntries;
-	public static fun valueOf (Ljava/lang/String;)Lcom/aiuta/fashionsdk/configuration/features/styles/AiutaButtonsStyle;
-	public static fun values ()[Lcom/aiuta/fashionsdk/configuration/features/styles/AiutaButtonsStyle;
-}
-
-public final class com/aiuta/fashionsdk/configuration/features/styles/AiutaButtonsWithOutlineStyle : java/lang/Enum {
-	public static final field BLURRED Lcom/aiuta/fashionsdk/configuration/features/styles/AiutaButtonsWithOutlineStyle;
-	public static final field BLURRED_WITH_OUTLINE Lcom/aiuta/fashionsdk/configuration/features/styles/AiutaButtonsWithOutlineStyle;
-	public static final field PRIMARY Lcom/aiuta/fashionsdk/configuration/features/styles/AiutaButtonsWithOutlineStyle;
-	public static fun getEntries ()Lkotlin/enums/EnumEntries;
-	public static fun valueOf (Ljava/lang/String;)Lcom/aiuta/fashionsdk/configuration/features/styles/AiutaButtonsWithOutlineStyle;
-	public static fun values ()[Lcom/aiuta/fashionsdk/configuration/features/styles/AiutaButtonsWithOutlineStyle;
+	public static fun valueOf (Ljava/lang/String;)Lcom/aiuta/fashionsdk/configuration/features/styles/AiutaComponentStyle;
+	public static fun values ()[Lcom/aiuta/fashionsdk/configuration/features/styles/AiutaComponentStyle;
 }
 
 public final class com/aiuta/fashionsdk/configuration/features/tryon/AiutaTryOnFeature : com/aiuta/fashionsdk/configuration/features/AiutaFeature {
@@ -1132,14 +1126,14 @@ public final class com/aiuta/fashionsdk/configuration/features/tryon/loading/str
 
 public abstract interface class com/aiuta/fashionsdk/configuration/features/tryon/loading/styles/AiutaTryOnLoadingPageFeatureStyles {
 	public abstract fun getLoadingStatusBackgroundGradient ()Ljava/util/List;
-	public abstract fun getLoadingStatusStyle ()Lcom/aiuta/fashionsdk/configuration/features/styles/AiutaButtonsWithOutlineStyle;
+	public abstract fun getLoadingStatusStyle ()Lcom/aiuta/fashionsdk/configuration/features/styles/AiutaComponentStyle;
 }
 
 public final class com/aiuta/fashionsdk/configuration/features/tryon/loading/styles/AiutaTryOnLoadingPageFeatureStyles$Default : com/aiuta/fashionsdk/configuration/features/tryon/loading/styles/AiutaTryOnLoadingPageFeatureStyles {
 	public static final field $stable I
 	public fun <init> ()V
 	public fun getLoadingStatusBackgroundGradient ()Ljava/util/List;
-	public fun getLoadingStatusStyle ()Lcom/aiuta/fashionsdk/configuration/features/styles/AiutaButtonsWithOutlineStyle;
+	public fun getLoadingStatusStyle ()Lcom/aiuta/fashionsdk/configuration/features/styles/AiutaComponentStyle;
 }
 
 public final class com/aiuta/fashionsdk/configuration/features/tryon/other/AiutaTryOnWithOtherPhotoFeature : com/aiuta/fashionsdk/configuration/features/AiutaFeature {

@@ -42,27 +42,18 @@ final enum class com.aiuta.fashionsdk.configuration.features.models.images/Aiuta
     final fun values(): kotlin/Array<com.aiuta.fashionsdk.configuration.features.models.images/AiutaOwnerType> // com.aiuta.fashionsdk.configuration.features.models.images/AiutaOwnerType.values|values#static(){}[0]
 }
 
-final enum class com.aiuta.fashionsdk.configuration.features.styles/AiutaButtonsStyle : kotlin/Enum<com.aiuta.fashionsdk.configuration.features.styles/AiutaButtonsStyle> { // com.aiuta.fashionsdk.configuration.features.styles/AiutaButtonsStyle|null[0]
-    enum entry BLURRED // com.aiuta.fashionsdk.configuration.features.styles/AiutaButtonsStyle.BLURRED|null[0]
-    enum entry PRIMARY // com.aiuta.fashionsdk.configuration.features.styles/AiutaButtonsStyle.PRIMARY|null[0]
+final enum class com.aiuta.fashionsdk.configuration.features.styles/AiutaComponentStyle : kotlin/Enum<com.aiuta.fashionsdk.configuration.features.styles/AiutaComponentStyle> { // com.aiuta.fashionsdk.configuration.features.styles/AiutaComponentStyle|null[0]
+    enum entry BLURRED // com.aiuta.fashionsdk.configuration.features.styles/AiutaComponentStyle.BLURRED|null[0]
+    enum entry BLURRED_WITH_OUTLINE // com.aiuta.fashionsdk.configuration.features.styles/AiutaComponentStyle.BLURRED_WITH_OUTLINE|null[0]
+    enum entry BRAND // com.aiuta.fashionsdk.configuration.features.styles/AiutaComponentStyle.BRAND|null[0]
+    enum entry CONTRAST // com.aiuta.fashionsdk.configuration.features.styles/AiutaComponentStyle.CONTRAST|null[0]
+    enum entry CONTRAST_INVERTED // com.aiuta.fashionsdk.configuration.features.styles/AiutaComponentStyle.CONTRAST_INVERTED|null[0]
 
-    final val entries // com.aiuta.fashionsdk.configuration.features.styles/AiutaButtonsStyle.entries|#static{}entries[0]
-        final fun <get-entries>(): kotlin.enums/EnumEntries<com.aiuta.fashionsdk.configuration.features.styles/AiutaButtonsStyle> // com.aiuta.fashionsdk.configuration.features.styles/AiutaButtonsStyle.entries.<get-entries>|<get-entries>#static(){}[0]
+    final val entries // com.aiuta.fashionsdk.configuration.features.styles/AiutaComponentStyle.entries|#static{}entries[0]
+        final fun <get-entries>(): kotlin.enums/EnumEntries<com.aiuta.fashionsdk.configuration.features.styles/AiutaComponentStyle> // com.aiuta.fashionsdk.configuration.features.styles/AiutaComponentStyle.entries.<get-entries>|<get-entries>#static(){}[0]
 
-    final fun valueOf(kotlin/String): com.aiuta.fashionsdk.configuration.features.styles/AiutaButtonsStyle // com.aiuta.fashionsdk.configuration.features.styles/AiutaButtonsStyle.valueOf|valueOf#static(kotlin.String){}[0]
-    final fun values(): kotlin/Array<com.aiuta.fashionsdk.configuration.features.styles/AiutaButtonsStyle> // com.aiuta.fashionsdk.configuration.features.styles/AiutaButtonsStyle.values|values#static(){}[0]
-}
-
-final enum class com.aiuta.fashionsdk.configuration.features.styles/AiutaButtonsWithOutlineStyle : kotlin/Enum<com.aiuta.fashionsdk.configuration.features.styles/AiutaButtonsWithOutlineStyle> { // com.aiuta.fashionsdk.configuration.features.styles/AiutaButtonsWithOutlineStyle|null[0]
-    enum entry BLURRED // com.aiuta.fashionsdk.configuration.features.styles/AiutaButtonsWithOutlineStyle.BLURRED|null[0]
-    enum entry BLURRED_WITH_OUTLINE // com.aiuta.fashionsdk.configuration.features.styles/AiutaButtonsWithOutlineStyle.BLURRED_WITH_OUTLINE|null[0]
-    enum entry PRIMARY // com.aiuta.fashionsdk.configuration.features.styles/AiutaButtonsWithOutlineStyle.PRIMARY|null[0]
-
-    final val entries // com.aiuta.fashionsdk.configuration.features.styles/AiutaButtonsWithOutlineStyle.entries|#static{}entries[0]
-        final fun <get-entries>(): kotlin.enums/EnumEntries<com.aiuta.fashionsdk.configuration.features.styles/AiutaButtonsWithOutlineStyle> // com.aiuta.fashionsdk.configuration.features.styles/AiutaButtonsWithOutlineStyle.entries.<get-entries>|<get-entries>#static(){}[0]
-
-    final fun valueOf(kotlin/String): com.aiuta.fashionsdk.configuration.features.styles/AiutaButtonsWithOutlineStyle // com.aiuta.fashionsdk.configuration.features.styles/AiutaButtonsWithOutlineStyle.valueOf|valueOf#static(kotlin.String){}[0]
-    final fun values(): kotlin/Array<com.aiuta.fashionsdk.configuration.features.styles/AiutaButtonsWithOutlineStyle> // com.aiuta.fashionsdk.configuration.features.styles/AiutaButtonsWithOutlineStyle.values|values#static(){}[0]
+    final fun valueOf(kotlin/String): com.aiuta.fashionsdk.configuration.features.styles/AiutaComponentStyle // com.aiuta.fashionsdk.configuration.features.styles/AiutaComponentStyle.valueOf|valueOf#static(kotlin.String){}[0]
+    final fun values(): kotlin/Array<com.aiuta.fashionsdk.configuration.features.styles/AiutaComponentStyle> // com.aiuta.fashionsdk.configuration.features.styles/AiutaComponentStyle.values|values#static(){}[0]
 }
 
 final enum class com.aiuta.fashionsdk.configuration.ui.theme.color/AiutaColorThemeScheme : kotlin/Enum<com.aiuta.fashionsdk.configuration.ui.theme.color/AiutaColorThemeScheme> { // com.aiuta.fashionsdk.configuration.ui.theme.color/AiutaColorThemeScheme|null[0]
@@ -349,13 +340,13 @@ abstract interface com.aiuta.fashionsdk.configuration.features.picker.history.st
 
 abstract interface com.aiuta.fashionsdk.configuration.features.picker.history.styles/AiutaImagePickerUploadsHistoryFeatureStyles { // com.aiuta.fashionsdk.configuration.features.picker.history.styles/AiutaImagePickerUploadsHistoryFeatureStyles|null[0]
     abstract val changePhotoButtonStyle // com.aiuta.fashionsdk.configuration.features.picker.history.styles/AiutaImagePickerUploadsHistoryFeatureStyles.changePhotoButtonStyle|{}changePhotoButtonStyle[0]
-        abstract fun <get-changePhotoButtonStyle>(): com.aiuta.fashionsdk.configuration.features.styles/AiutaButtonsStyle // com.aiuta.fashionsdk.configuration.features.picker.history.styles/AiutaImagePickerUploadsHistoryFeatureStyles.changePhotoButtonStyle.<get-changePhotoButtonStyle>|<get-changePhotoButtonStyle>(){}[0]
+        abstract fun <get-changePhotoButtonStyle>(): com.aiuta.fashionsdk.configuration.features.styles/AiutaComponentStyle // com.aiuta.fashionsdk.configuration.features.picker.history.styles/AiutaImagePickerUploadsHistoryFeatureStyles.changePhotoButtonStyle.<get-changePhotoButtonStyle>|<get-changePhotoButtonStyle>(){}[0]
 
     final class Default : com.aiuta.fashionsdk.configuration.features.picker.history.styles/AiutaImagePickerUploadsHistoryFeatureStyles { // com.aiuta.fashionsdk.configuration.features.picker.history.styles/AiutaImagePickerUploadsHistoryFeatureStyles.Default|null[0]
         constructor <init>() // com.aiuta.fashionsdk.configuration.features.picker.history.styles/AiutaImagePickerUploadsHistoryFeatureStyles.Default.<init>|<init>(){}[0]
 
         final val changePhotoButtonStyle // com.aiuta.fashionsdk.configuration.features.picker.history.styles/AiutaImagePickerUploadsHistoryFeatureStyles.Default.changePhotoButtonStyle|{}changePhotoButtonStyle[0]
-            final fun <get-changePhotoButtonStyle>(): com.aiuta.fashionsdk.configuration.features.styles/AiutaButtonsStyle // com.aiuta.fashionsdk.configuration.features.picker.history.styles/AiutaImagePickerUploadsHistoryFeatureStyles.Default.changePhotoButtonStyle.<get-changePhotoButtonStyle>|<get-changePhotoButtonStyle>(){}[0]
+            final fun <get-changePhotoButtonStyle>(): com.aiuta.fashionsdk.configuration.features.styles/AiutaComponentStyle // com.aiuta.fashionsdk.configuration.features.picker.history.styles/AiutaImagePickerUploadsHistoryFeatureStyles.Default.changePhotoButtonStyle.<get-changePhotoButtonStyle>|<get-changePhotoButtonStyle>(){}[0]
     }
 }
 
@@ -600,7 +591,7 @@ abstract interface com.aiuta.fashionsdk.configuration.features.tryon.loading.sty
     abstract val loadingStatusBackgroundGradient // com.aiuta.fashionsdk.configuration.features.tryon.loading.styles/AiutaTryOnLoadingPageFeatureStyles.loadingStatusBackgroundGradient|{}loadingStatusBackgroundGradient[0]
         abstract fun <get-loadingStatusBackgroundGradient>(): kotlin.collections/List<androidx.compose.ui.graphics/Color>? // com.aiuta.fashionsdk.configuration.features.tryon.loading.styles/AiutaTryOnLoadingPageFeatureStyles.loadingStatusBackgroundGradient.<get-loadingStatusBackgroundGradient>|<get-loadingStatusBackgroundGradient>(){}[0]
     abstract val loadingStatusStyle // com.aiuta.fashionsdk.configuration.features.tryon.loading.styles/AiutaTryOnLoadingPageFeatureStyles.loadingStatusStyle|{}loadingStatusStyle[0]
-        abstract fun <get-loadingStatusStyle>(): com.aiuta.fashionsdk.configuration.features.styles/AiutaButtonsWithOutlineStyle // com.aiuta.fashionsdk.configuration.features.tryon.loading.styles/AiutaTryOnLoadingPageFeatureStyles.loadingStatusStyle.<get-loadingStatusStyle>|<get-loadingStatusStyle>(){}[0]
+        abstract fun <get-loadingStatusStyle>(): com.aiuta.fashionsdk.configuration.features.styles/AiutaComponentStyle // com.aiuta.fashionsdk.configuration.features.tryon.loading.styles/AiutaTryOnLoadingPageFeatureStyles.loadingStatusStyle.<get-loadingStatusStyle>|<get-loadingStatusStyle>(){}[0]
 
     final class Default : com.aiuta.fashionsdk.configuration.features.tryon.loading.styles/AiutaTryOnLoadingPageFeatureStyles { // com.aiuta.fashionsdk.configuration.features.tryon.loading.styles/AiutaTryOnLoadingPageFeatureStyles.Default|null[0]
         constructor <init>() // com.aiuta.fashionsdk.configuration.features.tryon.loading.styles/AiutaTryOnLoadingPageFeatureStyles.Default.<init>|<init>(){}[0]
@@ -608,7 +599,7 @@ abstract interface com.aiuta.fashionsdk.configuration.features.tryon.loading.sty
         final val loadingStatusBackgroundGradient // com.aiuta.fashionsdk.configuration.features.tryon.loading.styles/AiutaTryOnLoadingPageFeatureStyles.Default.loadingStatusBackgroundGradient|{}loadingStatusBackgroundGradient[0]
             final fun <get-loadingStatusBackgroundGradient>(): kotlin.collections/List<androidx.compose.ui.graphics/Color> // com.aiuta.fashionsdk.configuration.features.tryon.loading.styles/AiutaTryOnLoadingPageFeatureStyles.Default.loadingStatusBackgroundGradient.<get-loadingStatusBackgroundGradient>|<get-loadingStatusBackgroundGradient>(){}[0]
         final val loadingStatusStyle // com.aiuta.fashionsdk.configuration.features.tryon.loading.styles/AiutaTryOnLoadingPageFeatureStyles.Default.loadingStatusStyle|{}loadingStatusStyle[0]
-            final fun <get-loadingStatusStyle>(): com.aiuta.fashionsdk.configuration.features.styles/AiutaButtonsWithOutlineStyle // com.aiuta.fashionsdk.configuration.features.tryon.loading.styles/AiutaTryOnLoadingPageFeatureStyles.Default.loadingStatusStyle.<get-loadingStatusStyle>|<get-loadingStatusStyle>(){}[0]
+            final fun <get-loadingStatusStyle>(): com.aiuta.fashionsdk.configuration.features.styles/AiutaComponentStyle // com.aiuta.fashionsdk.configuration.features.tryon.loading.styles/AiutaTryOnLoadingPageFeatureStyles.Default.loadingStatusStyle.<get-loadingStatusStyle>|<get-loadingStatusStyle>(){}[0]
     }
 }
 
