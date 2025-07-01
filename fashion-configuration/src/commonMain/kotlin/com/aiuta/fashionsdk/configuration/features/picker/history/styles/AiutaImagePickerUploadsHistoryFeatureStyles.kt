@@ -1,6 +1,6 @@
 package com.aiuta.fashionsdk.configuration.features.picker.history.styles
 
-import com.aiuta.fashionsdk.configuration.features.styles.AiutaButtonsStyle
+import com.aiuta.fashionsdk.configuration.features.styles.AiutaComponentStyle
 
 /**
  * Interface defining visual styles for the uploads history feature.
@@ -13,7 +13,7 @@ public interface AiutaImagePickerUploadsHistoryFeatureStyles {
      * Style for the button that allows changing the currently selected photo.
      * Uses the SDK's button style system for consistent appearance.
      */
-    public val changePhotoButtonStyle: AiutaButtonsStyle
+    public val changePhotoButtonStyle: AiutaComponentStyle
 
     /**
      * Default implementation of [AiutaImagePickerUploadsHistoryFeatureStyles].
@@ -22,6 +22,6 @@ public interface AiutaImagePickerUploadsHistoryFeatureStyles {
      * using a blurred button style for the change photo button.
      */
     public class Default : AiutaImagePickerUploadsHistoryFeatureStyles {
-        override val changePhotoButtonStyle: AiutaButtonsStyle = AiutaButtonsStyle.BLURRED
+        override val changePhotoButtonStyle: AiutaComponentStyle = AiutaComponentStyle.BLURRED
     }
 }

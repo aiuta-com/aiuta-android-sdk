@@ -1,7 +1,7 @@
 package com.aiuta.fashionsdk.configuration.features.tryon.loading.styles
 
 import androidx.compose.ui.graphics.Color
-import com.aiuta.fashionsdk.configuration.features.styles.AiutaButtonsWithOutlineStyle
+import com.aiuta.fashionsdk.configuration.features.styles.AiutaComponentStyle
 
 /**
  * Interface for loading page visual styles.
@@ -14,7 +14,7 @@ import com.aiuta.fashionsdk.configuration.features.styles.AiutaButtonsWithOutlin
  */
 public interface AiutaTryOnLoadingPageFeatureStyles {
     public val loadingStatusBackgroundGradient: List<Color>?
-    public val loadingStatusStyle: AiutaButtonsWithOutlineStyle
+    public val loadingStatusStyle: AiutaComponentStyle
 
     /**
      * Default implementation of [AiutaTryOnLoadingPageFeatureStyles].
@@ -27,6 +27,6 @@ public interface AiutaTryOnLoadingPageFeatureStyles {
             Color(0xFF4000FF),
             Color.Transparent,
         )
-        override val loadingStatusStyle: AiutaButtonsWithOutlineStyle = AiutaButtonsWithOutlineStyle.BLURRED
+        override val loadingStatusStyle: AiutaComponentStyle = AiutaComponentStyle.BLURRED
     }
 }

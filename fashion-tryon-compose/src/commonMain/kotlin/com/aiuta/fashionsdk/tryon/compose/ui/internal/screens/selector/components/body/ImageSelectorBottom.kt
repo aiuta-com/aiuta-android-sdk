@@ -25,8 +25,7 @@ import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import com.aiuta.fashionsdk.configuration.features.picker.AiutaImagePickerFeature
 import com.aiuta.fashionsdk.configuration.features.picker.history.AiutaImagePickerUploadsHistoryFeature
-import com.aiuta.fashionsdk.configuration.features.styles.AiutaButtonsStyle
-import com.aiuta.fashionsdk.configuration.features.styles.AiutaButtonsWithOutlineStyle
+import com.aiuta.fashionsdk.configuration.features.styles.AiutaComponentStyle
 import com.aiuta.fashionsdk.configuration.features.tryon.loading.AiutaTryOnLoadingPageFeature
 import com.aiuta.fashionsdk.tryon.compose.domain.models.internal.generated.sku.ProductGenerationUIStatus
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.components.icons.AiutaLoadingIcon
@@ -103,12 +102,12 @@ internal fun ImageSelectorBottom(
                     styleChangePhotoButton(buttonStyle) {
                         FashionButton(
                             modifier = when (buttonStyle) {
-                                AiutaButtonsStyle.BLURRED -> sharedModifier.then(sharedBlurModifer)
+                                AiutaComponentStyle.BLURRED -> sharedModifier.then(sharedBlurModifer)
                                 else -> sharedModifier
                             },
                             text = uploadsHistoryFeature.strings.uploadsHistoryButtonChangePhoto,
                             style = when (buttonStyle) {
-                                AiutaButtonsStyle.BLURRED -> FashionButtonStyles.primaryStyle(
+                                AiutaComponentStyle.BLURRED -> FashionButtonStyles.primaryStyle(
                                     backgroundColor = Color.Transparent,
                                     contentColor = theme.color.primary,
                                 )
@@ -132,9 +131,13 @@ internal fun ImageSelectorBottom(
 
             ImageSelectorState.GENERATION_LOADING -> {
                 val finalModifier = when (loadingPageFeature.styles.loadingStatusStyle) {
-                    AiutaButtonsWithOutlineStyle.PRIMARY -> sharedModifier.background(theme.color.brand, sharedButtonSize.shape)
-                    AiutaButtonsWithOutlineStyle.BLURRED -> sharedModifier.then(sharedBlurModifer)
-                    AiutaButtonsWithOutlineStyle.BLURRED_WITH_OUTLINE ->
+                    AiutaComponentStyle.BRAND -> sharedModifier.background(
+                        color = theme.color.brand,
+                        shape = sharedButtonSize.shape,
+                    )
+
+                    AiutaComponentStyle.BLURRED -> sharedModifier.then(sharedBlurModifer)
+                    AiutaComponentStyle.BLURRED_WITH_OUTLINE ->
                         sharedModifier
                             .border(
                                 width = 1.dp,
@@ -142,9 +145,20 @@ internal fun ImageSelectorBottom(
                                 shape = sharedButtonSize.shape,
                             )
                             .then(sharedBlurModifer)
+
+                    AiutaComponentStyle.CONTRAST -> sharedModifier.background(
+                        color = theme.color.onLight,
+                        shape = sharedButtonSize.shape,
+                    )
+
+                    AiutaComponentStyle.CONTRAST_INVERTED -> sharedModifier.background(
+                        color = theme.color.onDark,
+                        shape = sharedButtonSize.shape,
+                    )
                 }
                 val contentColor = when (loadingPageFeature.styles.loadingStatusStyle) {
-                    AiutaButtonsWithOutlineStyle.PRIMARY -> theme.color.onDark
+                    AiutaComponentStyle.BRAND -> theme.color.onDark
+                    AiutaComponentStyle.CONTRAST_INVERTED -> theme.color.onLight
                     else -> theme.color.primary
                 }
 
@@ -185,11 +199,11 @@ internal fun ImageSelectorBottom(
 @OptIn(ExperimentalMaterialApi::class)
 @Composable
 private fun styleChangePhotoButton(
-    buttonStyle: AiutaButtonsStyle?,
+    buttonStyle: AiutaComponentStyle?,
     content: @Composable () -> Unit,
 ) {
     when (buttonStyle) {
-        AiutaButtonsStyle.BLURRED -> {
+        AiutaComponentStyle.BLURRED -> {
             CompositionLocalProvider(
                 LocalRippleConfiguration provides null,
                 content = content,
