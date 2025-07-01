@@ -35,9 +35,7 @@ internal fun NavigationContainer(modifier: Modifier = Modifier) {
     val dialogController = LocalAiutaTryOnDialogController.current
     val theme = LocalTheme.current
 
-    Box(
-        modifier = modifier.background(theme.color.background),
-    ) {
+    Box(modifier = modifier) {
         ModalBottomSheetLayout(
             modifier = Modifier.fillMaxSize(),
             sheetState = controller.bottomSheetNavigator.sheetState,
@@ -45,7 +43,7 @@ internal fun NavigationContainer(modifier: Modifier = Modifier) {
             sheetContent = controller.bottomSheetNavigator.sheetContent,
             sheetContentColor = theme.color.primary,
             sheetShape = theme.bottomSheet.shapes.bottomSheetShape,
-            scrimColor = theme.color.primary.copy(alpha = 0.6f),
+            sheetElevation = 0.dp,
             content = {
                 NavigationContent(
                     modifier = Modifier.fillMaxSize(),
