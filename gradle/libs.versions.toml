@@ -20,7 +20,7 @@ gradle-plugin-vanniktech-publish = "0.33.0"
 
 haze = "1.6.6"
 
-kotlinx-atomicfu = "0.28.0"
+kotlinx-atomicfu = "0.29.0"
 kotlinx-datetime = "0.6.2"
 kotlinx-serialization = "1.8.1"
 ktor = "3.1.3"
