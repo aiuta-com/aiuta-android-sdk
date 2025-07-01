@@ -3,7 +3,7 @@ package com.aiuta.fashionsdk.tryon.compose.ui.internal.screens.list.components.n
 import androidx.compose.animation.animateColorAsState
 import androidx.compose.foundation.border
 import androidx.compose.foundation.layout.Arrangement
-import androidx.compose.foundation.layout.Spacer
+import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.lazy.LazyColumn
@@ -17,6 +17,7 @@ import androidx.compose.runtime.derivedStateOf
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.rememberCoroutineScope
+import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Brush
@@ -45,8 +46,8 @@ internal fun GenerationIndicator(
     val indicatorState = rememberLazyListState()
     val fadeBrush = Brush.verticalGradient(
         0.0f to Color.Transparent,
-        0.05f to theme.color.onDark,
-        0.95f to theme.color.onDark,
+        0.04f to theme.color.onDark,
+        0.96f to theme.color.onDark,
         1.0f to Color.Transparent,
     )
 
@@ -57,7 +58,8 @@ internal fun GenerationIndicator(
     LazyColumn(
         modifier = modifier.fadingEdge(brush = fadeBrush),
         state = indicatorState,
-        verticalArrangement = Arrangement.Center,
+        verticalArrangement = Arrangement.spacedBy(5.dp, Alignment.Bottom),
+        contentPadding = PaddingValues(vertical = 12.dp),
     ) {
         items(
             count = generatedImages.itemCount,
@@ -68,8 +70,6 @@ internal fun GenerationIndicator(
                 derivedStateOf { pagerState.settledPage == index }
             }
 
-            Spacer(Modifier.height(5.dp))
-
             GenerationItem(
                 focused = isFocused,
                 imageUrl = generatedImages[index]?.imageUrl,
@@ -79,8 +79,6 @@ internal fun GenerationIndicator(
                     }
                 },
             )
-
-            Spacer(Modifier.height(5.dp))
         }
     }
 }

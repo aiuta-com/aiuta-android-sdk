@@ -7,6 +7,7 @@ import androidx.compose.foundation.layout.fillMaxHeight
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.statusBars
+import androidx.compose.foundation.layout.systemBars
 import androidx.compose.foundation.layout.windowInsetsPadding
 import androidx.compose.foundation.pager.VerticalPager
 import androidx.compose.foundation.pager.rememberPagerState
@@ -74,7 +75,7 @@ internal fun ImageListScreen(
             modifier = Modifier
                 .fillMaxHeight()
                 .align(Alignment.TopStart)
-                .windowInsetsPadding(WindowInsets.statusBars)
+                .windowInsetsPadding(WindowInsets.systemBars)
                 .padding(top = 12.dp, start = 16.dp),
             pagerState = pagerState,
             generatedImages = generatedImages,
