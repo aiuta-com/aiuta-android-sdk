@@ -30,7 +30,7 @@ public final class com/aiuta/fashionsdk/network/paging/models/PageContainer {
 	public fun toString ()Ljava/lang/String;
 }
 
-public synthetic class com/aiuta/fashionsdk/network/paging/models/PageContainer$$serializer : kotlinx/serialization/internal/GeneratedSerializer {
+public final synthetic class com/aiuta/fashionsdk/network/paging/models/PageContainer$$serializer : kotlinx/serialization/internal/GeneratedSerializer {
 	public fun <init> (Lkotlinx/serialization/KSerializer;)V
 	public final fun childSerializers ()[Lkotlinx/serialization/KSerializer;
 	public final fun deserialize (Lkotlinx/serialization/encoding/Decoder;)Lcom/aiuta/fashionsdk/network/paging/models/PageContainer;
