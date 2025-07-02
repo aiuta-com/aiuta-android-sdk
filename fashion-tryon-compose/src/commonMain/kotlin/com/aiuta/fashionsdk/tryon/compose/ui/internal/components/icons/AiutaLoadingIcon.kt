@@ -1,6 +1,5 @@
 package com.aiuta.fashionsdk.tryon.compose.ui.internal.components.icons
 
-import androidx.compose.animation.AnimatedVisibility
 import androidx.compose.animation.core.LinearEasing
 import androidx.compose.animation.core.animateFloat
 import androidx.compose.animation.core.infiniteRepeatable
@@ -10,9 +9,6 @@ import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Box
 import androidx.compose.material.CircularProgressIndicator
 import androidx.compose.runtime.Composable
-import androidx.compose.runtime.LaunchedEffect
-import androidx.compose.runtime.mutableStateOf
-import androidx.compose.runtime.remember
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.rotate
@@ -20,7 +16,6 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.unit.dp
 import com.aiuta.fashionsdk.tryon.compose.uikit.composition.LocalTheme
 import com.aiuta.fashionsdk.tryon.compose.uikit.resources.AiutaIcon
-import kotlinx.coroutines.delay
 
 @Composable
 internal fun AiutaBoxedLoadingIcon(
@@ -28,23 +23,12 @@ internal fun AiutaBoxedLoadingIcon(
     circleColor: Color = LocalTheme.current.color.brand,
 ) {
     val theme = LocalTheme.current
-    val isVisible = remember { mutableStateOf(false) }
 
-    LaunchedEffect(Unit) {
-        delay(theme.activityIndicator.settings.indicationDelay.toLong())
-        isVisible.value = true
-    }
-
-    AnimatedVisibility(
-        modifier = modifier,
-        visible = isVisible.value,
+    Box(
+        modifier = modifier.background(theme.activityIndicator.colors.overlay),
+        contentAlignment = Alignment.Center,
     ) {
-        Box(
-            modifier = modifier.background(theme.activityIndicator.colors.overlay),
-            contentAlignment = Alignment.Center,
-        ) {
-            AiutaLoadingIcon(circleColor = circleColor)
-        }
+        AiutaLoadingIcon(circleColor = circleColor)
     }
 }
 

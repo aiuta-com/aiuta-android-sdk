@@ -16,6 +16,6 @@ public interface AiutaActivityIndicatorThemeColors {
      * Default implementation of [AiutaActivityIndicatorThemeColors] with a fully transparent overlay.
      */
     public class Default : AiutaActivityIndicatorThemeColors {
-        override val overlay: Color = Color(0x00000000)
+        override val overlay: Color = Color(0x99000000)
     }
 }
