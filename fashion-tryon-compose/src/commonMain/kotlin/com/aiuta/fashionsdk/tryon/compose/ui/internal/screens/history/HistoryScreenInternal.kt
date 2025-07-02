@@ -28,21 +28,15 @@ import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.derivedStateOf
 import androidx.compose.runtime.getValue
-import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.draw.clipToBounds
-import androidx.compose.ui.geometry.Offset
-import androidx.compose.ui.geometry.Size
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.layout.ContentScale
-import androidx.compose.ui.layout.onGloballyPositioned
-import androidx.compose.ui.layout.positionInRoot
 import androidx.compose.ui.unit.dp
-import androidx.compose.ui.unit.toSize
 import coil3.compose.LocalPlatformContext
 import coil3.request.ImageRequest
 import coil3.size.SizeResolver.Companion.ORIGINAL
@@ -82,7 +76,9 @@ internal fun HistoryScreen(modifier: Modifier = Modifier) {
     sendPageEvent(pageId = AiutaAnalyticsPageId.HISTORY)
 
     Column(
-        modifier = modifier.background(theme.color.background),
+        modifier = modifier
+            .background(theme.color.background)
+            .windowInsetsPadding(WindowInsets.navigationBars),
     ) {
         HistoryAppBar(
             modifier =
@@ -119,8 +115,6 @@ private fun HistoryScreenInternal(modifier: Modifier = Modifier) {
         .generatedImagesFlow()
         .collectAsLazyPagingItems()
 
-    val sharedRadius = theme.image.shapes.imageS
-
     HistoryScreenListeners(generatedImages = generatedImages)
 
     Box(
@@ -142,10 +136,6 @@ private fun HistoryScreenInternal(modifier: Modifier = Modifier) {
                 contentType = generatedImages.itemContentType { "HISTORY_CONTENT_TYPE" },
             ) { index ->
                 val generatedImage = generatedImages[index]
-
-                var parentImageOffset by remember { mutableStateOf(Offset.Unspecified) }
-                var imageSize by remember { mutableStateOf(Size.Zero) }
-
                 val isLoading = remember {
                     derivedStateOf {
                         loadingActionsController.loadingGenerationsHolder.contain(
@@ -156,12 +146,7 @@ private fun HistoryScreenInternal(modifier: Modifier = Modifier) {
                 val isSelectModeActive = controller.isSelectModeActive().value && !isLoading.value
 
                 ImageContainer(
-                    modifier = Modifier
-                        .animateItem()
-                        .onGloballyPositioned { coordinates ->
-                            parentImageOffset = coordinates.positionInRoot()
-                            imageSize = coordinates.size.toSize()
-                        },
+                    modifier = Modifier.animateItem(),
                     imageUrl = generatedImage?.imageUrl,
                     isEdit = isSelectModeActive,
                     isSelectedItem = controller.selectorHolder.contain(generatedImage),
@@ -183,15 +168,6 @@ private fun HistoryScreenInternal(modifier: Modifier = Modifier) {
                                         pickedIndex = index,
                                     ),
                                 )
-//                                controller.zoomImageController.openScreen(
-//                                    model = ZoomImageUiModel(
-//                                        imageSize = imageSize,
-//                                        initialCornerRadius = sharedRadius,
-//                                        imageUrl = generatedImage?.imageUrl,
-//                                        parentImageOffset = parentImageOffset,
-//                                        originPageId = AiutaAnalyticsPageId.HISTORY,
-//                                    ),
-//                                )
                             }
                         }
                     },
@@ -300,7 +276,6 @@ private fun BoxScope.HistoryScreenInterface(
         Modifier
             .align(Alignment.BottomCenter)
             .fillMaxWidth()
-            .windowInsetsPadding(WindowInsets.navigationBars)
             .padding(horizontal = 8.dp)
             .padding(bottom = 8.dp),
         visible = controller.isSelectModeActive().value,
