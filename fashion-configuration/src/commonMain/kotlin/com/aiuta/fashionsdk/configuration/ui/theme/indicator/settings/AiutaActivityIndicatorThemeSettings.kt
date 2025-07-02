@@ -8,18 +8,18 @@ public interface AiutaActivityIndicatorThemeSettings {
      * The delay in milliseconds before the activity indicator becomes visible.
      * This can be used to prevent the indicator from appearing for very short operations.
      */
-    public val indicationDelay: Long
+    public val indicationDelay: Int
 
     /**
      * The duration in milliseconds for one complete spin animation of the activity indicator.
      */
-    public val spinDuration: Long
+    public val spinDuration: Int
 
     /**
      * Default implementation of [AiutaActivityIndicatorThemeSettings].
      */
     public class Default : AiutaActivityIndicatorThemeSettings {
-        override val indicationDelay: Long = 1500L
-        override val spinDuration: Long = 1000L
+        override val indicationDelay: Int = 1000
+        override val spinDuration: Int = 2000
     }
 }

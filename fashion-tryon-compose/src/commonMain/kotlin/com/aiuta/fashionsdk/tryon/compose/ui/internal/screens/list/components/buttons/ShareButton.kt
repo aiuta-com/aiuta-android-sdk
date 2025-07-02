@@ -1,9 +1,5 @@
 package com.aiuta.fashionsdk.tryon.compose.ui.internal.screens.list.components.buttons
 
-import androidx.compose.animation.AnimatedContent
-import androidx.compose.animation.fadeIn
-import androidx.compose.animation.fadeOut
-import androidx.compose.animation.togetherWith
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.padding
@@ -16,7 +12,7 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
-import com.aiuta.fashionsdk.tryon.compose.ui.internal.components.icons.AiutaLoadingIcon
+import com.aiuta.fashionsdk.tryon.compose.ui.internal.components.icons.AiutaLoadingComponent
 import com.aiuta.fashionsdk.tryon.compose.uikit.composition.LocalTheme
 import com.aiuta.fashionsdk.tryon.compose.uikit.utils.clickableUnindicated
 
@@ -42,24 +38,18 @@ internal fun ShareButton(
             ),
         contentAlignment = Alignment.Center,
     ) {
-        AnimatedContent(
-            targetState = isLoading.value,
-            transitionSpec = { fadeIn() togetherWith fadeOut() },
-            contentAlignment = Alignment.Center,
-        ) { isOperationLoading ->
-            if (isOperationLoading) {
-                AiutaLoadingIcon(
-                    modifier = Modifier.size(24.dp),
-                    circleColor = theme.color.onLight,
-                )
-            } else {
+        AiutaLoadingComponent(
+            modifier = Modifier.size(24.dp),
+            circleColor = theme.color.onLight,
+            isLoading = isLoading.value,
+            component = {
                 Text(
                     style = theme.button.typography.buttonM,
                     color = theme.color.onLight,
                     textAlign = TextAlign.Center,
                     text = shareText,
                 )
-            }
-        }
+            },
+        )
     }
 }

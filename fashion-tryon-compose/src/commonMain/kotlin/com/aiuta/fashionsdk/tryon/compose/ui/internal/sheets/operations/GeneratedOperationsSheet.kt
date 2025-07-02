@@ -285,9 +285,7 @@ private fun OperationItem(
             exit = fadeOut(),
         ) {
             AiutaBoxedLoadingIcon(
-                modifier = Modifier
-                    .fillMaxSize()
-                    .background(Color.Black.copy(alpha = 0.5f)),
+                modifier = Modifier.fillMaxSize(),
                 circleColor = Color.White,
             )
         }
