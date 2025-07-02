@@ -5,7 +5,7 @@ androidx-core = "1.16.0"
 androidx-paging = "3.3.6"
 androidx-exifinterface="1.4.1"
 
-binaryCompatibility = "0.17.0"
+binaryCompatibility = "0.18.0"
 buildKonfig = "0.17.1"
 
 calf-picker="0.8.0"
