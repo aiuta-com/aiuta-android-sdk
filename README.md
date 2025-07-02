@@ -8,46 +8,25 @@
 # Aiuta SDK for Android
 
 [![Maven Central](https://img.shields.io/maven-central/v/com.aiuta/fashionsdk)](https://central.sonatype.com/search?q=com.aiuta)
-[![Kotlin](https://img.shields.io/badge/kotlin-2.0.0-blue.svg?logo=kotlin)](http://kotlinlang.org)
 [![GitHub License](https://img.shields.io/badge/license-Apache%20License%202.0-blue.svg?style=flat)](http://www.apache.org/licenses/LICENSE-2.0)
 
-This repo distributes the [Aiuta Android SDK](https://developer.aiuta.com/products/digital-try-on/Documentation)
+This repo distributes the [Aiuta Android SDK](https://docs.aiuta.com/)
 
-## Download
-Aiuta SDK for Android is available on `mavenCentral()`.
-```kotlin
-repositories {
-    mavenCentral()
-}
+## Kotlin Multiplatform
 
-implementation("com.aiuta:fashionsdk:<last version>")
-```
+The following table shows the current platform support status for Aiuta SDK via Kotlin Multiplatform:
 
-## Quick Start
-General
-- Visit [Aiuta developer portal](https://developer.aiuta.com) for getting api key
-- Initialize Aiuta
-```kotlin
-    val aiuta: Aiuta = Aiuta.Builder()
-        .setApiKey(...)
-        .setApplication(...)
-        .build()
-```
-
-Digital Try On
-- Initialize Aiuta Try on and start generation
-```kotlin
-    val aiutaTryOn: AiutaTryOn = aiuta.tryon
-
-    aiutaTryOn.startSKUGeneration(
-        //...
-    )
-```
+| Platform | Support Status | Notes |
+|----------|---------------|--------|
+| Android  | ✅ Supported  | Full support |
+| iOS      | ✅ Supported  | Full support |
+| Desktop  | 🟡 Beta      | Limited functionality |
+| Web | ❌ Not Supported | Not available |
 
 ## Documentation
 
-Full documentation you can find [here](https://aiuta-com.github.io/android-sdk-docs). Also pay attention
-on [API refrence](https://aiuta-com.github.io/android-sdk-docs-api)
+Full documentation you can find [here](https://docs.aiuta.com/sdk/android/). Also pay attention
+on [API refrence](https://aiuta-com.github.io/aiuta-android-sdk/)
 
 
 ## License
