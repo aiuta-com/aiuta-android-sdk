@@ -7,6 +7,7 @@ import com.aiuta.fashionsdk.configuration.ui.theme.button.AiutaButtonTheme
 import com.aiuta.fashionsdk.configuration.ui.theme.color.AiutaColorTheme
 import com.aiuta.fashionsdk.configuration.ui.theme.error.AiutaErrorSnackbarTheme
 import com.aiuta.fashionsdk.configuration.ui.theme.image.AiutaImageTheme
+import com.aiuta.fashionsdk.configuration.ui.theme.indicator.AiutaActivityIndicatorTheme
 import com.aiuta.fashionsdk.configuration.ui.theme.label.AiutaLabelTheme
 import com.aiuta.fashionsdk.configuration.ui.theme.pagebar.AiutaPageBarTheme
 import com.aiuta.fashionsdk.configuration.ui.theme.powerby.AiutaPowerBarTheme
@@ -68,6 +69,7 @@ public class AiutaTheme(
     public val pageBar: AiutaPageBarTheme,
     public val powerBar: AiutaPowerBarTheme,
     public val bottomSheet: AiutaBottomSheetTheme,
+    public val activityIndicator: AiutaActivityIndicatorTheme,
     public val selectionSnackbar: AiutaSelectionSnackbarTheme,
     public val errorSnackbar: AiutaErrorSnackbarTheme,
     public val productBar: AiutaProductBarTheme,
@@ -114,6 +116,11 @@ public class AiutaTheme(
          * Bottom sheet styling configuration.
          */
         public var bottomSheet: AiutaBottomSheetTheme? = null
+
+        /**
+         * Activity indicator configuration.
+         */
+        public var activityIndicator: AiutaActivityIndicatorTheme? = null
 
         /**
          * Selection feedback snackbar configuration.
@@ -170,6 +177,10 @@ public class AiutaTheme(
                 bottomSheet = bottomSheet.checkNotNullWithDescription(
                     parentClass = parentClass,
                     property = "bottomSheet",
+                ),
+                activityIndicator = activityIndicator.checkNotNullWithDescription(
+                    parentClass = parentClass,
+                    property = "activityIndicator",
                 ),
                 selectionSnackbar = selectionSnackbar.checkNotNullWithDescription(
                     parentClass = parentClass,

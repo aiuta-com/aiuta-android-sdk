@@ -4,7 +4,6 @@ import com.aiuta.fashionsdk.configuration.defaults.icons.features.tryon.DefaultA
 import com.aiuta.fashionsdk.configuration.defaults.icons.features.tryon.disclaimer.DefaultAiutaTryOnFitDisclaimerFeatureIcons
 import com.aiuta.fashionsdk.configuration.defaults.icons.features.tryon.feedback.DefaultAiutaTryOnFeedbackFeatureIcons
 import com.aiuta.fashionsdk.configuration.defaults.icons.features.tryon.history.DefaultAiutaTryOnGenerationsHistoryFeatureIcons
-import com.aiuta.fashionsdk.configuration.defaults.icons.features.tryon.loading.DefaultAiutaTryOnLoadingPageFeatureIcons
 import com.aiuta.fashionsdk.configuration.defaults.icons.features.tryon.repicking.DefaultAiutaTryOnWithOtherPhotoFeatureIcons
 import com.aiuta.fashionsdk.configuration.features.AiutaFeatures
 import com.aiuta.fashionsdk.configuration.features.tryon.cart.cart
@@ -42,7 +41,6 @@ public fun AiutaFeatures.Builder.defaultTryOn(
     cartHandler: AiutaTryOnCartFeatureHandler,
 ): AiutaFeatures.Builder = tryOn {
     loadingPage {
-        icons = DefaultAiutaTryOnLoadingPageFeatureIcons()
         strings = AiutaTryOnLoadingPageFeatureStrings.Default()
         styles = AiutaTryOnLoadingPageFeatureStyles.Default()
     }

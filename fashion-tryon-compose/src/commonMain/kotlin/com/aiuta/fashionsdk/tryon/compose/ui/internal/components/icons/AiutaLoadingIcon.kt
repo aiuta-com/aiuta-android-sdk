@@ -13,8 +13,6 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.rotate
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.unit.dp
-import com.aiuta.fashionsdk.configuration.features.tryon.loading.AiutaTryOnLoadingPageFeature
-import com.aiuta.fashionsdk.tryon.compose.ui.internal.utils.features.strictProvideFeature
 import com.aiuta.fashionsdk.tryon.compose.uikit.composition.LocalTheme
 import com.aiuta.fashionsdk.tryon.compose.uikit.resources.AiutaIcon
 
@@ -36,9 +34,9 @@ internal fun AiutaLoadingIcon(
     modifier: Modifier = Modifier,
     circleColor: Color = LocalTheme.current.color.brand,
 ) {
-    val loadingPageFeature = strictProvideFeature<AiutaTryOnLoadingPageFeature>()
+    val theme = LocalTheme.current
 
-    loadingPageFeature.icons.loading14?.let { loading14 ->
+    theme.activityIndicator.icons.loading14?.let { loading14 ->
         val infiniteTransition = rememberInfiniteTransition()
         val angle = infiniteTransition.animateFloat(
             initialValue = 0F,

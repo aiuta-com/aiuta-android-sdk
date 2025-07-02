@@ -4,6 +4,7 @@ import com.aiuta.fashionsdk.configuration.AiutaConfiguration
 import com.aiuta.fashionsdk.configuration.defaults.theme.button.defaultButton
 import com.aiuta.fashionsdk.configuration.defaults.theme.error.defaultErrorSnackbar
 import com.aiuta.fashionsdk.configuration.defaults.theme.image.defaultImage
+import com.aiuta.fashionsdk.configuration.defaults.theme.indicator.defaultActivityIndicator
 import com.aiuta.fashionsdk.configuration.defaults.theme.label.defaultLabel
 import com.aiuta.fashionsdk.configuration.defaults.theme.pagebar.defaultPageBar
 import com.aiuta.fashionsdk.configuration.defaults.theme.powerby.defaultPoweredBar
@@ -32,6 +33,7 @@ public fun AiutaConfiguration.Builder.defaultAiutaUserInterfaceConfiguration(
     theme {
         color = AiutaColorTheme.Default()
 
+        defaultActivityIndicator()
         defaultButton()
         defaultErrorSnackbar()
         defaultImage()
