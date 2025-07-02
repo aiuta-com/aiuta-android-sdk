@@ -55,12 +55,6 @@ public final class com/aiuta/fashionsdk/configuration/defaults/icons/features/tr
 	public fun getHistory24 ()Lcom/aiuta/fashionsdk/compose/resources/drawable/AiutaIcon;
 }
 
-public final class com/aiuta/fashionsdk/configuration/defaults/icons/features/tryon/loading/DefaultAiutaTryOnLoadingPageFeatureIcons : com/aiuta/fashionsdk/configuration/features/tryon/loading/icons/AiutaTryOnLoadingPageFeatureIcons {
-	public static final field $stable I
-	public fun <init> ()V
-	public fun getLoading14 ()Lcom/aiuta/fashionsdk/compose/resources/drawable/AiutaIcon;
-}
-
 public final class com/aiuta/fashionsdk/configuration/defaults/icons/features/tryon/repicking/DefaultAiutaTryOnWithOtherPhotoFeatureIcons : com/aiuta/fashionsdk/configuration/features/tryon/other/icons/AiutaTryOnWithOtherPhotoFeatureIcons {
 	public static final field $stable I
 	public fun <init> ()V
@@ -84,6 +78,12 @@ public final class com/aiuta/fashionsdk/configuration/defaults/icons/theme/image
 	public static final field $stable I
 	public fun <init> ()V
 	public fun getError36 ()Lcom/aiuta/fashionsdk/compose/resources/drawable/AiutaIcon;
+}
+
+public final class com/aiuta/fashionsdk/configuration/defaults/icons/theme/indicator/DefaultAiutaActivityIndicatorThemeIcons : com/aiuta/fashionsdk/configuration/ui/theme/indicator/icons/AiutaActivityIndicatorThemeIcons {
+	public static final field $stable I
+	public fun <init> ()V
+	public fun getLoading14 ()Lcom/aiuta/fashionsdk/compose/resources/drawable/AiutaIcon;
 }
 
 public final class com/aiuta/fashionsdk/configuration/defaults/icons/theme/pagebar/DefaultAiutaPageBarThemeIcons : com/aiuta/fashionsdk/configuration/ui/theme/pagebar/icons/AiutaPageBarThemeIcons {

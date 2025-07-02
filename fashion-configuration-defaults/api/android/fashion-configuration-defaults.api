@@ -38,6 +38,10 @@ public final class com/aiuta/fashionsdk/configuration/defaults/theme/image/Defau
 	public static final fun defaultImage (Lcom/aiuta/fashionsdk/configuration/ui/theme/AiutaTheme$Builder;)Lcom/aiuta/fashionsdk/configuration/ui/theme/AiutaTheme$Builder;
 }
 
+public final class com/aiuta/fashionsdk/configuration/defaults/theme/indicator/DefaultAiutaActivityIndicatorThemeKt {
+	public static final fun defaultActivityIndicator (Lcom/aiuta/fashionsdk/configuration/ui/theme/AiutaTheme$Builder;)Lcom/aiuta/fashionsdk/configuration/ui/theme/AiutaTheme$Builder;
+}
+
 public final class com/aiuta/fashionsdk/configuration/defaults/theme/label/DefaultAiutaLabelThemeKt {
 	public static final fun defaultLabel (Lcom/aiuta/fashionsdk/configuration/ui/theme/AiutaTheme$Builder;)Lcom/aiuta/fashionsdk/configuration/ui/theme/AiutaTheme$Builder;
 }

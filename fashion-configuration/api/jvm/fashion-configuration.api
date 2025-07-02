@@ -1083,8 +1083,7 @@ public abstract interface class com/aiuta/fashionsdk/configuration/features/tryo
 
 public final class com/aiuta/fashionsdk/configuration/features/tryon/loading/AiutaTryOnLoadingPageFeature : com/aiuta/fashionsdk/configuration/features/AiutaFeature {
 	public static final field $stable I
-	public fun <init> (Lcom/aiuta/fashionsdk/configuration/features/tryon/loading/icons/AiutaTryOnLoadingPageFeatureIcons;Lcom/aiuta/fashionsdk/configuration/features/tryon/loading/strings/AiutaTryOnLoadingPageFeatureStrings;Lcom/aiuta/fashionsdk/configuration/features/tryon/loading/styles/AiutaTryOnLoadingPageFeatureStyles;)V
-	public final fun getIcons ()Lcom/aiuta/fashionsdk/configuration/features/tryon/loading/icons/AiutaTryOnLoadingPageFeatureIcons;
+	public fun <init> (Lcom/aiuta/fashionsdk/configuration/features/tryon/loading/strings/AiutaTryOnLoadingPageFeatureStrings;Lcom/aiuta/fashionsdk/configuration/features/tryon/loading/styles/AiutaTryOnLoadingPageFeatureStyles;)V
 	public final fun getStrings ()Lcom/aiuta/fashionsdk/configuration/features/tryon/loading/strings/AiutaTryOnLoadingPageFeatureStrings;
 	public final fun getStyles ()Lcom/aiuta/fashionsdk/configuration/features/tryon/loading/styles/AiutaTryOnLoadingPageFeatureStyles;
 }
@@ -1094,20 +1093,14 @@ public final class com/aiuta/fashionsdk/configuration/features/tryon/loading/Aiu
 	public fun <init> ()V
 	public synthetic fun build ()Lcom/aiuta/fashionsdk/configuration/features/AiutaFeature;
 	public fun build ()Lcom/aiuta/fashionsdk/configuration/features/tryon/loading/AiutaTryOnLoadingPageFeature;
-	public final fun getIcons ()Lcom/aiuta/fashionsdk/configuration/features/tryon/loading/icons/AiutaTryOnLoadingPageFeatureIcons;
 	public final fun getStrings ()Lcom/aiuta/fashionsdk/configuration/features/tryon/loading/strings/AiutaTryOnLoadingPageFeatureStrings;
 	public final fun getStyles ()Lcom/aiuta/fashionsdk/configuration/features/tryon/loading/styles/AiutaTryOnLoadingPageFeatureStyles;
-	public final fun setIcons (Lcom/aiuta/fashionsdk/configuration/features/tryon/loading/icons/AiutaTryOnLoadingPageFeatureIcons;)V
 	public final fun setStrings (Lcom/aiuta/fashionsdk/configuration/features/tryon/loading/strings/AiutaTryOnLoadingPageFeatureStrings;)V
 	public final fun setStyles (Lcom/aiuta/fashionsdk/configuration/features/tryon/loading/styles/AiutaTryOnLoadingPageFeatureStyles;)V
 }
 
 public final class com/aiuta/fashionsdk/configuration/features/tryon/loading/AiutaTryOnLoadingPageFeatureKt {
 	public static final fun loadingPage (Lcom/aiuta/fashionsdk/configuration/features/tryon/AiutaTryOnFeature$Builder;Lkotlin/jvm/functions/Function1;)Lcom/aiuta/fashionsdk/configuration/features/tryon/AiutaTryOnFeature$Builder;
-}
-
-public abstract interface class com/aiuta/fashionsdk/configuration/features/tryon/loading/icons/AiutaTryOnLoadingPageFeatureIcons {
-	public abstract fun getLoading14 ()Lcom/aiuta/fashionsdk/compose/resources/drawable/AiutaIcon;
 }
 
 public abstract interface class com/aiuta/fashionsdk/configuration/features/tryon/loading/strings/AiutaTryOnLoadingPageFeatureStrings {
@@ -1357,7 +1350,8 @@ public abstract interface class com/aiuta/fashionsdk/configuration/ui/actions/Ai
 
 public final class com/aiuta/fashionsdk/configuration/ui/theme/AiutaTheme {
 	public static final field $stable I
-	public fun <init> (Lcom/aiuta/fashionsdk/configuration/ui/theme/color/AiutaColorTheme;Lcom/aiuta/fashionsdk/configuration/ui/theme/label/AiutaLabelTheme;Lcom/aiuta/fashionsdk/configuration/ui/theme/image/AiutaImageTheme;Lcom/aiuta/fashionsdk/configuration/ui/theme/button/AiutaButtonTheme;Lcom/aiuta/fashionsdk/configuration/ui/theme/pagebar/AiutaPageBarTheme;Lcom/aiuta/fashionsdk/configuration/ui/theme/powerby/AiutaPowerBarTheme;Lcom/aiuta/fashionsdk/configuration/ui/theme/sheet/AiutaBottomSheetTheme;Lcom/aiuta/fashionsdk/configuration/ui/theme/selection/AiutaSelectionSnackbarTheme;Lcom/aiuta/fashionsdk/configuration/ui/theme/error/AiutaErrorSnackbarTheme;Lcom/aiuta/fashionsdk/configuration/ui/theme/productbar/AiutaProductBarTheme;)V
+	public fun <init> (Lcom/aiuta/fashionsdk/configuration/ui/theme/color/AiutaColorTheme;Lcom/aiuta/fashionsdk/configuration/ui/theme/label/AiutaLabelTheme;Lcom/aiuta/fashionsdk/configuration/ui/theme/image/AiutaImageTheme;Lcom/aiuta/fashionsdk/configuration/ui/theme/button/AiutaButtonTheme;Lcom/aiuta/fashionsdk/configuration/ui/theme/pagebar/AiutaPageBarTheme;Lcom/aiuta/fashionsdk/configuration/ui/theme/powerby/AiutaPowerBarTheme;Lcom/aiuta/fashionsdk/configuration/ui/theme/sheet/AiutaBottomSheetTheme;Lcom/aiuta/fashionsdk/configuration/ui/theme/indicator/AiutaActivityIndicatorTheme;Lcom/aiuta/fashionsdk/configuration/ui/theme/selection/AiutaSelectionSnackbarTheme;Lcom/aiuta/fashionsdk/configuration/ui/theme/error/AiutaErrorSnackbarTheme;Lcom/aiuta/fashionsdk/configuration/ui/theme/productbar/AiutaProductBarTheme;)V
+	public final fun getActivityIndicator ()Lcom/aiuta/fashionsdk/configuration/ui/theme/indicator/AiutaActivityIndicatorTheme;
 	public final fun getBottomSheet ()Lcom/aiuta/fashionsdk/configuration/ui/theme/sheet/AiutaBottomSheetTheme;
 	public final fun getButton ()Lcom/aiuta/fashionsdk/configuration/ui/theme/button/AiutaButtonTheme;
 	public final fun getColor ()Lcom/aiuta/fashionsdk/configuration/ui/theme/color/AiutaColorTheme;
@@ -1374,6 +1368,7 @@ public final class com/aiuta/fashionsdk/configuration/ui/theme/AiutaTheme$Builde
 	public static final field $stable I
 	public fun <init> ()V
 	public final fun build ()Lcom/aiuta/fashionsdk/configuration/ui/theme/AiutaTheme;
+	public final fun getActivityIndicator ()Lcom/aiuta/fashionsdk/configuration/ui/theme/indicator/AiutaActivityIndicatorTheme;
 	public final fun getBottomSheet ()Lcom/aiuta/fashionsdk/configuration/ui/theme/sheet/AiutaBottomSheetTheme;
 	public final fun getButton ()Lcom/aiuta/fashionsdk/configuration/ui/theme/button/AiutaButtonTheme;
 	public final fun getColor ()Lcom/aiuta/fashionsdk/configuration/ui/theme/color/AiutaColorTheme;
@@ -1384,6 +1379,7 @@ public final class com/aiuta/fashionsdk/configuration/ui/theme/AiutaTheme$Builde
 	public final fun getPowerBar ()Lcom/aiuta/fashionsdk/configuration/ui/theme/powerby/AiutaPowerBarTheme;
 	public final fun getProductBar ()Lcom/aiuta/fashionsdk/configuration/ui/theme/productbar/AiutaProductBarTheme;
 	public final fun getSelectionSnackbar ()Lcom/aiuta/fashionsdk/configuration/ui/theme/selection/AiutaSelectionSnackbarTheme;
+	public final fun setActivityIndicator (Lcom/aiuta/fashionsdk/configuration/ui/theme/indicator/AiutaActivityIndicatorTheme;)V
 	public final fun setBottomSheet (Lcom/aiuta/fashionsdk/configuration/ui/theme/sheet/AiutaBottomSheetTheme;)V
 	public final fun setButton (Lcom/aiuta/fashionsdk/configuration/ui/theme/button/AiutaButtonTheme;)V
 	public final fun setColor (Lcom/aiuta/fashionsdk/configuration/ui/theme/color/AiutaColorTheme;)V
@@ -1578,6 +1574,56 @@ public final class com/aiuta/fashionsdk/configuration/ui/theme/image/shapes/Aiut
 	public fun <init> ()V
 	public fun getImageL-D9Ej5fM ()F
 	public fun getImageS-D9Ej5fM ()F
+}
+
+public final class com/aiuta/fashionsdk/configuration/ui/theme/indicator/AiutaActivityIndicatorTheme {
+	public static final field $stable I
+	public fun <init> (Lcom/aiuta/fashionsdk/configuration/ui/theme/indicator/icons/AiutaActivityIndicatorThemeIcons;Lcom/aiuta/fashionsdk/configuration/ui/theme/indicator/colors/AiutaActivityIndicatorThemeColors;Lcom/aiuta/fashionsdk/configuration/ui/theme/indicator/settings/AiutaActivityIndicatorThemeSettings;)V
+	public final fun getColors ()Lcom/aiuta/fashionsdk/configuration/ui/theme/indicator/colors/AiutaActivityIndicatorThemeColors;
+	public final fun getIcons ()Lcom/aiuta/fashionsdk/configuration/ui/theme/indicator/icons/AiutaActivityIndicatorThemeIcons;
+	public final fun getSettings ()Lcom/aiuta/fashionsdk/configuration/ui/theme/indicator/settings/AiutaActivityIndicatorThemeSettings;
+}
+
+public final class com/aiuta/fashionsdk/configuration/ui/theme/indicator/AiutaActivityIndicatorTheme$Builder {
+	public static final field $stable I
+	public fun <init> ()V
+	public final fun build ()Lcom/aiuta/fashionsdk/configuration/ui/theme/indicator/AiutaActivityIndicatorTheme;
+	public final fun getColors ()Lcom/aiuta/fashionsdk/configuration/ui/theme/indicator/colors/AiutaActivityIndicatorThemeColors;
+	public final fun getIcons ()Lcom/aiuta/fashionsdk/configuration/ui/theme/indicator/icons/AiutaActivityIndicatorThemeIcons;
+	public final fun getSettings ()Lcom/aiuta/fashionsdk/configuration/ui/theme/indicator/settings/AiutaActivityIndicatorThemeSettings;
+	public final fun setColors (Lcom/aiuta/fashionsdk/configuration/ui/theme/indicator/colors/AiutaActivityIndicatorThemeColors;)V
+	public final fun setIcons (Lcom/aiuta/fashionsdk/configuration/ui/theme/indicator/icons/AiutaActivityIndicatorThemeIcons;)V
+	public final fun setSettings (Lcom/aiuta/fashionsdk/configuration/ui/theme/indicator/settings/AiutaActivityIndicatorThemeSettings;)V
+}
+
+public final class com/aiuta/fashionsdk/configuration/ui/theme/indicator/AiutaActivityIndicatorThemeKt {
+	public static final fun activityIndicator (Lcom/aiuta/fashionsdk/configuration/ui/theme/AiutaTheme$Builder;Lkotlin/jvm/functions/Function1;)Lcom/aiuta/fashionsdk/configuration/ui/theme/AiutaTheme$Builder;
+}
+
+public abstract interface class com/aiuta/fashionsdk/configuration/ui/theme/indicator/colors/AiutaActivityIndicatorThemeColors {
+	public abstract fun getOverlay-0d7_KjU ()J
+}
+
+public final class com/aiuta/fashionsdk/configuration/ui/theme/indicator/colors/AiutaActivityIndicatorThemeColors$Default : com/aiuta/fashionsdk/configuration/ui/theme/indicator/colors/AiutaActivityIndicatorThemeColors {
+	public static final field $stable I
+	public fun <init> ()V
+	public fun getOverlay-0d7_KjU ()J
+}
+
+public abstract interface class com/aiuta/fashionsdk/configuration/ui/theme/indicator/icons/AiutaActivityIndicatorThemeIcons {
+	public abstract fun getLoading14 ()Lcom/aiuta/fashionsdk/compose/resources/drawable/AiutaIcon;
+}
+
+public abstract interface class com/aiuta/fashionsdk/configuration/ui/theme/indicator/settings/AiutaActivityIndicatorThemeSettings {
+	public abstract fun getIndicationDelay ()I
+	public abstract fun getSpinDuration ()I
+}
+
+public final class com/aiuta/fashionsdk/configuration/ui/theme/indicator/settings/AiutaActivityIndicatorThemeSettings$Default : com/aiuta/fashionsdk/configuration/ui/theme/indicator/settings/AiutaActivityIndicatorThemeSettings {
+	public static final field $stable I
+	public fun <init> ()V
+	public fun getIndicationDelay ()I
+	public fun getSpinDuration ()I
 }
 
 public final class com/aiuta/fashionsdk/configuration/ui/theme/label/AiutaLabelTheme {
