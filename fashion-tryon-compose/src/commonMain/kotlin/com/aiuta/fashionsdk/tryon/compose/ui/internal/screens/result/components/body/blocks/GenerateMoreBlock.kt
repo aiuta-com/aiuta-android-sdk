@@ -5,6 +5,8 @@ import androidx.compose.runtime.collectAsState
 import androidx.compose.ui.Modifier
 import com.aiuta.fashionsdk.analytics.events.AiutaAnalyticsPageId
 import com.aiuta.fashionsdk.analytics.events.AiutaAnalyticsResultsEventType
+import com.aiuta.fashionsdk.configuration.features.tryon.other.AiutaTryOnWithOtherPhotoFeature
+import com.aiuta.fashionsdk.tryon.compose.domain.models.internal.generated.images.SessionImageUIModel
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.controller.composition.LocalController
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.navigation.NavigationBottomSheetScreen
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.screens.result.analytic.sendResultEvent
@@ -13,13 +15,15 @@ import com.aiuta.fashionsdk.tryon.compose.ui.internal.screens.result.controller.
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.utils.features.provideFeature
 
 @Composable
-internal fun GenerateMoreBlock(modifier: Modifier = Modifier) {
-    val repickingFeature = provideFeature<com.aiuta.fashionsdk.configuration.features.tryon.other.AiutaTryOnWithOtherPhotoFeature>()
+internal fun GenerateMoreBlock(
+    modifier: Modifier = Modifier,
+    sessionImage: SessionImageUIModel,
+) {
+    val repickingFeature = provideFeature<AiutaTryOnWithOtherPhotoFeature>()
 
     repickingFeature?.let {
         val controller = LocalController.current
 
-        val activeSKUItem = controller.activeProductItem.value
         val countGeneratedOperation =
             controller.generatedOperationInteractor
                 .countGeneratedOperation()
@@ -34,7 +38,7 @@ internal fun GenerateMoreBlock(modifier: Modifier = Modifier) {
                 controller.sendResultEvent(
                     event = AiutaAnalyticsResultsEventType.PICK_OTHER_PHOTO,
                     pageId = AiutaAnalyticsPageId.RESULTS,
-                    productId = activeSKUItem.id,
+                    productIds = sessionImage.productIds,
                 )
 
                 controller.bottomSheetNavigator.show(

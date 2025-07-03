@@ -197,25 +197,23 @@ internal fun BoxScope.PagerItemInterface(
     ) {
         Box(modifier = Modifier.fillMaxSize()) {
             ActionBlock(
-                modifier =
-                Modifier
+                modifier = Modifier
                     .align(Alignment.TopEnd)
                     .padding(12.dp),
-                imageUrl = sessionImage.imageUrl,
+                sessionImage = sessionImage,
             )
 
             GenerateMoreBlock(
-                modifier =
-                Modifier
+                modifier = Modifier
                     .align(Alignment.BottomStart)
                     .padding(12.dp),
+                sessionImage = sessionImage,
             )
         }
     }
 
     FeedbackBlock(
-        modifier =
-        Modifier
+        modifier = Modifier
             .align(Alignment.BottomEnd)
             .padding(12.dp),
         sessionImage = sessionImage,

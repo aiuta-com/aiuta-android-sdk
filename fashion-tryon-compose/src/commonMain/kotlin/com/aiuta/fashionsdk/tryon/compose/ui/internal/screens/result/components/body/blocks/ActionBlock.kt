@@ -12,6 +12,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
 import com.aiuta.fashionsdk.analytics.events.AiutaAnalyticsPageId
 import com.aiuta.fashionsdk.configuration.features.wishlist.AiutaWishlistFeature
+import com.aiuta.fashionsdk.tryon.compose.domain.models.internal.generated.images.SessionImageUIModel
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.analytic.clickAddToWishListActiveSKU
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.controller.composition.LocalController
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.screens.base.share.ShareElement
@@ -24,13 +25,12 @@ import com.aiuta.fashionsdk.tryon.compose.ui.internal.utils.features.wishlist.in
 @Composable
 internal fun ActionBlock(
     modifier: Modifier = Modifier,
-    imageUrl: String?,
+    sessionImage: SessionImageUIModel,
 ) {
     val controller = LocalController.current
 
     val wishlistFeature = provideFeature<AiutaWishlistFeature>()
 
-    val activeSKUItem = controller.activeProductItem.value
     val isShareActive = remember { mutableStateOf(false) }
 
     Column(
@@ -44,7 +44,7 @@ internal fun ActionBlock(
                 onClick = {
                     onShare(
                         activeProductItem = controller.activeProductItem.value,
-                        imageUrl = imageUrl,
+                        imageUrl = sessionImage.imageUrl,
                         pageId = AiutaAnalyticsPageId.RESULTS,
                     )
                 },
@@ -67,7 +67,7 @@ internal fun ActionBlock(
                     pageId = AiutaAnalyticsPageId.RESULTS,
                     updatedWishlistState = !currentState,
                     dataProvider = wishlistFeature.dataProvider,
-                    productId = activeSKUItem.id,
+                    productIds = sessionImage.productIds,
                 )
             },
         )

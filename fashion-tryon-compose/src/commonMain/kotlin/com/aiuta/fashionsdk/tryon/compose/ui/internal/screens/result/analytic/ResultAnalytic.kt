@@ -8,12 +8,12 @@ import com.aiuta.fashionsdk.tryon.compose.ui.internal.controller.FashionTryOnCon
 internal fun FashionTryOnController.sendResultEvent(
     event: AiutaAnalyticsResultsEventType,
     pageId: AiutaAnalyticsPageId,
-    productId: String,
+    productIds: List<String>,
 ) {
     analytic.sendEvent(
         event = AiutaAnalyticsResultsEvent(
             event = event,
-            productId = productId,
+            productIds = productIds,
             pageId = pageId,
         ),
     )

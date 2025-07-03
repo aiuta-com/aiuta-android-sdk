@@ -14,16 +14,20 @@ import com.aiuta.fashionsdk.tryon.compose.ui.internal.utils.features.dataprovide
 // Listeners
 internal fun FashionTryOnController.clickAddToWishListActiveSKU(
     pageId: AiutaAnalyticsPageId,
-    productId: String,
+    productIds: List<String>,
     updatedWishlistState: Boolean,
     dataProvider: AiutaWishlistFeatureDataProvider,
 ) {
     sendResultEvent(
         event = AiutaAnalyticsResultsEventType.PRODUCT_ADD_TO_WISHLIST,
         pageId = pageId,
-        productId = productId,
+        productIds = productIds,
     )
-    dataProvider::setProductInWishlist.safeInvoke(productId, updatedWishlistState)
+
+    val providedProductIds = productIds
+        .takeIf { it.isNotEmpty() }
+        ?: listOf(activeProductItem.value.id)
+    dataProvider::setProductInWishlist.safeInvoke(providedProductIds.first(), updatedWishlistState)
 }
 
 internal fun FashionTryOnController.clickAddToCart(
@@ -34,7 +38,7 @@ internal fun FashionTryOnController.clickAddToCart(
     sendResultEvent(
         event = AiutaAnalyticsResultsEventType.PRODUCT_ADD_TO_CART,
         pageId = pageId,
-        productId = productId,
+        productIds = listOf(productId),
     )
     handler::addToCart.safeInvoke(activeProductItem.value.id)
 }

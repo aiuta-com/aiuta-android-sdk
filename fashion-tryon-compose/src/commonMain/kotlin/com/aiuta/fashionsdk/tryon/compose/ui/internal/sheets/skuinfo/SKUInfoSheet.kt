@@ -148,11 +148,12 @@ private fun ButtonsContainer(
                 style = FashionButtonStyles.secondaryStyle(theme),
                 size = FashionButtonSizes.lSize(iconSize = 20.dp),
                 onClick = {
+                    // TODO Migrate to list of product IDs with multi-try-on
                     controller.clickAddToWishListActiveSKU(
                         pageId = productInfo.originPageId,
                         updatedWishlistState = !inWishlist.value,
                         dataProvider = wishlistFeature.dataProvider,
-                        productId = activeSKUItem.id,
+                        productIds = listOf(activeSKUItem.id),
                     )
                 },
             )
