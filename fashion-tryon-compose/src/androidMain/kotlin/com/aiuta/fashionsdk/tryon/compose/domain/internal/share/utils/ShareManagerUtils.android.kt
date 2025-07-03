@@ -76,12 +76,12 @@ internal class ShareBroadcastReceiver : BroadcastReceiver() {
                 Intent.EXTRA_CHOSEN_COMPONENT,
             )
         val pageId = intent?.getStringExtra(PAGE_ID_KEY)
-        val productId = intent?.getStringArrayListExtra(PRODUCT_IDS_KEY)
+        val productIds = intent?.getStringArrayListExtra(PRODUCT_IDS_KEY)
 
         InternalAiutaAnalyticFactory.getInternalAiutaAnalytic()?.sendEvent(
             event = AiutaAnalyticsShareEvent(
                 pageId = pageId?.let { Json.decodeFromString(it) },
-                productIds = productId?.toList().orEmpty(),
+                productIds = productIds?.toList().orEmpty(),
                 targetId = clickedComponent?.packageName,
                 event = AiutaShareEventType.SUCCEEDED,
             ),
