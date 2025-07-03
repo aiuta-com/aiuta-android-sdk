@@ -8,14 +8,13 @@ import com.aiuta.fashionsdk.tryon.compose.ui.internal.controller.FashionTryOnCon
 internal fun FashionTryOnController.sendOnboardingEvent(
     eventType: AiutaAnalyticOnboardingEventType,
     pageId: AiutaAnalyticsPageId,
-    productId: String,
     consentsIds: List<String>?,
 ) {
     analytic.sendEvent(
         event = AiutaAnalyticsOnboardingEvent(
             event = eventType,
             pageId = pageId,
-            productId = productId,
+            productIds = listOf(activeProductItem.value.id),
             consentsIds = consentsIds?.takeIf { it.isNotEmpty() },
         ),
     )
