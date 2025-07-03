@@ -79,7 +79,7 @@ internal class ShareElementScopeInstance(
             shareManager.shareImages(
                 content = shareText?.getOrNull(),
                 pageId = pageId,
-                productId = skuIds.first(),
+                productIds = skuIds,
                 imageUrls = imageUrls,
                 watermark = watermarkPainter,
             )

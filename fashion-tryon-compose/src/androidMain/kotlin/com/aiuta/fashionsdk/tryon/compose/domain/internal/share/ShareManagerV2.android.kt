@@ -38,7 +38,7 @@ internal class AndroidShareManagerV2(
     override suspend fun shareImages(
         content: String?,
         pageId: AiutaAnalyticsPageId,
-        productId: String?,
+        productIds: List<String>,
         imageUrls: List<String>,
         watermark: Painter?,
     ): Result<Unit> = runCatching {
@@ -56,7 +56,7 @@ internal class AndroidShareManagerV2(
         context.shareContent(
             content = content,
             pageId = pageId,
-            productId = productId,
+            productIds = productIds,
             fileUris = imageUris,
         )
     }

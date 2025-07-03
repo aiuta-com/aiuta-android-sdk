@@ -10,7 +10,7 @@ import kotlin.time.Clock
 import kotlin.time.ExperimentalTime
 
 internal const val PAGE_ID_KEY = "pageIdKey"
-internal const val PRODUCT_ID_KEY = "productIdKey"
+internal const val PRODUCT_IDS_KEY = "productIdsKey"
 internal const val SHARE_REQUEST_CODE = 100
 
 @OptIn(ExperimentalTime::class)

@@ -8,7 +8,7 @@ internal class JVMShareManagerV2 : ShareManagerV2 {
     override suspend fun shareImages(
         content: String?,
         pageId: AiutaAnalyticsPageId,
-        productId: String?,
+        productIds: List<String>,
         imageUrls: List<String>,
         watermark: Painter?,
     ): Result<Unit> {

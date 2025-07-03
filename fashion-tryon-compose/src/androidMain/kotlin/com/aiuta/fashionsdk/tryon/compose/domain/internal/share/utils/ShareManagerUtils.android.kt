@@ -21,7 +21,7 @@ import kotlinx.serialization.json.Json
 internal fun Context.shareContent(
     content: String?,
     pageId: AiutaAnalyticsPageId,
-    productId: String?,
+    productIds: List<String>,
     fileUris: List<Uri> = emptyList(),
 ) {
     // Create a new Intent fileUris with the ACTION_SEND action.
@@ -41,7 +41,7 @@ internal fun Context.shareContent(
             SHARE_REQUEST_CODE,
             Intent(this, ShareBroadcastReceiver::class.java).apply {
                 putExtra(PAGE_ID_KEY, Json.encodeToString(pageId))
-                putExtra(PRODUCT_ID_KEY, productId)
+                putStringArrayListExtra(PRODUCT_IDS_KEY, ArrayList(productIds))
             },
             PendingIntent.FLAG_MUTABLE or PendingIntent.FLAG_UPDATE_CURRENT,
         )
@@ -76,12 +76,12 @@ internal class ShareBroadcastReceiver : BroadcastReceiver() {
                 Intent.EXTRA_CHOSEN_COMPONENT,
             )
         val pageId = intent?.getStringExtra(PAGE_ID_KEY)
-        val productId = intent?.getStringExtra(PRODUCT_ID_KEY)
+        val productId = intent?.getStringArrayListExtra(PRODUCT_IDS_KEY)
 
         InternalAiutaAnalyticFactory.getInternalAiutaAnalytic()?.sendEvent(
             event = AiutaAnalyticsShareEvent(
                 pageId = pageId?.let { Json.decodeFromString(it) },
-                productId = productId,
+                productIds = productId?.toList().orEmpty(),
                 targetId = clickedComponent?.packageName,
                 event = AiutaShareEventType.SUCCEEDED,
             ),

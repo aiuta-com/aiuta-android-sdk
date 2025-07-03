@@ -7,8 +7,6 @@ import androidx.compose.ui.platform.LocalDensity
 import androidx.compose.ui.platform.LocalLayoutDirection
 import androidx.compose.ui.unit.Density
 import androidx.compose.ui.unit.LayoutDirection
-import coil3.PlatformContext
-import coil3.compose.LocalPlatformContext
 import com.aiuta.fashionsdk.analytics.events.AiutaAnalyticsPageId
 import com.aiuta.fashionsdk.tryon.compose.domain.internal.share.utls.firstKeyWindow
 import com.aiuta.fashionsdk.tryon.compose.domain.internal.share.utls.isIpad
@@ -25,7 +23,6 @@ import platform.UIKit.UIApplication
 import platform.UIKit.popoverPresentationController
 
 internal class NativeShareManagerV2(
-    private val coilContext: PlatformContext,
     private val density: Density,
     private val layoutDirection: LayoutDirection,
 ) : ShareManagerV2 {
@@ -33,7 +30,7 @@ internal class NativeShareManagerV2(
     override suspend fun shareImages(
         content: String?,
         pageId: AiutaAnalyticsPageId,
-        productId: String?,
+        productIds: List<String>,
         imageUrls: List<String>,
         watermark: Painter?,
     ): Result<Unit> = runCatching {
@@ -84,13 +81,11 @@ internal class NativeShareManagerV2(
 
 @Composable
 internal actual fun rememberActualShareManagerV2(): ShareManagerV2 {
-    val coilContext = LocalPlatformContext.current
     val density = LocalDensity.current
     val layoutDirection = LocalLayoutDirection.current
 
     return remember {
         NativeShareManagerV2(
-            coilContext = coilContext,
             density = density,
             layoutDirection = layoutDirection,
         )

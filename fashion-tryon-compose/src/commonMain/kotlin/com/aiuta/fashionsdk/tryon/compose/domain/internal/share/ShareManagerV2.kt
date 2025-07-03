@@ -8,7 +8,7 @@ internal interface ShareManagerV2 {
     suspend fun shareImages(
         content: String? = null,
         pageId: AiutaAnalyticsPageId,
-        productId: String?,
+        productIds: List<String>,
         imageUrls: List<String>,
         watermark: Painter? = null,
     ): Result<Unit>

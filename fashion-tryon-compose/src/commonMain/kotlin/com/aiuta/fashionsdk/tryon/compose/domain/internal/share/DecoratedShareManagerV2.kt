@@ -17,7 +17,7 @@ internal class DecoratedShareManagerV2(
     override suspend fun shareImages(
         content: String?,
         pageId: AiutaAnalyticsPageId,
-        productId: String?,
+        productIds: List<String>,
         imageUrls: List<String>,
         watermark: Painter?,
     ): Result<Unit> {
@@ -25,7 +25,7 @@ internal class DecoratedShareManagerV2(
         analytic.sendEvent(
             event = AiutaAnalyticsShareEvent(
                 pageId = pageId,
-                productId = productId,
+                productIds = productIds,
                 event = AiutaShareEventType.INITIATED,
                 targetId = null,
             ),
@@ -35,7 +35,7 @@ internal class DecoratedShareManagerV2(
         return actualShareManager.shareImages(
             content = content,
             pageId = pageId,
-            productId = productId,
+            productIds = productIds,
             imageUrls = imageUrls,
             watermark = watermark,
         )
