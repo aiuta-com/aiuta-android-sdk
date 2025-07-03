@@ -62,7 +62,6 @@ internal fun ColumnScope.SKUInfoSheet(skuInfo: NavigationBottomSheetScreen.SKUIn
     ) {
         itemsIndexed(
             items = skuInfo.skuItem.imageUrls,
-            key = { index, _ -> index },
         ) { _, imageUrl ->
             ImageContainer(
                 modifier =

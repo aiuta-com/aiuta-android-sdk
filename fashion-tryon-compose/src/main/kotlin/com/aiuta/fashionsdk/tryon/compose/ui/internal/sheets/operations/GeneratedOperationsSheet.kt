@@ -36,6 +36,7 @@ import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.unit.dp
 import androidx.paging.compose.collectAsLazyPagingItems
 import androidx.paging.compose.itemContentType
+import androidx.paging.compose.itemKey
 import coil.compose.SubcomposeAsyncImage
 import coil.request.ImageRequest
 import com.aiuta.fashionsdk.compose.molecules.button.FashionButton
@@ -106,8 +107,8 @@ internal fun ColumnScope.GeneratedOperationsSheet() {
     ) {
         items(
             count = generatedOperations.itemCount,
-            key = { generatedOperations[it]?.operationId ?: 0 },
-            contentType = generatedOperations.itemContentType { it },
+            key = generatedOperations.itemKey { it.operationId },
+            contentType = generatedOperations.itemContentType { "OPERATION_KEY" },
         ) {
             val generatedOperation = generatedOperations[it]
 
