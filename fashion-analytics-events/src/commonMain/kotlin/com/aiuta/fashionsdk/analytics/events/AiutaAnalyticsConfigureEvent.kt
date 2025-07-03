@@ -8,8 +8,8 @@ import kotlinx.serialization.Serializable
 public class AiutaAnalyticsConfigureEvent(
     @SerialName("pageId")
     override val pageId: AiutaAnalyticsPageId? = null,
-    @SerialName("productId")
-    override val productId: String? = null,
+    @SerialName("productIds")
+    override val productIds: List<String> = emptyList(),
     @SerialName("authType")
     public val authenticationType: AiutaAnalyticsAuthenticationType,
     @SerialName("consentFeatureType")

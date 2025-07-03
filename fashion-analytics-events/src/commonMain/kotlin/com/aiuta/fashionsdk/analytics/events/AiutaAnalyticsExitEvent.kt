@@ -8,6 +8,6 @@ import kotlinx.serialization.Serializable
 public class AiutaAnalyticsExitEvent(
     @SerialName("pageId")
     public override val pageId: AiutaAnalyticsPageId?,
-    @SerialName("productId")
-    public override val productId: String?,
+    @SerialName("productIds")
+    override val productIds: List<String>,
 ) : AiutaAnalyticsEvent

@@ -8,8 +8,8 @@ import kotlinx.serialization.Serializable
 public class AiutaAnalyticsSessionEvent(
     @SerialName("pageId")
     override val pageId: AiutaAnalyticsPageId? = null,
-    @SerialName("productId")
-    override val productId: String?,
+    @SerialName("productIds")
+    override val productIds: List<String>,
     @SerialName("flow")
     public val flow: FlowType,
 ) : AiutaAnalyticsEvent {

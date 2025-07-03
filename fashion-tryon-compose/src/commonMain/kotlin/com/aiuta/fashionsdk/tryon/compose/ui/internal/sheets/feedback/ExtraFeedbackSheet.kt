@@ -47,8 +47,7 @@ internal fun ColumnScope.ExtraFeedbackSheet(data: NavigationBottomSheetScreen.Ex
     val feedbackText = remember { mutableStateOf("") }
 
     Column(
-        modifier =
-        Modifier
+        modifier = Modifier
             .fillMaxSize()
             .padding(horizontal = 16.dp)
             .windowInsetsPadding(WindowInsets.statusBars)
@@ -83,8 +82,7 @@ internal fun ColumnScope.ExtraFeedbackSheet(data: NavigationBottomSheetScreen.Ex
         Spacer(Modifier.height(20.dp))
 
         TextField(
-            modifier =
-            Modifier
+            modifier = Modifier
                 .fillMaxWidth()
                 .heightIn(min = 160.dp)
                 .animateContentSize(),
@@ -112,6 +110,7 @@ internal fun ColumnScope.ExtraFeedbackSheet(data: NavigationBottomSheetScreen.Ex
                 controller.sendGenerationFeedback(
                     optionIndex = data.optionIndex,
                     feedback = feedbackText.value,
+                    productIds = data.productIds,
                 )
                 controller.bottomSheetNavigator.hide()
             },

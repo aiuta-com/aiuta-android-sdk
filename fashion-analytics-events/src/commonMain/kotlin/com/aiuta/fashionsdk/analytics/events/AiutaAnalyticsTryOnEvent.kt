@@ -16,8 +16,8 @@ public class AiutaAnalyticsTryOnEvent(
     public val errorMessage: String? = null,
     @SerialName("pageId")
     public override val pageId: AiutaAnalyticsPageId?,
-    @SerialName("productId")
-    public override val productId: String?,
+    @SerialName("productIds")
+    override val productIds: List<String>,
     // Try on meta info
     @SerialName("uploadDuration")
     public val uploadDuration: Double? = null,

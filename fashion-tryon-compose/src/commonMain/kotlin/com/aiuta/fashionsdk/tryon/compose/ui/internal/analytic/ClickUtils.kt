@@ -52,5 +52,5 @@ internal fun InternalAiutaAnalytic.sendFinishSessionEvent(
     pageId: AiutaAnalyticsPageId,
     productItem: ProductItem,
 ) {
-    sendEvent(event = AiutaAnalyticsExitEvent(pageId = pageId, productId = productItem.id))
+    sendEvent(event = AiutaAnalyticsExitEvent(pageId = pageId, productIds = listOf(productItem.id)))
 }

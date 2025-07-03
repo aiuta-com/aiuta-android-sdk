@@ -8,8 +8,8 @@ import kotlinx.serialization.Serializable
 public class AiutaAnalyticsShareEvent(
     @SerialName("pageId")
     override val pageId: AiutaAnalyticsPageId?,
-    @SerialName("productId")
-    override val productId: String?,
+    @SerialName("productIds")
+    override val productIds: List<String>,
     @SerialName("event")
     public val event: AiutaShareEventType,
     @SerialName("targetId")

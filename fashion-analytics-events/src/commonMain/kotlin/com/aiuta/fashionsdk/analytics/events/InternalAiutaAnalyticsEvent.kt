@@ -10,5 +10,5 @@ import kotlinx.serialization.json.JsonClassDiscriminator
 public sealed interface InternalAiutaAnalyticsEvent {
     public val pageId: AiutaAnalyticsPageId?
 
-    public val productId: String?
+    public val productIds: List<String>
 }

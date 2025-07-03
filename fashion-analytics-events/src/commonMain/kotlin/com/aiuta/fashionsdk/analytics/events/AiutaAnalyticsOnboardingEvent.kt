@@ -10,8 +10,8 @@ public class AiutaAnalyticsOnboardingEvent(
     public val event: AiutaAnalyticOnboardingEventType,
     @SerialName("pageId")
     public override val pageId: AiutaAnalyticsPageId?,
-    @SerialName("productId")
-    public override val productId: String?,
+    @SerialName("productIds")
+    override val productIds: List<String>,
     @SerialName("consentsIds")
     public val consentsIds: List<String>? = null,
 ) : AiutaAnalyticsEvent

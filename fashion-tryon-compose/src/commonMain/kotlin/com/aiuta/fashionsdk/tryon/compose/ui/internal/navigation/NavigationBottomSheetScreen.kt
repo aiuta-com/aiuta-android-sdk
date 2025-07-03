@@ -14,10 +14,13 @@ internal sealed interface NavigationBottomSheetScreen {
 
     public object FitDisclaimer : NavigationBottomSheetScreen
 
-    public object Feedback : NavigationBottomSheetScreen
+    public class Feedback(
+        public val productIds: List<String>,
+    ) : NavigationBottomSheetScreen
 
     public class ExtraFeedback(
         public val optionIndex: Int,
+        public val productIds: List<String>,
     ) : NavigationBottomSheetScreen
 
     public class ProductInfo(

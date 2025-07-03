@@ -32,6 +32,7 @@ internal fun GeneratedImageUIModel.toEntity(): GeneratedImageEntity = GeneratedI
 internal fun GeneratedImageUIModel.toSessionUiModel(): SessionImageUIModel = SessionImageUIModel(
     id = id,
     imageUrl = imageUrl,
+    productIds = productIds,
 )
 
 internal fun ProductGeneratedImage.toUiModel(): GeneratedImageUIModel = GeneratedImageUIModel(

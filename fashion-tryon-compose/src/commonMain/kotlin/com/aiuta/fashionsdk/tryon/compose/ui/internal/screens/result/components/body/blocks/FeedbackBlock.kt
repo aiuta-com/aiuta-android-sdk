@@ -73,12 +73,14 @@ internal fun FeedbackBlock(
                 feedbackFeature = feedbackFeature,
                 onDislikeClick = {
                     controller.bottomSheetNavigator.show(
-                        newSheetScreen = NavigationBottomSheetScreen.Feedback,
+                        newSheetScreen = NavigationBottomSheetScreen.Feedback(
+                            productIds = sessionImage.productIds,
+                        ),
                     )
                     controller.sessionGenerationInteractor.setFeedbackAsProvided(sessionImage)
                 },
                 onLikeClick = {
-                    controller.sendLikeGenerationFeedback()
+                    controller.sendLikeGenerationFeedback(sessionImage)
                     generationResultController.showThanksFeedbackBlock()
                     controller.sessionGenerationInteractor.setFeedbackAsProvided(sessionImage)
                 },

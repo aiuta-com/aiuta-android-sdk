@@ -36,7 +36,9 @@ import com.aiuta.fashionsdk.tryon.compose.uikit.composition.LocalTheme
 import com.aiuta.fashionsdk.tryon.compose.uikit.utils.clickableUnindicated
 
 @Composable
-internal fun ColumnScope.FeedbackSheet() {
+internal fun ColumnScope.FeedbackSheet(
+    args: NavigationBottomSheetScreen.Feedback,
+) {
     val controller = LocalController.current
     val theme = LocalTheme.current
 
@@ -104,6 +106,7 @@ internal fun ColumnScope.FeedbackSheet() {
                     newSheetScreen =
                     NavigationBottomSheetScreen.ExtraFeedback(
                         optionIndex = feedbackOptions.size,
+                        productIds = args.productIds,
                     ),
                 )
             },
@@ -125,6 +128,7 @@ internal fun ColumnScope.FeedbackSheet() {
                     .clickableUnindicated {
                         controller.sendGenerationFeedback(
                             optionIndex = feedbackOptions.indexOf(selectedOption.value),
+                            productIds = args.productIds,
                         )
                         controller.bottomSheetNavigator.hide()
                     },
@@ -143,6 +147,7 @@ internal fun ColumnScope.FeedbackSheet() {
                     controller.sendGenerationFeedback(
                         optionIndex = feedbackOptions.indexOf(selectedOption.value),
                         feedback = selectedOption.value,
+                        productIds = args.productIds,
                     )
                     controller.bottomSheetNavigator.hide()
                 },

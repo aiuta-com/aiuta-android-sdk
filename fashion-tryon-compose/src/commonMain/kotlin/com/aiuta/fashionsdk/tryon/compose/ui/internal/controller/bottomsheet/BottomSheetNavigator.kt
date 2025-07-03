@@ -74,7 +74,7 @@ internal class BottomSheetNavigator(
             }
 
             is NavigationBottomSheetScreen.Feedback -> {
-                FeedbackSheet()
+                FeedbackSheet(args = bottomScreen)
             }
 
             is NavigationBottomSheetScreen.ExtraFeedback -> {
