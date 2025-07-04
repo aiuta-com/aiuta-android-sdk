@@ -11,9 +11,9 @@ public class AiutaAnalyticsConfigureEvent(
     @SerialName("productIds")
     override val productIds: List<String> = emptyList(),
     @SerialName("authType")
-    public val authenticationType: AiutaAnalyticsAuthenticationType,
+    public val authType: AiutaAnalyticsAuthenticationType,
     @SerialName("consentFeatureType")
-    public val consentType: AiutaAnalyticsConsentType? = null,
+    public val consentFeatureType: AiutaAnalyticsConsentFeatureType? = null,
     // General toggles
     @SerialName("welcomeScreenFeatureEnabled")
     public val welcomeScreenFeatureEnabled: Boolean,
@@ -57,7 +57,7 @@ public enum class AiutaAnalyticsAuthenticationType {
 }
 
 @Serializable
-public enum class AiutaAnalyticsConsentType {
+public enum class AiutaAnalyticsConsentFeatureType {
     @SerialName("embeddedIntoOnboarding")
     EMBEDDED_INTO_ONBOARDING,
 
