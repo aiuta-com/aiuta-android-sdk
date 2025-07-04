@@ -31,6 +31,9 @@ public class AiutaAnalyticsTryOnEvent(
 
 @Serializable
 public enum class AiutaAnalyticsTryOnEventType {
+    @SerialName("initiated")
+    INITIATED,
+
     @SerialName("photoUploaded")
     PHOTO_UPLOADED,
 

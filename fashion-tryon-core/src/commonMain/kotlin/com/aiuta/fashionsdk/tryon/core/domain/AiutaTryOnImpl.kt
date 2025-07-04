@@ -13,6 +13,7 @@ import com.aiuta.fashionsdk.tryon.core.data.datasource.operation.models.CreatePr
 import com.aiuta.fashionsdk.tryon.core.data.datasource.operation.productOperationsDataSourceFactory
 import com.aiuta.fashionsdk.tryon.core.data.datasource.sku.FashionProductDataSource
 import com.aiuta.fashionsdk.tryon.core.data.datasource.sku.productDataSourceFactory
+import com.aiuta.fashionsdk.tryon.core.domain.analytic.sendInitTryOnEvent
 import com.aiuta.fashionsdk.tryon.core.domain.analytic.sendStartTryOnEvent
 import com.aiuta.fashionsdk.tryon.core.domain.analytic.sendTryOnPhotoUploadedEvent
 import com.aiuta.fashionsdk.tryon.core.domain.models.ProductCatalog
@@ -84,7 +85,7 @@ internal class AiutaTryOnImpl(
     }
 
     override fun startProductGeneration(container: ProductGenerationContainer): Flow<ProductGenerationStatus> = flow {
-        analytic.sendStartTryOnEvent(container)
+        analytic.sendInitTryOnEvent(container)
         val statusId = generateStatusId()
 
         errorListener(statusId = statusId) {
@@ -127,6 +128,7 @@ internal class AiutaTryOnImpl(
                     ),
                 )
             }
+            analytic.sendStartTryOnEvent(container)
 
             // Wait for the operation, until it is completed
             emit(

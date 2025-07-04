@@ -15,6 +15,16 @@ internal fun InternalAiutaAnalytic.sendStartTryOnEvent(container: ProductGenerat
     sendEvent(
         event = AiutaAnalyticsTryOnEvent(
             event = AiutaAnalyticsTryOnEventType.TRY_ON_STARTED,
+            pageId = AiutaAnalyticsPageId.LOADING,
+            productIds = listOf(container.productId),
+        ),
+    )
+}
+
+internal fun InternalAiutaAnalytic.sendInitTryOnEvent(container: ProductGenerationContainer) {
+    sendEvent(
+        event = AiutaAnalyticsTryOnEvent(
+            event = AiutaAnalyticsTryOnEventType.INITIATED,
             pageId = AiutaAnalyticsPageId.IMAGE_PICKER,
             productIds = listOf(container.productId),
         ),
@@ -87,8 +97,7 @@ internal fun InternalAiutaAnalytic.sendErrorEvent(
 
 internal fun InternalAiutaAnalytic.sendTryOnPhotoUploadedEvent(container: ProductGenerationContainer) {
     sendEvent(
-        event =
-        AiutaAnalyticsTryOnEvent(
+        event = AiutaAnalyticsTryOnEvent(
             event = AiutaAnalyticsTryOnEventType.PHOTO_UPLOADED,
             pageId = AiutaAnalyticsPageId.LOADING,
             productIds = listOf(container.productId),
