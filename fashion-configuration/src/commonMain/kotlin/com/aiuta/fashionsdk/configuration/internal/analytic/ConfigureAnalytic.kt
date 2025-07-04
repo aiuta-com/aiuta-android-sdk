@@ -1,7 +1,7 @@
 package com.aiuta.fashionsdk.configuration.internal.analytic
 
 import com.aiuta.fashionsdk.Aiuta
-import com.aiuta.fashionsdk.analytics.events.AiutaAnalyticsAuthenticationType
+import com.aiuta.fashionsdk.analytics.events.AiutaAnalyticsAuthType
 import com.aiuta.fashionsdk.analytics.events.AiutaAnalyticsConfigureEvent
 import com.aiuta.fashionsdk.analytics.events.AiutaAnalyticsConsentFeatureType
 import com.aiuta.fashionsdk.authentication.ApiKeyAuthenticationStrategy
@@ -50,9 +50,9 @@ internal fun AiutaConfiguration.sendConfigurationEvent() {
     )
 }
 
-private fun Aiuta.toAuthenticationType(): AiutaAnalyticsAuthenticationType = when (authenticationStrategy) {
-    is ApiKeyAuthenticationStrategy -> AiutaAnalyticsAuthenticationType.API_KEY
-    is JWTAuthenticationStrategy -> AiutaAnalyticsAuthenticationType.JWT
+private fun Aiuta.toAuthenticationType(): AiutaAnalyticsAuthType = when (authenticationStrategy) {
+    is ApiKeyAuthenticationStrategy -> AiutaAnalyticsAuthType.API_KEY
+    is JWTAuthenticationStrategy -> AiutaAnalyticsAuthType.JWT
 }
 
 private fun AiutaConsentFeature.toConsentType(): AiutaAnalyticsConsentFeatureType = when (this) {

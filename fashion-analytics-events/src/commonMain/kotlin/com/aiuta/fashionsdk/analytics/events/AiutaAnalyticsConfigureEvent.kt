@@ -11,7 +11,7 @@ public class AiutaAnalyticsConfigureEvent(
     @SerialName("productIds")
     override val productIds: List<String> = emptyList(),
     @SerialName("authType")
-    public val authType: AiutaAnalyticsAuthenticationType,
+    public val authType: AiutaAnalyticsAuthType,
     @SerialName("consentFeatureType")
     public val consentFeatureType: AiutaAnalyticsConsentFeatureType? = null,
     // General toggles
@@ -48,7 +48,7 @@ public class AiutaAnalyticsConfigureEvent(
 ) : AiutaAnalyticsEvent
 
 @Serializable
-public enum class AiutaAnalyticsAuthenticationType {
+public enum class AiutaAnalyticsAuthType {
     @SerialName("apiKey")
     API_KEY,
 
