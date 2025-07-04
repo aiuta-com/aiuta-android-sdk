@@ -27,10 +27,10 @@ public final class com/aiuta/fashionsdk/analytics/events/AiutaAnalyticsAuthentic
 
 public final class com/aiuta/fashionsdk/analytics/events/AiutaAnalyticsConfigureEvent : com/aiuta/fashionsdk/analytics/events/AiutaAnalyticsEvent {
 	public static final field Companion Lcom/aiuta/fashionsdk/analytics/events/AiutaAnalyticsConfigureEvent$Companion;
-	public fun <init> (Lcom/aiuta/fashionsdk/analytics/events/AiutaAnalyticsPageId;Ljava/util/List;Lcom/aiuta/fashionsdk/analytics/events/AiutaAnalyticsAuthenticationType;Lcom/aiuta/fashionsdk/analytics/events/AiutaAnalyticsConsentType;ZZZZZZZZZZZZZZZ)V
-	public synthetic fun <init> (Lcom/aiuta/fashionsdk/analytics/events/AiutaAnalyticsPageId;Ljava/util/List;Lcom/aiuta/fashionsdk/analytics/events/AiutaAnalyticsAuthenticationType;Lcom/aiuta/fashionsdk/analytics/events/AiutaAnalyticsConsentType;ZZZZZZZZZZZZZZZILkotlin/jvm/internal/DefaultConstructorMarker;)V
-	public final fun getAuthenticationType ()Lcom/aiuta/fashionsdk/analytics/events/AiutaAnalyticsAuthenticationType;
-	public final fun getConsentType ()Lcom/aiuta/fashionsdk/analytics/events/AiutaAnalyticsConsentType;
+	public fun <init> (Lcom/aiuta/fashionsdk/analytics/events/AiutaAnalyticsPageId;Ljava/util/List;Lcom/aiuta/fashionsdk/analytics/events/AiutaAnalyticsAuthenticationType;Lcom/aiuta/fashionsdk/analytics/events/AiutaAnalyticsConsentFeatureType;ZZZZZZZZZZZZZZZ)V
+	public synthetic fun <init> (Lcom/aiuta/fashionsdk/analytics/events/AiutaAnalyticsPageId;Ljava/util/List;Lcom/aiuta/fashionsdk/analytics/events/AiutaAnalyticsAuthenticationType;Lcom/aiuta/fashionsdk/analytics/events/AiutaAnalyticsConsentFeatureType;ZZZZZZZZZZZZZZZILkotlin/jvm/internal/DefaultConstructorMarker;)V
+	public final fun getAuthType ()Lcom/aiuta/fashionsdk/analytics/events/AiutaAnalyticsAuthenticationType;
+	public final fun getConsentFeatureType ()Lcom/aiuta/fashionsdk/analytics/events/AiutaAnalyticsConsentFeatureType;
 	public final fun getImagePickerCameraFeatureEnabled ()Z
 	public final fun getImagePickerPredefinedModelFeatureEnabled ()Z
 	public final fun getImagePickerUploadsHistoryFeatureEnabled ()Z
@@ -64,17 +64,17 @@ public final class com/aiuta/fashionsdk/analytics/events/AiutaAnalyticsConfigure
 	public final fun serializer ()Lkotlinx/serialization/KSerializer;
 }
 
-public final class com/aiuta/fashionsdk/analytics/events/AiutaAnalyticsConsentType : java/lang/Enum {
-	public static final field Companion Lcom/aiuta/fashionsdk/analytics/events/AiutaAnalyticsConsentType$Companion;
-	public static final field EMBEDDED_INTO_ONBOARDING Lcom/aiuta/fashionsdk/analytics/events/AiutaAnalyticsConsentType;
-	public static final field STANDALONE_IMAGE_PICKER_PAGE Lcom/aiuta/fashionsdk/analytics/events/AiutaAnalyticsConsentType;
-	public static final field STANDALONE_ONBOARDING_PAGE Lcom/aiuta/fashionsdk/analytics/events/AiutaAnalyticsConsentType;
+public final class com/aiuta/fashionsdk/analytics/events/AiutaAnalyticsConsentFeatureType : java/lang/Enum {
+	public static final field Companion Lcom/aiuta/fashionsdk/analytics/events/AiutaAnalyticsConsentFeatureType$Companion;
+	public static final field EMBEDDED_INTO_ONBOARDING Lcom/aiuta/fashionsdk/analytics/events/AiutaAnalyticsConsentFeatureType;
+	public static final field STANDALONE_IMAGE_PICKER_PAGE Lcom/aiuta/fashionsdk/analytics/events/AiutaAnalyticsConsentFeatureType;
+	public static final field STANDALONE_ONBOARDING_PAGE Lcom/aiuta/fashionsdk/analytics/events/AiutaAnalyticsConsentFeatureType;
 	public static fun getEntries ()Lkotlin/enums/EnumEntries;
-	public static fun valueOf (Ljava/lang/String;)Lcom/aiuta/fashionsdk/analytics/events/AiutaAnalyticsConsentType;
-	public static fun values ()[Lcom/aiuta/fashionsdk/analytics/events/AiutaAnalyticsConsentType;
+	public static fun valueOf (Ljava/lang/String;)Lcom/aiuta/fashionsdk/analytics/events/AiutaAnalyticsConsentFeatureType;
+	public static fun values ()[Lcom/aiuta/fashionsdk/analytics/events/AiutaAnalyticsConsentFeatureType;
 }
 
-public final class com/aiuta/fashionsdk/analytics/events/AiutaAnalyticsConsentType$Companion {
+public final class com/aiuta/fashionsdk/analytics/events/AiutaAnalyticsConsentFeatureType$Companion {
 	public final fun serializer ()Lkotlinx/serialization/KSerializer;
 }
 
@@ -458,6 +458,7 @@ public final class com/aiuta/fashionsdk/analytics/events/AiutaAnalyticsTryOnEven
 
 public final class com/aiuta/fashionsdk/analytics/events/AiutaAnalyticsTryOnEventType : java/lang/Enum {
 	public static final field Companion Lcom/aiuta/fashionsdk/analytics/events/AiutaAnalyticsTryOnEventType$Companion;
+	public static final field INITIATED Lcom/aiuta/fashionsdk/analytics/events/AiutaAnalyticsTryOnEventType;
 	public static final field PHOTO_UPLOADED Lcom/aiuta/fashionsdk/analytics/events/AiutaAnalyticsTryOnEventType;
 	public static final field TRY_ON_ABORTED Lcom/aiuta/fashionsdk/analytics/events/AiutaAnalyticsTryOnEventType;
 	public static final field TRY_ON_ERROR Lcom/aiuta/fashionsdk/analytics/events/AiutaAnalyticsTryOnEventType;
