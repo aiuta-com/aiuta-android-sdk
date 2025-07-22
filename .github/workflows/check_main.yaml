@@ -15,5 +15,4 @@ concurrency:
 
 jobs:
   check_todo:
-    name: Check TODO in project
     uses: aiuta-com/aiuta-action/.github/workflows/check_todo.yaml@main
