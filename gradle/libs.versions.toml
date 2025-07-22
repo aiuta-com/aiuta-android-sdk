@@ -18,7 +18,7 @@ dokka = "2.0.0"
 gradle-plugin-android = "8.11.0"
 gradle-plugin-vanniktech-publish = "0.33.0"
 
-haze = "1.6.6"
+haze = "1.6.9"
 
 kotlinx-atomicfu = "0.29.0"
 kotlinx-datetime = "0.7.0"
