@@ -2,8 +2,7 @@ name: Check new pull request
 
 on:
   pull_request:
-  # TODO Return back
-  # types: [ opened ]
+   types: [ opened ]
 
 permissions:
   pull-requests: write
@@ -12,7 +11,6 @@ jobs:
   check_pr:
     uses: aiuta-com/aiuta-action/.github/workflows/check_pr.yaml@main
     with:
-      # TODO Make B2B
-      prefix: "AIUTA-B2C"
+      prefix: "AIUTA-B2B"
     secrets:
       token: ${{ secrets.AIUTA_PERSONAL_ACCESS_TOKEN }}
