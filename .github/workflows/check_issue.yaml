@@ -29,4 +29,3 @@ jobs:
     needs: get_version
     with:
       next-version: ${{ needs.get_version.outputs.next_version }}
-      title-prefix: "AIUTA-B2B"
