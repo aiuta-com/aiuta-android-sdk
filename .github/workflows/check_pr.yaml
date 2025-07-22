@@ -2,7 +2,11 @@ name: Check new pull request
 
 on:
   pull_request:
-    types: [ opened ]
+  # TODO Return back
+  # types: [ opened ]
+
+permissions:
+  pull-requests: write
 
 jobs:
   check_pr:
