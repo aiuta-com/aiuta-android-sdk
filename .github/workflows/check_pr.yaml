@@ -1,13 +1,11 @@
 name: Check new pull request
 
 on:
-    pull_request:
-        types: [ opened ]
+  pull_request:
+    types: [ opened ]
 
 jobs:
-    check_pr:
-        runs-on: ubuntu-latest
-        steps:
-            uses: aiuta-com/aiuta-action/.github/workflows/check_pr_labels.yaml@main
-            with:
-                token: ${{ secrets.GITHUB_TOKEN }}
+  check_pr:
+    uses: aiuta-com/aiuta-action/.github/workflows/check_pr_labels.yaml@main
+    with:
+      token: ${{ secrets.GITHUB_TOKEN }}

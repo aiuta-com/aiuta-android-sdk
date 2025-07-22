@@ -1,29 +1,32 @@
 name: Check new issue
 
 on:
-    issues:
-        types: [ opened ]
+  issues:
+    types: [ opened ]
 
 permissions:
-    contents: read
-    issues: write
+  contents: read
+  issues: write
 
 jobs:
-    check_title:
-        runs-on: ubuntu-latest
-        steps:
-            -   name: Checkout
-                uses: actions/checkout@v4
-                with:
-                    fetch-depth: 0
+  get_version:
+    runs-on: ubuntu-latest
+    outputs:
+      next_version: ${{ steps.get_version.outputs.next_version }}
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
 
-            -   name: Get next version
-                id: get_version
-                run: |
-                    echo "next_version=$(bash scripts/get_config_value.sh gradle.properties POM_VERSION --remove-suffix)" >> $GITHUB_OUTPUT
+      - name: Get next version
+        id: get_version
+        run: |
+          echo "next_version=$(bash scripts/get_config_value.sh gradle.properties POM_VERSION --remove-suffix)" >> $GITHUB_OUTPUT
 
-            -   name: Check issue title
-                uses: aiuta-com/aiuta-action/.github/workflows/check_issue_title.yaml@main
-                with:
-                    next-version: ${{ steps.get_version.outputs.next_version }}
-                    title-prefix: "AIUTA-B2B"
+  check_issue_title:
+    uses: aiuta-com/aiuta-action/.github/workflows/check_issue_title.yaml@main
+    needs: get_version
+    with:
+      next-version: ${{ needs.get_version.outputs.next_version }}
+      title-prefix: "AIUTA-B2B"
