@@ -1,0 +1,20 @@
+changelog:
+    categories:
+        - title: 🐞 Bug Fixes
+          labels:
+              - bug
+        - title: 👒 Dependencies
+          labels:
+              - dependencies
+        - title: 📚 Documentation
+          labels:
+              - documentation
+        - title: ✨ Features
+          labels:
+              - features
+        - title: 🏗️ Infrastructure
+          labels:
+              - infrastructure
+        - title: 🛠️ Tech Debt
+          labels:
+              - tech-debt
