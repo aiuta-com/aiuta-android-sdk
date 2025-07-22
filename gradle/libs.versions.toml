@@ -16,7 +16,7 @@ compose-placeholder = "1.0.11"
 dokka = "2.0.0"
 
 gradle-plugin-android = "8.11.1"
-gradle-plugin-vanniktech-publish = "0.33.0"
+gradle-plugin-vanniktech-publish = "0.34.0"
 
 haze = "1.6.9"
 
