@@ -12,6 +12,7 @@ jobs:
   check_pr:
     uses: aiuta-com/aiuta-action/.github/workflows/check_pr.yaml@main
     with:
-      prefix: "AIUTA-B2B"
+      # TODO Make B2B
+      prefix: "AIUTA-B2C"
     secrets:
       token: ${{ secrets.AIUTA_PERSONAL_ACCESS_TOKEN }}
