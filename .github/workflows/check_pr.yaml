@@ -2,8 +2,7 @@ name: Check new pull request
 
 on:
   pull_request:
-    # TODO Remove back
-#    types: [ opened ]
+    types: [ opened ]
 
 jobs:
   check_pr:
