@@ -1,12 +1,16 @@
-name: Check TODO in project
+name: Check push to main branch
 
 on:
   push:
     branches:
       - main
 
+permissions:
+    contents: write
+    issues: write
+
 concurrency:
-  group: check-todo-${{ github.ref }}
+  group: check-main-${{ github.ref }}
   cancel-in-progress: true
 
 jobs:
