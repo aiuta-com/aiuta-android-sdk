@@ -106,7 +106,9 @@ private fun <T : BaseExtension> Project.androidBase(
                 "MonochromeLauncherIcon",
                 "IconLocation",
                 // Renovate bot checks deps updates
-                "NewerVersionAvailable"
+                "NewerVersionAvailable",
+                "AndroidGradlePluginVersion",
+                "GradleDependency"
             )
         }
         action()
