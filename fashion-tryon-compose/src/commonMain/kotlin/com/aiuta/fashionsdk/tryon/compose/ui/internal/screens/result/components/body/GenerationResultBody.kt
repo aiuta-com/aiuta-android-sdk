@@ -46,7 +46,7 @@ import com.aiuta.fashionsdk.tryon.compose.ui.internal.screens.result.components.
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.screens.result.components.body.blocks.GenerateMoreBlock
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.screens.result.controller.GenerationResultController
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.utils.MAIN_IMAGE_SIZE
-import com.aiuta.fashionsdk.tryon.compose.ui.internal.utils.calculateCurrentOffsetForPage
+import com.aiuta.fashionsdk.tryon.compose.ui.internal.utils.offsetForPage
 import com.aiuta.fashionsdk.tryon.compose.uikit.composition.LocalTheme
 import com.aiuta.fashionsdk.tryon.compose.uikit.resources.AiutaImage
 import com.aiuta.fashionsdk.tryon.compose.uikit.utils.clickableUnindicated
@@ -77,7 +77,7 @@ internal fun GenerationResultBody(
         val pageOffset =
             remember {
                 derivedStateOf {
-                    pagerState.calculateCurrentOffsetForPage(index).absoluteValue
+                    pagerState.offsetForPage(index).absoluteValue
                 }
             }
 

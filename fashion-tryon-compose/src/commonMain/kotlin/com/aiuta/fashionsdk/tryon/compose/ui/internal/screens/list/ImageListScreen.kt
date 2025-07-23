@@ -24,6 +24,7 @@ import com.aiuta.fashionsdk.tryon.compose.ui.internal.screens.base.share.ShareEl
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.screens.base.share.onShare
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.screens.list.components.buttons.ShareButton
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.screens.list.components.navigation.ImageListNavigationBlock
+import com.aiuta.fashionsdk.tryon.compose.ui.internal.utils.offsetForPage
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.utils.paging.collectAsLazyPagingItems
 import com.aiuta.fashionsdk.tryon.compose.uikit.composition.LocalTheme
 import com.aiuta.fashionsdk.tryon.compose.uikit.resources.AiutaImage
@@ -57,11 +58,13 @@ internal fun ImageListScreen(
             AiutaImage(
                 modifier = Modifier
                     .graphicsLayer {
-                        val pageOffset = with(pagerState) {
-                            (currentPage - pageIndex) + currentPageOffsetFraction
-                        }
+                        val pageOffset = pagerState.offsetForPage(pageIndex)
                         translationY = pageOffset * size.height
-                        alpha = 1f - pageOffset.absoluteValue
+
+                        alpha = when {
+                            pageOffset > 0f -> 1f
+                            else -> 1f - pageOffset.absoluteValue.coerceIn(0f, 1f)
+                        }
                     }
                     .fillMaxSize(),
                 shapeDp = 0.dp,

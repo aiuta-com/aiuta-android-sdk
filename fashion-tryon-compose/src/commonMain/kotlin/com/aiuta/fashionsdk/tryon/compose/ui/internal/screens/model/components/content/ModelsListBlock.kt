@@ -22,7 +22,7 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.lerp
 import com.aiuta.fashionsdk.tryon.compose.domain.models.internal.config.features.TryOnModelsCategoryUiModel
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.screens.model.components.list.CentredModelsHorizontalPager
-import com.aiuta.fashionsdk.tryon.compose.ui.internal.utils.calculateCurrentOffsetForPage
+import com.aiuta.fashionsdk.tryon.compose.ui.internal.utils.offsetForPage
 import com.aiuta.fashionsdk.tryon.compose.uikit.resources.AiutaImage
 import kotlin.math.absoluteValue
 
@@ -57,7 +57,7 @@ internal fun ModelsListBlock(
                 val pageOffset = remember {
                     derivedStateOf {
                         1 -
-                            horizontalPager.calculateCurrentOffsetForPage(
+                            horizontalPager.offsetForPage(
                                 index,
                             ).absoluteValue.coerceIn(
                                 0f,

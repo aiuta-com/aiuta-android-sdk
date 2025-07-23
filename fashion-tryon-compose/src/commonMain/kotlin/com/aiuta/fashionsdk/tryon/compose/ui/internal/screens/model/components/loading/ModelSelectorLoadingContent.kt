@@ -22,7 +22,7 @@ import com.aiuta.fashionsdk.compose.core.size.rememberScreenSize
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.screens.model.components.list.CentredModelsHorizontalPager
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.screens.model.utils.MODEL_IMAGE_BOTTOM_PADDING_COEF
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.screens.model.utils.MODEL_IMAGE_HORIZONTAL_PADDING_COEF
-import com.aiuta.fashionsdk.tryon.compose.ui.internal.utils.calculateCurrentOffsetForPage
+import com.aiuta.fashionsdk.tryon.compose.ui.internal.utils.offsetForPage
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.utils.placeholderFadeConnecting
 import kotlin.math.absoluteValue
 
@@ -93,7 +93,7 @@ private fun ModelsListShimmer(
             remember {
                 derivedStateOf {
                     1 -
-                        horizontalPager.calculateCurrentOffsetForPage(index).absoluteValue.coerceIn(
+                        horizontalPager.offsetForPage(index).absoluteValue.coerceIn(
                             0f,
                             1f,
                         )
