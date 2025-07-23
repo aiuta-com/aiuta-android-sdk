@@ -11,6 +11,7 @@ import com.aiuta.fashionsdk.configuration.features.tryon.cart.handler.AiutaTryOn
 import com.aiuta.fashionsdk.configuration.features.tryon.cart.strings.AiutaTryOnCartFeatureStrings
 import com.aiuta.fashionsdk.configuration.features.tryon.disclaimer.fitDisclaimer
 import com.aiuta.fashionsdk.configuration.features.tryon.disclaimer.strings.AiutaTryOnFitDisclaimerFeatureStrings
+import com.aiuta.fashionsdk.configuration.features.tryon.disclaimer.typography.AiutaTryOnFitDisclaimerFeatureTypography
 import com.aiuta.fashionsdk.configuration.features.tryon.feedback.feedback
 import com.aiuta.fashionsdk.configuration.features.tryon.feedback.other.otherFeedback
 import com.aiuta.fashionsdk.configuration.features.tryon.feedback.other.strings.AiutaTryOnFeedbackOtherFeatureStrings
@@ -54,6 +55,7 @@ public fun AiutaFeatures.Builder.defaultTryOn(
     fitDisclaimer {
         icons = DefaultAiutaTryOnFitDisclaimerFeatureIcons()
         strings = AiutaTryOnFitDisclaimerFeatureStrings.Default()
+        typography = AiutaTryOnFitDisclaimerFeatureTypography.Default()
     }
     feedback {
         otherFeedback {

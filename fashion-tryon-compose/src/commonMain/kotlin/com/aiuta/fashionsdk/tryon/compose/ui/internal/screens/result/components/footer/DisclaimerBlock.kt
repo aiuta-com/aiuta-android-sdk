@@ -55,7 +55,7 @@ private fun DisclaimerBlockContent(
     ) {
         Text(
             text = fitDisclaimerFeature.strings.tryOnFitTitle,
-            style = theme.label.typography.regular,
+            style = fitDisclaimerFeature.typography.disclaimer,
             color = theme.color.primary,
             textAlign = TextAlign.Center,
         )
