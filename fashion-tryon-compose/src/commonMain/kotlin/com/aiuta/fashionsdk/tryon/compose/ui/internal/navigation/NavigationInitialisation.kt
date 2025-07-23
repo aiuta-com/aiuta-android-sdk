@@ -25,6 +25,7 @@ internal fun NavigationInitialisation(
     modifier: Modifier = Modifier,
     aiutaConfiguration: AiutaConfiguration,
     productItem: ProductItem,
+    startScreen: NavigationScreen,
     content: @Composable () -> Unit,
 ) {
     BoxWithConstraints(
@@ -33,6 +34,7 @@ internal fun NavigationInitialisation(
         val controller = rememberFashionTryOnController(
             aiutaConfiguration = aiutaConfiguration,
             productItem = productItem,
+            startScreen = startScreen,
         )
 
         CompositionLocalProvider(

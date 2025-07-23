@@ -35,7 +35,6 @@ import com.aiuta.fashionsdk.tryon.compose.domain.models.internal.generated.sku.P
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.controller.bottomsheet.BottomSheetNavigator
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.controller.bottomsheet.rememberBottomSheetNavigator
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.navigation.NavigationScreen
-import com.aiuta.fashionsdk.tryon.compose.ui.internal.navigation.defaultStartScreen
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.screens.history.models.SelectorMode
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.screens.zoom.controller.ZoomImageController
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.screens.zoom.controller.rememberZoomImageController
@@ -50,6 +49,7 @@ import kotlinx.coroutines.cancel
 internal fun BoxWithConstraintsScope.rememberFashionTryOnController(
     aiutaConfiguration: AiutaConfiguration,
     productItem: ProductItem,
+    startScreen: NavigationScreen,
 ): FashionTryOnController {
     val uiScope = rememberCoroutineScope()
     val coilContext = LocalPlatformContext.current
@@ -69,6 +69,7 @@ internal fun BoxWithConstraintsScope.rememberFashionTryOnController(
 
     return remember {
         FashionTryOnController(
+            startScreen = startScreen,
             bottomSheetNavigator = defaultBottomSheetNavigator,
             zoomImageController = zoomImageController,
             activeProductItem = activeProductItem,
@@ -113,6 +114,7 @@ internal fun BoxWithConstraintsScope.rememberFashionTryOnController(
 @Immutable
 internal class FashionTryOnController(
     // General navigation
+    public val startScreen: NavigationScreen,
     public val zoomImageController: ZoomImageController,
     // Bottom sheet navigation
     public val bottomSheetNavigator: BottomSheetNavigator,
@@ -138,7 +140,7 @@ internal class FashionTryOnController(
 
     // General navigation
     internal val backStack: ArrayDeque<NavigationScreen> = ArrayDeque()
-    public val currentScreen: MutableState<NavigationScreen> = mutableStateOf(defaultStartScreen())
+    public val currentScreen: MutableState<NavigationScreen> = mutableStateOf(startScreen)
 
     // Error state
     public val fashionTryOnErrorState: MutableState<ToastErrorState?> = mutableStateOf(null)
