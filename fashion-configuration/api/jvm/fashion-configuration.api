@@ -896,9 +896,10 @@ public final class com/aiuta/fashionsdk/configuration/features/tryon/cart/string
 
 public final class com/aiuta/fashionsdk/configuration/features/tryon/disclaimer/AiutaTryOnFitDisclaimerFeature : com/aiuta/fashionsdk/configuration/features/AiutaFeature {
 	public static final field $stable I
-	public fun <init> (Lcom/aiuta/fashionsdk/configuration/features/tryon/disclaimer/icons/AiutaTryOnFitDisclaimerFeatureIcons;Lcom/aiuta/fashionsdk/configuration/features/tryon/disclaimer/strings/AiutaTryOnFitDisclaimerFeatureStrings;)V
+	public fun <init> (Lcom/aiuta/fashionsdk/configuration/features/tryon/disclaimer/icons/AiutaTryOnFitDisclaimerFeatureIcons;Lcom/aiuta/fashionsdk/configuration/features/tryon/disclaimer/strings/AiutaTryOnFitDisclaimerFeatureStrings;Lcom/aiuta/fashionsdk/configuration/features/tryon/disclaimer/typography/AiutaTryOnFitDisclaimerFeatureTypography;)V
 	public final fun getIcons ()Lcom/aiuta/fashionsdk/configuration/features/tryon/disclaimer/icons/AiutaTryOnFitDisclaimerFeatureIcons;
 	public final fun getStrings ()Lcom/aiuta/fashionsdk/configuration/features/tryon/disclaimer/strings/AiutaTryOnFitDisclaimerFeatureStrings;
+	public final fun getTypography ()Lcom/aiuta/fashionsdk/configuration/features/tryon/disclaimer/typography/AiutaTryOnFitDisclaimerFeatureTypography;
 }
 
 public final class com/aiuta/fashionsdk/configuration/features/tryon/disclaimer/AiutaTryOnFitDisclaimerFeature$Builder : com/aiuta/fashionsdk/configuration/features/AiutaFeature$Builder {
@@ -908,8 +909,10 @@ public final class com/aiuta/fashionsdk/configuration/features/tryon/disclaimer/
 	public fun build ()Lcom/aiuta/fashionsdk/configuration/features/tryon/disclaimer/AiutaTryOnFitDisclaimerFeature;
 	public final fun getIcons ()Lcom/aiuta/fashionsdk/configuration/features/tryon/disclaimer/icons/AiutaTryOnFitDisclaimerFeatureIcons;
 	public final fun getStrings ()Lcom/aiuta/fashionsdk/configuration/features/tryon/disclaimer/strings/AiutaTryOnFitDisclaimerFeatureStrings;
+	public final fun getTypography ()Lcom/aiuta/fashionsdk/configuration/features/tryon/disclaimer/typography/AiutaTryOnFitDisclaimerFeatureTypography;
 	public final fun setIcons (Lcom/aiuta/fashionsdk/configuration/features/tryon/disclaimer/icons/AiutaTryOnFitDisclaimerFeatureIcons;)V
 	public final fun setStrings (Lcom/aiuta/fashionsdk/configuration/features/tryon/disclaimer/strings/AiutaTryOnFitDisclaimerFeatureStrings;)V
+	public final fun setTypography (Lcom/aiuta/fashionsdk/configuration/features/tryon/disclaimer/typography/AiutaTryOnFitDisclaimerFeatureTypography;)V
 }
 
 public final class com/aiuta/fashionsdk/configuration/features/tryon/disclaimer/AiutaTryOnFitDisclaimerFeatureKt {
@@ -932,6 +935,17 @@ public final class com/aiuta/fashionsdk/configuration/features/tryon/disclaimer/
 	public fun getTryOnFitButtonClose ()Ljava/lang/String;
 	public fun getTryOnFitDescription ()Ljava/lang/String;
 	public fun getTryOnFitTitle ()Ljava/lang/String;
+}
+
+public abstract interface class com/aiuta/fashionsdk/configuration/features/tryon/disclaimer/typography/AiutaTryOnFitDisclaimerFeatureTypography {
+	public abstract fun getDisclaimer ()Landroidx/compose/ui/text/TextStyle;
+}
+
+public final class com/aiuta/fashionsdk/configuration/features/tryon/disclaimer/typography/AiutaTryOnFitDisclaimerFeatureTypography$Default : com/aiuta/fashionsdk/configuration/features/tryon/disclaimer/typography/AiutaTryOnFitDisclaimerFeatureTypography {
+	public static final field $stable I
+	public fun <init> ()V
+	public fun <init> (Landroidx/compose/ui/text/TextStyle;)V
+	public fun getDisclaimer ()Landroidx/compose/ui/text/TextStyle;
 }
 
 public final class com/aiuta/fashionsdk/configuration/features/tryon/feedback/AiutaTryOnFeedbackFeature : com/aiuta/fashionsdk/configuration/features/AiutaFeature {
