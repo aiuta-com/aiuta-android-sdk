@@ -1,7 +1,7 @@
 package com.aiuta.fashionsdk.tryon.compose.ui.internal.screens.list.components.navigation
 
-import androidx.compose.animation.animateColorAsState
 import androidx.compose.foundation.border
+import androidx.compose.foundation.gestures.scrollBy
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.layout.height
@@ -15,24 +15,33 @@ import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.State
 import androidx.compose.runtime.derivedStateOf
 import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableFloatStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.rememberCoroutineScope
+import androidx.compose.runtime.snapshotFlow
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Brush
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.graphics.lerp
 import androidx.compose.ui.layout.ContentScale
+import androidx.compose.ui.platform.LocalDensity
 import androidx.compose.ui.unit.dp
+import androidx.compose.ui.unit.lerp
 import com.aiuta.fashionsdk.tryon.compose.domain.models.internal.generated.images.GeneratedImageUIModel
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.screens.list.utils.fadingEdge
+import com.aiuta.fashionsdk.tryon.compose.ui.internal.utils.offsetForPage
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.utils.paging.LazyPagingItems
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.utils.paging.itemContentType
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.utils.paging.itemKey
 import com.aiuta.fashionsdk.tryon.compose.uikit.composition.LocalTheme
 import com.aiuta.fashionsdk.tryon.compose.uikit.resources.AiutaImage
 import com.aiuta.fashionsdk.tryon.compose.uikit.utils.clickableUnindicated
+import kotlin.math.absoluteValue
 import kotlinx.coroutines.launch
+
+private val ITEM_HEIGHT = 108.dp
 
 @Composable
 internal fun GenerationIndicator(
@@ -51,8 +60,16 @@ internal fun GenerationIndicator(
         1.0f to Color.Transparent,
     )
 
-    LaunchedEffect(pagerState.settledPage) {
-        indicatorState.animateScrollToItem(pagerState.settledPage)
+    val prevState = remember { mutableFloatStateOf(0f) }
+    val heightDp = with(LocalDensity.current) { ITEM_HEIGHT.toPx() }
+
+    LaunchedEffect(Unit) {
+        snapshotFlow { pagerState.currentPageOffsetFraction + pagerState.currentPage }
+            .collect { offset ->
+                val delta = heightDp * (offset - prevState.value)
+                indicatorState.scrollBy(delta)
+                prevState.value = offset
+            }
     }
 
     LazyColumn(
@@ -66,12 +83,10 @@ internal fun GenerationIndicator(
             key = generatedImages.itemKey { it.id },
             contentType = generatedImages.itemContentType { "INDICATOR_CONTENT_TYPE" },
         ) { index ->
-            val isFocused = remember {
-                derivedStateOf { pagerState.settledPage == index }
-            }
+            val pageOffset = remember { derivedStateOf { pagerState.offsetForPage(index) } }
 
             GenerationItem(
-                focused = isFocused,
+                pageOffset = pageOffset,
                 imageUrl = generatedImages[index]?.imageUrl,
                 onClick = {
                     scope.launch {
@@ -86,18 +101,15 @@ internal fun GenerationIndicator(
 @Composable
 private fun GenerationItem(
     modifier: Modifier = Modifier,
-    focused: State<Boolean>,
+    pageOffset: State<Float>,
     imageUrl: String?,
     onClick: () -> Unit,
 ) {
     val theme = LocalTheme.current
-    val borderColor by animateColorAsState(
-        targetValue = if (focused.value) {
-            theme.color.onDark
-        } else {
-            theme.color.onDark.copy(alpha = 0.2f)
-        },
-        label = "border color",
+    val borderColor = lerp(
+        start = theme.color.onDark,
+        stop = theme.color.onDark.copy(alpha = 0.2f),
+        fraction = pageOffset.value.absoluteValue.coerceIn(0f, 1f),
     )
 
     val sharedShapeDp = 16.dp
@@ -105,7 +117,7 @@ private fun GenerationItem(
 
     AiutaImage(
         modifier = modifier
-            .height(108.dp)
+            .height(ITEM_HEIGHT)
             .width(54.dp)
             .clip(sharedShape)
             .border(
