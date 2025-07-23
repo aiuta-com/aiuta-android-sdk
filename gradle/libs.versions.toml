@@ -27,6 +27,7 @@ ktor = "3.2.2"
 ksoup = "0.6.0"
 
 jetbrains-compose = "1.8.2"
+jetbrains-compose-hotreload = "1.0.0-beta04"
 jetbrains-lifecycle = "2.9.1"
 
 kotlin = "2.2.0"
@@ -103,6 +104,8 @@ binaryCompatibility = { id = "org.jetbrains.kotlinx.binary-compatibility-validat
 buildKonfig = { id = "com.codingfeline.buildkonfig", version.ref = "buildKonfig" }
 
 dokka = { id = "org.jetbrains.dokka", version.ref = "dokka" }
+
+jetbrains-compose-hotreload = { id = "org.jetbrains.compose.hot-reload", version.ref = "jetbrains-compose-hotreload" }
 
 kotlinx-serialization = { id = "org.jetbrains.kotlin.plugin.serialization", version.ref = "kotlin" }
 ksp = { id = "com.google.devtools.ksp", version.ref = "ksp" }
