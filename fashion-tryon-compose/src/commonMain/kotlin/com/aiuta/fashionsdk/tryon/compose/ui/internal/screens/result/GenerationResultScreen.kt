@@ -25,6 +25,8 @@ import androidx.compose.ui.unit.dp
 import com.aiuta.fashionsdk.analytics.events.AiutaAnalyticsPageId
 import com.aiuta.fashionsdk.compose.core.size.rememberScreenSize
 import com.aiuta.fashionsdk.configuration.features.tryon.AiutaTryOnFeature
+import com.aiuta.fashionsdk.configuration.features.tryon.disclaimer.AiutaTryOnFitDisclaimerFeature
+import com.aiuta.fashionsdk.configuration.features.tryon.disclaimer.strings.AiutaTryOnFitDisclaimerFeatureStrings
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.analytic.sendPageEvent
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.components.appbar.MainAppBar
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.screens.result.components.body.GenerationResultBody
@@ -35,6 +37,7 @@ import com.aiuta.fashionsdk.tryon.compose.ui.internal.screens.result.controller.
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.screens.result.controller.GenerationResultListener
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.screens.result.controller.rememberGenerationResultController
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.utils.MAIN_IMAGE_SIZE
+import com.aiuta.fashionsdk.tryon.compose.ui.internal.utils.features.provideFeature
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.utils.features.strictProvideFeature
 import com.aiuta.fashionsdk.tryon.compose.uikit.composition.LocalTheme
 import com.aiuta.fashionsdk.tryon.compose.uikit.utils.clickableUnindicated
@@ -54,6 +57,7 @@ private fun GenerationResultScreenContent(modifier: Modifier = Modifier) {
     val theme = LocalTheme.current
 
     val generationResultController = rememberGenerationResultController()
+    val fitDisclaimerFeature = provideFeature<AiutaTryOnFitDisclaimerFeature>()
 
     val screenHeight = screenSize.heightDp
 
@@ -74,7 +78,9 @@ private fun GenerationResultScreenContent(modifier: Modifier = Modifier) {
             )
         },
         sheetBackgroundColor = theme.color.background,
-        backgroundColor = theme.color.neutral,
+        backgroundColor = theme.color.neutral.takeIf {
+            fitDisclaimerFeature != null
+        } ?: Color.Transparent,
         sheetShape = theme.bottomSheet.shapes.bottomSheetShape,
         sheetPeekHeight = sheetHeight,
     ) { paddings ->
