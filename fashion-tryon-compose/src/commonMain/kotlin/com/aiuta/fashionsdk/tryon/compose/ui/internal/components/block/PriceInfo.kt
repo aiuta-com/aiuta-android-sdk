@@ -27,24 +27,22 @@ internal fun PriceInfo(
         modifier = modifier,
         verticalAlignment = Alignment.CenterVertically,
     ) {
-        val localizedOldPrice = productItem.localizedOldPrice
+        productItem.price?.let { price ->
+            price.old?.let { oldPrice ->
+                Text(
+                    text = oldPrice,
+                    style = priceTheme.typography.price,
+                    color = priceTheme.colors.discountedPrice,
+                    fontWeight = FontWeight.Bold,
+                    maxLines = 1,
+                    overflow = TextOverflow.Ellipsis,
+                )
 
-        if (localizedOldPrice?.isNotBlank() == true) {
+                Spacer(Modifier.width(4.dp))
+            }
+
             Text(
-                text = localizedOldPrice,
-                style = priceTheme.typography.price,
-                color = priceTheme.colors.discountedPrice,
-                fontWeight = FontWeight.Bold,
-                maxLines = 1,
-                overflow = TextOverflow.Ellipsis,
-            )
-
-            Spacer(Modifier.width(4.dp))
-        }
-
-        if (productItem.localizedPrice.isNotBlank()) {
-            Text(
-                text = productItem.localizedPrice,
+                text = price.current,
                 style = priceTheme.typography.price.copy(
                     textDecoration = solveGeneralPriceDecoration(productItem),
                 ),

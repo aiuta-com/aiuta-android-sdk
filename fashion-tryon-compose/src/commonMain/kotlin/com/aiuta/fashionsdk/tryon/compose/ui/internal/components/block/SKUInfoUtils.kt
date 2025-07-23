@@ -10,14 +10,14 @@ import com.aiuta.fashionsdk.tryon.compose.uikit.composition.LocalTheme
 internal fun solveGeneralPriceColor(activeProductItem: ProductItem): Color {
     val theme = LocalTheme.current
 
-    return if (activeProductItem.localizedOldPrice?.isNotBlank() == true) {
+    return if (activeProductItem.price?.old?.isNotBlank() == true) {
         theme.color.secondary
     } else {
         theme.color.primary
     }
 }
 
-internal fun solveGeneralPriceDecoration(activeProductItem: ProductItem): TextDecoration? = if (activeProductItem.localizedOldPrice?.isNotBlank() == true) {
+internal fun solveGeneralPriceDecoration(activeProductItem: ProductItem): TextDecoration? = if (activeProductItem.price?.old?.isNotBlank() == true) {
     TextDecoration.LineThrough
 } else {
     null

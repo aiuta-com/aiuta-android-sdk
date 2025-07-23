@@ -10,20 +10,16 @@ import androidx.compose.runtime.Immutable
  * It is used throughout the SDK for product display and try-on generation.
  *
  * @property id Unique identifier for the product
- * @property catalogName Optional name of the catalog containing this product
- * @property description Brief description of the product
+ * @property title Name of the product
+ * @property brand Brand associated with the product
  * @property imageUrls List of URLs to product images
- * @property localizedPrice Current price of the product, formatted with currency symbol
- * @property localizedOldPrice Optional previous price of the product, formatted with currency symbol
- * @property store Name of the store offering the product
+ * @property price Price information for the product, if available
  */
 @Immutable
-public data class ProductItem(
+public class ProductItem(
     public val id: String,
-    public val catalogName: String? = null,
-    public val description: String,
+    public val title: String,
+    public val brand: String,
     public val imageUrls: List<String>,
-    public val localizedPrice: String,
-    public val localizedOldPrice: String? = null,
-    public val store: String,
+    public val price: ProductPrice? = null,
 )

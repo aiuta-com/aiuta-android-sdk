@@ -26,7 +26,7 @@ internal fun ProductInfo(
         verticalArrangement = Arrangement.Center,
     ) {
         Text(
-            text = productItem.store,
+            text = productItem.brand,
             style = theme.productBar.typography.brand,
             color = theme.color.primary,
         )
@@ -34,7 +34,7 @@ internal fun ProductInfo(
         Spacer(Modifier.height(2.dp))
 
         Text(
-            text = productItem.description,
+            text = productItem.title,
             style = theme.productBar.typography.product,
             color = theme.color.primary,
         )

@@ -11,7 +11,6 @@ import com.aiuta.fashionsdk.tryon.core.data.datasource.image.models.AiutaFileTyp
  */
 public sealed interface ProductGenerationContainer {
     public val productId: String
-    public val productCatalogName: String?
 }
 
 /**
@@ -24,7 +23,6 @@ public sealed interface ProductGenerationContainer {
 public class ProductGenerationPlatformImageContainer(
     public val platformFile: AiutaPlatformFile,
     override val productId: String,
-    override val productCatalogName: String? = null,
 ) : ProductGenerationContainer
 
 /**
@@ -39,5 +37,4 @@ public class ProductGenerationUrlContainer(
     public val fileUrl: String,
     public val fileType: AiutaFileType,
     override val productId: String,
-    override val productCatalogName: String? = null,
 ) : ProductGenerationContainer

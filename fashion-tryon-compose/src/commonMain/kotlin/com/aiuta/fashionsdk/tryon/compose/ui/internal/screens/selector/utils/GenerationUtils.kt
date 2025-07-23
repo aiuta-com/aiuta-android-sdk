@@ -116,7 +116,6 @@ private fun FashionTryOnController.startGenerationWithUriSource(
             container = ProductGenerationPlatformImageContainer(
                 platformFile = file,
                 productId = activeProductItem.value.id,
-                productCatalogName = activeProductItem.value.catalogName,
             ),
         )
         .onEach { status ->
@@ -148,7 +147,6 @@ private fun FashionTryOnController.startGenerationWithUrlSource(
                 fileUrl = sourceImage.imageUrl,
                 fileType = sourceImage.imageType,
                 productId = activeProductItem.value.id,
-                productCatalogName = activeProductItem.value.catalogName,
             ),
         )
         .onEach { status ->

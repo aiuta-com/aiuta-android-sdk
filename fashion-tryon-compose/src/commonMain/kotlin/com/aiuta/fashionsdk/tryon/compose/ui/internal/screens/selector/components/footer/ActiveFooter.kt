@@ -152,7 +152,7 @@ private fun ProductBlock(modifier: Modifier = Modifier) {
             horizontalAlignment = Alignment.Start,
         ) {
             Text(
-                text = activeSKUItem.store,
+                text = activeSKUItem.brand,
                 style = theme.productBar.typography.brand,
                 color = theme.color.primary,
                 textAlign = TextAlign.Start,
@@ -161,7 +161,7 @@ private fun ProductBlock(modifier: Modifier = Modifier) {
             Spacer(Modifier.height(4.dp))
 
             Text(
-                text = activeSKUItem.description,
+                text = activeSKUItem.title,
                 style = theme.productBar.typography.product,
                 color = theme.color.primary,
                 textAlign = TextAlign.Start,

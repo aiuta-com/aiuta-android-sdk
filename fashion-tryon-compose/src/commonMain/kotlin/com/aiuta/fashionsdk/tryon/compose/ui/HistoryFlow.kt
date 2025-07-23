@@ -93,9 +93,8 @@ public fun HistoryFlow(
 internal val DefaultProductItem by lazy {
     ProductItem(
         id = "",
-        description = "",
+        title = "",
         imageUrls = emptyList(),
-        localizedPrice = "",
-        store = "",
+        brand = "",
     )
 }
