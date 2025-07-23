@@ -3,6 +3,8 @@ package com.aiuta.fashionsdk.configuration.ui.theme.pagebar.typography
 import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.text.font.FontFamily
 import androidx.compose.ui.text.font.FontWeight
+import androidx.compose.ui.unit.TextUnit
+import androidx.compose.ui.unit.TextUnitType
 import androidx.compose.ui.unit.sp
 
 /**
@@ -35,8 +37,9 @@ public interface AiutaPageBarThemeTypography {
         override val pageTitle: TextStyle = TextStyle(
             fontFamily = FontFamily.Default,
             fontWeight = FontWeight.Medium,
-            fontSize = 14.sp,
-            lineHeight = 18.sp,
+            fontSize = 17.sp,
+            lineHeight = 22.sp,
+            letterSpacing = TextUnit(-0.03f, TextUnitType.Sp),
         )
     }
 }
