@@ -75,7 +75,7 @@ internal fun GenerationIndicator(
     LazyColumn(
         modifier = modifier.fadingEdge(brush = fadeBrush),
         state = indicatorState,
-        verticalArrangement = Arrangement.spacedBy(5.dp, Alignment.Bottom),
+        verticalArrangement = Arrangement.spacedBy(5.dp, Alignment.CenterVertically),
         contentPadding = PaddingValues(vertical = 12.dp),
     ) {
         items(
