@@ -141,7 +141,7 @@ internal fun ImageSelectorBottom(
                         sharedModifier
                             .border(
                                 width = 1.dp,
-                                color = theme.color.outline,
+                                color = theme.color.border,
                                 shape = sharedButtonSize.shape,
                             )
                             .then(sharedBlurModifer)

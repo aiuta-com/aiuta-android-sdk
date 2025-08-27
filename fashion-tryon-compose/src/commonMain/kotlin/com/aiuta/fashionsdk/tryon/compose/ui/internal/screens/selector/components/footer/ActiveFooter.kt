@@ -177,7 +177,7 @@ private fun ProductBlock(modifier: Modifier = Modifier) {
                 .align(Alignment.CenterVertically),
             icon = theme.productBar.icons.arrow16,
             contentDescription = null,
-            tint = theme.color.outline,
+            tint = theme.color.border,
         )
     }
 }

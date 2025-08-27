@@ -20,7 +20,6 @@ import androidx.compose.ui.graphics.Color
  * @property screen The color used for screen backgrounds
  * @property neutral A neutral color used for subtle UI elements
  * @property border Color used for borders and dividers
- * @property outline Color used for outlines and focus indicators
  * @see AiutaColorThemeScheme
  */
 public interface AiutaColorTheme {
@@ -85,12 +84,6 @@ public interface AiutaColorTheme {
     public val border: Color
 
     /**
-     * Color used for outlines and focus indicators.
-     * Helps define boundaries and indicate interactive elements.
-     */
-    public val outline: Color
-
-    /**
      * Default implementation of [AiutaColorTheme].
      *
      * This class provides a standard light theme color palette that can be used
@@ -114,6 +107,5 @@ public interface AiutaColorTheme {
         override val screen: Color = Color(0xFFFFFFFF)
         override val neutral: Color = Color(0xFFF2F2F7)
         override val border: Color = Color(0xFFE5E5EA)
-        override val outline: Color = Color(0xFFC7C7CC)
     }
 }
