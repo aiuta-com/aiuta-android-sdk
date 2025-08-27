@@ -1460,7 +1460,6 @@ public abstract interface class com/aiuta/fashionsdk/configuration/ui/theme/colo
 	public abstract fun getNeutral-0d7_KjU ()J
 	public abstract fun getOnDark-0d7_KjU ()J
 	public abstract fun getOnLight-0d7_KjU ()J
-	public abstract fun getOutline-0d7_KjU ()J
 	public abstract fun getPrimary-0d7_KjU ()J
 	public abstract fun getScheme ()Lcom/aiuta/fashionsdk/configuration/ui/theme/color/AiutaColorThemeScheme;
 	public abstract fun getScreen-0d7_KjU ()J
@@ -1476,7 +1475,6 @@ public final class com/aiuta/fashionsdk/configuration/ui/theme/color/AiutaColorT
 	public fun getNeutral-0d7_KjU ()J
 	public fun getOnDark-0d7_KjU ()J
 	public fun getOnLight-0d7_KjU ()J
-	public fun getOutline-0d7_KjU ()J
 	public fun getPrimary-0d7_KjU ()J
 	public fun getScheme ()Lcom/aiuta/fashionsdk/configuration/ui/theme/color/AiutaColorThemeScheme;
 	public fun getScreen-0d7_KjU ()J
@@ -1719,8 +1717,7 @@ public final class com/aiuta/fashionsdk/configuration/ui/theme/pagebar/typograph
 
 public final class com/aiuta/fashionsdk/configuration/ui/theme/powerby/AiutaPowerBarTheme : com/aiuta/fashionsdk/configuration/features/AiutaFeature {
 	public static final field $stable I
-	public fun <init> (Lcom/aiuta/fashionsdk/configuration/ui/theme/powerby/strings/AiutaPowerBarThemeStrings;Lcom/aiuta/fashionsdk/configuration/ui/theme/powerby/colors/AiutaPowerBarThemeColors;)V
-	public final fun getColors ()Lcom/aiuta/fashionsdk/configuration/ui/theme/powerby/colors/AiutaPowerBarThemeColors;
+	public fun <init> (Lcom/aiuta/fashionsdk/configuration/ui/theme/powerby/strings/AiutaPowerBarThemeStrings;)V
 	public final fun getStrings ()Lcom/aiuta/fashionsdk/configuration/ui/theme/powerby/strings/AiutaPowerBarThemeStrings;
 }
 
@@ -1729,32 +1726,12 @@ public final class com/aiuta/fashionsdk/configuration/ui/theme/powerby/AiutaPowe
 	public fun <init> ()V
 	public synthetic fun build ()Lcom/aiuta/fashionsdk/configuration/features/AiutaFeature;
 	public fun build ()Lcom/aiuta/fashionsdk/configuration/ui/theme/powerby/AiutaPowerBarTheme;
-	public final fun getColors ()Lcom/aiuta/fashionsdk/configuration/ui/theme/powerby/colors/AiutaPowerBarThemeColors;
 	public final fun getStrings ()Lcom/aiuta/fashionsdk/configuration/ui/theme/powerby/strings/AiutaPowerBarThemeStrings;
-	public final fun setColors (Lcom/aiuta/fashionsdk/configuration/ui/theme/powerby/colors/AiutaPowerBarThemeColors;)V
 	public final fun setStrings (Lcom/aiuta/fashionsdk/configuration/ui/theme/powerby/strings/AiutaPowerBarThemeStrings;)V
 }
 
 public final class com/aiuta/fashionsdk/configuration/ui/theme/powerby/AiutaPowerBarThemeKt {
 	public static final fun poweredBar (Lcom/aiuta/fashionsdk/configuration/ui/theme/AiutaTheme$Builder;Lkotlin/jvm/functions/Function1;)Lcom/aiuta/fashionsdk/configuration/ui/theme/AiutaTheme$Builder;
-}
-
-public final class com/aiuta/fashionsdk/configuration/ui/theme/powerby/colors/AiutaPowerBarColorScheme : java/lang/Enum {
-	public static final field PRIMARY Lcom/aiuta/fashionsdk/configuration/ui/theme/powerby/colors/AiutaPowerBarColorScheme;
-	public static final field STANDARD Lcom/aiuta/fashionsdk/configuration/ui/theme/powerby/colors/AiutaPowerBarColorScheme;
-	public static fun getEntries ()Lkotlin/enums/EnumEntries;
-	public static fun valueOf (Ljava/lang/String;)Lcom/aiuta/fashionsdk/configuration/ui/theme/powerby/colors/AiutaPowerBarColorScheme;
-	public static fun values ()[Lcom/aiuta/fashionsdk/configuration/ui/theme/powerby/colors/AiutaPowerBarColorScheme;
-}
-
-public abstract interface class com/aiuta/fashionsdk/configuration/ui/theme/powerby/colors/AiutaPowerBarThemeColors {
-	public abstract fun getAiuta ()Lcom/aiuta/fashionsdk/configuration/ui/theme/powerby/colors/AiutaPowerBarColorScheme;
-}
-
-public final class com/aiuta/fashionsdk/configuration/ui/theme/powerby/colors/AiutaPowerBarThemeColors$Default : com/aiuta/fashionsdk/configuration/ui/theme/powerby/colors/AiutaPowerBarThemeColors {
-	public static final field $stable I
-	public fun <init> ()V
-	public fun getAiuta ()Lcom/aiuta/fashionsdk/configuration/ui/theme/powerby/colors/AiutaPowerBarColorScheme;
 }
 
 public abstract interface class com/aiuta/fashionsdk/configuration/ui/theme/powerby/strings/AiutaPowerBarThemeStrings {
@@ -1918,11 +1895,10 @@ public final class com/aiuta/fashionsdk/configuration/ui/theme/selection/strings
 
 public final class com/aiuta/fashionsdk/configuration/ui/theme/sheet/AiutaBottomSheetTheme {
 	public static final field $stable I
-	public fun <init> (Lcom/aiuta/fashionsdk/configuration/ui/theme/sheet/typography/AiutaBottomSheetThemeTypography;Lcom/aiuta/fashionsdk/configuration/ui/theme/sheet/shapes/AiutaBottomSheetThemeShapes;Lcom/aiuta/fashionsdk/configuration/ui/theme/sheet/grabber/AiutaBottomSheetThemeGrabber;Lcom/aiuta/fashionsdk/configuration/ui/theme/sheet/toggles/AiutaBottomSheetThemeToggles;)V
+	public fun <init> (Lcom/aiuta/fashionsdk/configuration/ui/theme/sheet/shapes/AiutaBottomSheetThemeShapes;Lcom/aiuta/fashionsdk/configuration/ui/theme/sheet/grabber/AiutaBottomSheetThemeGrabber;Lcom/aiuta/fashionsdk/configuration/ui/theme/sheet/toggles/AiutaBottomSheetThemeToggles;)V
 	public final fun getGrabber ()Lcom/aiuta/fashionsdk/configuration/ui/theme/sheet/grabber/AiutaBottomSheetThemeGrabber;
 	public final fun getShapes ()Lcom/aiuta/fashionsdk/configuration/ui/theme/sheet/shapes/AiutaBottomSheetThemeShapes;
 	public final fun getToggles ()Lcom/aiuta/fashionsdk/configuration/ui/theme/sheet/toggles/AiutaBottomSheetThemeToggles;
-	public final fun getTypography ()Lcom/aiuta/fashionsdk/configuration/ui/theme/sheet/typography/AiutaBottomSheetThemeTypography;
 }
 
 public final class com/aiuta/fashionsdk/configuration/ui/theme/sheet/AiutaBottomSheetTheme$Builder {
@@ -1932,11 +1908,9 @@ public final class com/aiuta/fashionsdk/configuration/ui/theme/sheet/AiutaBottom
 	public final fun getGrabber ()Lcom/aiuta/fashionsdk/configuration/ui/theme/sheet/grabber/AiutaBottomSheetThemeGrabber;
 	public final fun getShapes ()Lcom/aiuta/fashionsdk/configuration/ui/theme/sheet/shapes/AiutaBottomSheetThemeShapes;
 	public final fun getToggles ()Lcom/aiuta/fashionsdk/configuration/ui/theme/sheet/toggles/AiutaBottomSheetThemeToggles;
-	public final fun getTypography ()Lcom/aiuta/fashionsdk/configuration/ui/theme/sheet/typography/AiutaBottomSheetThemeTypography;
 	public final fun setGrabber (Lcom/aiuta/fashionsdk/configuration/ui/theme/sheet/grabber/AiutaBottomSheetThemeGrabber;)V
 	public final fun setShapes (Lcom/aiuta/fashionsdk/configuration/ui/theme/sheet/shapes/AiutaBottomSheetThemeShapes;)V
 	public final fun setToggles (Lcom/aiuta/fashionsdk/configuration/ui/theme/sheet/toggles/AiutaBottomSheetThemeToggles;)V
-	public final fun setTypography (Lcom/aiuta/fashionsdk/configuration/ui/theme/sheet/typography/AiutaBottomSheetThemeTypography;)V
 }
 
 public final class com/aiuta/fashionsdk/configuration/ui/theme/sheet/AiutaBottomSheetThemeKt {
@@ -1983,17 +1957,5 @@ public final class com/aiuta/fashionsdk/configuration/ui/theme/sheet/toggles/Aiu
 	public fun <init> ()V
 	public fun getExtendDelimitersToTheLeft ()Z
 	public fun getExtendDelimitersToTheRight ()Z
-}
-
-public abstract interface class com/aiuta/fashionsdk/configuration/ui/theme/sheet/typography/AiutaBottomSheetThemeTypography {
-	public abstract fun getChipsButton ()Landroidx/compose/ui/text/TextStyle;
-	public abstract fun getIconButton ()Landroidx/compose/ui/text/TextStyle;
-}
-
-public final class com/aiuta/fashionsdk/configuration/ui/theme/sheet/typography/AiutaBottomSheetThemeTypography$Default : com/aiuta/fashionsdk/configuration/ui/theme/sheet/typography/AiutaBottomSheetThemeTypography {
-	public static final field $stable I
-	public fun <init> ()V
-	public fun getChipsButton ()Landroidx/compose/ui/text/TextStyle;
-	public fun getIconButton ()Landroidx/compose/ui/text/TextStyle;
 }
 

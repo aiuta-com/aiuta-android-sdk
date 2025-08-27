@@ -67,17 +67,6 @@ final enum class com.aiuta.fashionsdk.configuration.ui.theme.color/AiutaColorThe
     final fun values(): kotlin/Array<com.aiuta.fashionsdk.configuration.ui.theme.color/AiutaColorThemeScheme> // com.aiuta.fashionsdk.configuration.ui.theme.color/AiutaColorThemeScheme.values|values#static(){}[0]
 }
 
-final enum class com.aiuta.fashionsdk.configuration.ui.theme.powerby.colors/AiutaPowerBarColorScheme : kotlin/Enum<com.aiuta.fashionsdk.configuration.ui.theme.powerby.colors/AiutaPowerBarColorScheme> { // com.aiuta.fashionsdk.configuration.ui.theme.powerby.colors/AiutaPowerBarColorScheme|null[0]
-    enum entry PRIMARY // com.aiuta.fashionsdk.configuration.ui.theme.powerby.colors/AiutaPowerBarColorScheme.PRIMARY|null[0]
-    enum entry STANDARD // com.aiuta.fashionsdk.configuration.ui.theme.powerby.colors/AiutaPowerBarColorScheme.STANDARD|null[0]
-
-    final val entries // com.aiuta.fashionsdk.configuration.ui.theme.powerby.colors/AiutaPowerBarColorScheme.entries|#static{}entries[0]
-        final fun <get-entries>(): kotlin.enums/EnumEntries<com.aiuta.fashionsdk.configuration.ui.theme.powerby.colors/AiutaPowerBarColorScheme> // com.aiuta.fashionsdk.configuration.ui.theme.powerby.colors/AiutaPowerBarColorScheme.entries.<get-entries>|<get-entries>#static(){}[0]
-
-    final fun valueOf(kotlin/String): com.aiuta.fashionsdk.configuration.ui.theme.powerby.colors/AiutaPowerBarColorScheme // com.aiuta.fashionsdk.configuration.ui.theme.powerby.colors/AiutaPowerBarColorScheme.valueOf|valueOf#static(kotlin.String){}[0]
-    final fun values(): kotlin/Array<com.aiuta.fashionsdk.configuration.ui.theme.powerby.colors/AiutaPowerBarColorScheme> // com.aiuta.fashionsdk.configuration.ui.theme.powerby.colors/AiutaPowerBarColorScheme.values|values#static(){}[0]
-}
-
 abstract interface com.aiuta.fashionsdk.configuration.features.consent.builtin.strings/AiutaConsentEmbeddedIntoOnboardingFeatureStrings { // com.aiuta.fashionsdk.configuration.features.consent.builtin.strings/AiutaConsentEmbeddedIntoOnboardingFeatureStrings|null[0]
     abstract val consentHtml // com.aiuta.fashionsdk.configuration.features.consent.builtin.strings/AiutaConsentEmbeddedIntoOnboardingFeatureStrings.consentHtml|{}consentHtml[0]
         abstract fun <get-consentHtml>(): kotlin/String // com.aiuta.fashionsdk.configuration.features.consent.builtin.strings/AiutaConsentEmbeddedIntoOnboardingFeatureStrings.consentHtml.<get-consentHtml>|<get-consentHtml>(){}[0]
@@ -784,8 +773,6 @@ abstract interface com.aiuta.fashionsdk.configuration.ui.theme.color/AiutaColorT
         abstract fun <get-onDark>(): androidx.compose.ui.graphics/Color // com.aiuta.fashionsdk.configuration.ui.theme.color/AiutaColorTheme.onDark.<get-onDark>|<get-onDark>(){}[0]
     abstract val onLight // com.aiuta.fashionsdk.configuration.ui.theme.color/AiutaColorTheme.onLight|{}onLight[0]
         abstract fun <get-onLight>(): androidx.compose.ui.graphics/Color // com.aiuta.fashionsdk.configuration.ui.theme.color/AiutaColorTheme.onLight.<get-onLight>|<get-onLight>(){}[0]
-    abstract val outline // com.aiuta.fashionsdk.configuration.ui.theme.color/AiutaColorTheme.outline|{}outline[0]
-        abstract fun <get-outline>(): androidx.compose.ui.graphics/Color // com.aiuta.fashionsdk.configuration.ui.theme.color/AiutaColorTheme.outline.<get-outline>|<get-outline>(){}[0]
     abstract val primary // com.aiuta.fashionsdk.configuration.ui.theme.color/AiutaColorTheme.primary|{}primary[0]
         abstract fun <get-primary>(): androidx.compose.ui.graphics/Color // com.aiuta.fashionsdk.configuration.ui.theme.color/AiutaColorTheme.primary.<get-primary>|<get-primary>(){}[0]
     abstract val scheme // com.aiuta.fashionsdk.configuration.ui.theme.color/AiutaColorTheme.scheme|{}scheme[0]
@@ -810,8 +797,6 @@ abstract interface com.aiuta.fashionsdk.configuration.ui.theme.color/AiutaColorT
             final fun <get-onDark>(): androidx.compose.ui.graphics/Color // com.aiuta.fashionsdk.configuration.ui.theme.color/AiutaColorTheme.Default.onDark.<get-onDark>|<get-onDark>(){}[0]
         final val onLight // com.aiuta.fashionsdk.configuration.ui.theme.color/AiutaColorTheme.Default.onLight|{}onLight[0]
             final fun <get-onLight>(): androidx.compose.ui.graphics/Color // com.aiuta.fashionsdk.configuration.ui.theme.color/AiutaColorTheme.Default.onLight.<get-onLight>|<get-onLight>(){}[0]
-        final val outline // com.aiuta.fashionsdk.configuration.ui.theme.color/AiutaColorTheme.Default.outline|{}outline[0]
-            final fun <get-outline>(): androidx.compose.ui.graphics/Color // com.aiuta.fashionsdk.configuration.ui.theme.color/AiutaColorTheme.Default.outline.<get-outline>|<get-outline>(){}[0]
         final val primary // com.aiuta.fashionsdk.configuration.ui.theme.color/AiutaColorTheme.Default.primary|{}primary[0]
             final fun <get-primary>(): androidx.compose.ui.graphics/Color // com.aiuta.fashionsdk.configuration.ui.theme.color/AiutaColorTheme.Default.primary.<get-primary>|<get-primary>(){}[0]
         final val scheme // com.aiuta.fashionsdk.configuration.ui.theme.color/AiutaColorTheme.Default.scheme|{}scheme[0]
@@ -950,18 +935,6 @@ abstract interface com.aiuta.fashionsdk.configuration.ui.theme.pagebar.typograph
 
         final val pageTitle // com.aiuta.fashionsdk.configuration.ui.theme.pagebar.typography/AiutaPageBarThemeTypography.Default.pageTitle|{}pageTitle[0]
             final fun <get-pageTitle>(): androidx.compose.ui.text/TextStyle // com.aiuta.fashionsdk.configuration.ui.theme.pagebar.typography/AiutaPageBarThemeTypography.Default.pageTitle.<get-pageTitle>|<get-pageTitle>(){}[0]
-    }
-}
-
-abstract interface com.aiuta.fashionsdk.configuration.ui.theme.powerby.colors/AiutaPowerBarThemeColors { // com.aiuta.fashionsdk.configuration.ui.theme.powerby.colors/AiutaPowerBarThemeColors|null[0]
-    abstract val aiuta // com.aiuta.fashionsdk.configuration.ui.theme.powerby.colors/AiutaPowerBarThemeColors.aiuta|{}aiuta[0]
-        abstract fun <get-aiuta>(): com.aiuta.fashionsdk.configuration.ui.theme.powerby.colors/AiutaPowerBarColorScheme // com.aiuta.fashionsdk.configuration.ui.theme.powerby.colors/AiutaPowerBarThemeColors.aiuta.<get-aiuta>|<get-aiuta>(){}[0]
-
-    final class Default : com.aiuta.fashionsdk.configuration.ui.theme.powerby.colors/AiutaPowerBarThemeColors { // com.aiuta.fashionsdk.configuration.ui.theme.powerby.colors/AiutaPowerBarThemeColors.Default|null[0]
-        constructor <init>() // com.aiuta.fashionsdk.configuration.ui.theme.powerby.colors/AiutaPowerBarThemeColors.Default.<init>|<init>(){}[0]
-
-        final val aiuta // com.aiuta.fashionsdk.configuration.ui.theme.powerby.colors/AiutaPowerBarThemeColors.Default.aiuta|{}aiuta[0]
-            final fun <get-aiuta>(): com.aiuta.fashionsdk.configuration.ui.theme.powerby.colors/AiutaPowerBarColorScheme // com.aiuta.fashionsdk.configuration.ui.theme.powerby.colors/AiutaPowerBarThemeColors.Default.aiuta.<get-aiuta>|<get-aiuta>(){}[0]
     }
 }
 
@@ -1110,22 +1083,6 @@ abstract interface com.aiuta.fashionsdk.configuration.ui.theme.sheet.toggles/Aiu
             final fun <get-extendDelimitersToTheLeft>(): kotlin/Boolean // com.aiuta.fashionsdk.configuration.ui.theme.sheet.toggles/AiutaBottomSheetThemeToggles.Default.extendDelimitersToTheLeft.<get-extendDelimitersToTheLeft>|<get-extendDelimitersToTheLeft>(){}[0]
         final val extendDelimitersToTheRight // com.aiuta.fashionsdk.configuration.ui.theme.sheet.toggles/AiutaBottomSheetThemeToggles.Default.extendDelimitersToTheRight|{}extendDelimitersToTheRight[0]
             final fun <get-extendDelimitersToTheRight>(): kotlin/Boolean // com.aiuta.fashionsdk.configuration.ui.theme.sheet.toggles/AiutaBottomSheetThemeToggles.Default.extendDelimitersToTheRight.<get-extendDelimitersToTheRight>|<get-extendDelimitersToTheRight>(){}[0]
-    }
-}
-
-abstract interface com.aiuta.fashionsdk.configuration.ui.theme.sheet.typography/AiutaBottomSheetThemeTypography { // com.aiuta.fashionsdk.configuration.ui.theme.sheet.typography/AiutaBottomSheetThemeTypography|null[0]
-    abstract val chipsButton // com.aiuta.fashionsdk.configuration.ui.theme.sheet.typography/AiutaBottomSheetThemeTypography.chipsButton|{}chipsButton[0]
-        abstract fun <get-chipsButton>(): androidx.compose.ui.text/TextStyle // com.aiuta.fashionsdk.configuration.ui.theme.sheet.typography/AiutaBottomSheetThemeTypography.chipsButton.<get-chipsButton>|<get-chipsButton>(){}[0]
-    abstract val iconButton // com.aiuta.fashionsdk.configuration.ui.theme.sheet.typography/AiutaBottomSheetThemeTypography.iconButton|{}iconButton[0]
-        abstract fun <get-iconButton>(): androidx.compose.ui.text/TextStyle // com.aiuta.fashionsdk.configuration.ui.theme.sheet.typography/AiutaBottomSheetThemeTypography.iconButton.<get-iconButton>|<get-iconButton>(){}[0]
-
-    final class Default : com.aiuta.fashionsdk.configuration.ui.theme.sheet.typography/AiutaBottomSheetThemeTypography { // com.aiuta.fashionsdk.configuration.ui.theme.sheet.typography/AiutaBottomSheetThemeTypography.Default|null[0]
-        constructor <init>() // com.aiuta.fashionsdk.configuration.ui.theme.sheet.typography/AiutaBottomSheetThemeTypography.Default.<init>|<init>(){}[0]
-
-        final val chipsButton // com.aiuta.fashionsdk.configuration.ui.theme.sheet.typography/AiutaBottomSheetThemeTypography.Default.chipsButton|{}chipsButton[0]
-            final fun <get-chipsButton>(): androidx.compose.ui.text/TextStyle // com.aiuta.fashionsdk.configuration.ui.theme.sheet.typography/AiutaBottomSheetThemeTypography.Default.chipsButton.<get-chipsButton>|<get-chipsButton>(){}[0]
-        final val iconButton // com.aiuta.fashionsdk.configuration.ui.theme.sheet.typography/AiutaBottomSheetThemeTypography.Default.iconButton|{}iconButton[0]
-            final fun <get-iconButton>(): androidx.compose.ui.text/TextStyle // com.aiuta.fashionsdk.configuration.ui.theme.sheet.typography/AiutaBottomSheetThemeTypography.Default.iconButton.<get-iconButton>|<get-iconButton>(){}[0]
     }
 }
 
@@ -2173,19 +2130,14 @@ final class com.aiuta.fashionsdk.configuration.ui.theme.pagebar/AiutaPageBarThem
 }
 
 final class com.aiuta.fashionsdk.configuration.ui.theme.powerby/AiutaPowerBarTheme : com.aiuta.fashionsdk.configuration.features/AiutaFeature { // com.aiuta.fashionsdk.configuration.ui.theme.powerby/AiutaPowerBarTheme|null[0]
-    constructor <init>(com.aiuta.fashionsdk.configuration.ui.theme.powerby.strings/AiutaPowerBarThemeStrings, com.aiuta.fashionsdk.configuration.ui.theme.powerby.colors/AiutaPowerBarThemeColors) // com.aiuta.fashionsdk.configuration.ui.theme.powerby/AiutaPowerBarTheme.<init>|<init>(com.aiuta.fashionsdk.configuration.ui.theme.powerby.strings.AiutaPowerBarThemeStrings;com.aiuta.fashionsdk.configuration.ui.theme.powerby.colors.AiutaPowerBarThemeColors){}[0]
+    constructor <init>(com.aiuta.fashionsdk.configuration.ui.theme.powerby.strings/AiutaPowerBarThemeStrings) // com.aiuta.fashionsdk.configuration.ui.theme.powerby/AiutaPowerBarTheme.<init>|<init>(com.aiuta.fashionsdk.configuration.ui.theme.powerby.strings.AiutaPowerBarThemeStrings){}[0]
 
-    final val colors // com.aiuta.fashionsdk.configuration.ui.theme.powerby/AiutaPowerBarTheme.colors|{}colors[0]
-        final fun <get-colors>(): com.aiuta.fashionsdk.configuration.ui.theme.powerby.colors/AiutaPowerBarThemeColors // com.aiuta.fashionsdk.configuration.ui.theme.powerby/AiutaPowerBarTheme.colors.<get-colors>|<get-colors>(){}[0]
     final val strings // com.aiuta.fashionsdk.configuration.ui.theme.powerby/AiutaPowerBarTheme.strings|{}strings[0]
         final fun <get-strings>(): com.aiuta.fashionsdk.configuration.ui.theme.powerby.strings/AiutaPowerBarThemeStrings // com.aiuta.fashionsdk.configuration.ui.theme.powerby/AiutaPowerBarTheme.strings.<get-strings>|<get-strings>(){}[0]
 
     final class Builder : com.aiuta.fashionsdk.configuration.features/AiutaFeature.Builder { // com.aiuta.fashionsdk.configuration.ui.theme.powerby/AiutaPowerBarTheme.Builder|null[0]
         constructor <init>() // com.aiuta.fashionsdk.configuration.ui.theme.powerby/AiutaPowerBarTheme.Builder.<init>|<init>(){}[0]
 
-        final var colors // com.aiuta.fashionsdk.configuration.ui.theme.powerby/AiutaPowerBarTheme.Builder.colors|{}colors[0]
-            final fun <get-colors>(): com.aiuta.fashionsdk.configuration.ui.theme.powerby.colors/AiutaPowerBarThemeColors? // com.aiuta.fashionsdk.configuration.ui.theme.powerby/AiutaPowerBarTheme.Builder.colors.<get-colors>|<get-colors>(){}[0]
-            final fun <set-colors>(com.aiuta.fashionsdk.configuration.ui.theme.powerby.colors/AiutaPowerBarThemeColors?) // com.aiuta.fashionsdk.configuration.ui.theme.powerby/AiutaPowerBarTheme.Builder.colors.<set-colors>|<set-colors>(com.aiuta.fashionsdk.configuration.ui.theme.powerby.colors.AiutaPowerBarThemeColors?){}[0]
         final var strings // com.aiuta.fashionsdk.configuration.ui.theme.powerby/AiutaPowerBarTheme.Builder.strings|{}strings[0]
             final fun <get-strings>(): com.aiuta.fashionsdk.configuration.ui.theme.powerby.strings/AiutaPowerBarThemeStrings? // com.aiuta.fashionsdk.configuration.ui.theme.powerby/AiutaPowerBarTheme.Builder.strings.<get-strings>|<get-strings>(){}[0]
             final fun <set-strings>(com.aiuta.fashionsdk.configuration.ui.theme.powerby.strings/AiutaPowerBarThemeStrings?) // com.aiuta.fashionsdk.configuration.ui.theme.powerby/AiutaPowerBarTheme.Builder.strings.<set-strings>|<set-strings>(com.aiuta.fashionsdk.configuration.ui.theme.powerby.strings.AiutaPowerBarThemeStrings?){}[0]
@@ -2276,7 +2228,7 @@ final class com.aiuta.fashionsdk.configuration.ui.theme.selection/AiutaSelection
 }
 
 final class com.aiuta.fashionsdk.configuration.ui.theme.sheet/AiutaBottomSheetTheme { // com.aiuta.fashionsdk.configuration.ui.theme.sheet/AiutaBottomSheetTheme|null[0]
-    constructor <init>(com.aiuta.fashionsdk.configuration.ui.theme.sheet.typography/AiutaBottomSheetThemeTypography, com.aiuta.fashionsdk.configuration.ui.theme.sheet.shapes/AiutaBottomSheetThemeShapes, com.aiuta.fashionsdk.configuration.ui.theme.sheet.grabber/AiutaBottomSheetThemeGrabber, com.aiuta.fashionsdk.configuration.ui.theme.sheet.toggles/AiutaBottomSheetThemeToggles) // com.aiuta.fashionsdk.configuration.ui.theme.sheet/AiutaBottomSheetTheme.<init>|<init>(com.aiuta.fashionsdk.configuration.ui.theme.sheet.typography.AiutaBottomSheetThemeTypography;com.aiuta.fashionsdk.configuration.ui.theme.sheet.shapes.AiutaBottomSheetThemeShapes;com.aiuta.fashionsdk.configuration.ui.theme.sheet.grabber.AiutaBottomSheetThemeGrabber;com.aiuta.fashionsdk.configuration.ui.theme.sheet.toggles.AiutaBottomSheetThemeToggles){}[0]
+    constructor <init>(com.aiuta.fashionsdk.configuration.ui.theme.sheet.shapes/AiutaBottomSheetThemeShapes, com.aiuta.fashionsdk.configuration.ui.theme.sheet.grabber/AiutaBottomSheetThemeGrabber, com.aiuta.fashionsdk.configuration.ui.theme.sheet.toggles/AiutaBottomSheetThemeToggles) // com.aiuta.fashionsdk.configuration.ui.theme.sheet/AiutaBottomSheetTheme.<init>|<init>(com.aiuta.fashionsdk.configuration.ui.theme.sheet.shapes.AiutaBottomSheetThemeShapes;com.aiuta.fashionsdk.configuration.ui.theme.sheet.grabber.AiutaBottomSheetThemeGrabber;com.aiuta.fashionsdk.configuration.ui.theme.sheet.toggles.AiutaBottomSheetThemeToggles){}[0]
 
     final val grabber // com.aiuta.fashionsdk.configuration.ui.theme.sheet/AiutaBottomSheetTheme.grabber|{}grabber[0]
         final fun <get-grabber>(): com.aiuta.fashionsdk.configuration.ui.theme.sheet.grabber/AiutaBottomSheetThemeGrabber // com.aiuta.fashionsdk.configuration.ui.theme.sheet/AiutaBottomSheetTheme.grabber.<get-grabber>|<get-grabber>(){}[0]
@@ -2284,8 +2236,6 @@ final class com.aiuta.fashionsdk.configuration.ui.theme.sheet/AiutaBottomSheetTh
         final fun <get-shapes>(): com.aiuta.fashionsdk.configuration.ui.theme.sheet.shapes/AiutaBottomSheetThemeShapes // com.aiuta.fashionsdk.configuration.ui.theme.sheet/AiutaBottomSheetTheme.shapes.<get-shapes>|<get-shapes>(){}[0]
     final val toggles // com.aiuta.fashionsdk.configuration.ui.theme.sheet/AiutaBottomSheetTheme.toggles|{}toggles[0]
         final fun <get-toggles>(): com.aiuta.fashionsdk.configuration.ui.theme.sheet.toggles/AiutaBottomSheetThemeToggles // com.aiuta.fashionsdk.configuration.ui.theme.sheet/AiutaBottomSheetTheme.toggles.<get-toggles>|<get-toggles>(){}[0]
-    final val typography // com.aiuta.fashionsdk.configuration.ui.theme.sheet/AiutaBottomSheetTheme.typography|{}typography[0]
-        final fun <get-typography>(): com.aiuta.fashionsdk.configuration.ui.theme.sheet.typography/AiutaBottomSheetThemeTypography // com.aiuta.fashionsdk.configuration.ui.theme.sheet/AiutaBottomSheetTheme.typography.<get-typography>|<get-typography>(){}[0]
 
     final class Builder { // com.aiuta.fashionsdk.configuration.ui.theme.sheet/AiutaBottomSheetTheme.Builder|null[0]
         constructor <init>() // com.aiuta.fashionsdk.configuration.ui.theme.sheet/AiutaBottomSheetTheme.Builder.<init>|<init>(){}[0]
@@ -2299,9 +2249,6 @@ final class com.aiuta.fashionsdk.configuration.ui.theme.sheet/AiutaBottomSheetTh
         final var toggles // com.aiuta.fashionsdk.configuration.ui.theme.sheet/AiutaBottomSheetTheme.Builder.toggles|{}toggles[0]
             final fun <get-toggles>(): com.aiuta.fashionsdk.configuration.ui.theme.sheet.toggles/AiutaBottomSheetThemeToggles? // com.aiuta.fashionsdk.configuration.ui.theme.sheet/AiutaBottomSheetTheme.Builder.toggles.<get-toggles>|<get-toggles>(){}[0]
             final fun <set-toggles>(com.aiuta.fashionsdk.configuration.ui.theme.sheet.toggles/AiutaBottomSheetThemeToggles?) // com.aiuta.fashionsdk.configuration.ui.theme.sheet/AiutaBottomSheetTheme.Builder.toggles.<set-toggles>|<set-toggles>(com.aiuta.fashionsdk.configuration.ui.theme.sheet.toggles.AiutaBottomSheetThemeToggles?){}[0]
-        final var typography // com.aiuta.fashionsdk.configuration.ui.theme.sheet/AiutaBottomSheetTheme.Builder.typography|{}typography[0]
-            final fun <get-typography>(): com.aiuta.fashionsdk.configuration.ui.theme.sheet.typography/AiutaBottomSheetThemeTypography? // com.aiuta.fashionsdk.configuration.ui.theme.sheet/AiutaBottomSheetTheme.Builder.typography.<get-typography>|<get-typography>(){}[0]
-            final fun <set-typography>(com.aiuta.fashionsdk.configuration.ui.theme.sheet.typography/AiutaBottomSheetThemeTypography?) // com.aiuta.fashionsdk.configuration.ui.theme.sheet/AiutaBottomSheetTheme.Builder.typography.<set-typography>|<set-typography>(com.aiuta.fashionsdk.configuration.ui.theme.sheet.typography.AiutaBottomSheetThemeTypography?){}[0]
 
         final fun build(): com.aiuta.fashionsdk.configuration.ui.theme.sheet/AiutaBottomSheetTheme // com.aiuta.fashionsdk.configuration.ui.theme.sheet/AiutaBottomSheetTheme.Builder.build|build(){}[0]
     }
@@ -2557,7 +2504,6 @@ final val com.aiuta.fashionsdk.configuration.ui.theme.pagebar.toggles/com_aiuta_
 final val com.aiuta.fashionsdk.configuration.ui.theme.pagebar.typography/com_aiuta_fashionsdk_configuration_ui_theme_pagebar_typography_AiutaPageBarThemeTypography_Default$stableprop // com.aiuta.fashionsdk.configuration.ui.theme.pagebar.typography/com_aiuta_fashionsdk_configuration_ui_theme_pagebar_typography_AiutaPageBarThemeTypography_Default$stableprop|#static{}com_aiuta_fashionsdk_configuration_ui_theme_pagebar_typography_AiutaPageBarThemeTypography_Default$stableprop[0]
 final val com.aiuta.fashionsdk.configuration.ui.theme.pagebar/com_aiuta_fashionsdk_configuration_ui_theme_pagebar_AiutaPageBarTheme$stableprop // com.aiuta.fashionsdk.configuration.ui.theme.pagebar/com_aiuta_fashionsdk_configuration_ui_theme_pagebar_AiutaPageBarTheme$stableprop|#static{}com_aiuta_fashionsdk_configuration_ui_theme_pagebar_AiutaPageBarTheme$stableprop[0]
 final val com.aiuta.fashionsdk.configuration.ui.theme.pagebar/com_aiuta_fashionsdk_configuration_ui_theme_pagebar_AiutaPageBarTheme_Builder$stableprop // com.aiuta.fashionsdk.configuration.ui.theme.pagebar/com_aiuta_fashionsdk_configuration_ui_theme_pagebar_AiutaPageBarTheme_Builder$stableprop|#static{}com_aiuta_fashionsdk_configuration_ui_theme_pagebar_AiutaPageBarTheme_Builder$stableprop[0]
-final val com.aiuta.fashionsdk.configuration.ui.theme.powerby.colors/com_aiuta_fashionsdk_configuration_ui_theme_powerby_colors_AiutaPowerBarThemeColors_Default$stableprop // com.aiuta.fashionsdk.configuration.ui.theme.powerby.colors/com_aiuta_fashionsdk_configuration_ui_theme_powerby_colors_AiutaPowerBarThemeColors_Default$stableprop|#static{}com_aiuta_fashionsdk_configuration_ui_theme_powerby_colors_AiutaPowerBarThemeColors_Default$stableprop[0]
 final val com.aiuta.fashionsdk.configuration.ui.theme.powerby.strings/com_aiuta_fashionsdk_configuration_ui_theme_powerby_strings_AiutaPowerBarThemeStrings_Default$stableprop // com.aiuta.fashionsdk.configuration.ui.theme.powerby.strings/com_aiuta_fashionsdk_configuration_ui_theme_powerby_strings_AiutaPowerBarThemeStrings_Default$stableprop|#static{}com_aiuta_fashionsdk_configuration_ui_theme_powerby_strings_AiutaPowerBarThemeStrings_Default$stableprop[0]
 final val com.aiuta.fashionsdk.configuration.ui.theme.powerby/com_aiuta_fashionsdk_configuration_ui_theme_powerby_AiutaPowerBarTheme$stableprop // com.aiuta.fashionsdk.configuration.ui.theme.powerby/com_aiuta_fashionsdk_configuration_ui_theme_powerby_AiutaPowerBarTheme$stableprop|#static{}com_aiuta_fashionsdk_configuration_ui_theme_powerby_AiutaPowerBarTheme$stableprop[0]
 final val com.aiuta.fashionsdk.configuration.ui.theme.powerby/com_aiuta_fashionsdk_configuration_ui_theme_powerby_AiutaPowerBarTheme_Builder$stableprop // com.aiuta.fashionsdk.configuration.ui.theme.powerby/com_aiuta_fashionsdk_configuration_ui_theme_powerby_AiutaPowerBarTheme_Builder$stableprop|#static{}com_aiuta_fashionsdk_configuration_ui_theme_powerby_AiutaPowerBarTheme_Builder$stableprop[0]
@@ -2577,7 +2523,6 @@ final val com.aiuta.fashionsdk.configuration.ui.theme.sheet.grabber/com_aiuta_fa
 final val com.aiuta.fashionsdk.configuration.ui.theme.sheet.shapes/com_aiuta_fashionsdk_configuration_ui_theme_sheet_shapes_AiutaBottomSheetThemeShapes$stableprop // com.aiuta.fashionsdk.configuration.ui.theme.sheet.shapes/com_aiuta_fashionsdk_configuration_ui_theme_sheet_shapes_AiutaBottomSheetThemeShapes$stableprop|#static{}com_aiuta_fashionsdk_configuration_ui_theme_sheet_shapes_AiutaBottomSheetThemeShapes$stableprop[0]
 final val com.aiuta.fashionsdk.configuration.ui.theme.sheet.shapes/com_aiuta_fashionsdk_configuration_ui_theme_sheet_shapes_AiutaBottomSheetThemeShapes_Default$stableprop // com.aiuta.fashionsdk.configuration.ui.theme.sheet.shapes/com_aiuta_fashionsdk_configuration_ui_theme_sheet_shapes_AiutaBottomSheetThemeShapes_Default$stableprop|#static{}com_aiuta_fashionsdk_configuration_ui_theme_sheet_shapes_AiutaBottomSheetThemeShapes_Default$stableprop[0]
 final val com.aiuta.fashionsdk.configuration.ui.theme.sheet.toggles/com_aiuta_fashionsdk_configuration_ui_theme_sheet_toggles_AiutaBottomSheetThemeToggles_Default$stableprop // com.aiuta.fashionsdk.configuration.ui.theme.sheet.toggles/com_aiuta_fashionsdk_configuration_ui_theme_sheet_toggles_AiutaBottomSheetThemeToggles_Default$stableprop|#static{}com_aiuta_fashionsdk_configuration_ui_theme_sheet_toggles_AiutaBottomSheetThemeToggles_Default$stableprop[0]
-final val com.aiuta.fashionsdk.configuration.ui.theme.sheet.typography/com_aiuta_fashionsdk_configuration_ui_theme_sheet_typography_AiutaBottomSheetThemeTypography_Default$stableprop // com.aiuta.fashionsdk.configuration.ui.theme.sheet.typography/com_aiuta_fashionsdk_configuration_ui_theme_sheet_typography_AiutaBottomSheetThemeTypography_Default$stableprop|#static{}com_aiuta_fashionsdk_configuration_ui_theme_sheet_typography_AiutaBottomSheetThemeTypography_Default$stableprop[0]
 final val com.aiuta.fashionsdk.configuration.ui.theme.sheet/com_aiuta_fashionsdk_configuration_ui_theme_sheet_AiutaBottomSheetTheme$stableprop // com.aiuta.fashionsdk.configuration.ui.theme.sheet/com_aiuta_fashionsdk_configuration_ui_theme_sheet_AiutaBottomSheetTheme$stableprop|#static{}com_aiuta_fashionsdk_configuration_ui_theme_sheet_AiutaBottomSheetTheme$stableprop[0]
 final val com.aiuta.fashionsdk.configuration.ui.theme.sheet/com_aiuta_fashionsdk_configuration_ui_theme_sheet_AiutaBottomSheetTheme_Builder$stableprop // com.aiuta.fashionsdk.configuration.ui.theme.sheet/com_aiuta_fashionsdk_configuration_ui_theme_sheet_AiutaBottomSheetTheme_Builder$stableprop|#static{}com_aiuta_fashionsdk_configuration_ui_theme_sheet_AiutaBottomSheetTheme_Builder$stableprop[0]
 final val com.aiuta.fashionsdk.configuration.ui.theme/com_aiuta_fashionsdk_configuration_ui_theme_AiutaTheme$stableprop // com.aiuta.fashionsdk.configuration.ui.theme/com_aiuta_fashionsdk_configuration_ui_theme_AiutaTheme$stableprop|#static{}com_aiuta_fashionsdk_configuration_ui_theme_AiutaTheme$stableprop[0]
@@ -2707,7 +2652,6 @@ final fun com.aiuta.fashionsdk.configuration.ui.theme.pagebar.toggles/com_aiuta_
 final fun com.aiuta.fashionsdk.configuration.ui.theme.pagebar.typography/com_aiuta_fashionsdk_configuration_ui_theme_pagebar_typography_AiutaPageBarThemeTypography_Default$stableprop_getter(): kotlin/Int // com.aiuta.fashionsdk.configuration.ui.theme.pagebar.typography/com_aiuta_fashionsdk_configuration_ui_theme_pagebar_typography_AiutaPageBarThemeTypography_Default$stableprop_getter|com_aiuta_fashionsdk_configuration_ui_theme_pagebar_typography_AiutaPageBarThemeTypography_Default$stableprop_getter(){}[0]
 final fun com.aiuta.fashionsdk.configuration.ui.theme.pagebar/com_aiuta_fashionsdk_configuration_ui_theme_pagebar_AiutaPageBarTheme$stableprop_getter(): kotlin/Int // com.aiuta.fashionsdk.configuration.ui.theme.pagebar/com_aiuta_fashionsdk_configuration_ui_theme_pagebar_AiutaPageBarTheme$stableprop_getter|com_aiuta_fashionsdk_configuration_ui_theme_pagebar_AiutaPageBarTheme$stableprop_getter(){}[0]
 final fun com.aiuta.fashionsdk.configuration.ui.theme.pagebar/com_aiuta_fashionsdk_configuration_ui_theme_pagebar_AiutaPageBarTheme_Builder$stableprop_getter(): kotlin/Int // com.aiuta.fashionsdk.configuration.ui.theme.pagebar/com_aiuta_fashionsdk_configuration_ui_theme_pagebar_AiutaPageBarTheme_Builder$stableprop_getter|com_aiuta_fashionsdk_configuration_ui_theme_pagebar_AiutaPageBarTheme_Builder$stableprop_getter(){}[0]
-final fun com.aiuta.fashionsdk.configuration.ui.theme.powerby.colors/com_aiuta_fashionsdk_configuration_ui_theme_powerby_colors_AiutaPowerBarThemeColors_Default$stableprop_getter(): kotlin/Int // com.aiuta.fashionsdk.configuration.ui.theme.powerby.colors/com_aiuta_fashionsdk_configuration_ui_theme_powerby_colors_AiutaPowerBarThemeColors_Default$stableprop_getter|com_aiuta_fashionsdk_configuration_ui_theme_powerby_colors_AiutaPowerBarThemeColors_Default$stableprop_getter(){}[0]
 final fun com.aiuta.fashionsdk.configuration.ui.theme.powerby.strings/com_aiuta_fashionsdk_configuration_ui_theme_powerby_strings_AiutaPowerBarThemeStrings_Default$stableprop_getter(): kotlin/Int // com.aiuta.fashionsdk.configuration.ui.theme.powerby.strings/com_aiuta_fashionsdk_configuration_ui_theme_powerby_strings_AiutaPowerBarThemeStrings_Default$stableprop_getter|com_aiuta_fashionsdk_configuration_ui_theme_powerby_strings_AiutaPowerBarThemeStrings_Default$stableprop_getter(){}[0]
 final fun com.aiuta.fashionsdk.configuration.ui.theme.powerby/com_aiuta_fashionsdk_configuration_ui_theme_powerby_AiutaPowerBarTheme$stableprop_getter(): kotlin/Int // com.aiuta.fashionsdk.configuration.ui.theme.powerby/com_aiuta_fashionsdk_configuration_ui_theme_powerby_AiutaPowerBarTheme$stableprop_getter|com_aiuta_fashionsdk_configuration_ui_theme_powerby_AiutaPowerBarTheme$stableprop_getter(){}[0]
 final fun com.aiuta.fashionsdk.configuration.ui.theme.powerby/com_aiuta_fashionsdk_configuration_ui_theme_powerby_AiutaPowerBarTheme_Builder$stableprop_getter(): kotlin/Int // com.aiuta.fashionsdk.configuration.ui.theme.powerby/com_aiuta_fashionsdk_configuration_ui_theme_powerby_AiutaPowerBarTheme_Builder$stableprop_getter|com_aiuta_fashionsdk_configuration_ui_theme_powerby_AiutaPowerBarTheme_Builder$stableprop_getter(){}[0]
@@ -2727,7 +2671,6 @@ final fun com.aiuta.fashionsdk.configuration.ui.theme.sheet.grabber/com_aiuta_fa
 final fun com.aiuta.fashionsdk.configuration.ui.theme.sheet.shapes/com_aiuta_fashionsdk_configuration_ui_theme_sheet_shapes_AiutaBottomSheetThemeShapes$stableprop_getter(): kotlin/Int // com.aiuta.fashionsdk.configuration.ui.theme.sheet.shapes/com_aiuta_fashionsdk_configuration_ui_theme_sheet_shapes_AiutaBottomSheetThemeShapes$stableprop_getter|com_aiuta_fashionsdk_configuration_ui_theme_sheet_shapes_AiutaBottomSheetThemeShapes$stableprop_getter(){}[0]
 final fun com.aiuta.fashionsdk.configuration.ui.theme.sheet.shapes/com_aiuta_fashionsdk_configuration_ui_theme_sheet_shapes_AiutaBottomSheetThemeShapes_Default$stableprop_getter(): kotlin/Int // com.aiuta.fashionsdk.configuration.ui.theme.sheet.shapes/com_aiuta_fashionsdk_configuration_ui_theme_sheet_shapes_AiutaBottomSheetThemeShapes_Default$stableprop_getter|com_aiuta_fashionsdk_configuration_ui_theme_sheet_shapes_AiutaBottomSheetThemeShapes_Default$stableprop_getter(){}[0]
 final fun com.aiuta.fashionsdk.configuration.ui.theme.sheet.toggles/com_aiuta_fashionsdk_configuration_ui_theme_sheet_toggles_AiutaBottomSheetThemeToggles_Default$stableprop_getter(): kotlin/Int // com.aiuta.fashionsdk.configuration.ui.theme.sheet.toggles/com_aiuta_fashionsdk_configuration_ui_theme_sheet_toggles_AiutaBottomSheetThemeToggles_Default$stableprop_getter|com_aiuta_fashionsdk_configuration_ui_theme_sheet_toggles_AiutaBottomSheetThemeToggles_Default$stableprop_getter(){}[0]
-final fun com.aiuta.fashionsdk.configuration.ui.theme.sheet.typography/com_aiuta_fashionsdk_configuration_ui_theme_sheet_typography_AiutaBottomSheetThemeTypography_Default$stableprop_getter(): kotlin/Int // com.aiuta.fashionsdk.configuration.ui.theme.sheet.typography/com_aiuta_fashionsdk_configuration_ui_theme_sheet_typography_AiutaBottomSheetThemeTypography_Default$stableprop_getter|com_aiuta_fashionsdk_configuration_ui_theme_sheet_typography_AiutaBottomSheetThemeTypography_Default$stableprop_getter(){}[0]
 final fun com.aiuta.fashionsdk.configuration.ui.theme.sheet/com_aiuta_fashionsdk_configuration_ui_theme_sheet_AiutaBottomSheetTheme$stableprop_getter(): kotlin/Int // com.aiuta.fashionsdk.configuration.ui.theme.sheet/com_aiuta_fashionsdk_configuration_ui_theme_sheet_AiutaBottomSheetTheme$stableprop_getter|com_aiuta_fashionsdk_configuration_ui_theme_sheet_AiutaBottomSheetTheme$stableprop_getter(){}[0]
 final fun com.aiuta.fashionsdk.configuration.ui.theme.sheet/com_aiuta_fashionsdk_configuration_ui_theme_sheet_AiutaBottomSheetTheme_Builder$stableprop_getter(): kotlin/Int // com.aiuta.fashionsdk.configuration.ui.theme.sheet/com_aiuta_fashionsdk_configuration_ui_theme_sheet_AiutaBottomSheetTheme_Builder$stableprop_getter|com_aiuta_fashionsdk_configuration_ui_theme_sheet_AiutaBottomSheetTheme_Builder$stableprop_getter(){}[0]
 final fun com.aiuta.fashionsdk.configuration.ui.theme/com_aiuta_fashionsdk_configuration_ui_theme_AiutaTheme$stableprop_getter(): kotlin/Int // com.aiuta.fashionsdk.configuration.ui.theme/com_aiuta_fashionsdk_configuration_ui_theme_AiutaTheme$stableprop_getter|com_aiuta_fashionsdk_configuration_ui_theme_AiutaTheme$stableprop_getter(){}[0]
