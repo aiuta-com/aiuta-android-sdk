@@ -6,7 +6,6 @@ import com.aiuta.fashionsdk.configuration.ui.theme.AiutaTheme
 import com.aiuta.fashionsdk.configuration.ui.theme.sheet.grabber.AiutaBottomSheetThemeGrabber
 import com.aiuta.fashionsdk.configuration.ui.theme.sheet.shapes.AiutaBottomSheetThemeShapes
 import com.aiuta.fashionsdk.configuration.ui.theme.sheet.toggles.AiutaBottomSheetThemeToggles
-import com.aiuta.fashionsdk.configuration.ui.theme.sheet.typography.AiutaBottomSheetThemeTypography
 
 /**
  * Bottom sheet theme configuration for the Aiuta SDK.
@@ -17,18 +16,15 @@ import com.aiuta.fashionsdk.configuration.ui.theme.sheet.typography.AiutaBottomS
  * match your app's design system.
  *
  *
- * @property typography Typography configuration for bottom sheet text
  * @property shapes Shape configuration for bottom sheet containers
  * @property grabber Configuration for the bottom sheet drag handle
  * @property toggles Configuration for bottom sheet behavior toggles
- * @see AiutaBottomSheetThemeTypography
  * @see AiutaBottomSheetThemeShapes
  * @see AiutaBottomSheetThemeGrabber
  * @see AiutaBottomSheetThemeToggles
  */
 @Immutable
 public class AiutaBottomSheetTheme(
-    public val typography: AiutaBottomSheetThemeTypography,
     public val shapes: AiutaBottomSheetThemeShapes,
     public val grabber: AiutaBottomSheetThemeGrabber,
     public val toggles: AiutaBottomSheetThemeToggles,
@@ -40,11 +36,6 @@ public class AiutaBottomSheetTheme(
      * the final bottom sheet theme configuration.
      */
     public class Builder {
-        /**
-         * Typography configuration for bottom sheet text.
-         */
-        public var typography: AiutaBottomSheetThemeTypography? = null
-
         /**
          * Shape configuration for bottom sheet containers.
          */
@@ -70,10 +61,6 @@ public class AiutaBottomSheetTheme(
             val parentClass = "AiutaBottomSheetTheme"
 
             return AiutaBottomSheetTheme(
-                typography = typography.checkNotNullWithDescription(
-                    parentClass = parentClass,
-                    property = "typography",
-                ),
                 shapes = shapes.checkNotNullWithDescription(
                     parentClass = parentClass,
                     property = "shapes",

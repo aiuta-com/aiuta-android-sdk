@@ -5,7 +5,6 @@ import com.aiuta.fashionsdk.configuration.ui.theme.sheet.bottomSheet
 import com.aiuta.fashionsdk.configuration.ui.theme.sheet.grabber.AiutaBottomSheetThemeGrabber
 import com.aiuta.fashionsdk.configuration.ui.theme.sheet.shapes.AiutaBottomSheetThemeShapes
 import com.aiuta.fashionsdk.configuration.ui.theme.sheet.toggles.AiutaBottomSheetThemeToggles
-import com.aiuta.fashionsdk.configuration.ui.theme.sheet.typography.AiutaBottomSheetThemeTypography
 
 /**
  * Configures the default bottom sheet theme for the Aiuta SDK.
@@ -15,7 +14,6 @@ import com.aiuta.fashionsdk.configuration.ui.theme.sheet.typography.AiutaBottomS
  * @return The updated [AiutaTheme.Builder] instance.
  */
 public fun AiutaTheme.Builder.defaultBottomSheet(): AiutaTheme.Builder = bottomSheet {
-    typography = AiutaBottomSheetThemeTypography.Default()
     shapes = AiutaBottomSheetThemeShapes.Default()
     grabber = AiutaBottomSheetThemeGrabber.Default()
     toggles = AiutaBottomSheetThemeToggles.Default()

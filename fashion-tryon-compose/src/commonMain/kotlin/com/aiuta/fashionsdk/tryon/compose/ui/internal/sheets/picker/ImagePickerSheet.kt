@@ -211,7 +211,7 @@ private fun PickerButton(
                 Text(
                     modifier = Modifier.align(Alignment.CenterStart),
                     text = text,
-                    style = theme.bottomSheet.typography.iconButton,
+                    style = theme.label.typography.regular,
                     color = theme.color.primary,
                 )
             }

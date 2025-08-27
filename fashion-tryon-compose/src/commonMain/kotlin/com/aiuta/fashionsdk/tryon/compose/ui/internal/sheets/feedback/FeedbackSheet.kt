@@ -196,7 +196,7 @@ private fun OptionItem(
     ) {
         Text(
             text = option,
-            style = theme.bottomSheet.typography.chipsButton,
+            style = theme.label.typography.subtle,
             color = if (isSelected) {
                 theme.color.primary
             } else {
