@@ -3,7 +3,6 @@ package com.aiuta.fashionsdk.configuration.ui.theme.powerby
 import com.aiuta.fashionsdk.configuration.features.AiutaFeature
 import com.aiuta.fashionsdk.configuration.internal.utils.checkNotNullWithDescription
 import com.aiuta.fashionsdk.configuration.ui.theme.AiutaTheme
-import com.aiuta.fashionsdk.configuration.ui.theme.powerby.colors.AiutaPowerBarThemeColors
 import com.aiuta.fashionsdk.configuration.ui.theme.powerby.strings.AiutaPowerBarThemeStrings
 
 /**
@@ -15,13 +14,10 @@ import com.aiuta.fashionsdk.configuration.ui.theme.powerby.strings.AiutaPowerBar
  *
  *
  * @property strings Text content configuration for the power bar
- * @property colors Color configuration for the power bar elements
  * @see AiutaPowerBarThemeStrings
- * @see AiutaPowerBarThemeColors
  */
 public class AiutaPowerBarTheme(
     public val strings: AiutaPowerBarThemeStrings,
-    public val colors: AiutaPowerBarThemeColors,
 ) : AiutaFeature {
 
     /**
@@ -37,11 +33,6 @@ public class AiutaPowerBarTheme(
         public var strings: AiutaPowerBarThemeStrings? = null
 
         /**
-         * Color configuration for the power bar elements.
-         */
-        public var colors: AiutaPowerBarThemeColors? = null
-
-        /**
          * Creates an [AiutaPowerBarTheme] instance with the configured properties.
          *
          * @return Configured [AiutaPowerBarTheme] instance
@@ -54,10 +45,6 @@ public class AiutaPowerBarTheme(
                 strings = strings.checkNotNullWithDescription(
                     parentClass = parentClass,
                     property = "strings",
-                ),
-                colors = colors.checkNotNullWithDescription(
-                    parentClass = parentClass,
-                    property = "colors",
                 ),
             )
         }
