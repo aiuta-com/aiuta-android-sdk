@@ -3,12 +3,6 @@ changelog:
         - title: 🐞 Bug Fixes
           labels:
               - bug
-        - title: 👒 Dependencies
-          labels:
-              - dependencies
-        - title: 📚 Documentation
-          labels:
-              - documentation
         - title: ✨ Features
           labels:
               - features
@@ -18,3 +12,9 @@ changelog:
         - title: 🛠️ Tech Debt
           labels:
               - tech-debt
+        -   title: 📚 Documentation
+            labels:
+                - documentation
+        -   title: 👒 Dependencies
+            labels:
+                - dependencies
