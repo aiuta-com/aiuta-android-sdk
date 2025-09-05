@@ -15,6 +15,7 @@ enableFeaturePreview("TYPESAFE_PROJECT_ACCESSORS")
 // Private modules
 include(
     ":samples:tryon-kmp",
+    ":samples:tryon-kmp-web",
 )
 
 // Public modules

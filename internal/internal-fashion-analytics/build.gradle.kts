@@ -34,5 +34,16 @@ kotlin {
                 implementation(libs.ktor.core)
             }
         }
+        jsMain {
+            dependencies {
+                implementation(libs.kotlinx.io)
+            }
+        }
+        wasmJsMain {
+            dependencies {
+                implementation(libs.kotlinx.browser)
+                implementation(libs.kotlinx.io)
+            }
+        }
     }
 }

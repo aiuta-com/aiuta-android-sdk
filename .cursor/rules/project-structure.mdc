@@ -1,0 +1,95 @@
+---
+description: 
+globs: 
+alwaysApply: true
+---
+# Project Structure Guide
+
+## Main Modules
+
+### Core Fashion Modules
+- `fashion/` - Core fashion module with instance of Aiuta:
+- `fashion-bom/` - Bill of Materials module for dependency management
+
+### Try-on Related Modules
+- `fashion-tryon-compose/` - Main UI module using Jetpack Compose
+- `fashion-tryon-compose-uikit/` - UIKit integration for try-on features
+- `fashion-tryon-core/` - Core functionality for try-on features
+- `fashion-tryon-paging/` - Paging implementation for try-on features
+
+### Network and Data
+- `fashion-network/` - Network layer and API communication
+- `fashion-network-paging/` - Paging implementation for network layer
+- `fashion-io/` - Input/Output operations and file handling
+
+### UI and Resources
+- `fashion-compose-core/` - Core Compose components and utilities
+- `fashion-compose-resources/` - Resources for Compose UI
+- `fashion-configuration-defaults-images/` - Default image configurations
+- `fashion-configuration-defaults-icons/` - Default icon configurations
+
+### Configuration and Utilities
+- `fashion-configuration/` - Configuration management
+- `fashion-configuration-defaults/` - Default configuration values
+- `fashion-analytic/` - Analytics and tracking
+- `fashion-logger/` - Logging functionality
+
+### Build and Development
+- `buildSrc/` - Build configuration source code
+- `internal/` - Internal development tools and utilities
+- `samples/` - Sample implementations and examples
+- `scripts/` - Build and utility scripts
+
+### Documentation and Support
+- `.github/` - GitHub workflows and templates
+- `.githooks/` - Git hooks for development
+- `docs/` - Project documentation
+
+## Build Configuration Files
+
+- [build.gradle.kts](mdc:build.gradle.kts) - Main build configuration
+- [settings.gradle.kts](mdc:settings.gradle.kts) - Project settings
+- [gradle.properties](mdc:gradle.properties) - Gradle properties
+- [local.properties](mdc:local.properties) - Local development settings
+- [secrets.properties](mdc:secrets.properties) - Secret configurations
+
+## Development Guidelines
+
+1. All new features should be added to appropriate modules
+2. Core functionality should be in `fashion-tryon-core`
+3. UI components should use Jetpack Compose
+4. Network calls should go through `fashion-network`
+5. Configuration changes should be made in `fashion-configuration`
+6. Analytics should be implemented using `fashion-analytic`
+7. Logging should use `fashion-logger`
+8. Sample implementations should be added to `samples/`
+9. Build scripts should be placed in `scripts/`
+10. Internal tools should be in `internal/`
+
+## Module Dependencies
+
+### Core Dependencies
+- `fashion-tryon-compose` depends on:
+  - `fashion-tryon-core`
+  - `fashion-compose-core`
+  - `fashion-compose-resources`
+  - `fashion`
+
+### Network Dependencies
+- `fashion-tryon-core` depends on:
+  - `fashion-network`
+  - `fashion-network-paging`
+  - `fashion-configuration`
+  - `fashion`
+
+### Configuration Dependencies
+- All modules can use:
+  - `fashion-logger`
+  - `fashion-analytic`
+  - `fashion-configuration-defaults`
+  - `fashion-bom`
+
+### Resource Dependencies
+- UI modules should use:
+  - `fashion-configuration-defaults-images`
+  - `fashion-configuration-defaults-icons`

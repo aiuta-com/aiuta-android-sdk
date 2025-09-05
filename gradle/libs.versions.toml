@@ -21,7 +21,9 @@ gradle-plugin-vanniktech-publish = "0.35.0"
 haze = "1.7.1"
 
 kotlinx-atomicfu = "0.29.0"
+kotlinx-browser = "0.3"
 kotlinx-datetime = "0.7.1"
+kotlinx-io = "0.8.0"
 kotlinx-serialization = "1.9.0"
 ktor = "3.3.2"
 ksoup = "0.6.0"
@@ -70,10 +72,12 @@ jetbrains-lifecycle = { module = "org.jetbrains.androidx.lifecycle:lifecycle-com
 jetbrains-viewmodel = { module = "org.jetbrains.androidx.lifecycle:lifecycle-viewmodel-compose", version.ref = "jetbrains-lifecycle" }
 
 kotlinx-atomicfu = { module = "org.jetbrains.kotlinx:atomicfu", version.ref = "kotlinx-atomicfu" }
+kotlinx-browser = { module = "org.jetbrains.kotlinx:kotlinx-browser", version.ref = "kotlinx-browser"}
 kotlinx-coroutines-core = { module = "org.jetbrains.kotlinx:kotlinx-coroutines-core", version.ref = "coroutines" }
 kotlinx-coroutines-android = { module = "org.jetbrains.kotlinx:kotlinx-coroutines-android", version.ref = "coroutines" }
 kotlinx-coroutines-swing = {  module = "org.jetbrains.kotlinx:kotlinx-coroutines-swing", version.ref = "coroutines" }
 kotlinx-datetime = { module = "org.jetbrains.kotlinx:kotlinx-datetime", version.ref = "kotlinx-datetime" }
+kotlinx-io = { module = "org.jetbrains.kotlinx:kotlinx-io-core", version.ref = "kotlinx-io" }
 kotlinx-serialization = { module = "org.jetbrains.kotlinx:kotlinx-serialization-json", version.ref = "kotlinx-serialization" }
 ktor-auth = { module = "io.ktor:ktor-client-auth", version.ref = "ktor" }
 ktor-core = { module = "io.ktor:ktor-client-core", version.ref = "ktor" }

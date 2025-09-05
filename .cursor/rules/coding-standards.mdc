@@ -1,0 +1,58 @@
+---
+description: 
+globs: 
+alwaysApply: true
+---
+# Coding Standards Guide
+
+## Kotlin Standards
+
+1. Follow Kotlin coding conventions
+2. Use Kotlin idioms and best practices
+3. Prefer immutable data structures
+4. Use coroutines for asynchronous operations
+5. Implement proper error handling
+6. Use sealed classes for state management
+7. Follow SOLID principles
+
+## Compose Guidelines
+
+1. Create reusable composable functions
+2. Use proper state management
+3. Implement proper theme support
+4. Follow Material Design guidelines
+5. Optimize recomposition
+6. Use proper navigation patterns
+7. Implement proper error states
+8. Handle configuration changes
+
+## Architecture
+
+1. Implement proper separation of concerns
+2. Use repository pattern for data access
+3. Implement proper error handling
+4. Use proper state management
+5. Follow clean architecture principles
+6. Implement proper testing
+
+## Testing
+
+1. Write unit tests for business logic
+2. Implement UI tests for Compose
+3. Use proper test naming conventions
+4. Mock external dependencies
+5. Test error cases
+6. Implement proper test coverage
+7. Use proper testing frameworks
+8. Follow testing best practices
+
+## Documentation
+
+1. Document public APIs
+2. Use KDoc for documentation
+3. Include usage examples
+4. Document error cases
+5. Keep documentation up to date
+6. Document configuration options
+7. Include migration guides
+8. Document breaking changes

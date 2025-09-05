@@ -1,0 +1,42 @@
+---
+description: 
+globs: 
+alwaysApply: true
+---
+# General Coding and Documentation Guidelines
+
+## Code Quality
+
+1. Use explicit variable names over short, ambiguous ones
+2. Follow consistent coding style throughout the project
+3. Prioritize performance in all implementations
+4. Implement robust error handling and logging
+5. Follow modular design principles
+6. Ensure version compatibility
+7. Replace hardcoded values with named constants
+8. Consider and handle edge cases
+9. Include assertions for validation
+
+## Documentation Standards
+
+1. Verify information before presenting
+2. Make changes file by file
+3. Preserve existing code and structures
+4. Provide real file links
+5. Include appropriate test coverage
+6. Consider security implications
+7. Document error handling
+8. Include version information
+9. Document edge cases
+
+## Development Process
+
+1. Make single chunk edits
+2. Avoid unnecessary updates
+3. Don't remove unrelated code
+4. Don't make assumptions without evidence
+5. Don't suggest whitespace changes
+6. Don't summarize changes
+7. Don't invent changes beyond requests
+8. Don't ask for unnecessary confirmations
+9. Don't show current implementation unless requested

@@ -1,6 +1,5 @@
-package com.aiuta.fashionsdk.network.paging
+package com.aiuta.fashionsdk.tryon.paging
 
-import androidx.paging.Pager
 import androidx.paging.PagingSource
 import androidx.paging.PagingState
 import com.aiuta.fashionsdk.network.paging.models.PageContainer
@@ -8,7 +7,7 @@ import com.aiuta.fashionsdk.network.paging.models.PaginationDirection
 import com.aiuta.fashionsdk.network.paging.models.PaginationOffset
 
 /**
- * Base paging source container for implementation paging with using [Pager]
+ * Base paging source container for implementation paging with using [androidx.paging.Pager]
  *
  * @param loadBackend Lambda for getting new page from backend
  */
