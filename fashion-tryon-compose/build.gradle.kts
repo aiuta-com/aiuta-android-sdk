@@ -12,7 +12,7 @@ plugins {
     alias(libs.plugins.room)
 }
 
-addAllMultiplatformTargets()
+addAllMultiplatformTargets(enableExtendedTargets = false)
 androidLibrary(name = "com.aiuta.fashionsdk.tryon.compose") {
     defaultConfig {
         consumerProguardFiles("shrinker-rules.pro")

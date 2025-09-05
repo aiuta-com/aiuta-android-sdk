@@ -8,7 +8,10 @@ plugins {
     id("org.jetbrains.kotlin.plugin.compose")
 }
 
-addAllMultiplatformTargets()
+addAllMultiplatformTargets(
+    // Compose placeholders not supported macos
+    enableExtendedTargets = false,
+)
 androidLibrary(name = "com.aiuta.fashionsdk.tryon.compose.uikit")
 
 kotlin {

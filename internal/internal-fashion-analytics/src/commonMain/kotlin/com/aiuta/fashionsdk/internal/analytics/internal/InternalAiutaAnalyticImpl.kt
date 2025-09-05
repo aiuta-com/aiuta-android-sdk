@@ -15,7 +15,6 @@ import io.ktor.client.request.post
 import io.ktor.client.request.setBody
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.IO
 import kotlinx.coroutines.SupervisorJob
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.MutableSharedFlow
@@ -49,7 +48,7 @@ internal class InternalAiutaAnalyticImpl(
     }
 
     private suspend fun resolveLog(event: AiutaAnalyticsEvent) {
-        withContext(Dispatchers.IO) {
+        withContext(Dispatchers.Default) {
             retryAction {
                 val completedEvent = createAnalyticCompletedEvent(
                     platformContext = platformContext,

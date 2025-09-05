@@ -3,10 +3,10 @@ package com.aiuta.fashionsdk.tryon.paging
 import androidx.paging.Pager
 import androidx.paging.PagingConfig
 import androidx.paging.PagingData
-import com.aiuta.fashionsdk.network.paging.ContainerPagingSource
 import com.aiuta.fashionsdk.tryon.core.AiutaTryOn
 import com.aiuta.fashionsdk.tryon.core.domain.models.ProductCatalog
 import com.aiuta.fashionsdk.tryon.core.domain.models.ProductGenerationItem
+import com.aiuta.fashionsdk.tryon.paging.ContainerPagingSource
 import kotlinx.coroutines.flow.Flow
 
 /**
