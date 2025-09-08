@@ -49,13 +49,25 @@ kotlin {
 
     sourceSets {
         commonMain.dependencies {
-//            implementation(projects.fashionTryonCompose)
-//            implementation(projects.fashionConfigurationDefaults)
+            implementation(projects.fashionTryonCore)
+            implementation(projects.fashionComposeCore)
 
             implementation(compose.foundation)
             implementation(compose.material3)
 
             implementation(libs.jetbrains.viewmodel)
+            implementation(libs.coil3.compose)
+            implementation(libs.coil3.network.ktor3)
+        }
+        jsMain {
+            dependencies {
+                implementation(libs.ktor.engine.js)
+            }
+        }
+        wasmJsMain {
+            dependencies {
+                implementation(libs.ktor.engine.js)
+            }
         }
     }
 }
