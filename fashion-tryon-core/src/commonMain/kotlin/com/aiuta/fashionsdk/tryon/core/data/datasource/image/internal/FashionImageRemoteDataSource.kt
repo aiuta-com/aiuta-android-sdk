@@ -15,9 +15,6 @@ import io.ktor.client.request.forms.submitFormWithBinaryData
 import io.ktor.client.request.get
 import io.ktor.http.Headers
 import io.ktor.http.HttpHeaders
-import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.IO
-import kotlinx.coroutines.withContext
 
 internal class FashionImageRemoteDataSource(
     private val networkClient: NetworkClient,
@@ -25,49 +22,41 @@ internal class FashionImageRemoteDataSource(
     override suspend fun createUploadedImage(
         fileName: String,
         fileByteArray: ByteArray,
-    ): UploadedImage = withContext(Dispatchers.IO) {
-        networkClient.httpClient.value.submitFormWithBinaryData(
-            url = PATH_UPLOADED_IMAGES,
-            formData =
-            formData {
-                append(
-                    key = KEY_IMAGE_DATA,
-                    value = fileByteArray,
-                    headers =
-                    Headers.build {
-                        append(HttpHeaders.ContentType, "image/${fileName.extension}")
-                        append(HttpHeaders.ContentDisposition, "filename=\"$fileName\"")
-                    },
-                )
-            },
-        ).body()
-    }
+    ): UploadedImage = networkClient.httpClient.value.submitFormWithBinaryData(
+        url = PATH_UPLOADED_IMAGES,
+        formData =
+        formData {
+            append(
+                key = KEY_IMAGE_DATA,
+                value = fileByteArray,
+                headers =
+                Headers.build {
+                    append(HttpHeaders.ContentType, "image/${fileName.extension}")
+                    append(HttpHeaders.ContentDisposition, "filename=\"$fileName\"")
+                },
+            )
+        },
+    ).body()
 
     override suspend fun getUploadedImages(
         paginationOffset: PaginationOffset?,
         paginationLimit: Int?,
-    ): PageContainer<UploadedImage> = withContext(Dispatchers.IO) {
-        networkClient.httpClient.value.get(
-            urlString = PATH_UPLOADED_IMAGES,
-        ) {
-            url {
-                saveAppend(paginationOffset)
-                saveAppendLimit(paginationLimit)
-            }
-        }.body()
-    }
+    ): PageContainer<UploadedImage> = networkClient.httpClient.value.get(
+        urlString = PATH_UPLOADED_IMAGES,
+    ) {
+        url {
+            saveAppend(paginationOffset)
+            saveAppendLimit(paginationLimit)
+        }
+    }.body()
 
-    override suspend fun getUploadedImage(imageId: String): UploadedImage = withContext(Dispatchers.IO) {
-        networkClient.httpClient.value.get(
-            urlString = "$PATH_UPLOADED_IMAGES/$imageId",
-        ).body()
-    }
+    override suspend fun getUploadedImage(imageId: String): UploadedImage = networkClient.httpClient.value.get(
+        urlString = "$PATH_UPLOADED_IMAGES/$imageId",
+    ).body()
 
-    override suspend fun deleteUploadedImage(imageId: String): Boolean = withContext(Dispatchers.IO) {
-        networkClient.httpClient.value.delete(
-            urlString = "$PATH_UPLOADED_IMAGES/$imageId",
-        ).body()
-    }
+    override suspend fun deleteUploadedImage(imageId: String): Boolean = networkClient.httpClient.value.delete(
+        urlString = "$PATH_UPLOADED_IMAGES/$imageId",
+    ).body()
 
     private companion object {
         const val PATH_UPLOADED_IMAGES = "/uploaded_images"

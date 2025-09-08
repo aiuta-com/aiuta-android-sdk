@@ -116,7 +116,7 @@ public class AiutaFeatures(
         AiutaShareWatermarkFeature::class -> share?.watermark
         // Wishlist
         AiutaWishlistFeature::class -> wishlist
-        else -> throw NoSuchFeatureException(T::class.qualifiedName)
+        else -> throw NoSuchFeatureException(T::class.simpleName)
     } as? T
 
     /**
@@ -134,7 +134,7 @@ public class AiutaFeatures(
      */
     public inline fun <reified T : AiutaFeature> strictProvideFeature(): T = checkNotNull(provideFeature()) {
         """
-                Feature ${T::class.qualifiedName} is not initialized, therefore we can't provide it.
+                Feature ${T::class.simpleName} is not initialized, therefore we can't provide it.
                 Please, don't use it or create instance of AiutaFeatures with this feature.
         """.trimIndent()
     }
