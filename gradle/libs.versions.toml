@@ -27,7 +27,7 @@ ktor = "3.2.3"
 ksoup = "0.6.0"
 
 jetbrains-compose = "1.8.2"
-jetbrains-compose-hotreload = "1.0.0-beta06"
+jetbrains-compose-hotreload = "1.0.0-beta09"
 jetbrains-lifecycle = "2.9.3"
 
 kotlin = "2.2.10"
