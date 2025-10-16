@@ -3,6 +3,8 @@ package com.aiuta.fashionsdk.tryon.compose.ui.internal.utils.picker
 import android.content.Context
 import android.net.Uri
 import androidx.core.content.FileProvider
+import com.aiuta.fashionsdk.logger.AiutaLogger
+import com.aiuta.fashionsdk.logger.e
 import java.io.File
 import java.text.SimpleDateFormat
 import java.util.Date
@@ -10,13 +12,16 @@ import java.util.Locale
 
 internal fun newImageUri(
     context: Context,
-    fileDateFormat: String = "yyyy_MM_dd_hh_mm_ss_SSSZ",
+    logger: AiutaLogger?,
+    fileDateFormat: String = "yyyy_MM_dd_HH_mm_ss_SSS",
     fileExtension: String = "jpeg",
     locale: Locale = Locale.getDefault(),
 ): Uri? = try {
     // Get path of images
     val directory = File(context.cacheDir, "images")
-    directory.mkdirs()
+    if (!directory.exists()) {
+        directory.mkdirs()
+    }
 
     // Get new file
     val file =
@@ -39,5 +44,6 @@ internal fun newImageUri(
     )
 } catch (e: Exception) {
     // Fallback with null
+    logger?.e("Failed to create new image uri - $e", e)
     null
 }
