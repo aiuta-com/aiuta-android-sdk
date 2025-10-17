@@ -31,7 +31,7 @@ jobs:
                     bash ./scripts/update_version.sh $LAST_VERSION
 
             -   name: Setup gradle
-                uses: gradle/actions/setup-gradle@v4
+                uses: gradle/actions/setup-gradle@v5
 
             -   name: Release on maven central
                 env:
