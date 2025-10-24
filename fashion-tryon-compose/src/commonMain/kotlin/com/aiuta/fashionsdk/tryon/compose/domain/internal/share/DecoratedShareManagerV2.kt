@@ -7,11 +7,15 @@ import com.aiuta.fashionsdk.analytics.events.AiutaAnalyticsPageId
 import com.aiuta.fashionsdk.analytics.events.AiutaAnalyticsShareEvent
 import com.aiuta.fashionsdk.analytics.events.AiutaShareEventType
 import com.aiuta.fashionsdk.internal.analytics.InternalAiutaAnalytic
+import com.aiuta.fashionsdk.logger.AiutaLogger
+import com.aiuta.fashionsdk.logger.d
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.controller.composition.LocalAnalytic
+import com.aiuta.fashionsdk.tryon.compose.ui.internal.controller.composition.LocalController
 
 internal class DecoratedShareManagerV2(
     private val actualShareManager: ShareManagerV2,
     private val analytic: InternalAiutaAnalytic,
+    private val logger: AiutaLogger?,
 ) : ShareManagerV2 {
 
     override suspend fun shareImages(
@@ -30,6 +34,15 @@ internal class DecoratedShareManagerV2(
                 targetId = null,
             ),
         )
+        logger?.d(
+            message = buildString {
+                appendLine("DecoratedShareManagerV2: Start share image")
+                appendLine("pageId - $pageId")
+                appendLine("productIds - $productIds")
+                appendLine("imageUrls - $imageUrls")
+                appendLine("is watermark passed - ${watermark != null}")
+            },
+        )
 
         // Call real implementation
         return actualShareManager.shareImages(
@@ -46,14 +59,17 @@ internal class DecoratedShareManagerV2(
 internal fun rememberShareManagerV2(): ShareManagerV2 {
     val actualShareManager = rememberActualShareManagerV2()
     val analytic = LocalAnalytic.current
+    val controller = LocalController.current
 
     return remember(
         actualShareManager,
         analytic,
+        controller,
     ) {
         DecoratedShareManagerV2(
             actualShareManager = actualShareManager,
             analytic = analytic,
+            logger = controller.aiuta.logger,
         )
     }
 }
