@@ -1,3 +1,8 @@
+public final class com/aiuta/fashionsdk/tryon/compose/domain/internal/share/utils/AiutaTryOnFileProvider : androidx/core/content/FileProvider {
+	public static final field $stable I
+	public fun <init> ()V
+}
+
 public final class com/aiuta/fashionsdk/tryon/compose/ui/AiutaTryOnFlowKt {
 	public static final fun AiutaTryOnFlow (Landroidx/compose/ui/Modifier;Lcom/aiuta/fashionsdk/configuration/AiutaConfiguration;Lcom/aiuta/fashionsdk/configuration/features/models/product/ProductItem;Landroidx/compose/runtime/Composer;II)V
 }
