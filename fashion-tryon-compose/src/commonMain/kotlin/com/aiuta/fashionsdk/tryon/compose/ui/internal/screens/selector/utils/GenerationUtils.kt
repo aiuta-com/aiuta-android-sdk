@@ -307,24 +307,20 @@ private suspend fun FashionTryOnController.refreshActiveImage(
                 imageId = operation.uploadedSourceImageId,
             )
             if (lastSavedOperation.value?.operationId != currentOperationId) {
-                val images =
-                    operation.generatedImages.map { image ->
-                        UrlImage(
-                            imageId = image.id,
-                            imageUrl = image.imageUrl,
-                            imageType = image.type,
-                        )
-                    }
+                // Use source image instead of generated images
+                val sourceImage = UrlImage(
+                    imageId = operation.uploadedSourceImageId,
+                    imageUrl = operation.uploadedSourceImage,
+                    imageType = operation.uploadedSourceImageType,
+                )
 
                 // Warm up for smooth change
-                images.firstOrNull()?.let { image ->
-                    warmUpInteractor.saveWarmUp(image.imageUrl)
-                }
+                warmUpInteractor.saveWarmUp(sourceImage.imageUrl)
 
-                // Change to new
+                // Change to new operation with source image
                 val newOperation = GeneratedOperationUIModel(
                     operationId = currentOperationId,
-                    urlImages = images,
+                    urlImages = listOf(sourceImage),
                 )
 
                 updateActiveOperationOrSetEmpty(newOperation)
