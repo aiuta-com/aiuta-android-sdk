@@ -36,7 +36,7 @@ internal fun Context.getUriFromBitmap(
         bmpUri =
             FileProvider.getUriForFile(
                 this,
-                "${this.packageName}.aiuta.tryon.compose.fileprovider",
+                fileProviderAuthority(),
                 file,
             )
     } catch (e: IOException) {

@@ -4,7 +4,9 @@ import android.content.Context
 import android.net.Uri
 import androidx.core.content.FileProvider
 import com.aiuta.fashionsdk.logger.AiutaLogger
+import com.aiuta.fashionsdk.logger.d
 import com.aiuta.fashionsdk.logger.e
+import com.aiuta.fashionsdk.tryon.compose.domain.internal.share.utils.fileProviderAuthority
 import java.io.File
 import java.text.SimpleDateFormat
 import java.util.Date
@@ -17,6 +19,8 @@ internal fun newImageUri(
     fileExtension: String = "jpeg",
     locale: Locale = Locale.getDefault(),
 ): Uri? = try {
+    logger?.d("newImageUri(): Creating new image uri")
+
     // Get path of images
     val directory = File(context.cacheDir, "images")
     if (!directory.exists()) {
@@ -24,22 +28,20 @@ internal fun newImageUri(
     }
 
     // Get new file
-    val file =
-        File.createTempFile(
-            SimpleDateFormat(
-                fileDateFormat,
-                locale,
-            ).format(Date()),
-            ".$fileExtension",
-            directory,
-        )
+    val file = File.createTempFile(
+        SimpleDateFormat(
+            fileDateFormat,
+            locale,
+        ).format(Date()),
+        ".$fileExtension",
+        directory,
+    )
     // Authority of provider
-    val authority = "${context.packageName}.aiuta.tryon.compose.fileprovider"
 
     // Return uri of the file
     FileProvider.getUriForFile(
         context,
-        authority,
+        context.fileProviderAuthority(),
         file,
     )
 } catch (e: Exception) {

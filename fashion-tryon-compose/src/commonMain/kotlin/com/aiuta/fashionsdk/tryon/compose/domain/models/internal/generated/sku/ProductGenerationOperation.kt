@@ -3,6 +3,7 @@ package com.aiuta.fashionsdk.tryon.compose.domain.models.internal.generated.sku
 import androidx.compose.runtime.Immutable
 import com.aiuta.fashionsdk.tryon.compose.domain.models.internal.generated.images.GeneratedImageUIModel
 import com.aiuta.fashionsdk.tryon.compose.domain.models.internal.generated.images.toUiModel
+import com.aiuta.fashionsdk.tryon.core.data.datasource.image.models.AiutaFileType
 import com.aiuta.fashionsdk.tryon.core.domain.models.ProductGenerationStatus
 import com.aiuta.fashionsdk.tryon.core.domain.models.meta.AiutaTryOnMetadata
 
@@ -28,6 +29,7 @@ internal sealed interface ProductGenerationOperation {
         override val operationId: String,
         val uploadedSourceImageId: String,
         val uploadedSourceImage: String,
+        val uploadedSourceImageType: AiutaFileType,
         val generatedImages: List<GeneratedImageUIModel>,
         val metadata: AiutaTryOnMetadata,
     ) : ProductGenerationOperation
@@ -67,6 +69,7 @@ internal fun ProductGenerationStatus.toOperation(): ProductGenerationOperation =
             operationId = statusId,
             uploadedSourceImageId = sourceImageId,
             uploadedSourceImage = sourceImageUrl,
+            uploadedSourceImageType = sourceImageType,
             generatedImages = images.map { it.toUiModel() },
             metadata = metadata,
         )

@@ -28,6 +28,7 @@ import com.aiuta.fashionsdk.configuration.features.picker.model.AiutaImagePicker
 import com.aiuta.fashionsdk.tryon.compose.domain.models.internal.generated.images.LastSavedImages
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.analytic.sendPickerAnalytic
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.controller.activateAutoTryOn
+import com.aiuta.fashionsdk.tryon.compose.ui.internal.controller.composition.LocalAiutaLogger
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.controller.composition.LocalAiutaTryOnDialogController
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.controller.composition.LocalController
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.controller.dialog.AiutaTryOnDialogState
@@ -53,6 +54,7 @@ import com.aiuta.fashionsdk.tryon.compose.uikit.utils.clickableUnindicated
 internal fun ColumnScope.ImagePickerSheet(pickerData: NavigationBottomSheetScreen.ImagePicker) {
     val controller = LocalController.current
     val dialogController = LocalAiutaTryOnDialogController.current
+    val logger = LocalAiutaLogger.current
 
     val cameraFeature = provideFeature<AiutaImagePickerCameraFeature>()
     val photoGalleryFeature = provideFeature<AiutaImagePickerPhotoGalleryFeature>()
@@ -74,32 +76,33 @@ internal fun ColumnScope.ImagePickerSheet(pickerData: NavigationBottomSheetScree
 
     val scope = rememberCoroutineScope()
 
-    val cameraManager =
-        rememberCameraManager { file ->
+    val cameraManager = rememberCameraManager { file ->
+        controller.sendPickerAnalytic(
+            event = AiutaAnalyticsPickerEventType.NEW_PHOTO_TAKEN,
+            pageId = pickerData.originPageId,
+        )
+        controller.lastSavedImages.value =
+            LastSavedImages.PlatformImageSource(
+                platformFiles = listOf(file),
+            )
+        // Activate try on
+        controller.activateAutoTryOn()
+        // Move back
+        controller.bottomSheetNavigator.hide()
+    }
+
+    val galleryManager = rememberImagePickerLauncher { files ->
+        if (files.isNotEmpty()) {
             controller.sendPickerAnalytic(
-                event = AiutaAnalyticsPickerEventType.NEW_PHOTO_TAKEN,
+                event = AiutaAnalyticsPickerEventType.GALLERY_PHOTO_SELECTED,
                 pageId = pickerData.originPageId,
             )
-            controller.lastSavedImages.value =
-                LastSavedImages.PlatformImageSource(
-                    platformFiles = listOf(file),
-                )
+            controller.lastSavedImages.value = LastSavedImages.PlatformImageSource(files)
             // Activate try on
             controller.activateAutoTryOn()
             // Move back
             controller.bottomSheetNavigator.hide()
         }
-
-    val galleryManager = rememberImagePickerLauncher { files ->
-        controller.sendPickerAnalytic(
-            event = AiutaAnalyticsPickerEventType.GALLERY_PHOTO_SELECTED,
-            pageId = pickerData.originPageId,
-        )
-        controller.lastSavedImages.value = LastSavedImages.PlatformImageSource(files)
-        // Activate try on
-        controller.activateAutoTryOn()
-        // Move back
-        controller.bottomSheetNavigator.hide()
     }
 
     SheetDivider()
@@ -129,9 +132,8 @@ internal fun ColumnScope.ImagePickerSheet(pickerData: NavigationBottomSheetScree
                             scope.actionWithPermission(
                                 pickerSource = AiutaPickerSource.CAMERA,
                                 permissionHandler = permissionHandler,
-                                onGranted = {
-                                    cameraManager.launch()
-                                },
+                                logger = logger,
+                                onGranted = cameraManager::launch,
                                 onAlwaysDenied = {
                                     controller.bottomSheetNavigator.hide()
                                     dialogController.showDialog(
@@ -156,9 +158,8 @@ internal fun ColumnScope.ImagePickerSheet(pickerData: NavigationBottomSheetScree
                             scope.actionWithPermission(
                                 pickerSource = AiutaPickerSource.GALLERY,
                                 permissionHandler = permissionHandler,
-                                onGranted = {
-                                    galleryManager.launch()
-                                },
+                                logger = logger,
+                                onGranted = galleryManager::launch,
                                 onAlwaysDenied = {
                                     // Show nothing
                                     controller.bottomSheetNavigator.hide()

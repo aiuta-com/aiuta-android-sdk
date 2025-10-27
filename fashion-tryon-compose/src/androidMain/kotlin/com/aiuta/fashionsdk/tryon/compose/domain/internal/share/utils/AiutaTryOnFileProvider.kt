@@ -1,5 +1,6 @@
 package com.aiuta.fashionsdk.tryon.compose.domain.internal.share.utils
 
+import android.content.Context
 import androidx.core.content.FileProvider
 
 /**
@@ -9,3 +10,5 @@ import androidx.core.content.FileProvider
  * with the host application's FileProvider configuration.
  */
 public class AiutaTryOnFileProvider : FileProvider()
+
+internal fun Context.fileProviderAuthority(): String = "$packageName.aiuta.tryon.compose.fileprovider"
