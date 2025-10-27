@@ -1,5 +1,9 @@
 package com.aiuta.fashionsdk.tryon.compose.ui.internal.utils.permission
 
+import com.aiuta.fashionsdk.logger.AiutaLogger
+import com.aiuta.fashionsdk.logger.d
+import com.aiuta.fashionsdk.logger.e
+import com.aiuta.fashionsdk.logger.w
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.utils.permission.exception.AiutaDeniedAlwaysException
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.launch
@@ -7,6 +11,7 @@ import kotlinx.coroutines.launch
 internal fun CoroutineScope.actionWithPermission(
     pickerSource: AiutaPickerSource,
     permissionHandler: AiutaPermissionHandler,
+    logger: AiutaLogger?,
     onGranted: suspend () -> Unit,
     onAlwaysDenied: suspend () -> Unit,
 ) {
@@ -20,7 +25,7 @@ internal fun CoroutineScope.actionWithPermission(
                 try {
                     val permissionState = permissionHandler.getPermissionState(pickerSource)
 
-                    println("actionWithPermission(): permissionState - $permissionState")
+                    logger?.d("actionWithPermission(): permissionState - $permissionState")
 
                     if (permissionState == AiutaPermissionState.DENIED_ALWAYS) {
                         onAlwaysDenied()
@@ -30,10 +35,10 @@ internal fun CoroutineScope.actionWithPermission(
                         onGranted()
                     }
                 } catch (e: AiutaDeniedAlwaysException) {
-                    println("actionWithPermission(): DeniedAlwaysException exception")
+                    logger?.w("actionWithPermission(): DeniedAlwaysException exception - $e")
                     onAlwaysDenied()
                 } catch (e: Exception) {
-                    println("actionWithPermission(): general exception - $e")
+                    logger?.e("actionWithPermission(): general exception - $e")
                     // Just intercept
                 }
             }

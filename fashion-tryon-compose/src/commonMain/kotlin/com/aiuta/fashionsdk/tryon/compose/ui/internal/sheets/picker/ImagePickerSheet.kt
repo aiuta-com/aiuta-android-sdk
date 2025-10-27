@@ -28,6 +28,7 @@ import com.aiuta.fashionsdk.configuration.features.picker.model.AiutaImagePicker
 import com.aiuta.fashionsdk.tryon.compose.domain.models.internal.generated.images.LastSavedImages
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.analytic.sendPickerAnalytic
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.controller.activateAutoTryOn
+import com.aiuta.fashionsdk.tryon.compose.ui.internal.controller.composition.LocalAiutaLogger
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.controller.composition.LocalAiutaTryOnDialogController
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.controller.composition.LocalController
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.controller.dialog.AiutaTryOnDialogState
@@ -53,6 +54,7 @@ import com.aiuta.fashionsdk.tryon.compose.uikit.utils.clickableUnindicated
 internal fun ColumnScope.ImagePickerSheet(pickerData: NavigationBottomSheetScreen.ImagePicker) {
     val controller = LocalController.current
     val dialogController = LocalAiutaTryOnDialogController.current
+    val logger = LocalAiutaLogger.current
 
     val cameraFeature = provideFeature<AiutaImagePickerCameraFeature>()
     val photoGalleryFeature = provideFeature<AiutaImagePickerPhotoGalleryFeature>()
@@ -130,9 +132,8 @@ internal fun ColumnScope.ImagePickerSheet(pickerData: NavigationBottomSheetScree
                             scope.actionWithPermission(
                                 pickerSource = AiutaPickerSource.CAMERA,
                                 permissionHandler = permissionHandler,
-                                onGranted = {
-                                    cameraManager.launch()
-                                },
+                                logger = logger,
+                                onGranted = cameraManager::launch,
                                 onAlwaysDenied = {
                                     controller.bottomSheetNavigator.hide()
                                     dialogController.showDialog(
@@ -157,9 +158,8 @@ internal fun ColumnScope.ImagePickerSheet(pickerData: NavigationBottomSheetScree
                             scope.actionWithPermission(
                                 pickerSource = AiutaPickerSource.GALLERY,
                                 permissionHandler = permissionHandler,
-                                onGranted = {
-                                    galleryManager.launch()
-                                },
+                                logger = logger,
+                                onGranted = galleryManager::launch,
                                 onAlwaysDenied = {
                                     // Show nothing
                                     controller.bottomSheetNavigator.hide()
