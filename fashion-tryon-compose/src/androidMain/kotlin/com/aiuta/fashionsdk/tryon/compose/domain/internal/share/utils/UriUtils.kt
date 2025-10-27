@@ -36,7 +36,7 @@ internal fun Context.getUriFromBitmap(
         bmpUri =
             FileProvider.getUriForFile(
                 this,
-                AIUTA_TRYON_FILE_PROVIDER_AUTHORITY,
+                fileProviderAuthority(),
                 file,
             )
     } catch (e: IOException) {

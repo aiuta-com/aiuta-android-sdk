@@ -6,7 +6,7 @@ import androidx.core.content.FileProvider
 import com.aiuta.fashionsdk.logger.AiutaLogger
 import com.aiuta.fashionsdk.logger.d
 import com.aiuta.fashionsdk.logger.e
-import com.aiuta.fashionsdk.tryon.compose.domain.internal.share.utils.AIUTA_TRYON_FILE_PROVIDER_AUTHORITY
+import com.aiuta.fashionsdk.tryon.compose.domain.internal.share.utils.fileProviderAuthority
 import java.io.File
 import java.text.SimpleDateFormat
 import java.util.Date
@@ -41,7 +41,7 @@ internal fun newImageUri(
     // Return uri of the file
     FileProvider.getUriForFile(
         context,
-        AIUTA_TRYON_FILE_PROVIDER_AUTHORITY,
+        context.fileProviderAuthority(),
         file,
     )
 } catch (e: Exception) {
