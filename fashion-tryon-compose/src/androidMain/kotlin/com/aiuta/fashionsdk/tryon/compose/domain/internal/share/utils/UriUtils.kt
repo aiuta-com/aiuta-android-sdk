@@ -5,6 +5,8 @@ import android.graphics.Bitmap
 import android.net.Uri
 import android.os.Environment
 import androidx.core.content.FileProvider
+import com.aiuta.fashionsdk.logger.AiutaLogger
+import com.aiuta.fashionsdk.logger.e
 import java.io.File
 import java.io.FileOutputStream
 import java.io.IOException
@@ -13,6 +15,7 @@ internal fun Context.getUriFromBitmap(
     bmp: Bitmap,
     qualityPercent: Int = 100,
     isCache: Boolean,
+    logger: AiutaLogger?,
 ): Uri? {
     var bmpUri: Uri? = null // Initialize the Uri object to null.
     try {
@@ -38,6 +41,7 @@ internal fun Context.getUriFromBitmap(
             )
     } catch (e: IOException) {
         // If an IOException occurs, ignore fallback
+        logger?.e("AndroidShareManagerV2: Failed to get uri from bitmap - $e ")
     }
     // Return the Uri object, which may be null if an exception was caught.
     return bmpUri

@@ -21,9 +21,13 @@ import coil3.request.ImageRequest
 import coil3.request.allowHardware
 import coil3.toBitmap
 import com.aiuta.fashionsdk.analytics.events.AiutaAnalyticsPageId
+import com.aiuta.fashionsdk.logger.AiutaLogger
+import com.aiuta.fashionsdk.logger.e
+import com.aiuta.fashionsdk.logger.w
 import com.aiuta.fashionsdk.tryon.compose.domain.internal.share.utils.addWatermark
 import com.aiuta.fashionsdk.tryon.compose.domain.internal.share.utils.getUriFromBitmap
 import com.aiuta.fashionsdk.tryon.compose.domain.internal.share.utils.shareContent
+import com.aiuta.fashionsdk.tryon.compose.ui.internal.controller.composition.LocalController
 import kotlin.coroutines.coroutineContext
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.ensureActive
@@ -34,6 +38,7 @@ internal class AndroidShareManagerV2(
     private val context: Context,
     private val density: Density,
     private val layoutDirection: LayoutDirection,
+    private val logger: AiutaLogger?,
 ) : ShareManagerV2 {
     override suspend fun shareImages(
         content: String?,
@@ -79,13 +84,15 @@ internal class AndroidShareManagerV2(
                         } ?: mutableBitmap
                     } catch (e: Exception) {
                         // Failed to add watermark
+                        logger?.w("AndroidShareManagerV2: Failed to add watermark - $e")
                         mutableBitmap
                     }
 
-                context.getUriFromBitmap(bmp = modifierBitmap, isCache = true)
+                context.getUriFromBitmap(bmp = modifierBitmap, isCache = true, logger = logger)
             }
         } catch (e: Exception) {
             // Failed get bitmap
+            logger?.e("AndroidShareManagerV2: Failed to convert bitmap url $bitmap to uri - $e")
             coroutineContext.ensureActive()
             null
         }
@@ -100,6 +107,7 @@ internal class AndroidShareManagerV2(
         SingletonImageLoader.get(coilContext).execute(request).image?.toBitmap()
     } catch (e: Exception) {
         // Failed to resolve bitmap
+        logger?.e("AndroidShareManagerV2: Failed to convert url $imageUrl to bitmap - $e")
         coroutineContext.ensureActive()
         null
     }
@@ -119,6 +127,7 @@ internal class AndroidShareManagerV2(
 internal actual fun rememberActualShareManagerV2(): ShareManagerV2 {
     val coilContext = LocalPlatformContext.current
     val context = LocalContext.current
+    val controller = LocalController.current
     val density = LocalDensity.current
     val layoutDirection = LocalLayoutDirection.current
 
@@ -128,6 +137,7 @@ internal actual fun rememberActualShareManagerV2(): ShareManagerV2 {
             context = context,
             density = density,
             layoutDirection = layoutDirection,
+            logger = controller.aiuta.logger,
         )
     }
 }

@@ -11,7 +11,7 @@
 
 
         <provider
-            android:name="androidx.core.content.FileProvider"
+            android:name="com.aiuta.fashionsdk.tryon.compose.domain.internal.share.utils.AiutaTryOnFileProvider"
             android:authorities="${applicationId}.aiuta.tryon.compose.fileprovider"
             android:exported="false"
             android:grantUriPermissions="true">
