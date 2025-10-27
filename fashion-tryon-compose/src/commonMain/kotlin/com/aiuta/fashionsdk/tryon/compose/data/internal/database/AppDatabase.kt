@@ -9,6 +9,7 @@ import com.aiuta.fashionsdk.Aiuta
 import com.aiuta.fashionsdk.context.AiutaPlatformContext
 import com.aiuta.fashionsdk.tryon.compose.data.internal.database.builder.buildRoomDatabase
 import com.aiuta.fashionsdk.tryon.compose.data.internal.database.converters.ListStringsConverter
+import com.aiuta.fashionsdk.tryon.compose.data.internal.database.converters.PowerByStickerConverter
 import com.aiuta.fashionsdk.tryon.compose.data.internal.database.converters.TryOnModelsCategoriesConverter
 import com.aiuta.fashionsdk.tryon.compose.data.internal.datasource.code.dao.AiutaCodeDao
 import com.aiuta.fashionsdk.tryon.compose.data.internal.datasource.code.dao.replaceAll
@@ -18,6 +19,7 @@ import com.aiuta.fashionsdk.tryon.compose.data.internal.datasource.generated.ima
 import com.aiuta.fashionsdk.tryon.compose.data.internal.datasource.generated.operations.dao.GeneratedOperationDao
 import com.aiuta.fashionsdk.tryon.compose.data.internal.datasource.generated.operations.dao.SourceImageDao
 import com.aiuta.fashionsdk.tryon.compose.data.internal.datasource.onboarding.dao.OnboardingDao
+import com.aiuta.fashionsdk.tryon.compose.data.internal.datasource.subscription.dao.SubscriptionDetailsDao
 import com.aiuta.fashionsdk.tryon.compose.data.internal.datasource.time.dao.TimeDao
 import com.aiuta.fashionsdk.tryon.compose.data.internal.entity.local.code.AiutaCodeEntity
 import com.aiuta.fashionsdk.tryon.compose.data.internal.entity.local.config.ClientConfigEntity
@@ -26,6 +28,7 @@ import com.aiuta.fashionsdk.tryon.compose.data.internal.entity.local.generated.i
 import com.aiuta.fashionsdk.tryon.compose.data.internal.entity.local.generated.images.SourceImageEntity
 import com.aiuta.fashionsdk.tryon.compose.data.internal.entity.local.generated.operations.GeneratedOperationEntity
 import com.aiuta.fashionsdk.tryon.compose.data.internal.entity.local.onboarding.OnboardingEntity
+import com.aiuta.fashionsdk.tryon.compose.data.internal.entity.local.subscription.SubscriptionDetailsEntity
 import com.aiuta.fashionsdk.tryon.compose.data.internal.entity.local.time.TimestampEntity
 import kotlin.concurrent.Volatile
 import kotlinx.atomicfu.locks.SynchronizedObject
@@ -36,7 +39,7 @@ import kotlinx.coroutines.sync.Mutex
 import kotlinx.coroutines.sync.withLock
 import kotlinx.coroutines.withContext
 
-internal const val DATABASE_VERSION = 18
+internal const val DATABASE_VERSION = 19
 internal const val ANDROID_DATABASE_NAME = "fashionsdk-database"
 internal const val DATABASE_NAME = "fashionsdk-database.db"
 
@@ -44,6 +47,7 @@ internal const val DATABASE_NAME = "fashionsdk-database.db"
     entities = [
         // Config
         ClientConfigEntity::class,
+        SubscriptionDetailsEntity::class,
 
         // Consent
         ObtainedConsentEntity::class,
@@ -72,12 +76,16 @@ internal const val DATABASE_NAME = "fashionsdk-database.db"
         // Config
         TryOnModelsCategoriesConverter::class,
         ListStringsConverter::class,
+        // Subscription details
+        PowerByStickerConverter::class,
     ],
 )
 @ConstructedBy(AppDatabaseConstructor::class)
 internal abstract class AppDatabase : RoomDatabase() {
     // Remote config
     abstract fun configDao(): ConfigDao
+
+    abstract fun subscriptionDetailsDao(): SubscriptionDetailsDao
 
     // Remote config
     abstract fun timeDao(): TimeDao
