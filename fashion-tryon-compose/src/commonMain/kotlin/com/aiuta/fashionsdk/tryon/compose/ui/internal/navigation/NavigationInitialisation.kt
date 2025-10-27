@@ -7,6 +7,7 @@ import androidx.compose.ui.Modifier
 import com.aiuta.fashionsdk.configuration.AiutaConfiguration
 import com.aiuta.fashionsdk.configuration.features.models.product.ProductItem
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.controller.composition.LocalAiutaFeatures
+import com.aiuta.fashionsdk.tryon.compose.ui.internal.controller.composition.LocalAiutaLogger
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.controller.composition.LocalAiutaTryOnDataController
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.controller.composition.LocalAiutaTryOnDialogController
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.controller.composition.LocalAiutaTryOnLoadingActionsController
@@ -41,6 +42,7 @@ internal fun NavigationInitialisation(
             LocalAnalytic provides controller.analytic,
             LocalController provides controller,
             LocalTheme provides aiutaConfiguration.userInterface.theme,
+            LocalAiutaLogger provides aiutaConfiguration.aiuta.logger,
             LocalAiutaFeatures provides aiutaConfiguration.features,
             LocalAiutaTryOnDataController provides rememberAiutaTryOnDataController(
                 aiuta = { aiutaConfiguration.aiuta },

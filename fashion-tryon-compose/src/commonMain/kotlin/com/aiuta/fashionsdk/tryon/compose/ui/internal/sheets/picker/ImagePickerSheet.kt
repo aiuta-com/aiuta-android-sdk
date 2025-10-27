@@ -74,32 +74,33 @@ internal fun ColumnScope.ImagePickerSheet(pickerData: NavigationBottomSheetScree
 
     val scope = rememberCoroutineScope()
 
-    val cameraManager =
-        rememberCameraManager { file ->
+    val cameraManager = rememberCameraManager { file ->
+        controller.sendPickerAnalytic(
+            event = AiutaAnalyticsPickerEventType.NEW_PHOTO_TAKEN,
+            pageId = pickerData.originPageId,
+        )
+        controller.lastSavedImages.value =
+            LastSavedImages.PlatformImageSource(
+                platformFiles = listOf(file),
+            )
+        // Activate try on
+        controller.activateAutoTryOn()
+        // Move back
+        controller.bottomSheetNavigator.hide()
+    }
+
+    val galleryManager = rememberImagePickerLauncher { files ->
+        if (files.isNotEmpty()) {
             controller.sendPickerAnalytic(
-                event = AiutaAnalyticsPickerEventType.NEW_PHOTO_TAKEN,
+                event = AiutaAnalyticsPickerEventType.GALLERY_PHOTO_SELECTED,
                 pageId = pickerData.originPageId,
             )
-            controller.lastSavedImages.value =
-                LastSavedImages.PlatformImageSource(
-                    platformFiles = listOf(file),
-                )
+            controller.lastSavedImages.value = LastSavedImages.PlatformImageSource(files)
             // Activate try on
             controller.activateAutoTryOn()
             // Move back
             controller.bottomSheetNavigator.hide()
         }
-
-    val galleryManager = rememberImagePickerLauncher { files ->
-        controller.sendPickerAnalytic(
-            event = AiutaAnalyticsPickerEventType.GALLERY_PHOTO_SELECTED,
-            pageId = pickerData.originPageId,
-        )
-        controller.lastSavedImages.value = LastSavedImages.PlatformImageSource(files)
-        // Activate try on
-        controller.activateAutoTryOn()
-        // Move back
-        controller.bottomSheetNavigator.hide()
     }
 
     SheetDivider()

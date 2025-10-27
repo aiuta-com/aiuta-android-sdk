@@ -10,19 +10,25 @@ import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.platform.LocalContext
 import com.aiuta.fashionsdk.io.AiutaPlatformFile
-import com.aiuta.fashionsdk.tryon.compose.ui.internal.controller.composition.LocalController
+import com.aiuta.fashionsdk.logger.d
+import com.aiuta.fashionsdk.logger.e
+import com.aiuta.fashionsdk.tryon.compose.ui.internal.controller.composition.LocalAiutaLogger
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.utils.picker.newImageUri
 
 @Composable
 internal actual fun rememberCameraManager(onResult: (AiutaPlatformFile) -> Unit): CameraManager {
     val context = LocalContext.current
-    val controller = LocalController.current
+    val logger = LocalAiutaLogger.current
+
     var tempPhotoUri by remember { mutableStateOf(value = Uri.EMPTY) }
     val cameraLauncher = rememberLauncherForActivityResult(
         contract = ActivityResultContracts.TakePicture(),
         onResult = { success ->
             if (success) {
+                logger?.d("CameraManager: successfully get image with uri - $tempPhotoUri")
                 tempPhotoUri?.let { onResult.invoke(AiutaPlatformFile(tempPhotoUri)) }
+            } else {
+                logger?.e("CameraManager: failed to get image from camera")
             }
         },
     )
@@ -32,7 +38,7 @@ internal actual fun rememberCameraManager(onResult: (AiutaPlatformFile) -> Unit)
             onLaunch = {
                 tempPhotoUri = newImageUri(
                     context = context,
-                    logger = controller.aiuta.logger,
+                    logger = logger,
                 )
                 tempPhotoUri?.let { uri ->
                     cameraLauncher.launch(uri)
