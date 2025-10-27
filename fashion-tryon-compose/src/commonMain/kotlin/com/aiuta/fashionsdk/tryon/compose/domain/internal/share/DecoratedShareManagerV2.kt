@@ -9,6 +9,7 @@ import com.aiuta.fashionsdk.analytics.events.AiutaShareEventType
 import com.aiuta.fashionsdk.internal.analytics.InternalAiutaAnalytic
 import com.aiuta.fashionsdk.logger.AiutaLogger
 import com.aiuta.fashionsdk.logger.d
+import com.aiuta.fashionsdk.logger.e
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.controller.composition.LocalAnalytic
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.controller.composition.LocalController
 
@@ -51,7 +52,9 @@ internal class DecoratedShareManagerV2(
             productIds = productIds,
             imageUrls = imageUrls,
             watermark = watermark,
-        )
+        ).onFailure { exception ->
+            logger?.e("DecoratedShareManagerV2: Failed to share images - $exception, ${exception.message}")
+        }
     }
 }
 
