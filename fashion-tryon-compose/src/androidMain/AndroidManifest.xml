@@ -12,7 +12,7 @@
 
         <provider
             android:name="com.aiuta.fashionsdk.tryon.compose.domain.internal.share.utils.AiutaTryOnFileProvider"
-            android:authorities="${applicationId}.aiuta.tryon.compose.fileprovider"
+            android:authorities="com.aiuta.fashionsdk.fileprovider"
             android:exported="false"
             android:grantUriPermissions="true">
             <meta-data

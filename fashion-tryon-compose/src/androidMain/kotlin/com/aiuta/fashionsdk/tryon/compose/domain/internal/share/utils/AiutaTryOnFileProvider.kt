@@ -9,3 +9,5 @@ import androidx.core.content.FileProvider
  * with the host application's FileProvider configuration.
  */
 public class AiutaTryOnFileProvider : FileProvider()
+
+internal const val AIUTA_TRYON_FILE_PROVIDER_AUTHORITY = "com.aiuta.fashionsdk.fileprovider"
