@@ -13,7 +13,7 @@ coroutines = "1.10.2"
 coil3 = "3.3.0"
 compose-placeholder = "1.0.12"
 
-dokka = "2.0.0"
+dokka = "2.1.0"
 
 gradle-plugin-android = "8.13.0"
 gradle-plugin-vanniktech-publish = "0.34.0"
