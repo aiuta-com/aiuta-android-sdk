@@ -7,7 +7,7 @@ import io.ktor.client.HttpClient
  * Public interface of [NetworkClient] for creating network requests.
  *
  * In the current implementation, all interaction will be done via [httpClient]
- * as part of [io.ktor]
+ * as part of io.ktor
  */
 public interface NetworkClient {
     public val httpClient: Lazy<HttpClient>

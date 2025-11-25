@@ -1,6 +1,8 @@
 package com.aiuta.fashionsdk.tryon.core
 
 import com.aiuta.fashionsdk.Aiuta
+import com.aiuta.fashionsdk.network.exceptions.FashionIOException
+import com.aiuta.fashionsdk.network.exceptions.FashionNetworkDisconnectedException
 import com.aiuta.fashionsdk.network.paging.models.PageContainer
 import com.aiuta.fashionsdk.network.paging.models.PaginationOffset
 import com.aiuta.fashionsdk.tryon.core.domain.AiutaTryOnImpl

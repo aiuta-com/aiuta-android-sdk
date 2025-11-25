@@ -37,7 +37,6 @@ import kotlinx.coroutines.withContext
  * Previewing [LazyPagingItems] is supported on a list of mock data. See sample for how to preview
  * mock data.
  *
- * @sample androidx.paging.compose.samples.PagingPreview
  * @param T the type of value used by [PagingData].
  */
 internal class LazyPagingItems<T : Any>
@@ -118,7 +117,7 @@ internal constructor(
      *
      * [refresh] triggers the creation of a new [PagingData] with a new instance of [PagingSource]
      * to represent an updated snapshot of the backing dataset. If a [RemoteMediator] is set,
-     * calling [refresh] will also trigger a call to [RemoteMediator.load] with [LoadType] [REFRESH]
+     * calling [refresh] will also trigger a call to [RemoteMediator.load] with LoadType REFRESH
      * to allow [RemoteMediator] to check for updates to the dataset backing [PagingSource].
      *
      * Note: This API is intended for UI-driven refresh signals, such as swipe-to-refresh.
@@ -162,7 +161,6 @@ private val InitialLoadStates =
  * instance. The [LazyPagingItems] instance can be used for lazy foundations such as
  * [LazyListScope.items] in order to display the data obtained from a [Flow] of [PagingData].
  *
- * @sample androidx.paging.compose.samples.PagingBackendSample
  * @param context the [CoroutineContext] to perform the collection of [PagingData] and
  *   [CombinedLoadStates].
  */

@@ -55,7 +55,7 @@ internal fun rememberAiutaPermissionsController(): AiutaPermissionsControllerImp
 /**
  * This is copy past from Moko permission library to
  * support possibility init contrroler with [ActivityResultRegistryOwner],
- * therefore [bind] method is extended with [resultRegistry] param, but under the
+ * therefore [bind] method is extended with resultRegistry param, but under the
  * hood it has same logic as origin.
  *
  * We need it to support custom logic of Flutter bottom sheet injection in parent activity

@@ -5,4 +5,4 @@ set -e
 rm -rf ./docs/api
 
 # Build bew
-./gradlew clean dokkaHtmlMultiModule
+./gradlew clean dokkaGenerate

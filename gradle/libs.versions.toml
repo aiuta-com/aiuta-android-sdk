@@ -57,6 +57,7 @@ coil3-network-ktor3 = { module = "io.coil-kt.coil3:coil-network-ktor3", version.
 compose-placeholder = { module = "com.eygraber:compose-placeholder", version.ref = "compose-placeholder" }
 
 gradlePlugin-android = { module = "com.android.tools.build:gradle", version.ref = "gradle-plugin-android" }
+gradlePlugin-dokka = { module = "org.jetbrains.dokka:dokka-gradle-plugin", version.ref = "dokka" }
 gradlePlugin-kotlin = { module = "org.jetbrains.kotlin:kotlin-gradle-plugin", version.ref = "kotlin" }
 gradlePlugin-kotlin-compose = { module = "org.jetbrains.kotlin:compose-compiler-gradle-plugin", version.ref = "kotlin" }
 gradlePlugin-jetbrains-compose = { module = "org.jetbrains.compose:compose-gradle-plugin", version.ref = "jetbrains-compose" }
@@ -102,8 +103,6 @@ room = { id = "androidx.room", version.ref = "room" }
 baselineProfile = { id = "androidx.baselineprofile", version.ref = "androidx-benchmark" }
 binaryCompatibility = { id = "org.jetbrains.kotlinx.binary-compatibility-validator", version.ref = "binaryCompatibility" }
 buildKonfig = { id = "com.codingfeline.buildkonfig", version.ref = "buildKonfig" }
-
-dokka = { id = "org.jetbrains.dokka", version.ref = "dokka" }
 
 jetbrains-compose-hotreload = { id = "org.jetbrains.compose.hot-reload", version.ref = "jetbrains-compose-hotreload" }
 

@@ -16,6 +16,7 @@ import org.jetbrains.kotlin.gradle.tasks.KotlinCompile
 import com.vanniktech.maven.publish.AndroidSingleVariantLibrary
 import com.vanniktech.maven.publish.KotlinMultiplatform
 import com.vanniktech.maven.publish.JavadocJar.Dokka
+import org.jetbrains.dokka.gradle.DokkaExtension
 
 fun Project.androidLibrary(
     name: String,
@@ -34,9 +35,10 @@ fun Project.androidLibrary(
     if (project.name in publicModules) {
         apply(plugin = "org.jetbrains.dokka")
         apply(plugin = "com.vanniktech.maven.publish.base")
+        setupDokka()
         setupPublishing {
             val platform = if (project.plugins.hasPlugin("org.jetbrains.kotlin.multiplatform")) {
-                KotlinMultiplatform(Dokka("dokkaHtml"))
+                KotlinMultiplatform(Dokka("dokkaGenerate"))
             } else {
                 AndroidSingleVariantLibrary()
             }
@@ -167,4 +169,34 @@ internal fun <T : BaseExtension> Project.android(action: T.() -> Unit) {
 
 private fun BaseExtension.lint(action: Lint.() -> Unit) {
     (this as CommonExtension<*, *, *, *, *, *>).lint(action)
+}
+
+private fun Project.setupDokka(
+    action: DokkaExtension.() -> Unit = {},
+) {
+    extensions.configure<DokkaExtension> {
+        dokkaPublications.configureEach {
+            failOnWarning.set(true)
+            suppressInheritedMembers.set(true)
+        }
+        dokkaSourceSets.configureEach {
+            jdkVersion.set(8)
+            skipDeprecated.set(true)
+
+            externalDocumentationLinks.register("android") {
+                url.set(uri("https://developer.android.com/reference/"))
+            }
+            externalDocumentationLinks.register("coroutines") {
+                url.set(uri("https://kotlinlang.org/api/kotlinx.coroutines/"))
+            }
+            externalDocumentationLinks.register("ktor") {
+                url.set(uri("https://api.ktor.io/"))
+            }
+            externalDocumentationLinks.register("datetime") {
+                url.set(uri("https://kotlinlang.org/api/kotlinx-datetime/"))
+                packageListUrl.set(uri("https://kotlinlang.org/api/kotlinx-datetime/kotlinx-datetime/package-list"))
+            }
+        }
+        action()
+    }
 }
