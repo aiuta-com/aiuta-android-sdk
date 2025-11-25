@@ -40,7 +40,7 @@ mockk = "1.14.6"
 moko = "0.20.1"
 
 spotless = "8.0.0"
-sqlite = "2.6.1"
+sqlite = "2.6.2"
 uiUnitAndroid = "1.9.3"
 
 
