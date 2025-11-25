@@ -1,12 +1,11 @@
 import com.aiuta.fashionsdk.groupId
+import com.aiuta.fashionsdk.publicModulePath
 import com.aiuta.fashionsdk.publicModules
 import com.aiuta.fashionsdk.versionName
 import com.diffplug.gradle.spotless.SpotlessExtension
 import com.diffplug.gradle.spotless.SpotlessExtensionPredeclare
 import kotlinx.validation.ApiValidationExtension
 import kotlinx.validation.ExperimentalBCVApi
-import org.jetbrains.dokka.gradle.DokkaMultiModuleTask
-import org.jetbrains.dokka.gradle.DokkaTaskPartial
 import org.jetbrains.kotlin.gradle.dsl.JvmTarget
 import org.jetbrains.kotlin.gradle.tasks.KotlinJvmCompile
 
@@ -28,11 +27,12 @@ plugins {
     alias(libs.plugins.baselineProfile) apply false
     alias(libs.plugins.binaryCompatibility)
     alias(libs.plugins.buildKonfig) apply false
-    alias(libs.plugins.dokka)
     alias(libs.plugins.kotlinx.serialization) apply false
     alias(libs.plugins.ksp) apply false
     alias(libs.plugins.jetbrains.compose.hotreload) apply false
     alias(libs.plugins.spotless)
+    // https://github.com/gradle/gradle/issues/20084#issuecomment-1060822638
+    id("org.jetbrains.dokka")
 }
 
 extensions.configure<ApiValidationExtension> {
@@ -46,8 +46,17 @@ extensions.configure<ApiValidationExtension> {
     }
 }
 
-tasks.withType<DokkaMultiModuleTask>().configureEach {
-    outputDirectory = layout.projectDirectory.dir("docs/api")
+dokka {
+    dokkaGeneratorIsolation = ClassLoaderIsolation()
+    dokkaPublications.configureEach {
+        outputDirectory.set(layout.projectDirectory.dir("docs/api"))
+    }
+}
+
+dependencies {
+    for (module in publicModules) {
+        dokka(project(publicModulePath(module)))
+    }
 }
 
 tasks.register<Exec>("installGitHooks") {
@@ -79,15 +88,6 @@ allprojects {
     }
     tasks.withType<KotlinJvmCompile>().configureEach {
         compilerOptions.jvmTarget = JvmTarget.JVM_11
-    }
-
-    tasks.withType<DokkaTaskPartial>().configureEach {
-        dokkaSourceSets.configureEach {
-            jdkVersion = 8
-            failOnWarning = true
-            skipDeprecated = true
-            suppressInheritedMembers = true
-        }
     }
 
     apply(plugin = "com.diffplug.spotless")

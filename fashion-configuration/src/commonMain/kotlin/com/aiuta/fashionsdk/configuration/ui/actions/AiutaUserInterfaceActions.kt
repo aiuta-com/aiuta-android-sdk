@@ -1,5 +1,7 @@
 package com.aiuta.fashionsdk.configuration.ui.actions
 
+import com.aiuta.fashionsdk.configuration.ui.AiutaUserInterfaceConfiguration
+
 /**
  * Interface for handling user interface actions within the Aiuta SDK.
  *

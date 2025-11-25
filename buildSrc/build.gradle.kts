@@ -13,6 +13,7 @@ repositories {
 
 dependencies {
     implementation(libs.gradlePlugin.android)
+    implementation(libs.gradlePlugin.dokka)
     implementation(libs.gradlePlugin.jetbrains.compose)
     implementation(libs.gradlePlugin.kotlin)
     implementation(libs.gradlePlugin.kotlin.compose)

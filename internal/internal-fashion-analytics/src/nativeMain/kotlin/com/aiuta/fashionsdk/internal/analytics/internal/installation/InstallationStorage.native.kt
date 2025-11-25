@@ -19,7 +19,7 @@ internal actual fun buildInstallationStorage(
     platformContext: AiutaPlatformContext,
 ): InstallationStorage = IosInstallationStorage()
 
-public class IosInstallationStorage : InstallationStorage {
+internal class IosInstallationStorage : InstallationStorage {
     private fun filePath(): String {
         val dir =
             NSSearchPathForDirectoriesInDomains(

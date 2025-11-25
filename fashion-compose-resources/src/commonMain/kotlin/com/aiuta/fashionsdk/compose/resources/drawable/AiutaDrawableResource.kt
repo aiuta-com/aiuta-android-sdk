@@ -11,9 +11,9 @@ import org.jetbrains.compose.resources.DrawableResource
  * platform can provide its own implementation while maintaining a consistent API.
  *
  * Platform implementations:
- * - Android: [AiutaAndroidDrawable], [AiutaAndroidDrawableRes]
+ * - Android: AiutaAndroidDrawable, AiutaAndroidDrawableRes
  * - Compose Multiplatform: [AiutaComposeDrawableResource]
- * - iOS/Native: [AiutaIOSSkia]
+ * - iOS/Native: AiutaIOSSkia
  *
  * ```kotlin
  * // Using with Compose Multiplatform resources

@@ -18,7 +18,7 @@ import kotlinx.datetime.toLocalDateTime
  * @param path - directory in which a new file will be generated
  * @param fileName - name of a file that is about to be generated
  *
- * @return generated file or [null] if file could not be generated
+ * @return generated file or null if file could not be generated
  * due to caught [SecurityException] or inability of Android OS to generate file
  */
 internal fun generateFile(

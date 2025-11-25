@@ -62,7 +62,7 @@ internal abstract class BaseRepository(
     }
 
     /**
-     * Check is [delayMilliseconds] time passed
+     * Check is time passed
      *
      * @return true, if [delay] is LOWER than delta between current time and last saved by [timeKey]
      * @return false, if [delay] is BIGGER OR EQUAL than delta between current time and last saved by [timeKey]

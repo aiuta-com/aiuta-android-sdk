@@ -13,13 +13,6 @@ abstract interface com.aiuta.fashionsdk.internal.analytics/InternalAiutaAnalytic
     abstract fun sendEvent(com.aiuta.fashionsdk.analytics.events/AiutaAnalyticsEvent) // com.aiuta.fashionsdk.internal.analytics/InternalAiutaAnalytic.sendEvent|sendEvent(com.aiuta.fashionsdk.analytics.events.AiutaAnalyticsEvent){}[0]
 }
 
-final class com.aiuta.fashionsdk.internal.analytics.internal.installation/IosInstallationStorage : com.aiuta.fashionsdk.internal.analytics.internal.installation/InstallationStorage { // com.aiuta.fashionsdk.internal.analytics.internal.installation/IosInstallationStorage|null[0]
-    constructor <init>() // com.aiuta.fashionsdk.internal.analytics.internal.installation/IosInstallationStorage.<init>|<init>(){}[0]
-
-    final suspend fun readInstallationId(): kotlin/String? // com.aiuta.fashionsdk.internal.analytics.internal.installation/IosInstallationStorage.readInstallationId|readInstallationId(){}[0]
-    final suspend fun writeInstallationId(kotlin/String) // com.aiuta.fashionsdk.internal.analytics.internal.installation/IosInstallationStorage.writeInstallationId|writeInstallationId(kotlin.String){}[0]
-}
-
 final object com.aiuta.fashionsdk.internal.analytics/InternalAiutaAnalyticFactory : kotlinx.atomicfu.locks/SynchronizedObject { // com.aiuta.fashionsdk.internal.analytics/InternalAiutaAnalyticFactory|null[0]
     final fun create(com.aiuta.fashionsdk/Aiuta): com.aiuta.fashionsdk.internal.analytics/InternalAiutaAnalytic // com.aiuta.fashionsdk.internal.analytics/InternalAiutaAnalyticFactory.create|create(com.aiuta.fashionsdk.Aiuta){}[0]
     final fun getInternalAiutaAnalytic(): com.aiuta.fashionsdk.internal.analytics/InternalAiutaAnalytic? // com.aiuta.fashionsdk.internal.analytics/InternalAiutaAnalyticFactory.getInternalAiutaAnalytic|getInternalAiutaAnalytic(){}[0]

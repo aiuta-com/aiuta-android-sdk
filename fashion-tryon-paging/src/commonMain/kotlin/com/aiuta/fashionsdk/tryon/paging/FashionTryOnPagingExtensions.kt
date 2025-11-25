@@ -10,7 +10,7 @@ import com.aiuta.fashionsdk.tryon.core.domain.models.ProductGenerationItem
 import kotlinx.coroutines.flow.Flow
 
 /**
- * Extension for using [getProductItems] method with [androidx.paging] library
+ * Extension for using [getProductItems] method with androidx.paging library
  */
 public fun AiutaTryOn.getProductItems(
     catalogName: String,
@@ -28,7 +28,7 @@ public fun AiutaTryOn.getProductItems(
 ).flow
 
 /**
- * Extension for using [getProductCatalogs] method with [androidx.paging] library
+ * Extension for using [getProductCatalogs] method with androidx.paging library
  */
 public fun AiutaTryOn.getProductCatalogs(
     config: PagingConfig = PagingConfig(pageSize = ContainerPagingSource.DEFAULT_PAGE_SIZE),
