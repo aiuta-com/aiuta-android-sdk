@@ -8,10 +8,7 @@ plugins {
     id("org.jetbrains.kotlin.plugin.compose")
 }
 
-addAllMultiplatformTargets(
-    // Compose placeholders not supported macos
-    enableExtendedTargets = false,
-)
+addAllMultiplatformTargets()
 androidLibrary(name = "com.aiuta.fashionsdk.tryon.compose.uikit")
 
 kotlin {
@@ -43,6 +40,16 @@ kotlin {
         nativeMain {
             dependencies {
                 implementation(libs.ktor.engine.darwin)
+            }
+        }
+        jsMain {
+            dependencies {
+                implementation(libs.ktor.engine.js)
+            }
+        }
+        wasmJsMain {
+            dependencies {
+                implementation(libs.ktor.engine.js)
             }
         }
     }
