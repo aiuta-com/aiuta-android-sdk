@@ -1,5 +1,6 @@
 // Klib ABI Dump
-// Targets: [iosArm64, iosSimulatorArm64, iosX64]
+// Targets: [iosArm64, iosSimulatorArm64, iosX64, js, wasmJs]
+// Alias: ios => [iosArm64, iosSimulatorArm64, iosX64]
 // Rendering settings:
 // - Signature version: 2
 // - Show manifest properties: true
@@ -18,13 +19,6 @@ final class com.aiuta.fashionsdk.compose.resources.drawable/AiutaComposeDrawable
         final fun <get-resource>(): org.jetbrains.compose.resources/DrawableResource // com.aiuta.fashionsdk.compose.resources.drawable/AiutaComposeDrawableResource.resource.<get-resource>|<get-resource>(){}[0]
 }
 
-final class com.aiuta.fashionsdk.compose.resources.drawable/AiutaIOSSkia : com.aiuta.fashionsdk.compose.resources.drawable/AiutaDrawableResource { // com.aiuta.fashionsdk.compose.resources.drawable/AiutaIOSSkia|null[0]
-    constructor <init>(org.jetbrains.skia/Image) // com.aiuta.fashionsdk.compose.resources.drawable/AiutaIOSSkia.<init>|<init>(org.jetbrains.skia.Image){}[0]
-
-    final val resource // com.aiuta.fashionsdk.compose.resources.drawable/AiutaIOSSkia.resource|{}resource[0]
-        final fun <get-resource>(): org.jetbrains.skia/Image // com.aiuta.fashionsdk.compose.resources.drawable/AiutaIOSSkia.resource.<get-resource>|<get-resource>(){}[0]
-}
-
 final class com.aiuta.fashionsdk.compose.resources.drawable/AiutaIcon { // com.aiuta.fashionsdk.compose.resources.drawable/AiutaIcon|null[0]
     constructor <init>(com.aiuta.fashionsdk.compose.resources.drawable/AiutaDrawableResource, kotlin/Boolean = ...) // com.aiuta.fashionsdk.compose.resources.drawable/AiutaIcon.<init>|<init>(com.aiuta.fashionsdk.compose.resources.drawable.AiutaDrawableResource;kotlin.Boolean){}[0]
 
@@ -40,7 +34,6 @@ final val com.aiuta.fashion_compose_resources.generated.resources/com_aiuta_fash
 final val com.aiuta.fashion_compose_resources.generated.resources/com_aiuta_fashion_compose_resources_generated_resources_Res_plurals$stableprop // com.aiuta.fashion_compose_resources.generated.resources/com_aiuta_fashion_compose_resources_generated_resources_Res_plurals$stableprop|#static{}com_aiuta_fashion_compose_resources_generated_resources_Res_plurals$stableprop[0]
 final val com.aiuta.fashion_compose_resources.generated.resources/com_aiuta_fashion_compose_resources_generated_resources_Res_string$stableprop // com.aiuta.fashion_compose_resources.generated.resources/com_aiuta_fashion_compose_resources_generated_resources_Res_string$stableprop|#static{}com_aiuta_fashion_compose_resources_generated_resources_Res_string$stableprop[0]
 final val com.aiuta.fashionsdk.compose.resources.drawable/com_aiuta_fashionsdk_compose_resources_drawable_AiutaComposeDrawableResource$stableprop // com.aiuta.fashionsdk.compose.resources.drawable/com_aiuta_fashionsdk_compose_resources_drawable_AiutaComposeDrawableResource$stableprop|#static{}com_aiuta_fashionsdk_compose_resources_drawable_AiutaComposeDrawableResource$stableprop[0]
-final val com.aiuta.fashionsdk.compose.resources.drawable/com_aiuta_fashionsdk_compose_resources_drawable_AiutaIOSSkia$stableprop // com.aiuta.fashionsdk.compose.resources.drawable/com_aiuta_fashionsdk_compose_resources_drawable_AiutaIOSSkia$stableprop|#static{}com_aiuta_fashionsdk_compose_resources_drawable_AiutaIOSSkia$stableprop[0]
 final val com.aiuta.fashionsdk.compose.resources.drawable/com_aiuta_fashionsdk_compose_resources_drawable_AiutaIcon$stableprop // com.aiuta.fashionsdk.compose.resources.drawable/com_aiuta_fashionsdk_compose_resources_drawable_AiutaIcon$stableprop|#static{}com_aiuta_fashionsdk_compose_resources_drawable_AiutaIcon$stableprop[0]
 
 final fun com.aiuta.fashion_compose_resources.generated.resources/com_aiuta_fashion_compose_resources_generated_resources_Res_array$stableprop_getter(): kotlin/Int // com.aiuta.fashion_compose_resources.generated.resources/com_aiuta_fashion_compose_resources_generated_resources_Res_array$stableprop_getter|com_aiuta_fashion_compose_resources_generated_resources_Res_array$stableprop_getter(){}[0]
@@ -49,5 +42,18 @@ final fun com.aiuta.fashion_compose_resources.generated.resources/com_aiuta_fash
 final fun com.aiuta.fashion_compose_resources.generated.resources/com_aiuta_fashion_compose_resources_generated_resources_Res_plurals$stableprop_getter(): kotlin/Int // com.aiuta.fashion_compose_resources.generated.resources/com_aiuta_fashion_compose_resources_generated_resources_Res_plurals$stableprop_getter|com_aiuta_fashion_compose_resources_generated_resources_Res_plurals$stableprop_getter(){}[0]
 final fun com.aiuta.fashion_compose_resources.generated.resources/com_aiuta_fashion_compose_resources_generated_resources_Res_string$stableprop_getter(): kotlin/Int // com.aiuta.fashion_compose_resources.generated.resources/com_aiuta_fashion_compose_resources_generated_resources_Res_string$stableprop_getter|com_aiuta_fashion_compose_resources_generated_resources_Res_string$stableprop_getter(){}[0]
 final fun com.aiuta.fashionsdk.compose.resources.drawable/com_aiuta_fashionsdk_compose_resources_drawable_AiutaComposeDrawableResource$stableprop_getter(): kotlin/Int // com.aiuta.fashionsdk.compose.resources.drawable/com_aiuta_fashionsdk_compose_resources_drawable_AiutaComposeDrawableResource$stableprop_getter|com_aiuta_fashionsdk_compose_resources_drawable_AiutaComposeDrawableResource$stableprop_getter(){}[0]
-final fun com.aiuta.fashionsdk.compose.resources.drawable/com_aiuta_fashionsdk_compose_resources_drawable_AiutaIOSSkia$stableprop_getter(): kotlin/Int // com.aiuta.fashionsdk.compose.resources.drawable/com_aiuta_fashionsdk_compose_resources_drawable_AiutaIOSSkia$stableprop_getter|com_aiuta_fashionsdk_compose_resources_drawable_AiutaIOSSkia$stableprop_getter(){}[0]
 final fun com.aiuta.fashionsdk.compose.resources.drawable/com_aiuta_fashionsdk_compose_resources_drawable_AiutaIcon$stableprop_getter(): kotlin/Int // com.aiuta.fashionsdk.compose.resources.drawable/com_aiuta_fashionsdk_compose_resources_drawable_AiutaIcon$stableprop_getter|com_aiuta_fashionsdk_compose_resources_drawable_AiutaIcon$stableprop_getter(){}[0]
+
+// Targets: [ios]
+final class com.aiuta.fashionsdk.compose.resources.drawable/AiutaIOSSkia : com.aiuta.fashionsdk.compose.resources.drawable/AiutaDrawableResource { // com.aiuta.fashionsdk.compose.resources.drawable/AiutaIOSSkia|null[0]
+    constructor <init>(org.jetbrains.skia/Image) // com.aiuta.fashionsdk.compose.resources.drawable/AiutaIOSSkia.<init>|<init>(org.jetbrains.skia.Image){}[0]
+
+    final val resource // com.aiuta.fashionsdk.compose.resources.drawable/AiutaIOSSkia.resource|{}resource[0]
+        final fun <get-resource>(): org.jetbrains.skia/Image // com.aiuta.fashionsdk.compose.resources.drawable/AiutaIOSSkia.resource.<get-resource>|<get-resource>(){}[0]
+}
+
+// Targets: [ios]
+final val com.aiuta.fashionsdk.compose.resources.drawable/com_aiuta_fashionsdk_compose_resources_drawable_AiutaIOSSkia$stableprop // com.aiuta.fashionsdk.compose.resources.drawable/com_aiuta_fashionsdk_compose_resources_drawable_AiutaIOSSkia$stableprop|#static{}com_aiuta_fashionsdk_compose_resources_drawable_AiutaIOSSkia$stableprop[0]
+
+// Targets: [ios]
+final fun com.aiuta.fashionsdk.compose.resources.drawable/com_aiuta_fashionsdk_compose_resources_drawable_AiutaIOSSkia$stableprop_getter(): kotlin/Int // com.aiuta.fashionsdk.compose.resources.drawable/com_aiuta_fashionsdk_compose_resources_drawable_AiutaIOSSkia$stableprop_getter|com_aiuta_fashionsdk_compose_resources_drawable_AiutaIOSSkia$stableprop_getter(){}[0]

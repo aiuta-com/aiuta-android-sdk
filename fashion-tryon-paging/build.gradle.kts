@@ -6,7 +6,10 @@ plugins {
     id("kotlin-multiplatform")
 }
 
-addAllMultiplatformTargets()
+addAllMultiplatformTargets(
+    // TODO Add targets with paging v3.4.0
+    enableExtendedTargets = false,
+)
 androidLibrary(name = "com.aiuta.fashionsdk.tryon.paging")
 
 kotlin {

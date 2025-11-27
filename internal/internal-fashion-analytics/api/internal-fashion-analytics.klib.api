@@ -1,5 +1,6 @@
 // Klib ABI Dump
-// Targets: [iosArm64, iosSimulatorArm64, iosX64]
+// Targets: [iosArm64, iosSimulatorArm64, iosX64, js, wasmJs]
+// Alias: ios => [iosArm64, iosSimulatorArm64, iosX64]
 // Rendering settings:
 // - Signature version: 2
 // - Show manifest properties: true
@@ -13,10 +14,17 @@ abstract interface com.aiuta.fashionsdk.internal.analytics/InternalAiutaAnalytic
     abstract fun sendEvent(com.aiuta.fashionsdk.analytics.events/AiutaAnalyticsEvent) // com.aiuta.fashionsdk.internal.analytics/InternalAiutaAnalytic.sendEvent|sendEvent(com.aiuta.fashionsdk.analytics.events.AiutaAnalyticsEvent){}[0]
 }
 
+final val com.aiuta.fashionsdk.internal.analytics/internalAiutaAnalytic // com.aiuta.fashionsdk.internal.analytics/internalAiutaAnalytic|@com.aiuta.fashionsdk.Aiuta{}internalAiutaAnalytic[0]
+    final fun (com.aiuta.fashionsdk/Aiuta).<get-internalAiutaAnalytic>(): com.aiuta.fashionsdk.internal.analytics/InternalAiutaAnalytic // com.aiuta.fashionsdk.internal.analytics/internalAiutaAnalytic.<get-internalAiutaAnalytic>|<get-internalAiutaAnalytic>@com.aiuta.fashionsdk.Aiuta(){}[0]
+
+// Targets: [ios]
 final object com.aiuta.fashionsdk.internal.analytics/InternalAiutaAnalyticFactory : kotlinx.atomicfu.locks/SynchronizedObject { // com.aiuta.fashionsdk.internal.analytics/InternalAiutaAnalyticFactory|null[0]
     final fun create(com.aiuta.fashionsdk/Aiuta): com.aiuta.fashionsdk.internal.analytics/InternalAiutaAnalytic // com.aiuta.fashionsdk.internal.analytics/InternalAiutaAnalyticFactory.create|create(com.aiuta.fashionsdk.Aiuta){}[0]
     final fun getInternalAiutaAnalytic(): com.aiuta.fashionsdk.internal.analytics/InternalAiutaAnalytic? // com.aiuta.fashionsdk.internal.analytics/InternalAiutaAnalyticFactory.getInternalAiutaAnalytic|getInternalAiutaAnalytic(){}[0]
 }
 
-final val com.aiuta.fashionsdk.internal.analytics/internalAiutaAnalytic // com.aiuta.fashionsdk.internal.analytics/internalAiutaAnalytic|@com.aiuta.fashionsdk.Aiuta{}internalAiutaAnalytic[0]
-    final fun (com.aiuta.fashionsdk/Aiuta).<get-internalAiutaAnalytic>(): com.aiuta.fashionsdk.internal.analytics/InternalAiutaAnalytic // com.aiuta.fashionsdk.internal.analytics/internalAiutaAnalytic.<get-internalAiutaAnalytic>|<get-internalAiutaAnalytic>@com.aiuta.fashionsdk.Aiuta(){}[0]
+// Targets: [js, wasmJs]
+final object com.aiuta.fashionsdk.internal.analytics/InternalAiutaAnalyticFactory { // com.aiuta.fashionsdk.internal.analytics/InternalAiutaAnalyticFactory|null[0]
+    final fun create(com.aiuta.fashionsdk/Aiuta): com.aiuta.fashionsdk.internal.analytics/InternalAiutaAnalytic // com.aiuta.fashionsdk.internal.analytics/InternalAiutaAnalyticFactory.create|create(com.aiuta.fashionsdk.Aiuta){}[0]
+    final fun getInternalAiutaAnalytic(): com.aiuta.fashionsdk.internal.analytics/InternalAiutaAnalytic? // com.aiuta.fashionsdk.internal.analytics/InternalAiutaAnalyticFactory.getInternalAiutaAnalytic|getInternalAiutaAnalytic(){}[0]
+}

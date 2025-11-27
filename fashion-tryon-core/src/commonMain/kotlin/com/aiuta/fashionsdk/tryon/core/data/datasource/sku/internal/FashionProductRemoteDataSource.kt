@@ -10,9 +10,6 @@ import com.aiuta.fashionsdk.tryon.core.data.datasource.sku.models.ProductCatalog
 import com.aiuta.fashionsdk.tryon.core.data.datasource.sku.models.ProductItemDTO
 import io.ktor.client.call.body
 import io.ktor.client.request.get
-import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.IO
-import kotlinx.coroutines.withContext
 
 internal class FashionProductRemoteDataSource(
     private val networkClient: NetworkClient,
@@ -21,40 +18,34 @@ internal class FashionProductRemoteDataSource(
     override suspend fun getProductCatalogs(
         paginationOffset: PaginationOffset?,
         paginationLimit: Int?,
-    ): PageContainer<ProductCatalogDTO> = withContext(Dispatchers.IO) {
-        networkClient.httpClient.value.get(
-            urlString = PATH_SKU_CATALOGS,
-        ) {
-            url {
-                saveAppend(paginationOffset)
-                saveAppendLimit(paginationLimit)
-            }
-        }.body()
-    }
+    ): PageContainer<ProductCatalogDTO> = networkClient.httpClient.value.get(
+        urlString = PATH_SKU_CATALOGS,
+    ) {
+        url {
+            saveAppend(paginationOffset)
+            saveAppendLimit(paginationLimit)
+        }
+    }.body()
 
     override suspend fun getProductItems(
         productCatalogName: String,
         paginationOffset: PaginationOffset?,
         paginationLimit: Int?,
-    ): PageContainer<ProductItemDTO> = withContext(Dispatchers.IO) {
-        networkClient.httpClient.value.get(
-            urlString = "$PATH_SKU_ITEMS/$productCatalogName",
-        ) {
-            url {
-                saveAppend(paginationOffset)
-                saveAppendLimit(paginationLimit)
-            }
-        }.body()
-    }
+    ): PageContainer<ProductItemDTO> = networkClient.httpClient.value.get(
+        urlString = "$PATH_SKU_ITEMS/$productCatalogName",
+    ) {
+        url {
+            saveAppend(paginationOffset)
+            saveAppendLimit(paginationLimit)
+        }
+    }.body()
 
     override suspend fun getProductItem(
         productCatalogName: String,
         productId: String,
-    ): ProductItemDTO = withContext(Dispatchers.IO) {
-        networkClient.httpClient.value.get(
-            urlString = "$PATH_SKU_ITEMS/$productCatalogName/$productId",
-        ).body()
-    }
+    ): ProductItemDTO = networkClient.httpClient.value.get(
+        urlString = "$PATH_SKU_ITEMS/$productCatalogName/$productId",
+    ).body()
 
     private companion object {
         const val PATH_SKU_ITEMS = "/sku_items"

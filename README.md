@@ -17,11 +17,11 @@ This repo distributes the [Aiuta Android SDK](https://docs.aiuta.com/)
 The following table shows the current platform support status for Aiuta SDK via Kotlin Multiplatform:
 
 | Platform | Support Status | Notes |
-|----------|---------------|--------|
-| Android  | ✅ Supported  | Full support |
-| iOS      | ✅ Supported  | Full support |
-| Desktop  | 🟡 Beta      | Limited functionality |
-| Web | ❌ Not Supported | Not available |
+|----------|----------------|--------|
+| Android  | ✅ Supported    | Full support |
+| iOS      | ✅ Supported    | Full support |
+| Desktop  | 🟡 Beta        | Limited functionality |
+| Web | 🟡 Alpha       | Core functionality (without UI) supported for Wasm/Js |
 
 ## Documentation
 

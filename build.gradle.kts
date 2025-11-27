@@ -67,7 +67,7 @@ tasks.register<Exec>("installGitHooks") {
 }
 
 val initialTaskNames: List<String> = project.gradle.startParameter.taskNames
-project.gradle.startParameter.setTaskNames(initialTaskNames + listOf("installGitHooks"))
+project.gradle.startParameter.setTaskNames(initialTaskNames + listOf(":installGitHooks"))
 
 
 allprojects {

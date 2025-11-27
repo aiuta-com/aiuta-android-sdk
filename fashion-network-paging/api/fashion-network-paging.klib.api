@@ -1,5 +1,5 @@
 // Klib ABI Dump
-// Targets: [iosArm64, iosSimulatorArm64, iosX64]
+// Targets: [iosArm64, iosSimulatorArm64, iosX64, js, wasmJs]
 // Rendering settings:
 // - Signature version: 2
 // - Show manifest properties: true
@@ -17,18 +17,6 @@ final enum class com.aiuta.fashionsdk.network.paging.models/PaginationDirection 
 
     final fun valueOf(kotlin/String): com.aiuta.fashionsdk.network.paging.models/PaginationDirection // com.aiuta.fashionsdk.network.paging.models/PaginationDirection.valueOf|valueOf#static(kotlin.String){}[0]
     final fun values(): kotlin/Array<com.aiuta.fashionsdk.network.paging.models/PaginationDirection> // com.aiuta.fashionsdk.network.paging.models/PaginationDirection.values|values#static(){}[0]
-}
-
-final class <#A: kotlin/Any> com.aiuta.fashionsdk.network.paging/ContainerPagingSource : androidx.paging/PagingSource<com.aiuta.fashionsdk.network.paging.models/PaginationOffset, #A> { // com.aiuta.fashionsdk.network.paging/ContainerPagingSource|null[0]
-    constructor <init>(kotlin.coroutines/SuspendFunction1<com.aiuta.fashionsdk.network.paging.models/PaginationOffset?, com.aiuta.fashionsdk.network.paging.models/PageContainer<#A>>) // com.aiuta.fashionsdk.network.paging/ContainerPagingSource.<init>|<init>(kotlin.coroutines.SuspendFunction1<com.aiuta.fashionsdk.network.paging.models.PaginationOffset?,com.aiuta.fashionsdk.network.paging.models.PageContainer<1:0>>){}[0]
-
-    final fun getRefreshKey(androidx.paging/PagingState<com.aiuta.fashionsdk.network.paging.models/PaginationOffset, #A>): com.aiuta.fashionsdk.network.paging.models/PaginationOffset? // com.aiuta.fashionsdk.network.paging/ContainerPagingSource.getRefreshKey|getRefreshKey(androidx.paging.PagingState<com.aiuta.fashionsdk.network.paging.models.PaginationOffset,1:0>){}[0]
-    final suspend fun load(androidx.paging/PagingSource.LoadParams<com.aiuta.fashionsdk.network.paging.models/PaginationOffset>): androidx.paging/PagingSource.LoadResult<com.aiuta.fashionsdk.network.paging.models/PaginationOffset, #A> // com.aiuta.fashionsdk.network.paging/ContainerPagingSource.load|load(androidx.paging.PagingSource.LoadParams<com.aiuta.fashionsdk.network.paging.models.PaginationOffset>){}[0]
-
-    final object Companion { // com.aiuta.fashionsdk.network.paging/ContainerPagingSource.Companion|null[0]
-        final const val DEFAULT_PAGE_SIZE // com.aiuta.fashionsdk.network.paging/ContainerPagingSource.Companion.DEFAULT_PAGE_SIZE|{}DEFAULT_PAGE_SIZE[0]
-            final fun <get-DEFAULT_PAGE_SIZE>(): kotlin/Int // com.aiuta.fashionsdk.network.paging/ContainerPagingSource.Companion.DEFAULT_PAGE_SIZE.<get-DEFAULT_PAGE_SIZE>|<get-DEFAULT_PAGE_SIZE>(){}[0]
-    }
 }
 
 final class <#A: kotlin/Any?> com.aiuta.fashionsdk.network.paging.models/PageContainer { // com.aiuta.fashionsdk.network.paging.models/PageContainer|null[0]

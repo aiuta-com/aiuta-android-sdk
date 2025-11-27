@@ -1,15 +1,3 @@
-public final class com/aiuta/fashionsdk/network/paging/ContainerPagingSource : androidx/paging/PagingSource {
-	public static final field Companion Lcom/aiuta/fashionsdk/network/paging/ContainerPagingSource$Companion;
-	public static final field DEFAULT_PAGE_SIZE I
-	public fun <init> (Lkotlin/jvm/functions/Function2;)V
-	public fun getRefreshKey (Landroidx/paging/PagingState;)Lcom/aiuta/fashionsdk/network/paging/models/PaginationOffset;
-	public synthetic fun getRefreshKey (Landroidx/paging/PagingState;)Ljava/lang/Object;
-	public fun load (Landroidx/paging/PagingSource$LoadParams;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
-}
-
-public final class com/aiuta/fashionsdk/network/paging/ContainerPagingSource$Companion {
-}
-
 public final class com/aiuta/fashionsdk/network/paging/models/PageContainer {
 	public static final field Companion Lcom/aiuta/fashionsdk/network/paging/models/PageContainer$Companion;
 	public fun <init> (Ljava/util/List;Ljava/lang/String;Ljava/lang/String;Ljava/util/List;)V

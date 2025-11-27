@@ -42,5 +42,15 @@ kotlin {
                 implementation(libs.ktor.engine.darwin)
             }
         }
+        jsMain {
+            dependencies {
+                implementation(libs.ktor.engine.js)
+            }
+        }
+        wasmJsMain {
+            dependencies {
+                implementation(libs.ktor.engine.js)
+            }
+        }
     }
 }
