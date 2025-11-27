@@ -1,5 +1,6 @@
 // Klib ABI Dump
-// Targets: [iosArm64, iosSimulatorArm64, iosX64]
+// Targets: [iosArm64, iosSimulatorArm64, iosX64, js, wasmJs]
+// Alias: ios => [iosArm64, iosSimulatorArm64, iosX64]
 // Rendering settings:
 // - Signature version: 2
 // - Show manifest properties: true
@@ -21,11 +22,22 @@ final class com.aiuta.fashionsdk.io.compression/AiutaCompressionConfig { // com.
 }
 
 final class com.aiuta.fashionsdk.io/AiutaPlatformFile { // com.aiuta.fashionsdk.io/AiutaPlatformFile|null[0]
+    // Targets: [ios]
     constructor <init>(platform.Foundation/NSURL) // com.aiuta.fashionsdk.io/AiutaPlatformFile.<init>|<init>(platform.Foundation.NSURL){}[0]
+
+    // Targets: [ios]
     constructor <init>(platform.Foundation/NSURL, platform.Foundation/NSURL) // com.aiuta.fashionsdk.io/AiutaPlatformFile.<init>|<init>(platform.Foundation.NSURL;platform.Foundation.NSURL){}[0]
 
+    // Targets: [ios]
     final val url // com.aiuta.fashionsdk.io/AiutaPlatformFile.url|{}url[0]
         final fun <get-url>(): platform.Foundation/NSURL // com.aiuta.fashionsdk.io/AiutaPlatformFile.url.<get-url>|<get-url>(){}[0]
+
+    // Targets: [js, wasmJs]
+    constructor <init>(org.w3c.files/File) // com.aiuta.fashionsdk.io/AiutaPlatformFile.<init>|<init>(org.w3c.files.File){}[0]
+
+    // Targets: [js, wasmJs]
+    final val file // com.aiuta.fashionsdk.io/AiutaPlatformFile.file|{}file[0]
+        final fun <get-file>(): org.w3c.files/File // com.aiuta.fashionsdk.io/AiutaPlatformFile.file.<get-file>|<get-file>(){}[0]
 }
 
 final suspend fun (com.aiuta.fashionsdk.io/AiutaPlatformFile).com.aiuta.fashionsdk.io/readByteArray(com.aiuta.fashionsdk.context/AiutaPlatformContext): kotlin/ByteArray // com.aiuta.fashionsdk.io/readByteArray|readByteArray@com.aiuta.fashionsdk.io.AiutaPlatformFile(com.aiuta.fashionsdk.context.AiutaPlatformContext){}[0]

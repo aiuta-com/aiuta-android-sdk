@@ -1,3 +1,15 @@
+public final class com/aiuta/fashionsdk/tryon/paging/ContainerPagingSource : androidx/paging/PagingSource {
+	public static final field Companion Lcom/aiuta/fashionsdk/tryon/paging/ContainerPagingSource$Companion;
+	public static final field DEFAULT_PAGE_SIZE I
+	public fun <init> (Lkotlin/jvm/functions/Function2;)V
+	public fun getRefreshKey (Landroidx/paging/PagingState;)Lcom/aiuta/fashionsdk/network/paging/models/PaginationOffset;
+	public synthetic fun getRefreshKey (Landroidx/paging/PagingState;)Ljava/lang/Object;
+	public fun load (Landroidx/paging/PagingSource$LoadParams;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
+}
+
+public final class com/aiuta/fashionsdk/tryon/paging/ContainerPagingSource$Companion {
+}
+
 public final class com/aiuta/fashionsdk/tryon/paging/FashionTryOnPagingExtensionsKt {
 	public static final fun getProductCatalogs (Lcom/aiuta/fashionsdk/tryon/core/AiutaTryOn;Landroidx/paging/PagingConfig;)Lkotlinx/coroutines/flow/Flow;
 	public static synthetic fun getProductCatalogs$default (Lcom/aiuta/fashionsdk/tryon/core/AiutaTryOn;Landroidx/paging/PagingConfig;ILjava/lang/Object;)Lkotlinx/coroutines/flow/Flow;

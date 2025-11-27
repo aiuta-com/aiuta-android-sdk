@@ -6,5 +6,17 @@
 // - Show declarations: true
 
 // Library unique name: <com.aiuta:fashion-tryon-paging>
+final class <#A: kotlin/Any> com.aiuta.fashionsdk.tryon.paging/ContainerPagingSource : androidx.paging/PagingSource<com.aiuta.fashionsdk.network.paging.models/PaginationOffset, #A> { // com.aiuta.fashionsdk.tryon.paging/ContainerPagingSource|null[0]
+    constructor <init>(kotlin.coroutines/SuspendFunction1<com.aiuta.fashionsdk.network.paging.models/PaginationOffset?, com.aiuta.fashionsdk.network.paging.models/PageContainer<#A>>) // com.aiuta.fashionsdk.tryon.paging/ContainerPagingSource.<init>|<init>(kotlin.coroutines.SuspendFunction1<com.aiuta.fashionsdk.network.paging.models.PaginationOffset?,com.aiuta.fashionsdk.network.paging.models.PageContainer<1:0>>){}[0]
+
+    final fun getRefreshKey(androidx.paging/PagingState<com.aiuta.fashionsdk.network.paging.models/PaginationOffset, #A>): com.aiuta.fashionsdk.network.paging.models/PaginationOffset? // com.aiuta.fashionsdk.tryon.paging/ContainerPagingSource.getRefreshKey|getRefreshKey(androidx.paging.PagingState<com.aiuta.fashionsdk.network.paging.models.PaginationOffset,1:0>){}[0]
+    final suspend fun load(androidx.paging/PagingSource.LoadParams<com.aiuta.fashionsdk.network.paging.models/PaginationOffset>): androidx.paging/PagingSource.LoadResult<com.aiuta.fashionsdk.network.paging.models/PaginationOffset, #A> // com.aiuta.fashionsdk.tryon.paging/ContainerPagingSource.load|load(androidx.paging.PagingSource.LoadParams<com.aiuta.fashionsdk.network.paging.models.PaginationOffset>){}[0]
+
+    final object Companion { // com.aiuta.fashionsdk.tryon.paging/ContainerPagingSource.Companion|null[0]
+        final const val DEFAULT_PAGE_SIZE // com.aiuta.fashionsdk.tryon.paging/ContainerPagingSource.Companion.DEFAULT_PAGE_SIZE|{}DEFAULT_PAGE_SIZE[0]
+            final fun <get-DEFAULT_PAGE_SIZE>(): kotlin/Int // com.aiuta.fashionsdk.tryon.paging/ContainerPagingSource.Companion.DEFAULT_PAGE_SIZE.<get-DEFAULT_PAGE_SIZE>|<get-DEFAULT_PAGE_SIZE>(){}[0]
+    }
+}
+
 final fun (com.aiuta.fashionsdk.tryon.core/AiutaTryOn).com.aiuta.fashionsdk.tryon.paging/getProductCatalogs(androidx.paging/PagingConfig = ...): kotlinx.coroutines.flow/Flow<androidx.paging/PagingData<com.aiuta.fashionsdk.tryon.core.domain.models/ProductCatalog>> // com.aiuta.fashionsdk.tryon.paging/getProductCatalogs|getProductCatalogs@com.aiuta.fashionsdk.tryon.core.AiutaTryOn(androidx.paging.PagingConfig){}[0]
 final fun (com.aiuta.fashionsdk.tryon.core/AiutaTryOn).com.aiuta.fashionsdk.tryon.paging/getProductItems(kotlin/String, androidx.paging/PagingConfig = ...): kotlinx.coroutines.flow/Flow<androidx.paging/PagingData<com.aiuta.fashionsdk.tryon.core.domain.models/ProductGenerationItem>> // com.aiuta.fashionsdk.tryon.paging/getProductItems|getProductItems@com.aiuta.fashionsdk.tryon.core.AiutaTryOn(kotlin.String;androidx.paging.PagingConfig){}[0]
