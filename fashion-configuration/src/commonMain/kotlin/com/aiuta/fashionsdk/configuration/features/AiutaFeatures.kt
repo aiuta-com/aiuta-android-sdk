@@ -21,6 +21,7 @@ import com.aiuta.fashionsdk.configuration.features.share.AiutaShareFeature
 import com.aiuta.fashionsdk.configuration.features.share.watermark.AiutaShareWatermarkFeature
 import com.aiuta.fashionsdk.configuration.features.tryon.AiutaTryOnFeature
 import com.aiuta.fashionsdk.configuration.features.tryon.cart.AiutaTryOnCartFeature
+import com.aiuta.fashionsdk.configuration.features.tryon.cart.outfit.AiutaTryOnCartOutfitFeature
 import com.aiuta.fashionsdk.configuration.features.tryon.disclaimer.AiutaTryOnFitDisclaimerFeature
 import com.aiuta.fashionsdk.configuration.features.tryon.feedback.AiutaTryOnFeedbackFeature
 import com.aiuta.fashionsdk.configuration.features.tryon.feedback.other.AiutaTryOnFeedbackOtherFeature
@@ -106,6 +107,7 @@ public class AiutaFeatures(
         AiutaTryOnLoadingPageFeature::class -> tryOn.loadingPage
         AiutaTryOnInputImageValidationFeature::class -> tryOn.inputImageValidation
         AiutaTryOnCartFeature::class -> tryOn.cart
+        AiutaTryOnCartOutfitFeature::class -> tryOn.cart.outfit
         AiutaTryOnFitDisclaimerFeature::class -> tryOn.fitDisclaimer
         AiutaTryOnFeedbackFeature::class -> tryOn.feedback
         AiutaTryOnFeedbackOtherFeature::class -> tryOn.feedback?.otherFeedback

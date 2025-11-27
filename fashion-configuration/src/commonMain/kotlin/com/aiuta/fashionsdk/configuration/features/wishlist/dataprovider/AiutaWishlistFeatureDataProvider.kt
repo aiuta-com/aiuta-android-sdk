@@ -21,5 +21,5 @@ public interface AiutaWishlistFeatureDataProvider {
      * @param productId The ID of the product to update
      * @param inWishlist Whether the product should be in the wishlist (true) or not (false)
      */
-    public fun setProductInWishlist(productId: String, inWishlist: Boolean)
+    public fun setProductInWishlist(productId: List<String>, inWishlist: Boolean)
 }

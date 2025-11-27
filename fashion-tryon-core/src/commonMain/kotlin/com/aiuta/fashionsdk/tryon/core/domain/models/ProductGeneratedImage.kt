@@ -19,5 +19,5 @@ internal fun GeneratedImage.toPublic(
     id = id,
     url = url,
     type = type,
-    productIds = listOf(container.productId),
+    productIds = container.productIds,
 )

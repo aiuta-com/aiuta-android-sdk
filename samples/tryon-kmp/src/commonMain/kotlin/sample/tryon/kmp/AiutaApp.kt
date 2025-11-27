@@ -10,14 +10,14 @@ import androidx.lifecycle.viewmodel.compose.viewModel
 import com.aiuta.fashionsdk.compose.core.context.LocalAiutaPlatformContext
 import com.aiuta.fashionsdk.tryon.compose.ui.AiutaTryOnFlow
 import com.aiuta.fashionsdk.tryon.core.tryon
-import sample.tryon.kmp.utils.buildMockProductItem
+import sample.tryon.kmp.utils.buildSingleMockProductConfiguration
 
 @Composable
 fun AiutaApp() {
     val aiutaPlatformContext = LocalAiutaPlatformContext.current
     val viewModel: AiutaViewModel = viewModel { AiutaViewModel() }
 
-    val activeProductItem = viewModel.activeProductItem.collectAsState()
+    val activeProductItem = viewModel.activeProductItems.collectAsState()
     val aiutaConfiguration = remember {
         viewModel.buildAiutaConfiguration(aiutaPlatformContext)
     }
@@ -26,13 +26,15 @@ fun AiutaApp() {
         viewModel.loadActiveProduct(aiutaConfiguration.aiuta.tryon)
     }
 
-    activeProductItem.value?.let { generationItem ->
-        val mockProductItem = buildMockProductItem(generationItem)
+    if (activeProductItem.value.isNotEmpty()) {
+        val mockProductConfiguration = buildSingleMockProductConfiguration(
+            generationItem = activeProductItem.value.first(),
+        )
 
         AiutaTryOnFlow(
             modifier = Modifier.fillMaxSize(),
             aiutaConfiguration = aiutaConfiguration,
-            productForGeneration = mockProductItem,
+            productConfiguration = mockProductConfiguration,
         )
     }
 }

@@ -43,7 +43,7 @@ internal fun ActionBlock(
                 isLoading = isShareActive.value,
                 onClick = {
                     onShare(
-                        activeProductItem = controller.activeProductItem.value,
+                        activeProductItems = controller.activeProductItems,
                         imageUrl = sessionImage.imageUrl,
                         pageId = AiutaAnalyticsPageId.RESULTS,
                     )

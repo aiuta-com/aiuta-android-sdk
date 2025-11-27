@@ -19,7 +19,7 @@ internal fun sendSessionEvent(flow: AiutaAnalyticsSessionEvent.FlowType) {
             analytic.sendEvent(
                 event = AiutaAnalyticsSessionEvent(
                     flow = flow,
-                    productIds = listOf(activeProductItem.value.id),
+                    productIds = activeProductItemsIds,
                 ),
             )
         }
@@ -32,7 +32,7 @@ internal fun FashionTryOnController.sendTerminateEvent() {
             event = AiutaAnalyticsTryOnEventType.TRY_ON_ABORTED,
             abortReason = AiutaAnalyticsTryOnAbortedReasonType.USER_CANCELED,
             pageId = AiutaAnalyticsPageId.LOADING,
-            productIds = listOf(activeProductItem.value.id),
+            productIds = activeProductItemsIds,
         ),
     )
 }

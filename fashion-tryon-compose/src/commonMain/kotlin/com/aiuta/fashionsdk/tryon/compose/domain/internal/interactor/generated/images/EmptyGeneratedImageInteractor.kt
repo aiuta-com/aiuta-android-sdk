@@ -11,7 +11,7 @@ internal class EmptyGeneratedImageInteractor(
     private val generatedImageDatasource: GeneratedImageDatasource,
 ) : LocalGeneratedImageInteractor {
     override suspend fun insertAll(
-        generatedProductId: String,
+        generatedProductIds: List<String>,
         images: List<GeneratedImageUIModel>,
     ): Result<Unit> = Result.success(Unit)
 

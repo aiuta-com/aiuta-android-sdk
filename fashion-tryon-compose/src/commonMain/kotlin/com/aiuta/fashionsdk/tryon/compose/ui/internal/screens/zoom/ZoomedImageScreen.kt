@@ -180,7 +180,7 @@ private fun ZoomedImageScreenContent(
                         modifier = Modifier
                             .clickableUnindicated(enabled = !isShareActive.value) {
                                 onShare(
-                                    activeProductItem = controller.activeProductItem.value,
+                                    activeProductItems = controller.activeProductItems,
                                     imageUrl = screenState.transitionModel.value.imageUrl,
                                     pageId = screenState.transitionModel.value.originPageId,
                                 )
