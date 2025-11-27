@@ -30,6 +30,7 @@ internal class ApiKeyAuthProvider(
     private val apiKey: String,
     private val sendWithoutRequestCallback: (HttpRequestBuilder) -> Boolean,
 ) : AuthProvider {
+    @Deprecated("Please use sendWithoutRequest function instead", level = DeprecationLevel.ERROR)
     override val sendWithoutRequest: Boolean
         get() = error("Deprecated")
 

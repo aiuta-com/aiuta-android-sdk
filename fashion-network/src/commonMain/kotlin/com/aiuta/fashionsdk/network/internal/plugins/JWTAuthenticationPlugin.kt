@@ -12,6 +12,7 @@ import io.ktor.content.TextContent
 import io.ktor.http.HttpHeaders
 import io.ktor.http.auth.HttpAuthHeader
 import io.ktor.http.encodedPath
+import kotlinx.serialization.ExperimentalSerializationApi
 import kotlinx.serialization.InternalSerializationApi
 import kotlinx.serialization.KSerializer
 import kotlinx.serialization.serializer
@@ -78,7 +79,7 @@ internal class JWTProvider(
         return newToken != null
     }
 
-    @OptIn(InternalSerializationApi::class)
+    @OptIn(InternalSerializationApi::class, ExperimentalSerializationApi::class)
     private fun HttpRequestBuilder?.solveJsonBody(): String? = try {
         this?.bodyType?.type?.let { type ->
             val actualSerializer =
