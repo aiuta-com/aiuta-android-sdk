@@ -60,7 +60,7 @@ class AiutaViewModel : ViewModel() {
                     fileId = TRYON_IMAGE_ID,
                     fileUrl = TRYON_IMAGE_URL,
                     fileType = AiutaFileType.USER,
-                    productId = product.productId,
+                    productIds = listOf(product.productId),
                 ),
             )
             ?.onEach { state ->
@@ -76,8 +76,8 @@ class AiutaViewModel : ViewModel() {
     }
 
     companion object {
-        // TODO
-        const val TRYON_IMAGE_ID = "user_image-de773d88-93c0-4a8d-b433-d81221c36bb1"
-        const val TRYON_IMAGE_URL = "https://storage.googleapis.com/aiuta_prod_external_api_images/external_api/user/65e5c2f8ef8c9a4b60e489a1/uploaded_images/user_image-de773d88-93c0-4a8d-b433-d81221c36bb1.jpeg"
+
+        const val TRYON_IMAGE_ID = "YOUR_IMAGE_ID"
+        const val TRYON_IMAGE_URL = "YOUR_IMAGE_URL"
     }
 }

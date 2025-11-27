@@ -20,7 +20,7 @@ internal fun FashionTryOnController.sendSuccessTryOnEvent(
         event = AiutaAnalyticsTryOnEvent(
             event = AiutaAnalyticsTryOnEventType.TRY_ON_FINISHED,
             pageId = AiutaAnalyticsPageId.LOADING,
-            productIds = listOf(activeProductItem.value.id),
+            productIds = activeProductItemsIds,
             uploadDuration = metadata.uploadDurationSeconds.toDouble(DurationUnit.SECONDS),
             tryOnDuration = metadata.tryOnDurationSeconds.toDouble(DurationUnit.SECONDS),
             downloadDuration = downloadDuration.toDouble(DurationUnit.SECONDS),
@@ -36,7 +36,7 @@ internal fun FashionTryOnController.sendErrorDownloadResultEvent() {
             errorType = AiutaAnalyticsTryOnErrorType.DOWNLOAD_RESULT_FAILED,
             errorMessage = "Failed to download result",
             pageId = AiutaAnalyticsPageId.LOADING,
-            productIds = listOf(activeProductItem.value.id),
+            productIds = activeProductItemsIds,
         ),
     )
 }

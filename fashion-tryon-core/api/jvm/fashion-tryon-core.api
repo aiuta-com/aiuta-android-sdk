@@ -40,7 +40,7 @@ public final class com/aiuta/fashionsdk/tryon/core/domain/models/ProductGenerate
 }
 
 public abstract interface class com/aiuta/fashionsdk/tryon/core/domain/models/ProductGenerationContainer {
-	public abstract fun getProductId ()Ljava/lang/String;
+	public abstract fun getProductIds ()Ljava/util/List;
 }
 
 public final class com/aiuta/fashionsdk/tryon/core/domain/models/ProductGenerationItem {
@@ -64,9 +64,9 @@ public final class com/aiuta/fashionsdk/tryon/core/domain/models/ProductGenerati
 
 public final class com/aiuta/fashionsdk/tryon/core/domain/models/ProductGenerationPlatformImageContainer : com/aiuta/fashionsdk/tryon/core/domain/models/ProductGenerationContainer {
 	public static final field $stable I
-	public fun <init> (Lcom/aiuta/fashionsdk/io/AiutaPlatformFile;Ljava/lang/String;)V
+	public fun <init> (Lcom/aiuta/fashionsdk/io/AiutaPlatformFile;Ljava/util/List;)V
 	public final fun getPlatformFile ()Lcom/aiuta/fashionsdk/io/AiutaPlatformFile;
-	public fun getProductId ()Ljava/lang/String;
+	public fun getProductIds ()Ljava/util/List;
 }
 
 public abstract interface class com/aiuta/fashionsdk/tryon/core/domain/models/ProductGenerationStatus {
@@ -121,11 +121,11 @@ public final class com/aiuta/fashionsdk/tryon/core/domain/models/ProductGenerati
 
 public final class com/aiuta/fashionsdk/tryon/core/domain/models/ProductGenerationUrlContainer : com/aiuta/fashionsdk/tryon/core/domain/models/ProductGenerationContainer {
 	public static final field $stable I
-	public fun <init> (Ljava/lang/String;Ljava/lang/String;Lcom/aiuta/fashionsdk/tryon/core/data/datasource/image/models/AiutaFileType;Ljava/lang/String;)V
+	public fun <init> (Ljava/lang/String;Ljava/lang/String;Lcom/aiuta/fashionsdk/tryon/core/data/datasource/image/models/AiutaFileType;Ljava/util/List;)V
 	public final fun getFileId ()Ljava/lang/String;
 	public final fun getFileType ()Lcom/aiuta/fashionsdk/tryon/core/data/datasource/image/models/AiutaFileType;
 	public final fun getFileUrl ()Ljava/lang/String;
-	public fun getProductId ()Ljava/lang/String;
+	public fun getProductIds ()Ljava/util/List;
 }
 
 public final class com/aiuta/fashionsdk/tryon/core/domain/models/meta/AiutaTryOnMetadata {

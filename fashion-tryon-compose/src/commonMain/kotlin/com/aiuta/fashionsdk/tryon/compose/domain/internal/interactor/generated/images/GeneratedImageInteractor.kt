@@ -10,7 +10,7 @@ import kotlinx.coroutines.flow.Flow
 
 internal interface GeneratedImageInteractor {
     suspend fun insertAll(
-        generatedProductId: String,
+        generatedProductIds: List<String>,
         images: List<GeneratedImageUIModel>,
     ): Result<Unit>
 

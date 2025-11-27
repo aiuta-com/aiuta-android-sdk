@@ -3,8 +3,8 @@ package com.aiuta.fashionsdk.tryon.compose.ui.internal.analytic
 import com.aiuta.fashionsdk.analytics.events.AiutaAnalyticsExitEvent
 import com.aiuta.fashionsdk.analytics.events.AiutaAnalyticsPageId
 import com.aiuta.fashionsdk.analytics.events.AiutaAnalyticsResultsEventType
-import com.aiuta.fashionsdk.configuration.features.models.product.ProductItem
 import com.aiuta.fashionsdk.configuration.features.tryon.cart.handler.AiutaTryOnCartFeatureHandler
+import com.aiuta.fashionsdk.configuration.features.tryon.cart.outfit.handler.AiutaTryOnCartOutfitFeatureHandler
 import com.aiuta.fashionsdk.configuration.features.wishlist.dataprovider.AiutaWishlistFeatureDataProvider
 import com.aiuta.fashionsdk.internal.analytics.InternalAiutaAnalytic
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.controller.FashionTryOnController
@@ -14,7 +14,7 @@ import com.aiuta.fashionsdk.tryon.compose.ui.internal.utils.features.dataprovide
 // Listeners
 internal fun FashionTryOnController.clickAddToWishListActiveSKU(
     pageId: AiutaAnalyticsPageId,
-    productIds: List<String>,
+    productIds: List<String> = emptyList(),
     updatedWishlistState: Boolean,
     dataProvider: AiutaWishlistFeatureDataProvider,
 ) {
@@ -26,11 +26,11 @@ internal fun FashionTryOnController.clickAddToWishListActiveSKU(
 
     val providedProductIds = productIds
         .takeIf { it.isNotEmpty() }
-        ?: listOf(activeProductItem.value.id)
-    dataProvider::setProductInWishlist.safeInvoke(providedProductIds.first(), updatedWishlistState)
+        ?: activeProductItemsIds
+    dataProvider::setProductInWishlist.safeInvoke(providedProductIds, updatedWishlistState)
 }
 
-internal fun FashionTryOnController.clickAddToCart(
+internal fun FashionTryOnController.clickAddProductToCart(
     pageId: AiutaAnalyticsPageId,
     productId: String,
     handler: AiutaTryOnCartFeatureHandler,
@@ -40,13 +40,25 @@ internal fun FashionTryOnController.clickAddToCart(
         pageId = pageId,
         productIds = listOf(productId),
     )
-    handler::addToCart.safeInvoke(activeProductItem.value.id)
+    handler::addToCart.safeInvoke(activeProductItemsIds.first())
+}
+
+internal fun FashionTryOnController.clickAddOutfitToCart(
+    pageId: AiutaAnalyticsPageId,
+    handler: AiutaTryOnCartOutfitFeatureHandler,
+) {
+    sendResultEvent(
+        event = AiutaAnalyticsResultsEventType.PRODUCT_ADD_TO_CART,
+        pageId = pageId,
+        productIds = activeProductItemsIds,
+    )
+    handler::addToCartOutfit.safeInvoke(activeProductItemsIds)
 }
 
 internal fun FashionTryOnController.clickClose(pageId: AiutaAnalyticsPageId? = null) {
     analytic.sendFinishSessionEvent(
         pageId = pageId ?: currentScreen.value.exitPageId,
-        productItem = activeProductItem.value,
+        productIds = activeProductItemsIds,
     )
     aiutaUserInterfaceActions::closeClick.safeInvoke()
 }
@@ -54,7 +66,7 @@ internal fun FashionTryOnController.clickClose(pageId: AiutaAnalyticsPageId? = n
 // Senders
 internal fun InternalAiutaAnalytic.sendFinishSessionEvent(
     pageId: AiutaAnalyticsPageId,
-    productItem: ProductItem,
+    productIds: List<String>,
 ) {
-    sendEvent(event = AiutaAnalyticsExitEvent(pageId = pageId, productIds = listOf(productItem.id)))
+    sendEvent(event = AiutaAnalyticsExitEvent(pageId = pageId, productIds = productIds))
 }

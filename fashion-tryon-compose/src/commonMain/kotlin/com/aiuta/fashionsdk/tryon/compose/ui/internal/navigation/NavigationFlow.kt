@@ -8,6 +8,7 @@ import androidx.compose.ui.backhandler.BackHandler
 import com.aiuta.fashionsdk.analytics.events.AiutaAnalyticsSessionEvent
 import com.aiuta.fashionsdk.configuration.AiutaConfiguration
 import com.aiuta.fashionsdk.configuration.features.models.product.ProductItem
+import com.aiuta.fashionsdk.tryon.compose.domain.models.ProductConfiguration
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.analytic.sendSessionEvent
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.controller.composition.LocalController
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.controller.deactivateSelectMode
@@ -21,7 +22,7 @@ import com.aiuta.fashionsdk.tryon.compose.ui.internal.screens.zoom.controller.cl
 internal fun NavigationFlow(
     modifier: Modifier = Modifier,
     aiutaConfiguration: AiutaConfiguration,
-    productItem: ProductItem,
+    productConfiguration: ProductConfiguration,
     startScreen: NavigationScreen,
     // Analytics
     flowType: AiutaAnalyticsSessionEvent.FlowType,
@@ -30,7 +31,7 @@ internal fun NavigationFlow(
         modifier = modifier,
         aiutaConfiguration = aiutaConfiguration,
         startScreen = startScreen,
-        productItem = productItem,
+        productConfiguration = productConfiguration,
     ) {
         sendSessionEvent(flowType)
 
@@ -77,11 +78,15 @@ internal fun NavigationFlow(
  * This is an empty product item with default values, used as a placeholder
  * when initializing the history flow.
  */
-internal val DefaultProductItem by lazy {
-    ProductItem(
-        id = "",
-        title = "",
-        imageUrls = emptyList(),
-        brand = "",
+internal val DefaultProductConfiguration by lazy {
+    ProductConfiguration(
+        productsForGeneration = listOf(
+            ProductItem(
+                id = "",
+                title = "",
+                imageUrls = emptyList(),
+                brand = "",
+            ),
+        ),
     )
 }

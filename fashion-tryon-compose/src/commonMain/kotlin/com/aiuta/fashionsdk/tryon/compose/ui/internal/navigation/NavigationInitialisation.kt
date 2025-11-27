@@ -5,7 +5,7 @@ import androidx.compose.runtime.Composable
 import androidx.compose.runtime.CompositionLocalProvider
 import androidx.compose.ui.Modifier
 import com.aiuta.fashionsdk.configuration.AiutaConfiguration
-import com.aiuta.fashionsdk.configuration.features.models.product.ProductItem
+import com.aiuta.fashionsdk.tryon.compose.domain.models.ProductConfiguration
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.controller.composition.LocalAiutaFeatures
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.controller.composition.LocalAiutaLogger
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.controller.composition.LocalAiutaTryOnDataController
@@ -25,7 +25,7 @@ import com.aiuta.fashionsdk.tryon.compose.uikit.composition.LocalTheme
 internal fun NavigationInitialisation(
     modifier: Modifier = Modifier,
     aiutaConfiguration: AiutaConfiguration,
-    productItem: ProductItem,
+    productConfiguration: ProductConfiguration,
     startScreen: NavigationScreen,
     content: @Composable () -> Unit,
 ) {
@@ -34,7 +34,7 @@ internal fun NavigationInitialisation(
     ) {
         val controller = rememberFashionTryOnController(
             aiutaConfiguration = aiutaConfiguration,
-            productItem = productItem,
+            productConfiguration = productConfiguration,
             startScreen = startScreen,
         )
 

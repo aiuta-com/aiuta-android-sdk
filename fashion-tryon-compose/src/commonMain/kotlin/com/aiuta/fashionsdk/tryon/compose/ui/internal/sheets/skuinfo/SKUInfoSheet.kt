@@ -23,15 +23,12 @@ import androidx.compose.ui.draw.clip
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.unit.dp
 import com.aiuta.fashionsdk.analytics.events.AiutaAnalyticsPageId
-import com.aiuta.fashionsdk.configuration.features.tryon.AiutaTryOnFeature
 import com.aiuta.fashionsdk.configuration.features.tryon.cart.AiutaTryOnCartFeature
 import com.aiuta.fashionsdk.configuration.features.wishlist.AiutaWishlistFeature
-import com.aiuta.fashionsdk.tryon.compose.ui.internal.analytic.clickAddToCart
+import com.aiuta.fashionsdk.tryon.compose.ui.internal.analytic.clickAddProductToCart
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.analytic.clickAddToWishListActiveSKU
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.components.block.ProductInfo
-import com.aiuta.fashionsdk.tryon.compose.ui.internal.controller.changeActiveSKU
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.controller.composition.LocalController
-import com.aiuta.fashionsdk.tryon.compose.ui.internal.controller.navigateBack
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.navigation.NavigationBottomSheetScreen
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.navigation.NavigationBottomSheetScreen.ProductInfo.PrimaryButtonState
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.sheets.components.SheetDivider
@@ -121,9 +118,6 @@ private fun ButtonsContainer(
     val controller = LocalController.current
     val theme = LocalTheme.current
 
-    val activeSKUItem = controller.activeProductItem.value
-
-    val tryOnFeature = strictProvideFeature<AiutaTryOnFeature>()
     val cartFeature = strictProvideFeature<AiutaTryOnCartFeature>()
     val wishlistFeature = provideFeature<AiutaWishlistFeature>()
 
@@ -148,12 +142,10 @@ private fun ButtonsContainer(
                 style = FashionButtonStyles.secondaryStyle(theme),
                 size = FashionButtonSizes.lSize(iconSize = 20.dp),
                 onClick = {
-                    // TODO Migrate to list of product IDs with multi-try-on
                     controller.clickAddToWishListActiveSKU(
                         pageId = productInfo.originPageId,
                         updatedWishlistState = !inWishlist.value,
                         dataProvider = wishlistFeature.dataProvider,
-                        productIds = listOf(activeSKUItem.id),
                     )
                 },
             )
@@ -165,27 +157,20 @@ private fun ButtonsContainer(
             modifier = Modifier
                 .weight(1f)
                 .fillMaxHeight(),
-            text = if (productInfo.primaryButtonState == PrimaryButtonState.ADD_TO_CART) {
-                cartFeature.strings.addToCart
-            } else {
-                tryOnFeature.strings.tryOn
-            },
-            icon = tryOnFeature.icons.tryOn20.takeIf {
-                productInfo.primaryButtonState == PrimaryButtonState.TRY_ON
+            text = when (productInfo.primaryButtonState) {
+                PrimaryButtonState.ADD_TO_CART -> cartFeature.strings.addToCart
             },
             style = FashionButtonStyles.primaryStyle(theme),
             size = FashionButtonSizes.lSize(),
             onClick = {
-                if (productInfo.primaryButtonState == PrimaryButtonState.ADD_TO_CART) {
-                    controller.clickAddToCart(
-                        pageId = AiutaAnalyticsPageId.IMAGE_PICKER,
-                        productId = productInfo.productItem.id,
-                        handler = cartFeature.handler,
-                    )
-                } else {
-                    controller.changeActiveSKU(productInfo.productItem)
-                    controller.bottomSheetNavigator.hide()
-                    controller.navigateBack()
+                when (productInfo.primaryButtonState) {
+                    PrimaryButtonState.ADD_TO_CART -> {
+                        controller.clickAddProductToCart(
+                            pageId = AiutaAnalyticsPageId.IMAGE_PICKER,
+                            productId = productInfo.productItem.id,
+                            handler = cartFeature.handler,
+                        )
+                    }
                 }
             },
         )

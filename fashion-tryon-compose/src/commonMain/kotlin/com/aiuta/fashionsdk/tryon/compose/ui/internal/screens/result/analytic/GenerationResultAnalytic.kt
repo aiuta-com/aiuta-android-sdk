@@ -11,8 +11,6 @@ internal fun FashionTryOnController.sendGenerationFeedback(
     feedback: String? = null,
     productIds: List<String>,
 ) {
-    val activeSKUItem = activeProductItem.value
-
     analytic.sendEvent(
         event = AiutaAnalyticsFeedbackEvent(
             event = AiutaAnalyticsFeedbackEventType.NEGATIVE,
@@ -21,7 +19,7 @@ internal fun FashionTryOnController.sendGenerationFeedback(
             pageId = AiutaAnalyticsPageId.RESULTS,
             productIds = productIds
                 .takeIf { it.isNotEmpty() }
-                ?: listOf(activeSKUItem.id),
+                ?: activeProductItemsIds,
         ),
     )
 }
@@ -29,15 +27,13 @@ internal fun FashionTryOnController.sendGenerationFeedback(
 internal fun FashionTryOnController.sendLikeGenerationFeedback(
     sessionImage: SessionImageUIModel,
 ) {
-    val activeSKUItem = activeProductItem.value
-
     analytic.sendEvent(
         event = AiutaAnalyticsFeedbackEvent(
             event = AiutaAnalyticsFeedbackEventType.POSITIVE,
             pageId = AiutaAnalyticsPageId.RESULTS,
             productIds = sessionImage.productIds
                 .takeIf { it.isNotEmpty() }
-                ?: listOf(activeSKUItem.id),
+                ?: activeProductItemsIds,
         ),
     )
 }

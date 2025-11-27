@@ -11,10 +11,9 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
 import com.aiuta.fashionsdk.analytics.events.AiutaAnalyticsPageId
 import com.aiuta.fashionsdk.configuration.features.tryon.cart.AiutaTryOnCartFeature
-import com.aiuta.fashionsdk.tryon.compose.ui.internal.analytic.clickAddToCart
+import com.aiuta.fashionsdk.tryon.compose.ui.internal.analytic.clickAddProductToCart
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.components.block.ProductInfo
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.controller.composition.LocalController
-import com.aiuta.fashionsdk.tryon.compose.ui.internal.screens.result.components.footer.FOOTER_FULL_SIZE_SPAN
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.utils.features.strictProvideFeature
 import com.aiuta.fashionsdk.tryon.compose.uikit.button.FashionButton
 import com.aiuta.fashionsdk.tryon.compose.uikit.button.FashionButtonSizes
@@ -24,7 +23,7 @@ import com.aiuta.fashionsdk.tryon.compose.uikit.composition.LocalTheme
 internal fun LazyGridScope.itemDescriptionBlock(modifier: Modifier = Modifier) {
     item(
         key = "ITEM_DESCRIPTION_BLOCK_KEY",
-        span = { GridItemSpan(FOOTER_FULL_SIZE_SPAN) },
+        span = { GridItemSpan(maxLineSpan) },
         contentType = "ITEM_DESCRIPTION_BLOCK_TYPE",
     ) {
         ItemDescriptionBlock(
@@ -38,7 +37,7 @@ internal fun ItemDescriptionBlock(modifier: Modifier = Modifier) {
     val controller = LocalController.current
     val theme = LocalTheme.current
 
-    val activeSKUItem = controller.activeProductItem.value
+    val activeSKUItem = controller.activeProductItems.first()
 
     val cartFeature = strictProvideFeature<AiutaTryOnCartFeature>()
 
@@ -58,7 +57,7 @@ internal fun ItemDescriptionBlock(modifier: Modifier = Modifier) {
             style = FashionButtonStyles.primaryStyle(theme),
             size = FashionButtonSizes.lSize(horizontalPadding = 30.dp),
             onClick = {
-                controller.clickAddToCart(
+                controller.clickAddProductToCart(
                     pageId = AiutaAnalyticsPageId.RESULTS,
                     productId = activeSKUItem.id,
                     handler = cartFeature.handler,

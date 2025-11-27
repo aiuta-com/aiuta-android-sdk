@@ -4,13 +4,13 @@ import com.aiuta.fashionsdk.analytics.events.AiutaAnalyticsPageId
 import com.aiuta.fashionsdk.configuration.features.models.product.ProductItem
 
 internal fun ShareElementScope.onShare(
-    activeProductItem: ProductItem,
+    activeProductItems: List<ProductItem>,
     imageUrl: String?,
     pageId: AiutaAnalyticsPageId,
 ) {
     imageUrl?.let {
         onShare(
-            activeProductItems = listOf(activeProductItem),
+            activeProductItems = activeProductItems,
             imageUrls = listOf(imageUrl),
             pageId = pageId,
         )

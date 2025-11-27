@@ -298,7 +298,7 @@ private fun BoxScope.HistoryScreenInterface(
                 isShareLoading = isShareActive.value,
                 onShare = {
                     onShare(
-                        activeProductItems = listOf(controller.activeProductItem.value),
+                        activeProductItems = controller.activeProductItems,
                         imageUrls = controller
                             .selectorHolder
                             .getList()

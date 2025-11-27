@@ -12,14 +12,15 @@ import com.aiuta.fashionsdk.tryon.compose.ui.internal.controller.composition.Loc
 internal fun AiutaWishlistFeature.inWishlistListener(): State<Boolean> {
     val controller = LocalController.current
     val productWishlistState = dataProvider.wishlistProductIds.collectAsState()
-    val activeItem = controller.activeProductItem.value
+    val activeItemsIds = controller.activeProductItemsIds
 
     return remember(
         productWishlistState.value,
-        activeItem,
+        activeItemsIds,
     ) {
         derivedStateOf {
-            activeItem.id in productWishlistState.value
+            val wishlistProductIds = productWishlistState.value
+            wishlistProductIds.containsAll(activeItemsIds)
         }
     }
 }

@@ -94,7 +94,7 @@ internal fun ImageListScreen(
                 shareText = shareFeature.strings.shareButton,
                 onClick = {
                     onShare(
-                        activeProductItem = controller.activeProductItem.value,
+                        activeProductItems = controller.activeProductItems,
                         imageUrl = generatedImages[pagerState.settledPage]?.imageUrl,
                         pageId = AiutaAnalyticsPageId.HISTORY,
                     )

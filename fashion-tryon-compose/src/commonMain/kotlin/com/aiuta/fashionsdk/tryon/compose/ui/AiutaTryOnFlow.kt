@@ -6,6 +6,7 @@ import androidx.compose.ui.Modifier
 import com.aiuta.fashionsdk.analytics.events.AiutaAnalyticsSessionEvent
 import com.aiuta.fashionsdk.configuration.AiutaConfiguration
 import com.aiuta.fashionsdk.configuration.features.models.product.ProductItem
+import com.aiuta.fashionsdk.tryon.compose.domain.models.ProductConfiguration
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.navigation.NavigationFlow
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.navigation.defaultStartScreen
 
@@ -16,7 +17,7 @@ import com.aiuta.fashionsdk.tryon.compose.ui.internal.navigation.defaultStartScr
  *
  * @param modifier The modifier to be applied to the layout
  * @param aiutaConfiguration The configuration for the Aiuta SDK
- * @param productForGeneration The product item to be used for try-on generation
+ * @param productConfiguration The product item to be used for try-on generation
  *
  * @see AiutaConfiguration
  * @see ProductItem
@@ -26,12 +27,12 @@ import com.aiuta.fashionsdk.tryon.compose.ui.internal.navigation.defaultStartScr
 public fun AiutaTryOnFlow(
     modifier: Modifier = Modifier,
     aiutaConfiguration: AiutaConfiguration,
-    productForGeneration: ProductItem,
+    productConfiguration: ProductConfiguration,
 ) {
     NavigationFlow(
         modifier = modifier,
         aiutaConfiguration = aiutaConfiguration,
-        productItem = productForGeneration,
+        productConfiguration = productConfiguration,
         startScreen = defaultStartScreen(),
         flowType = AiutaAnalyticsSessionEvent.FlowType.TRY_ON,
     )

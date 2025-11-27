@@ -18,7 +18,7 @@ import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.launch
 
 class AiutaViewModel : ViewModel() {
-    val activeProductItem: MutableStateFlow<ProductGenerationItem?> = MutableStateFlow(null)
+    val activeProductItems: MutableStateFlow<List<ProductGenerationItem>> = MutableStateFlow(emptyList())
 
     fun buildAiutaConfiguration(context: AiutaPlatformContext) = aiutaConfiguration {
         aiuta = buildAiuta(context)
@@ -53,7 +53,7 @@ class AiutaViewModel : ViewModel() {
                 }
 
             // And finally take first product item
-            activeProductItem.value = productItems?.result?.firstOrNull()
+            activeProductItems.value = productItems?.result ?: emptyList()
         }
     }
 

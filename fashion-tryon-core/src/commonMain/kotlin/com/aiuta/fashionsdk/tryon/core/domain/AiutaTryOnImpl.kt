@@ -122,7 +122,7 @@ internal class AiutaTryOnImpl(
             ) {
                 productOperationsDataSource.createProductOperation(
                     request = CreateProductOperationRequest(
-                        skuId = container.productId,
+                        skuIds = container.productIds,
                         uploadedImageId = uploadedImage.id,
                     ),
                 )
