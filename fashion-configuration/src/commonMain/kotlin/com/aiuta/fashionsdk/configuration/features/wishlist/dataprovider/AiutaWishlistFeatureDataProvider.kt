@@ -18,8 +18,8 @@ public interface AiutaWishlistFeatureDataProvider {
     /**
      * Updates the wishlist status of a product.
      *
-     * @param productId The ID of the product to update
+     * @param productIds The ID of the products to update
      * @param inWishlist Whether the product should be in the wishlist (true) or not (false)
      */
-    public fun setProductInWishlist(productId: List<String>, inWishlist: Boolean)
+    public fun setProductInWishlist(productIds: List<String>, inWishlist: Boolean)
 }
