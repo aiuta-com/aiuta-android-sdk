@@ -12,11 +12,11 @@ internal class HostGeneratedImageInteractor(
     private val dataProvider: AiutaTryOnGenerationsHistoryFeatureDataProviderCustom,
 ) : GeneratedImageInteractor {
     override suspend fun insertAll(
-        generatedProductId: String,
+        generatedProductIds: List<String>,
         images: List<GeneratedImageUIModel>,
     ): Result<Unit> = runCatching {
         dataProvider.addGeneratedImages(
-            productIds = listOf(generatedProductId),
+            productIds = generatedProductIds,
             images = images.map { image -> image.toPublic() },
         )
     }

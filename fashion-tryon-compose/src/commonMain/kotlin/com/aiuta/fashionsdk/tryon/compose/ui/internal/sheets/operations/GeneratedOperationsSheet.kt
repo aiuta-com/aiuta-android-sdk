@@ -3,7 +3,6 @@ package com.aiuta.fashionsdk.tryon.compose.ui.internal.sheets.operations
 import androidx.compose.animation.AnimatedVisibility
 import androidx.compose.animation.fadeIn
 import androidx.compose.animation.fadeOut
-import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.ColumnScope
@@ -74,7 +73,7 @@ internal fun ColumnScope.GeneratedOperationsSheet() {
         Modifier
             .width(148.dp)
             .height(254.dp)
-            .clip(theme.image.shapes.imageSShape)
+            .clip(theme.image.shapes.imageMShape)
 
     val generatedOperations = controller.generatedOperationInteractor
         .getGeneratedOperationFlow()
@@ -211,7 +210,7 @@ private fun OperationItem(
                 .clipToBounds()
                 .fillMaxSize(),
             imageUrl = generatedOperation.sourceImageUrls.firstOrNull(),
-            shape = theme.image.shapes.imageSShape,
+            shape = theme.image.shapes.imageMShape,
             contentScale = ContentScale.Crop,
             contentDescription = null,
         )

@@ -6,12 +6,14 @@ import androidx.compose.animation.core.tween
 import androidx.compose.animation.fadeIn
 import androidx.compose.animation.fadeOut
 import androidx.compose.animation.togetherWith
+import androidx.compose.runtime.Immutable
 import com.aiuta.fashionsdk.analytics.events.AiutaAnalyticsPageId
 import kotlin.random.Random
 
 /**
  * Be careful, order is matter for animation transitions,
  */
+@Immutable
 internal abstract class NavigationScreen {
     val id: String = Random.nextInt().toString()
     abstract val exitPageId: AiutaAnalyticsPageId

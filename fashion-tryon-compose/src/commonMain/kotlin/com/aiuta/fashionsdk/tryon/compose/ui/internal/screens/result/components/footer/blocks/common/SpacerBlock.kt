@@ -6,7 +6,6 @@ import androidx.compose.foundation.lazy.grid.GridItemSpan
 import androidx.compose.foundation.lazy.grid.LazyGridScope
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.Dp
-import com.aiuta.fashionsdk.tryon.compose.ui.internal.screens.result.components.footer.FOOTER_FULL_SIZE_SPAN
 
 internal fun LazyGridScope.spacerBlock(
     index: Int,
@@ -14,8 +13,8 @@ internal fun LazyGridScope.spacerBlock(
 ) {
     item(
         key = "SPACER_BLOCK_KEY_$index",
-        span = { GridItemSpan(FOOTER_FULL_SIZE_SPAN) },
-        contentType = "SPACER_BLOCK_KEY__TYPE",
+        span = { GridItemSpan(maxLineSpan) },
+        contentType = "SPACER_BLOCK_KEY_TYPE",
     ) {
         Spacer(Modifier.height(height))
     }

@@ -5,7 +5,6 @@ import androidx.compose.runtime.State
 import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.derivedStateOf
 import androidx.compose.runtime.remember
-import com.aiuta.fashionsdk.configuration.features.models.product.ProductItem
 import com.aiuta.fashionsdk.tryon.compose.domain.models.internal.generated.images.LastSavedImages
 import com.aiuta.fashionsdk.tryon.compose.domain.models.internal.generated.images.isNotEmpty
 import com.aiuta.fashionsdk.tryon.compose.domain.models.internal.generated.images.toLastSavedImages
@@ -65,13 +64,7 @@ internal fun FashionTryOnController.navigateBack() {
     }
 }
 
-// Active SKU State
-internal fun FashionTryOnController.changeActiveSKU(newProductItem: ProductItem) {
-    activeProductItem.value = newProductItem
-}
-
 // Error State
-
 internal fun FashionTryOnController.showErrorState(errorState: ToastErrorState) {
     // Check if toast already visible
     if (fashionTryOnErrorState.value == null) {
@@ -154,7 +147,8 @@ internal suspend fun FashionTryOnController.updateActiveOperationWithFirstOrSetE
 @Composable
 internal fun FashionTryOnController.isAppbarHistoryAvailable(): State<Boolean> {
     val historyImageCount = generatedImageInteractor.countFlow().collectAsState(0)
-    val isGenerationsHistoryFeatureAvailable = isFeatureInitialize<com.aiuta.fashionsdk.configuration.features.tryon.history.AiutaTryOnGenerationsHistoryFeature>()
+    val isGenerationsHistoryFeatureAvailable =
+        isFeatureInitialize<com.aiuta.fashionsdk.configuration.features.tryon.history.AiutaTryOnGenerationsHistoryFeature>()
 
     return remember(generationStatus.value) {
         derivedStateOf {
@@ -191,5 +185,12 @@ internal fun FashionTryOnController.isLastSavedPhotoAvailable(): State<Boolean> 
 internal fun FashionTryOnController.isErrorStateVisible(): State<Boolean> = remember(fashionTryOnErrorState.value) {
     derivedStateOf {
         fashionTryOnErrorState.value != null
+    }
+}
+
+@Composable
+internal fun FashionTryOnController.isSingleTryOnMode(): State<Boolean> = remember(activeProductItems) {
+    derivedStateOf {
+        activeProductItems.size == 1
     }
 }

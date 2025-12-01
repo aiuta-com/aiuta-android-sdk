@@ -3,6 +3,7 @@ package com.aiuta.fashionsdk.configuration.features.tryon.cart
 import com.aiuta.fashionsdk.configuration.features.AiutaFeature
 import com.aiuta.fashionsdk.configuration.features.tryon.AiutaTryOnFeature
 import com.aiuta.fashionsdk.configuration.features.tryon.cart.handler.AiutaTryOnCartFeatureHandler
+import com.aiuta.fashionsdk.configuration.features.tryon.cart.outfit.AiutaTryOnCartOutfitFeature
 import com.aiuta.fashionsdk.configuration.features.tryon.cart.strings.AiutaTryOnCartFeatureStrings
 import com.aiuta.fashionsdk.configuration.internal.utils.checkNotNullWithDescription
 
@@ -16,10 +17,17 @@ import com.aiuta.fashionsdk.configuration.internal.utils.checkNotNullWithDescrip
  * - [strings]: Text content configuration
  * - [handler]: Cart event handling
  *
+ * Optional components:
+ * - [outfit]: Outfit cart integration configuration
+ *
  * @property strings Text content for cart-related UI elements
  * @property handler Event handler for cart-related actions
+ * @property outfit Optional configuration for outfit cart functionality
  */
 public class AiutaTryOnCartFeature(
+    // Features
+    public val outfit: AiutaTryOnCartOutfitFeature?,
+    // General
     public val strings: AiutaTryOnCartFeatureStrings,
     public val handler: AiutaTryOnCartFeatureHandler,
 ) : AiutaFeature {
@@ -28,6 +36,7 @@ public class AiutaTryOnCartFeature(
      * Builder for creating [AiutaTryOnCartFeature] instances.
      */
     public class Builder : AiutaFeature.Builder {
+        public var outfit: AiutaTryOnCartOutfitFeature? = null
         public var strings: AiutaTryOnCartFeatureStrings? = null
         public var handler: AiutaTryOnCartFeatureHandler? = null
 
@@ -35,6 +44,7 @@ public class AiutaTryOnCartFeature(
             val parentClass = "AiutaTryOnCartFeature"
 
             return AiutaTryOnCartFeature(
+                outfit = outfit,
                 strings = strings.checkNotNullWithDescription(
                     parentClass = parentClass,
                     property = "strings",
@@ -59,6 +69,11 @@ public class AiutaTryOnCartFeature(
  *     cart {
  *         strings = ...
  *         handler = ...
+ *         // Optional outfit configuration
+ *         outfit {
+ *             strings = ...
+ *             handler = ...
+ *         }
  *     }
  * }
  * ```

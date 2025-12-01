@@ -1,15 +1,14 @@
-package com.aiuta.fashionsdk.tryon.compose.ui.internal.screens.selector.components.footer
+package com.aiuta.fashionsdk.tryon.compose.ui.internal.screens.selector.components.footer.active
 
-import androidx.compose.foundation.background
 import androidx.compose.foundation.border
 import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.ColumnScope
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.aspectRatio
 import androidx.compose.foundation.layout.fillMaxHeight
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
-import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.shape.RoundedCornerShape
@@ -32,7 +31,6 @@ import com.aiuta.fashionsdk.tryon.compose.ui.internal.controller.composition.Loc
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.navigation.NavigationBottomSheetScreen
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.screens.selector.utils.startGeneration
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.utils.features.strictProvideFeature
-import com.aiuta.fashionsdk.tryon.compose.ui.internal.utils.shadow.dropShadow
 import com.aiuta.fashionsdk.tryon.compose.uikit.button.FashionButton
 import com.aiuta.fashionsdk.tryon.compose.uikit.button.FashionButtonSizes
 import com.aiuta.fashionsdk.tryon.compose.uikit.button.FashionButtonStyles
@@ -42,7 +40,9 @@ import com.aiuta.fashionsdk.tryon.compose.uikit.resources.AiutaImage
 import com.aiuta.fashionsdk.tryon.compose.uikit.utils.clickableUnindicated
 
 @Composable
-internal fun ActiveFooter(modifier: Modifier = Modifier) {
+internal fun ColumnScope.SingleTryOnFooterContent(
+    modifier: Modifier = Modifier,
+) {
     val coilContext = LocalPlatformContext.current
     val controller = LocalController.current
     val features = LocalAiutaFeatures.current
@@ -52,61 +52,38 @@ internal fun ActiveFooter(modifier: Modifier = Modifier) {
     val tryOnFeature = strictProvideFeature<AiutaTryOnFeature>()
     val inputImageValidationFeature = strictProvideFeature<AiutaTryOnInputImageValidationFeature>()
 
-    Column(
-        modifier = modifier,
-        horizontalAlignment = Alignment.CenterHorizontally,
-    ) {
-        Spacer(Modifier.weight(1f))
+    Spacer(Modifier.height(16.dp))
 
-        Column(
-            modifier =
-            Modifier
-                .dropShadow(
-                    shape = theme.bottomSheet.shapes.bottomSheetShape,
-                    color = theme.color.primary.copy(alpha = 0.04f),
-                    blur = 15.dp,
-                    offsetY = (-10).dp,
-                )
-                .background(
-                    color = theme.color.background,
-                    shape = theme.bottomSheet.shapes.bottomSheetShape,
-                )
-                .padding(horizontal = 16.dp),
-        ) {
-            Spacer(Modifier.height(16.dp))
+    ProductBlock(
+        modifier = Modifier
+            .height(40.dp)
+            .fillMaxWidth(),
+    )
 
-            ProductBlock(
-                modifier = Modifier
-                    .height(40.dp)
-                    .fillMaxWidth(),
+    Spacer(Modifier.height(24.dp))
+
+    FashionButton(
+        modifier = Modifier.fillMaxWidth(),
+        text = tryOnFeature.strings.tryOn,
+        style = tryOnFeature.styles.tryOnButtonGradient?.let { tryOnButtonGradient ->
+            FashionButtonStyles.gradientColors(
+                contentColor = theme.color.onDark,
+                gradientBackground = Brush.horizontalGradient(tryOnButtonGradient),
             )
-
-            Spacer(Modifier.height(24.dp))
-
-            FashionButton(
-                modifier = Modifier.fillMaxWidth(),
-                text = tryOnFeature.strings.tryOn,
-                style = tryOnFeature.styles.tryOnButtonGradient?.let { tryOnButtonGradient ->
-                    FashionButtonStyles.gradientColors(
-                        contentColor = theme.color.onDark,
-                        gradientBackground = Brush.horizontalGradient(tryOnButtonGradient),
-                    )
-                } ?: FashionButtonStyles.primaryStyle(theme),
-                size = FashionButtonSizes.lSize(),
-                icon = tryOnFeature.icons.tryOn20,
-                onClick = {
-                    controller.startGeneration(
-                        coilContext = coilContext,
-                        dialogController = dialogController,
-                        features = features,
-                        inputImageValidationStrings = inputImageValidationFeature.strings,
-                    )
-                },
+        } ?: FashionButtonStyles.primaryStyle(theme),
+        size = FashionButtonSizes.lSize(),
+        icon = tryOnFeature.icons.tryOn20,
+        onClick = {
+            controller.startGeneration(
+                coilContext = coilContext,
+                dialogController = dialogController,
+                features = features,
+                inputImageValidationStrings = inputImageValidationFeature.strings,
             )
+        },
+    )
 
-            Spacer(Modifier.height(16.dp))
-        }
-    }
+    Spacer(Modifier.height(16.dp))
 }
 
 @Composable
@@ -114,7 +91,7 @@ private fun ProductBlock(modifier: Modifier = Modifier) {
     val controller = LocalController.current
     val theme = LocalTheme.current
 
-    val activeSKUItem = controller.activeProductItem.value
+    val activeSKUItem = controller.activeProductItems.first()
     val sharedCorner = RoundedCornerShape(size = 8.dp)
 
     Row(

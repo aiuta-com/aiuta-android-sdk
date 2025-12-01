@@ -6,7 +6,7 @@ import androidx.compose.ui.Modifier
 import com.aiuta.fashionsdk.Aiuta
 import com.aiuta.fashionsdk.analytics.events.AiutaAnalyticsSessionEvent
 import com.aiuta.fashionsdk.configuration.AiutaConfiguration
-import com.aiuta.fashionsdk.tryon.compose.ui.internal.navigation.DefaultProductItem
+import com.aiuta.fashionsdk.tryon.compose.ui.internal.navigation.DefaultProductConfiguration
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.navigation.NavigationFlow
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.navigation.NavigationScreen
 import com.aiuta.fashionsdk.tryon.core.AiutaTryOn
@@ -32,7 +32,7 @@ public fun HistoryFlow(
         modifier = modifier,
         aiutaConfiguration = aiutaConfiguration,
         startScreen = NavigationScreen.History,
-        productItem = DefaultProductItem,
+        productConfiguration = DefaultProductConfiguration,
         flowType = AiutaAnalyticsSessionEvent.FlowType.HISTORY,
     )
 }

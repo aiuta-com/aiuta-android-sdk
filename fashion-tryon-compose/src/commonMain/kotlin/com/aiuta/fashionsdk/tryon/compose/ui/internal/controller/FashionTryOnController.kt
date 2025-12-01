@@ -27,6 +27,7 @@ import com.aiuta.fashionsdk.tryon.compose.domain.internal.interactor.generated.o
 import com.aiuta.fashionsdk.tryon.compose.domain.internal.interactor.onboarding.OnboardingInteractor
 import com.aiuta.fashionsdk.tryon.compose.domain.internal.interactor.session.SessionGenerationInteractor
 import com.aiuta.fashionsdk.tryon.compose.domain.internal.selector.SelectedHolder
+import com.aiuta.fashionsdk.tryon.compose.domain.models.ProductConfiguration
 import com.aiuta.fashionsdk.tryon.compose.domain.models.internal.generated.images.GeneratedImageUIModel
 import com.aiuta.fashionsdk.tryon.compose.domain.models.internal.generated.images.LastSavedImages
 import com.aiuta.fashionsdk.tryon.compose.domain.models.internal.generated.operations.GeneratedOperationUIModel
@@ -48,7 +49,7 @@ import kotlinx.coroutines.cancel
 @Composable
 internal fun BoxWithConstraintsScope.rememberFashionTryOnController(
     aiutaConfiguration: AiutaConfiguration,
-    productItem: ProductItem,
+    productConfiguration: ProductConfiguration,
     startScreen: NavigationScreen,
 ): FashionTryOnController {
     val uiScope = rememberCoroutineScope()
@@ -56,12 +57,17 @@ internal fun BoxWithConstraintsScope.rememberFashionTryOnController(
     val internalAiutaAnalytic = remember { aiutaConfiguration.aiuta.internalAiutaAnalytic }
 
     val onboardingFeature = aiutaConfiguration.features.provideFeature<AiutaOnboardingFeature>()
-    val consentStandaloneFeature = aiutaConfiguration.features.provideFeature<AiutaConsentStandaloneFeature>()
-    val uploadsHistoryFeature = aiutaConfiguration.features.provideFeature<AiutaImagePickerUploadsHistoryFeature>()
-    val generationsHistoryFeature = aiutaConfiguration.features.provideFeature<AiutaTryOnGenerationsHistoryFeature>()
+    val consentStandaloneFeature =
+        aiutaConfiguration.features.provideFeature<AiutaConsentStandaloneFeature>()
+    val uploadsHistoryFeature =
+        aiutaConfiguration.features.provideFeature<AiutaImagePickerUploadsHistoryFeature>()
+    val generationsHistoryFeature =
+        aiutaConfiguration.features.provideFeature<AiutaTryOnGenerationsHistoryFeature>()
     val tryOnFeature = aiutaConfiguration.features.strictProvideFeature<AiutaTryOnFeature>()
 
-    val activeProductItem = remember { mutableStateOf(productItem) }
+    val activeProductItems = remember {
+        mutableStateListOf(*productConfiguration.productsForGeneration.toTypedArray())
+    }
 
     val zoomImageController = rememberZoomImageController(constraints = constraints)
 
@@ -72,7 +78,7 @@ internal fun BoxWithConstraintsScope.rememberFashionTryOnController(
             startScreen = startScreen,
             bottomSheetNavigator = defaultBottomSheetNavigator,
             zoomImageController = zoomImageController,
-            activeProductItem = activeProductItem,
+            activeProductItems = activeProductItems,
             aiuta = aiutaConfiguration.aiuta,
             aiutaTryOn = aiutaConfiguration.aiuta.tryon,
             aiutaUserInterfaceActions = aiutaConfiguration.userInterface.actions,
@@ -119,7 +125,7 @@ internal class FashionTryOnController(
     // Bottom sheet navigation
     public val bottomSheetNavigator: BottomSheetNavigator,
     // Data
-    public val activeProductItem: MutableState<ProductItem>,
+    public val activeProductItems: SnapshotStateList<ProductItem>,
     // Domain
     public val aiuta: Aiuta,
     public val aiutaTryOn: AiutaTryOn,
@@ -150,6 +156,7 @@ internal class FashionTryOnController(
     val selectorHolder: SelectedHolder<GeneratedImageUIModel> = SelectedHolder()
 
     // Data
+    public val activeProductItemsIds: List<String> by lazy { activeProductItems.map { it.id } }
     public val lastSavedImages: MutableState<LastSavedImages> =
         mutableStateOf(LastSavedImages.Empty)
     public val lastSavedOperation: MutableState<GeneratedOperationUIModel?> = mutableStateOf(null)

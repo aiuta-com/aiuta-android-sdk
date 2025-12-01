@@ -9,6 +9,8 @@ import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.State
 import androidx.compose.ui.Modifier
+import com.aiuta.fashionsdk.tryon.compose.ui.internal.screens.selector.components.footer.active.ActiveFooter
+import com.aiuta.fashionsdk.tryon.compose.ui.internal.screens.selector.components.footer.inactive.InactiveFooter
 
 @Composable
 internal fun ImageSelectorFooter(

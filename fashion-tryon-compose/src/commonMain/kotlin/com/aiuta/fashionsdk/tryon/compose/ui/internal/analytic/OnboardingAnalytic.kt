@@ -14,7 +14,7 @@ internal fun FashionTryOnController.sendOnboardingEvent(
         event = AiutaAnalyticsOnboardingEvent(
             event = eventType,
             pageId = pageId,
-            productIds = listOf(activeProductItem.value.id),
+            productIds = activeProductItemsIds,
             consentsIds = consentsIds?.takeIf { it.isNotEmpty() },
         ),
     )

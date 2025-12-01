@@ -115,7 +115,7 @@ private fun FashionTryOnController.startGenerationWithUriSource(
         .startProductGeneration(
             container = ProductGenerationPlatformImageContainer(
                 platformFile = file,
-                productId = activeProductItem.value.id,
+                productIds = activeProductItemsIds,
             ),
         )
         .onEach { status ->
@@ -146,7 +146,7 @@ private fun FashionTryOnController.startGenerationWithUrlSource(
                 fileId = sourceImage.imageId,
                 fileUrl = sourceImage.imageUrl,
                 fileType = sourceImage.imageType,
-                productId = activeProductItem.value.id,
+                productIds = activeProductItemsIds,
             ),
         )
         .onEach { status ->
@@ -365,7 +365,7 @@ private suspend fun FashionTryOnController.saveGenerations(
     // Save generations for history, if operation is success and history available
     if (features.isFeatureInitialize<AiutaTryOnGenerationsHistoryFeature>()) {
         generatedImageInteractor.insertAll(
-            generatedProductId = activeProductItem.value.id,
+            generatedProductIds = activeProductItemsIds,
             images = operation.generatedImages,
         )
     }

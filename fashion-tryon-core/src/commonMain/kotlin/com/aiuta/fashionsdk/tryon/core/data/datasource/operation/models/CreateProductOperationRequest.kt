@@ -5,8 +5,8 @@ import kotlinx.serialization.Serializable
 
 @Serializable
 internal data class CreateProductOperationRequest(
-    @SerialName("sku_id")
-    val skuId: String,
+    @SerialName("sku_ids")
+    val skuIds: List<String>,
     @SerialName("uploaded_image_id")
     val uploadedImageId: String,
 )

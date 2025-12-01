@@ -860,8 +860,9 @@ public final class com/aiuta/fashionsdk/configuration/features/tryon/AiutaTryOnF
 
 public final class com/aiuta/fashionsdk/configuration/features/tryon/cart/AiutaTryOnCartFeature : com/aiuta/fashionsdk/configuration/features/AiutaFeature {
 	public static final field $stable I
-	public fun <init> (Lcom/aiuta/fashionsdk/configuration/features/tryon/cart/strings/AiutaTryOnCartFeatureStrings;Lcom/aiuta/fashionsdk/configuration/features/tryon/cart/handler/AiutaTryOnCartFeatureHandler;)V
+	public fun <init> (Lcom/aiuta/fashionsdk/configuration/features/tryon/cart/outfit/AiutaTryOnCartOutfitFeature;Lcom/aiuta/fashionsdk/configuration/features/tryon/cart/strings/AiutaTryOnCartFeatureStrings;Lcom/aiuta/fashionsdk/configuration/features/tryon/cart/handler/AiutaTryOnCartFeatureHandler;)V
 	public final fun getHandler ()Lcom/aiuta/fashionsdk/configuration/features/tryon/cart/handler/AiutaTryOnCartFeatureHandler;
+	public final fun getOutfit ()Lcom/aiuta/fashionsdk/configuration/features/tryon/cart/outfit/AiutaTryOnCartOutfitFeature;
 	public final fun getStrings ()Lcom/aiuta/fashionsdk/configuration/features/tryon/cart/strings/AiutaTryOnCartFeatureStrings;
 }
 
@@ -871,8 +872,10 @@ public final class com/aiuta/fashionsdk/configuration/features/tryon/cart/AiutaT
 	public synthetic fun build ()Lcom/aiuta/fashionsdk/configuration/features/AiutaFeature;
 	public fun build ()Lcom/aiuta/fashionsdk/configuration/features/tryon/cart/AiutaTryOnCartFeature;
 	public final fun getHandler ()Lcom/aiuta/fashionsdk/configuration/features/tryon/cart/handler/AiutaTryOnCartFeatureHandler;
+	public final fun getOutfit ()Lcom/aiuta/fashionsdk/configuration/features/tryon/cart/outfit/AiutaTryOnCartOutfitFeature;
 	public final fun getStrings ()Lcom/aiuta/fashionsdk/configuration/features/tryon/cart/strings/AiutaTryOnCartFeatureStrings;
 	public final fun setHandler (Lcom/aiuta/fashionsdk/configuration/features/tryon/cart/handler/AiutaTryOnCartFeatureHandler;)V
+	public final fun setOutfit (Lcom/aiuta/fashionsdk/configuration/features/tryon/cart/outfit/AiutaTryOnCartOutfitFeature;)V
 	public final fun setStrings (Lcom/aiuta/fashionsdk/configuration/features/tryon/cart/strings/AiutaTryOnCartFeatureStrings;)V
 }
 
@@ -882,6 +885,42 @@ public final class com/aiuta/fashionsdk/configuration/features/tryon/cart/AiutaT
 
 public abstract interface class com/aiuta/fashionsdk/configuration/features/tryon/cart/handler/AiutaTryOnCartFeatureHandler {
 	public abstract fun addToCart (Ljava/lang/String;)V
+}
+
+public final class com/aiuta/fashionsdk/configuration/features/tryon/cart/outfit/AiutaTryOnCartOutfitFeature : com/aiuta/fashionsdk/configuration/features/AiutaFeature {
+	public static final field $stable I
+	public fun <init> (Lcom/aiuta/fashionsdk/configuration/features/tryon/cart/outfit/strings/AiutaTryOnCartOutfitFeatureStrings;Lcom/aiuta/fashionsdk/configuration/features/tryon/cart/outfit/handler/AiutaTryOnCartOutfitFeatureHandler;)V
+	public final fun getHandler ()Lcom/aiuta/fashionsdk/configuration/features/tryon/cart/outfit/handler/AiutaTryOnCartOutfitFeatureHandler;
+	public final fun getStrings ()Lcom/aiuta/fashionsdk/configuration/features/tryon/cart/outfit/strings/AiutaTryOnCartOutfitFeatureStrings;
+}
+
+public final class com/aiuta/fashionsdk/configuration/features/tryon/cart/outfit/AiutaTryOnCartOutfitFeature$Builder : com/aiuta/fashionsdk/configuration/features/AiutaFeature$Builder {
+	public static final field $stable I
+	public fun <init> ()V
+	public synthetic fun build ()Lcom/aiuta/fashionsdk/configuration/features/AiutaFeature;
+	public fun build ()Lcom/aiuta/fashionsdk/configuration/features/tryon/cart/outfit/AiutaTryOnCartOutfitFeature;
+	public final fun getHandler ()Lcom/aiuta/fashionsdk/configuration/features/tryon/cart/outfit/handler/AiutaTryOnCartOutfitFeatureHandler;
+	public final fun getStrings ()Lcom/aiuta/fashionsdk/configuration/features/tryon/cart/outfit/strings/AiutaTryOnCartOutfitFeatureStrings;
+	public final fun setHandler (Lcom/aiuta/fashionsdk/configuration/features/tryon/cart/outfit/handler/AiutaTryOnCartOutfitFeatureHandler;)V
+	public final fun setStrings (Lcom/aiuta/fashionsdk/configuration/features/tryon/cart/outfit/strings/AiutaTryOnCartOutfitFeatureStrings;)V
+}
+
+public final class com/aiuta/fashionsdk/configuration/features/tryon/cart/outfit/AiutaTryOnCartOutfitFeatureKt {
+	public static final fun outfit (Lcom/aiuta/fashionsdk/configuration/features/tryon/cart/AiutaTryOnCartFeature$Builder;Lkotlin/jvm/functions/Function1;)Lcom/aiuta/fashionsdk/configuration/features/tryon/cart/AiutaTryOnCartFeature$Builder;
+}
+
+public abstract interface class com/aiuta/fashionsdk/configuration/features/tryon/cart/outfit/handler/AiutaTryOnCartOutfitFeatureHandler {
+	public abstract fun addToCartOutfit (Ljava/util/List;)V
+}
+
+public abstract interface class com/aiuta/fashionsdk/configuration/features/tryon/cart/outfit/strings/AiutaTryOnCartOutfitFeatureStrings {
+	public abstract fun getAddToCartOutfit ()Ljava/lang/String;
+}
+
+public final class com/aiuta/fashionsdk/configuration/features/tryon/cart/outfit/strings/AiutaTryOnCartOutfitFeatureStrings$Default : com/aiuta/fashionsdk/configuration/features/tryon/cart/outfit/strings/AiutaTryOnCartOutfitFeatureStrings {
+	public static final field $stable I
+	public fun <init> ()V
+	public fun getAddToCartOutfit ()Ljava/lang/String;
 }
 
 public abstract interface class com/aiuta/fashionsdk/configuration/features/tryon/cart/strings/AiutaTryOnCartFeatureStrings {
@@ -1161,6 +1200,7 @@ public abstract interface class com/aiuta/fashionsdk/configuration/features/tryo
 }
 
 public abstract interface class com/aiuta/fashionsdk/configuration/features/tryon/strings/AiutaTryOnFeatureStrings {
+	public abstract fun getOutfitTitle ()Ljava/lang/String;
 	public abstract fun getTryOn ()Ljava/lang/String;
 	public abstract fun getTryOnPageTitle ()Ljava/lang/String;
 }
@@ -1168,6 +1208,7 @@ public abstract interface class com/aiuta/fashionsdk/configuration/features/tryo
 public final class com/aiuta/fashionsdk/configuration/features/tryon/strings/AiutaTryOnFeatureStrings$Default : com/aiuta/fashionsdk/configuration/features/tryon/strings/AiutaTryOnFeatureStrings {
 	public static final field $stable I
 	public fun <init> ()V
+	public fun getOutfitTitle ()Ljava/lang/String;
 	public fun getTryOn ()Ljava/lang/String;
 	public fun getTryOnPageTitle ()Ljava/lang/String;
 }
@@ -1313,7 +1354,7 @@ public final class com/aiuta/fashionsdk/configuration/features/wishlist/AiutaWis
 
 public abstract interface class com/aiuta/fashionsdk/configuration/features/wishlist/dataprovider/AiutaWishlistFeatureDataProvider {
 	public abstract fun getWishlistProductIds ()Lkotlinx/coroutines/flow/StateFlow;
-	public abstract fun setProductInWishlist (Ljava/lang/String;Z)V
+	public abstract fun setProductInWishlist (Ljava/util/List;Z)V
 }
 
 public abstract interface class com/aiuta/fashionsdk/configuration/features/wishlist/icons/AiutaWishlistFeatureIcons {
@@ -1571,6 +1612,8 @@ public abstract class com/aiuta/fashionsdk/configuration/ui/theme/image/shapes/A
 	public fun <init> ()V
 	public abstract fun getImageL-D9Ej5fM ()F
 	public final fun getImageLShape ()Landroidx/compose/foundation/shape/CornerBasedShape;
+	public abstract fun getImageM-D9Ej5fM ()F
+	public final fun getImageMShape ()Landroidx/compose/foundation/shape/CornerBasedShape;
 	public abstract fun getImageS-D9Ej5fM ()F
 	public final fun getImageSShape ()Landroidx/compose/foundation/shape/CornerBasedShape;
 }
@@ -1579,6 +1622,7 @@ public final class com/aiuta/fashionsdk/configuration/ui/theme/image/shapes/Aiut
 	public static final field $stable I
 	public fun <init> ()V
 	public fun getImageL-D9Ej5fM ()F
+	public fun getImageM-D9Ej5fM ()F
 	public fun getImageS-D9Ej5fM ()F
 }
 

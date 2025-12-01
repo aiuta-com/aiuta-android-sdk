@@ -30,8 +30,6 @@ internal sealed interface NavigationBottomSheetScreen {
     ) : NavigationBottomSheetScreen {
         public enum class PrimaryButtonState {
             ADD_TO_CART,
-
-            TRY_ON,
         }
     }
 

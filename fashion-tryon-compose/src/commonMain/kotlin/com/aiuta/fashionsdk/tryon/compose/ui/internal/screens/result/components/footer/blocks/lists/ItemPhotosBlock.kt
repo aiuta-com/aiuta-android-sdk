@@ -1,4 +1,4 @@
-package com.aiuta.fashionsdk.tryon.compose.ui.internal.screens.result.components.footer.blocks.photos
+package com.aiuta.fashionsdk.tryon.compose.ui.internal.screens.result.components.footer.blocks.lists
 
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement
@@ -12,9 +12,7 @@ import androidx.compose.foundation.lazy.LazyRow
 import androidx.compose.foundation.lazy.grid.GridItemSpan
 import androidx.compose.foundation.lazy.grid.LazyGridScope
 import androidx.compose.foundation.lazy.itemsIndexed
-import androidx.compose.material.BottomSheetValue
 import androidx.compose.runtime.Composable
-import androidx.compose.runtime.derivedStateOf
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
@@ -30,12 +28,11 @@ import androidx.compose.ui.layout.onGloballyPositioned
 import androidx.compose.ui.layout.positionInRoot
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.toSize
-import androidx.compose.ui.util.lerp
 import com.aiuta.fashionsdk.analytics.events.AiutaAnalyticsPageId
 import com.aiuta.fashionsdk.tryon.compose.domain.models.internal.zoom.ZoomImageUiModel
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.controller.composition.LocalController
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.screens.base.transition.controller.openScreen
-import com.aiuta.fashionsdk.tryon.compose.ui.internal.screens.result.components.footer.FOOTER_FULL_SIZE_SPAN
+import com.aiuta.fashionsdk.tryon.compose.ui.internal.screens.result.components.footer.blocks.common.alphaForBottomSheetConnection
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.screens.result.controller.GenerationResultController
 import com.aiuta.fashionsdk.tryon.compose.uikit.composition.LocalTheme
 import com.aiuta.fashionsdk.tryon.compose.uikit.resources.AiutaImage
@@ -47,7 +44,7 @@ internal fun LazyGridScope.itemPhotosBlock(
 ) {
     item(
         key = "ITEM_PHOTOS_BLOCK_KEY",
-        span = { GridItemSpan(FOOTER_FULL_SIZE_SPAN) },
+        span = { GridItemSpan(maxLineSpan) },
         contentType = "ITEM_PHOTOS_BLOCK_TYPE",
     ) {
         ItemPhotosBlock(
@@ -65,36 +62,18 @@ private fun ItemPhotosBlock(
     val controller = LocalController.current
     val theme = LocalTheme.current
 
-    val activeSKUItem = controller.activeProductItem.value
-
-    val bottomSheetState =
-        generationResultController
-            .bottomSheetScaffoldState
-            .bottomSheetState
-    val sheetProgress =
-        bottomSheetState.progress(
-            from = BottomSheetValue.Collapsed,
-            to = BottomSheetValue.Expanded,
-        )
-
-    val alphaRow =
-        remember(sheetProgress) {
-            derivedStateOf {
-                lerp(
-                    start = 0.1f,
-                    stop = 1f,
-                    fraction = sheetProgress,
-                )
-            }
-        }
+    val activeSKUItem = controller.activeProductItems.first()
+    val alphaRow = alphaForBottomSheetConnection(
+        generationResultController = generationResultController,
+    )
 
     val sharedSharedModifier =
         Modifier
             .height(226.dp)
             .width(170.dp)
-            .clip(theme.image.shapes.imageSShape)
+            .clip(theme.image.shapes.imageMShape)
             .background(theme.color.neutral)
-    val sharedImageModifier = Modifier.fillMaxSize().clip(theme.image.shapes.imageSShape)
+    val sharedImageModifier = Modifier.fillMaxSize().clip(theme.image.shapes.imageMShape)
 
     LazyRow(
         modifier = modifier.alpha(alphaRow.value),
@@ -136,7 +115,7 @@ private fun ItemPhotosBlock(
                             controller.zoomImageController.openScreen(
                                 model = ZoomImageUiModel(
                                     imageSize = imageSize,
-                                    initialCornerRadius = theme.image.shapes.imageS,
+                                    initialCornerRadius = theme.image.shapes.imageM,
                                     imageUrl = url,
                                     parentImageOffset = parentImageOffset,
                                     originPageId = AiutaAnalyticsPageId.RESULTS,
@@ -144,7 +123,7 @@ private fun ItemPhotosBlock(
                             )
                         },
                     imageUrl = url,
-                    shape = theme.image.shapes.imageSShape,
+                    shape = theme.image.shapes.imageMShape,
                     contentScale = ContentScale.Crop,
                     contentDescription = null,
                 )
