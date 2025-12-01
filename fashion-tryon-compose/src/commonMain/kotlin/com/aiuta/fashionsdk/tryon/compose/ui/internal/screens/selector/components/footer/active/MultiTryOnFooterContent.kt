@@ -1,6 +1,8 @@
 package com.aiuta.fashionsdk.tryon.compose.ui.internal.screens.selector.components.footer.active
 
+import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement
+import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.BoxWithConstraints
 import androidx.compose.foundation.layout.ColumnScope
 import androidx.compose.foundation.layout.Row
@@ -8,6 +10,7 @@ import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxHeight
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
+import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.width
 import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
@@ -107,6 +110,16 @@ private fun OutfitItemsRow(
     val controller = LocalController.current
     val theme = LocalTheme.current
 
+    val commonImageModifier = Modifier
+        .width(itemWidth)
+        .fillMaxHeight()
+        .clip(theme.image.shapes.imageSShape)
+    val imageModifier = if (theme.productBar.toggles.applyProductFirstImageExtraPadding) {
+        commonImageModifier.padding(10.dp)
+    } else {
+        commonImageModifier
+    }
+
     BoxWithConstraints(modifier = modifier) {
         val maxItems = remember(maxWidth, productItems.size) {
             val available = maxWidth
@@ -125,11 +138,9 @@ private fun OutfitItemsRow(
         ) {
             productItems.take(maxItems).forEach { product ->
                 key(product.id) {
-                    AiutaImage(
-                        modifier = Modifier
-                            .width(itemWidth)
-                            .fillMaxHeight()
-                            .clip(theme.image.shapes.imageSShape)
+                    Box(
+                        modifier = commonImageModifier
+                            .background(theme.color.neutral)
                             .clickableUnindicated {
                                 controller.bottomSheetNavigator.show(
                                     NavigationBottomSheetScreen.ProductInfo(
@@ -139,11 +150,16 @@ private fun OutfitItemsRow(
                                     ),
                                 )
                             },
-                        imageUrl = product.imageUrls.first(),
-                        shape = theme.image.shapes.imageMShape,
-                        contentScale = ContentScale.Crop,
-                        contentDescription = null,
-                    )
+                        contentAlignment = Alignment.Center,
+                    ) {
+                        AiutaImage(
+                            modifier = imageModifier,
+                            imageUrl = product.imageUrls.first(),
+                            shape = theme.image.shapes.imageMShape,
+                            contentScale = ContentScale.Crop,
+                            contentDescription = null,
+                        )
+                    }
                 }
             }
         }

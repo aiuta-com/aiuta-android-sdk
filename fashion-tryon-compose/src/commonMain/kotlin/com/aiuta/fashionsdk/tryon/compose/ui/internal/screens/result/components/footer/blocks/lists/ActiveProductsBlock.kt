@@ -1,11 +1,14 @@
 package com.aiuta.fashionsdk.tryon.compose.ui.internal.screens.result.components.footer.blocks.lists
 
+import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement
+import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
+import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.lazy.LazyRow
 import androidx.compose.foundation.lazy.grid.GridItemSpan
@@ -88,6 +91,18 @@ private fun ActiveProductItem(
     theme: AiutaTheme,
 ) {
     val productItemUrl = productItem.imageUrls.first()
+    val commonImageModifier = Modifier
+        .fillMaxWidth()
+        .height(208.dp)
+        .clip(theme.image.shapes.imageMShape)
+    val imageModifier = if (theme.productBar.toggles.applyProductFirstImageExtraPadding) {
+        commonImageModifier.padding(
+            horizontal = 32.dp,
+            vertical = 24.dp,
+        )
+    } else {
+        commonImageModifier
+    }
 
     Column(
         modifier = modifier
@@ -103,16 +118,18 @@ private fun ActiveProductItem(
             },
         horizontalAlignment = Alignment.Start,
     ) {
-        AiutaImage(
-            modifier = Modifier
-                .fillMaxWidth()
-                .height(208.dp)
-                .clip(theme.image.shapes.imageMShape),
-            imageUrl = productItemUrl,
-            shape = theme.image.shapes.imageMShape,
-            contentScale = ContentScale.Crop,
-            contentDescription = null,
-        )
+        Box(
+            modifier = commonImageModifier.background(theme.color.neutral),
+            contentAlignment = Alignment.Center,
+        ) {
+            AiutaImage(
+                modifier = imageModifier,
+                imageUrl = productItemUrl,
+                shape = theme.image.shapes.imageMShape,
+                contentScale = ContentScale.Crop,
+                contentDescription = null,
+            )
+        }
 
         Spacer(Modifier.height(8.dp))
 
