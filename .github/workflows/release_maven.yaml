@@ -4,6 +4,9 @@ on:
     release:
         types: [ published ]
 
+permissions:
+    contents: write
+
 concurrency:
     group: release-manual-maven-${{ github.ref }}
     cancel-in-progress: true
@@ -40,3 +43,8 @@ jobs:
                     ORG_GRADLE_PROJECT_signingInMemoryKeyId: ${{ secrets.MAVENCENTRAL_GPG_KEY_ID }}
                     ORG_GRADLE_PROJECT_signingInMemoryKeyPassword: ${{ secrets.MAVENCENTRAL_GPG_KEY_PASSWORD }}
                 run: ./gradlew publishAndReleaseToMavenCentral --no-configuration-cache
+
+            -   name: Increment version
+                uses: ./.github/actions/increment-version
+                with:
+                    release-version: ${{ github.event.release.name }}
