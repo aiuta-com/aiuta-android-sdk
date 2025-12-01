@@ -3,6 +3,9 @@ name: Manually publish to Maven central
 on:
     workflow_dispatch:
 
+permissions:
+    contents: write
+
 concurrency:
     group: release-maven-${{ github.ref }}
     cancel-in-progress: true
@@ -28,6 +31,7 @@ jobs:
                 run: |
                     LAST_VERSION=$(git tag --sort=committerdate | tail -1)
                     echo Last tag is $LAST_VERSION
+                    echo "version=$LAST_VERSION" >> $GITHUB_OUTPUT
                     bash ./scripts/update_version.sh $LAST_VERSION
 
             -   name: Setup gradle
@@ -41,3 +45,8 @@ jobs:
                     ORG_GRADLE_PROJECT_signingInMemoryKeyId: ${{ secrets.MAVENCENTRAL_GPG_KEY_ID }}
                     ORG_GRADLE_PROJECT_signingInMemoryKeyPassword: ${{ secrets.MAVENCENTRAL_GPG_KEY_PASSWORD }}
                 run: ./gradlew publishAndReleaseToMavenCentral --no-configuration-cache
+
+            -   name: Increment version
+                uses: ./.github/actions/increment-version
+                with:
+                    release-version: ${{ steps.set_release_version.outputs.version }}

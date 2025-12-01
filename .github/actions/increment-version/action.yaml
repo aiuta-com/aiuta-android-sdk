@@ -1,0 +1,63 @@
+name: Increment version
+description: Increment patch version in gradle.properties and commit changes
+
+inputs:
+    release-version:
+        description: 'The version that was just released (will be used for increment)'
+        required: true
+
+runs:
+    using: composite
+    steps:
+        -   name: Calculate next version
+            id: calculate_next_version
+            shell: bash
+            run: |
+                RELEASE_VERSION="${{ inputs.release-version }}"
+                
+                # Remove -SNAPSHOT suffix if present (in case it was passed with suffix)
+                CLEAN_VERSION="${RELEASE_VERSION%-SNAPSHOT}"
+                
+                # Split version into MAJOR.MINOR.PATCH
+                IFS='.' read -r MAJOR MINOR PATCH <<< "$CLEAN_VERSION"
+                MAJOR=${MAJOR:-0}
+                MINOR=${MINOR:-0}
+                PATCH=${PATCH:-0}
+                
+                # Increment patch version
+                NEXT_PATCH=$((PATCH + 1))
+                NEXT_VERSION="$MAJOR.$MINOR.$NEXT_PATCH-SNAPSHOT"
+                
+                echo "Released version: $RELEASE_VERSION"
+                echo "Next version: $NEXT_VERSION"
+                echo "next_version=$NEXT_VERSION" >> $GITHUB_OUTPUT
+
+        -   name: Update version in gradle.properties
+            shell: bash
+            run: |
+                bash ./scripts/update_version.sh "${{ steps.calculate_next_version.outputs.next_version }}"
+
+        -   name: Configure git
+            shell: bash
+            run: |
+                git config --local user.email "github-actions[bot]@users.noreply.github.com"
+                git config --local user.name "github-actions[bot]"
+
+        -   name: Commit and push version increment
+            shell: bash
+            run: |
+                git add gradle.properties
+                git commit -m "Update version to ${{ steps.calculate_next_version.outputs.next_version }}"
+                
+                # Fetch the latest changes from the default branch
+                git fetch origin main
+                
+                # Create a temporary branch from the current HEAD
+                git checkout -b temp-branch
+                
+                # Rebase on top of the latest changes from the default branch
+                git rebase origin/main
+                
+                # Push to the default branch with force-with-lease for safety
+                git push --force-with-lease origin temp-branch:main
+
