@@ -1612,6 +1612,8 @@ public abstract class com/aiuta/fashionsdk/configuration/ui/theme/image/shapes/A
 	public fun <init> ()V
 	public abstract fun getImageL-D9Ej5fM ()F
 	public final fun getImageLShape ()Landroidx/compose/foundation/shape/CornerBasedShape;
+	public abstract fun getImageM-D9Ej5fM ()F
+	public final fun getImageMShape ()Landroidx/compose/foundation/shape/CornerBasedShape;
 	public abstract fun getImageS-D9Ej5fM ()F
 	public final fun getImageSShape ()Landroidx/compose/foundation/shape/CornerBasedShape;
 }
@@ -1620,6 +1622,7 @@ public final class com/aiuta/fashionsdk/configuration/ui/theme/image/shapes/Aiut
 	public static final field $stable I
 	public fun <init> ()V
 	public fun getImageL-D9Ej5fM ()F
+	public fun getImageM-D9Ej5fM ()F
 	public fun getImageS-D9Ej5fM ()F
 }
 

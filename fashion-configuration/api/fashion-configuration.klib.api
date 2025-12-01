@@ -1165,10 +1165,14 @@ abstract class com.aiuta.fashionsdk.configuration.ui.theme.image.shapes/AiutaIma
 
     abstract val imageL // com.aiuta.fashionsdk.configuration.ui.theme.image.shapes/AiutaImageThemeShapes.imageL|{}imageL[0]
         abstract fun <get-imageL>(): androidx.compose.ui.unit/Dp // com.aiuta.fashionsdk.configuration.ui.theme.image.shapes/AiutaImageThemeShapes.imageL.<get-imageL>|<get-imageL>(){}[0]
+    abstract val imageM // com.aiuta.fashionsdk.configuration.ui.theme.image.shapes/AiutaImageThemeShapes.imageM|{}imageM[0]
+        abstract fun <get-imageM>(): androidx.compose.ui.unit/Dp // com.aiuta.fashionsdk.configuration.ui.theme.image.shapes/AiutaImageThemeShapes.imageM.<get-imageM>|<get-imageM>(){}[0]
     abstract val imageS // com.aiuta.fashionsdk.configuration.ui.theme.image.shapes/AiutaImageThemeShapes.imageS|{}imageS[0]
         abstract fun <get-imageS>(): androidx.compose.ui.unit/Dp // com.aiuta.fashionsdk.configuration.ui.theme.image.shapes/AiutaImageThemeShapes.imageS.<get-imageS>|<get-imageS>(){}[0]
     final val imageLShape // com.aiuta.fashionsdk.configuration.ui.theme.image.shapes/AiutaImageThemeShapes.imageLShape|{}imageLShape[0]
         final fun <get-imageLShape>(): androidx.compose.foundation.shape/CornerBasedShape // com.aiuta.fashionsdk.configuration.ui.theme.image.shapes/AiutaImageThemeShapes.imageLShape.<get-imageLShape>|<get-imageLShape>(){}[0]
+    final val imageMShape // com.aiuta.fashionsdk.configuration.ui.theme.image.shapes/AiutaImageThemeShapes.imageMShape|{}imageMShape[0]
+        final fun <get-imageMShape>(): androidx.compose.foundation.shape/CornerBasedShape // com.aiuta.fashionsdk.configuration.ui.theme.image.shapes/AiutaImageThemeShapes.imageMShape.<get-imageMShape>|<get-imageMShape>(){}[0]
     final val imageSShape // com.aiuta.fashionsdk.configuration.ui.theme.image.shapes/AiutaImageThemeShapes.imageSShape|{}imageSShape[0]
         final fun <get-imageSShape>(): androidx.compose.foundation.shape/CornerBasedShape // com.aiuta.fashionsdk.configuration.ui.theme.image.shapes/AiutaImageThemeShapes.imageSShape.<get-imageSShape>|<get-imageSShape>(){}[0]
 
@@ -1177,6 +1181,8 @@ abstract class com.aiuta.fashionsdk.configuration.ui.theme.image.shapes/AiutaIma
 
         final val imageL // com.aiuta.fashionsdk.configuration.ui.theme.image.shapes/AiutaImageThemeShapes.Default.imageL|{}imageL[0]
             final fun <get-imageL>(): androidx.compose.ui.unit/Dp // com.aiuta.fashionsdk.configuration.ui.theme.image.shapes/AiutaImageThemeShapes.Default.imageL.<get-imageL>|<get-imageL>(){}[0]
+        final val imageM // com.aiuta.fashionsdk.configuration.ui.theme.image.shapes/AiutaImageThemeShapes.Default.imageM|{}imageM[0]
+            final fun <get-imageM>(): androidx.compose.ui.unit/Dp // com.aiuta.fashionsdk.configuration.ui.theme.image.shapes/AiutaImageThemeShapes.Default.imageM.<get-imageM>|<get-imageM>(){}[0]
         final val imageS // com.aiuta.fashionsdk.configuration.ui.theme.image.shapes/AiutaImageThemeShapes.Default.imageS|{}imageS[0]
             final fun <get-imageS>(): androidx.compose.ui.unit/Dp // com.aiuta.fashionsdk.configuration.ui.theme.image.shapes/AiutaImageThemeShapes.Default.imageS.<get-imageS>|<get-imageS>(){}[0]
     }

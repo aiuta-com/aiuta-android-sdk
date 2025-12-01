@@ -13,8 +13,6 @@ import androidx.compose.foundation.lazy.grid.LazyGridScope
 import androidx.compose.foundation.lazy.items
 import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
-import androidx.compose.runtime.getValue
-import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.alpha
@@ -109,9 +107,9 @@ private fun ActiveProductItem(
             modifier = Modifier
                 .fillMaxWidth()
                 .height(208.dp)
-                .clip(theme.image.shapes.imageSShape),
+                .clip(theme.image.shapes.imageMShape),
             imageUrl = productItemUrl,
-            shape = theme.image.shapes.imageSShape,
+            shape = theme.image.shapes.imageMShape,
             contentScale = ContentScale.Crop,
             contentDescription = null,
         )

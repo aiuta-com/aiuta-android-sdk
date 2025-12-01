@@ -27,9 +27,7 @@ import androidx.compose.foundation.lazy.grid.LazyVerticalGrid
 import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.derivedStateOf
-import androidx.compose.runtime.getValue
 import androidx.compose.runtime.remember
-import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
@@ -51,7 +49,6 @@ import com.aiuta.fashionsdk.tryon.compose.ui.internal.controller.isSelectModeAct
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.controller.navigateTo
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.navigation.NavigationScreen
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.screens.base.share.ShareElement
-import com.aiuta.fashionsdk.tryon.compose.ui.internal.screens.base.share.onShare
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.screens.history.analytic.sendDeleteHistoryEvent
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.screens.history.components.SelectorCard
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.screens.history.components.common.HistoryAppBar
@@ -196,7 +193,7 @@ private fun ImageContainer(
         modifier = modifier
             .fillMaxWidth()
             .height(178.dp)
-            .clip(theme.image.shapes.imageSShape)
+            .clip(theme.image.shapes.imageMShape)
             .background(color = theme.color.background)
             .clickableUnindicated { onClick() },
         contentAlignment = Alignment.Center,
@@ -208,7 +205,7 @@ private fun ImageContainer(
             // Do that, because thumbnail size is too small for zoom screen
             imageBuilder = ImageRequest.Builder(coilContext).size(ORIGINAL),
             imageUrl = imageUrl,
-            shape = theme.image.shapes.imageSShape,
+            shape = theme.image.shapes.imageMShape,
             contentScale = ContentScale.Crop,
             contentDescription = null,
         )

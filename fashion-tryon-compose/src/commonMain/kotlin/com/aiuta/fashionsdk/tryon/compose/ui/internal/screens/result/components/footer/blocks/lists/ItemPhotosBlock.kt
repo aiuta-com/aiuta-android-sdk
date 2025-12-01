@@ -71,9 +71,9 @@ private fun ItemPhotosBlock(
         Modifier
             .height(226.dp)
             .width(170.dp)
-            .clip(theme.image.shapes.imageSShape)
+            .clip(theme.image.shapes.imageMShape)
             .background(theme.color.neutral)
-    val sharedImageModifier = Modifier.fillMaxSize().clip(theme.image.shapes.imageSShape)
+    val sharedImageModifier = Modifier.fillMaxSize().clip(theme.image.shapes.imageMShape)
 
     LazyRow(
         modifier = modifier.alpha(alphaRow.value),
@@ -115,7 +115,7 @@ private fun ItemPhotosBlock(
                             controller.zoomImageController.openScreen(
                                 model = ZoomImageUiModel(
                                     imageSize = imageSize,
-                                    initialCornerRadius = theme.image.shapes.imageS,
+                                    initialCornerRadius = theme.image.shapes.imageM,
                                     imageUrl = url,
                                     parentImageOffset = parentImageOffset,
                                     originPageId = AiutaAnalyticsPageId.RESULTS,
@@ -123,7 +123,7 @@ private fun ItemPhotosBlock(
                             )
                         },
                     imageUrl = url,
-                    shape = theme.image.shapes.imageSShape,
+                    shape = theme.image.shapes.imageMShape,
                     contentScale = ContentScale.Crop,
                     contentDescription = null,
                 )
