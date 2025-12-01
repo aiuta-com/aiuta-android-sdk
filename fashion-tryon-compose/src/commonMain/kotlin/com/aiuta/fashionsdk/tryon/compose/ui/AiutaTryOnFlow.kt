@@ -37,3 +37,45 @@ public fun AiutaTryOnFlow(
         flowType = AiutaAnalyticsSessionEvent.FlowType.TRY_ON,
     )
 }
+
+/**
+ * Entry point for the fashion try-on flow.
+ *
+ * This composable function initializes and manages the try-on experience
+ *
+ * [Deprecated] Use [AiutaTryOnFlow] with `productConfiguration: ProductConfiguration` instead:
+ * `AiutaTryOnFlow(productConfiguration = ProductConfiguration(productsForGeneration = listOf(yourProduct)))`.
+ *
+ * @param modifier The modifier to be applied to the layout
+ * @param aiutaConfiguration The configuration for the Aiuta SDK
+ * @param productForGeneration The product item to be used for try-on generation
+ *
+ * @see AiutaConfiguration
+ * @see ProductItem
+ */
+@Deprecated(
+    message = "Use AiutaTryOnFlow(productConfiguration = ProductConfiguration(...)) instead",
+    replaceWith = ReplaceWith(
+        expression = "AiutaTryOnFlow(modifier, aiutaConfiguration, productConfiguration = ProductConfiguration(productsForGeneration = listOf(productForGeneration)))",
+        imports = [
+            "com.aiuta.fashionsdk.tryon.compose.domain.models.ProductConfiguration",
+        ],
+    ),
+)
+@OptIn(ExperimentalComposeUiApi::class)
+@Composable
+public fun AiutaTryOnFlow(
+    modifier: Modifier = Modifier,
+    aiutaConfiguration: AiutaConfiguration,
+    productForGeneration: ProductItem,
+) {
+    NavigationFlow(
+        modifier = modifier,
+        aiutaConfiguration = aiutaConfiguration,
+        productConfiguration = ProductConfiguration(
+            productsForGeneration = listOf(productForGeneration),
+        ),
+        startScreen = defaultStartScreen(),
+        flowType = AiutaAnalyticsSessionEvent.FlowType.TRY_ON,
+    )
+}

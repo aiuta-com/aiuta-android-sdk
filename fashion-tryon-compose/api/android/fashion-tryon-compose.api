@@ -10,6 +10,7 @@ public final class com/aiuta/fashionsdk/tryon/compose/domain/models/ProductConfi
 }
 
 public final class com/aiuta/fashionsdk/tryon/compose/ui/AiutaTryOnFlowKt {
+	public static final fun AiutaTryOnFlow (Landroidx/compose/ui/Modifier;Lcom/aiuta/fashionsdk/configuration/AiutaConfiguration;Lcom/aiuta/fashionsdk/configuration/features/models/product/ProductItem;Landroidx/compose/runtime/Composer;II)V
 	public static final fun AiutaTryOnFlow (Landroidx/compose/ui/Modifier;Lcom/aiuta/fashionsdk/configuration/AiutaConfiguration;Lcom/aiuta/fashionsdk/tryon/compose/domain/models/ProductConfiguration;Landroidx/compose/runtime/Composer;II)V
 }
 
