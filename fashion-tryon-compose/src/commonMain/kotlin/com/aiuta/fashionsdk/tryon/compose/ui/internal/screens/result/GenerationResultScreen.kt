@@ -4,10 +4,14 @@ import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Spacer
+import androidx.compose.foundation.layout.WindowInsets
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
+import androidx.compose.foundation.layout.navigationBars
 import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.statusBars
+import androidx.compose.foundation.layout.windowInsetsPadding
 import androidx.compose.foundation.layout.wrapContentHeight
 import androidx.compose.material.BottomSheetScaffold
 import androidx.compose.material.BottomSheetValue
@@ -18,6 +22,7 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.lerp
+import androidx.compose.ui.platform.LocalDensity
 import androidx.compose.ui.unit.dp
 import com.aiuta.fashionsdk.analytics.events.AiutaAnalyticsPageId
 import com.aiuta.fashionsdk.compose.core.size.rememberScreenSize
@@ -51,23 +56,30 @@ internal fun GenerationResultScreen(modifier: Modifier = Modifier) {
 private fun GenerationResultScreenContent(modifier: Modifier = Modifier) {
     val screenSize = rememberScreenSize()
     val theme = LocalTheme.current
+    val density = LocalDensity.current
 
     val generationResultController = rememberGenerationResultController()
     val fitDisclaimerFeature = provideFeature<AiutaTryOnFitDisclaimerFeature>()
 
     val screenHeight = screenSize.heightDp
 
+    val statusBarsPx = WindowInsets.statusBars.getTop(density)
+    val isStatusBarsNotAvailable = statusBarsPx == 0
+
+    val navigationBarsPx = WindowInsets.navigationBars.getBottom(density)
+    val navigationBars = with(density) { navigationBarsPx.toDp() }
+
+    val extraPadding = if (isStatusBarsNotAvailable) navigationBars else 0.dp
     val imageHeight = screenHeight * MAIN_IMAGE_SIZE
     val disclaimerHeight = 25.dp
-    val sheetHeight = screenHeight - 8.dp - imageHeight - 32.dp - disclaimerHeight
+    val sheetHeight = screenHeight - 16.dp - imageHeight - 32.dp - disclaimerHeight + extraPadding
 
     BottomSheetScaffold(
         modifier = modifier,
         scaffoldState = generationResultController.bottomSheetScaffoldState,
         sheetContent = {
             GenerationResultFooterList(
-                modifier =
-                Modifier
+                modifier = Modifier
                     .fillMaxWidth()
                     .wrapContentHeight(),
                 generationResultController = generationResultController,
@@ -79,14 +91,22 @@ private fun GenerationResultScreenContent(modifier: Modifier = Modifier) {
         } ?: theme.color.background,
         sheetShape = theme.bottomSheet.shapes.bottomSheetShape,
         sheetPeekHeight = sheetHeight,
-    ) { paddings ->
+    ) {
+        val contentModifier = if (isStatusBarsNotAvailable) {
+            Modifier
+                .fillMaxSize()
+                .windowInsetsPadding(WindowInsets.navigationBars)
+        } else {
+            Modifier.fillMaxSize()
+        }
+
         Box(
             modifier = Modifier
-                .padding(paddings)
+                .padding(bottom = sheetHeight - extraPadding)
                 .background(theme.color.background),
         ) {
             BottomSheetScaffoldContent(
-                modifier = Modifier.fillMaxSize(),
+                modifier = contentModifier,
                 generationResultController = generationResultController,
             )
 

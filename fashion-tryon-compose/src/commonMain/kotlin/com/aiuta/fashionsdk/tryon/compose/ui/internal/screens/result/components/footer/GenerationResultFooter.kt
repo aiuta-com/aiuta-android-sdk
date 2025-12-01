@@ -3,8 +3,8 @@ package com.aiuta.fashionsdk.tryon.compose.ui.internal.screens.result.components
 import androidx.compose.foundation.layout.WindowInsets
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
+import androidx.compose.foundation.layout.navigationBars
 import androidx.compose.foundation.layout.padding
-import androidx.compose.foundation.layout.statusBars
 import androidx.compose.foundation.lazy.grid.GridCells
 import androidx.compose.foundation.lazy.grid.LazyGridScope
 import androidx.compose.foundation.lazy.grid.LazyVerticalGrid
@@ -32,8 +32,8 @@ internal fun GenerationResultFooterList(
     val controller = LocalController.current
     val density = LocalDensity.current
 
-    val statusBarsPx = WindowInsets.statusBars.getTop(density)
-    val statusBars = with(density) { statusBarsPx.toDp() }
+    val navigationBarsPx = WindowInsets.navigationBars.getBottom(density)
+    val navigationBars = with(density) { navigationBarsPx.toDp() }
 
     val isSingleTryOnMode = controller.isSingleTryOnMode()
 
@@ -54,7 +54,7 @@ internal fun GenerationResultFooterList(
             )
         }
 
-        spacerBlock(index = 2, height = statusBars)
+        spacerBlock(index = 2, height = navigationBars)
     }
 }
 
