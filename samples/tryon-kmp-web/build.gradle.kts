@@ -52,7 +52,6 @@ kotlin {
             implementation(projects.fashionTryonCore)
             implementation(projects.fashionComposeCore)
 
-
             implementation(libs.coil3.compose)
             implementation(libs.coil3.network.ktor3)
             implementation(libs.jetbrains.compose.foundation)

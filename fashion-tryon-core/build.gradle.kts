@@ -21,7 +21,6 @@ kotlin {
                 api(projects.fashionNetwork)
                 api(projects.fashionNetworkPaging)
 
-
                 implementation(libs.jetbrains.compose.ui)
                 implementation(libs.kotlinx.coroutines.core)
                 implementation(libs.kotlinx.datetime)

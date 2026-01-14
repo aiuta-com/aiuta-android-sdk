@@ -40,7 +40,6 @@ kotlin {
                 api(projects.fashionConfiguration)
                 api(projects.fashionTryonCore)
 
-
                 implementation(libs.androidx.paging.common)
                 implementation(libs.coil3.compose)
                 implementation(libs.coil3.network.ktor3)
