@@ -52,12 +52,12 @@ kotlin {
             implementation(projects.fashionTryonCore)
             implementation(projects.fashionComposeCore)
 
-            implementation(compose.foundation)
-            implementation(compose.material3)
 
-            implementation(libs.jetbrains.viewmodel)
             implementation(libs.coil3.compose)
             implementation(libs.coil3.network.ktor3)
+            implementation(libs.jetbrains.compose.foundation)
+            implementation(libs.jetbrains.compose.material)
+            implementation(libs.jetbrains.viewmodel)
         }
         jsMain {
             dependencies {

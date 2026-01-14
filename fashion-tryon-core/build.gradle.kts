@@ -21,8 +21,8 @@ kotlin {
                 api(projects.fashionNetwork)
                 api(projects.fashionNetworkPaging)
 
-                implementation(compose.ui)
 
+                implementation(libs.jetbrains.compose.ui)
                 implementation(libs.kotlinx.coroutines.core)
                 implementation(libs.kotlinx.datetime)
                 implementation(libs.kotlinx.serialization)

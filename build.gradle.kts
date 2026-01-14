@@ -29,7 +29,6 @@ plugins {
     alias(libs.plugins.buildKonfig) apply false
     alias(libs.plugins.kotlinx.serialization) apply false
     alias(libs.plugins.ksp) apply false
-    alias(libs.plugins.jetbrains.compose.hotreload) apply false
     alias(libs.plugins.spotless)
     // https://github.com/gradle/gradle/issues/20084#issuecomment-1060822638
     id("org.jetbrains.dokka")

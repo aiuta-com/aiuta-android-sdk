@@ -17,7 +17,7 @@ kotlin {
             dependencies {
                 api(projects.fashion)
 
-                implementation(compose.foundation)
+                implementation(libs.jetbrains.compose.foundation)
             }
         }
     }

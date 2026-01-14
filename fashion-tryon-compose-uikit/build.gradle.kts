@@ -24,12 +24,11 @@ kotlin {
                 api(projects.fashionComposeCore)
                 api(projects.fashionConfiguration)
 
-                implementation(compose.components.resources)
-                implementation(compose.material)
-
                 implementation(libs.coil3.compose)
                 implementation(libs.coil3.network.ktor3)
                 implementation(libs.compose.placeholder)
+                implementation(libs.jetbrains.compose.components.resources)
+                implementation(libs.jetbrains.compose.material)
             }
         }
         jvmMain {
