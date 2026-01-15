@@ -40,8 +40,6 @@ kotlin {
                 api(projects.fashionConfiguration)
                 api(projects.fashionTryonCore)
 
-                implementation(compose.material)
-
                 implementation(libs.androidx.paging.common)
                 implementation(libs.coil3.compose)
                 implementation(libs.coil3.network.ktor3)
@@ -55,6 +53,7 @@ kotlin {
                 implementation(libs.room.runtime)
                 implementation(libs.room.paging)
                 implementation(libs.jetbrains.lifecycle)
+                implementation(libs.jetbrains.compose.material)
                 implementation(libs.jetbrains.compose.ui.backhandler)
                 implementation(libs.sqlite.bundled)
 

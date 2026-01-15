@@ -9,7 +9,6 @@ plugins {
     id("kotlin-multiplatform")
     id("org.jetbrains.compose")
     id("org.jetbrains.kotlin.plugin.compose")
-    id("org.jetbrains.compose.hot-reload")
     alias(libs.plugins.buildKonfig)
 }
 
@@ -75,7 +74,7 @@ kotlin {
             implementation(projects.fashionTryonCompose)
             implementation(projects.fashionConfigurationDefaults)
 
-            implementation(compose.foundation)
+            implementation(libs.jetbrains.compose.foundation)
 
             implementation(libs.jetbrains.viewmodel)
         }

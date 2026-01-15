@@ -18,7 +18,7 @@ kotlin {
                 api(projects.fashion)
                 api(projects.fashionComposeResources)
 
-                implementation(compose.foundation)
+                implementation(libs.jetbrains.compose.foundation)
 
                 implementation(projects.internal.internalFashionAnalytics)
             }
