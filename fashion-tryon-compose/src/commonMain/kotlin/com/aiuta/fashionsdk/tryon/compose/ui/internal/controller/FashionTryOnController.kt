@@ -120,9 +120,11 @@ internal fun BoxWithConstraintsScope.rememberFashionTryOnController(
 @Immutable
 internal class FashionTryOnController(
     // General navigation
+    @Deprecated("Migrate to separate controller from new module")
     public val startScreen: NavigationScreen,
     public val zoomImageController: ZoomImageController,
     // Bottom sheet navigation
+    @Deprecated("Migrate to separate controller from new module")
     public val bottomSheetNavigator: BottomSheetNavigator,
     // Data
     public val activeProductItems: SnapshotStateList<ProductItem>,
@@ -145,10 +147,14 @@ internal class FashionTryOnController(
         mutableStateListOf()
 
     // General navigation
+    @Deprecated("Migrate to separate controller from new module")
     internal val backStack: ArrayDeque<NavigationScreen> = ArrayDeque()
+
+    @Deprecated("Migrate to separate controller from new module")
     public val currentScreen: MutableState<NavigationScreen> = mutableStateOf(startScreen)
 
     // Error state
+    @Deprecated("Migrate to separate controller from new module")
     public val fashionTryOnErrorState: MutableState<ToastErrorState?> = mutableStateOf(null)
 
     // Edit changePhotoButtonStyle

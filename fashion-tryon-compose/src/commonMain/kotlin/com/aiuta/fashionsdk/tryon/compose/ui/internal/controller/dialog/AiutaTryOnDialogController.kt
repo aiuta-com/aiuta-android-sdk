@@ -7,6 +7,7 @@ import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 
 @Composable
+@Deprecated("Migrate to dialog from new nav module")
 internal fun rememberAiutaTryOnDialogController(): AiutaTryOnDialogController {
     val defaultState =
         remember {
@@ -21,6 +22,7 @@ internal fun rememberAiutaTryOnDialogController(): AiutaTryOnDialogController {
 }
 
 @Immutable
+@Deprecated("Migrate to dialog from new nav module")
 internal class AiutaTryOnDialogController(
     val state: MutableState<AiutaTryOnDialogState?>,
 )

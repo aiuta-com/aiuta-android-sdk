@@ -1,10 +1,9 @@
-package com.aiuta.fashionsdk.tryon.compose.ui.internal.controller.dialog
+package com.aiuta.fashionsdk.internal.navigation.dialog
 
 import androidx.compose.runtime.Immutable
 
-@Deprecated("Migrate to dialog from new nav module")
 @Immutable
-internal class AiutaTryOnDialogState(
+public class AiutaDialogState(
     val title: String? = null,
     val description: String,
     val confirmButton: String,

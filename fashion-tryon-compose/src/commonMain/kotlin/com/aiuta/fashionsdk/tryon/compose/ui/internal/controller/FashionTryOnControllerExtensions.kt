@@ -17,6 +17,7 @@ import com.aiuta.fashionsdk.tryon.compose.ui.internal.screens.history.models.Sel
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.utils.features.isFeatureInitialize
 
 // Configs
+@Deprecated("Migrate new nav module")
 internal val skippedBackStackScreens =
     setOf(
         NavigationScreen.Splash,
@@ -24,6 +25,7 @@ internal val skippedBackStackScreens =
         NavigationScreen.ModelSelector,
     )
 
+@Deprecated("Migrate new nav module")
 // Navigation
 internal fun FashionTryOnController.navigateTo(newScreen: NavigationScreen) {
     // Save previous screen, if we should not skip it in back stack
@@ -35,6 +37,7 @@ internal fun FashionTryOnController.navigateTo(newScreen: NavigationScreen) {
     currentScreen.value = newScreen
 }
 
+@Deprecated("Migrate new nav module")
 internal fun FashionTryOnController.popUpAndNavigateTo(
     navigateToScreen: NavigationScreen,
     popUpScreen: NavigationScreen? = null,
@@ -54,6 +57,7 @@ internal fun FashionTryOnController.popUpAndNavigateTo(
     navigateTo(navigateToScreen)
 }
 
+@Deprecated("Migrate new nav module")
 internal fun FashionTryOnController.navigateBack() {
     if (backStack.isNotEmpty()) {
         val previousScreen = backStack.removeLast()
@@ -65,6 +69,7 @@ internal fun FashionTryOnController.navigateBack() {
 }
 
 // Error State
+@Deprecated("Migrate new nav module")
 internal fun FashionTryOnController.showErrorState(errorState: ToastErrorState) {
     // Check if toast already visible
     if (fashionTryOnErrorState.value == null) {
@@ -72,6 +77,7 @@ internal fun FashionTryOnController.showErrorState(errorState: ToastErrorState) 
     }
 }
 
+@Deprecated("Migrate new nav module")
 internal fun FashionTryOnController.hideErrorState() {
     fashionTryOnErrorState.value = null
 }
@@ -181,6 +187,7 @@ internal fun FashionTryOnController.isLastSavedPhotoAvailable(): State<Boolean> 
     }
 }
 
+@Deprecated("Migrate new nav module")
 @Composable
 internal fun FashionTryOnController.isErrorStateVisible(): State<Boolean> = remember(fashionTryOnErrorState.value) {
     derivedStateOf {

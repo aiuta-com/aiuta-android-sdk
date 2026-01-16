@@ -12,6 +12,7 @@ import com.aiuta.fashionsdk.tryon.compose.ui.internal.screens.selector.utils.sta
 import kotlinx.coroutines.launch
 
 @Immutable
+@Deprecated("Migrate new nav module")
 internal interface ToastErrorState {
     val message: String?
     val onRetry: () -> Unit

@@ -29,6 +29,7 @@ import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.launch
 
 @Composable
+@Deprecated("Will migrate to separate navigation module")
 internal fun rememberBottomSheetNavigator(): BottomSheetNavigator {
     val defaultScope = rememberCoroutineScope()
 
@@ -54,6 +55,7 @@ internal fun rememberBottomSheetNavigator(): BottomSheetNavigator {
 
 @OptIn(ExperimentalMaterialApi::class)
 @Immutable
+@Deprecated("Will migrate to separate navigation module")
 internal class BottomSheetNavigator(
     private val scope: CoroutineScope,
     internal val sheetState: ModalBottomSheetState,
