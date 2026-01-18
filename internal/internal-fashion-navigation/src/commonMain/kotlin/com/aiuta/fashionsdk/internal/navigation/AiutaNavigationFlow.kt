@@ -20,10 +20,6 @@ import androidx.compose.ui.unit.dp
 import com.aiuta.fashionsdk.configuration.AiutaConfiguration
 import com.aiuta.fashionsdk.internal.navigation.bottomsheet.AiutaNavigationBottomSheetScreen
 import com.aiuta.fashionsdk.internal.navigation.bottomsheet.rememberAiutaBottomSheetNavigator
-import com.aiuta.fashionsdk.internal.navigation.components.DEFAULT_SHOWING_DELAY
-import com.aiuta.fashionsdk.internal.navigation.components.NavigationAlertDialog
-import com.aiuta.fashionsdk.internal.navigation.components.NavigationContent
-import com.aiuta.fashionsdk.internal.navigation.components.NavigationErrorCard
 import com.aiuta.fashionsdk.internal.navigation.composition.LocalAiutaDialogController
 import com.aiuta.fashionsdk.internal.navigation.composition.LocalBottomSheetNavigator
 import com.aiuta.fashionsdk.internal.navigation.composition.LocalErrorSnackbarController
@@ -31,6 +27,10 @@ import com.aiuta.fashionsdk.internal.navigation.composition.LocalNavigationContr
 import com.aiuta.fashionsdk.internal.navigation.controller.rememberAiutaNavigationController
 import com.aiuta.fashionsdk.internal.navigation.dialog.isDialogVisible
 import com.aiuta.fashionsdk.internal.navigation.dialog.rememberAiutaDialogController
+import com.aiuta.fashionsdk.internal.navigation.internal.components.DEFAULT_SHOWING_DELAY
+import com.aiuta.fashionsdk.internal.navigation.internal.components.NavigationAlertDialog
+import com.aiuta.fashionsdk.internal.navigation.internal.components.NavigationContent
+import com.aiuta.fashionsdk.internal.navigation.internal.components.NavigationErrorCard
 import com.aiuta.fashionsdk.internal.navigation.snackbar.isErrorStateVisible
 import com.aiuta.fashionsdk.internal.navigation.snackbar.rememberAiutaErrorSnackbarController
 import com.aiuta.fashionsdk.tryon.compose.uikit.composition.LocalTheme

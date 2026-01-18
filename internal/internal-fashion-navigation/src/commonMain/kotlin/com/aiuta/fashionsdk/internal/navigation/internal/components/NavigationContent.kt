@@ -1,4 +1,4 @@
-package com.aiuta.fashionsdk.internal.navigation.components
+package com.aiuta.fashionsdk.internal.navigation.internal.components
 
 import androidx.compose.animation.AnimatedContent
 import androidx.compose.animation.core.updateTransition
@@ -7,8 +7,8 @@ import androidx.compose.ui.Modifier
 import com.aiuta.fashionsdk.internal.navigation.AiutaNavEntry
 import com.aiuta.fashionsdk.internal.navigation.AiutaNavigationScreen
 import com.aiuta.fashionsdk.internal.navigation.composition.LocalNavigationController
+import com.aiuta.fashionsdk.internal.navigation.internal.utils.leftToRightTransition
 import com.aiuta.fashionsdk.internal.navigation.solveTransitionAnimation
-import com.aiuta.fashionsdk.internal.navigation.utils.leftToRightTransition
 
 @Composable
 internal fun NavigationContent(

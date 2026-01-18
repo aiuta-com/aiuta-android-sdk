@@ -1,4 +1,4 @@
-package com.aiuta.fashionsdk.internal.navigation.components
+package com.aiuta.fashionsdk.internal.navigation.internal.components
 
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Row

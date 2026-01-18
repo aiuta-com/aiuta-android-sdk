@@ -1,4 +1,4 @@
-package com.aiuta.fashionsdk.internal.navigation.utils
+package com.aiuta.fashionsdk.internal.navigation.internal.utils
 
 import androidx.compose.animation.ContentTransform
 import androidx.compose.animation.core.tween
