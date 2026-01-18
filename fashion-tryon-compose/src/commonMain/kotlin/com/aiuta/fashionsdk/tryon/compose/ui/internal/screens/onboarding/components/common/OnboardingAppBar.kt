@@ -10,6 +10,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.text.font.FontSynthesis
 import androidx.compose.ui.text.style.TextAlign
 import com.aiuta.fashionsdk.analytics.events.AiutaAnalyticsPageId
+import com.aiuta.fashionsdk.internal.navigation.composition.LocalAiutaNavigationController
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.analytic.clickClose
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.controller.composition.LocalController
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.navigation.components.appbar.AppBar
@@ -29,6 +30,7 @@ internal fun OnboardingAppBar(
     onboardingController: OnboardingController,
 ) {
     val controller = LocalController.current
+    val navigationController = LocalAiutaNavigationController.current
     val theme = LocalTheme.current
 
     val titleTransition = updateTransition(onboardingController.state.value)
@@ -41,7 +43,7 @@ internal fun OnboardingAppBar(
                 icon = theme.pageBar.icons.back24,
                 color = theme.color.primary,
                 onClick = {
-                    onboardingController.previousPage(controller)
+                    onboardingController.previousPage(navigationController)
                 },
             )
         },

@@ -30,8 +30,8 @@ import com.aiuta.fashionsdk.configuration.features.consent.AiutaConsentStandalon
 import com.aiuta.fashionsdk.configuration.features.picker.AiutaImagePickerFeature
 import com.aiuta.fashionsdk.configuration.features.picker.model.AiutaImagePickerPredefinedModelFeature
 import com.aiuta.fashionsdk.internal.navigation.composition.LocalAiutaBottomSheetNavigator
+import com.aiuta.fashionsdk.internal.navigation.composition.LocalAiutaNavigationController
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.controller.composition.LocalController
-import com.aiuta.fashionsdk.tryon.compose.ui.internal.controller.navigateTo
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.navigation.TryOnBottomSheetScreen
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.navigation.TryOnScreen
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.utils.features.provideFeature
@@ -47,6 +47,7 @@ import com.aiuta.fashionsdk.tryon.compose.uikit.resources.AiutaImage
 internal fun ImageSelectorScreenEmptyBodyBlock(modifier: Modifier) {
     val bottomSheetNavigator = LocalAiutaBottomSheetNavigator.current
     val controller = LocalController.current
+    val navigationController = LocalAiutaNavigationController.current
     val theme = LocalTheme.current
 
     val screenSize = rememberScreenSize()
@@ -124,7 +125,7 @@ internal fun ImageSelectorScreenEmptyBodyBlock(modifier: Modifier) {
                     )
                 }
                 if (shouldShowConsent.value) {
-                    controller.navigateTo(TryOnScreen.Consent(onObtainedConsents = showPickerSheet))
+                    navigationController.navigateTo(TryOnScreen.Consent(onObtainedConsents = showPickerSheet))
                 } else {
                     showPickerSheet()
                 }
@@ -150,7 +151,10 @@ internal fun ImageSelectorScreenEmptyBodyBlock(modifier: Modifier) {
                 style = FashionButtonStyles.adaptiveContrastStyle(theme),
                 size = FashionButtonSizes.lSize(),
                 onClick = {
-                    controller.navigateTo(TryOnScreen.ModelSelector)
+                    navigationController.navigateTo(
+                        newScreen = TryOnScreen.ModelSelector,
+                        shouldSaveCurrentScreen = false,
+                    )
                 },
             )
 

@@ -140,9 +140,6 @@ internal class FashionTryOnController(
 
     // General navigation
     @Deprecated("Migrate to separate controller from new module")
-    internal val backStack: ArrayDeque<TryOnScreen> = ArrayDeque()
-
-    @Deprecated("Migrate to separate controller from new module")
     public val currentScreen: MutableState<TryOnScreen> = mutableStateOf(startScreen)
 
     // Edit changePhotoButtonStyle

@@ -9,7 +9,6 @@ import com.aiuta.fashionsdk.analytics.events.AiutaAnalyticsPageId
 import com.aiuta.fashionsdk.internal.navigation.controller.AiutaNavigationController
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.analytic.sendOnboardingEvent
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.controller.FashionTryOnController
-import com.aiuta.fashionsdk.tryon.compose.ui.internal.controller.navigateBack
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.navigation.TryOnScreen
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.screens.consent.controller.isAllMandatoryConsentChecked
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.screens.onboarding.controller.state.ConsentPage
@@ -65,7 +64,7 @@ internal fun OnboardingController.nextPage(
     }
 }
 
-internal fun OnboardingController.previousPage(controller: FashionTryOnController) {
+internal fun OnboardingController.previousPage(navigationController: AiutaNavigationController) {
     scope.launch {
         val previousPageIndex = pagerState.settledPage - 1
         val isFirstPage = pagerState.settledPage == 0
@@ -83,7 +82,7 @@ internal fun OnboardingController.previousPage(controller: FashionTryOnControlle
             pagerState.animateScrollToPage(previousPageIndex)
         } else {
             // Try to navigate back
-            controller.navigateBack()
+            navigationController.navigateBack()
         }
     }
 }

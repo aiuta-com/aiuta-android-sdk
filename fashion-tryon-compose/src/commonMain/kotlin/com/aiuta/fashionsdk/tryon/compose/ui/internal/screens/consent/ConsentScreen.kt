@@ -15,8 +15,8 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
 import com.aiuta.fashionsdk.configuration.features.consent.AiutaConsentStandaloneFeature
+import com.aiuta.fashionsdk.internal.navigation.composition.LocalAiutaNavigationController
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.controller.composition.LocalController
-import com.aiuta.fashionsdk.tryon.compose.ui.internal.controller.navigateBack
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.screens.consent.component.common.ConsentAppBar
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.screens.consent.controller.completeConsentViewing
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.screens.consent.controller.listenIsAllMandatoryConsentChecked
@@ -36,6 +36,7 @@ internal fun ConsentScreen(
 ) {
     val theme = LocalTheme.current
     val controller = LocalController.current
+    val navigationController = LocalAiutaNavigationController.current
     val scope = rememberCoroutineScope()
 
     val consentStandaloneFeature = strictProvideFeature<AiutaConsentStandaloneFeature>()
@@ -76,7 +77,7 @@ internal fun ConsentScreen(
             onClick = {
                 scope.launch {
                     consentController.completeConsentViewing(controller.consentInteractor)
-                    controller.navigateBack().apply { onObtainedConsents() }
+                    navigationController.navigateBack().apply { onObtainedConsents() }
                 }
             },
         )

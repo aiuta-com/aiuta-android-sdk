@@ -4,6 +4,7 @@ import coil3.PlatformContext
 import com.aiuta.fashionsdk.configuration.features.AiutaFeatures
 import com.aiuta.fashionsdk.configuration.features.tryon.history.AiutaTryOnGenerationsHistoryFeature
 import com.aiuta.fashionsdk.configuration.features.tryon.validation.strings.AiutaTryOnInputImageValidationFeatureStrings
+import com.aiuta.fashionsdk.internal.navigation.controller.AiutaNavigationController
 import com.aiuta.fashionsdk.internal.navigation.dialog.AiutaDialogController
 import com.aiuta.fashionsdk.internal.navigation.dialog.AiutaDialogState
 import com.aiuta.fashionsdk.internal.navigation.snackbar.AiutaErrorSnackbarController
@@ -23,7 +24,6 @@ import com.aiuta.fashionsdk.tryon.compose.ui.internal.controller.FashionTryOnCon
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.controller.TryOnToastErrorState
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.controller.activateGeneration
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.controller.deactivateGeneration
-import com.aiuta.fashionsdk.tryon.compose.ui.internal.controller.navigateTo
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.controller.updateActiveOperationOrSetEmpty
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.controller.updateActiveOperationWithFirstOrSetEmpty
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.navigation.TryOnScreen
@@ -45,6 +45,7 @@ internal fun FashionTryOnController.startGeneration(
     coilContext: PlatformContext,
     dialogController: AiutaDialogController,
     errorSnackbarController: AiutaErrorSnackbarController,
+    navigationController: AiutaNavigationController,
     features: AiutaFeatures,
     inputImageValidationStrings: AiutaTryOnInputImageValidationFeatureStrings,
 ) {
@@ -78,6 +79,7 @@ internal fun FashionTryOnController.startGeneration(
                     coilContext = coilContext,
                     dialogController = dialogController,
                     errorSnackbarController = errorSnackbarController,
+                    navigationController = navigationController,
                     features = features,
                     operation = operation,
                     inputImageValidationStrings = inputImageValidationStrings,
@@ -175,6 +177,7 @@ private suspend fun FashionTryOnController.solveOperationCollecting(
     coilContext: PlatformContext,
     dialogController: AiutaDialogController,
     errorSnackbarController: AiutaErrorSnackbarController,
+    navigationController: AiutaNavigationController,
     features: AiutaFeatures,
     operation: ProductGenerationOperation,
     inputImageValidationStrings: AiutaTryOnInputImageValidationFeatureStrings,
@@ -221,7 +224,7 @@ private suspend fun FashionTryOnController.solveOperationCollecting(
                     refreshOperation(operation)
 
                     // Navigate to results
-                    navigateTo(TryOnScreen.GenerationResult)
+                    navigationController.navigateTo(TryOnScreen.GenerationResult)
                     deactivateGeneration()
 
                     // Only after navigation, let's change if need active image to backend
@@ -240,6 +243,8 @@ private suspend fun FashionTryOnController.solveOperationCollecting(
                         newErrorState = TryOnToastErrorState(
                             controller = this@solveOperationCollecting,
                             dialogController = dialogController,
+                            errorSnackbarController = errorSnackbarController,
+                            navigationController = navigationController,
                             coilContext = coilContext,
                             features = features,
                             inputImageValidationStrings = inputImageValidationStrings,
@@ -275,6 +280,8 @@ private suspend fun FashionTryOnController.solveOperationCollecting(
                             controller = this@solveOperationCollecting,
                             coilContext = coilContext,
                             dialogController = dialogController,
+                            errorSnackbarController = errorSnackbarController,
+                            navigationController = navigationController,
                             features = features,
                             inputImageValidationStrings = inputImageValidationStrings,
                         ),

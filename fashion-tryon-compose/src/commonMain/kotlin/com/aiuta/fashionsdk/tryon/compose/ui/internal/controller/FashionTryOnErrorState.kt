@@ -4,6 +4,7 @@ import androidx.compose.runtime.Immutable
 import coil3.PlatformContext
 import com.aiuta.fashionsdk.configuration.features.AiutaFeatures
 import com.aiuta.fashionsdk.configuration.features.tryon.validation.strings.AiutaTryOnInputImageValidationFeatureStrings
+import com.aiuta.fashionsdk.internal.navigation.controller.AiutaNavigationController
 import com.aiuta.fashionsdk.internal.navigation.dialog.AiutaDialogController
 import com.aiuta.fashionsdk.internal.navigation.snackbar.AiutaErrorSnackbarController
 import com.aiuta.fashionsdk.internal.navigation.snackbar.AiutaErrorSnackbarState
@@ -19,6 +20,7 @@ internal class TryOnToastErrorState(
     controller: FashionTryOnController,
     dialogController: AiutaDialogController,
     errorSnackbarController: AiutaErrorSnackbarController,
+    navigationController: AiutaNavigationController,
     features: AiutaFeatures,
     inputImageValidationStrings: AiutaTryOnInputImageValidationFeatureStrings,
 ) : AiutaErrorSnackbarState {
@@ -27,6 +29,7 @@ internal class TryOnToastErrorState(
         controller.startGeneration(
             dialogController = dialogController,
             errorSnackbarController = errorSnackbarController,
+            navigationController = navigationController,
             coilContext = coilContext,
             features = features,
             inputImageValidationStrings = inputImageValidationStrings,

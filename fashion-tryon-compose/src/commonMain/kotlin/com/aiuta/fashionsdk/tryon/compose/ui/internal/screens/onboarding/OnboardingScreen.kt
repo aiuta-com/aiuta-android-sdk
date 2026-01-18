@@ -62,7 +62,7 @@ internal fun OnboardingScreen(modifier: Modifier = Modifier) {
     val generalHorizontalPadding = 16.dp
 
     BackHandler {
-        onboardingController.previousPage(controller)
+        onboardingController.previousPage(navigationController)
     }
 
     Column(

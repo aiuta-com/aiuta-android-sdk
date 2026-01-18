@@ -11,42 +11,8 @@ import com.aiuta.fashionsdk.tryon.compose.domain.models.internal.generated.image
 import com.aiuta.fashionsdk.tryon.compose.domain.models.internal.generated.operations.GeneratedOperationUIModel
 import com.aiuta.fashionsdk.tryon.compose.domain.models.internal.generated.sku.ProductGenerationOperation
 import com.aiuta.fashionsdk.tryon.compose.domain.models.internal.generated.sku.ProductGenerationUIStatus
-import com.aiuta.fashionsdk.tryon.compose.ui.internal.analytic.clickClose
-import com.aiuta.fashionsdk.tryon.compose.ui.internal.navigation.TryOnScreen
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.screens.history.models.SelectorMode
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.utils.features.isFeatureInitialize
-
-// Configs
-@Deprecated("Migrate new nav module")
-internal val skippedBackStackScreens =
-    setOf(
-        TryOnScreen.Splash,
-        TryOnScreen.Onboarding,
-        TryOnScreen.ModelSelector,
-    )
-
-@Deprecated("Migrate new nav module")
-// Navigation
-internal fun FashionTryOnController.navigateTo(newScreen: TryOnScreen) {
-    // Save previous screen, if we should not skip it in back stack
-    if (currentScreen.value !in skippedBackStackScreens) {
-        backStack.addLast(currentScreen.value)
-    }
-
-    // Set new screen
-    currentScreen.value = newScreen
-}
-
-@Deprecated("Migrate new nav module")
-internal fun FashionTryOnController.navigateBack() {
-    if (backStack.isNotEmpty()) {
-        val previousScreen = backStack.removeLast()
-
-        currentScreen.value = previousScreen
-    } else {
-        clickClose()
-    }
-}
 
 // Edit changePhotoButtonStyle
 internal fun FashionTryOnController.activateSelectMode() {

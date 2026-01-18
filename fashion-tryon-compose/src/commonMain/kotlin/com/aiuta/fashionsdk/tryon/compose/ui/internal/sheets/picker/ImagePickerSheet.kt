@@ -27,12 +27,12 @@ import com.aiuta.fashionsdk.configuration.features.picker.model.AiutaImagePicker
 import com.aiuta.fashionsdk.internal.navigation.composition.LocalAiutaBottomSheetNavigator
 import com.aiuta.fashionsdk.internal.navigation.composition.LocalAiutaDialogController
 import com.aiuta.fashionsdk.internal.navigation.composition.LocalAiutaLogger
+import com.aiuta.fashionsdk.internal.navigation.composition.LocalAiutaNavigationController
 import com.aiuta.fashionsdk.internal.navigation.dialog.AiutaDialogState
 import com.aiuta.fashionsdk.tryon.compose.domain.models.internal.generated.images.LastSavedImages
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.analytic.sendPickerAnalytic
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.controller.activateAutoTryOn
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.controller.composition.LocalController
-import com.aiuta.fashionsdk.tryon.compose.ui.internal.controller.navigateTo
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.navigation.TryOnBottomSheetScreen
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.navigation.TryOnScreen
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.sheets.components.SheetDivider
@@ -56,6 +56,7 @@ internal fun ImagePickerSheet(
     val bottomSheetNavigator = LocalAiutaBottomSheetNavigator.current
     val controller = LocalController.current
     val dialogController = LocalAiutaDialogController.current
+    val navigationController = LocalAiutaNavigationController.current
     val logger = LocalAiutaLogger.current
 
     val cameraFeature = provideFeature<AiutaImagePickerCameraFeature>()
@@ -171,7 +172,10 @@ internal fun ImagePickerSheet(
 
                             is AiutaImagePickerPredefinedModelFeature -> {
                                 bottomSheetNavigator.hide()
-                                controller.navigateTo(TryOnScreen.ModelSelector)
+                                navigationController.navigateTo(
+                                    newScreen = TryOnScreen.ModelSelector,
+                                    shouldSaveCurrentScreen = false,
+                                )
                             }
 
                             else -> throw NotSupportedImageSourceException()

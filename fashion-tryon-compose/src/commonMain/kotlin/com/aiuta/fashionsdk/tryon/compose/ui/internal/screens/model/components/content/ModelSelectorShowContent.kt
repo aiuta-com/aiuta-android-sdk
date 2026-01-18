@@ -19,13 +19,13 @@ import com.aiuta.fashionsdk.analytics.events.AiutaAnalyticsPageId
 import com.aiuta.fashionsdk.analytics.events.AiutaAnalyticsPickerEventType
 import com.aiuta.fashionsdk.compose.core.size.rememberScreenSize
 import com.aiuta.fashionsdk.configuration.features.tryon.AiutaTryOnFeature
+import com.aiuta.fashionsdk.internal.navigation.composition.LocalAiutaNavigationController
 import com.aiuta.fashionsdk.tryon.compose.domain.models.internal.config.features.toUrlImage
 import com.aiuta.fashionsdk.tryon.compose.domain.models.internal.generated.images.LastSavedImages
 import com.aiuta.fashionsdk.tryon.compose.domain.models.internal.screen.model.ModelSelectorScreenState
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.analytic.sendPickerAnalytic
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.controller.activateAutoTryOn
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.controller.composition.LocalController
-import com.aiuta.fashionsdk.tryon.compose.ui.internal.controller.navigateTo
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.navigation.TryOnScreen
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.screens.model.utils.MODEL_IMAGE_BOTTOM_PADDING_COEF
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.screens.model.utils.MODEL_IMAGE_HORIZONTAL_PADDING_COEF
@@ -42,6 +42,7 @@ internal fun ModelSelectorShowContent(
     state: ModelSelectorScreenState.Content,
 ) {
     val controller = LocalController.current
+    val navigationController = LocalAiutaNavigationController.current
     val theme = LocalTheme.current
 
     val screenSize = rememberScreenSize()
@@ -134,7 +135,7 @@ internal fun ModelSelectorShowContent(
                         controller.activateAutoTryOn()
 
                         // Go back to picker
-                        controller.navigateTo(TryOnScreen.ImageSelector)
+                        navigationController.navigateTo(TryOnScreen.ImageSelector)
                     }
                 },
             )

@@ -22,11 +22,11 @@ import androidx.compose.ui.unit.dp
 import com.aiuta.fashionsdk.analytics.events.AiutaAnalyticOnboardingEventType
 import com.aiuta.fashionsdk.analytics.events.AiutaAnalyticsPageId
 import com.aiuta.fashionsdk.configuration.features.welcome.AiutaWelcomeScreenFeature
+import com.aiuta.fashionsdk.internal.navigation.composition.LocalAiutaNavigationController
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.analytic.clickClose
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.analytic.sendOnboardingEvent
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.analytic.sendPageEvent
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.controller.composition.LocalController
-import com.aiuta.fashionsdk.tryon.compose.ui.internal.controller.navigateTo
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.navigation.TryOnScreen
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.navigation.components.appbar.AppBar
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.navigation.components.appbar.AppBarIcon
@@ -79,6 +79,7 @@ internal fun PreOnboardingScreen(modifier: Modifier = Modifier) {
 @Composable
 private fun PreOnboardingForeground(modifier: Modifier = Modifier) {
     val controller = LocalController.current
+    val navigationController = LocalAiutaNavigationController.current
 
     val welcomeScreenFeature = strictProvideFeature<AiutaWelcomeScreenFeature>()
 
@@ -121,7 +122,10 @@ private fun PreOnboardingForeground(modifier: Modifier = Modifier) {
                     pageId = AiutaAnalyticsPageId.WELCOME,
                     consentsIds = null,
                 )
-                controller.navigateTo(TryOnScreen.Onboarding)
+                navigationController.navigateTo(
+                    newScreen = TryOnScreen.Onboarding,
+                    shouldSaveCurrentScreen = false,
+                )
             },
         )
     }

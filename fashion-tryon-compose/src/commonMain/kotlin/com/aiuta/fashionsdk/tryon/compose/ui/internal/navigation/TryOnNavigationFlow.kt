@@ -17,8 +17,6 @@ import com.aiuta.fashionsdk.tryon.compose.domain.models.ProductConfiguration
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.analytic.sendSessionEvent
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.controller.composition.LocalController
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.controller.deactivateSelectMode
-import com.aiuta.fashionsdk.tryon.compose.ui.internal.controller.navigateBack
-import com.aiuta.fashionsdk.tryon.compose.ui.internal.controller.navigateTo
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.screens.base.transition.controller.isSharingEnable
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.screens.consent.ConsentScreen
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.screens.history.HistoryScreen
@@ -42,6 +40,7 @@ internal fun TryOnNavigationFlow(
     flowType: AiutaAnalyticsSessionEvent.FlowType,
     modifier: Modifier = Modifier,
 ) {
+    val navigationController = LocalAiutaNavigationController.current
     val sharedModifier = Modifier.fillMaxSize()
 
     TryOnNavigationInitialisation(
@@ -62,7 +61,7 @@ internal fun TryOnNavigationFlow(
                 aiutaEntry<TryOnScreen.Splash> {
                     SplashScreen(
                         modifier = sharedModifier,
-                        navigateTo = controller::navigateTo,
+                        navigateTo = navigationController::navigateTo,
                     )
                 }
                 aiutaEntry<TryOnScreen.Preonboarding> {
@@ -121,7 +120,7 @@ internal fun TryOnNavigationFlow(
                 navigationController.currentScreen.value == TryOnScreen.History -> {
                     // Use custom, because we need deactivate select changePhotoButtonStyle first
                     controller.deactivateSelectMode()
-                    controller.navigateBack()
+                    navigationController.navigateBack()
                 }
 
                 else -> navigationController.navigateBack()

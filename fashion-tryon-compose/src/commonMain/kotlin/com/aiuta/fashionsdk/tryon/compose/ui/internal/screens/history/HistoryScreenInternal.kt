@@ -40,6 +40,7 @@ import coil3.request.ImageRequest
 import coil3.size.SizeResolver.Companion.ORIGINAL
 import com.aiuta.fashionsdk.analytics.events.AiutaAnalyticsPageId
 import com.aiuta.fashionsdk.internal.navigation.composition.LocalAiutaErrorSnackbarController
+import com.aiuta.fashionsdk.internal.navigation.composition.LocalAiutaNavigationController
 import com.aiuta.fashionsdk.tryon.compose.domain.models.internal.generated.images.GeneratedImageUIModel
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.analytic.sendPageEvent
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.components.icons.AiutaBoxedLoadingIcon
@@ -47,7 +48,6 @@ import com.aiuta.fashionsdk.tryon.compose.ui.internal.controller.composition.Loc
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.controller.composition.LocalController
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.controller.deactivateSelectMode
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.controller.isSelectModeActive
-import com.aiuta.fashionsdk.tryon.compose.ui.internal.controller.navigateTo
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.navigation.TryOnScreen
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.screens.base.share.ShareElement
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.screens.history.analytic.sendDeleteHistoryEvent
@@ -94,6 +94,7 @@ internal fun HistoryScreen(modifier: Modifier = Modifier) {
 private fun HistoryScreenInternal(modifier: Modifier = Modifier) {
     val controller = LocalController.current
     val loadingActionsController = LocalAiutaTryOnLoadingActionsController.current
+    val navigationController = LocalAiutaNavigationController.current
     val theme = LocalTheme.current
 
     val minColumnsCount = 3
@@ -160,7 +161,7 @@ private fun HistoryScreenInternal(modifier: Modifier = Modifier) {
                             }
 
                             else -> {
-                                controller.navigateTo(
+                                navigationController.navigateTo(
                                     newScreen = TryOnScreen.ImageListViewer(
                                         pickedIndex = index,
                                     ),
