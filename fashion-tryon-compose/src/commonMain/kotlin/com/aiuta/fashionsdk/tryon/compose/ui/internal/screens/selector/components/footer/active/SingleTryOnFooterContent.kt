@@ -25,10 +25,10 @@ import coil3.compose.LocalPlatformContext
 import com.aiuta.fashionsdk.analytics.events.AiutaAnalyticsPageId
 import com.aiuta.fashionsdk.configuration.features.tryon.AiutaTryOnFeature
 import com.aiuta.fashionsdk.configuration.features.tryon.validation.AiutaTryOnInputImageValidationFeature
+import com.aiuta.fashionsdk.internal.navigation.composition.LocalAiutaBottomSheetNavigator
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.controller.composition.LocalAiutaFeatures
-import com.aiuta.fashionsdk.tryon.compose.ui.internal.controller.composition.LocalAiutaTryOnDialogController
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.controller.composition.LocalController
-import com.aiuta.fashionsdk.tryon.compose.ui.internal.navigation.NavigationBottomSheetScreen
+import com.aiuta.fashionsdk.tryon.compose.ui.internal.navigation.TryOnBottomSheetScreen
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.screens.selector.utils.startGeneration
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.utils.features.strictProvideFeature
 import com.aiuta.fashionsdk.tryon.compose.uikit.button.FashionButton
@@ -88,6 +88,7 @@ internal fun ColumnScope.SingleTryOnFooterContent(
 
 @Composable
 private fun ProductBlock(modifier: Modifier = Modifier) {
+    val bottomSheetNavigator = LocalAiutaBottomSheetNavigator.current
     val controller = LocalController.current
     val theme = LocalTheme.current
 
@@ -96,9 +97,9 @@ private fun ProductBlock(modifier: Modifier = Modifier) {
 
     Row(
         modifier = modifier.clickableUnindicated {
-            controller.bottomSheetNavigator.show(
-                NavigationBottomSheetScreen.ProductInfo(
-                    primaryButtonState = NavigationBottomSheetScreen.ProductInfo.PrimaryButtonState.ADD_TO_CART,
+            bottomSheetNavigator.show(
+                TryOnBottomSheetScreen.ProductInfo(
+                    primaryButtonState = TryOnBottomSheetScreen.ProductInfo.PrimaryButtonState.ADD_TO_CART,
                     originPageId = AiutaAnalyticsPageId.IMAGE_PICKER,
                     productItem = activeSKUItem,
                 ),

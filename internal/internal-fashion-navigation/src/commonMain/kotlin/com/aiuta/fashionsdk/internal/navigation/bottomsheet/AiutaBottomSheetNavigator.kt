@@ -9,6 +9,7 @@ import androidx.compose.foundation.layout.windowInsetsPadding
 import androidx.compose.material.ExperimentalMaterialApi
 import androidx.compose.material.ModalBottomSheetState
 import androidx.compose.material.ModalBottomSheetValue
+import androidx.compose.material.ModalBottomSheetValue.Hidden
 import androidx.compose.material.rememberModalBottomSheetState
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.Immutable
@@ -54,7 +55,7 @@ public class AiutaBottomSheetNavigator internal constructor(
 ) {
     private val currentBottomSheetScreen =
         mutableStateOf<AiutaNavigationBottomSheetScreen>(AiutaNavigationBottomSheetScreen.IDLE)
-    private val lastBottomSheetScreen = mutableStateOf(currentBottomSheetScreen.value)
+    public val lastBottomSheetScreen = mutableStateOf(currentBottomSheetScreen.value) // TODO Make not public?
 
     internal val sheetContent: @Composable ColumnScope.() -> Unit =
         {
@@ -66,6 +67,9 @@ public class AiutaBottomSheetNavigator internal constructor(
             Spacer(Modifier.height(8.dp))
             Spacer(Modifier.windowInsetsPadding(WindowInsets.navigationBars))
         }
+
+    val isVisible: Boolean
+        get() = sheetState.isVisible
 
     public fun show(newSheetScreen: AiutaNavigationBottomSheetScreen) {
         scope.launch {

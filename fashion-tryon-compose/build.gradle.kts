@@ -60,6 +60,7 @@ kotlin {
                 implementation(projects.fashionAnalyticsEvents)
                 implementation(projects.fashionTryonComposeUikit)
                 implementation(projects.internal.internalFashionAnalytics)
+                implementation(projects.internal.internalFashionNavigation)
             }
         }
         jvmMain {

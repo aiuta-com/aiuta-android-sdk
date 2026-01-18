@@ -8,56 +8,52 @@ import androidx.compose.animation.fadeOut
 import androidx.compose.animation.togetherWith
 import androidx.compose.runtime.Immutable
 import com.aiuta.fashionsdk.analytics.events.AiutaAnalyticsPageId
-import kotlin.random.Random
+import com.aiuta.fashionsdk.internal.navigation.AiutaNavigationScreen
 
 /**
  * Be careful, order is matter for animation transitions,
  */
 @Immutable
-internal abstract class NavigationScreen {
-    val id: String = Random.nextInt().toString()
-    abstract val exitPageId: AiutaAnalyticsPageId
+internal abstract class TryOnScreen : AiutaNavigationScreen() {
 
-    open fun transitionSpec(): ContentTransform? = null
-
-    object Splash : NavigationScreen() {
+    object Splash : TryOnScreen() {
         override val exitPageId: AiutaAnalyticsPageId = AiutaAnalyticsPageId.WELCOME
     }
 
-    object Preonboarding : NavigationScreen() {
+    object Preonboarding : TryOnScreen() {
         override val exitPageId: AiutaAnalyticsPageId = AiutaAnalyticsPageId.WELCOME
     }
 
-    object Onboarding : NavigationScreen() {
+    object Onboarding : TryOnScreen() {
         override val exitPageId: AiutaAnalyticsPageId = AiutaAnalyticsPageId.HOW_IT_WORKS
     }
 
-    object ImageSelector : NavigationScreen() {
+    object ImageSelector : TryOnScreen() {
         override val exitPageId: AiutaAnalyticsPageId = AiutaAnalyticsPageId.IMAGE_PICKER
     }
 
     class Consent(
         val onObtainedConsents: () -> Unit,
-    ) : NavigationScreen() {
+    ) : TryOnScreen() {
         override val exitPageId: AiutaAnalyticsPageId = AiutaAnalyticsPageId.CONSENT
     }
 
-    object ModelSelector : NavigationScreen() {
+    object ModelSelector : TryOnScreen() {
         override val exitPageId: AiutaAnalyticsPageId = AiutaAnalyticsPageId.IMAGE_PICKER
     }
 
-    object GenerationResult : NavigationScreen() {
+    object GenerationResult : TryOnScreen() {
         override val exitPageId: AiutaAnalyticsPageId = AiutaAnalyticsPageId.RESULTS
     }
 
     // Utility screens
-    object History : NavigationScreen() {
+    object History : TryOnScreen() {
         override val exitPageId: AiutaAnalyticsPageId = AiutaAnalyticsPageId.HISTORY
     }
 
     class ImageListViewer(
         val pickedIndex: Int,
-    ) : NavigationScreen() {
+    ) : TryOnScreen() {
         override val exitPageId: AiutaAnalyticsPageId = AiutaAnalyticsPageId.HISTORY
 
         override fun transitionSpec(): ContentTransform? {
@@ -68,24 +64,27 @@ internal abstract class NavigationScreen {
     }
 }
 
-internal fun defaultStartScreen(): NavigationScreen = NavigationScreen.Splash
+internal fun defaultStartScreen(): TryOnScreen = TryOnScreen.Splash
 
 // Stack
+@Deprecated("Remove after migration to new nav library")
 private val screenStacks =
     listOf(
-        NavigationScreen.Splash,
-        NavigationScreen.Preonboarding,
-        NavigationScreen.Onboarding,
-        NavigationScreen.ImageSelector,
-        NavigationScreen.ModelSelector,
-        NavigationScreen.GenerationResult,
+        TryOnScreen.Splash,
+        TryOnScreen.Preonboarding,
+        TryOnScreen.Onboarding,
+        TryOnScreen.ImageSelector,
+        TryOnScreen.ModelSelector,
+        TryOnScreen.GenerationResult,
         // Utils
-        NavigationScreen.History,
+        TryOnScreen.History,
     )
 
-internal fun screenPosition(screen: NavigationScreen): Int = screenStacks.indexOf(screen)
+@Deprecated("Remove after migration to new nav library")
+internal fun screenPosition(screen: TryOnScreen): Int = screenStacks.indexOf(screen)
 
-internal fun AnimatedContentTransitionScope<NavigationScreen>.solveTransitionAnimation(): ContentTransform? {
+@Deprecated("Remove after migration to new nav library")
+internal fun AnimatedContentTransitionScope<TryOnScreen>.solveTransitionAnimation(): ContentTransform? {
     val initialTransition = initialState.transitionSpec()
     val targetState = targetState.transitionSpec()
 

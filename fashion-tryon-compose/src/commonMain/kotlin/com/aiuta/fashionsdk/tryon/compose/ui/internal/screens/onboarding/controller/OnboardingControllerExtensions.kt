@@ -6,11 +6,11 @@ import androidx.compose.runtime.derivedStateOf
 import androidx.compose.runtime.remember
 import com.aiuta.fashionsdk.analytics.events.AiutaAnalyticOnboardingEventType
 import com.aiuta.fashionsdk.analytics.events.AiutaAnalyticsPageId
+import com.aiuta.fashionsdk.internal.navigation.controller.AiutaNavigationController
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.analytic.sendOnboardingEvent
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.controller.FashionTryOnController
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.controller.navigateBack
-import com.aiuta.fashionsdk.tryon.compose.ui.internal.controller.popUpAndNavigateTo
-import com.aiuta.fashionsdk.tryon.compose.ui.internal.navigation.NavigationScreen
+import com.aiuta.fashionsdk.tryon.compose.ui.internal.navigation.TryOnScreen
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.screens.consent.controller.isAllMandatoryConsentChecked
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.screens.onboarding.controller.state.ConsentPage
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.screens.onboarding.controller.state.TryOnPage
@@ -19,6 +19,7 @@ import kotlinx.coroutines.launch
 
 internal fun OnboardingController.nextPage(
     controller: FashionTryOnController,
+    navigationController: AiutaNavigationController,
 ) {
     scope.launch {
         val nextPageIndex = pagerState.settledPage + 1
@@ -59,7 +60,7 @@ internal fun OnboardingController.nextPage(
                 pageId = AiutaAnalyticsPageId.CONSENT,
                 consentsIds = null,
             )
-            controller.popUpAndNavigateTo(NavigationScreen.ImageSelector)
+            navigationController.popUpAndNavigateTo(TryOnScreen.ImageSelector)
         }
     }
 }

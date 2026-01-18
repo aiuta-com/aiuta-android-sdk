@@ -26,7 +26,7 @@ import com.aiuta.fashionsdk.tryon.compose.ui.internal.analytic.sendPickerAnalyti
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.controller.activateAutoTryOn
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.controller.composition.LocalController
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.controller.navigateTo
-import com.aiuta.fashionsdk.tryon.compose.ui.internal.navigation.NavigationScreen
+import com.aiuta.fashionsdk.tryon.compose.ui.internal.navigation.TryOnScreen
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.screens.model.utils.MODEL_IMAGE_BOTTOM_PADDING_COEF
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.screens.model.utils.MODEL_IMAGE_HORIZONTAL_PADDING_COEF
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.utils.features.strictProvideFeature
@@ -134,7 +134,7 @@ internal fun ModelSelectorShowContent(
                         controller.activateAutoTryOn()
 
                         // Go back to picker
-                        controller.navigateTo(NavigationScreen.ImageSelector)
+                        controller.navigateTo(TryOnScreen.ImageSelector)
                     }
                 },
             )

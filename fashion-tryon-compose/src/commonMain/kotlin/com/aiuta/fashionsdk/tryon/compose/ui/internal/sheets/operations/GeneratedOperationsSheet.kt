@@ -5,7 +5,7 @@ import androidx.compose.animation.fadeIn
 import androidx.compose.animation.fadeOut
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
-import androidx.compose.foundation.layout.ColumnScope
+import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
@@ -33,6 +33,7 @@ import com.aiuta.fashionsdk.analytics.events.AiutaAnalyticsPageId
 import com.aiuta.fashionsdk.analytics.events.AiutaAnalyticsPickerEventType
 import com.aiuta.fashionsdk.configuration.features.models.images.AiutaInputImage
 import com.aiuta.fashionsdk.configuration.features.picker.history.AiutaImagePickerUploadsHistoryFeature
+import com.aiuta.fashionsdk.internal.navigation.composition.LocalAiutaBottomSheetNavigator
 import com.aiuta.fashionsdk.tryon.compose.domain.internal.interactor.generated.operations.cleanLoadingUploads
 import com.aiuta.fashionsdk.tryon.compose.domain.internal.utils.asCustom
 import com.aiuta.fashionsdk.tryon.compose.domain.models.internal.generated.images.toPublicHistory
@@ -44,7 +45,7 @@ import com.aiuta.fashionsdk.tryon.compose.ui.internal.controller.composition.Loc
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.controller.composition.LocalController
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.controller.loading.listenErrorDeletingUploadedImages
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.controller.updateActiveOperationOrSetEmpty
-import com.aiuta.fashionsdk.tryon.compose.ui.internal.navigation.NavigationBottomSheetScreen
+import com.aiuta.fashionsdk.tryon.compose.ui.internal.navigation.TryOnBottomSheetScreen
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.sheets.components.SheetDivider
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.sheets.operations.controller.GeneratedOperationsSheetListener
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.utils.features.strictProvideFeature
@@ -60,7 +61,10 @@ import com.aiuta.fashionsdk.tryon.compose.uikit.utils.clickableUnindicated
 import kotlinx.coroutines.launch
 
 @Composable
-internal fun ColumnScope.GeneratedOperationsSheet() {
+internal fun GeneratedOperationsSheet(
+    modifier: Modifier = Modifier,
+) {
+    val bottomSheetNavigator = LocalAiutaBottomSheetNavigator.current
     val controller = LocalController.current
     val theme = LocalTheme.current
 
@@ -86,97 +90,99 @@ internal fun ColumnScope.GeneratedOperationsSheet() {
 
     GeneratedOperationsSheetListener()
 
-    SheetDivider()
+    Column(modifier = modifier) {
+        SheetDivider()
 
-    Spacer(Modifier.height(24.dp))
+        Spacer(Modifier.height(24.dp))
 
-    Text(
-        modifier = Modifier.padding(horizontal = sharedHorizontalPadding),
-        text = uploadsHistoryFeature.strings.uploadsHistoryTitle,
-        style = theme.label.typography.titleM,
-        color = theme.color.primary,
-        fontWeight = FontWeight.Bold,
-        maxLines = 1,
-        overflow = TextOverflow.Ellipsis,
-    )
+        Text(
+            modifier = Modifier.padding(horizontal = sharedHorizontalPadding),
+            text = uploadsHistoryFeature.strings.uploadsHistoryTitle,
+            style = theme.label.typography.titleM,
+            color = theme.color.primary,
+            fontWeight = FontWeight.Bold,
+            maxLines = 1,
+            overflow = TextOverflow.Ellipsis,
+        )
 
-    Spacer(Modifier.height(24.dp))
+        Spacer(Modifier.height(24.dp))
 
-    LazyRow(
-        modifier = Modifier.fillMaxWidth(),
-        contentPadding = PaddingValues(horizontal = sharedHorizontalPadding),
-        horizontalArrangement = Arrangement.spacedBy(8.dp),
-    ) {
-        items(
-            count = generatedOperations.itemCount,
-            key = { generatedOperations[it]?.operationId ?: 0 },
-            contentType = generatedOperations.itemContentType { it },
+        LazyRow(
+            modifier = Modifier.fillMaxWidth(),
+            contentPadding = PaddingValues(horizontal = sharedHorizontalPadding),
+            horizontalArrangement = Arrangement.spacedBy(8.dp),
         ) {
-            val generatedOperation = generatedOperations[it]
+            items(
+                count = generatedOperations.itemCount,
+                key = { generatedOperations[it]?.operationId ?: 0 },
+                contentType = generatedOperations.itemContentType { it },
+            ) {
+                val generatedOperation = generatedOperations[it]
 
-            generatedOperation?.let {
-                OperationItem(
-                    modifier = sharedOperationsModifier.animateItem(),
-                    generatedOperation = generatedOperation,
-                    onClick = {
-                        with(controller) {
-                            scope.launch {
-                                // Analytic
-                                sendPickerAnalytic(
-                                    event = AiutaAnalyticsPickerEventType.UPLOADED_PHOTO_SELECTED,
-                                    pageId = AiutaAnalyticsPageId.IMAGE_PICKER,
-                                )
+                generatedOperation?.let {
+                    OperationItem(
+                        modifier = sharedOperationsModifier.animateItem(),
+                        generatedOperation = generatedOperation,
+                        onClick = {
+                            with(controller) {
+                                scope.launch {
+                                    // Analytic
+                                    sendPickerAnalytic(
+                                        event = AiutaAnalyticsPickerEventType.UPLOADED_PHOTO_SELECTED,
+                                        pageId = AiutaAnalyticsPageId.IMAGE_PICKER,
+                                    )
 
-                                // Host notification
-                                val image = generatedOperation.urlImages.firstOrNull()
-                                image?.let {
-                                    runCatching {
-                                        uploadsHistoryFeature
-                                            .dataProvider
-                                            .asCustom()
-                                            ?.selectUploadedImage(
-                                                image = AiutaInputImage(
-                                                    id = image.imageId,
-                                                    url = image.imageUrl,
-                                                    type = image.imageType.toPublicHistory(),
-                                                ),
-                                            )
+                                    // Host notification
+                                    val image = generatedOperation.urlImages.firstOrNull()
+                                    image?.let {
+                                        runCatching {
+                                            uploadsHistoryFeature
+                                                .dataProvider
+                                                .asCustom()
+                                                ?.selectUploadedImage(
+                                                    image = AiutaInputImage(
+                                                        id = image.imageId,
+                                                        url = image.imageUrl,
+                                                        type = image.imageType.toPublicHistory(),
+                                                    ),
+                                                )
+                                        }
                                     }
-                                }
 
-                                // Change
-                                updateActiveOperationOrSetEmpty(generatedOperation)
-                                // Activate auto try on
-                                activateAutoTryOn()
-                                // Move back
-                                bottomSheetNavigator.hide()
+                                    // Change
+                                    updateActiveOperationOrSetEmpty(generatedOperation)
+                                    // Activate auto try on
+                                    activateAutoTryOn()
+                                    // Move back
+                                    bottomSheetNavigator.hide()
+                                }
                             }
-                        }
-                    },
-                )
+                        },
+                    )
+                }
             }
         }
+
+        Spacer(Modifier.height(24.dp))
+
+        FashionButton(
+            modifier =
+            Modifier
+                .fillMaxWidth()
+                .padding(horizontal = sharedHorizontalPadding),
+            text = uploadsHistoryFeature.strings.uploadsHistoryButtonNewPhoto,
+            style = FashionButtonStyles.primaryStyle(theme),
+            size = FashionButtonSizes.lSize(),
+            onClick = {
+                bottomSheetNavigator.change(
+                    newSheetScreen =
+                    TryOnBottomSheetScreen.ImagePicker(
+                        originPageId = AiutaAnalyticsPageId.IMAGE_PICKER,
+                    ),
+                )
+            },
+        )
     }
-
-    Spacer(Modifier.height(24.dp))
-
-    FashionButton(
-        modifier =
-        Modifier
-            .fillMaxWidth()
-            .padding(horizontal = sharedHorizontalPadding),
-        text = uploadsHistoryFeature.strings.uploadsHistoryButtonNewPhoto,
-        style = FashionButtonStyles.primaryStyle(theme),
-        size = FashionButtonSizes.lSize(),
-        onClick = {
-            controller.bottomSheetNavigator.change(
-                newSheetScreen =
-                NavigationBottomSheetScreen.ImagePicker(
-                    originPageId = AiutaAnalyticsPageId.IMAGE_PICKER,
-                ),
-            )
-        },
-    )
 }
 
 @Composable

@@ -12,7 +12,7 @@ import com.aiuta.fashionsdk.tryon.compose.domain.models.internal.generated.opera
 import com.aiuta.fashionsdk.tryon.compose.domain.models.internal.generated.sku.ProductGenerationOperation
 import com.aiuta.fashionsdk.tryon.compose.domain.models.internal.generated.sku.ProductGenerationUIStatus
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.analytic.clickClose
-import com.aiuta.fashionsdk.tryon.compose.ui.internal.navigation.NavigationScreen
+import com.aiuta.fashionsdk.tryon.compose.ui.internal.navigation.TryOnScreen
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.screens.history.models.SelectorMode
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.utils.features.isFeatureInitialize
 
@@ -20,14 +20,14 @@ import com.aiuta.fashionsdk.tryon.compose.ui.internal.utils.features.isFeatureIn
 @Deprecated("Migrate new nav module")
 internal val skippedBackStackScreens =
     setOf(
-        NavigationScreen.Splash,
-        NavigationScreen.Onboarding,
-        NavigationScreen.ModelSelector,
+        TryOnScreen.Splash,
+        TryOnScreen.Onboarding,
+        TryOnScreen.ModelSelector,
     )
 
 @Deprecated("Migrate new nav module")
 // Navigation
-internal fun FashionTryOnController.navigateTo(newScreen: NavigationScreen) {
+internal fun FashionTryOnController.navigateTo(newScreen: TryOnScreen) {
     // Save previous screen, if we should not skip it in back stack
     if (currentScreen.value !in skippedBackStackScreens) {
         backStack.addLast(currentScreen.value)
@@ -35,26 +35,6 @@ internal fun FashionTryOnController.navigateTo(newScreen: NavigationScreen) {
 
     // Set new screen
     currentScreen.value = newScreen
-}
-
-@Deprecated("Migrate new nav module")
-internal fun FashionTryOnController.popUpAndNavigateTo(
-    navigateToScreen: NavigationScreen,
-    popUpScreen: NavigationScreen? = null,
-) {
-    // Remove all screens including popUpScreen
-    while (true) {
-        if (backStack.isEmpty()) {
-            break
-        }
-
-        val previousScreen = backStack.removeLast()
-        if (popUpScreen == null || previousScreen == popUpScreen) {
-            break
-        }
-    }
-
-    navigateTo(navigateToScreen)
 }
 
 @Deprecated("Migrate new nav module")
@@ -66,20 +46,6 @@ internal fun FashionTryOnController.navigateBack() {
     } else {
         clickClose()
     }
-}
-
-// Error State
-@Deprecated("Migrate new nav module")
-internal fun FashionTryOnController.showErrorState(errorState: ToastErrorState) {
-    // Check if toast already visible
-    if (fashionTryOnErrorState.value == null) {
-        fashionTryOnErrorState.value = errorState
-    }
-}
-
-@Deprecated("Migrate new nav module")
-internal fun FashionTryOnController.hideErrorState() {
-    fashionTryOnErrorState.value = null
 }
 
 // Edit changePhotoButtonStyle
@@ -184,14 +150,6 @@ internal fun FashionTryOnController.isSelectModeActive(): State<Boolean> = remem
 internal fun FashionTryOnController.isLastSavedPhotoAvailable(): State<Boolean> = remember(lastSavedImages.value) {
     derivedStateOf {
         lastSavedImages.value.isNotEmpty()
-    }
-}
-
-@Deprecated("Migrate new nav module")
-@Composable
-internal fun FashionTryOnController.isErrorStateVisible(): State<Boolean> = remember(fashionTryOnErrorState.value) {
-    derivedStateOf {
-        fashionTryOnErrorState.value != null
     }
 }
 

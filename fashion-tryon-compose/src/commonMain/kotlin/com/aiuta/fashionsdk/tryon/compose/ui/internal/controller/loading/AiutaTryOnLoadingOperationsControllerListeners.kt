@@ -6,6 +6,7 @@ import androidx.compose.runtime.remember
 import coil3.compose.LocalPlatformContext
 import com.aiuta.fashionsdk.configuration.features.picker.history.AiutaImagePickerUploadsHistoryFeature
 import com.aiuta.fashionsdk.configuration.features.tryon.history.AiutaTryOnGenerationsHistoryFeature
+import com.aiuta.fashionsdk.internal.navigation.snackbar.AiutaErrorSnackbarController
 import com.aiuta.fashionsdk.tryon.compose.domain.internal.interactor.warmup.WarmUpInteractor
 import com.aiuta.fashionsdk.tryon.compose.domain.internal.utils.asCustom
 import com.aiuta.fashionsdk.tryon.compose.domain.models.internal.generated.images.toImageUiModel
@@ -14,7 +15,6 @@ import com.aiuta.fashionsdk.tryon.compose.ui.internal.controller.DeleteGenerated
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.controller.DeleteUploadedImagesToastErrorState
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.controller.FashionTryOnController
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.controller.composition.LocalController
-import com.aiuta.fashionsdk.tryon.compose.ui.internal.controller.showErrorState
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.controller.updateActiveOperationOrSetEmpty
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.utils.features.provideFeature
 import kotlinx.coroutines.delay
@@ -81,6 +81,7 @@ private fun AiutaTryOnLoadingActionsController.updateDeletingGeneratedImagesList
 
 internal fun Result<Unit>.listenErrorDeletingGeneratedImages(
     controller: FashionTryOnController,
+    errorSnackbarController: AiutaErrorSnackbarController,
     loadingActionsController: AiutaTryOnLoadingActionsController,
 ): Result<Unit> = onFailure {
     // Move from loading to retry
@@ -90,9 +91,10 @@ internal fun Result<Unit>.listenErrorDeletingGeneratedImages(
     // Clean loading
     loadingActionsController.loadingGenerationsHolder.removeAll()
 
-    controller.showErrorState(
-        errorState = DeleteGeneratedImagesToastErrorState(
+    errorSnackbarController.showErrorState(
+        newErrorState = DeleteGeneratedImagesToastErrorState(
             controller = controller,
+            errorSnackbarController = errorSnackbarController,
             loadingActionsController = loadingActionsController,
         ),
     )
@@ -165,6 +167,7 @@ private fun AiutaTryOnLoadingActionsController.updateDeletingUploadedImagesListe
 
 internal fun Result<Unit>.listenErrorDeletingUploadedImages(
     controller: FashionTryOnController,
+    errorSnackbarController: AiutaErrorSnackbarController,
     loadingActionsController: AiutaTryOnLoadingActionsController,
 ): Result<Unit> = onFailure {
     // Move from loading to retry
@@ -174,9 +177,10 @@ internal fun Result<Unit>.listenErrorDeletingUploadedImages(
     // Clean loading
     loadingActionsController.loadingUploadsHolder.removeAll()
 
-    controller.showErrorState(
-        errorState = DeleteUploadedImagesToastErrorState(
+    errorSnackbarController.showErrorState(
+        newErrorState = DeleteUploadedImagesToastErrorState(
             controller = controller,
+            errorSnackbarController = errorSnackbarController,
             loadingActionsController = loadingActionsController,
         ),
     )

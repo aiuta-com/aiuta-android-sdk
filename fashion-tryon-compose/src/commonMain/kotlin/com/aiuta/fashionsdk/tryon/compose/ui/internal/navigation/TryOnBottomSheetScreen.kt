@@ -3,35 +3,34 @@ package com.aiuta.fashionsdk.tryon.compose.ui.internal.navigation
 import androidx.compose.runtime.Immutable
 import com.aiuta.fashionsdk.analytics.events.AiutaAnalyticsPageId
 import com.aiuta.fashionsdk.configuration.features.models.product.ProductItem
+import com.aiuta.fashionsdk.internal.navigation.bottomsheet.AiutaNavigationBottomSheetScreen
 
 @Immutable
-internal sealed interface NavigationBottomSheetScreen {
-    public object IDLE : NavigationBottomSheetScreen
-
+internal sealed interface TryOnBottomSheetScreen : AiutaNavigationBottomSheetScreen {
     public class ImagePicker(
         public val originPageId: AiutaAnalyticsPageId,
-    ) : NavigationBottomSheetScreen
+    ) : TryOnBottomSheetScreen
 
-    public object FitDisclaimer : NavigationBottomSheetScreen
+    public object FitDisclaimer : TryOnBottomSheetScreen
 
     public class Feedback(
         public val productIds: List<String>,
-    ) : NavigationBottomSheetScreen
+    ) : TryOnBottomSheetScreen
 
     public class ExtraFeedback(
         public val optionIndex: Int,
         public val productIds: List<String>,
-    ) : NavigationBottomSheetScreen
+    ) : TryOnBottomSheetScreen
 
     public class ProductInfo(
         public val primaryButtonState: PrimaryButtonState,
         public val productItem: ProductItem,
         public val originPageId: AiutaAnalyticsPageId,
-    ) : NavigationBottomSheetScreen {
+    ) : TryOnBottomSheetScreen {
         public enum class PrimaryButtonState {
             ADD_TO_CART,
         }
     }
 
-    public object GeneratedOperations : NavigationBottomSheetScreen
+    public object GeneratedOperations : TryOnBottomSheetScreen
 }

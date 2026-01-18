@@ -2,7 +2,6 @@ package com.aiuta.fashionsdk.tryon.compose.ui.internal.sheets.feedback
 
 import androidx.compose.animation.animateContentSize
 import androidx.compose.foundation.layout.Column
-import androidx.compose.foundation.layout.ColumnScope
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.WindowInsets
 import androidx.compose.foundation.layout.fillMaxSize
@@ -27,8 +26,9 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import com.aiuta.fashionsdk.configuration.features.tryon.feedback.other.AiutaTryOnFeedbackOtherFeature
+import com.aiuta.fashionsdk.internal.navigation.composition.LocalAiutaBottomSheetNavigator
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.controller.composition.LocalController
-import com.aiuta.fashionsdk.tryon.compose.ui.internal.navigation.NavigationBottomSheetScreen
+import com.aiuta.fashionsdk.tryon.compose.ui.internal.navigation.TryOnBottomSheetScreen
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.screens.result.analytic.sendGenerationFeedback
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.utils.features.strictProvideFeature
 import com.aiuta.fashionsdk.tryon.compose.uikit.button.FashionButton
@@ -38,7 +38,11 @@ import com.aiuta.fashionsdk.tryon.compose.uikit.composition.LocalTheme
 import com.aiuta.fashionsdk.tryon.compose.uikit.utils.clickableUnindicated
 
 @Composable
-internal fun ColumnScope.ExtraFeedbackSheet(data: NavigationBottomSheetScreen.ExtraFeedback) {
+internal fun ExtraFeedbackSheet(
+    data: TryOnBottomSheetScreen.ExtraFeedback,
+    modifier: Modifier = Modifier,
+) {
+    val bottomSheetNavigator = LocalAiutaBottomSheetNavigator.current
     val controller = LocalController.current
     val theme = LocalTheme.current
 
@@ -47,7 +51,7 @@ internal fun ColumnScope.ExtraFeedbackSheet(data: NavigationBottomSheetScreen.Ex
     val feedbackText = remember { mutableStateOf("") }
 
     Column(
-        modifier = Modifier
+        modifier = modifier
             .fillMaxSize()
             .padding(horizontal = 16.dp)
             .windowInsetsPadding(WindowInsets.statusBars)
@@ -61,7 +65,7 @@ internal fun ColumnScope.ExtraFeedbackSheet(data: NavigationBottomSheetScreen.Ex
             modifier = Modifier
                 .align(Alignment.End)
                 .clickableUnindicated {
-                    controller.bottomSheetNavigator.hide()
+                    bottomSheetNavigator.hide()
                 },
             text = otherFeedbackFeature.strings.otherFeedbackButtonCancel,
             style = theme.label.typography.regular,
@@ -112,7 +116,7 @@ internal fun ColumnScope.ExtraFeedbackSheet(data: NavigationBottomSheetScreen.Ex
                     feedback = feedbackText.value,
                     productIds = data.productIds,
                 )
-                controller.bottomSheetNavigator.hide()
+                bottomSheetNavigator.hide()
             },
         )
 

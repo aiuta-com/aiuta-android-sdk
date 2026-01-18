@@ -27,10 +27,11 @@ import com.aiuta.fashionsdk.configuration.features.picker.AiutaImagePickerFeatur
 import com.aiuta.fashionsdk.configuration.features.picker.history.AiutaImagePickerUploadsHistoryFeature
 import com.aiuta.fashionsdk.configuration.features.styles.AiutaComponentStyle
 import com.aiuta.fashionsdk.configuration.features.tryon.loading.AiutaTryOnLoadingPageFeature
+import com.aiuta.fashionsdk.internal.navigation.composition.LocalAiutaBottomSheetNavigator
 import com.aiuta.fashionsdk.tryon.compose.domain.models.internal.generated.sku.ProductGenerationUIStatus
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.components.icons.AiutaLoadingIcon
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.controller.composition.LocalController
-import com.aiuta.fashionsdk.tryon.compose.ui.internal.navigation.NavigationBottomSheetScreen
+import com.aiuta.fashionsdk.tryon.compose.ui.internal.navigation.TryOnBottomSheetScreen
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.screens.selector.models.ImageSelectorState
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.screens.selector.utils.solveLoadingGenerationText
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.utils.features.provideFeature
@@ -50,6 +51,7 @@ internal fun ImageSelectorBottom(
     hazeState: HazeState,
     uploadPhoto: () -> Unit,
 ) {
+    val bottomSheetNavigator = LocalAiutaBottomSheetNavigator.current
     val controller = LocalController.current
     val theme = LocalTheme.current
 
@@ -119,8 +121,8 @@ internal fun ImageSelectorBottom(
                                 if (countGeneratedOperation.value == 0) {
                                     uploadPhoto()
                                 } else {
-                                    controller.bottomSheetNavigator.show(
-                                        NavigationBottomSheetScreen.GeneratedOperations,
+                                    bottomSheetNavigator.show(
+                                        TryOnBottomSheetScreen.GeneratedOperations,
                                     )
                                 }
                             },

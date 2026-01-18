@@ -11,11 +11,12 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.text.style.TextAlign
 import com.aiuta.fashionsdk.configuration.features.tryon.history.AiutaTryOnGenerationsHistoryFeature
+import com.aiuta.fashionsdk.internal.navigation.composition.LocalAiutaNavigationController
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.analytic.clickClose
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.controller.composition.LocalController
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.controller.isAppbarHistoryAvailable
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.controller.navigateTo
-import com.aiuta.fashionsdk.tryon.compose.ui.internal.navigation.NavigationScreen
+import com.aiuta.fashionsdk.tryon.compose.ui.internal.navigation.TryOnScreen
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.navigation.components.appbar.AppBar
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.navigation.components.appbar.AppBarIcon
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.utils.features.strictProvideFeature
@@ -27,6 +28,7 @@ internal fun MainAppBar(
     title: String,
 ) {
     val controller = LocalController.current
+    val navigationController = LocalAiutaNavigationController.current
     val theme = LocalTheme.current
 
     val isAppbarHistoryAvailable = controller.isAppbarHistoryAvailable()
@@ -44,7 +46,7 @@ internal fun MainAppBar(
                 icon = generationsHistoryFeature.icons.history24,
                 color = theme.color.primary,
                 onClick = {
-                    controller.navigateTo(NavigationScreen.History)
+                    navigationController.navigateTo(TryOnScreen.History)
                 },
             )
         }

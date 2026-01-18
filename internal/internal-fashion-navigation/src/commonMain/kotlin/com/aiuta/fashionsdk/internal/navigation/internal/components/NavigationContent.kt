@@ -6,7 +6,7 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import com.aiuta.fashionsdk.internal.navigation.AiutaNavEntry
 import com.aiuta.fashionsdk.internal.navigation.AiutaNavigationScreen
-import com.aiuta.fashionsdk.internal.navigation.composition.LocalNavigationController
+import com.aiuta.fashionsdk.internal.navigation.composition.LocalAiutaNavigationController
 import com.aiuta.fashionsdk.internal.navigation.internal.utils.leftToRightTransition
 import com.aiuta.fashionsdk.internal.navigation.solveTransitionAnimation
 
@@ -15,7 +15,7 @@ internal fun NavigationContent(
     contentEntryProvider: (AiutaNavigationScreen) -> AiutaNavEntry<AiutaNavigationScreen>,
     modifier: Modifier = Modifier,
 ) {
-    val navigationController = LocalNavigationController.current
+    val navigationController = LocalAiutaNavigationController.current
 
     val transition = updateTransition(
         targetState = navigationController.currentScreen.value,

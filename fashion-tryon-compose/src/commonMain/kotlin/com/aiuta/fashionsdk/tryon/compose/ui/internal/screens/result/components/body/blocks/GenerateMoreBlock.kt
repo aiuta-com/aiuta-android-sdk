@@ -6,9 +6,10 @@ import androidx.compose.ui.Modifier
 import com.aiuta.fashionsdk.analytics.events.AiutaAnalyticsPageId
 import com.aiuta.fashionsdk.analytics.events.AiutaAnalyticsResultsEventType
 import com.aiuta.fashionsdk.configuration.features.tryon.other.AiutaTryOnWithOtherPhotoFeature
+import com.aiuta.fashionsdk.internal.navigation.composition.LocalAiutaBottomSheetNavigator
 import com.aiuta.fashionsdk.tryon.compose.domain.models.internal.generated.images.SessionImageUIModel
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.controller.composition.LocalController
-import com.aiuta.fashionsdk.tryon.compose.ui.internal.navigation.NavigationBottomSheetScreen
+import com.aiuta.fashionsdk.tryon.compose.ui.internal.navigation.TryOnBottomSheetScreen
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.screens.result.analytic.sendResultEvent
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.screens.result.components.common.IconButton
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.screens.result.controller.GenerateMoreListener
@@ -19,6 +20,7 @@ internal fun GenerateMoreBlock(
     modifier: Modifier = Modifier,
     sessionImage: SessionImageUIModel,
 ) {
+    val bottomSheetNavigator = LocalAiutaBottomSheetNavigator.current
     val repickingFeature = provideFeature<AiutaTryOnWithOtherPhotoFeature>()
 
     repickingFeature?.let {
@@ -41,12 +43,11 @@ internal fun GenerateMoreBlock(
                     productIds = sessionImage.productIds,
                 )
 
-                controller.bottomSheetNavigator.show(
-                    newSheetScreen =
-                    if (countGeneratedOperation.value > 1) {
-                        NavigationBottomSheetScreen.GeneratedOperations
+                bottomSheetNavigator.show(
+                    newSheetScreen = if (countGeneratedOperation.value > 1) {
+                        TryOnBottomSheetScreen.GeneratedOperations
                     } else {
-                        NavigationBottomSheetScreen.ImagePicker(
+                        TryOnBottomSheetScreen.ImagePicker(
                             originPageId = AiutaAnalyticsPageId.RESULTS,
                         )
                     },

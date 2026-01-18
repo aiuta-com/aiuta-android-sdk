@@ -27,7 +27,7 @@ import com.aiuta.fashionsdk.tryon.compose.ui.internal.analytic.sendOnboardingEve
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.analytic.sendPageEvent
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.controller.composition.LocalController
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.controller.navigateTo
-import com.aiuta.fashionsdk.tryon.compose.ui.internal.navigation.NavigationScreen
+import com.aiuta.fashionsdk.tryon.compose.ui.internal.navigation.TryOnScreen
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.navigation.components.appbar.AppBar
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.navigation.components.appbar.AppBarIcon
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.utils.features.strictProvideFeature
@@ -121,7 +121,7 @@ private fun PreOnboardingForeground(modifier: Modifier = Modifier) {
                     pageId = AiutaAnalyticsPageId.WELCOME,
                     consentsIds = null,
                 )
-                controller.navigateTo(NavigationScreen.Onboarding)
+                controller.navigateTo(TryOnScreen.Onboarding)
             },
         )
     }

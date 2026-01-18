@@ -39,6 +39,7 @@ import coil3.compose.LocalPlatformContext
 import coil3.request.ImageRequest
 import coil3.size.SizeResolver.Companion.ORIGINAL
 import com.aiuta.fashionsdk.analytics.events.AiutaAnalyticsPageId
+import com.aiuta.fashionsdk.internal.navigation.composition.LocalAiutaErrorSnackbarController
 import com.aiuta.fashionsdk.tryon.compose.domain.models.internal.generated.images.GeneratedImageUIModel
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.analytic.sendPageEvent
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.components.icons.AiutaBoxedLoadingIcon
@@ -47,7 +48,7 @@ import com.aiuta.fashionsdk.tryon.compose.ui.internal.controller.composition.Loc
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.controller.deactivateSelectMode
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.controller.isSelectModeActive
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.controller.navigateTo
-import com.aiuta.fashionsdk.tryon.compose.ui.internal.navigation.NavigationScreen
+import com.aiuta.fashionsdk.tryon.compose.ui.internal.navigation.TryOnScreen
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.screens.base.share.ShareElement
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.screens.history.analytic.sendDeleteHistoryEvent
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.screens.history.components.SelectorCard
@@ -160,7 +161,7 @@ private fun HistoryScreenInternal(modifier: Modifier = Modifier) {
 
                             else -> {
                                 controller.navigateTo(
-                                    newScreen = NavigationScreen.ImageListViewer(
+                                    newScreen = TryOnScreen.ImageListViewer(
                                         pickedIndex = index,
                                     ),
                                 )
@@ -261,6 +262,7 @@ private fun BoxScope.HistoryScreenInterface(
     getGeneratedImages: () -> LazyPagingItems<GeneratedImageUIModel>,
 ) {
     val controller = LocalController.current
+    val errorSnackbarController = LocalAiutaErrorSnackbarController.current
     val loadingActionsController = LocalAiutaTryOnLoadingActionsController.current
 
     val generatedImages = getGeneratedImages()
@@ -306,6 +308,7 @@ private fun BoxScope.HistoryScreenInterface(
                 onDelete = {
                     controller.sendDeleteHistoryEvent()
                     controller.deleteGeneratedImages(
+                        errorSnackbarController = errorSnackbarController,
                         loadingActionsController = loadingActionsController,
                     )
                 },

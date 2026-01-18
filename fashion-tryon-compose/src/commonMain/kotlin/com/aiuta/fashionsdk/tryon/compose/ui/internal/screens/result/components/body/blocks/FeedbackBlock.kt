@@ -22,9 +22,10 @@ import androidx.compose.ui.platform.LocalHapticFeedback
 import androidx.compose.ui.unit.dp
 import com.aiuta.fashionsdk.compose.resources.drawable.AiutaIcon
 import com.aiuta.fashionsdk.configuration.features.tryon.feedback.AiutaTryOnFeedbackFeature
+import com.aiuta.fashionsdk.internal.navigation.composition.LocalAiutaBottomSheetNavigator
 import com.aiuta.fashionsdk.tryon.compose.domain.models.internal.generated.images.SessionImageUIModel
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.controller.composition.LocalController
-import com.aiuta.fashionsdk.tryon.compose.ui.internal.navigation.NavigationBottomSheetScreen
+import com.aiuta.fashionsdk.tryon.compose.ui.internal.navigation.TryOnBottomSheetScreen
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.screens.result.analytic.sendLikeGenerationFeedback
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.screens.result.controller.GenerationResultController
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.screens.result.controller.showThanksFeedbackBlock
@@ -45,6 +46,7 @@ internal fun FeedbackBlock(
     isInterfaceVisible: State<Boolean>,
 ) {
     val controller = LocalController.current
+    val bottomSheetNavigator = LocalAiutaBottomSheetNavigator.current
 
     val feedbackFeature = provideFeature<AiutaTryOnFeedbackFeature>()
 
@@ -72,8 +74,8 @@ internal fun FeedbackBlock(
                 hazeState = hazeState,
                 feedbackFeature = feedbackFeature,
                 onDislikeClick = {
-                    controller.bottomSheetNavigator.show(
-                        newSheetScreen = NavigationBottomSheetScreen.Feedback(
+                    bottomSheetNavigator.show(
+                        newSheetScreen = TryOnBottomSheetScreen.Feedback(
                             productIds = sessionImage.productIds,
                         ),
                     )

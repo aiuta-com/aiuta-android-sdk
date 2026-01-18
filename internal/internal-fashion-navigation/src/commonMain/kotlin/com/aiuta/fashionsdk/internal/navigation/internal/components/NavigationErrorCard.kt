@@ -13,7 +13,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.unit.dp
-import com.aiuta.fashionsdk.internal.navigation.composition.LocalErrorSnackbarController
+import com.aiuta.fashionsdk.internal.navigation.composition.LocalAiutaErrorSnackbarController
 import com.aiuta.fashionsdk.internal.navigation.snackbar.AiutaErrorSnackbarState
 import com.aiuta.fashionsdk.tryon.compose.uikit.button.FashionButton
 import com.aiuta.fashionsdk.tryon.compose.uikit.button.FashionButtonSizes
@@ -28,7 +28,7 @@ internal fun NavigationErrorCard(
     modifier: Modifier = Modifier,
     errorState: AiutaErrorSnackbarState,
 ) {
-    val errorSnackbarController = LocalErrorSnackbarController.current
+    val errorSnackbarController = LocalAiutaErrorSnackbarController.current
     val theme = LocalTheme.current
 
     Row(

@@ -7,17 +7,20 @@ import androidx.compose.ui.platform.LocalLifecycleOwner
 import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.LifecycleEventObserver
 import com.aiuta.fashionsdk.configuration.features.tryon.AiutaTryOnFeature
+import com.aiuta.fashionsdk.internal.navigation.composition.LocalAiutaNavigationController
 import com.aiuta.fashionsdk.tryon.compose.domain.models.internal.generated.sku.ProductGenerationUIStatus
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.analytic.sendTerminateEvent
-import com.aiuta.fashionsdk.tryon.compose.ui.internal.navigation.NavigationScreen
+import com.aiuta.fashionsdk.tryon.compose.ui.internal.navigation.TryOnScreen
 
 @Composable
 internal fun FashionTryOnController.generationNavigationListener() {
+    val navigationController = LocalAiutaNavigationController.current
+
     // We should clear generation status and list of operation
     // every time, when move back from result to selector screen,
-    // therefore let's clear it on each navigation to NavigationScreen.ImageSelector
-    LaunchedEffect(currentScreen.value) {
-        if (currentScreen.value == NavigationScreen.ImageSelector) {
+    // therefore let's clear it on each navigation to TryOnScreen.ImageSelector
+    LaunchedEffect(navigationController.currentScreen.value) {
+        if (navigationController.currentScreen.value == TryOnScreen.ImageSelector) {
             if (!isGenerationActive.value) {
                 generationStatus.value = ProductGenerationUIStatus.IDLE
             }

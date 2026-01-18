@@ -6,25 +6,33 @@ import com.aiuta.fashionsdk.internal.navigation.bottomsheet.AiutaBottomSheetNavi
 import com.aiuta.fashionsdk.internal.navigation.controller.AiutaNavigationController
 import com.aiuta.fashionsdk.internal.navigation.dialog.AiutaDialogController
 import com.aiuta.fashionsdk.internal.navigation.snackbar.AiutaErrorSnackbarController
+import com.aiuta.fashionsdk.logger.AiutaLogger
 
-public val LocalNavigationController: ProvidableCompositionLocal<AiutaNavigationController> =
+// Navigation
+public val LocalAiutaNavigationController: ProvidableCompositionLocal<AiutaNavigationController> =
     staticCompositionLocalOf {
-        noLocalProvidedFor("LocalNavigationController")
+        noLocalProvidedFor("LocalAiutaNavigationController")
     }
 
-public val LocalBottomSheetNavigator: ProvidableCompositionLocal<AiutaBottomSheetNavigator> =
+public val LocalAiutaBottomSheetNavigator: ProvidableCompositionLocal<AiutaBottomSheetNavigator> =
     staticCompositionLocalOf {
-        noLocalProvidedFor("LocalBottomSheetNavigator")
+        noLocalProvidedFor("LocalAiutaBottomSheetNavigator")
     }
 
-public val LocalErrorSnackbarController: ProvidableCompositionLocal<AiutaErrorSnackbarController> =
+public val LocalAiutaErrorSnackbarController: ProvidableCompositionLocal<AiutaErrorSnackbarController> =
     staticCompositionLocalOf {
-        noLocalProvidedFor("LocalErrorSnackbarController")
+        noLocalProvidedFor("LocalAiutaErrorSnackbarController")
     }
 
 public val LocalAiutaDialogController: ProvidableCompositionLocal<AiutaDialogController> =
     staticCompositionLocalOf {
         noLocalProvidedFor("LocalAiutaDialogController")
+    }
+
+// Logger
+public val LocalAiutaLogger: ProvidableCompositionLocal<AiutaLogger?> =
+    staticCompositionLocalOf {
+        noLocalProvidedFor("LocalAiutaLogger")
     }
 
 private fun noLocalProvidedFor(name: String): Nothing {

@@ -4,7 +4,7 @@ import androidx.compose.animation.AnimatedContent
 import androidx.compose.foundation.background
 import androidx.compose.foundation.border
 import androidx.compose.foundation.layout.Box
-import androidx.compose.foundation.layout.ColumnScope
+import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
@@ -22,8 +22,9 @@ import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import com.aiuta.fashionsdk.configuration.features.tryon.feedback.AiutaTryOnFeedbackFeature
 import com.aiuta.fashionsdk.configuration.features.tryon.feedback.other.AiutaTryOnFeedbackOtherFeature
+import com.aiuta.fashionsdk.internal.navigation.composition.LocalAiutaBottomSheetNavigator
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.controller.composition.LocalController
-import com.aiuta.fashionsdk.tryon.compose.ui.internal.navigation.NavigationBottomSheetScreen
+import com.aiuta.fashionsdk.tryon.compose.ui.internal.navigation.TryOnBottomSheetScreen
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.screens.result.analytic.sendGenerationFeedback
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.sheets.components.SheetDivider
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.utils.features.isFeatureInitialize
@@ -36,19 +37,16 @@ import com.aiuta.fashionsdk.tryon.compose.uikit.composition.LocalTheme
 import com.aiuta.fashionsdk.tryon.compose.uikit.utils.clickableUnindicated
 
 @Composable
-internal fun ColumnScope.FeedbackSheet(
-    args: NavigationBottomSheetScreen.Feedback,
+internal fun FeedbackSheet(
+    args: TryOnBottomSheetScreen.Feedback,
+    modifier: Modifier = Modifier,
 ) {
+    val bottomSheetNavigator = LocalAiutaBottomSheetNavigator.current
     val controller = LocalController.current
     val theme = LocalTheme.current
 
     val feedbackFeature = strictProvideFeature<AiutaTryOnFeedbackFeature>()
     val feedbackOptions = feedbackFeature.strings.tryOnFeedbackOptions
-
-    val sharedModifier =
-        Modifier
-            .padding(horizontal = 16.dp)
-            .align(Alignment.CenterHorizontally)
 
     val selectedOption =
         remember {
@@ -61,101 +59,107 @@ internal fun ColumnScope.FeedbackSheet(
             }
         }
 
-    SheetDivider()
+    Column(modifier = modifier) {
+        val sharedModifier = Modifier
+            .padding(horizontal = 16.dp)
+            .align(Alignment.CenterHorizontally)
 
-    Spacer(Modifier.height(30.dp))
+        SheetDivider()
 
-    Text(
-        modifier = sharedModifier,
-        text = feedbackFeature.strings.tryOnFeedbackTitle,
-        style = theme.label.typography.titleM,
-        color = theme.color.primary,
-        textAlign = TextAlign.Center,
-    )
+        Spacer(Modifier.height(30.dp))
 
-    Spacer(Modifier.height(32.dp))
+        Text(
+            modifier = sharedModifier,
+            text = feedbackFeature.strings.tryOnFeedbackTitle,
+            style = theme.label.typography.titleM,
+            color = theme.color.primary,
+            textAlign = TextAlign.Center,
+        )
 
-    feedbackOptions.forEachIndexed { index, option ->
-        key(option) {
-            OptionItem(
-                modifier = sharedModifier,
-                option = option,
-                isSelected = option == selectedOption.value,
-                onClick = {
-                    selectedOption.value = option
-                },
-            )
+        Spacer(Modifier.height(32.dp))
 
-            if (index != feedbackOptions.lastIndex) {
-                Spacer(Modifier.height(12.dp))
+        feedbackOptions.forEachIndexed { index, option ->
+            key(option) {
+                OptionItem(
+                    modifier = sharedModifier,
+                    option = option,
+                    isSelected = option == selectedOption.value,
+                    onClick = {
+                        selectedOption.value = option
+                    },
+                )
+
+                if (index != feedbackOptions.lastIndex) {
+                    Spacer(Modifier.height(12.dp))
+                }
             }
         }
-    }
 
-    if (isFeatureInitialize<AiutaTryOnFeedbackOtherFeature>()) {
-        val feedbackOtherFeature = strictProvideFeature<AiutaTryOnFeedbackOtherFeature>()
+        if (isFeatureInitialize<AiutaTryOnFeedbackOtherFeature>()) {
+            val feedbackOtherFeature = strictProvideFeature<AiutaTryOnFeedbackOtherFeature>()
 
-        Spacer(Modifier.height(12.dp))
+            Spacer(Modifier.height(12.dp))
 
-        OptionItem(
-            modifier = sharedModifier,
-            option = feedbackOtherFeature.strings.otherFeedbackOptionOther,
-            isSelected = false,
-            onClick = {
-                controller.bottomSheetNavigator.change(
-                    newSheetScreen =
-                    NavigationBottomSheetScreen.ExtraFeedback(
-                        optionIndex = feedbackOptions.size,
-                        productIds = args.productIds,
-                    ),
-                )
-            },
-        )
-    }
-
-    Spacer(Modifier.height(40.dp))
-
-    AnimatedContent(
-        modifier = sharedModifier.height(50.dp),
-        targetState = isSendButtonVisible.value,
-        transitionSpec = { transitionAnimation },
-    ) { isVisibleButton ->
-        if (!isVisibleButton) {
-            Text(
-                modifier =
-                Modifier
-                    .fillMaxWidth()
-                    .clickableUnindicated {
-                        controller.sendGenerationFeedback(
-                            optionIndex = feedbackOptions.indexOf(selectedOption.value),
-                            productIds = args.productIds,
-                        )
-                        controller.bottomSheetNavigator.hide()
-                    },
-                text = feedbackFeature.strings.tryOnFeedbackButtonSkip,
-                style = theme.label.typography.subtle,
-                color = theme.color.secondary,
-                textAlign = TextAlign.Center,
-            )
-        } else {
-            FashionButton(
-                modifier = Modifier.fillMaxWidth(),
-                text = feedbackFeature.strings.tryOnFeedbackButtonSend,
-                style = FashionButtonStyles.primaryStyle(theme),
-                size = FashionButtonSizes.lSize(),
+            OptionItem(
+                modifier = sharedModifier,
+                option = feedbackOtherFeature.strings.otherFeedbackOptionOther,
+                isSelected = false,
                 onClick = {
-                    controller.sendGenerationFeedback(
-                        optionIndex = feedbackOptions.indexOf(selectedOption.value),
-                        feedback = selectedOption.value,
-                        productIds = args.productIds,
+                    bottomSheetNavigator.change(
+                        newSheetScreen =
+                        TryOnBottomSheetScreen.ExtraFeedback(
+                            optionIndex = feedbackOptions.size,
+                            productIds = args.productIds,
+                        ),
                     )
-                    controller.bottomSheetNavigator.hide()
                 },
             )
         }
-    }
 
-    Spacer(Modifier.height(16.dp))
+        Spacer(Modifier.height(40.dp))
+
+        AnimatedContent(
+            modifier = sharedModifier.height(50.dp),
+            targetState = isSendButtonVisible.value,
+            transitionSpec = { transitionAnimation },
+        ) { isVisibleButton ->
+            if (!isVisibleButton) {
+                Text(
+                    modifier =
+                    Modifier
+                        .fillMaxWidth()
+                        .clickableUnindicated {
+                            controller.sendGenerationFeedback(
+                                optionIndex = feedbackOptions.indexOf(selectedOption.value),
+                                productIds = args.productIds,
+                            )
+                            bottomSheetNavigator.hide()
+                        },
+                    text = feedbackFeature.strings.tryOnFeedbackButtonSkip,
+                    style = theme.label.typography.subtle,
+                    color = theme.color.secondary,
+                    textAlign = TextAlign.Center,
+                )
+            } else {
+                FashionButton(
+                    modifier = Modifier.fillMaxWidth(),
+                    text = feedbackFeature.strings.tryOnFeedbackButtonSend,
+                    style = FashionButtonStyles.primaryStyle(theme),
+                    size = FashionButtonSizes.lSize(),
+                    onClick = {
+                        controller.sendGenerationFeedback(
+                            optionIndex = feedbackOptions.indexOf(selectedOption.value),
+                            feedback = selectedOption.value,
+                            productIds = args.productIds,
+                        )
+                        bottomSheetNavigator.hide()
+                    },
+                )
+            }
+        }
+
+        Spacer(Modifier.height(16.dp))
+    }
 }
 
 @Composable

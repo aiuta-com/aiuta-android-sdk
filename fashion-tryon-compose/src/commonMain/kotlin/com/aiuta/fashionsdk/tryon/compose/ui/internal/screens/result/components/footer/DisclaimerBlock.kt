@@ -13,8 +13,8 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import com.aiuta.fashionsdk.configuration.features.tryon.disclaimer.AiutaTryOnFitDisclaimerFeature
-import com.aiuta.fashionsdk.tryon.compose.ui.internal.controller.composition.LocalController
-import com.aiuta.fashionsdk.tryon.compose.ui.internal.navigation.NavigationBottomSheetScreen
+import com.aiuta.fashionsdk.internal.navigation.composition.LocalAiutaBottomSheetNavigator
+import com.aiuta.fashionsdk.tryon.compose.ui.internal.navigation.TryOnBottomSheetScreen
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.utils.features.provideFeature
 import com.aiuta.fashionsdk.tryon.compose.uikit.composition.LocalTheme
 import com.aiuta.fashionsdk.tryon.compose.uikit.resources.AiutaIcon
@@ -22,15 +22,14 @@ import com.aiuta.fashionsdk.tryon.compose.uikit.utils.clickableUnindicated
 
 @Composable
 internal fun DisclaimerBlock(modifier: Modifier = Modifier) {
-    val controller = LocalController.current
-
+    val bottomSheetNavigator = LocalAiutaBottomSheetNavigator.current
     val fitDisclaimerFeature = provideFeature<AiutaTryOnFitDisclaimerFeature>()
 
     fitDisclaimerFeature?.let {
         DisclaimerBlockContent(
             modifier = modifier.clickableUnindicated {
-                controller.bottomSheetNavigator.show(
-                    newSheetScreen = NavigationBottomSheetScreen.FitDisclaimer,
+                bottomSheetNavigator.show(
+                    newSheetScreen = TryOnBottomSheetScreen.FitDisclaimer,
                 )
             },
             fitDisclaimerFeature = fitDisclaimerFeature,

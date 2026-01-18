@@ -33,9 +33,7 @@ import com.aiuta.fashionsdk.tryon.compose.domain.models.internal.generated.image
 import com.aiuta.fashionsdk.tryon.compose.domain.models.internal.generated.operations.GeneratedOperationUIModel
 import com.aiuta.fashionsdk.tryon.compose.domain.models.internal.generated.sku.ProductGenerationOperation
 import com.aiuta.fashionsdk.tryon.compose.domain.models.internal.generated.sku.ProductGenerationUIStatus
-import com.aiuta.fashionsdk.tryon.compose.ui.internal.controller.bottomsheet.BottomSheetNavigator
-import com.aiuta.fashionsdk.tryon.compose.ui.internal.controller.bottomsheet.rememberBottomSheetNavigator
-import com.aiuta.fashionsdk.tryon.compose.ui.internal.navigation.NavigationScreen
+import com.aiuta.fashionsdk.tryon.compose.ui.internal.navigation.TryOnScreen
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.screens.history.models.SelectorMode
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.screens.zoom.controller.ZoomImageController
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.screens.zoom.controller.rememberZoomImageController
@@ -50,7 +48,7 @@ import kotlinx.coroutines.cancel
 internal fun BoxWithConstraintsScope.rememberFashionTryOnController(
     aiutaConfiguration: AiutaConfiguration,
     productConfiguration: ProductConfiguration,
-    startScreen: NavigationScreen,
+    startScreen: TryOnScreen,
 ): FashionTryOnController {
     val uiScope = rememberCoroutineScope()
     val coilContext = LocalPlatformContext.current
@@ -71,12 +69,9 @@ internal fun BoxWithConstraintsScope.rememberFashionTryOnController(
 
     val zoomImageController = rememberZoomImageController(constraints = constraints)
 
-    val defaultBottomSheetNavigator = rememberBottomSheetNavigator()
-
     return remember {
         FashionTryOnController(
             startScreen = startScreen,
-            bottomSheetNavigator = defaultBottomSheetNavigator,
             zoomImageController = zoomImageController,
             activeProductItems = activeProductItems,
             aiuta = aiutaConfiguration.aiuta,
@@ -121,11 +116,8 @@ internal fun BoxWithConstraintsScope.rememberFashionTryOnController(
 internal class FashionTryOnController(
     // General navigation
     @Deprecated("Migrate to separate controller from new module")
-    public val startScreen: NavigationScreen,
+    public val startScreen: TryOnScreen,
     public val zoomImageController: ZoomImageController,
-    // Bottom sheet navigation
-    @Deprecated("Migrate to separate controller from new module")
-    public val bottomSheetNavigator: BottomSheetNavigator,
     // Data
     public val activeProductItems: SnapshotStateList<ProductItem>,
     // Domain
@@ -148,14 +140,10 @@ internal class FashionTryOnController(
 
     // General navigation
     @Deprecated("Migrate to separate controller from new module")
-    internal val backStack: ArrayDeque<NavigationScreen> = ArrayDeque()
+    internal val backStack: ArrayDeque<TryOnScreen> = ArrayDeque()
 
     @Deprecated("Migrate to separate controller from new module")
-    public val currentScreen: MutableState<NavigationScreen> = mutableStateOf(startScreen)
-
-    // Error state
-    @Deprecated("Migrate to separate controller from new module")
-    public val fashionTryOnErrorState: MutableState<ToastErrorState?> = mutableStateOf(null)
+    public val currentScreen: MutableState<TryOnScreen> = mutableStateOf(startScreen)
 
     // Edit changePhotoButtonStyle
     internal val selectorState: MutableState<SelectorMode> = mutableStateOf(SelectorMode.DISABLED)

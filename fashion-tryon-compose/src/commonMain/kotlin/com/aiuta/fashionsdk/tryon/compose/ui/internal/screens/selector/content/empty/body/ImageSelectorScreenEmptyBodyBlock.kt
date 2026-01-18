@@ -29,10 +29,11 @@ import com.aiuta.fashionsdk.compose.resources.drawable.AiutaDrawableResource
 import com.aiuta.fashionsdk.configuration.features.consent.AiutaConsentStandaloneImagePickerPageFeature
 import com.aiuta.fashionsdk.configuration.features.picker.AiutaImagePickerFeature
 import com.aiuta.fashionsdk.configuration.features.picker.model.AiutaImagePickerPredefinedModelFeature
+import com.aiuta.fashionsdk.internal.navigation.composition.LocalAiutaBottomSheetNavigator
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.controller.composition.LocalController
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.controller.navigateTo
-import com.aiuta.fashionsdk.tryon.compose.ui.internal.navigation.NavigationBottomSheetScreen
-import com.aiuta.fashionsdk.tryon.compose.ui.internal.navigation.NavigationScreen
+import com.aiuta.fashionsdk.tryon.compose.ui.internal.navigation.TryOnBottomSheetScreen
+import com.aiuta.fashionsdk.tryon.compose.ui.internal.navigation.TryOnScreen
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.utils.features.provideFeature
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.utils.features.strictProvideFeature
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.utils.shadow.dropShadow
@@ -44,6 +45,7 @@ import com.aiuta.fashionsdk.tryon.compose.uikit.resources.AiutaImage
 
 @Composable
 internal fun ImageSelectorScreenEmptyBodyBlock(modifier: Modifier) {
+    val bottomSheetNavigator = LocalAiutaBottomSheetNavigator.current
     val controller = LocalController.current
     val theme = LocalTheme.current
 
@@ -68,8 +70,7 @@ internal fun ImageSelectorScreenEmptyBodyBlock(modifier: Modifier) {
     }
 
     Column(
-        modifier =
-        modifier
+        modifier = modifier
             .padding(horizontal = 26.dp)
             .background(
                 color = theme.color.neutral,
@@ -81,8 +82,7 @@ internal fun ImageSelectorScreenEmptyBodyBlock(modifier: Modifier) {
         Spacer(Modifier.height(60.dp))
 
         ImagesBlock(
-            modifier =
-            Modifier
+            modifier = Modifier
                 .fillMaxWidth()
                 .weight(1f)
                 .padding(imageBlockPadding),
@@ -117,15 +117,14 @@ internal fun ImageSelectorScreenEmptyBodyBlock(modifier: Modifier) {
             size = FashionButtonSizes.lSize(),
             onClick = {
                 val showPickerSheet = {
-                    controller.bottomSheetNavigator.show(
-                        newSheetScreen =
-                        NavigationBottomSheetScreen.ImagePicker(
+                    bottomSheetNavigator.show(
+                        newSheetScreen = TryOnBottomSheetScreen.ImagePicker(
                             originPageId = AiutaAnalyticsPageId.IMAGE_PICKER,
                         ),
                     )
                 }
                 if (shouldShowConsent.value) {
-                    controller.navigateTo(NavigationScreen.Consent(onObtainedConsents = showPickerSheet))
+                    controller.navigateTo(TryOnScreen.Consent(onObtainedConsents = showPickerSheet))
                 } else {
                     showPickerSheet()
                 }
@@ -151,7 +150,7 @@ internal fun ImageSelectorScreenEmptyBodyBlock(modifier: Modifier) {
                 style = FashionButtonStyles.adaptiveContrastStyle(theme),
                 size = FashionButtonSizes.lSize(),
                 onClick = {
-                    controller.navigateTo(NavigationScreen.ModelSelector)
+                    controller.navigateTo(TryOnScreen.ModelSelector)
                 },
             )
 
@@ -171,8 +170,7 @@ private fun ImagesBlock(modifier: Modifier = Modifier) {
         modifier = modifier,
     ) {
         ImageContainer(
-            modifier =
-            Modifier
+            modifier = Modifier
                 .align(Alignment.Center)
                 .graphicsLayer {
                     translationX = paddingPx
@@ -182,8 +180,7 @@ private fun ImagesBlock(modifier: Modifier = Modifier) {
         )
 
         ImageContainer(
-            modifier =
-            Modifier
+            modifier = Modifier
                 .align(Alignment.Center)
                 .graphicsLayer {
                     translationX = -paddingPx
