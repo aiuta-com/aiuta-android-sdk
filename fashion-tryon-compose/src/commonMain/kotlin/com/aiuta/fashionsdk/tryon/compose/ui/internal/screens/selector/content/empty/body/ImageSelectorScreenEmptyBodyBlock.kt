@@ -153,7 +153,6 @@ internal fun ImageSelectorScreenEmptyBodyBlock(modifier: Modifier) {
                 onClick = {
                     navigationController.navigateTo(
                         newScreen = TryOnScreen.ModelSelector,
-                        shouldSaveCurrentScreen = false,
                     )
                 },
             )

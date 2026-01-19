@@ -129,7 +129,6 @@ private fun PreOnboardingForeground(modifier: Modifier = Modifier) {
                 )
                 navigationController.navigateTo(
                     newScreen = TryOnScreen.Onboarding,
-                    shouldSaveCurrentScreen = false,
                 )
             },
         )

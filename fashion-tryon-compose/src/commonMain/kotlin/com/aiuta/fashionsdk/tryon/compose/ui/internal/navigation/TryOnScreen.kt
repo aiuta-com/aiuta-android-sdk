@@ -17,6 +17,7 @@ internal abstract class TryOnScreen : AiutaNavigationScreen() {
 
     object Splash : TryOnScreen() {
         override val exitPageId: AiutaAnalyticsPageId = AiutaAnalyticsPageId.WELCOME
+        override val shouldSaveInBackStack: Boolean = false
     }
 
     object Preonboarding : TryOnScreen() {
@@ -25,6 +26,7 @@ internal abstract class TryOnScreen : AiutaNavigationScreen() {
 
     object Onboarding : TryOnScreen() {
         override val exitPageId: AiutaAnalyticsPageId = AiutaAnalyticsPageId.HOW_IT_WORKS
+        override val shouldSaveInBackStack: Boolean = false
     }
 
     object ImageSelector : TryOnScreen() {
@@ -39,6 +41,7 @@ internal abstract class TryOnScreen : AiutaNavigationScreen() {
 
     object ModelSelector : TryOnScreen() {
         override val exitPageId: AiutaAnalyticsPageId = AiutaAnalyticsPageId.IMAGE_PICKER
+        override val shouldSaveInBackStack: Boolean = false
     }
 
     object GenerationResult : TryOnScreen() {

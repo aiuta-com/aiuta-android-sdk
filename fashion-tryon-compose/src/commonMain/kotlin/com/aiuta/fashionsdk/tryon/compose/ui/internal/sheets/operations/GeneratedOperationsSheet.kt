@@ -34,6 +34,7 @@ import com.aiuta.fashionsdk.analytics.events.AiutaAnalyticsPickerEventType
 import com.aiuta.fashionsdk.configuration.features.models.images.AiutaInputImage
 import com.aiuta.fashionsdk.configuration.features.picker.history.AiutaImagePickerUploadsHistoryFeature
 import com.aiuta.fashionsdk.internal.navigation.composition.LocalAiutaBottomSheetNavigator
+import com.aiuta.fashionsdk.internal.navigation.composition.LocalAiutaErrorSnackbarController
 import com.aiuta.fashionsdk.tryon.compose.domain.internal.interactor.generated.operations.cleanLoadingUploads
 import com.aiuta.fashionsdk.tryon.compose.domain.internal.utils.asCustom
 import com.aiuta.fashionsdk.tryon.compose.domain.models.internal.generated.images.toPublicHistory
@@ -193,6 +194,7 @@ private fun OperationItem(
 ) {
     val controller = LocalController.current
     val loadingActionsController = LocalAiutaTryOnLoadingActionsController.current
+    val errorSnackbarController = LocalAiutaErrorSnackbarController.current
     val theme = LocalTheme.current
     val scope = rememberCoroutineScope()
 
@@ -250,6 +252,7 @@ private fun OperationItem(
                                     .deleteOperation(generatedOperation)
                                     .listenErrorDeletingUploadedImages(
                                         controller = controller,
+                                        errorSnackbarController = errorSnackbarController,
                                         loadingActionsController = loadingActionsController,
                                     )
 

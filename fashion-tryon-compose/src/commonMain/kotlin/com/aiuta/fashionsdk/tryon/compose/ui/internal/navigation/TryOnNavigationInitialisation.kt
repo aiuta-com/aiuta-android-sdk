@@ -36,11 +36,6 @@ internal fun TryOnNavigationInitialisation(
     BoxWithConstraints(
         modifier = modifier,
     ) {
-        val controller = rememberFashionTryOnController(
-            aiutaConfiguration = aiutaConfiguration,
-            productConfiguration = productConfiguration,
-        )
-
         // Base init
         AiutaNavigationInitialisation(
             startScreen = startScreen,
@@ -66,6 +61,11 @@ internal fun TryOnNavigationInitialisation(
                 }
             },
         ) {
+            val controller = rememberFashionTryOnController(
+                aiutaConfiguration = aiutaConfiguration,
+                productConfiguration = productConfiguration,
+            )
+
             // Feature init
             CompositionLocalProvider(
                 LocalAnalytic provides controller.analytic,

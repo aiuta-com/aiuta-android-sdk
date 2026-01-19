@@ -35,12 +35,9 @@ public class AiutaNavigationController internal constructor(
     private val backStack: ArrayDeque<AiutaNavigationScreen> = ArrayDeque()
     public val currentScreen: MutableState<AiutaNavigationScreen> = mutableStateOf(startScreen)
 
-    fun navigateTo(
-        newScreen: AiutaNavigationScreen,
-        shouldSaveCurrentScreen: Boolean = true,
-    ) {
+    fun navigateTo(newScreen: AiutaNavigationScreen) {
         // Save previous screen, if we should not skip it in back stack
-        if (shouldSaveCurrentScreen) {
+        if (currentScreen.value.shouldSaveInBackStack) {
             backStack.addLast(currentScreen.value)
         }
 

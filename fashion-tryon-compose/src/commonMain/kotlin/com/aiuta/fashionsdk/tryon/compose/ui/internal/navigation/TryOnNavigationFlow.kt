@@ -40,7 +40,6 @@ internal fun TryOnNavigationFlow(
     flowType: AiutaAnalyticsSessionEvent.FlowType,
     modifier: Modifier = Modifier,
 ) {
-    val navigationController = LocalAiutaNavigationController.current
     val sharedModifier = Modifier.fillMaxSize()
 
     TryOnNavigationInitialisation(

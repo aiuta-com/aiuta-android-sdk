@@ -22,6 +22,7 @@ kotlin {
                 implementation(compose.animation)
                 implementation(compose.runtime)
                 implementation(libs.jetbrains.compose.material)
+                implementation(projects.internal.internalFashionAnalytics)
             }
         }
     }

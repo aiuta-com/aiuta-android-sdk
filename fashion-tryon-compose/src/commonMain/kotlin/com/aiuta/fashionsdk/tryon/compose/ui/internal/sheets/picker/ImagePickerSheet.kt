@@ -174,7 +174,6 @@ internal fun ImagePickerSheet(
                                 bottomSheetNavigator.hide()
                                 navigationController.navigateTo(
                                     newScreen = TryOnScreen.ModelSelector,
-                                    shouldSaveCurrentScreen = false,
                                 )
                             }
 

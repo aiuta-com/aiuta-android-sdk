@@ -29,6 +29,12 @@ public abstract class AiutaNavigationScreen : AiutaNavKey {
      * @return Custom [ContentTransform] or null for default behavior
      */
     public open fun transitionSpec(): ContentTransform? = null
+
+    /**
+     * Whether this screen should be saved to backstack when navigating away from it.
+     * Override to return false for screens like Splash, Onboarding, etc.
+     */
+    public open val shouldSaveInBackStack: Boolean = true
 }
 
 internal fun AnimatedContentTransitionScope<AiutaNavigationScreen>.solveTransitionAnimation(): ContentTransform? {
