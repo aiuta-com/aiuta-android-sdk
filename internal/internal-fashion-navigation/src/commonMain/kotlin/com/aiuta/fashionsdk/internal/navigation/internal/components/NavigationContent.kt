@@ -7,7 +7,9 @@ import androidx.compose.ui.Modifier
 import com.aiuta.fashionsdk.internal.navigation.AiutaNavEntry
 import com.aiuta.fashionsdk.internal.navigation.AiutaNavigationScreen
 import com.aiuta.fashionsdk.internal.navigation.composition.LocalAiutaNavigationController
+import com.aiuta.fashionsdk.internal.navigation.controller.AiutaNavigationDirection
 import com.aiuta.fashionsdk.internal.navigation.internal.utils.leftToRightTransition
+import com.aiuta.fashionsdk.internal.navigation.internal.utils.rightToLeftTransition
 import com.aiuta.fashionsdk.internal.navigation.solveTransitionAnimation
 
 @Composable
@@ -30,9 +32,8 @@ internal fun NavigationContent(
             when {
                 // Solve custom transition animation
                 destinationsTransition != null -> destinationsTransition
-                // Default
-                // TODO solve position
-                // screenPosition(initialState) < screenPosition(targetState) -> rightToLeftTransition
+                // Default based on navigation direction
+                navigationController.aiutaNavigationDirection == AiutaNavigationDirection.Forward -> rightToLeftTransition
                 else -> leftToRightTransition
             }
         },

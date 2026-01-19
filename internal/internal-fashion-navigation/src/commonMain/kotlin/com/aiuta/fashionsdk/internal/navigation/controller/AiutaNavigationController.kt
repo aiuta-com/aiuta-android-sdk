@@ -35,13 +35,17 @@ public class AiutaNavigationController internal constructor(
     private val backStack: ArrayDeque<AiutaNavigationScreen> = ArrayDeque()
     public val currentScreen: MutableState<AiutaNavigationScreen> = mutableStateOf(startScreen)
 
+    internal var aiutaNavigationDirection: AiutaNavigationDirection = AiutaNavigationDirection.Forward
+        private set
+
     fun navigateTo(newScreen: AiutaNavigationScreen) {
         // Save previous screen, if we should not skip it in back stack
         if (currentScreen.value.shouldSaveInBackStack) {
             backStack.addLast(currentScreen.value)
         }
 
-        // Set new screen
+        // Set direction and new screen
+        aiutaNavigationDirection = AiutaNavigationDirection.Forward
         currentScreen.value = newScreen
     }
 
@@ -65,9 +69,9 @@ public class AiutaNavigationController internal constructor(
     }
 
     fun navigateBack() {
+        aiutaNavigationDirection = AiutaNavigationDirection.Backward
         if (backStack.isNotEmpty()) {
             val previousScreen = backStack.removeLast()
-
             currentScreen.value = previousScreen
         } else {
             clickClose()
