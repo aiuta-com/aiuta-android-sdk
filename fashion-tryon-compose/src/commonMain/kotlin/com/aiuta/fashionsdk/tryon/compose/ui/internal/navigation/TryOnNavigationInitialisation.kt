@@ -3,14 +3,11 @@ package com.aiuta.fashionsdk.tryon.compose.ui.internal.navigation
 import androidx.compose.foundation.layout.BoxWithConstraints
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.CompositionLocalProvider
-import androidx.compose.runtime.remember
 import androidx.compose.ui.Modifier
 import com.aiuta.fashionsdk.configuration.AiutaConfiguration
-import com.aiuta.fashionsdk.internal.analytics.internalAiutaAnalytic
 import com.aiuta.fashionsdk.internal.navigation.AiutaNavigationInitialisation
 import com.aiuta.fashionsdk.internal.navigation.aiutaEntryProvider
 import com.aiuta.fashionsdk.tryon.compose.domain.models.ProductConfiguration
-import com.aiuta.fashionsdk.tryon.compose.ui.internal.analytic.sendFinishSessionEvent
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.controller.composition.LocalAiutaFeatures
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.controller.composition.LocalAiutaTryOnDataController
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.controller.composition.LocalAiutaTryOnLoadingActionsController
@@ -27,7 +24,6 @@ import com.aiuta.fashionsdk.tryon.compose.ui.internal.sheets.feedback.FeedbackSh
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.sheets.operations.GeneratedOperationsSheet
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.sheets.picker.ImagePickerSheet
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.sheets.skuinfo.ProductInfoSheet
-import com.aiuta.fashionsdk.tryon.compose.ui.internal.utils.features.dataprovider.safeInvoke
 
 @Composable
 internal fun TryOnNavigationInitialisation(
@@ -43,22 +39,12 @@ internal fun TryOnNavigationInitialisation(
         val controller = rememberFashionTryOnController(
             aiutaConfiguration = aiutaConfiguration,
             productConfiguration = productConfiguration,
-            startScreen = startScreen,
         )
 
         // Base init
         AiutaNavigationInitialisation(
             startScreen = startScreen,
             aiutaConfiguration = aiutaConfiguration,
-            clickClose = {
-                // TODO Add close with analytic
-                // See clickClose in tryon-compose module
-//                analytic.sendFinishSessionEvent(
-//                    pageId = pageId ?: currentScreen.value.exitPageId,
-//                    productIds = activeProductItemsIds,
-//                )
-//                aiutaUserInterfaceActions::closeClick.safeInvoke()
-            },
             bottomSheetEntryProvider = aiutaEntryProvider {
                 aiutaEntry<TryOnBottomSheetScreen.ImagePicker> { key ->
                     ImagePickerSheet(pickerData = key)

@@ -83,8 +83,8 @@ internal fun OnboardingAppBar(
                     color = theme.color.primary,
                     onClick = {
                         controller.clickClose(
-                            pageId =
-                            when (onboardingController.state.value) {
+                            navigationController = navigationController,
+                            pageId = when (onboardingController.state.value) {
                                 is TryOnPage -> AiutaAnalyticsPageId.HOW_IT_WORKS
                                 is BestResultPage -> AiutaAnalyticsPageId.BEST_RESULTS
                                 is ConsentPage -> AiutaAnalyticsPageId.CONSENT

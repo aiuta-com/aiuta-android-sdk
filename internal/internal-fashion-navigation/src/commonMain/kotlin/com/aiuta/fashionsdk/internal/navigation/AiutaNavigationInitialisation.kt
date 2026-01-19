@@ -19,14 +19,13 @@ import com.aiuta.fashionsdk.tryon.compose.uikit.composition.LocalTheme
 public fun AiutaNavigationInitialisation(
     startScreen: AiutaNavigationScreen,
     aiutaConfiguration: AiutaConfiguration,
-    clickClose: () -> Unit,
     bottomSheetEntryProvider: (AiutaNavigationBottomSheetScreen) -> AiutaNavEntry<AiutaNavigationBottomSheetScreen>,
     content: @Composable () -> Unit,
 ) {
     val theme = aiutaConfiguration.userInterface.theme
     val navigationController = rememberAiutaNavigationController(
         startScreen = startScreen,
-        clickClose = clickClose,
+        aiutaConfiguration = aiutaConfiguration,
     )
     val bottomSheetNavigator = rememberAiutaBottomSheetNavigator(
         bottomSheetEntryProvider = bottomSheetEntryProvider,

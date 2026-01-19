@@ -1,12 +1,11 @@
 package com.aiuta.fashionsdk.tryon.compose.ui.internal.analytic
 
-import com.aiuta.fashionsdk.analytics.events.AiutaAnalyticsExitEvent
 import com.aiuta.fashionsdk.analytics.events.AiutaAnalyticsPageId
 import com.aiuta.fashionsdk.analytics.events.AiutaAnalyticsResultsEventType
 import com.aiuta.fashionsdk.configuration.features.tryon.cart.handler.AiutaTryOnCartFeatureHandler
 import com.aiuta.fashionsdk.configuration.features.tryon.cart.outfit.handler.AiutaTryOnCartOutfitFeatureHandler
 import com.aiuta.fashionsdk.configuration.features.wishlist.dataprovider.AiutaWishlistFeatureDataProvider
-import com.aiuta.fashionsdk.internal.analytics.InternalAiutaAnalytic
+import com.aiuta.fashionsdk.internal.navigation.controller.AiutaNavigationController
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.controller.FashionTryOnController
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.screens.result.analytic.sendResultEvent
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.utils.features.dataprovider.safeInvoke
@@ -55,18 +54,12 @@ internal fun FashionTryOnController.clickAddOutfitToCart(
     handler::addToCartOutfit.safeInvoke(activeProductItemsIds)
 }
 
-internal fun FashionTryOnController.clickClose(pageId: AiutaAnalyticsPageId? = null) {
-    analytic.sendFinishSessionEvent(
-        pageId = pageId ?: currentScreen.value.exitPageId,
+internal fun FashionTryOnController.clickClose(
+    navigationController: AiutaNavigationController,
+    pageId: AiutaAnalyticsPageId? = null,
+) {
+    navigationController.clickClose(
+        pageId = pageId,
         productIds = activeProductItemsIds,
     )
-    aiutaUserInterfaceActions::closeClick.safeInvoke()
-}
-
-// Senders
-internal fun InternalAiutaAnalytic.sendFinishSessionEvent(
-    pageId: AiutaAnalyticsPageId,
-    productIds: List<String>,
-) {
-    sendEvent(event = AiutaAnalyticsExitEvent(pageId = pageId, productIds = productIds))
 }

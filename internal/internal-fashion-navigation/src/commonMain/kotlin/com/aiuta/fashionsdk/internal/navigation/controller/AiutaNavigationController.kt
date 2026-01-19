@@ -5,27 +5,33 @@ import androidx.compose.runtime.Immutable
 import androidx.compose.runtime.MutableState
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
+import com.aiuta.fashionsdk.analytics.events.AiutaAnalyticsExitEvent
+import com.aiuta.fashionsdk.analytics.events.AiutaAnalyticsPageId
+import com.aiuta.fashionsdk.configuration.AiutaConfiguration
+import com.aiuta.fashionsdk.internal.analytics.internalAiutaAnalytic
 import com.aiuta.fashionsdk.internal.navigation.AiutaNavigationScreen
 
 @Composable
 internal fun rememberAiutaNavigationController(
     startScreen: AiutaNavigationScreen,
-    clickClose: () -> Unit,
+    aiutaConfiguration: AiutaConfiguration,
 ): AiutaNavigationController = remember(
     startScreen,
-    clickClose,
+    aiutaConfiguration,
 ) {
     AiutaNavigationController(
         startScreen = startScreen,
-        clickClose = clickClose,
+        aiutaConfiguration = aiutaConfiguration,
     )
 }
 
 @Immutable
 public class AiutaNavigationController internal constructor(
     startScreen: AiutaNavigationScreen,
-    private val clickClose: () -> Unit,
+    private val aiutaConfiguration: AiutaConfiguration,
 ) {
+    internal val analytic by lazy { aiutaConfiguration.aiuta.internalAiutaAnalytic }
+
     private val backStack: ArrayDeque<AiutaNavigationScreen> = ArrayDeque()
     public val currentScreen: MutableState<AiutaNavigationScreen> = mutableStateOf(startScreen)
 
@@ -68,6 +74,21 @@ public class AiutaNavigationController internal constructor(
             currentScreen.value = previousScreen
         } else {
             clickClose()
+        }
+    }
+
+    fun clickClose(
+        pageId: AiutaAnalyticsPageId? = null,
+        productIds: List<String> = emptyList(),
+    ) {
+        runCatching {
+            analytic.sendEvent(
+                event = AiutaAnalyticsExitEvent(
+                    pageId = pageId ?: currentScreen.value.exitPageId,
+                    productIds = productIds,
+                ),
+            )
+            aiutaConfiguration.userInterface.actions.closeClick()
         }
     }
 }

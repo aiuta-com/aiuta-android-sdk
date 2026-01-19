@@ -63,7 +63,10 @@ internal fun ConsentAppBar(
                     icon = theme.pageBar.icons.close24,
                     color = theme.color.primary,
                     onClick = {
-                        controller.clickClose(pageId = AiutaAnalyticsPageId.CONSENT)
+                        controller.clickClose(
+                            navigationController = navigationController,
+                            pageId = AiutaAnalyticsPageId.CONSENT,
+                        )
                     },
                 )
             }

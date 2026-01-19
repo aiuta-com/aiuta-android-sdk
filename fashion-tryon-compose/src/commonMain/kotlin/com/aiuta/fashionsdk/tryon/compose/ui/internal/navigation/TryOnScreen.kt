@@ -1,6 +1,5 @@
 package com.aiuta.fashionsdk.tryon.compose.ui.internal.navigation
 
-import androidx.compose.animation.AnimatedContentTransitionScope
 import androidx.compose.animation.ContentTransform
 import androidx.compose.animation.core.tween
 import androidx.compose.animation.fadeIn
@@ -65,28 +64,3 @@ internal abstract class TryOnScreen : AiutaNavigationScreen() {
 }
 
 internal fun defaultStartScreen(): TryOnScreen = TryOnScreen.Splash
-
-// Stack
-@Deprecated("Remove after migration to new nav library")
-private val screenStacks =
-    listOf(
-        TryOnScreen.Splash,
-        TryOnScreen.Preonboarding,
-        TryOnScreen.Onboarding,
-        TryOnScreen.ImageSelector,
-        TryOnScreen.ModelSelector,
-        TryOnScreen.GenerationResult,
-        // Utils
-        TryOnScreen.History,
-    )
-
-@Deprecated("Remove after migration to new nav library")
-internal fun screenPosition(screen: TryOnScreen): Int = screenStacks.indexOf(screen)
-
-@Deprecated("Remove after migration to new nav library")
-internal fun AnimatedContentTransitionScope<TryOnScreen>.solveTransitionAnimation(): ContentTransform? {
-    val initialTransition = initialState.transitionSpec()
-    val targetState = targetState.transitionSpec()
-
-    return initialTransition ?: targetState
-}

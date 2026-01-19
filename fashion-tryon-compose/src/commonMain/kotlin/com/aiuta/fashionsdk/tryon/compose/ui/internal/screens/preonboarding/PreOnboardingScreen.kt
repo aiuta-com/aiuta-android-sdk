@@ -39,6 +39,7 @@ import com.aiuta.fashionsdk.tryon.compose.uikit.utils.clickableUnindicated
 @Composable
 internal fun PreOnboardingScreen(modifier: Modifier = Modifier) {
     val controller = LocalController.current
+    val navigationController = LocalAiutaNavigationController.current
     val theme = LocalTheme.current
 
     val welcomeScreenFeature = strictProvideFeature<AiutaWelcomeScreenFeature>()
@@ -67,7 +68,11 @@ internal fun PreOnboardingScreen(modifier: Modifier = Modifier) {
                     modifier = Modifier.align(Alignment.CenterEnd),
                     icon = theme.pageBar.icons.close24,
                     color = Color.White,
-                    onClick = controller::clickClose,
+                    onClick = {
+                        controller.clickClose(
+                            navigationController = navigationController,
+                        )
+                    },
                 )
             },
         )

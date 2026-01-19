@@ -56,7 +56,11 @@ internal fun MainAppBar(
             modifier = innerModifier,
             icon = theme.pageBar.icons.close24,
             color = theme.color.primary,
-            onClick = controller::clickClose,
+            onClick = {
+                controller.clickClose(
+                    navigationController = navigationController,
+                )
+            },
         )
     }
 

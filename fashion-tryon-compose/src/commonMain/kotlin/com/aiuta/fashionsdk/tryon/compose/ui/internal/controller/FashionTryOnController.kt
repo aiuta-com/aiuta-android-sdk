@@ -33,7 +33,6 @@ import com.aiuta.fashionsdk.tryon.compose.domain.models.internal.generated.image
 import com.aiuta.fashionsdk.tryon.compose.domain.models.internal.generated.operations.GeneratedOperationUIModel
 import com.aiuta.fashionsdk.tryon.compose.domain.models.internal.generated.sku.ProductGenerationOperation
 import com.aiuta.fashionsdk.tryon.compose.domain.models.internal.generated.sku.ProductGenerationUIStatus
-import com.aiuta.fashionsdk.tryon.compose.ui.internal.navigation.TryOnScreen
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.screens.history.models.SelectorMode
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.screens.zoom.controller.ZoomImageController
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.screens.zoom.controller.rememberZoomImageController
@@ -48,7 +47,6 @@ import kotlinx.coroutines.cancel
 internal fun BoxWithConstraintsScope.rememberFashionTryOnController(
     aiutaConfiguration: AiutaConfiguration,
     productConfiguration: ProductConfiguration,
-    startScreen: TryOnScreen,
 ): FashionTryOnController {
     val uiScope = rememberCoroutineScope()
     val coilContext = LocalPlatformContext.current
@@ -71,7 +69,6 @@ internal fun BoxWithConstraintsScope.rememberFashionTryOnController(
 
     return remember {
         FashionTryOnController(
-            startScreen = startScreen,
             zoomImageController = zoomImageController,
             activeProductItems = activeProductItems,
             aiuta = aiutaConfiguration.aiuta,
@@ -115,8 +112,6 @@ internal fun BoxWithConstraintsScope.rememberFashionTryOnController(
 @Immutable
 internal class FashionTryOnController(
     // General navigation
-    @Deprecated("Migrate to separate controller from new module")
-    public val startScreen: TryOnScreen,
     public val zoomImageController: ZoomImageController,
     // Data
     public val activeProductItems: SnapshotStateList<ProductItem>,
@@ -137,10 +132,6 @@ internal class FashionTryOnController(
         mutableStateOf(ProductGenerationUIStatus.IDLE)
     internal val generationOperations: SnapshotStateList<ProductGenerationOperation> =
         mutableStateListOf()
-
-    // General navigation
-    @Deprecated("Migrate to separate controller from new module")
-    public val currentScreen: MutableState<TryOnScreen> = mutableStateOf(startScreen)
 
     // Edit changePhotoButtonStyle
     internal val selectorState: MutableState<SelectorMode> = mutableStateOf(SelectorMode.DISABLED)
