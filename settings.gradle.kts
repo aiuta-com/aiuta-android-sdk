@@ -22,6 +22,7 @@ include(
 include(
     ":internal:internal-fashion-analytics",
     ":internal:internal-fashion-navigation",
+    ":internal:internal-fashion-storage",
     ":fashion",
     ":fashion-analytics",
     ":fashion-analytics-events",
