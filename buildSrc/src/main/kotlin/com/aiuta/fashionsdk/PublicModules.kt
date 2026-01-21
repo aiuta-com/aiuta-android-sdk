@@ -14,6 +14,7 @@ val publicModules = setOf(
     "fashion-logger",
     "fashion-network",
     "fashion-network-paging",
+    "fashion-sizefit-compose",
     "fashion-sizefit-core",
     "fashion-tryon-compose",
     "fashion-tryon-compose-uikit",

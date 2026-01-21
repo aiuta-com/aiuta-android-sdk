@@ -9,9 +9,6 @@ import androidx.compose.runtime.Immutable
 import com.aiuta.fashionsdk.analytics.events.AiutaAnalyticsPageId
 import com.aiuta.fashionsdk.internal.navigation.AiutaNavigationScreen
 
-/**
- * Be careful, order is matter for animation transitions,
- */
 @Immutable
 internal abstract class TryOnScreen : AiutaNavigationScreen() {
 

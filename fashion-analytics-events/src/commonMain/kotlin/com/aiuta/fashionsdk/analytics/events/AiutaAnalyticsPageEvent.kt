@@ -37,4 +37,16 @@ public enum class AiutaAnalyticsPageId {
 
     @SerialName("history")
     HISTORY,
+
+    @SerialName("sizefit_questionary")
+    SIZEFIT_QUESTIONARY,
+
+    @SerialName("sizefit_belly_shape_settings")
+    SIZEFIT_BELLY_SHAPE_SETTINGS,
+
+    @SerialName("sizefit_bra_settings")
+    SIZEFIT_BRA_SETTINGS,
+
+    @SerialName("sizefit_recommendation")
+    SIZEFIT_RECOMMENDATION,
 }
