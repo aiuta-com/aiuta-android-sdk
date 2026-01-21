@@ -58,7 +58,7 @@ kotlin {
                 implementation(libs.sqlite.bundled)
 
                 implementation(projects.fashionAnalyticsEvents)
-                implementation(projects.fashionTryonComposeUikit)
+                implementation(projects.fashionComposeUikit)
                 implementation(projects.internal.internalFashionAnalytics)
                 implementation(projects.internal.internalFashionNavigation)
             }

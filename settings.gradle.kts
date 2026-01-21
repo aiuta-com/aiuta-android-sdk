@@ -29,6 +29,7 @@ include(
     ":fashion-bom",
     ":fashion-compose-core",
     ":fashion-compose-resources",
+    ":fashion-compose-uikit",
     ":fashion-configuration",
     ":fashion-configuration-defaults",
     ":fashion-configuration-defaults-icons",
@@ -40,7 +41,6 @@ include(
     ":fashion-sizefit-compose",
     ":fashion-sizefit-core",
     ":fashion-tryon-compose",
-    ":fashion-tryon-compose-uikit",
     ":fashion-tryon-core",
     ":fashion-tryon-paging",
 )

@@ -16,11 +16,10 @@ kotlin {
         commonMain {
             dependencies {
                 api(projects.fashionAnalyticsEvents)
-                api(projects.fashionTryonComposeUikit) // TODO Rename to more general uikit?
+                api(projects.fashionComposeUikit)
 
-                // TODO Remove compose. deps
-                implementation(compose.animation)
-                implementation(compose.runtime)
+                implementation(libs.jetbrains.compose.animation)
+                implementation(libs.jetbrains.compose.runtime)
                 implementation(libs.jetbrains.compose.material)
                 implementation(projects.internal.internalFashionAnalytics)
             }

@@ -16,6 +16,7 @@ import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
+import com.aiuta.fashionsdk.compose.uikit.composition.LocalTheme
 import com.aiuta.fashionsdk.internal.navigation.composition.LocalAiutaBottomSheetNavigator
 import com.aiuta.fashionsdk.internal.navigation.composition.LocalAiutaDialogController
 import com.aiuta.fashionsdk.internal.navigation.composition.LocalAiutaErrorSnackbarController
@@ -25,7 +26,6 @@ import com.aiuta.fashionsdk.internal.navigation.internal.components.NavigationAl
 import com.aiuta.fashionsdk.internal.navigation.internal.components.NavigationContent
 import com.aiuta.fashionsdk.internal.navigation.internal.components.NavigationErrorCard
 import com.aiuta.fashionsdk.internal.navigation.snackbar.isErrorStateVisible
-import com.aiuta.fashionsdk.tryon.compose.uikit.composition.LocalTheme
 import kotlinx.coroutines.delay
 
 @Composable
