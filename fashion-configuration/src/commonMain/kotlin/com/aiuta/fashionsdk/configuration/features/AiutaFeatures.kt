@@ -19,6 +19,9 @@ import com.aiuta.fashionsdk.configuration.features.picker.history.AiutaImagePick
 import com.aiuta.fashionsdk.configuration.features.picker.model.AiutaImagePickerPredefinedModelFeature
 import com.aiuta.fashionsdk.configuration.features.share.AiutaShareFeature
 import com.aiuta.fashionsdk.configuration.features.share.watermark.AiutaShareWatermarkFeature
+import com.aiuta.fashionsdk.configuration.features.sizefit.AiutaSizeFitFeature
+import com.aiuta.fashionsdk.configuration.features.sizefit.belly.AiutaSizeFitBellyFeature
+import com.aiuta.fashionsdk.configuration.features.sizefit.bra.AiutaSizeFitBraFeature
 import com.aiuta.fashionsdk.configuration.features.tryon.AiutaTryOnFeature
 import com.aiuta.fashionsdk.configuration.features.tryon.cart.AiutaTryOnCartFeature
 import com.aiuta.fashionsdk.configuration.features.tryon.cart.outfit.AiutaTryOnCartOutfitFeature
@@ -51,6 +54,7 @@ import com.aiuta.fashionsdk.configuration.internal.utils.checkNotNullWithDescrip
  * - [consent]: User consent management
  * - [share]: Image sharing capabilities
  * - [wishlist]: Wishlist functionality
+ * - [sizeFit]: Size recommendation functionality
  *
  * @property welcomeScreen Optional welcome screen feature configuration
  * @property onboarding Optional onboarding flow feature configuration
@@ -59,6 +63,7 @@ import com.aiuta.fashionsdk.configuration.internal.utils.checkNotNullWithDescrip
  * @property tryOn Required try-on feature configuration
  * @property share Optional sharing feature configuration
  * @property wishlist Optional wishlist feature configuration
+ * @property sizeFit Optional size fit feature configuration
  * @see AiutaFeature
  */
 @Immutable
@@ -70,6 +75,7 @@ public class AiutaFeatures(
     public val tryOn: AiutaTryOnFeature,
     public val share: AiutaShareFeature?,
     public val wishlist: AiutaWishlistFeature?,
+    public val sizeFit: AiutaSizeFitFeature?,
 ) {
     /**
      * Provides a feature instance by its type, returning null if not configured.
@@ -118,6 +124,10 @@ public class AiutaFeatures(
         AiutaShareWatermarkFeature::class -> share?.watermark
         // Wishlist
         AiutaWishlistFeature::class -> wishlist
+        // Size fit
+        AiutaSizeFitFeature::class -> sizeFit
+        AiutaSizeFitBellyFeature::class -> sizeFit?.belly
+        AiutaSizeFitBraFeature::class -> sizeFit?.bra
         else -> throw NoSuchFeatureException(T::class.simpleName)
     } as? T
 
@@ -199,6 +209,11 @@ public class AiutaFeatures(
         public var wishlist: AiutaWishlistFeature? = null
 
         /**
+         * Optional size fit feature configuration.
+         */
+        public var sizeFit: AiutaSizeFitFeature? = null
+
+        /**
          * Creates an [AiutaFeatures] instance with the configured properties.
          *
          * @return Configured [AiutaFeatures] instance
@@ -221,6 +236,7 @@ public class AiutaFeatures(
                 ),
                 share = share,
                 wishlist = wishlist,
+                sizeFit = sizeFit,
             )
         }
     }
