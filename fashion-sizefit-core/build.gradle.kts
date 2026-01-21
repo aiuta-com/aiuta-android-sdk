@@ -12,16 +12,30 @@ androidLibrary(name = "com.aiuta.fashionsdk.sizefit.core")
 
 kotlin {
     sourceSets {
+        androidMain {
+            dependencies {
+                implementation(libs.ktor.engine.okhttp)
+            }
+        }
         commonMain {
             dependencies {
                 api(projects.fashion)
 
-                implementation(projects.fashionNetwork)
                 implementation(libs.kotlinx.serialization)
                 implementation(libs.ktor.core)
                 implementation(libs.ktor.negotiation)
                 implementation(libs.ktor.serialization)
                 implementation(libs.ktor.logging)
+            }
+        }
+        jvmMain {
+            dependencies {
+                implementation(libs.ktor.engine.okhttp)
+            }
+        }
+        nativeMain {
+            dependencies {
+                implementation(libs.ktor.engine.darwin)
             }
         }
     }
