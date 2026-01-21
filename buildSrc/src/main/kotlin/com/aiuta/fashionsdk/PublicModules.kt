@@ -14,11 +14,14 @@ val publicModules = setOf(
     "fashion-logger",
     "fashion-network",
     "fashion-network-paging",
+    "fashion-sizefit-core",
     "fashion-tryon-compose",
     "fashion-tryon-compose-uikit",
     "fashion-tryon-core",
     "fashion-tryon-paging",
     "internal-fashion-analytics",
+    "internal-fashion-navigation",
+    "internal-fashion-storage",
 )
 
 fun publicModulePath(moduleName: String): String {
