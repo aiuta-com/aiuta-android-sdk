@@ -4,9 +4,9 @@ import androidx.compose.runtime.Immutable
 
 @Immutable
 public class AiutaDialogState(
-    val title: String? = null,
-    val description: String,
-    val confirmButton: String,
-    val onConfirm: () -> Unit,
-    val onDismiss: (() -> Unit)? = null,
+    public val title: String? = null,
+    public val description: String,
+    public val confirmButton: String,
+    public val onConfirm: () -> Unit,
+    public val onDismiss: (() -> Unit)? = null,
 )

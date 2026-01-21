@@ -59,7 +59,7 @@ public class AiutaEntryProviderScope<T : AiutaNavKey>(
         addEntryProvider(K::class, content)
     }
 
-    fun build(): (T) -> AiutaNavEntry<T> = { key ->
+    public fun build(): (T) -> AiutaNavEntry<T> = { key ->
         val entryClassProvider = clazzProviders[key::class] as? AiutaEntryClassProvider<T>
         val entryProvider = providers[key] as? AiutaEntryProvider<T>
         entryClassProvider?.run { AiutaNavEntry(key, content) }

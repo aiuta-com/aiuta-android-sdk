@@ -20,6 +20,7 @@ kotlin {
                 api(projects.fashionSizefitCore)
 
                 implementation(libs.kotlinx.serialization)
+                implementation(libs.jetbrains.compose.material)
                 implementation(projects.internal.internalFashionNavigation)
                 implementation(projects.internal.internalFashionStorage)
             }

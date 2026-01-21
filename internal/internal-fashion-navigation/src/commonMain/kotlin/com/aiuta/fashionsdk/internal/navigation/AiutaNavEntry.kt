@@ -4,9 +4,9 @@ import androidx.compose.runtime.Composable
 import androidx.compose.runtime.Immutable
 
 @Immutable
-class AiutaNavEntry<T : AiutaNavKey>(
-    val key: T,
-    val content: @Composable (T) -> Unit,
+public class AiutaNavEntry<T : AiutaNavKey>(
+    public val key: T,
+    public val content: @Composable (T) -> Unit,
 ) {
     @Composable
     public fun Content() {

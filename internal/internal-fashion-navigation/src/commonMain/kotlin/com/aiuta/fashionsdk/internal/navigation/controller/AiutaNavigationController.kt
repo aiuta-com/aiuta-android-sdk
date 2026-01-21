@@ -38,7 +38,7 @@ public class AiutaNavigationController internal constructor(
     internal var aiutaNavigationDirection: AiutaNavigationDirection = AiutaNavigationDirection.Forward
         private set
 
-    fun navigateTo(newScreen: AiutaNavigationScreen) {
+    public fun navigateTo(newScreen: AiutaNavigationScreen) {
         // Save previous screen, if we should not skip it in back stack
         if (currentScreen.value.shouldSaveInBackStack) {
             backStack.addLast(currentScreen.value)
@@ -49,7 +49,7 @@ public class AiutaNavigationController internal constructor(
         currentScreen.value = newScreen
     }
 
-    fun popUpAndNavigateTo(
+    public fun popUpAndNavigateTo(
         navigateToScreen: AiutaNavigationScreen,
         popUpScreen: AiutaNavigationScreen? = null,
     ) {
@@ -68,7 +68,7 @@ public class AiutaNavigationController internal constructor(
         navigateTo(navigateToScreen)
     }
 
-    fun navigateBack() {
+    public fun navigateBack() {
         aiutaNavigationDirection = AiutaNavigationDirection.Backward
         if (backStack.isNotEmpty()) {
             val previousScreen = backStack.removeLast()
@@ -78,7 +78,7 @@ public class AiutaNavigationController internal constructor(
         }
     }
 
-    fun clickClose(
+    public fun clickClose(
         pageId: AiutaAnalyticsPageId? = null,
         productIds: List<String> = emptyList(),
     ) {
