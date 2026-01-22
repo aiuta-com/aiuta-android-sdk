@@ -28,7 +28,6 @@ import kotlinx.serialization.json.Json
 internal class DataStoreStorage(
     private val dataStore: DataStore<Preferences>,
 ) : AiutaStorage {
-
     private val json = Json {
         ignoreUnknownKeys = true
         encodeDefaults = true
@@ -36,6 +35,10 @@ internal class DataStoreStorage(
 
     override suspend fun <T> save(key: String, value: T, serializer: KSerializer<T>) {
         validateKey(key)
+        if (value == null) {
+            remove(key)
+            return
+        }
         when (serializer.descriptor.kind) {
             PrimitiveKind.STRING -> savePreference(stringPreferencesKey(key), value as String)
             PrimitiveKind.INT -> savePreference(intPreferencesKey(key), value as Int)

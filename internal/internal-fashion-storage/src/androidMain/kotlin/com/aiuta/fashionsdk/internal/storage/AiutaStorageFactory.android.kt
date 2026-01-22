@@ -21,8 +21,12 @@ internal actual fun createPlatformStorage(
     createDataStore(name, platformContext)
 }
 
-private fun createDataStore(name: String, context: Context): DataStore<Preferences> = PreferenceDataStoreFactory.create(
+private fun createDataStore(
+    name: String,
+    context: Context,
+): DataStore<Preferences> = PreferenceDataStoreFactory.create(
     produceFile = {
-        File(context.filesDir, "datastore/$name.preferences_pb")
+        val directory = File(context.filesDir, "datastore").apply { mkdirs() }
+        File(directory, "$name.preferences_pb")
     },
 )
