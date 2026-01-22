@@ -21,6 +21,8 @@ import com.aiuta.fashionsdk.context.AiutaPlatformContext
  */
 public object AiutaStorageFactory {
 
+    private val namespaceRegex = Regex("^[A-Za-z0-9_-]+$")
+
     /**
      * Creates or retrieves a storage instance for the given namespace.
      *
@@ -41,8 +43,14 @@ public object AiutaStorageFactory {
      * @return AiutaStorage instance for the given namespace
      * @throws IllegalArgumentException if name is empty or contains invalid characters
      */
-    public fun create(name: String, platformContext: AiutaPlatformContext): AiutaStorage {
+    public fun create(
+        name: String,
+        platformContext: AiutaPlatformContext,
+    ): AiutaStorage {
         require(name.isNotEmpty()) { "Storage namespace must not be empty" }
+        require(namespaceRegex.matches(name)) {
+            "Storage namespace must contain only alphanumeric characters, underscore, or hyphen"
+        }
         return createPlatformStorage(name, platformContext)
     }
 }
