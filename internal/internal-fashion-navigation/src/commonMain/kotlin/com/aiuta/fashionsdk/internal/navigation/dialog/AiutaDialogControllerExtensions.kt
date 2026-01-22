@@ -6,7 +6,7 @@ import androidx.compose.runtime.derivedStateOf
 import androidx.compose.runtime.remember
 
 @Composable
-internal fun AiutaDialogController.isDialogVisible(): State<Boolean> = remember(state.value) {
+internal fun AiutaDialogController.isDialogVisible(): State<Boolean> = remember {
     derivedStateOf {
         state.value != null
     }

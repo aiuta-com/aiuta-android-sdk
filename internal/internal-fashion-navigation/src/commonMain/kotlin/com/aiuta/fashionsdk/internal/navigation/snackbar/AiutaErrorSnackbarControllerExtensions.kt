@@ -6,7 +6,7 @@ import androidx.compose.runtime.derivedStateOf
 import androidx.compose.runtime.remember
 
 @Composable
-internal fun AiutaErrorSnackbarController.isErrorStateVisible(): State<Boolean> = remember(errorState.value) {
+internal fun AiutaErrorSnackbarController.isErrorStateVisible(): State<Boolean> = remember {
     derivedStateOf {
         errorState.value != null
     }

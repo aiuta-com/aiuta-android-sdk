@@ -4,7 +4,8 @@ import androidx.compose.animation.AnimatedContentTransitionScope
 import androidx.compose.animation.ContentTransform
 import androidx.compose.runtime.Immutable
 import com.aiuta.fashionsdk.analytics.events.AiutaAnalyticsPageId
-import kotlin.random.Random
+import kotlin.uuid.ExperimentalUuidApi
+import kotlin.uuid.Uuid
 
 /**
  * Base navigation screen for Fashion SDK flows.
@@ -17,7 +18,8 @@ import kotlin.random.Random
  */
 @Immutable
 public abstract class AiutaNavigationScreen : AiutaNavKey {
-    public val id: String = Random.nextInt().toString()
+    @OptIn(ExperimentalUuidApi::class)
+    public val id: String = Uuid.random().toString()
 
     public abstract val exitPageId: AiutaAnalyticsPageId
 
@@ -35,6 +37,14 @@ public abstract class AiutaNavigationScreen : AiutaNavKey {
      * Override to return false for screens like Splash, Onboarding, etc.
      */
     public open val shouldSaveInBackStack: Boolean = true
+
+    override fun equals(other: Any?): Boolean {
+        if (this === other) return true
+        if (other !is AiutaNavigationScreen) return false
+        return id == other.id
+    }
+
+    override fun hashCode(): Int = id.hashCode()
 }
 
 internal fun AnimatedContentTransitionScope<AiutaNavigationScreen>.solveTransitionAnimation(): ContentTransform? {
