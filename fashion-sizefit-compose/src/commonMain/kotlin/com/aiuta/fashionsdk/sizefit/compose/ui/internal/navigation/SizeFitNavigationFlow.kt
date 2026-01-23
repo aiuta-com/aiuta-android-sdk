@@ -14,17 +14,20 @@ import com.aiuta.fashionsdk.sizefit.core.AiutaSizeFit
 internal fun SizeFitNavigationFlow(
     aiutaConfiguration: AiutaConfiguration,
     aiutaSizeFit: AiutaSizeFit,
+    productCode: String,
     modifier: Modifier = Modifier,
 ) {
     val sharedModifier = Modifier.fillMaxSize()
 
     SizeFitNavigationInitialisation(
+        aiutaSizeFit = aiutaSizeFit,
         aiutaConfiguration = aiutaConfiguration,
     ) {
         AiutaNavigationFlow(
             contentEntryProvider = aiutaEntryProvider {
                 aiutaEntry<SizeFitScreen.Questionary> {
                     QuestionaryScreen(
+                        productCode = productCode,
                         modifier = sharedModifier,
                     )
                 }

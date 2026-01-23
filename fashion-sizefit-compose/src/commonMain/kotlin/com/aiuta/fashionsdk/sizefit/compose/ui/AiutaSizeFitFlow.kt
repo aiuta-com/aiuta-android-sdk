@@ -10,11 +10,13 @@ import com.aiuta.fashionsdk.sizefit.core.AiutaSizeFit
 public fun AiutaSizeFitFlow(
     aiutaConfiguration: AiutaConfiguration,
     aiutaSizeFit: AiutaSizeFit,
+    productCode: String,
     modifier: Modifier = Modifier,
 ) {
     SizeFitNavigationFlow(
         aiutaConfiguration = aiutaConfiguration,
         aiutaSizeFit = aiutaSizeFit,
+        productCode = productCode,
         modifier = modifier,
     )
 }

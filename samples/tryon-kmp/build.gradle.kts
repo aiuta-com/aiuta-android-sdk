@@ -49,6 +49,7 @@ buildkonfig {
         buildConfigField(STRING, "AIUTA_API_KEY", props["AIUTA_API_KEY"].toString())
         buildConfigField(STRING, "SIZEFIT_API_KEY", props["SIZEFIT_API_KEY"].toString())
         buildConfigField(STRING, "SIZEFIT_PARTITION", props["SIZEFIT_PARTITION"].toString())
+        buildConfigField(STRING, "SIZEFIT_PRODUCT_CODE", props["SIZEFIT_PRODUCT_CODE"].toString())
     }
 }
 

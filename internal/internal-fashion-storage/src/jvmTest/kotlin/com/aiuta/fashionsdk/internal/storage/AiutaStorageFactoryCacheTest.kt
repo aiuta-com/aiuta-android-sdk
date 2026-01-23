@@ -8,15 +8,15 @@ import kotlin.test.assertNotSame
 import kotlin.test.assertSame
 import kotlinx.coroutines.test.runTest
 
-class AiutaStorageFactoryCacheTest {
+internal class AiutaStorageFactoryCacheTest {
 
     private val platformContext: AiutaPlatformContext = AiutaPlatformContext.INSTANCE
 
     @Test
     fun sameNamespaceReturnsCachedInstance() = runTest {
         val namespace = uniqueNamespace("cache_same")
-        val storage1 = AiutaStorageFactory.create(namespace, platformContext)
-        val storage2 = AiutaStorageFactory.create(namespace, platformContext)
+        val storage1 = AiutaStorage.Factory().create(namespace, platformContext)
+        val storage2 = AiutaStorage.Factory().create(namespace, platformContext)
 
         assertSame(storage1, storage2)
 
@@ -28,8 +28,8 @@ class AiutaStorageFactoryCacheTest {
     fun differentNamespacesProduceIndependentInstances() = runTest {
         val namespace1 = uniqueNamespace("cache_first")
         val namespace2 = uniqueNamespace("cache_second")
-        val storage1 = AiutaStorageFactory.create(namespace1, platformContext)
-        val storage2 = AiutaStorageFactory.create(namespace2, platformContext)
+        val storage1 = AiutaStorage.Factory().create(namespace1, platformContext)
+        val storage2 = AiutaStorage.Factory().create(namespace2, platformContext)
 
         assertNotSame(storage1, storage2)
 

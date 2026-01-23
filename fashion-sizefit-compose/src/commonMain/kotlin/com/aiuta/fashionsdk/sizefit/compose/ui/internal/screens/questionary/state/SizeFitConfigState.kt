@@ -1,10 +1,12 @@
 package com.aiuta.fashionsdk.sizefit.compose.ui.internal.screens.questionary.state
 
+import androidx.compose.runtime.Immutable
 import com.aiuta.fashionsdk.sizefit.core.AiutaSizeFitConfig.BellyShape
 import com.aiuta.fashionsdk.sizefit.core.AiutaSizeFitConfig.BraCup
 import com.aiuta.fashionsdk.sizefit.core.AiutaSizeFitConfig.Gender
 import com.aiuta.fashionsdk.sizefit.core.AiutaSizeFitConfig.HipShape
 
+@Immutable
 internal data class SizeFitConfigState(
     val age: Int? = null,
     val height: Int? = null,

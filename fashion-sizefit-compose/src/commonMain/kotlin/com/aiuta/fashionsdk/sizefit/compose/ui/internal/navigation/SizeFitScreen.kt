@@ -3,6 +3,7 @@ package com.aiuta.fashionsdk.sizefit.compose.ui.internal.navigation
 import androidx.compose.runtime.Immutable
 import com.aiuta.fashionsdk.analytics.events.AiutaAnalyticsPageId
 import com.aiuta.fashionsdk.internal.navigation.AiutaNavigationScreen
+import com.aiuta.fashionsdk.sizefit.core.AiutaSizeFitRecommendation
 
 @Immutable
 internal abstract class SizeFitScreen : AiutaNavigationScreen() {
@@ -11,7 +12,9 @@ internal abstract class SizeFitScreen : AiutaNavigationScreen() {
         override val exitPageId: AiutaAnalyticsPageId = AiutaAnalyticsPageId.SIZEFIT_QUESTIONARY
     }
 
-    object RecommendationResult : SizeFitScreen() {
+    class RecommendationResult(
+        recommendation: AiutaSizeFitRecommendation,
+    ) : SizeFitScreen() {
         override val exitPageId: AiutaAnalyticsPageId = AiutaAnalyticsPageId.SIZEFIT_RECOMMENDATION
     }
 }

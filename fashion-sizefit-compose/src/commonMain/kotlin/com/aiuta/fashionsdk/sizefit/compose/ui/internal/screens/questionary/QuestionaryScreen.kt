@@ -15,9 +15,12 @@ import androidx.compose.foundation.layout.windowInsetsPadding
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.State
 import androidx.compose.runtime.collectAsState
+import androidx.compose.runtime.derivedStateOf
+import androidx.compose.runtime.remember
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
 import androidx.lifecycle.viewmodel.compose.viewModel
+import com.aiuta.fashionsdk.compose.core.context.LocalAiutaPlatformContext
 import com.aiuta.fashionsdk.compose.uikit.button.FashionButton
 import com.aiuta.fashionsdk.compose.uikit.button.FashionButtonSizes
 import com.aiuta.fashionsdk.compose.uikit.button.FashionButtonStyles
@@ -27,33 +30,55 @@ import com.aiuta.fashionsdk.configuration.features.sizefit.AiutaSizeFitFeature
 import com.aiuta.fashionsdk.internal.navigation.composition.LocalAiutaNavigationController
 import com.aiuta.fashionsdk.internal.navigation.internal.utils.leftToRightTransition
 import com.aiuta.fashionsdk.internal.navigation.internal.utils.rightToLeftTransition
+import com.aiuta.fashionsdk.sizefit.compose.domain.slice.AiutaConfigSlice
+import com.aiuta.fashionsdk.sizefit.compose.ui.internal.composition.LocalAiutaSizeFit
 import com.aiuta.fashionsdk.sizefit.compose.ui.internal.screens.questionary.blocks.BellyShapeScreen
 import com.aiuta.fashionsdk.sizefit.compose.ui.internal.screens.questionary.blocks.BraScreen
 import com.aiuta.fashionsdk.sizefit.compose.ui.internal.screens.questionary.blocks.FindSizeBlock
 import com.aiuta.fashionsdk.sizefit.compose.ui.internal.screens.questionary.components.QuestionaryAppBar
 import com.aiuta.fashionsdk.sizefit.compose.ui.internal.screens.questionary.state.QuestionaryStep
+import com.aiuta.fashionsdk.sizefit.compose.ui.internal.screens.questionary.state.RecommendationState
 import com.aiuta.fashionsdk.sizefit.compose.ui.internal.screens.questionary.state.SizeFitConfigState
 import com.aiuta.fashionsdk.sizefit.compose.ui.internal.screens.questionary.state.questionarySteps
+import com.aiuta.fashionsdk.sizefit.compose.ui.internal.screens.questionary.utils.RecommendationStateListener
 import com.aiuta.fashionsdk.sizefit.compose.ui.internal.screens.questionary.utils.isPrimaryButtonEnabled
 import com.aiuta.fashionsdk.sizefit.compose.ui.internal.screens.questionary.utils.navigateNextStep
 import com.aiuta.fashionsdk.sizefit.compose.ui.internal.screens.questionary.utils.solvePrimaryButtonText
 
 @Composable
 internal fun QuestionaryScreen(
+    productCode: String,
     modifier: Modifier = Modifier,
 ) {
+    val aiutaSizeFit = LocalAiutaSizeFit.current
+    val platformContext = LocalAiutaPlatformContext.current
     val navigationController = LocalAiutaNavigationController.current
     val theme = LocalTheme.current
 
     val viewModel: QuestionaryViewModel = viewModel {
         QuestionaryViewModel(
+            aiutaSizeFit = aiutaSizeFit,
+            configSlice = AiutaConfigSlice.create(
+                platformContext = platformContext,
+            ),
+            productCode = productCode,
             onBack = navigationController::navigateBack,
         )
     }
     val stepState = viewModel.currentStep.collectAsState()
     val configState = viewModel.configState.collectAsState()
-    val shouldShowErrorState = viewModel.shouldShowErrorState.collectAsState()
+    val shouldShowQuestionaryErrorState = viewModel.shouldShowQuestionaryErrorState.collectAsState()
+    val recommendationState = viewModel.recommendationState.collectAsState()
     val sizeFitFeature = strictProvideFeature<AiutaSizeFitFeature>()
+
+    val isRecommendationLoading = remember {
+        derivedStateOf { recommendationState.value is RecommendationState.Loading }
+    }
+
+    RecommendationStateListener(
+        recommendationState = recommendationState,
+        retryRecommendation = viewModel::makeRecommendation,
+    )
 
     Column(
         modifier = modifier
@@ -73,7 +98,7 @@ internal fun QuestionaryScreen(
         QuestionaryScreenContent(
             configState = configState,
             stepState = stepState,
-            shouldShowErrorState = shouldShowErrorState,
+            shouldShowQuestionaryErrorState = shouldShowQuestionaryErrorState,
             viewModel = viewModel,
             modifier = Modifier.fillMaxWidth().weight(1f),
         )
@@ -87,13 +112,16 @@ internal fun QuestionaryScreen(
             ),
             style = FashionButtonStyles.primaryStyle(theme),
             size = FashionButtonSizes.lSize(),
-            isLoading = false, // TODO
+            isLoading = isRecommendationLoading.value,
             isEnable = isPrimaryButtonEnabled(
                 stepState = stepState,
                 configState = configState,
             ).value,
             onClick = {
-                viewModel.navigateNextStep(sizeFitFeature)
+                viewModel.navigateNextStep(
+                    sizeFitFeature = sizeFitFeature,
+                    makeRecommendation = viewModel::makeRecommendation,
+                )
             },
         )
     }
@@ -103,7 +131,7 @@ internal fun QuestionaryScreen(
 internal fun QuestionaryScreenContent(
     configState: State<SizeFitConfigState>,
     stepState: State<QuestionaryStep>,
-    shouldShowErrorState: State<Boolean>,
+    shouldShowQuestionaryErrorState: State<Boolean>,
     viewModel: QuestionaryViewModel,
     modifier: Modifier = Modifier,
 ) {
@@ -127,7 +155,7 @@ internal fun QuestionaryScreenContent(
             is QuestionaryStep.FindSizeStep -> {
                 FindSizeBlock(
                     configState = configState,
-                    shouldShowErrorState = shouldShowErrorState,
+                    shouldShowErrorState = shouldShowQuestionaryErrorState,
                     updateConfig = viewModel::updateConfig,
                     modifier = sharedModifier,
                 )

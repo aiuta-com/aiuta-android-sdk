@@ -12,6 +12,7 @@ import com.aiuta.fashionsdk.sizefit.core.AiutaSizeFitConfig
 
 internal fun QuestionaryViewModel.navigateNextStep(
     sizeFitFeature: AiutaSizeFitFeature,
+    makeRecommendation: () -> Unit,
 ) {
     val currentStep = currentStep.value
     val config = configState.value
@@ -39,13 +40,11 @@ internal fun QuestionaryViewModel.navigateNextStep(
                     QuestionaryStep.BraStep,
                 )
 
-                else -> Unit // TODO Make request
+                else -> makeRecommendation()
             }
         }
 
-        QuestionaryStep.BraStep -> {
-            // TODO Make request
-        }
+        QuestionaryStep.BraStep -> makeRecommendation()
     }
 }
 
@@ -66,7 +65,6 @@ internal fun solvePrimaryButtonText(
             when (config.gender) {
                 AiutaSizeFitConfig.Gender.FEMALE -> sizeFitFeature.strings.nextButton
                 AiutaSizeFitConfig.Gender.MALE -> sizeFitFeature.strings.findYourSizeButton
-                null -> sizeFitFeature.strings.nextButton
             }
         }
 

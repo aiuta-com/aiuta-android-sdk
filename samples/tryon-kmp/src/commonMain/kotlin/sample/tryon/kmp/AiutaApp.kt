@@ -76,6 +76,7 @@ fun AiutaApp() {
                 modifier = Modifier.fillMaxSize(),
                 aiutaConfiguration = aiutaConfiguration,
                 aiutaSizeFit = aiutaSizeFit,
+                productCode = BuildKonfig.SIZEFIT_PRODUCT_CODE,
             )
         }
     }
