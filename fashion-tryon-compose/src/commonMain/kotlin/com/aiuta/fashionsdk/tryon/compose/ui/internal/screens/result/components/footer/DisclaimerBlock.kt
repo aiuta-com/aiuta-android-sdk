@@ -15,10 +15,10 @@ import androidx.compose.ui.unit.dp
 import com.aiuta.fashionsdk.compose.uikit.composition.LocalTheme
 import com.aiuta.fashionsdk.compose.uikit.resources.AiutaIcon
 import com.aiuta.fashionsdk.compose.uikit.utils.clickableUnindicated
+import com.aiuta.fashionsdk.compose.uikit.utils.provideFeature
 import com.aiuta.fashionsdk.configuration.features.tryon.disclaimer.AiutaTryOnFitDisclaimerFeature
 import com.aiuta.fashionsdk.internal.navigation.composition.LocalAiutaBottomSheetNavigator
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.navigation.TryOnBottomSheetScreen
-import com.aiuta.fashionsdk.tryon.compose.ui.internal.utils.features.provideFeature
 
 @Composable
 internal fun DisclaimerBlock(modifier: Modifier = Modifier) {

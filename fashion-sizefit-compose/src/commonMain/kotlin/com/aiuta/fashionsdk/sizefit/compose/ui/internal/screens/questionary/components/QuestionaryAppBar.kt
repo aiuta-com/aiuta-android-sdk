@@ -1,6 +1,7 @@
-package com.aiuta.fashionsdk.sizefit.compose.ui.internal.screens.questionary.components.appbar
+package com.aiuta.fashionsdk.sizefit.compose.ui.internal.screens.questionary.components
 
 import androidx.compose.animation.AnimatedVisibility
+import androidx.compose.animation.core.animateFloatAsState
 import androidx.compose.animation.fadeIn
 import androidx.compose.animation.fadeOut
 import androidx.compose.foundation.background
@@ -16,6 +17,7 @@ import androidx.compose.runtime.derivedStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.graphics.graphicsLayer
 import androidx.compose.ui.unit.dp
 import com.aiuta.fashionsdk.compose.uikit.appbar.AiutaAppBar
 import com.aiuta.fashionsdk.compose.uikit.appbar.AiutaAppBarIcon
@@ -37,6 +39,11 @@ internal fun QuestionaryAppBar(
             stepState.value != QuestionaryStep.FindSizeStep
         }
     }
+    val navigationIconRotateAngle = if (theme.pageBar.toggles.preferCloseButtonOnTheRight) {
+        0f
+    } else {
+        180f
+    }
 
     AiutaAppBar(
         modifier = modifier,
@@ -48,7 +55,9 @@ internal fun QuestionaryAppBar(
                 exit = fadeOut(),
             ) {
                 AiutaAppBarIcon(
-                    modifier = Modifier.align(Alignment.CenterStart),
+                    modifier = Modifier
+                        .align(Alignment.CenterStart)
+                        .graphicsLayer { rotationZ = navigationIconRotateAngle },
                     icon = theme.pageBar.icons.back24,
                     color = theme.color.primary,
                     onClick = navigateBack,
@@ -82,15 +91,13 @@ private fun AppBarProgress(
     val theme = LocalTheme.current
     val sharedShape = RoundedCornerShape(8.dp)
 
-    val fraction = remember {
-        derivedStateOf {
-            when (stepState.value) {
-                QuestionaryStep.FindSizeStep -> 0.1f
-                QuestionaryStep.BellyShapeStep -> 0.5f
-                QuestionaryStep.BraStep -> 1f
-            }
-        }
-    }
+    val fraction = animateFloatAsState(
+        targetValue = when (stepState.value) {
+            QuestionaryStep.FindSizeStep -> 0.1f
+            QuestionaryStep.BellyShapeStep -> 0.5f
+            QuestionaryStep.BraStep -> 1f
+        },
+    )
 
     Box(
         modifier = modifier.background(

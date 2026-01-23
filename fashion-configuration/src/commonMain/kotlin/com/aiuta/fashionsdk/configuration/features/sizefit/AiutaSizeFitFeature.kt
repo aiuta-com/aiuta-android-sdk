@@ -30,7 +30,7 @@ import com.aiuta.fashionsdk.configuration.internal.utils.checkNotNullWithDescrip
 @Immutable
 public class AiutaSizeFitFeature(
     // Features
-    public val belly: AiutaSizeFitBellyFeature?,
+    public val belly: AiutaSizeFitBellyFeature,
     public val bra: AiutaSizeFitBraFeature?,
     // General
     public val icons: AiutaSizeFitFeatureIcons,
@@ -81,7 +81,10 @@ public class AiutaSizeFitFeature(
             val parentClass = "AiutaSizeFitFeature"
 
             return AiutaSizeFitFeature(
-                belly = belly,
+                belly = belly.checkNotNullWithDescription(
+                    parentClass = parentClass,
+                    property = "belly",
+                ),
                 bra = bra,
                 icons = icons.checkNotNullWithDescription(
                     parentClass = parentClass,

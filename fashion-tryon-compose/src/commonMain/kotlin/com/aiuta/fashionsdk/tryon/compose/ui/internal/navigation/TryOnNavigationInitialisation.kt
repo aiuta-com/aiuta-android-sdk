@@ -8,7 +8,6 @@ import com.aiuta.fashionsdk.configuration.AiutaConfiguration
 import com.aiuta.fashionsdk.internal.navigation.AiutaNavigationInitialisation
 import com.aiuta.fashionsdk.internal.navigation.aiutaEntryProvider
 import com.aiuta.fashionsdk.tryon.compose.domain.models.ProductConfiguration
-import com.aiuta.fashionsdk.tryon.compose.ui.internal.controller.composition.LocalAiutaFeatures
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.controller.composition.LocalAiutaTryOnDataController
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.controller.composition.LocalAiutaTryOnLoadingActionsController
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.controller.composition.LocalAnalytic
@@ -70,7 +69,6 @@ internal fun TryOnNavigationInitialisation(
             CompositionLocalProvider(
                 LocalAnalytic provides controller.analytic,
                 LocalController provides controller,
-                LocalAiutaFeatures provides aiutaConfiguration.features,
                 LocalAiutaTryOnDataController provides rememberAiutaTryOnDataController(
                     aiuta = { aiutaConfiguration.aiuta },
                 ),

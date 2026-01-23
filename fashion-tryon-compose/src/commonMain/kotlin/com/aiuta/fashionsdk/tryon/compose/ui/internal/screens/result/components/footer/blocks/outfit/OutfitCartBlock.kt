@@ -13,10 +13,10 @@ import com.aiuta.fashionsdk.compose.uikit.button.FashionButton
 import com.aiuta.fashionsdk.compose.uikit.button.FashionButtonSizes
 import com.aiuta.fashionsdk.compose.uikit.button.FashionButtonStyles
 import com.aiuta.fashionsdk.compose.uikit.composition.LocalTheme
+import com.aiuta.fashionsdk.compose.uikit.utils.provideFeature
 import com.aiuta.fashionsdk.configuration.features.tryon.cart.outfit.AiutaTryOnCartOutfitFeature
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.analytic.clickAddOutfitToCart
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.controller.composition.LocalController
-import com.aiuta.fashionsdk.tryon.compose.ui.internal.utils.features.provideFeature
 
 internal fun LazyGridScope.outfitCartBlock(
     modifier: Modifier = Modifier,

@@ -25,6 +25,8 @@ import com.aiuta.fashionsdk.compose.uikit.button.FashionButtonSizes
 import com.aiuta.fashionsdk.compose.uikit.button.FashionButtonStyles
 import com.aiuta.fashionsdk.compose.uikit.composition.LocalTheme
 import com.aiuta.fashionsdk.compose.uikit.utils.clickableUnindicated
+import com.aiuta.fashionsdk.compose.uikit.utils.isFeatureInitialize
+import com.aiuta.fashionsdk.compose.uikit.utils.strictProvideFeature
 import com.aiuta.fashionsdk.configuration.features.tryon.feedback.AiutaTryOnFeedbackFeature
 import com.aiuta.fashionsdk.configuration.features.tryon.feedback.other.AiutaTryOnFeedbackOtherFeature
 import com.aiuta.fashionsdk.internal.navigation.composition.LocalAiutaBottomSheetNavigator
@@ -32,8 +34,6 @@ import com.aiuta.fashionsdk.tryon.compose.ui.internal.controller.composition.Loc
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.navigation.TryOnBottomSheetScreen
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.screens.result.analytic.sendGenerationFeedback
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.sheets.components.SheetDivider
-import com.aiuta.fashionsdk.tryon.compose.ui.internal.utils.features.isFeatureInitialize
-import com.aiuta.fashionsdk.tryon.compose.ui.internal.utils.features.strictProvideFeature
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.utils.transitionAnimation
 
 @Composable

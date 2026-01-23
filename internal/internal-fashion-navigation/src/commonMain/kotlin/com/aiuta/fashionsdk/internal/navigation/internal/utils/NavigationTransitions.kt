@@ -16,7 +16,7 @@ private const val TRANSITION_DURATION_MS = 400
  *
  * New screen slides in from the right, old screen slides out to the left.
  */
-internal val rightToLeftTransition: ContentTransform =
+public val rightToLeftTransition: ContentTransform =
     slideInHorizontally(
         animationSpec = tween(durationMillis = TRANSITION_DURATION_MS),
         initialOffsetX = { fullWidth -> fullWidth },
@@ -31,7 +31,7 @@ internal val rightToLeftTransition: ContentTransform =
  *
  * New screen slides in from the left, old screen slides out to the right.
  */
-internal val leftToRightTransition: ContentTransform =
+public val leftToRightTransition: ContentTransform =
     slideInHorizontally(
         animationSpec = tween(durationMillis = TRANSITION_DURATION_MS),
         initialOffsetX = { fullWidth -> -fullWidth },

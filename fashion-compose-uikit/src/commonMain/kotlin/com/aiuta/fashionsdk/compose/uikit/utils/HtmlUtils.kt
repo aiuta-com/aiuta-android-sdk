@@ -1,4 +1,4 @@
-package com.aiuta.fashionsdk.tryon.compose.ui.internal.utils
+package com.aiuta.fashionsdk.compose.uikit.utils
 
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.mutableStateOf
@@ -15,7 +15,7 @@ import com.mohamedrejeb.ksoup.html.parser.KsoupHtmlHandler
 import com.mohamedrejeb.ksoup.html.parser.KsoupHtmlParser
 
 @Composable
-internal fun buildAnnotatedStringFromHtml(
+public fun buildAnnotatedStringFromHtml(
     input: String,
     isClickable: Boolean = true,
 ): AnnotatedString {

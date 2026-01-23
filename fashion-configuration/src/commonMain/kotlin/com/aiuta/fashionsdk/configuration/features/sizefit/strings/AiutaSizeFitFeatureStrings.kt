@@ -63,6 +63,7 @@ public interface AiutaSizeFitFeatureStrings {
     public val errorMessage: String
 
     // Buttons
+    public val nextButton: String
     public val gotItButton: String
 
     /**
@@ -106,6 +107,7 @@ public interface AiutaSizeFitFeatureStrings {
         // Error
         override val errorMessage: String =
             "Sorry!\nThis item is designed for a different body type or gender. We can't recommend a size"
+        override val nextButton: String = "Next"
 
         // Buttons
         override val gotItButton: String = "Got it"

@@ -3,15 +3,15 @@ package com.aiuta.fashionsdk.tryon.compose.ui.internal.screens.result.controller
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
 import coil3.compose.LocalPlatformContext
+import com.aiuta.fashionsdk.compose.uikit.composition.LocalAiutaFeatures
+import com.aiuta.fashionsdk.compose.uikit.utils.strictProvideFeature
 import com.aiuta.fashionsdk.configuration.features.tryon.validation.AiutaTryOnInputImageValidationFeature
 import com.aiuta.fashionsdk.internal.navigation.composition.LocalAiutaDialogController
 import com.aiuta.fashionsdk.internal.navigation.composition.LocalAiutaErrorSnackbarController
 import com.aiuta.fashionsdk.internal.navigation.composition.LocalAiutaNavigationController
-import com.aiuta.fashionsdk.tryon.compose.ui.internal.controller.composition.LocalAiutaFeatures
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.controller.composition.LocalController
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.controller.disableAutoTryOn
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.screens.selector.utils.startGeneration
-import com.aiuta.fashionsdk.tryon.compose.ui.internal.utils.features.strictProvideFeature
 
 @Composable
 internal fun GenerateMoreListener() {

@@ -2,6 +2,7 @@ package com.aiuta.fashionsdk.internal.navigation
 
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.CompositionLocalProvider
+import com.aiuta.fashionsdk.compose.uikit.composition.LocalAiutaFeatures
 import com.aiuta.fashionsdk.compose.uikit.composition.LocalTheme
 import com.aiuta.fashionsdk.configuration.AiutaConfiguration
 import com.aiuta.fashionsdk.internal.navigation.bottomsheet.AiutaNavigationBottomSheetScreen
@@ -40,6 +41,7 @@ public fun AiutaNavigationInitialisation(
         LocalAiutaDialogController provides dialogController,
         LocalTheme provides theme,
         LocalAiutaLogger provides aiutaConfiguration.aiuta.logger,
+        LocalAiutaFeatures provides aiutaConfiguration.features,
     ) {
         content()
     }

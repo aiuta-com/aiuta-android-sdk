@@ -5,6 +5,8 @@ import androidx.compose.runtime.State
 import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.derivedStateOf
 import androidx.compose.runtime.remember
+import com.aiuta.fashionsdk.compose.uikit.utils.isFeatureInitialize
+import com.aiuta.fashionsdk.configuration.features.tryon.history.AiutaTryOnGenerationsHistoryFeature
 import com.aiuta.fashionsdk.tryon.compose.domain.models.internal.generated.images.LastSavedImages
 import com.aiuta.fashionsdk.tryon.compose.domain.models.internal.generated.images.isNotEmpty
 import com.aiuta.fashionsdk.tryon.compose.domain.models.internal.generated.images.toLastSavedImages
@@ -12,7 +14,6 @@ import com.aiuta.fashionsdk.tryon.compose.domain.models.internal.generated.opera
 import com.aiuta.fashionsdk.tryon.compose.domain.models.internal.generated.sku.ProductGenerationOperation
 import com.aiuta.fashionsdk.tryon.compose.domain.models.internal.generated.sku.ProductGenerationUIStatus
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.screens.history.models.SelectorMode
-import com.aiuta.fashionsdk.tryon.compose.ui.internal.utils.features.isFeatureInitialize
 
 // Edit changePhotoButtonStyle
 internal fun FashionTryOnController.activateSelectMode() {
@@ -86,7 +87,7 @@ internal suspend fun FashionTryOnController.updateActiveOperationWithFirstOrSetE
 internal fun FashionTryOnController.isAppbarHistoryAvailable(): State<Boolean> {
     val historyImageCount = generatedImageInteractor.countFlow().collectAsState(0)
     val isGenerationsHistoryFeatureAvailable =
-        isFeatureInitialize<com.aiuta.fashionsdk.configuration.features.tryon.history.AiutaTryOnGenerationsHistoryFeature>()
+        isFeatureInitialize<AiutaTryOnGenerationsHistoryFeature>()
 
     return remember(generationStatus.value) {
         derivedStateOf {

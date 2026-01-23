@@ -13,6 +13,8 @@ import androidx.compose.ui.graphics.Color
 public interface AiutaSizeFitFeatureStyles {
     public val sizeFitButtonGradient: List<Color>
 
+    public val suffixColor: Color
+
     /**
      * Default implementation of [AiutaSizeFitFeatureStyles].
      *
@@ -24,5 +26,6 @@ public interface AiutaSizeFitFeatureStyles {
             Color(0xFF4372FF),
             Color(0xFF726FFF),
         )
+        override val suffixColor: Color = Color(0xFF4000FF)
     }
 }

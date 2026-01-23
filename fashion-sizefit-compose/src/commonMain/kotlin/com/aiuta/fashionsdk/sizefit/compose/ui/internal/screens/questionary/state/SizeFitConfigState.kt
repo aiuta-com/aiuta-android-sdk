@@ -9,7 +9,7 @@ internal data class SizeFitConfigState(
     val age: Int? = null,
     val height: Int? = null,
     val weight: Int? = null,
-    val gender: Gender? = null,
+    val gender: Gender = Gender.FEMALE,
     val hipShape: HipShape? = null,
     val bellyShape: BellyShape? = null,
     val braSize: Int? = null,

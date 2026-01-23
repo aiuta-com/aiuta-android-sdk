@@ -29,6 +29,8 @@ kotlin {
                 implementation(libs.compose.placeholder)
                 implementation(libs.jetbrains.compose.components.resources)
                 implementation(libs.jetbrains.compose.material)
+                implementation(libs.ksoup.html)
+                implementation(libs.ksoup.entities)
             }
         }
         jvmMain {

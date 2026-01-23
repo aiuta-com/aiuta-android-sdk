@@ -19,3 +19,11 @@ internal sealed interface QuestionaryStep {
         override val previousStep: QuestionaryStep = BellyShapeStep
     }
 }
+
+internal val questionarySteps by lazy {
+    listOf(
+        QuestionaryStep.FindSizeStep,
+        QuestionaryStep.BellyShapeStep,
+        QuestionaryStep.BraStep,
+    )
+}
