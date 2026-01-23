@@ -21,6 +21,8 @@ import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import com.aiuta.fashionsdk.analytics.events.AiutaAnalyticOnboardingEventType
 import com.aiuta.fashionsdk.analytics.events.AiutaAnalyticsPageId
+import com.aiuta.fashionsdk.compose.uikit.appbar.AiutaAppBar
+import com.aiuta.fashionsdk.compose.uikit.appbar.AiutaAppBarIcon
 import com.aiuta.fashionsdk.compose.uikit.composition.LocalTheme
 import com.aiuta.fashionsdk.compose.uikit.resources.AiutaIcon
 import com.aiuta.fashionsdk.compose.uikit.resources.AiutaImage
@@ -32,8 +34,6 @@ import com.aiuta.fashionsdk.tryon.compose.ui.internal.analytic.sendOnboardingEve
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.analytic.sendPageEvent
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.controller.composition.LocalController
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.navigation.TryOnScreen
-import com.aiuta.fashionsdk.tryon.compose.ui.internal.navigation.components.appbar.AppBar
-import com.aiuta.fashionsdk.tryon.compose.ui.internal.navigation.components.appbar.AppBarIcon
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.utils.features.strictProvideFeature
 
 @Composable
@@ -57,14 +57,13 @@ internal fun PreOnboardingScreen(modifier: Modifier = Modifier) {
             contentDescription = null,
         )
 
-        AppBar(
-            modifier =
-            Modifier
+        AiutaAppBar(
+            modifier = Modifier
                 .align(Alignment.TopCenter)
                 .fillMaxWidth()
                 .padding(horizontal = 16.dp),
             actions = {
-                AppBarIcon(
+                AiutaAppBarIcon(
                     modifier = Modifier.align(Alignment.CenterEnd),
                     icon = theme.pageBar.icons.close24,
                     color = Color.White,
@@ -144,8 +143,7 @@ private fun StartButton(
     val welcomeScreenFeature = strictProvideFeature<AiutaWelcomeScreenFeature>()
 
     Box(
-        modifier =
-        modifier
+        modifier = modifier
             .clip(RoundedCornerShape(4.dp))
             .background(theme.color.background)
             .clickableUnindicated { onClick() }

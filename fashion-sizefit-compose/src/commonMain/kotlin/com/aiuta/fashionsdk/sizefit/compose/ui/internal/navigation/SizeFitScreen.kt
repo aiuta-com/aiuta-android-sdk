@@ -11,14 +11,6 @@ internal abstract class SizeFitScreen : AiutaNavigationScreen() {
         override val exitPageId: AiutaAnalyticsPageId = AiutaAnalyticsPageId.SIZEFIT_QUESTIONARY
     }
 
-    object BellyShapeSettings : SizeFitScreen() {
-        override val exitPageId: AiutaAnalyticsPageId = AiutaAnalyticsPageId.SIZEFIT_BELLY_SHAPE_SETTINGS
-    }
-
-    object BraSettings : SizeFitScreen() {
-        override val exitPageId: AiutaAnalyticsPageId = AiutaAnalyticsPageId.SIZEFIT_BRA_SETTINGS
-    }
-
     object RecommendationResult : SizeFitScreen() {
         override val exitPageId: AiutaAnalyticsPageId = AiutaAnalyticsPageId.SIZEFIT_RECOMMENDATION
     }

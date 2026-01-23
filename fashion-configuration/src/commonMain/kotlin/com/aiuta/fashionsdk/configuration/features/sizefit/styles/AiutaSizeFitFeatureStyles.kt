@@ -21,8 +21,8 @@ public interface AiutaSizeFitFeatureStyles {
      */
     public class Default : AiutaSizeFitFeatureStyles {
         override val sizeFitButtonGradient: List<Color> = listOf(
-            Color(0xFF6BE7AF),
-            Color(0xFF45E4EA),
+            Color(0xFF4372FF),
+            Color(0xFF726FFF),
         )
     }
 }

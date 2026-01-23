@@ -6,8 +6,6 @@ import androidx.compose.ui.Modifier
 import com.aiuta.fashionsdk.configuration.AiutaConfiguration
 import com.aiuta.fashionsdk.internal.navigation.AiutaNavigationFlow
 import com.aiuta.fashionsdk.internal.navigation.aiutaEntryProvider
-import com.aiuta.fashionsdk.sizefit.compose.ui.internal.screens.belly.BellyShapeSettingsScreen
-import com.aiuta.fashionsdk.sizefit.compose.ui.internal.screens.bra.BraSettingsScreen
 import com.aiuta.fashionsdk.sizefit.compose.ui.internal.screens.questionary.QuestionaryScreen
 import com.aiuta.fashionsdk.sizefit.compose.ui.internal.screens.recommendation.RecommendationResultScreen
 import com.aiuta.fashionsdk.sizefit.core.AiutaSizeFit
@@ -27,16 +25,6 @@ internal fun SizeFitNavigationFlow(
             contentEntryProvider = aiutaEntryProvider {
                 aiutaEntry<SizeFitScreen.Questionary> {
                     QuestionaryScreen(
-                        modifier = sharedModifier,
-                    )
-                }
-                aiutaEntry<SizeFitScreen.BellyShapeSettings> {
-                    BellyShapeSettingsScreen(
-                        modifier = sharedModifier,
-                    )
-                }
-                aiutaEntry<SizeFitScreen.BraSettings> {
-                    BraSettingsScreen(
                         modifier = sharedModifier,
                     )
                 }

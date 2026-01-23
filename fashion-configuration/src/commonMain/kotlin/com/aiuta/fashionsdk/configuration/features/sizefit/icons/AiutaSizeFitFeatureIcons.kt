@@ -8,8 +8,10 @@ import com.aiuta.fashionsdk.compose.resources.drawable.AiutaIcon
  * This interface defines the icon resources used in the size fit feature,
  * allowing for customization of visual elements in the size fit UI.
  *
- * @property sizeFit24 24x24 pixel size fit icon
+ * @property male20 20x20 pixel male icon
+ * @property female20 20x20 pixel female icon
  */
 public interface AiutaSizeFitFeatureIcons {
-    public val sizeFit24: AiutaIcon
+    public val male20: AiutaIcon
+    public val female20: AiutaIcon
 }

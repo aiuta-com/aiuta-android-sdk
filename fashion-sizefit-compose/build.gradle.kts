@@ -21,6 +21,9 @@ kotlin {
 
                 implementation(libs.kotlinx.serialization)
                 implementation(libs.jetbrains.compose.material)
+                implementation(libs.jetbrains.compose.ui.backhandler)
+                implementation(libs.jetbrains.lifecycle)
+                implementation(libs.jetbrains.viewmodel)
                 implementation(projects.internal.internalFashionNavigation)
                 implementation(projects.internal.internalFashionStorage)
             }
