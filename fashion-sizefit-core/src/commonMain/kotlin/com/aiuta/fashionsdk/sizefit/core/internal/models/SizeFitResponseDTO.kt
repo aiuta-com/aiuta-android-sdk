@@ -31,16 +31,46 @@ internal data class SizeFitResponseDTO(
         @Serializable
         data class Measurement(
             @SerialName("dist")
-            val dist: Int,
+            val dist: Float,
             @SerialName("fitRatio")
-            val fitRatio: Int,
+            val fitRatio: Float,
             @SerialName("max")
             val max: Int,
             @SerialName("min")
             val min: Int,
             @SerialName("type")
-            val type: String,
-        )
+            val type: MeasurementType,
+        ) {
+            @Serializable
+            public enum class MeasurementType {
+                @SerialName("chest_c")
+                CHEST_C,
+
+                @SerialName("waist_c")
+                WAIST_C,
+
+                @SerialName("hip_c")
+                HIP_C,
+
+                @SerialName("bmi")
+                BMI,
+
+                @SerialName("inseam")
+                INSEAM,
+
+                @SerialName("cup")
+                CUP,
+
+                @SerialName("bra_underbust")
+                BRA_UNDERBUST,
+
+                @SerialName("over_bust")
+                OVER_BUST,
+
+                @SerialName("under_bust")
+                UNDER_BUST,
+            }
+        }
     }
 }
 
@@ -66,5 +96,17 @@ internal fun SizeFitResponseDTO.Size.Measurement.fromDTO(): AiutaSizeFitRecommen
     fitRatio = fitRatio,
     max = max,
     min = min,
-    type = type,
+    type = type.fromDTO(),
 )
+
+internal fun SizeFitResponseDTO.Size.Measurement.MeasurementType.fromDTO(): AiutaSizeFitRecommendation.Size.Measurement.MeasurementType = when (this) {
+    SizeFitResponseDTO.Size.Measurement.MeasurementType.CHEST_C -> AiutaSizeFitRecommendation.Size.Measurement.MeasurementType.CHEST_C
+    SizeFitResponseDTO.Size.Measurement.MeasurementType.WAIST_C -> AiutaSizeFitRecommendation.Size.Measurement.MeasurementType.WAIST_C
+    SizeFitResponseDTO.Size.Measurement.MeasurementType.HIP_C -> AiutaSizeFitRecommendation.Size.Measurement.MeasurementType.HIP_C
+    SizeFitResponseDTO.Size.Measurement.MeasurementType.BMI -> AiutaSizeFitRecommendation.Size.Measurement.MeasurementType.BMI
+    SizeFitResponseDTO.Size.Measurement.MeasurementType.INSEAM -> AiutaSizeFitRecommendation.Size.Measurement.MeasurementType.INSEAM
+    SizeFitResponseDTO.Size.Measurement.MeasurementType.CUP -> AiutaSizeFitRecommendation.Size.Measurement.MeasurementType.CUP
+    SizeFitResponseDTO.Size.Measurement.MeasurementType.BRA_UNDERBUST -> AiutaSizeFitRecommendation.Size.Measurement.MeasurementType.BRA_UNDERBUST
+    SizeFitResponseDTO.Size.Measurement.MeasurementType.OVER_BUST -> AiutaSizeFitRecommendation.Size.Measurement.MeasurementType.OVER_BUST
+    SizeFitResponseDTO.Size.Measurement.MeasurementType.UNDER_BUST -> AiutaSizeFitRecommendation.Size.Measurement.MeasurementType.UNDER_BUST
+}

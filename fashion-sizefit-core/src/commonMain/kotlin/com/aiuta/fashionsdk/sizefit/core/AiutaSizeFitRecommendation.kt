@@ -67,11 +67,23 @@ public class AiutaSizeFitRecommendation(
          * @property type The type of measurement (e.g., "chest_c", "waist_c", "hip_c")
          */
         public class Measurement(
-            public val dist: Int,
-            public val fitRatio: Int,
+            public val dist: Float,
+            public val fitRatio: Float,
             public val max: Int,
             public val min: Int,
-            public val type: String,
-        )
+            public val type: MeasurementType,
+        ) {
+            public enum class MeasurementType {
+                CHEST_C,
+                WAIST_C,
+                HIP_C,
+                BMI,
+                INSEAM,
+                CUP,
+                BRA_UNDERBUST,
+                OVER_BUST,
+                UNDER_BUST,
+            }
+        }
     }
 }

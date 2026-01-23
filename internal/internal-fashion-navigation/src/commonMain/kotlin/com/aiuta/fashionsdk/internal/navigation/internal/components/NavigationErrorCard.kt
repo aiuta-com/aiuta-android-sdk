@@ -45,7 +45,7 @@ internal fun NavigationErrorCard(
             modifier = Modifier.size(36.dp),
             icon = theme.errorSnackbar.icons.error36,
             contentDescription = null,
-            tint = Color.Unspecified,
+            tint = theme.errorSnackbar.colors.errorPrimary,
         )
 
         Spacer(Modifier.width(16.dp))
