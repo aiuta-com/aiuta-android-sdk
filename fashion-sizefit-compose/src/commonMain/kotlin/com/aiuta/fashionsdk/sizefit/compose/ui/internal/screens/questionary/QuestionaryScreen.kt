@@ -163,6 +163,8 @@ internal fun QuestionaryScreenContent(
 
             is QuestionaryStep.BellyShapeStep -> {
                 BellyShapeScreen(
+                    configState = configState,
+                    updateConfig = viewModel::updateConfig,
                     modifier = sharedModifier,
                 )
             }

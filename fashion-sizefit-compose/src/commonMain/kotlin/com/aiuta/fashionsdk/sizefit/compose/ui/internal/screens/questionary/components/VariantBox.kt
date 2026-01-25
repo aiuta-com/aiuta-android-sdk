@@ -14,6 +14,7 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
+import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import com.aiuta.fashionsdk.compose.resources.drawable.AiutaIcon
@@ -27,6 +28,7 @@ internal fun VariantBox(
     isSelected: Boolean,
     onClick: () -> Unit,
     modifier: Modifier = Modifier,
+    textStyle: TextStyle = LocalTheme.current.label.typography.regular,
     icon: AiutaIcon? = null,
 ) {
     val theme = LocalTheme.current
@@ -68,7 +70,7 @@ internal fun VariantBox(
 
             Text(
                 text = text,
-                style = theme.label.typography.regular,
+                style = textStyle,
                 color = theme.color.primary,
                 textAlign = TextAlign.Start,
             )

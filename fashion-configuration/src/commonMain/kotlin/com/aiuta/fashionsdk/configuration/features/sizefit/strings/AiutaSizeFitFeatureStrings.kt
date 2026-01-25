@@ -45,12 +45,14 @@ public interface AiutaSizeFitFeatureStrings {
     public val weightPlaceholder: String
     public val weightSuffix: String
 
-    // Silhouette
-    public val silhouetteTitle: String
-    public val bellyAndHipsShapePlaceholder: String
-    public val braSizePlaceholder: String
-    public val findYourSizeButton: String
     public val privacyPolicyHtml: String
+
+    // Silhouette
+    public val bellyShapeTitle: String
+    public val hipsShapeTitle: String
+    public val braSizeTitle: String
+    public val chestCircumferenceSubtitle: String
+    public val braCupSubtitle: String
 
     // Result screen
     public val parametersTitle: String
@@ -63,6 +65,7 @@ public interface AiutaSizeFitFeatureStrings {
     public val errorMessage: String
 
     // Buttons
+    public val findYourSizeButton: String
     public val nextButton: String
     public val gotItButton: String
 
@@ -90,10 +93,11 @@ public interface AiutaSizeFitFeatureStrings {
         override val weightSuffix: String = "KG"
 
         // Silhouette
-        override val silhouetteTitle: String = "Your silhouette"
-        override val bellyAndHipsShapePlaceholder: String = "Belly and hips shape"
-        override val braSizePlaceholder: String = "Bra size"
-        override val findYourSizeButton: String = "Find your size"
+        override val bellyShapeTitle: String = "Belly shape"
+        override val hipsShapeTitle: String = "Hips shape"
+        override val braSizeTitle: String = "Bra size"
+        override val chestCircumferenceSubtitle: String = "Chest circumference"
+        override val braCupSubtitle: String = "Bra cup"
         override val privacyPolicyHtml: String =
             "Your data will be processed under our <b><a href=\"$privacyPolicyUrl\">Privacy Policy</a></b>"
 
@@ -107,9 +111,10 @@ public interface AiutaSizeFitFeatureStrings {
         // Error
         override val errorMessage: String =
             "Sorry!\nThis item is designed for a different body type or gender. We can't recommend a size"
-        override val nextButton: String = "Next"
 
         // Buttons
+        override val findYourSizeButton: String = "Find your size"
+        override val nextButton: String = "Next"
         override val gotItButton: String = "Got it"
     }
 }
