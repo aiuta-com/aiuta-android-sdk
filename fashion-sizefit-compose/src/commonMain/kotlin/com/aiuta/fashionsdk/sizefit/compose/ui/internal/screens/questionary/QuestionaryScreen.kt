@@ -21,6 +21,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
 import androidx.lifecycle.viewmodel.compose.viewModel
 import com.aiuta.fashionsdk.compose.core.context.LocalAiutaPlatformContext
+import com.aiuta.fashionsdk.compose.core.size.rememberScreenSize
 import com.aiuta.fashionsdk.compose.uikit.button.FashionButton
 import com.aiuta.fashionsdk.compose.uikit.button.FashionButtonSizes
 import com.aiuta.fashionsdk.compose.uikit.button.FashionButtonStyles
@@ -75,6 +76,9 @@ internal fun QuestionaryScreen(
         derivedStateOf { recommendationState.value is RecommendationState.Loading }
     }
 
+    val screenSize = rememberScreenSize()
+    val topPadding = screenSize.heightDp * 0.07f
+
     RecommendationStateListener(
         recommendationState = recommendationState,
         retryRecommendation = viewModel::makeRecommendation,
@@ -93,7 +97,7 @@ internal fun QuestionaryScreen(
             modifier = Modifier.fillMaxWidth(),
         )
 
-        Spacer(Modifier.height(64.dp))
+        Spacer(Modifier.height(topPadding))
 
         QuestionaryScreenContent(
             configState = configState,
@@ -171,6 +175,8 @@ internal fun QuestionaryScreenContent(
 
             is QuestionaryStep.BraStep -> {
                 BraScreen(
+                    configState = configState,
+                    updateConfig = viewModel::updateConfig,
                     modifier = sharedModifier,
                 )
             }
