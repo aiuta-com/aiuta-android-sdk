@@ -6,7 +6,7 @@ import androidx.compose.animation.fadeIn
 import androidx.compose.animation.fadeOut
 import androidx.compose.animation.togetherWith
 import androidx.compose.foundation.border
-import androidx.compose.foundation.layout.height
+import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.foundation.text.KeyboardOptions
 import androidx.compose.foundation.text.input.InputTransformation
@@ -30,7 +30,6 @@ import androidx.compose.ui.focus.onFocusChanged
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.text.input.KeyboardType
 import androidx.compose.ui.unit.dp
-import com.aiuta.fashionsdk.compose.resources.drawable.AiutaIcon
 import com.aiuta.fashionsdk.compose.uikit.composition.LocalTheme
 import com.aiuta.fashionsdk.compose.uikit.resources.AiutaIcon
 import com.aiuta.fashionsdk.compose.uikit.utils.clickableUnindicated
@@ -91,7 +90,6 @@ internal fun QuestionaryTextField(
     TextField(
         state = state,
         modifier = modifier
-            .height(68.dp)
             .border(
                 width = 1.dp,
                 color = theme.color.border,
@@ -120,9 +118,11 @@ internal fun QuestionaryTextField(
                         icon = theme.pageBar.icons.close24,
                         contentDescription = null,
                         tint = theme.color.border,
-                        modifier = Modifier.clickableUnindicated(
-                            onClick = state::clearText,
-                        ),
+                        modifier = Modifier
+                            .size(24.dp)
+                            .clickableUnindicated(
+                                onClick = state::clearText,
+                            ),
                     )
                 } else {
                     trailingIcon?.invoke()
