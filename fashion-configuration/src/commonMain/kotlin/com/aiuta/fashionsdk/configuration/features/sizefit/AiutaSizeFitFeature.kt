@@ -4,8 +4,6 @@ import androidx.compose.runtime.Immutable
 import com.aiuta.fashionsdk.annotations.AiutaDsl
 import com.aiuta.fashionsdk.configuration.features.AiutaFeature
 import com.aiuta.fashionsdk.configuration.features.AiutaFeatures
-import com.aiuta.fashionsdk.configuration.features.sizefit.belly.AiutaSizeFitBellyFeature
-import com.aiuta.fashionsdk.configuration.features.sizefit.bra.AiutaSizeFitBraFeature
 import com.aiuta.fashionsdk.configuration.features.sizefit.icons.AiutaSizeFitFeatureIcons
 import com.aiuta.fashionsdk.configuration.features.sizefit.strings.AiutaSizeFitFeatureStrings
 import com.aiuta.fashionsdk.configuration.features.sizefit.styles.AiutaSizeFitFeatureStyles
@@ -18,20 +16,13 @@ import com.aiuta.fashionsdk.configuration.internal.utils.checkNotNullWithDescrip
  * input their body measurements and preferences to receive personalized size
  * recommendations for clothing items.
  *
- * @property belly Optional belly and hips shape feature configuration
- * @property bra Optional bra size feature configuration
  * @property icons Required icon resources configuration
  * @property strings Required text content and localization configuration
  * @property styles Required visual styling configuration
  * @see AiutaFeature
- * @see AiutaSizeFitBellyFeature
- * @see AiutaSizeFitBraFeature
  */
 @Immutable
 public class AiutaSizeFitFeature(
-    // Features
-    public val belly: AiutaSizeFitBellyFeature,
-    public val bra: AiutaSizeFitBraFeature?,
     // General
     public val icons: AiutaSizeFitFeatureIcons,
     public val strings: AiutaSizeFitFeatureStrings,
@@ -46,16 +37,6 @@ public class AiutaSizeFitFeature(
      */
     @AiutaDsl
     public class Builder : AiutaFeature.Builder {
-        /**
-         * Optional belly and hips shape feature configuration.
-         */
-        public var belly: AiutaSizeFitBellyFeature? = null
-
-        /**
-         * Optional bra size feature configuration.
-         */
-        public var bra: AiutaSizeFitBraFeature? = null
-
         /**
          * Required icon resources configuration.
          */
@@ -81,11 +62,6 @@ public class AiutaSizeFitFeature(
             val parentClass = "AiutaSizeFitFeature"
 
             return AiutaSizeFitFeature(
-                belly = belly.checkNotNullWithDescription(
-                    parentClass = parentClass,
-                    property = "belly",
-                ),
-                bra = bra,
                 icons = icons.checkNotNullWithDescription(
                     parentClass = parentClass,
                     property = "icons",
@@ -112,14 +88,6 @@ public class AiutaSizeFitFeature(
  * ```kotlin
  * val features = aiutaFeatures {
  *     sizeFit {
- *         // Optional sub-features
- *         belly {
- *             strings = AiutaSizeFitBellyFeatureStrings.Default()
- *         }
- *         bra {
- *             strings = AiutaSizeFitBraFeatureStrings.Default()
- *         }
- *
  *         // Required components
  *         icons = DefaultAiutaSizeFitFeatureIcons()
  *         strings = AiutaSizeFitFeatureStrings.Default()

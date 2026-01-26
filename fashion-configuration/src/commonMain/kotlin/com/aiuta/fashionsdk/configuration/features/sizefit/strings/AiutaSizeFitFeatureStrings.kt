@@ -14,18 +14,13 @@ package com.aiuta.fashionsdk.configuration.features.sizefit.strings
  * @property heightSuffix Suffix for height value (e.g., "CM")
  * @property weightPlaceholder Placeholder for weight input
  * @property weightSuffix Suffix for weight value (e.g., "KG")
- * @property silhouetteTitle Title for the silhouette section
- * @property bellyAndHipsShapePlaceholder Placeholder for belly and hips shape selector
- * @property braSizePlaceholder Placeholder for bra size selector
  * @property findYourSizeButton Text for the find your size button
  * @property privacyPolicyHtml HTML-formatted text with privacy policy link
- * @property errorTitle Title for the error state
  * @property errorMessage Message explaining why size cannot be recommended
  * @property parametersTitle Title for the parameters section
  * @property changeButton Text for the change button
  * @property gotItButton Text for the got it button
  * @property recommendedSizeTitle Title for the recommended size result
- * @property doneButton Text for the done button used in sub-features
  */
 public interface AiutaSizeFitFeatureStrings {
 
@@ -59,7 +54,6 @@ public interface AiutaSizeFitFeatureStrings {
     public val yearsSuffix: String
     public val changeButton: String
     public val recommendedSizeTitle: String
-    public val doneButton: String
 
     // General
     // Error
@@ -107,7 +101,6 @@ public interface AiutaSizeFitFeatureStrings {
         override val yearsSuffix: String = "years"
         override val changeButton: String = "Change"
         override val recommendedSizeTitle: String = "Recommended size"
-        override val doneButton: String = "Done"
 
         // General
         // Error
