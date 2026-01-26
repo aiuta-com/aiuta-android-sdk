@@ -34,7 +34,6 @@ import com.aiuta.fashionsdk.compose.uikit.composition.LocalTheme
 import com.aiuta.fashionsdk.compose.uikit.resources.AiutaIcon
 import com.aiuta.fashionsdk.compose.uikit.utils.clickableUnindicated
 import com.aiuta.fashionsdk.sizefit.compose.ui.internal.screens.questionary.utils.animateTextStyleAsState
-import kotlinx.coroutines.flow.collectLatest
 
 @Composable
 internal fun QuestionaryTextField(
@@ -82,7 +81,8 @@ internal fun QuestionaryTextField(
 
     val currentOnTextChange by rememberUpdatedState(onTextChange)
     LaunchedEffect(state) {
-        snapshotFlow { state.text.toString() }.collectLatest {
+        // Use collect instead of collectLatest to avoid losing text changes during fast typing
+        snapshotFlow { state.text.toString() }.collect {
             currentOnTextChange(it)
         }
     }
@@ -130,7 +130,10 @@ internal fun QuestionaryTextField(
             }
         },
         inputTransformation = InputTransformation.then {
-            if (!asCharSequence().isDigitsOnly()) {
+            val text = asCharSequence()
+            // Only allow digits and maximum 3 characters for reasonable value ranges
+            // (age: 0-999, height: 0-999cm, weight: 0-999kg)
+            if (!text.isDigitsOnly() || text.length > 3) {
                 revertAllChanges()
             }
         },

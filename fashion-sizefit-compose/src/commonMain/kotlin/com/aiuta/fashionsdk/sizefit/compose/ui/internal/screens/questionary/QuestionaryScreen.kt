@@ -80,9 +80,7 @@ internal fun QuestionaryScreen(
     val shouldShowQuestionaryErrorState = viewModel.shouldShowQuestionaryErrorState.collectAsState()
     val recommendationState = viewModel.recommendationState.collectAsState()
 
-    val isRecommendationLoading = remember {
-        derivedStateOf { recommendationState.value is RecommendationState.Loading }
-    }
+    val isRecommendationLoading = recommendationState.value is RecommendationState.Loading
 
     val screenSize = rememberScreenSize()
     val topPadding = screenSize.heightDp * 0.07f
@@ -98,7 +96,10 @@ internal fun QuestionaryScreen(
     ) {
         val config = remember {
             derivedStateOf {
-                (configState.value as SizeFitConfigState.Success).config
+                // Safe cast with fallback to default empty config
+                (configState.value as? SizeFitConfigState.Success)
+                    ?.config
+                    ?: SizeFitConfigUiModel()
             }
         }
 
@@ -140,7 +141,7 @@ internal fun QuestionaryScreen(
                 ),
                 style = FashionButtonStyles.primaryStyle(theme),
                 size = FashionButtonSizes.lSize(),
-                isLoading = isRecommendationLoading.value,
+                isLoading = isRecommendationLoading,
                 isEnable = isPrimaryButtonEnabled(
                     stepState = stepState,
                     configState = config,

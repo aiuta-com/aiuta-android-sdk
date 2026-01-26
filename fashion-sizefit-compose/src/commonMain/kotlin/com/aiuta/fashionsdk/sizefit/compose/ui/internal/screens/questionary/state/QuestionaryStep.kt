@@ -4,7 +4,6 @@ import androidx.compose.runtime.Immutable
 
 @Immutable
 internal sealed interface QuestionaryStep {
-
     val previousStep: QuestionaryStep?
 
     object FindSizeStep : QuestionaryStep {
@@ -20,10 +19,8 @@ internal sealed interface QuestionaryStep {
     }
 }
 
-internal val questionarySteps by lazy {
-    listOf(
-        QuestionaryStep.FindSizeStep,
-        QuestionaryStep.BellyShapeStep,
-        QuestionaryStep.BraStep,
-    )
-}
+internal val questionarySteps = listOf(
+    QuestionaryStep.FindSizeStep,
+    QuestionaryStep.BellyShapeStep,
+    QuestionaryStep.BraStep,
+)
