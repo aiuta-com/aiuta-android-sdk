@@ -83,7 +83,7 @@ internal fun NavigationContent(
 
         // Provide screen-scoped ViewModelStoreOwner
         CompositionLocalProvider(
-            LocalViewModelStoreOwner provides screenViewModelStoreOwner
+            LocalViewModelStoreOwner provides screenViewModelStoreOwner,
         ) {
             entry.Content()
         }

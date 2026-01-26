@@ -24,9 +24,7 @@ internal class NavigationViewModelStoreManager : ViewModel() {
      * @param screenId Unique identifier for the navigation screen
      * @return ViewModelStore scoped to this screen
      */
-    fun getViewModelStoreForScreen(screenId: String): ViewModelStore {
-        return viewModelStores.getOrPut(screenId) { ViewModelStore() }
-    }
+    fun getViewModelStoreForScreen(screenId: String): ViewModelStore = viewModelStores.getOrPut(screenId) { ViewModelStore() }
 
     /**
      * Clears and removes the ViewModelStore for the given screen ID.
