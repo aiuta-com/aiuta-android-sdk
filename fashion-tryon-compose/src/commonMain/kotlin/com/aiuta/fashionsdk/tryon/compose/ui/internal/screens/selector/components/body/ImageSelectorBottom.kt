@@ -23,23 +23,24 @@ import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
+import com.aiuta.fashionsdk.compose.uikit.button.FashionButton
+import com.aiuta.fashionsdk.compose.uikit.button.FashionButtonSizes
+import com.aiuta.fashionsdk.compose.uikit.button.FashionButtonStyles
+import com.aiuta.fashionsdk.compose.uikit.composition.LocalTheme
+import com.aiuta.fashionsdk.compose.uikit.utils.provideFeature
+import com.aiuta.fashionsdk.compose.uikit.utils.strictProvideFeature
 import com.aiuta.fashionsdk.configuration.features.picker.AiutaImagePickerFeature
 import com.aiuta.fashionsdk.configuration.features.picker.history.AiutaImagePickerUploadsHistoryFeature
 import com.aiuta.fashionsdk.configuration.features.styles.AiutaComponentStyle
 import com.aiuta.fashionsdk.configuration.features.tryon.loading.AiutaTryOnLoadingPageFeature
+import com.aiuta.fashionsdk.internal.navigation.composition.LocalAiutaBottomSheetNavigator
 import com.aiuta.fashionsdk.tryon.compose.domain.models.internal.generated.sku.ProductGenerationUIStatus
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.components.icons.AiutaLoadingIcon
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.controller.composition.LocalController
-import com.aiuta.fashionsdk.tryon.compose.ui.internal.navigation.NavigationBottomSheetScreen
+import com.aiuta.fashionsdk.tryon.compose.ui.internal.navigation.TryOnBottomSheetScreen
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.screens.selector.models.ImageSelectorState
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.screens.selector.utils.solveLoadingGenerationText
-import com.aiuta.fashionsdk.tryon.compose.ui.internal.utils.features.provideFeature
-import com.aiuta.fashionsdk.tryon.compose.ui.internal.utils.features.strictProvideFeature
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.utils.transitionAnimation
-import com.aiuta.fashionsdk.tryon.compose.uikit.button.FashionButton
-import com.aiuta.fashionsdk.tryon.compose.uikit.button.FashionButtonSizes
-import com.aiuta.fashionsdk.tryon.compose.uikit.button.FashionButtonStyles
-import com.aiuta.fashionsdk.tryon.compose.uikit.composition.LocalTheme
 import dev.chrisbanes.haze.HazeState
 import dev.chrisbanes.haze.HazeTint
 import dev.chrisbanes.haze.hazeEffect
@@ -50,6 +51,7 @@ internal fun ImageSelectorBottom(
     hazeState: HazeState,
     uploadPhoto: () -> Unit,
 ) {
+    val bottomSheetNavigator = LocalAiutaBottomSheetNavigator.current
     val controller = LocalController.current
     val theme = LocalTheme.current
 
@@ -119,8 +121,8 @@ internal fun ImageSelectorBottom(
                                 if (countGeneratedOperation.value == 0) {
                                     uploadPhoto()
                                 } else {
-                                    controller.bottomSheetNavigator.show(
-                                        NavigationBottomSheetScreen.GeneratedOperations,
+                                    bottomSheetNavigator.show(
+                                        TryOnBottomSheetScreen.GeneratedOperations,
                                     )
                                 }
                             },

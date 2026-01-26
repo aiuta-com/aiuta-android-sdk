@@ -48,8 +48,6 @@ kotlin {
                 implementation(libs.kotlinx.atomicfu)
                 implementation(libs.kotlinx.datetime)
                 implementation(libs.kotlinx.serialization)
-                implementation(libs.ksoup.html)
-                implementation(libs.ksoup.entities)
                 implementation(libs.room.runtime)
                 implementation(libs.room.paging)
                 implementation(libs.jetbrains.lifecycle)
@@ -58,8 +56,9 @@ kotlin {
                 implementation(libs.sqlite.bundled)
 
                 implementation(projects.fashionAnalyticsEvents)
-                implementation(projects.fashionTryonComposeUikit)
+                implementation(projects.fashionComposeUikit)
                 implementation(projects.internal.internalFashionAnalytics)
+                implementation(projects.internal.internalFashionNavigation)
             }
         }
         jvmMain {

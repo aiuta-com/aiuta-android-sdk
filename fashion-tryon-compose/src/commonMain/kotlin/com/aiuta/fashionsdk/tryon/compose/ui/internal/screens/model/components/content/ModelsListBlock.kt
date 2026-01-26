@@ -20,10 +20,10 @@ import androidx.compose.ui.draw.clip
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.lerp
+import com.aiuta.fashionsdk.compose.uikit.resources.AiutaImage
 import com.aiuta.fashionsdk.tryon.compose.domain.models.internal.config.features.TryOnModelsCategoryUiModel
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.screens.model.components.list.CentredModelsHorizontalPager
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.utils.offsetForPage
-import com.aiuta.fashionsdk.tryon.compose.uikit.resources.AiutaImage
 import kotlin.math.absoluteValue
 
 @Composable

@@ -10,11 +10,11 @@ import androidx.compose.ui.draw.shadow
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.unit.dp
 import com.aiuta.fashionsdk.compose.resources.drawable.AiutaDrawableResource
+import com.aiuta.fashionsdk.compose.uikit.composition.LocalTheme
+import com.aiuta.fashionsdk.compose.uikit.resources.AiutaImage
+import com.aiuta.fashionsdk.compose.uikit.utils.clickableUnindicated
+import com.aiuta.fashionsdk.compose.uikit.utils.strictProvideFeature
 import com.aiuta.fashionsdk.configuration.features.onboarding.AiutaOnboardingFeature
-import com.aiuta.fashionsdk.tryon.compose.ui.internal.utils.features.strictProvideFeature
-import com.aiuta.fashionsdk.tryon.compose.uikit.composition.LocalTheme
-import com.aiuta.fashionsdk.tryon.compose.uikit.resources.AiutaImage
-import com.aiuta.fashionsdk.tryon.compose.uikit.utils.clickableUnindicated
 
 @Composable
 internal fun ItemContent(

@@ -39,6 +39,12 @@ import coil3.compose.LocalPlatformContext
 import coil3.request.ImageRequest
 import coil3.size.SizeResolver.Companion.ORIGINAL
 import com.aiuta.fashionsdk.analytics.events.AiutaAnalyticsPageId
+import com.aiuta.fashionsdk.compose.uikit.composition.LocalTheme
+import com.aiuta.fashionsdk.compose.uikit.resources.AiutaIcon
+import com.aiuta.fashionsdk.compose.uikit.resources.AiutaImage
+import com.aiuta.fashionsdk.compose.uikit.utils.clickableUnindicated
+import com.aiuta.fashionsdk.internal.navigation.composition.LocalAiutaErrorSnackbarController
+import com.aiuta.fashionsdk.internal.navigation.composition.LocalAiutaNavigationController
 import com.aiuta.fashionsdk.tryon.compose.domain.models.internal.generated.images.GeneratedImageUIModel
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.analytic.sendPageEvent
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.components.icons.AiutaBoxedLoadingIcon
@@ -46,8 +52,7 @@ import com.aiuta.fashionsdk.tryon.compose.ui.internal.controller.composition.Loc
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.controller.composition.LocalController
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.controller.deactivateSelectMode
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.controller.isSelectModeActive
-import com.aiuta.fashionsdk.tryon.compose.ui.internal.controller.navigateTo
-import com.aiuta.fashionsdk.tryon.compose.ui.internal.navigation.NavigationScreen
+import com.aiuta.fashionsdk.tryon.compose.ui.internal.navigation.TryOnScreen
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.screens.base.share.ShareElement
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.screens.history.analytic.sendDeleteHistoryEvent
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.screens.history.components.SelectorCard
@@ -60,10 +65,6 @@ import com.aiuta.fashionsdk.tryon.compose.ui.internal.utils.paging.LazyPagingIte
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.utils.paging.collectAsLazyPagingItems
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.utils.paging.itemContentType
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.utils.paging.itemKey
-import com.aiuta.fashionsdk.tryon.compose.uikit.composition.LocalTheme
-import com.aiuta.fashionsdk.tryon.compose.uikit.resources.AiutaIcon
-import com.aiuta.fashionsdk.tryon.compose.uikit.resources.AiutaImage
-import com.aiuta.fashionsdk.tryon.compose.uikit.utils.clickableUnindicated
 
 @Composable
 internal fun HistoryScreen(modifier: Modifier = Modifier) {
@@ -93,6 +94,7 @@ internal fun HistoryScreen(modifier: Modifier = Modifier) {
 private fun HistoryScreenInternal(modifier: Modifier = Modifier) {
     val controller = LocalController.current
     val loadingActionsController = LocalAiutaTryOnLoadingActionsController.current
+    val navigationController = LocalAiutaNavigationController.current
     val theme = LocalTheme.current
 
     val minColumnsCount = 3
@@ -159,8 +161,8 @@ private fun HistoryScreenInternal(modifier: Modifier = Modifier) {
                             }
 
                             else -> {
-                                controller.navigateTo(
-                                    newScreen = NavigationScreen.ImageListViewer(
+                                navigationController.navigateTo(
+                                    newScreen = TryOnScreen.ImageListViewer(
                                         pickedIndex = index,
                                     ),
                                 )
@@ -261,6 +263,7 @@ private fun BoxScope.HistoryScreenInterface(
     getGeneratedImages: () -> LazyPagingItems<GeneratedImageUIModel>,
 ) {
     val controller = LocalController.current
+    val errorSnackbarController = LocalAiutaErrorSnackbarController.current
     val loadingActionsController = LocalAiutaTryOnLoadingActionsController.current
 
     val generatedImages = getGeneratedImages()
@@ -306,6 +309,7 @@ private fun BoxScope.HistoryScreenInterface(
                 onDelete = {
                     controller.sendDeleteHistoryEvent()
                     controller.deleteGeneratedImages(
+                        errorSnackbarController = errorSnackbarController,
                         loadingActionsController = loadingActionsController,
                     )
                 },

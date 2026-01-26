@@ -13,6 +13,8 @@ public data class ProductGenerationItem(
     val catalogName: String? = null,
     val imageUrls: List<String>,
     val title: String,
+    val isReady: Boolean,
+    val sizeChartCode: String? = null,
 )
 
 internal fun ProductItemDTO.toPublic(): ProductGenerationItem = ProductGenerationItem(
@@ -20,4 +22,6 @@ internal fun ProductItemDTO.toPublic(): ProductGenerationItem = ProductGeneratio
     catalogName = skuCatalogName,
     imageUrls = imageUrls,
     title = title,
+    isReady = isReady,
+    sizeChartCode = sizeChartCode,
 )

@@ -4,6 +4,10 @@ import coil3.PlatformContext
 import com.aiuta.fashionsdk.configuration.features.AiutaFeatures
 import com.aiuta.fashionsdk.configuration.features.tryon.history.AiutaTryOnGenerationsHistoryFeature
 import com.aiuta.fashionsdk.configuration.features.tryon.validation.strings.AiutaTryOnInputImageValidationFeatureStrings
+import com.aiuta.fashionsdk.internal.navigation.controller.AiutaNavigationController
+import com.aiuta.fashionsdk.internal.navigation.dialog.AiutaDialogController
+import com.aiuta.fashionsdk.internal.navigation.dialog.AiutaDialogState
+import com.aiuta.fashionsdk.internal.navigation.snackbar.AiutaErrorSnackbarController
 import com.aiuta.fashionsdk.tryon.compose.domain.internal.interactor.generated.operations.GeneratedOperationFactory
 import com.aiuta.fashionsdk.tryon.compose.domain.internal.interactor.generated.operations.isEmptyInteractor
 import com.aiuta.fashionsdk.tryon.compose.domain.internal.interactor.warmup.WarmUpInteractor
@@ -20,15 +24,9 @@ import com.aiuta.fashionsdk.tryon.compose.ui.internal.controller.FashionTryOnCon
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.controller.TryOnToastErrorState
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.controller.activateGeneration
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.controller.deactivateGeneration
-import com.aiuta.fashionsdk.tryon.compose.ui.internal.controller.dialog.AiutaTryOnDialogController
-import com.aiuta.fashionsdk.tryon.compose.ui.internal.controller.dialog.AiutaTryOnDialogState
-import com.aiuta.fashionsdk.tryon.compose.ui.internal.controller.dialog.hideDialog
-import com.aiuta.fashionsdk.tryon.compose.ui.internal.controller.dialog.showDialog
-import com.aiuta.fashionsdk.tryon.compose.ui.internal.controller.navigateTo
-import com.aiuta.fashionsdk.tryon.compose.ui.internal.controller.showErrorState
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.controller.updateActiveOperationOrSetEmpty
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.controller.updateActiveOperationWithFirstOrSetEmpty
-import com.aiuta.fashionsdk.tryon.compose.ui.internal.navigation.NavigationScreen
+import com.aiuta.fashionsdk.tryon.compose.ui.internal.navigation.TryOnScreen
 import com.aiuta.fashionsdk.tryon.core.domain.models.ProductGenerationPlatformImageContainer
 import com.aiuta.fashionsdk.tryon.core.domain.models.ProductGenerationStatus
 import com.aiuta.fashionsdk.tryon.core.domain.models.ProductGenerationUrlContainer
@@ -45,7 +43,9 @@ import kotlinx.coroutines.launch
 
 internal fun FashionTryOnController.startGeneration(
     coilContext: PlatformContext,
-    dialogController: AiutaTryOnDialogController,
+    dialogController: AiutaDialogController,
+    errorSnackbarController: AiutaErrorSnackbarController,
+    navigationController: AiutaNavigationController,
     features: AiutaFeatures,
     inputImageValidationStrings: AiutaTryOnInputImageValidationFeatureStrings,
 ) {
@@ -78,6 +78,8 @@ internal fun FashionTryOnController.startGeneration(
                 solveOperationCollecting(
                     coilContext = coilContext,
                     dialogController = dialogController,
+                    errorSnackbarController = errorSnackbarController,
+                    navigationController = navigationController,
                     features = features,
                     operation = operation,
                     inputImageValidationStrings = inputImageValidationStrings,
@@ -173,7 +175,9 @@ private fun FashionTryOnController.startGenerationWithUrlSource(
 // Collecting
 private suspend fun FashionTryOnController.solveOperationCollecting(
     coilContext: PlatformContext,
-    dialogController: AiutaTryOnDialogController,
+    dialogController: AiutaDialogController,
+    errorSnackbarController: AiutaErrorSnackbarController,
+    navigationController: AiutaNavigationController,
     features: AiutaFeatures,
     operation: ProductGenerationOperation,
     inputImageValidationStrings: AiutaTryOnInputImageValidationFeatureStrings,
@@ -220,7 +224,7 @@ private suspend fun FashionTryOnController.solveOperationCollecting(
                     refreshOperation(operation)
 
                     // Navigate to results
-                    navigateTo(NavigationScreen.GenerationResult)
+                    navigationController.navigateTo(TryOnScreen.GenerationResult)
                     deactivateGeneration()
 
                     // Only after navigation, let's change if need active image to backend
@@ -235,10 +239,12 @@ private suspend fun FashionTryOnController.solveOperationCollecting(
                     deactivateGeneration()
                     generationStatus.value = ProductGenerationUIStatus.IDLE
 
-                    showErrorState(
-                        errorState = TryOnToastErrorState(
+                    errorSnackbarController.showErrorState(
+                        newErrorState = TryOnToastErrorState(
                             controller = this@solveOperationCollecting,
                             dialogController = dialogController,
+                            errorSnackbarController = errorSnackbarController,
+                            navigationController = navigationController,
                             coilContext = coilContext,
                             features = features,
                             inputImageValidationStrings = inputImageValidationStrings,
@@ -260,8 +266,7 @@ private suspend fun FashionTryOnController.solveOperationCollecting(
 
                     // Need to change photo from user
                     dialogController.showDialog(
-                        dialogState =
-                        AiutaTryOnDialogState(
+                        dialogState = AiutaDialogState(
                             description = inputImageValidationStrings.invalidInputImageDescription,
                             confirmButton = inputImageValidationStrings.invalidInputImageChangePhotoButton,
                             onConfirm = dialogController::hideDialog,
@@ -270,12 +275,13 @@ private suspend fun FashionTryOnController.solveOperationCollecting(
                 }
 
                 else -> {
-                    showErrorState(
-                        errorState =
-                        TryOnToastErrorState(
+                    errorSnackbarController.showErrorState(
+                        newErrorState = TryOnToastErrorState(
                             controller = this@solveOperationCollecting,
                             coilContext = coilContext,
                             dialogController = dialogController,
+                            errorSnackbarController = errorSnackbarController,
+                            navigationController = navigationController,
                             features = features,
                             inputImageValidationStrings = inputImageValidationStrings,
                         ),

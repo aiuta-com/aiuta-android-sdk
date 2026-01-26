@@ -2,7 +2,6 @@ package com.aiuta.fashionsdk.tryon.compose.ui.internal.sheets.picker
 
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
-import androidx.compose.foundation.layout.ColumnScope
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxHeight
@@ -22,38 +21,42 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
 import com.aiuta.fashionsdk.analytics.events.AiutaAnalyticsPickerEventType
 import com.aiuta.fashionsdk.compose.resources.drawable.AiutaIcon
+import com.aiuta.fashionsdk.compose.uikit.composition.LocalTheme
+import com.aiuta.fashionsdk.compose.uikit.resources.AiutaIcon
+import com.aiuta.fashionsdk.compose.uikit.utils.clickableUnindicated
+import com.aiuta.fashionsdk.compose.uikit.utils.provideFeature
 import com.aiuta.fashionsdk.configuration.features.picker.camera.AiutaImagePickerCameraFeature
 import com.aiuta.fashionsdk.configuration.features.picker.gallery.AiutaImagePickerPhotoGalleryFeature
 import com.aiuta.fashionsdk.configuration.features.picker.model.AiutaImagePickerPredefinedModelFeature
+import com.aiuta.fashionsdk.internal.navigation.composition.LocalAiutaBottomSheetNavigator
+import com.aiuta.fashionsdk.internal.navigation.composition.LocalAiutaDialogController
+import com.aiuta.fashionsdk.internal.navigation.composition.LocalAiutaLogger
+import com.aiuta.fashionsdk.internal.navigation.composition.LocalAiutaNavigationController
+import com.aiuta.fashionsdk.internal.navigation.dialog.AiutaDialogState
 import com.aiuta.fashionsdk.tryon.compose.domain.models.internal.generated.images.LastSavedImages
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.analytic.sendPickerAnalytic
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.controller.activateAutoTryOn
-import com.aiuta.fashionsdk.tryon.compose.ui.internal.controller.composition.LocalAiutaLogger
-import com.aiuta.fashionsdk.tryon.compose.ui.internal.controller.composition.LocalAiutaTryOnDialogController
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.controller.composition.LocalController
-import com.aiuta.fashionsdk.tryon.compose.ui.internal.controller.dialog.AiutaTryOnDialogState
-import com.aiuta.fashionsdk.tryon.compose.ui.internal.controller.dialog.hideDialog
-import com.aiuta.fashionsdk.tryon.compose.ui.internal.controller.dialog.showDialog
-import com.aiuta.fashionsdk.tryon.compose.ui.internal.controller.navigateTo
-import com.aiuta.fashionsdk.tryon.compose.ui.internal.navigation.NavigationBottomSheetScreen
-import com.aiuta.fashionsdk.tryon.compose.ui.internal.navigation.NavigationScreen
+import com.aiuta.fashionsdk.tryon.compose.ui.internal.navigation.TryOnBottomSheetScreen
+import com.aiuta.fashionsdk.tryon.compose.ui.internal.navigation.TryOnScreen
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.sheets.components.SheetDivider
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.sheets.picker.exceptions.NotSupportedImageSourceException
-import com.aiuta.fashionsdk.tryon.compose.ui.internal.utils.features.provideFeature
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.utils.permission.AiutaPickerSource
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.utils.permission.actionWithPermission
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.utils.permission.isPickerSourceAvailable
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.utils.permission.rememberAiutaPermissionHandler
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.utils.picker.camera.rememberCameraManager
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.utils.picker.file.rememberImagePickerLauncher
-import com.aiuta.fashionsdk.tryon.compose.uikit.composition.LocalTheme
-import com.aiuta.fashionsdk.tryon.compose.uikit.resources.AiutaIcon
-import com.aiuta.fashionsdk.tryon.compose.uikit.utils.clickableUnindicated
 
 @Composable
-internal fun ColumnScope.ImagePickerSheet(pickerData: NavigationBottomSheetScreen.ImagePicker) {
+internal fun ImagePickerSheet(
+    pickerData: TryOnBottomSheetScreen.ImagePicker,
+    modifier: Modifier = Modifier,
+) {
+    val bottomSheetNavigator = LocalAiutaBottomSheetNavigator.current
     val controller = LocalController.current
-    val dialogController = LocalAiutaTryOnDialogController.current
+    val dialogController = LocalAiutaDialogController.current
+    val navigationController = LocalAiutaNavigationController.current
     val logger = LocalAiutaLogger.current
 
     val cameraFeature = provideFeature<AiutaImagePickerCameraFeature>()
@@ -88,7 +91,7 @@ internal fun ColumnScope.ImagePickerSheet(pickerData: NavigationBottomSheetScree
         // Activate try on
         controller.activateAutoTryOn()
         // Move back
-        controller.bottomSheetNavigator.hide()
+        bottomSheetNavigator.hide()
     }
 
     val galleryManager = rememberImagePickerLauncher { files ->
@@ -101,81 +104,84 @@ internal fun ColumnScope.ImagePickerSheet(pickerData: NavigationBottomSheetScree
             // Activate try on
             controller.activateAutoTryOn()
             // Move back
-            controller.bottomSheetNavigator.hide()
+            bottomSheetNavigator.hide()
         }
     }
 
-    SheetDivider()
+    Column(modifier = modifier) {
+        SheetDivider()
 
-    Spacer(Modifier.height(4.dp))
+        Spacer(Modifier.height(4.dp))
 
-    pickerFeatures.forEachIndexed { index, feature ->
-        key("feature_$index") {
-            PickerButton(
-                modifier = sharedModifier,
-                shouldDrawDivider = index != pickerFeatures.lastIndex,
-                icon = when (feature) {
-                    is AiutaImagePickerCameraFeature -> feature.icons.camera24
-                    is AiutaImagePickerPhotoGalleryFeature -> feature.icons.gallery24
-                    is AiutaImagePickerPredefinedModelFeature -> feature.icons.selectModels24
-                    else -> throw NotSupportedImageSourceException()
-                },
-                text = when (feature) {
-                    is AiutaImagePickerCameraFeature -> feature.strings.cameraButtonTakePhoto
-                    is AiutaImagePickerPhotoGalleryFeature -> feature.strings.galleryButtonSelectPhoto
-                    is AiutaImagePickerPredefinedModelFeature -> feature.strings.predefinedModelPageTitle
-                    else -> throw NotSupportedImageSourceException()
-                },
-                onClick = {
-                    when (feature) {
-                        is AiutaImagePickerCameraFeature -> {
-                            scope.actionWithPermission(
-                                pickerSource = AiutaPickerSource.CAMERA,
-                                permissionHandler = permissionHandler,
-                                logger = logger,
-                                onGranted = cameraManager::launch,
-                                onAlwaysDenied = {
-                                    controller.bottomSheetNavigator.hide()
-                                    dialogController.showDialog(
-                                        dialogState =
-                                        AiutaTryOnDialogState(
-                                            title = feature.strings.cameraPermissionTitle,
-                                            description = feature.strings.cameraPermissionDescription,
-                                            confirmButton = feature.strings.cameraPermissionButtonOpenSettings,
-                                            onConfirm = permissionHandler::openAppSettings,
-                                            onDismiss = dialogController::hideDialog,
-                                        ),
-                                    )
-                                },
-                            )
-                        }
-
-                        is AiutaImagePickerPhotoGalleryFeature -> {
-                            controller.sendPickerAnalytic(
-                                event = AiutaAnalyticsPickerEventType.PHOTO_GALLERY_OPENED,
-                                pageId = pickerData.originPageId,
-                            )
-                            scope.actionWithPermission(
-                                pickerSource = AiutaPickerSource.GALLERY,
-                                permissionHandler = permissionHandler,
-                                logger = logger,
-                                onGranted = galleryManager::launch,
-                                onAlwaysDenied = {
-                                    // Show nothing
-                                    controller.bottomSheetNavigator.hide()
-                                },
-                            )
-                        }
-
-                        is AiutaImagePickerPredefinedModelFeature -> {
-                            controller.bottomSheetNavigator.hide()
-                            controller.navigateTo(NavigationScreen.ModelSelector)
-                        }
-
+        pickerFeatures.forEachIndexed { index, feature ->
+            key("feature_$index") {
+                PickerButton(
+                    modifier = sharedModifier,
+                    shouldDrawDivider = index != pickerFeatures.lastIndex,
+                    icon = when (feature) {
+                        is AiutaImagePickerCameraFeature -> feature.icons.camera24
+                        is AiutaImagePickerPhotoGalleryFeature -> feature.icons.gallery24
+                        is AiutaImagePickerPredefinedModelFeature -> feature.icons.selectModels24
                         else -> throw NotSupportedImageSourceException()
-                    }
-                },
-            )
+                    },
+                    text = when (feature) {
+                        is AiutaImagePickerCameraFeature -> feature.strings.cameraButtonTakePhoto
+                        is AiutaImagePickerPhotoGalleryFeature -> feature.strings.galleryButtonSelectPhoto
+                        is AiutaImagePickerPredefinedModelFeature -> feature.strings.predefinedModelPageTitle
+                        else -> throw NotSupportedImageSourceException()
+                    },
+                    onClick = {
+                        when (feature) {
+                            is AiutaImagePickerCameraFeature -> {
+                                scope.actionWithPermission(
+                                    pickerSource = AiutaPickerSource.CAMERA,
+                                    permissionHandler = permissionHandler,
+                                    logger = logger,
+                                    onGranted = cameraManager::launch,
+                                    onAlwaysDenied = {
+                                        bottomSheetNavigator.hide()
+                                        dialogController.showDialog(
+                                            dialogState = AiutaDialogState(
+                                                title = feature.strings.cameraPermissionTitle,
+                                                description = feature.strings.cameraPermissionDescription,
+                                                confirmButton = feature.strings.cameraPermissionButtonOpenSettings,
+                                                onConfirm = permissionHandler::openAppSettings,
+                                                onDismiss = dialogController::hideDialog,
+                                            ),
+                                        )
+                                    },
+                                )
+                            }
+
+                            is AiutaImagePickerPhotoGalleryFeature -> {
+                                controller.sendPickerAnalytic(
+                                    event = AiutaAnalyticsPickerEventType.PHOTO_GALLERY_OPENED,
+                                    pageId = pickerData.originPageId,
+                                )
+                                scope.actionWithPermission(
+                                    pickerSource = AiutaPickerSource.GALLERY,
+                                    permissionHandler = permissionHandler,
+                                    logger = logger,
+                                    onGranted = galleryManager::launch,
+                                    onAlwaysDenied = {
+                                        // Show nothing
+                                        bottomSheetNavigator.hide()
+                                    },
+                                )
+                            }
+
+                            is AiutaImagePickerPredefinedModelFeature -> {
+                                bottomSheetNavigator.hide()
+                                navigationController.navigateTo(
+                                    newScreen = TryOnScreen.ModelSelector,
+                                )
+                            }
+
+                            else -> throw NotSupportedImageSourceException()
+                        }
+                    },
+                )
+            }
         }
     }
 }

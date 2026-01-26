@@ -1,0 +1,126 @@
+public abstract interface class com/aiuta/fashionsdk/sizefit/core/AiutaSizeFit : java/lang/AutoCloseable {
+	public abstract fun recommendSize (Ljava/lang/String;Lcom/aiuta/fashionsdk/sizefit/core/AiutaSizeFitConfig;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
+}
+
+public final class com/aiuta/fashionsdk/sizefit/core/AiutaSizeFit$Builder {
+	public fun <init> ()V
+	public final fun build ()Lcom/aiuta/fashionsdk/sizefit/core/AiutaSizeFit;
+	public final fun getAiuta ()Lcom/aiuta/fashionsdk/Aiuta;
+	public final fun getApiKey ()Ljava/lang/String;
+	public final fun getPartitionHeader ()Ljava/lang/String;
+	public final fun setAiuta (Lcom/aiuta/fashionsdk/Aiuta;)V
+	public final fun setApiKey (Ljava/lang/String;)V
+	public final fun setPartitionHeader (Ljava/lang/String;)V
+}
+
+public final class com/aiuta/fashionsdk/sizefit/core/AiutaSizeFitConfig {
+	public fun <init> (IIILcom/aiuta/fashionsdk/sizefit/core/AiutaSizeFitConfig$Gender;Lcom/aiuta/fashionsdk/sizefit/core/AiutaSizeFitConfig$HipShape;Lcom/aiuta/fashionsdk/sizefit/core/AiutaSizeFitConfig$BellyShape;Ljava/lang/Integer;Lcom/aiuta/fashionsdk/sizefit/core/AiutaSizeFitConfig$BraCup;)V
+	public synthetic fun <init> (IIILcom/aiuta/fashionsdk/sizefit/core/AiutaSizeFitConfig$Gender;Lcom/aiuta/fashionsdk/sizefit/core/AiutaSizeFitConfig$HipShape;Lcom/aiuta/fashionsdk/sizefit/core/AiutaSizeFitConfig$BellyShape;Ljava/lang/Integer;Lcom/aiuta/fashionsdk/sizefit/core/AiutaSizeFitConfig$BraCup;ILkotlin/jvm/internal/DefaultConstructorMarker;)V
+	public final fun getAge ()I
+	public final fun getBellyShape ()Lcom/aiuta/fashionsdk/sizefit/core/AiutaSizeFitConfig$BellyShape;
+	public final fun getBraCup ()Lcom/aiuta/fashionsdk/sizefit/core/AiutaSizeFitConfig$BraCup;
+	public final fun getBraSize ()Ljava/lang/Integer;
+	public final fun getGender ()Lcom/aiuta/fashionsdk/sizefit/core/AiutaSizeFitConfig$Gender;
+	public final fun getHeight ()I
+	public final fun getHipShape ()Lcom/aiuta/fashionsdk/sizefit/core/AiutaSizeFitConfig$HipShape;
+	public final fun getWeight ()I
+}
+
+public final class com/aiuta/fashionsdk/sizefit/core/AiutaSizeFitConfig$BellyShape : java/lang/Enum {
+	public static final field CURVY Lcom/aiuta/fashionsdk/sizefit/core/AiutaSizeFitConfig$BellyShape;
+	public static final field FLAT Lcom/aiuta/fashionsdk/sizefit/core/AiutaSizeFitConfig$BellyShape;
+	public static final field NORMAL Lcom/aiuta/fashionsdk/sizefit/core/AiutaSizeFitConfig$BellyShape;
+	public static fun getEntries ()Lkotlin/enums/EnumEntries;
+	public static fun valueOf (Ljava/lang/String;)Lcom/aiuta/fashionsdk/sizefit/core/AiutaSizeFitConfig$BellyShape;
+	public static fun values ()[Lcom/aiuta/fashionsdk/sizefit/core/AiutaSizeFitConfig$BellyShape;
+}
+
+public final class com/aiuta/fashionsdk/sizefit/core/AiutaSizeFitConfig$BraCup : java/lang/Enum {
+	public static final field A Lcom/aiuta/fashionsdk/sizefit/core/AiutaSizeFitConfig$BraCup;
+	public static final field AA Lcom/aiuta/fashionsdk/sizefit/core/AiutaSizeFitConfig$BraCup;
+	public static final field B Lcom/aiuta/fashionsdk/sizefit/core/AiutaSizeFitConfig$BraCup;
+	public static final field C Lcom/aiuta/fashionsdk/sizefit/core/AiutaSizeFitConfig$BraCup;
+	public static final field D Lcom/aiuta/fashionsdk/sizefit/core/AiutaSizeFitConfig$BraCup;
+	public static final field DD Lcom/aiuta/fashionsdk/sizefit/core/AiutaSizeFitConfig$BraCup;
+	public static final field E Lcom/aiuta/fashionsdk/sizefit/core/AiutaSizeFitConfig$BraCup;
+	public static final field F Lcom/aiuta/fashionsdk/sizefit/core/AiutaSizeFitConfig$BraCup;
+	public static final field G Lcom/aiuta/fashionsdk/sizefit/core/AiutaSizeFitConfig$BraCup;
+	public static fun getEntries ()Lkotlin/enums/EnumEntries;
+	public static fun valueOf (Ljava/lang/String;)Lcom/aiuta/fashionsdk/sizefit/core/AiutaSizeFitConfig$BraCup;
+	public static fun values ()[Lcom/aiuta/fashionsdk/sizefit/core/AiutaSizeFitConfig$BraCup;
+}
+
+public final class com/aiuta/fashionsdk/sizefit/core/AiutaSizeFitConfig$Gender : java/lang/Enum {
+	public static final field FEMALE Lcom/aiuta/fashionsdk/sizefit/core/AiutaSizeFitConfig$Gender;
+	public static final field MALE Lcom/aiuta/fashionsdk/sizefit/core/AiutaSizeFitConfig$Gender;
+	public static fun getEntries ()Lkotlin/enums/EnumEntries;
+	public static fun valueOf (Ljava/lang/String;)Lcom/aiuta/fashionsdk/sizefit/core/AiutaSizeFitConfig$Gender;
+	public static fun values ()[Lcom/aiuta/fashionsdk/sizefit/core/AiutaSizeFitConfig$Gender;
+}
+
+public final class com/aiuta/fashionsdk/sizefit/core/AiutaSizeFitConfig$HipShape : java/lang/Enum {
+	public static final field CURVY Lcom/aiuta/fashionsdk/sizefit/core/AiutaSizeFitConfig$HipShape;
+	public static final field NORMAL Lcom/aiuta/fashionsdk/sizefit/core/AiutaSizeFitConfig$HipShape;
+	public static final field SLIM Lcom/aiuta/fashionsdk/sizefit/core/AiutaSizeFitConfig$HipShape;
+	public static fun getEntries ()Lkotlin/enums/EnumEntries;
+	public static fun valueOf (Ljava/lang/String;)Lcom/aiuta/fashionsdk/sizefit/core/AiutaSizeFitConfig$HipShape;
+	public static fun values ()[Lcom/aiuta/fashionsdk/sizefit/core/AiutaSizeFitConfig$HipShape;
+}
+
+public final class com/aiuta/fashionsdk/sizefit/core/AiutaSizeFitKt {
+	public static final fun aiutaSizeFit (Lkotlin/jvm/functions/Function1;)Lcom/aiuta/fashionsdk/sizefit/core/AiutaSizeFit;
+}
+
+public final class com/aiuta/fashionsdk/sizefit/core/AiutaSizeFitRecommendation {
+	public fun <init> (Ljava/util/List;Ljava/lang/String;Ljava/util/List;)V
+	public final fun getBodyMeasurements ()Ljava/util/List;
+	public final fun getRecommendedSizeName ()Ljava/lang/String;
+	public final fun getSizes ()Ljava/util/List;
+}
+
+public final class com/aiuta/fashionsdk/sizefit/core/AiutaSizeFitRecommendation$BodyMeasurement {
+	public fun <init> (Ljava/lang/String;I)V
+	public final fun getType ()Ljava/lang/String;
+	public final fun getValue ()I
+}
+
+public final class com/aiuta/fashionsdk/sizefit/core/AiutaSizeFitRecommendation$Size {
+	public fun <init> (Ljava/util/List;Ljava/lang/String;)V
+	public final fun getMeasurements ()Ljava/util/List;
+	public final fun getName ()Ljava/lang/String;
+}
+
+public final class com/aiuta/fashionsdk/sizefit/core/AiutaSizeFitRecommendation$Size$Measurement {
+	public fun <init> (FFIILcom/aiuta/fashionsdk/sizefit/core/AiutaSizeFitRecommendation$Size$Measurement$MeasurementType;)V
+	public final fun getDist ()F
+	public final fun getFitRatio ()F
+	public final fun getMax ()I
+	public final fun getMin ()I
+	public final fun getType ()Lcom/aiuta/fashionsdk/sizefit/core/AiutaSizeFitRecommendation$Size$Measurement$MeasurementType;
+}
+
+public final class com/aiuta/fashionsdk/sizefit/core/AiutaSizeFitRecommendation$Size$Measurement$MeasurementType : java/lang/Enum {
+	public static final field BMI Lcom/aiuta/fashionsdk/sizefit/core/AiutaSizeFitRecommendation$Size$Measurement$MeasurementType;
+	public static final field BRA_UNDERBUST Lcom/aiuta/fashionsdk/sizefit/core/AiutaSizeFitRecommendation$Size$Measurement$MeasurementType;
+	public static final field CHEST_C Lcom/aiuta/fashionsdk/sizefit/core/AiutaSizeFitRecommendation$Size$Measurement$MeasurementType;
+	public static final field CUP Lcom/aiuta/fashionsdk/sizefit/core/AiutaSizeFitRecommendation$Size$Measurement$MeasurementType;
+	public static final field HIP_C Lcom/aiuta/fashionsdk/sizefit/core/AiutaSizeFitRecommendation$Size$Measurement$MeasurementType;
+	public static final field INSEAM Lcom/aiuta/fashionsdk/sizefit/core/AiutaSizeFitRecommendation$Size$Measurement$MeasurementType;
+	public static final field OVER_BUST Lcom/aiuta/fashionsdk/sizefit/core/AiutaSizeFitRecommendation$Size$Measurement$MeasurementType;
+	public static final field UNDER_BUST Lcom/aiuta/fashionsdk/sizefit/core/AiutaSizeFitRecommendation$Size$Measurement$MeasurementType;
+	public static final field WAIST_C Lcom/aiuta/fashionsdk/sizefit/core/AiutaSizeFitRecommendation$Size$Measurement$MeasurementType;
+	public static fun getEntries ()Lkotlin/enums/EnumEntries;
+	public static fun valueOf (Ljava/lang/String;)Lcom/aiuta/fashionsdk/sizefit/core/AiutaSizeFitRecommendation$Size$Measurement$MeasurementType;
+	public static fun values ()[Lcom/aiuta/fashionsdk/sizefit/core/AiutaSizeFitRecommendation$Size$Measurement$MeasurementType;
+}
+
+public final class com/aiuta/fashionsdk/sizefit/core/exceptions/SizeFitApiException : java/lang/Exception {
+	public fun <init> (ILjava/lang/String;)V
+	public synthetic fun <init> (ILjava/lang/String;ILkotlin/jvm/internal/DefaultConstructorMarker;)V
+	public final fun getStatusCode ()I
+}
+
+public final class com/aiuta/fashionsdk/sizefit/core/exceptions/SizeFitNetworkException : java/lang/Exception {
+	public fun <init> (Ljava/lang/Throwable;)V
+}
+

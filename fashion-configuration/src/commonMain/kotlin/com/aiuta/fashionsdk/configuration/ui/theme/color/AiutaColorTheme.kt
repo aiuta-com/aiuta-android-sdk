@@ -98,7 +98,7 @@ public interface AiutaColorTheme {
      */
     public class Default : AiutaColorTheme {
         override val scheme: AiutaColorThemeScheme = AiutaColorThemeScheme.LIGHT
-        override val brand: Color = Color(0xFF4000FF)
+        override val brand: Color = Color(0xFF000000)
         override val primary: Color = Color(0xFF000000)
         override val secondary: Color = Color(0xFF9F9F9F)
         override val onDark: Color = Color(0xFFFFFFFF)

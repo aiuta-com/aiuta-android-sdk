@@ -29,6 +29,13 @@ public final class com/aiuta/fashionsdk/configuration/defaults/icons/features/sh
 	public fun getShare24 ()Lcom/aiuta/fashionsdk/compose/resources/drawable/AiutaIcon;
 }
 
+public final class com/aiuta/fashionsdk/configuration/defaults/icons/features/sizefit/DefaultAiutaSizeFitFeatureIcons : com/aiuta/fashionsdk/configuration/features/sizefit/icons/AiutaSizeFitFeatureIcons {
+	public static final field $stable I
+	public fun <init> ()V
+	public fun getFemale20 ()Lcom/aiuta/fashionsdk/compose/resources/drawable/AiutaIcon;
+	public fun getMale20 ()Lcom/aiuta/fashionsdk/compose/resources/drawable/AiutaIcon;
+}
+
 public final class com/aiuta/fashionsdk/configuration/defaults/icons/features/tryon/DefaultAiutaTryOnFeatureIcons : com/aiuta/fashionsdk/configuration/features/tryon/icons/AiutaTryOnFeatureIcons {
 	public static final field $stable I
 	public fun <init> ()V

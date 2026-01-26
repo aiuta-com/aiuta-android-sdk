@@ -55,11 +55,12 @@ public abstract interface class com/aiuta/fashionsdk/configuration/features/Aiut
 
 public final class com/aiuta/fashionsdk/configuration/features/AiutaFeatures {
 	public static final field $stable I
-	public fun <init> (Lcom/aiuta/fashionsdk/configuration/features/welcome/AiutaWelcomeScreenFeature;Lcom/aiuta/fashionsdk/configuration/features/onboarding/AiutaOnboardingFeature;Lcom/aiuta/fashionsdk/configuration/features/consent/AiutaConsentFeature;Lcom/aiuta/fashionsdk/configuration/features/picker/AiutaImagePickerFeature;Lcom/aiuta/fashionsdk/configuration/features/tryon/AiutaTryOnFeature;Lcom/aiuta/fashionsdk/configuration/features/share/AiutaShareFeature;Lcom/aiuta/fashionsdk/configuration/features/wishlist/AiutaWishlistFeature;)V
+	public fun <init> (Lcom/aiuta/fashionsdk/configuration/features/welcome/AiutaWelcomeScreenFeature;Lcom/aiuta/fashionsdk/configuration/features/onboarding/AiutaOnboardingFeature;Lcom/aiuta/fashionsdk/configuration/features/consent/AiutaConsentFeature;Lcom/aiuta/fashionsdk/configuration/features/picker/AiutaImagePickerFeature;Lcom/aiuta/fashionsdk/configuration/features/tryon/AiutaTryOnFeature;Lcom/aiuta/fashionsdk/configuration/features/share/AiutaShareFeature;Lcom/aiuta/fashionsdk/configuration/features/wishlist/AiutaWishlistFeature;Lcom/aiuta/fashionsdk/configuration/features/sizefit/AiutaSizeFitFeature;)V
 	public final fun getConsent ()Lcom/aiuta/fashionsdk/configuration/features/consent/AiutaConsentFeature;
 	public final fun getImagePicker ()Lcom/aiuta/fashionsdk/configuration/features/picker/AiutaImagePickerFeature;
 	public final fun getOnboarding ()Lcom/aiuta/fashionsdk/configuration/features/onboarding/AiutaOnboardingFeature;
 	public final fun getShare ()Lcom/aiuta/fashionsdk/configuration/features/share/AiutaShareFeature;
+	public final fun getSizeFit ()Lcom/aiuta/fashionsdk/configuration/features/sizefit/AiutaSizeFitFeature;
 	public final fun getTryOn ()Lcom/aiuta/fashionsdk/configuration/features/tryon/AiutaTryOnFeature;
 	public final fun getWelcomeScreen ()Lcom/aiuta/fashionsdk/configuration/features/welcome/AiutaWelcomeScreenFeature;
 	public final fun getWishlist ()Lcom/aiuta/fashionsdk/configuration/features/wishlist/AiutaWishlistFeature;
@@ -73,6 +74,7 @@ public final class com/aiuta/fashionsdk/configuration/features/AiutaFeatures$Bui
 	public final fun getImagePicker ()Lcom/aiuta/fashionsdk/configuration/features/picker/AiutaImagePickerFeature;
 	public final fun getOnboarding ()Lcom/aiuta/fashionsdk/configuration/features/onboarding/AiutaOnboardingFeature;
 	public final fun getShare ()Lcom/aiuta/fashionsdk/configuration/features/share/AiutaShareFeature;
+	public final fun getSizeFit ()Lcom/aiuta/fashionsdk/configuration/features/sizefit/AiutaSizeFitFeature;
 	public final fun getTryOn ()Lcom/aiuta/fashionsdk/configuration/features/tryon/AiutaTryOnFeature;
 	public final fun getWelcomeScreen ()Lcom/aiuta/fashionsdk/configuration/features/welcome/AiutaWelcomeScreenFeature;
 	public final fun getWishlist ()Lcom/aiuta/fashionsdk/configuration/features/wishlist/AiutaWishlistFeature;
@@ -80,6 +82,7 @@ public final class com/aiuta/fashionsdk/configuration/features/AiutaFeatures$Bui
 	public final fun setImagePicker (Lcom/aiuta/fashionsdk/configuration/features/picker/AiutaImagePickerFeature;)V
 	public final fun setOnboarding (Lcom/aiuta/fashionsdk/configuration/features/onboarding/AiutaOnboardingFeature;)V
 	public final fun setShare (Lcom/aiuta/fashionsdk/configuration/features/share/AiutaShareFeature;)V
+	public final fun setSizeFit (Lcom/aiuta/fashionsdk/configuration/features/sizefit/AiutaSizeFitFeature;)V
 	public final fun setTryOn (Lcom/aiuta/fashionsdk/configuration/features/tryon/AiutaTryOnFeature;)V
 	public final fun setWelcomeScreen (Lcom/aiuta/fashionsdk/configuration/features/welcome/AiutaWelcomeScreenFeature;)V
 	public final fun setWishlist (Lcom/aiuta/fashionsdk/configuration/features/wishlist/AiutaWishlistFeature;)V
@@ -796,6 +799,108 @@ public final class com/aiuta/fashionsdk/configuration/features/share/watermark/A
 
 public abstract interface class com/aiuta/fashionsdk/configuration/features/share/watermark/images/AiutaShareWatermarkFeatureImages {
 	public abstract fun getLogo ()Lcom/aiuta/fashionsdk/compose/resources/drawable/AiutaDrawableResource;
+}
+
+public final class com/aiuta/fashionsdk/configuration/features/sizefit/AiutaSizeFitFeature : com/aiuta/fashionsdk/configuration/features/AiutaFeature {
+	public static final field $stable I
+	public fun <init> (Lcom/aiuta/fashionsdk/configuration/features/sizefit/icons/AiutaSizeFitFeatureIcons;Lcom/aiuta/fashionsdk/configuration/features/sizefit/strings/AiutaSizeFitFeatureStrings;Lcom/aiuta/fashionsdk/configuration/features/sizefit/styles/AiutaSizeFitFeatureStyles;Lcom/aiuta/fashionsdk/configuration/features/sizefit/dataprovider/AiutaSizeFitFeatureDataProvider;)V
+	public synthetic fun <init> (Lcom/aiuta/fashionsdk/configuration/features/sizefit/icons/AiutaSizeFitFeatureIcons;Lcom/aiuta/fashionsdk/configuration/features/sizefit/strings/AiutaSizeFitFeatureStrings;Lcom/aiuta/fashionsdk/configuration/features/sizefit/styles/AiutaSizeFitFeatureStyles;Lcom/aiuta/fashionsdk/configuration/features/sizefit/dataprovider/AiutaSizeFitFeatureDataProvider;ILkotlin/jvm/internal/DefaultConstructorMarker;)V
+	public final fun getDataProvider ()Lcom/aiuta/fashionsdk/configuration/features/sizefit/dataprovider/AiutaSizeFitFeatureDataProvider;
+	public final fun getIcons ()Lcom/aiuta/fashionsdk/configuration/features/sizefit/icons/AiutaSizeFitFeatureIcons;
+	public final fun getStrings ()Lcom/aiuta/fashionsdk/configuration/features/sizefit/strings/AiutaSizeFitFeatureStrings;
+	public final fun getStyles ()Lcom/aiuta/fashionsdk/configuration/features/sizefit/styles/AiutaSizeFitFeatureStyles;
+}
+
+public final class com/aiuta/fashionsdk/configuration/features/sizefit/AiutaSizeFitFeature$Builder : com/aiuta/fashionsdk/configuration/features/AiutaFeature$Builder {
+	public static final field $stable I
+	public fun <init> ()V
+	public synthetic fun build ()Lcom/aiuta/fashionsdk/configuration/features/AiutaFeature;
+	public fun build ()Lcom/aiuta/fashionsdk/configuration/features/sizefit/AiutaSizeFitFeature;
+	public final fun getDataProvider ()Lcom/aiuta/fashionsdk/configuration/features/sizefit/dataprovider/AiutaSizeFitFeatureDataProvider;
+	public final fun getIcons ()Lcom/aiuta/fashionsdk/configuration/features/sizefit/icons/AiutaSizeFitFeatureIcons;
+	public final fun getStrings ()Lcom/aiuta/fashionsdk/configuration/features/sizefit/strings/AiutaSizeFitFeatureStrings;
+	public final fun getStyles ()Lcom/aiuta/fashionsdk/configuration/features/sizefit/styles/AiutaSizeFitFeatureStyles;
+	public final fun setDataProvider (Lcom/aiuta/fashionsdk/configuration/features/sizefit/dataprovider/AiutaSizeFitFeatureDataProvider;)V
+	public final fun setIcons (Lcom/aiuta/fashionsdk/configuration/features/sizefit/icons/AiutaSizeFitFeatureIcons;)V
+	public final fun setStrings (Lcom/aiuta/fashionsdk/configuration/features/sizefit/strings/AiutaSizeFitFeatureStrings;)V
+	public final fun setStyles (Lcom/aiuta/fashionsdk/configuration/features/sizefit/styles/AiutaSizeFitFeatureStyles;)V
+}
+
+public final class com/aiuta/fashionsdk/configuration/features/sizefit/AiutaSizeFitFeatureKt {
+	public static final fun sizeFit (Lcom/aiuta/fashionsdk/configuration/features/AiutaFeatures$Builder;Lkotlin/jvm/functions/Function1;)Lcom/aiuta/fashionsdk/configuration/features/AiutaFeatures$Builder;
+}
+
+public abstract interface class com/aiuta/fashionsdk/configuration/features/sizefit/dataprovider/AiutaSizeFitFeatureDataProvider {
+	public abstract fun recommendationCompleted (Ljava/lang/String;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
+}
+
+public abstract interface class com/aiuta/fashionsdk/configuration/features/sizefit/icons/AiutaSizeFitFeatureIcons {
+	public abstract fun getFemale20 ()Lcom/aiuta/fashionsdk/compose/resources/drawable/AiutaIcon;
+	public abstract fun getMale20 ()Lcom/aiuta/fashionsdk/compose/resources/drawable/AiutaIcon;
+}
+
+public abstract interface class com/aiuta/fashionsdk/configuration/features/sizefit/strings/AiutaSizeFitFeatureStrings {
+	public abstract fun getAgePlaceholder ()Ljava/lang/String;
+	public abstract fun getBellyShapeTitle ()Ljava/lang/String;
+	public abstract fun getBraCupSubtitle ()Ljava/lang/String;
+	public abstract fun getBraSizeTitle ()Ljava/lang/String;
+	public abstract fun getChangeButton ()Ljava/lang/String;
+	public abstract fun getChestCircumferenceSubtitle ()Ljava/lang/String;
+	public abstract fun getErrorMessage ()Ljava/lang/String;
+	public abstract fun getFindYourSizeButton ()Ljava/lang/String;
+	public abstract fun getGenderFemale ()Ljava/lang/String;
+	public abstract fun getGenderMale ()Ljava/lang/String;
+	public abstract fun getGotItButton ()Ljava/lang/String;
+	public abstract fun getHeightPlaceholder ()Ljava/lang/String;
+	public abstract fun getHeightSuffix ()Ljava/lang/String;
+	public abstract fun getHipsShapeTitle ()Ljava/lang/String;
+	public abstract fun getNextButton ()Ljava/lang/String;
+	public abstract fun getParametersTitle ()Ljava/lang/String;
+	public abstract fun getPrivacyPolicyHtml ()Ljava/lang/String;
+	public abstract fun getQuestionaryTitle ()Ljava/lang/String;
+	public abstract fun getRecommendedSizeTitle ()Ljava/lang/String;
+	public abstract fun getWeightPlaceholder ()Ljava/lang/String;
+	public abstract fun getWeightSuffix ()Ljava/lang/String;
+	public abstract fun getYearsSuffix ()Ljava/lang/String;
+}
+
+public final class com/aiuta/fashionsdk/configuration/features/sizefit/strings/AiutaSizeFitFeatureStrings$Default : com/aiuta/fashionsdk/configuration/features/sizefit/strings/AiutaSizeFitFeatureStrings {
+	public static final field $stable I
+	public fun <init> (Ljava/lang/String;)V
+	public fun getAgePlaceholder ()Ljava/lang/String;
+	public fun getBellyShapeTitle ()Ljava/lang/String;
+	public fun getBraCupSubtitle ()Ljava/lang/String;
+	public fun getBraSizeTitle ()Ljava/lang/String;
+	public fun getChangeButton ()Ljava/lang/String;
+	public fun getChestCircumferenceSubtitle ()Ljava/lang/String;
+	public fun getErrorMessage ()Ljava/lang/String;
+	public fun getFindYourSizeButton ()Ljava/lang/String;
+	public fun getGenderFemale ()Ljava/lang/String;
+	public fun getGenderMale ()Ljava/lang/String;
+	public fun getGotItButton ()Ljava/lang/String;
+	public fun getHeightPlaceholder ()Ljava/lang/String;
+	public fun getHeightSuffix ()Ljava/lang/String;
+	public fun getHipsShapeTitle ()Ljava/lang/String;
+	public fun getNextButton ()Ljava/lang/String;
+	public fun getParametersTitle ()Ljava/lang/String;
+	public fun getPrivacyPolicyHtml ()Ljava/lang/String;
+	public fun getQuestionaryTitle ()Ljava/lang/String;
+	public fun getRecommendedSizeTitle ()Ljava/lang/String;
+	public fun getWeightPlaceholder ()Ljava/lang/String;
+	public fun getWeightSuffix ()Ljava/lang/String;
+	public fun getYearsSuffix ()Ljava/lang/String;
+}
+
+public abstract interface class com/aiuta/fashionsdk/configuration/features/sizefit/styles/AiutaSizeFitFeatureStyles {
+	public abstract fun getSizeFitButtonGradient ()Ljava/util/List;
+	public abstract fun getSuffixColor-0d7_KjU ()J
+}
+
+public final class com/aiuta/fashionsdk/configuration/features/sizefit/styles/AiutaSizeFitFeatureStyles$Default : com/aiuta/fashionsdk/configuration/features/sizefit/styles/AiutaSizeFitFeatureStyles {
+	public static final field $stable I
+	public fun <init> ()V
+	public fun getSizeFitButtonGradient ()Ljava/util/List;
+	public fun getSuffixColor-0d7_KjU ()J
 }
 
 public final class com/aiuta/fashionsdk/configuration/features/styles/AiutaComponentStyle : java/lang/Enum {

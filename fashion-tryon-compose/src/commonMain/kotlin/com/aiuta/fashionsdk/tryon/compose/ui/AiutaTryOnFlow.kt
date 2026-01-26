@@ -7,7 +7,7 @@ import com.aiuta.fashionsdk.analytics.events.AiutaAnalyticsSessionEvent
 import com.aiuta.fashionsdk.configuration.AiutaConfiguration
 import com.aiuta.fashionsdk.configuration.features.models.product.ProductItem
 import com.aiuta.fashionsdk.tryon.compose.domain.models.ProductConfiguration
-import com.aiuta.fashionsdk.tryon.compose.ui.internal.navigation.NavigationFlow
+import com.aiuta.fashionsdk.tryon.compose.ui.internal.navigation.TryOnNavigationFlow
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.navigation.defaultStartScreen
 
 /**
@@ -29,7 +29,7 @@ public fun AiutaTryOnFlow(
     aiutaConfiguration: AiutaConfiguration,
     productConfiguration: ProductConfiguration,
 ) {
-    NavigationFlow(
+    TryOnNavigationFlow(
         modifier = modifier,
         aiutaConfiguration = aiutaConfiguration,
         productConfiguration = productConfiguration,
@@ -69,7 +69,7 @@ public fun AiutaTryOnFlow(
     aiutaConfiguration: AiutaConfiguration,
     productForGeneration: ProductItem,
 ) {
-    NavigationFlow(
+    TryOnNavigationFlow(
         modifier = modifier,
         aiutaConfiguration = aiutaConfiguration,
         productConfiguration = ProductConfiguration(

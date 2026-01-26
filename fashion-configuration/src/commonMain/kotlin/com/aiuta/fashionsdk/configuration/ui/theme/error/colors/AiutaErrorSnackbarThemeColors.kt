@@ -31,7 +31,7 @@ public interface AiutaErrorSnackbarThemeColors {
      * ```
      */
     public class Default : AiutaErrorSnackbarThemeColors {
-        override val errorBackground: Color = Color(0xFFFFF5F5)
-        override val errorPrimary: Color = Color(0xFF000000)
+        override val errorBackground: Color = Color(0xFFEF5754)
+        override val errorPrimary: Color = Color(0xFFFFFFFF)
     }
 }

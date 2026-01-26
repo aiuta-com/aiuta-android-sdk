@@ -5,76 +5,15 @@ import androidx.compose.runtime.State
 import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.derivedStateOf
 import androidx.compose.runtime.remember
+import com.aiuta.fashionsdk.compose.uikit.utils.isFeatureInitialize
+import com.aiuta.fashionsdk.configuration.features.tryon.history.AiutaTryOnGenerationsHistoryFeature
 import com.aiuta.fashionsdk.tryon.compose.domain.models.internal.generated.images.LastSavedImages
 import com.aiuta.fashionsdk.tryon.compose.domain.models.internal.generated.images.isNotEmpty
 import com.aiuta.fashionsdk.tryon.compose.domain.models.internal.generated.images.toLastSavedImages
 import com.aiuta.fashionsdk.tryon.compose.domain.models.internal.generated.operations.GeneratedOperationUIModel
 import com.aiuta.fashionsdk.tryon.compose.domain.models.internal.generated.sku.ProductGenerationOperation
 import com.aiuta.fashionsdk.tryon.compose.domain.models.internal.generated.sku.ProductGenerationUIStatus
-import com.aiuta.fashionsdk.tryon.compose.ui.internal.analytic.clickClose
-import com.aiuta.fashionsdk.tryon.compose.ui.internal.navigation.NavigationScreen
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.screens.history.models.SelectorMode
-import com.aiuta.fashionsdk.tryon.compose.ui.internal.utils.features.isFeatureInitialize
-
-// Configs
-internal val skippedBackStackScreens =
-    setOf(
-        NavigationScreen.Splash,
-        NavigationScreen.Onboarding,
-        NavigationScreen.ModelSelector,
-    )
-
-// Navigation
-internal fun FashionTryOnController.navigateTo(newScreen: NavigationScreen) {
-    // Save previous screen, if we should not skip it in back stack
-    if (currentScreen.value !in skippedBackStackScreens) {
-        backStack.addLast(currentScreen.value)
-    }
-
-    // Set new screen
-    currentScreen.value = newScreen
-}
-
-internal fun FashionTryOnController.popUpAndNavigateTo(
-    navigateToScreen: NavigationScreen,
-    popUpScreen: NavigationScreen? = null,
-) {
-    // Remove all screens including popUpScreen
-    while (true) {
-        if (backStack.isEmpty()) {
-            break
-        }
-
-        val previousScreen = backStack.removeLast()
-        if (popUpScreen == null || previousScreen == popUpScreen) {
-            break
-        }
-    }
-
-    navigateTo(navigateToScreen)
-}
-
-internal fun FashionTryOnController.navigateBack() {
-    if (backStack.isNotEmpty()) {
-        val previousScreen = backStack.removeLast()
-
-        currentScreen.value = previousScreen
-    } else {
-        clickClose()
-    }
-}
-
-// Error State
-internal fun FashionTryOnController.showErrorState(errorState: ToastErrorState) {
-    // Check if toast already visible
-    if (fashionTryOnErrorState.value == null) {
-        fashionTryOnErrorState.value = errorState
-    }
-}
-
-internal fun FashionTryOnController.hideErrorState() {
-    fashionTryOnErrorState.value = null
-}
 
 // Edit changePhotoButtonStyle
 internal fun FashionTryOnController.activateSelectMode() {
@@ -148,7 +87,7 @@ internal suspend fun FashionTryOnController.updateActiveOperationWithFirstOrSetE
 internal fun FashionTryOnController.isAppbarHistoryAvailable(): State<Boolean> {
     val historyImageCount = generatedImageInteractor.countFlow().collectAsState(0)
     val isGenerationsHistoryFeatureAvailable =
-        isFeatureInitialize<com.aiuta.fashionsdk.configuration.features.tryon.history.AiutaTryOnGenerationsHistoryFeature>()
+        isFeatureInitialize<AiutaTryOnGenerationsHistoryFeature>()
 
     return remember(generationStatus.value) {
         derivedStateOf {
@@ -178,13 +117,6 @@ internal fun FashionTryOnController.isSelectModeActive(): State<Boolean> = remem
 internal fun FashionTryOnController.isLastSavedPhotoAvailable(): State<Boolean> = remember(lastSavedImages.value) {
     derivedStateOf {
         lastSavedImages.value.isNotEmpty()
-    }
-}
-
-@Composable
-internal fun FashionTryOnController.isErrorStateVisible(): State<Boolean> = remember(fashionTryOnErrorState.value) {
-    derivedStateOf {
-        fashionTryOnErrorState.value != null
     }
 }
 

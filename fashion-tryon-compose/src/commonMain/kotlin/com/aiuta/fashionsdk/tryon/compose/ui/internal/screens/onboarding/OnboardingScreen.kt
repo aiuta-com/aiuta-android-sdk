@@ -21,9 +21,15 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.backhandler.BackHandler
 import androidx.compose.ui.draw.alpha
 import androidx.compose.ui.unit.dp
+import com.aiuta.fashionsdk.compose.uikit.button.FashionButton
+import com.aiuta.fashionsdk.compose.uikit.button.FashionButtonSizes
+import com.aiuta.fashionsdk.compose.uikit.button.FashionButtonStyles
+import com.aiuta.fashionsdk.compose.uikit.composition.LocalTheme
+import com.aiuta.fashionsdk.compose.uikit.utils.provideFeature
+import com.aiuta.fashionsdk.compose.uikit.utils.strictProvideFeature
 import com.aiuta.fashionsdk.configuration.features.consent.AiutaConsentStandaloneOnboardingPageFeature
 import com.aiuta.fashionsdk.configuration.features.onboarding.AiutaOnboardingFeature
-import com.aiuta.fashionsdk.tryon.compose.ui.internal.controller.composition.LocalAiutaFeatures
+import com.aiuta.fashionsdk.internal.navigation.composition.LocalAiutaNavigationController
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.controller.composition.LocalController
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.navigation.transition.leftToRightTransition
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.navigation.transition.rightToLeftTransition
@@ -41,18 +47,12 @@ import com.aiuta.fashionsdk.tryon.compose.ui.internal.screens.onboarding.control
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.screens.onboarding.controller.state.BestResultPage
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.screens.onboarding.controller.state.ConsentPage
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.screens.onboarding.controller.state.TryOnPage
-import com.aiuta.fashionsdk.tryon.compose.ui.internal.utils.features.provideFeature
-import com.aiuta.fashionsdk.tryon.compose.ui.internal.utils.features.strictProvideFeature
-import com.aiuta.fashionsdk.tryon.compose.uikit.button.FashionButton
-import com.aiuta.fashionsdk.tryon.compose.uikit.button.FashionButtonSizes
-import com.aiuta.fashionsdk.tryon.compose.uikit.button.FashionButtonStyles
-import com.aiuta.fashionsdk.tryon.compose.uikit.composition.LocalTheme
 
 @OptIn(ExperimentalComposeUiApi::class)
 @Composable
 internal fun OnboardingScreen(modifier: Modifier = Modifier) {
     val controller = LocalController.current
-    val features = LocalAiutaFeatures.current
+    val navigationController = LocalAiutaNavigationController.current
     val theme = LocalTheme.current
 
     val onboardingFeature = strictProvideFeature<AiutaOnboardingFeature>()
@@ -62,7 +62,7 @@ internal fun OnboardingScreen(modifier: Modifier = Modifier) {
     val generalHorizontalPadding = 16.dp
 
     BackHandler {
-        onboardingController.previousPage(controller)
+        onboardingController.previousPage(navigationController)
     }
 
     Column(
@@ -114,6 +114,7 @@ internal fun OnboardingScreen(modifier: Modifier = Modifier) {
             onClick = {
                 onboardingController.nextPage(
                     controller = controller,
+                    navigationController = navigationController,
                 )
             },
         )

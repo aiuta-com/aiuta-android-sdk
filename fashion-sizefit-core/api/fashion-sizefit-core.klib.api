@@ -1,0 +1,176 @@
+// Klib ABI Dump
+// Targets: [iosArm64, iosSimulatorArm64, iosX64, js, wasmJs]
+// Rendering settings:
+// - Signature version: 2
+// - Show manifest properties: true
+// - Show declarations: true
+
+// Library unique name: <com.aiuta:fashion-sizefit-core>
+abstract interface com.aiuta.fashionsdk.sizefit.core/AiutaSizeFit : kotlin/AutoCloseable { // com.aiuta.fashionsdk.sizefit.core/AiutaSizeFit|null[0]
+    abstract suspend fun recommendSize(kotlin/String, com.aiuta.fashionsdk.sizefit.core/AiutaSizeFitConfig): com.aiuta.fashionsdk.sizefit.core/AiutaSizeFitRecommendation // com.aiuta.fashionsdk.sizefit.core/AiutaSizeFit.recommendSize|recommendSize(kotlin.String;com.aiuta.fashionsdk.sizefit.core.AiutaSizeFitConfig){}[0]
+
+    final class Builder { // com.aiuta.fashionsdk.sizefit.core/AiutaSizeFit.Builder|null[0]
+        constructor <init>() // com.aiuta.fashionsdk.sizefit.core/AiutaSizeFit.Builder.<init>|<init>(){}[0]
+
+        final var aiuta // com.aiuta.fashionsdk.sizefit.core/AiutaSizeFit.Builder.aiuta|{}aiuta[0]
+            final fun <get-aiuta>(): com.aiuta.fashionsdk/Aiuta? // com.aiuta.fashionsdk.sizefit.core/AiutaSizeFit.Builder.aiuta.<get-aiuta>|<get-aiuta>(){}[0]
+            final fun <set-aiuta>(com.aiuta.fashionsdk/Aiuta?) // com.aiuta.fashionsdk.sizefit.core/AiutaSizeFit.Builder.aiuta.<set-aiuta>|<set-aiuta>(com.aiuta.fashionsdk.Aiuta?){}[0]
+        final var apiKey // com.aiuta.fashionsdk.sizefit.core/AiutaSizeFit.Builder.apiKey|{}apiKey[0]
+            final fun <get-apiKey>(): kotlin/String? // com.aiuta.fashionsdk.sizefit.core/AiutaSizeFit.Builder.apiKey.<get-apiKey>|<get-apiKey>(){}[0]
+            final fun <set-apiKey>(kotlin/String?) // com.aiuta.fashionsdk.sizefit.core/AiutaSizeFit.Builder.apiKey.<set-apiKey>|<set-apiKey>(kotlin.String?){}[0]
+        final var partitionHeader // com.aiuta.fashionsdk.sizefit.core/AiutaSizeFit.Builder.partitionHeader|{}partitionHeader[0]
+            final fun <get-partitionHeader>(): kotlin/String? // com.aiuta.fashionsdk.sizefit.core/AiutaSizeFit.Builder.partitionHeader.<get-partitionHeader>|<get-partitionHeader>(){}[0]
+            final fun <set-partitionHeader>(kotlin/String?) // com.aiuta.fashionsdk.sizefit.core/AiutaSizeFit.Builder.partitionHeader.<set-partitionHeader>|<set-partitionHeader>(kotlin.String?){}[0]
+
+        final fun build(): com.aiuta.fashionsdk.sizefit.core/AiutaSizeFit // com.aiuta.fashionsdk.sizefit.core/AiutaSizeFit.Builder.build|build(){}[0]
+    }
+}
+
+final class com.aiuta.fashionsdk.sizefit.core.exceptions/SizeFitApiException : kotlin/Exception { // com.aiuta.fashionsdk.sizefit.core.exceptions/SizeFitApiException|null[0]
+    constructor <init>(kotlin/Int, kotlin/String = ...) // com.aiuta.fashionsdk.sizefit.core.exceptions/SizeFitApiException.<init>|<init>(kotlin.Int;kotlin.String){}[0]
+
+    final val statusCode // com.aiuta.fashionsdk.sizefit.core.exceptions/SizeFitApiException.statusCode|{}statusCode[0]
+        final fun <get-statusCode>(): kotlin/Int // com.aiuta.fashionsdk.sizefit.core.exceptions/SizeFitApiException.statusCode.<get-statusCode>|<get-statusCode>(){}[0]
+}
+
+final class com.aiuta.fashionsdk.sizefit.core.exceptions/SizeFitNetworkException : kotlin/Exception { // com.aiuta.fashionsdk.sizefit.core.exceptions/SizeFitNetworkException|null[0]
+    constructor <init>(kotlin/Throwable) // com.aiuta.fashionsdk.sizefit.core.exceptions/SizeFitNetworkException.<init>|<init>(kotlin.Throwable){}[0]
+}
+
+final class com.aiuta.fashionsdk.sizefit.core/AiutaSizeFitConfig { // com.aiuta.fashionsdk.sizefit.core/AiutaSizeFitConfig|null[0]
+    constructor <init>(kotlin/Int, kotlin/Int, kotlin/Int, com.aiuta.fashionsdk.sizefit.core/AiutaSizeFitConfig.Gender, com.aiuta.fashionsdk.sizefit.core/AiutaSizeFitConfig.HipShape? = ..., com.aiuta.fashionsdk.sizefit.core/AiutaSizeFitConfig.BellyShape? = ..., kotlin/Int? = ..., com.aiuta.fashionsdk.sizefit.core/AiutaSizeFitConfig.BraCup? = ...) // com.aiuta.fashionsdk.sizefit.core/AiutaSizeFitConfig.<init>|<init>(kotlin.Int;kotlin.Int;kotlin.Int;com.aiuta.fashionsdk.sizefit.core.AiutaSizeFitConfig.Gender;com.aiuta.fashionsdk.sizefit.core.AiutaSizeFitConfig.HipShape?;com.aiuta.fashionsdk.sizefit.core.AiutaSizeFitConfig.BellyShape?;kotlin.Int?;com.aiuta.fashionsdk.sizefit.core.AiutaSizeFitConfig.BraCup?){}[0]
+
+    final val age // com.aiuta.fashionsdk.sizefit.core/AiutaSizeFitConfig.age|{}age[0]
+        final fun <get-age>(): kotlin/Int // com.aiuta.fashionsdk.sizefit.core/AiutaSizeFitConfig.age.<get-age>|<get-age>(){}[0]
+    final val bellyShape // com.aiuta.fashionsdk.sizefit.core/AiutaSizeFitConfig.bellyShape|{}bellyShape[0]
+        final fun <get-bellyShape>(): com.aiuta.fashionsdk.sizefit.core/AiutaSizeFitConfig.BellyShape? // com.aiuta.fashionsdk.sizefit.core/AiutaSizeFitConfig.bellyShape.<get-bellyShape>|<get-bellyShape>(){}[0]
+    final val braCup // com.aiuta.fashionsdk.sizefit.core/AiutaSizeFitConfig.braCup|{}braCup[0]
+        final fun <get-braCup>(): com.aiuta.fashionsdk.sizefit.core/AiutaSizeFitConfig.BraCup? // com.aiuta.fashionsdk.sizefit.core/AiutaSizeFitConfig.braCup.<get-braCup>|<get-braCup>(){}[0]
+    final val braSize // com.aiuta.fashionsdk.sizefit.core/AiutaSizeFitConfig.braSize|{}braSize[0]
+        final fun <get-braSize>(): kotlin/Int? // com.aiuta.fashionsdk.sizefit.core/AiutaSizeFitConfig.braSize.<get-braSize>|<get-braSize>(){}[0]
+    final val gender // com.aiuta.fashionsdk.sizefit.core/AiutaSizeFitConfig.gender|{}gender[0]
+        final fun <get-gender>(): com.aiuta.fashionsdk.sizefit.core/AiutaSizeFitConfig.Gender // com.aiuta.fashionsdk.sizefit.core/AiutaSizeFitConfig.gender.<get-gender>|<get-gender>(){}[0]
+    final val height // com.aiuta.fashionsdk.sizefit.core/AiutaSizeFitConfig.height|{}height[0]
+        final fun <get-height>(): kotlin/Int // com.aiuta.fashionsdk.sizefit.core/AiutaSizeFitConfig.height.<get-height>|<get-height>(){}[0]
+    final val hipShape // com.aiuta.fashionsdk.sizefit.core/AiutaSizeFitConfig.hipShape|{}hipShape[0]
+        final fun <get-hipShape>(): com.aiuta.fashionsdk.sizefit.core/AiutaSizeFitConfig.HipShape? // com.aiuta.fashionsdk.sizefit.core/AiutaSizeFitConfig.hipShape.<get-hipShape>|<get-hipShape>(){}[0]
+    final val weight // com.aiuta.fashionsdk.sizefit.core/AiutaSizeFitConfig.weight|{}weight[0]
+        final fun <get-weight>(): kotlin/Int // com.aiuta.fashionsdk.sizefit.core/AiutaSizeFitConfig.weight.<get-weight>|<get-weight>(){}[0]
+
+    final enum class BellyShape : kotlin/Enum<com.aiuta.fashionsdk.sizefit.core/AiutaSizeFitConfig.BellyShape> { // com.aiuta.fashionsdk.sizefit.core/AiutaSizeFitConfig.BellyShape|null[0]
+        enum entry CURVY // com.aiuta.fashionsdk.sizefit.core/AiutaSizeFitConfig.BellyShape.CURVY|null[0]
+        enum entry FLAT // com.aiuta.fashionsdk.sizefit.core/AiutaSizeFitConfig.BellyShape.FLAT|null[0]
+        enum entry NORMAL // com.aiuta.fashionsdk.sizefit.core/AiutaSizeFitConfig.BellyShape.NORMAL|null[0]
+
+        final val entries // com.aiuta.fashionsdk.sizefit.core/AiutaSizeFitConfig.BellyShape.entries|#static{}entries[0]
+            final fun <get-entries>(): kotlin.enums/EnumEntries<com.aiuta.fashionsdk.sizefit.core/AiutaSizeFitConfig.BellyShape> // com.aiuta.fashionsdk.sizefit.core/AiutaSizeFitConfig.BellyShape.entries.<get-entries>|<get-entries>#static(){}[0]
+
+        final fun valueOf(kotlin/String): com.aiuta.fashionsdk.sizefit.core/AiutaSizeFitConfig.BellyShape // com.aiuta.fashionsdk.sizefit.core/AiutaSizeFitConfig.BellyShape.valueOf|valueOf#static(kotlin.String){}[0]
+        final fun values(): kotlin/Array<com.aiuta.fashionsdk.sizefit.core/AiutaSizeFitConfig.BellyShape> // com.aiuta.fashionsdk.sizefit.core/AiutaSizeFitConfig.BellyShape.values|values#static(){}[0]
+    }
+
+    final enum class BraCup : kotlin/Enum<com.aiuta.fashionsdk.sizefit.core/AiutaSizeFitConfig.BraCup> { // com.aiuta.fashionsdk.sizefit.core/AiutaSizeFitConfig.BraCup|null[0]
+        enum entry A // com.aiuta.fashionsdk.sizefit.core/AiutaSizeFitConfig.BraCup.A|null[0]
+        enum entry AA // com.aiuta.fashionsdk.sizefit.core/AiutaSizeFitConfig.BraCup.AA|null[0]
+        enum entry B // com.aiuta.fashionsdk.sizefit.core/AiutaSizeFitConfig.BraCup.B|null[0]
+        enum entry C // com.aiuta.fashionsdk.sizefit.core/AiutaSizeFitConfig.BraCup.C|null[0]
+        enum entry D // com.aiuta.fashionsdk.sizefit.core/AiutaSizeFitConfig.BraCup.D|null[0]
+        enum entry DD // com.aiuta.fashionsdk.sizefit.core/AiutaSizeFitConfig.BraCup.DD|null[0]
+        enum entry E // com.aiuta.fashionsdk.sizefit.core/AiutaSizeFitConfig.BraCup.E|null[0]
+        enum entry F // com.aiuta.fashionsdk.sizefit.core/AiutaSizeFitConfig.BraCup.F|null[0]
+        enum entry G // com.aiuta.fashionsdk.sizefit.core/AiutaSizeFitConfig.BraCup.G|null[0]
+
+        final val entries // com.aiuta.fashionsdk.sizefit.core/AiutaSizeFitConfig.BraCup.entries|#static{}entries[0]
+            final fun <get-entries>(): kotlin.enums/EnumEntries<com.aiuta.fashionsdk.sizefit.core/AiutaSizeFitConfig.BraCup> // com.aiuta.fashionsdk.sizefit.core/AiutaSizeFitConfig.BraCup.entries.<get-entries>|<get-entries>#static(){}[0]
+
+        final fun valueOf(kotlin/String): com.aiuta.fashionsdk.sizefit.core/AiutaSizeFitConfig.BraCup // com.aiuta.fashionsdk.sizefit.core/AiutaSizeFitConfig.BraCup.valueOf|valueOf#static(kotlin.String){}[0]
+        final fun values(): kotlin/Array<com.aiuta.fashionsdk.sizefit.core/AiutaSizeFitConfig.BraCup> // com.aiuta.fashionsdk.sizefit.core/AiutaSizeFitConfig.BraCup.values|values#static(){}[0]
+    }
+
+    final enum class Gender : kotlin/Enum<com.aiuta.fashionsdk.sizefit.core/AiutaSizeFitConfig.Gender> { // com.aiuta.fashionsdk.sizefit.core/AiutaSizeFitConfig.Gender|null[0]
+        enum entry FEMALE // com.aiuta.fashionsdk.sizefit.core/AiutaSizeFitConfig.Gender.FEMALE|null[0]
+        enum entry MALE // com.aiuta.fashionsdk.sizefit.core/AiutaSizeFitConfig.Gender.MALE|null[0]
+
+        final val entries // com.aiuta.fashionsdk.sizefit.core/AiutaSizeFitConfig.Gender.entries|#static{}entries[0]
+            final fun <get-entries>(): kotlin.enums/EnumEntries<com.aiuta.fashionsdk.sizefit.core/AiutaSizeFitConfig.Gender> // com.aiuta.fashionsdk.sizefit.core/AiutaSizeFitConfig.Gender.entries.<get-entries>|<get-entries>#static(){}[0]
+
+        final fun valueOf(kotlin/String): com.aiuta.fashionsdk.sizefit.core/AiutaSizeFitConfig.Gender // com.aiuta.fashionsdk.sizefit.core/AiutaSizeFitConfig.Gender.valueOf|valueOf#static(kotlin.String){}[0]
+        final fun values(): kotlin/Array<com.aiuta.fashionsdk.sizefit.core/AiutaSizeFitConfig.Gender> // com.aiuta.fashionsdk.sizefit.core/AiutaSizeFitConfig.Gender.values|values#static(){}[0]
+    }
+
+    final enum class HipShape : kotlin/Enum<com.aiuta.fashionsdk.sizefit.core/AiutaSizeFitConfig.HipShape> { // com.aiuta.fashionsdk.sizefit.core/AiutaSizeFitConfig.HipShape|null[0]
+        enum entry CURVY // com.aiuta.fashionsdk.sizefit.core/AiutaSizeFitConfig.HipShape.CURVY|null[0]
+        enum entry NORMAL // com.aiuta.fashionsdk.sizefit.core/AiutaSizeFitConfig.HipShape.NORMAL|null[0]
+        enum entry SLIM // com.aiuta.fashionsdk.sizefit.core/AiutaSizeFitConfig.HipShape.SLIM|null[0]
+
+        final val entries // com.aiuta.fashionsdk.sizefit.core/AiutaSizeFitConfig.HipShape.entries|#static{}entries[0]
+            final fun <get-entries>(): kotlin.enums/EnumEntries<com.aiuta.fashionsdk.sizefit.core/AiutaSizeFitConfig.HipShape> // com.aiuta.fashionsdk.sizefit.core/AiutaSizeFitConfig.HipShape.entries.<get-entries>|<get-entries>#static(){}[0]
+
+        final fun valueOf(kotlin/String): com.aiuta.fashionsdk.sizefit.core/AiutaSizeFitConfig.HipShape // com.aiuta.fashionsdk.sizefit.core/AiutaSizeFitConfig.HipShape.valueOf|valueOf#static(kotlin.String){}[0]
+        final fun values(): kotlin/Array<com.aiuta.fashionsdk.sizefit.core/AiutaSizeFitConfig.HipShape> // com.aiuta.fashionsdk.sizefit.core/AiutaSizeFitConfig.HipShape.values|values#static(){}[0]
+    }
+}
+
+final class com.aiuta.fashionsdk.sizefit.core/AiutaSizeFitRecommendation { // com.aiuta.fashionsdk.sizefit.core/AiutaSizeFitRecommendation|null[0]
+    constructor <init>(kotlin.collections/List<com.aiuta.fashionsdk.sizefit.core/AiutaSizeFitRecommendation.BodyMeasurement>, kotlin/String, kotlin.collections/List<com.aiuta.fashionsdk.sizefit.core/AiutaSizeFitRecommendation.Size>) // com.aiuta.fashionsdk.sizefit.core/AiutaSizeFitRecommendation.<init>|<init>(kotlin.collections.List<com.aiuta.fashionsdk.sizefit.core.AiutaSizeFitRecommendation.BodyMeasurement>;kotlin.String;kotlin.collections.List<com.aiuta.fashionsdk.sizefit.core.AiutaSizeFitRecommendation.Size>){}[0]
+
+    final val bodyMeasurements // com.aiuta.fashionsdk.sizefit.core/AiutaSizeFitRecommendation.bodyMeasurements|{}bodyMeasurements[0]
+        final fun <get-bodyMeasurements>(): kotlin.collections/List<com.aiuta.fashionsdk.sizefit.core/AiutaSizeFitRecommendation.BodyMeasurement> // com.aiuta.fashionsdk.sizefit.core/AiutaSizeFitRecommendation.bodyMeasurements.<get-bodyMeasurements>|<get-bodyMeasurements>(){}[0]
+    final val recommendedSizeName // com.aiuta.fashionsdk.sizefit.core/AiutaSizeFitRecommendation.recommendedSizeName|{}recommendedSizeName[0]
+        final fun <get-recommendedSizeName>(): kotlin/String // com.aiuta.fashionsdk.sizefit.core/AiutaSizeFitRecommendation.recommendedSizeName.<get-recommendedSizeName>|<get-recommendedSizeName>(){}[0]
+    final val sizes // com.aiuta.fashionsdk.sizefit.core/AiutaSizeFitRecommendation.sizes|{}sizes[0]
+        final fun <get-sizes>(): kotlin.collections/List<com.aiuta.fashionsdk.sizefit.core/AiutaSizeFitRecommendation.Size> // com.aiuta.fashionsdk.sizefit.core/AiutaSizeFitRecommendation.sizes.<get-sizes>|<get-sizes>(){}[0]
+
+    final class BodyMeasurement { // com.aiuta.fashionsdk.sizefit.core/AiutaSizeFitRecommendation.BodyMeasurement|null[0]
+        constructor <init>(kotlin/String, kotlin/Int) // com.aiuta.fashionsdk.sizefit.core/AiutaSizeFitRecommendation.BodyMeasurement.<init>|<init>(kotlin.String;kotlin.Int){}[0]
+
+        final val type // com.aiuta.fashionsdk.sizefit.core/AiutaSizeFitRecommendation.BodyMeasurement.type|{}type[0]
+            final fun <get-type>(): kotlin/String // com.aiuta.fashionsdk.sizefit.core/AiutaSizeFitRecommendation.BodyMeasurement.type.<get-type>|<get-type>(){}[0]
+        final val value // com.aiuta.fashionsdk.sizefit.core/AiutaSizeFitRecommendation.BodyMeasurement.value|{}value[0]
+            final fun <get-value>(): kotlin/Int // com.aiuta.fashionsdk.sizefit.core/AiutaSizeFitRecommendation.BodyMeasurement.value.<get-value>|<get-value>(){}[0]
+    }
+
+    final class Size { // com.aiuta.fashionsdk.sizefit.core/AiutaSizeFitRecommendation.Size|null[0]
+        constructor <init>(kotlin.collections/List<com.aiuta.fashionsdk.sizefit.core/AiutaSizeFitRecommendation.Size.Measurement>, kotlin/String) // com.aiuta.fashionsdk.sizefit.core/AiutaSizeFitRecommendation.Size.<init>|<init>(kotlin.collections.List<com.aiuta.fashionsdk.sizefit.core.AiutaSizeFitRecommendation.Size.Measurement>;kotlin.String){}[0]
+
+        final val measurements // com.aiuta.fashionsdk.sizefit.core/AiutaSizeFitRecommendation.Size.measurements|{}measurements[0]
+            final fun <get-measurements>(): kotlin.collections/List<com.aiuta.fashionsdk.sizefit.core/AiutaSizeFitRecommendation.Size.Measurement> // com.aiuta.fashionsdk.sizefit.core/AiutaSizeFitRecommendation.Size.measurements.<get-measurements>|<get-measurements>(){}[0]
+        final val name // com.aiuta.fashionsdk.sizefit.core/AiutaSizeFitRecommendation.Size.name|{}name[0]
+            final fun <get-name>(): kotlin/String // com.aiuta.fashionsdk.sizefit.core/AiutaSizeFitRecommendation.Size.name.<get-name>|<get-name>(){}[0]
+
+        final class Measurement { // com.aiuta.fashionsdk.sizefit.core/AiutaSizeFitRecommendation.Size.Measurement|null[0]
+            constructor <init>(kotlin/Float, kotlin/Float, kotlin/Int, kotlin/Int, com.aiuta.fashionsdk.sizefit.core/AiutaSizeFitRecommendation.Size.Measurement.MeasurementType) // com.aiuta.fashionsdk.sizefit.core/AiutaSizeFitRecommendation.Size.Measurement.<init>|<init>(kotlin.Float;kotlin.Float;kotlin.Int;kotlin.Int;com.aiuta.fashionsdk.sizefit.core.AiutaSizeFitRecommendation.Size.Measurement.MeasurementType){}[0]
+
+            final val dist // com.aiuta.fashionsdk.sizefit.core/AiutaSizeFitRecommendation.Size.Measurement.dist|{}dist[0]
+                final fun <get-dist>(): kotlin/Float // com.aiuta.fashionsdk.sizefit.core/AiutaSizeFitRecommendation.Size.Measurement.dist.<get-dist>|<get-dist>(){}[0]
+            final val fitRatio // com.aiuta.fashionsdk.sizefit.core/AiutaSizeFitRecommendation.Size.Measurement.fitRatio|{}fitRatio[0]
+                final fun <get-fitRatio>(): kotlin/Float // com.aiuta.fashionsdk.sizefit.core/AiutaSizeFitRecommendation.Size.Measurement.fitRatio.<get-fitRatio>|<get-fitRatio>(){}[0]
+            final val max // com.aiuta.fashionsdk.sizefit.core/AiutaSizeFitRecommendation.Size.Measurement.max|{}max[0]
+                final fun <get-max>(): kotlin/Int // com.aiuta.fashionsdk.sizefit.core/AiutaSizeFitRecommendation.Size.Measurement.max.<get-max>|<get-max>(){}[0]
+            final val min // com.aiuta.fashionsdk.sizefit.core/AiutaSizeFitRecommendation.Size.Measurement.min|{}min[0]
+                final fun <get-min>(): kotlin/Int // com.aiuta.fashionsdk.sizefit.core/AiutaSizeFitRecommendation.Size.Measurement.min.<get-min>|<get-min>(){}[0]
+            final val type // com.aiuta.fashionsdk.sizefit.core/AiutaSizeFitRecommendation.Size.Measurement.type|{}type[0]
+                final fun <get-type>(): com.aiuta.fashionsdk.sizefit.core/AiutaSizeFitRecommendation.Size.Measurement.MeasurementType // com.aiuta.fashionsdk.sizefit.core/AiutaSizeFitRecommendation.Size.Measurement.type.<get-type>|<get-type>(){}[0]
+
+            final enum class MeasurementType : kotlin/Enum<com.aiuta.fashionsdk.sizefit.core/AiutaSizeFitRecommendation.Size.Measurement.MeasurementType> { // com.aiuta.fashionsdk.sizefit.core/AiutaSizeFitRecommendation.Size.Measurement.MeasurementType|null[0]
+                enum entry BMI // com.aiuta.fashionsdk.sizefit.core/AiutaSizeFitRecommendation.Size.Measurement.MeasurementType.BMI|null[0]
+                enum entry BRA_UNDERBUST // com.aiuta.fashionsdk.sizefit.core/AiutaSizeFitRecommendation.Size.Measurement.MeasurementType.BRA_UNDERBUST|null[0]
+                enum entry CHEST_C // com.aiuta.fashionsdk.sizefit.core/AiutaSizeFitRecommendation.Size.Measurement.MeasurementType.CHEST_C|null[0]
+                enum entry CUP // com.aiuta.fashionsdk.sizefit.core/AiutaSizeFitRecommendation.Size.Measurement.MeasurementType.CUP|null[0]
+                enum entry HIP_C // com.aiuta.fashionsdk.sizefit.core/AiutaSizeFitRecommendation.Size.Measurement.MeasurementType.HIP_C|null[0]
+                enum entry INSEAM // com.aiuta.fashionsdk.sizefit.core/AiutaSizeFitRecommendation.Size.Measurement.MeasurementType.INSEAM|null[0]
+                enum entry OVER_BUST // com.aiuta.fashionsdk.sizefit.core/AiutaSizeFitRecommendation.Size.Measurement.MeasurementType.OVER_BUST|null[0]
+                enum entry UNDER_BUST // com.aiuta.fashionsdk.sizefit.core/AiutaSizeFitRecommendation.Size.Measurement.MeasurementType.UNDER_BUST|null[0]
+                enum entry WAIST_C // com.aiuta.fashionsdk.sizefit.core/AiutaSizeFitRecommendation.Size.Measurement.MeasurementType.WAIST_C|null[0]
+
+                final val entries // com.aiuta.fashionsdk.sizefit.core/AiutaSizeFitRecommendation.Size.Measurement.MeasurementType.entries|#static{}entries[0]
+                    final fun <get-entries>(): kotlin.enums/EnumEntries<com.aiuta.fashionsdk.sizefit.core/AiutaSizeFitRecommendation.Size.Measurement.MeasurementType> // com.aiuta.fashionsdk.sizefit.core/AiutaSizeFitRecommendation.Size.Measurement.MeasurementType.entries.<get-entries>|<get-entries>#static(){}[0]
+
+                final fun valueOf(kotlin/String): com.aiuta.fashionsdk.sizefit.core/AiutaSizeFitRecommendation.Size.Measurement.MeasurementType // com.aiuta.fashionsdk.sizefit.core/AiutaSizeFitRecommendation.Size.Measurement.MeasurementType.valueOf|valueOf#static(kotlin.String){}[0]
+                final fun values(): kotlin/Array<com.aiuta.fashionsdk.sizefit.core/AiutaSizeFitRecommendation.Size.Measurement.MeasurementType> // com.aiuta.fashionsdk.sizefit.core/AiutaSizeFitRecommendation.Size.Measurement.MeasurementType.values|values#static(){}[0]
+            }
+        }
+    }
+}
+
+final inline fun com.aiuta.fashionsdk.sizefit.core/aiutaSizeFit(kotlin/Function1<com.aiuta.fashionsdk.sizefit.core/AiutaSizeFit.Builder, kotlin/Unit>): com.aiuta.fashionsdk.sizefit.core/AiutaSizeFit // com.aiuta.fashionsdk.sizefit.core/aiutaSizeFit|aiutaSizeFit(kotlin.Function1<com.aiuta.fashionsdk.sizefit.core.AiutaSizeFit.Builder,kotlin.Unit>){}[0]

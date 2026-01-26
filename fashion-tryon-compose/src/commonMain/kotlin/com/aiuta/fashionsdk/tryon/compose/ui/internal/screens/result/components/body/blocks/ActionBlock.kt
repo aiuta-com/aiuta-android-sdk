@@ -11,6 +11,7 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
 import com.aiuta.fashionsdk.analytics.events.AiutaAnalyticsPageId
+import com.aiuta.fashionsdk.compose.uikit.utils.provideFeature
 import com.aiuta.fashionsdk.configuration.features.wishlist.AiutaWishlistFeature
 import com.aiuta.fashionsdk.tryon.compose.domain.models.internal.generated.images.SessionImageUIModel
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.analytic.clickAddToWishListActiveSKU
@@ -19,7 +20,6 @@ import com.aiuta.fashionsdk.tryon.compose.ui.internal.screens.base.share.ShareEl
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.screens.base.share.onShare
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.screens.result.components.common.IconLoadingButton
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.screens.result.components.common.LikeButton
-import com.aiuta.fashionsdk.tryon.compose.ui.internal.utils.features.provideFeature
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.utils.features.wishlist.inWishlistListener
 
 @Composable

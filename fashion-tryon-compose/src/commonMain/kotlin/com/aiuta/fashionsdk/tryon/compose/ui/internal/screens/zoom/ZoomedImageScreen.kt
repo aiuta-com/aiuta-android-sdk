@@ -28,6 +28,10 @@ import androidx.compose.ui.platform.LocalDensity
 import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.IntOffset
 import androidx.compose.ui.unit.dp
+import com.aiuta.fashionsdk.compose.uikit.composition.LocalTheme
+import com.aiuta.fashionsdk.compose.uikit.resources.AiutaIcon
+import com.aiuta.fashionsdk.compose.uikit.resources.AiutaImage
+import com.aiuta.fashionsdk.compose.uikit.utils.clickableUnindicated
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.components.icons.AiutaLoadingComponent
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.components.zoomable.zoomable
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.controller.composition.LocalController
@@ -42,10 +46,6 @@ import com.aiuta.fashionsdk.tryon.compose.ui.internal.screens.zoom.controller.Fi
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.screens.zoom.controller.ZoomImageController
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.screens.zoom.controller.closeZoomImageScreen
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.screens.zoom.utils.toDp
-import com.aiuta.fashionsdk.tryon.compose.uikit.composition.LocalTheme
-import com.aiuta.fashionsdk.tryon.compose.uikit.resources.AiutaIcon
-import com.aiuta.fashionsdk.tryon.compose.uikit.resources.AiutaImage
-import com.aiuta.fashionsdk.tryon.compose.uikit.utils.clickableUnindicated
 
 @Composable
 internal fun ZoomedImageScreen(

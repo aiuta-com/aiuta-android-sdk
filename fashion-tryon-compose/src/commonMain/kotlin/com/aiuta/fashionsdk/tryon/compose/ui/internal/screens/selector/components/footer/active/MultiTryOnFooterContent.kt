@@ -25,21 +25,24 @@ import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
 import coil3.compose.LocalPlatformContext
 import com.aiuta.fashionsdk.analytics.events.AiutaAnalyticsPageId
+import com.aiuta.fashionsdk.compose.uikit.button.FashionButton
+import com.aiuta.fashionsdk.compose.uikit.button.FashionButtonSizes
+import com.aiuta.fashionsdk.compose.uikit.button.FashionButtonStyles
+import com.aiuta.fashionsdk.compose.uikit.composition.LocalAiutaFeatures
+import com.aiuta.fashionsdk.compose.uikit.composition.LocalTheme
+import com.aiuta.fashionsdk.compose.uikit.resources.AiutaImage
+import com.aiuta.fashionsdk.compose.uikit.utils.clickableUnindicated
+import com.aiuta.fashionsdk.compose.uikit.utils.strictProvideFeature
 import com.aiuta.fashionsdk.configuration.features.models.product.ProductItem
 import com.aiuta.fashionsdk.configuration.features.tryon.AiutaTryOnFeature
 import com.aiuta.fashionsdk.configuration.features.tryon.validation.AiutaTryOnInputImageValidationFeature
-import com.aiuta.fashionsdk.tryon.compose.ui.internal.controller.composition.LocalAiutaFeatures
-import com.aiuta.fashionsdk.tryon.compose.ui.internal.controller.composition.LocalAiutaTryOnDialogController
+import com.aiuta.fashionsdk.internal.navigation.composition.LocalAiutaBottomSheetNavigator
+import com.aiuta.fashionsdk.internal.navigation.composition.LocalAiutaDialogController
+import com.aiuta.fashionsdk.internal.navigation.composition.LocalAiutaErrorSnackbarController
+import com.aiuta.fashionsdk.internal.navigation.composition.LocalAiutaNavigationController
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.controller.composition.LocalController
-import com.aiuta.fashionsdk.tryon.compose.ui.internal.navigation.NavigationBottomSheetScreen
+import com.aiuta.fashionsdk.tryon.compose.ui.internal.navigation.TryOnBottomSheetScreen
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.screens.selector.utils.startGeneration
-import com.aiuta.fashionsdk.tryon.compose.ui.internal.utils.features.strictProvideFeature
-import com.aiuta.fashionsdk.tryon.compose.uikit.button.FashionButton
-import com.aiuta.fashionsdk.tryon.compose.uikit.button.FashionButtonSizes
-import com.aiuta.fashionsdk.tryon.compose.uikit.button.FashionButtonStyles
-import com.aiuta.fashionsdk.tryon.compose.uikit.composition.LocalTheme
-import com.aiuta.fashionsdk.tryon.compose.uikit.resources.AiutaImage
-import com.aiuta.fashionsdk.tryon.compose.uikit.utils.clickableUnindicated
 
 @Composable
 internal fun ColumnScope.MultiTryOnFooterContent(
@@ -48,7 +51,9 @@ internal fun ColumnScope.MultiTryOnFooterContent(
     val coilContext = LocalPlatformContext.current
     val controller = LocalController.current
     val features = LocalAiutaFeatures.current
-    val dialogController = LocalAiutaTryOnDialogController.current
+    val dialogController = LocalAiutaDialogController.current
+    val navigationController = LocalAiutaNavigationController.current
+    val errorSnackbarController = LocalAiutaErrorSnackbarController.current
     val theme = LocalTheme.current
 
     val tryOnFeature = strictProvideFeature<AiutaTryOnFeature>()
@@ -90,6 +95,8 @@ internal fun ColumnScope.MultiTryOnFooterContent(
                 controller.startGeneration(
                     coilContext = coilContext,
                     dialogController = dialogController,
+                    errorSnackbarController = errorSnackbarController,
+                    navigationController = navigationController,
                     features = features,
                     inputImageValidationStrings = inputImageValidationFeature.strings,
                 )
@@ -107,7 +114,7 @@ private fun OutfitItemsRow(
     itemWidth: Dp = 54.dp,
     itemSpacing: Dp = 6.dp,
 ) {
-    val controller = LocalController.current
+    val bottomSheetNavigator = LocalAiutaBottomSheetNavigator.current
     val theme = LocalTheme.current
 
     val commonImageModifier = Modifier
@@ -142,9 +149,9 @@ private fun OutfitItemsRow(
                         modifier = commonImageModifier
                             .background(theme.color.neutral)
                             .clickableUnindicated {
-                                controller.bottomSheetNavigator.show(
-                                    NavigationBottomSheetScreen.ProductInfo(
-                                        primaryButtonState = NavigationBottomSheetScreen.ProductInfo.PrimaryButtonState.ADD_TO_CART,
+                                bottomSheetNavigator.show(
+                                    TryOnBottomSheetScreen.ProductInfo(
+                                        primaryButtonState = TryOnBottomSheetScreen.ProductInfo.PrimaryButtonState.ADD_TO_CART,
                                         originPageId = AiutaAnalyticsPageId.IMAGE_PICKER,
                                         productItem = product,
                                     ),

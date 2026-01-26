@@ -8,12 +8,12 @@ import androidx.compose.runtime.remember
 import androidx.compose.runtime.rememberCoroutineScope
 import androidx.compose.ui.graphics.painter.Painter
 import com.aiuta.fashionsdk.analytics.events.AiutaAnalyticsPageId
+import com.aiuta.fashionsdk.compose.uikit.resources.painter.painterResource
 import com.aiuta.fashionsdk.configuration.features.models.product.ProductItem
 import com.aiuta.fashionsdk.configuration.features.share.AiutaShareFeature
 import com.aiuta.fashionsdk.tryon.compose.domain.internal.share.ShareManagerV2
 import com.aiuta.fashionsdk.tryon.compose.domain.internal.share.rememberShareManagerV2
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.utils.features.dataprovider.safeInvoke
-import com.aiuta.fashionsdk.tryon.compose.uikit.resources.painter.painterResource
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.launch
 

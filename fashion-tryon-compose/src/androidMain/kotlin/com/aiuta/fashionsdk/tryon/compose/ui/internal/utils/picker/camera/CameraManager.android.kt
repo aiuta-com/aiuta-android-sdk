@@ -9,10 +9,10 @@ import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.platform.LocalContext
+import com.aiuta.fashionsdk.internal.navigation.composition.LocalAiutaLogger
 import com.aiuta.fashionsdk.io.AiutaPlatformFile
 import com.aiuta.fashionsdk.logger.d
 import com.aiuta.fashionsdk.logger.e
-import com.aiuta.fashionsdk.tryon.compose.ui.internal.controller.composition.LocalAiutaLogger
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.utils.picker.newImageUri
 
 @Composable

@@ -18,6 +18,10 @@ public final class com/aiuta/fashionsdk/configuration/defaults/features/share/De
 	public static final fun defaultShare (Lcom/aiuta/fashionsdk/configuration/features/AiutaFeatures$Builder;)Lcom/aiuta/fashionsdk/configuration/features/AiutaFeatures$Builder;
 }
 
+public final class com/aiuta/fashionsdk/configuration/defaults/features/sizefit/DefaultAiutaSizeFitFeatureKt {
+	public static final fun defaultSizeFit (Lcom/aiuta/fashionsdk/configuration/features/AiutaFeatures$Builder;Ljava/lang/String;)Lcom/aiuta/fashionsdk/configuration/features/AiutaFeatures$Builder;
+}
+
 public final class com/aiuta/fashionsdk/configuration/defaults/features/tryon/DefaultAiutaTryOnFeatureKt {
 	public static final fun defaultTryOn (Lcom/aiuta/fashionsdk/configuration/features/AiutaFeatures$Builder;Lcom/aiuta/fashionsdk/configuration/features/tryon/cart/handler/AiutaTryOnCartFeatureHandler;)Lcom/aiuta/fashionsdk/configuration/features/AiutaFeatures$Builder;
 }

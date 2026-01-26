@@ -47,6 +47,9 @@ buildkonfig {
 
     defaultConfigs {
         buildConfigField(STRING, "AIUTA_API_KEY", props["AIUTA_API_KEY"].toString())
+        buildConfigField(STRING, "SIZEFIT_API_KEY", props["SIZEFIT_API_KEY"].toString())
+        buildConfigField(STRING, "SIZEFIT_PARTITION", props["SIZEFIT_PARTITION"].toString())
+        buildConfigField(STRING, "SIZEFIT_PRODUCT_CODE", props["SIZEFIT_PRODUCT_CODE"].toString())
     }
 }
 
@@ -72,9 +75,11 @@ kotlin {
         }
         commonMain.dependencies {
             implementation(projects.fashionTryonCompose)
+            implementation(projects.fashionSizefitCompose)
             implementation(projects.fashionConfigurationDefaults)
 
             implementation(libs.jetbrains.compose.foundation)
+            implementation(libs.jetbrains.compose.material)
 
             implementation(libs.jetbrains.viewmodel)
         }

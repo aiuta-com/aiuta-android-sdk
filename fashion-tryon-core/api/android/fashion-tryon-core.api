@@ -45,20 +45,24 @@ public abstract interface class com/aiuta/fashionsdk/tryon/core/domain/models/Pr
 
 public final class com/aiuta/fashionsdk/tryon/core/domain/models/ProductGenerationItem {
 	public static final field $stable I
-	public fun <init> (Ljava/lang/String;Ljava/lang/String;Ljava/util/List;Ljava/lang/String;)V
-	public synthetic fun <init> (Ljava/lang/String;Ljava/lang/String;Ljava/util/List;Ljava/lang/String;ILkotlin/jvm/internal/DefaultConstructorMarker;)V
+	public fun <init> (Ljava/lang/String;Ljava/lang/String;Ljava/util/List;Ljava/lang/String;ZLjava/lang/String;)V
+	public synthetic fun <init> (Ljava/lang/String;Ljava/lang/String;Ljava/util/List;Ljava/lang/String;ZLjava/lang/String;ILkotlin/jvm/internal/DefaultConstructorMarker;)V
 	public final fun component1 ()Ljava/lang/String;
 	public final fun component2 ()Ljava/lang/String;
 	public final fun component3 ()Ljava/util/List;
 	public final fun component4 ()Ljava/lang/String;
-	public final fun copy (Ljava/lang/String;Ljava/lang/String;Ljava/util/List;Ljava/lang/String;)Lcom/aiuta/fashionsdk/tryon/core/domain/models/ProductGenerationItem;
-	public static synthetic fun copy$default (Lcom/aiuta/fashionsdk/tryon/core/domain/models/ProductGenerationItem;Ljava/lang/String;Ljava/lang/String;Ljava/util/List;Ljava/lang/String;ILjava/lang/Object;)Lcom/aiuta/fashionsdk/tryon/core/domain/models/ProductGenerationItem;
+	public final fun component5 ()Z
+	public final fun component6 ()Ljava/lang/String;
+	public final fun copy (Ljava/lang/String;Ljava/lang/String;Ljava/util/List;Ljava/lang/String;ZLjava/lang/String;)Lcom/aiuta/fashionsdk/tryon/core/domain/models/ProductGenerationItem;
+	public static synthetic fun copy$default (Lcom/aiuta/fashionsdk/tryon/core/domain/models/ProductGenerationItem;Ljava/lang/String;Ljava/lang/String;Ljava/util/List;Ljava/lang/String;ZLjava/lang/String;ILjava/lang/Object;)Lcom/aiuta/fashionsdk/tryon/core/domain/models/ProductGenerationItem;
 	public fun equals (Ljava/lang/Object;)Z
 	public final fun getCatalogName ()Ljava/lang/String;
 	public final fun getImageUrls ()Ljava/util/List;
 	public final fun getProductId ()Ljava/lang/String;
+	public final fun getSizeChartCode ()Ljava/lang/String;
 	public final fun getTitle ()Ljava/lang/String;
 	public fun hashCode ()I
+	public final fun isReady ()Z
 	public fun toString ()Ljava/lang/String;
 }
 

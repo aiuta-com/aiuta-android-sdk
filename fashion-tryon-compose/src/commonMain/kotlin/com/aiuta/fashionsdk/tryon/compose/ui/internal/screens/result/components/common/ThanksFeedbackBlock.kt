@@ -21,25 +21,23 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
+import com.aiuta.fashionsdk.compose.uikit.composition.LocalTheme
+import com.aiuta.fashionsdk.compose.uikit.resources.AiutaIcon
+import com.aiuta.fashionsdk.compose.uikit.utils.provideFeature
 import com.aiuta.fashionsdk.configuration.features.tryon.feedback.AiutaTryOnFeedbackFeature
-import com.aiuta.fashionsdk.tryon.compose.ui.internal.controller.composition.LocalController
-import com.aiuta.fashionsdk.tryon.compose.ui.internal.navigation.NavigationBottomSheetScreen
+import com.aiuta.fashionsdk.internal.navigation.bottomsheet.AiutaNavigationBottomSheetScreen
+import com.aiuta.fashionsdk.internal.navigation.composition.LocalAiutaBottomSheetNavigator
+import com.aiuta.fashionsdk.tryon.compose.ui.internal.navigation.TryOnBottomSheetScreen
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.screens.result.controller.GenerationResultController
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.screens.result.controller.showThanksFeedbackBlock
-import com.aiuta.fashionsdk.tryon.compose.ui.internal.utils.features.provideFeature
-import com.aiuta.fashionsdk.tryon.compose.uikit.composition.LocalTheme
-import com.aiuta.fashionsdk.tryon.compose.uikit.resources.AiutaIcon
 
 @Composable
 internal fun ThanksFeedbackBlock(
     modifier: Modifier = Modifier,
     generationResultController: GenerationResultController,
 ) {
-    val controller = LocalController.current
-
+    val bottomSheetNavigator = LocalAiutaBottomSheetNavigator.current
     val feedbackFeature = provideFeature<AiutaTryOnFeedbackFeature>()
-
-    val bottomSheetNavigator = controller.bottomSheetNavigator
 
     val isVisible = remember(
         generationResultController.isThanksFeedbackBlockVisible.value,
@@ -57,11 +55,11 @@ internal fun ThanksFeedbackBlock(
         val lastBottomSheetScreen = bottomSheetNavigator.lastBottomSheetScreen.value
 
         if (
-            lastBottomSheetScreen is NavigationBottomSheetScreen.Feedback ||
-            lastBottomSheetScreen is NavigationBottomSheetScreen.ExtraFeedback
+            lastBottomSheetScreen is TryOnBottomSheetScreen.Feedback ||
+            lastBottomSheetScreen is TryOnBottomSheetScreen.ExtraFeedback
         ) {
             generationResultController.showThanksFeedbackBlock()
-            bottomSheetNavigator.lastBottomSheetScreen.value = NavigationBottomSheetScreen.IDLE
+            bottomSheetNavigator.lastBottomSheetScreen.value = AiutaNavigationBottomSheetScreen.IDLE
         }
     }
 

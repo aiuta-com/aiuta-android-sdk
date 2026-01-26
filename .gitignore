@@ -12,3 +12,5 @@ local.properties
 .kotlin/
 secrets.properties
 .vscode
+**/*.xcodeproj/xcuserdata/
+**/*.xcworkspace/xcuserdata/

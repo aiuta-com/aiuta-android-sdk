@@ -1,8 +1,8 @@
 package com.aiuta.fashionsdk.tryon.compose.ui.internal.screens.base.share
 
 import androidx.compose.runtime.Composable
+import com.aiuta.fashionsdk.compose.uikit.utils.provideFeature
 import com.aiuta.fashionsdk.configuration.features.share.AiutaShareFeature
-import com.aiuta.fashionsdk.tryon.compose.ui.internal.utils.features.provideFeature
 
 @Composable
 internal inline fun ShareElement(

@@ -21,12 +21,15 @@ include(
 // Public modules
 include(
     ":internal:internal-fashion-analytics",
+    ":internal:internal-fashion-navigation",
+    ":internal:internal-fashion-storage",
     ":fashion",
     ":fashion-analytics",
     ":fashion-analytics-events",
     ":fashion-bom",
     ":fashion-compose-core",
     ":fashion-compose-resources",
+    ":fashion-compose-uikit",
     ":fashion-configuration",
     ":fashion-configuration-defaults",
     ":fashion-configuration-defaults-icons",
@@ -35,8 +38,9 @@ include(
     ":fashion-logger",
     ":fashion-network",
     ":fashion-network-paging",
+    ":fashion-sizefit-compose",
+    ":fashion-sizefit-core",
     ":fashion-tryon-compose",
-    ":fashion-tryon-compose-uikit",
     ":fashion-tryon-core",
     ":fashion-tryon-paging",
 )

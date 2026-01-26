@@ -1,0 +1,147 @@
+// Klib ABI Dump
+// Targets: [iosArm64, iosSimulatorArm64, iosX64, js, wasmJs]
+// Rendering settings:
+// - Signature version: 2
+// - Show manifest properties: true
+// - Show declarations: true
+
+// Library unique name: <com.aiuta:internal-fashion-navigation>
+open annotation class com.aiuta.fashionsdk.internal.navigation/AiutaEntryDsl : kotlin/Annotation { // com.aiuta.fashionsdk.internal.navigation/AiutaEntryDsl|null[0]
+    constructor <init>() // com.aiuta.fashionsdk.internal.navigation/AiutaEntryDsl.<init>|<init>(){}[0]
+}
+
+abstract interface com.aiuta.fashionsdk.internal.navigation.bottomsheet/AiutaNavigationBottomSheetScreen : com.aiuta.fashionsdk.internal.navigation/AiutaNavKey { // com.aiuta.fashionsdk.internal.navigation.bottomsheet/AiutaNavigationBottomSheetScreen|null[0]
+    final object IDLE : com.aiuta.fashionsdk.internal.navigation.bottomsheet/AiutaNavigationBottomSheetScreen // com.aiuta.fashionsdk.internal.navigation.bottomsheet/AiutaNavigationBottomSheetScreen.IDLE|null[0]
+}
+
+abstract interface com.aiuta.fashionsdk.internal.navigation.snackbar/AiutaErrorSnackbarState { // com.aiuta.fashionsdk.internal.navigation.snackbar/AiutaErrorSnackbarState|null[0]
+    abstract val message // com.aiuta.fashionsdk.internal.navigation.snackbar/AiutaErrorSnackbarState.message|{}message[0]
+        abstract fun <get-message>(): kotlin/String? // com.aiuta.fashionsdk.internal.navigation.snackbar/AiutaErrorSnackbarState.message.<get-message>|<get-message>(){}[0]
+    abstract val onClose // com.aiuta.fashionsdk.internal.navigation.snackbar/AiutaErrorSnackbarState.onClose|{}onClose[0]
+        abstract fun <get-onClose>(): kotlin/Function0<kotlin/Unit>? // com.aiuta.fashionsdk.internal.navigation.snackbar/AiutaErrorSnackbarState.onClose.<get-onClose>|<get-onClose>(){}[0]
+    abstract val onRetry // com.aiuta.fashionsdk.internal.navigation.snackbar/AiutaErrorSnackbarState.onRetry|{}onRetry[0]
+        abstract fun <get-onRetry>(): kotlin/Function0<kotlin/Unit> // com.aiuta.fashionsdk.internal.navigation.snackbar/AiutaErrorSnackbarState.onRetry.<get-onRetry>|<get-onRetry>(){}[0]
+}
+
+abstract interface com.aiuta.fashionsdk.internal.navigation/AiutaNavKey // com.aiuta.fashionsdk.internal.navigation/AiutaNavKey|null[0]
+
+abstract class com.aiuta.fashionsdk.internal.navigation/AiutaNavigationScreen : com.aiuta.fashionsdk.internal.navigation/AiutaNavKey { // com.aiuta.fashionsdk.internal.navigation/AiutaNavigationScreen|null[0]
+    constructor <init>() // com.aiuta.fashionsdk.internal.navigation/AiutaNavigationScreen.<init>|<init>(){}[0]
+
+    abstract val exitPageId // com.aiuta.fashionsdk.internal.navigation/AiutaNavigationScreen.exitPageId|{}exitPageId[0]
+        abstract fun <get-exitPageId>(): com.aiuta.fashionsdk.analytics.events/AiutaAnalyticsPageId // com.aiuta.fashionsdk.internal.navigation/AiutaNavigationScreen.exitPageId.<get-exitPageId>|<get-exitPageId>(){}[0]
+    final val id // com.aiuta.fashionsdk.internal.navigation/AiutaNavigationScreen.id|{}id[0]
+        final fun <get-id>(): kotlin/String // com.aiuta.fashionsdk.internal.navigation/AiutaNavigationScreen.id.<get-id>|<get-id>(){}[0]
+    open val shouldSaveInBackStack // com.aiuta.fashionsdk.internal.navigation/AiutaNavigationScreen.shouldSaveInBackStack|{}shouldSaveInBackStack[0]
+        open fun <get-shouldSaveInBackStack>(): kotlin/Boolean // com.aiuta.fashionsdk.internal.navigation/AiutaNavigationScreen.shouldSaveInBackStack.<get-shouldSaveInBackStack>|<get-shouldSaveInBackStack>(){}[0]
+
+    open fun equals(kotlin/Any?): kotlin/Boolean // com.aiuta.fashionsdk.internal.navigation/AiutaNavigationScreen.equals|equals(kotlin.Any?){}[0]
+    open fun hashCode(): kotlin/Int // com.aiuta.fashionsdk.internal.navigation/AiutaNavigationScreen.hashCode|hashCode(){}[0]
+    open fun transitionSpec(): androidx.compose.animation/ContentTransform? // com.aiuta.fashionsdk.internal.navigation/AiutaNavigationScreen.transitionSpec|transitionSpec(){}[0]
+}
+
+final class <#A: com.aiuta.fashionsdk.internal.navigation/AiutaNavKey> com.aiuta.fashionsdk.internal.navigation/AiutaEntryProviderScope { // com.aiuta.fashionsdk.internal.navigation/AiutaEntryProviderScope|null[0]
+    constructor <init>(kotlin/Function1<#A, com.aiuta.fashionsdk.internal.navigation/AiutaNavEntry<#A>>) // com.aiuta.fashionsdk.internal.navigation/AiutaEntryProviderScope.<init>|<init>(kotlin.Function1<1:0,com.aiuta.fashionsdk.internal.navigation.AiutaNavEntry<1:0>>){}[0]
+
+    final fun <#A1: #A> addEntryProvider(#A1, kotlin/Function3<#A1, androidx.compose.runtime/Composer, kotlin/Int, kotlin/Unit>) // com.aiuta.fashionsdk.internal.navigation/AiutaEntryProviderScope.addEntryProvider|addEntryProvider(0:0;kotlin.Function3<0:0,androidx.compose.runtime.Composer,kotlin.Int,kotlin.Unit>){0§<1:0>}[0]
+    final fun <#A1: #A> addEntryProvider(kotlin.reflect/KClass<out #A1>, kotlin/Function3<#A1, androidx.compose.runtime/Composer, kotlin/Int, kotlin/Unit>) // com.aiuta.fashionsdk.internal.navigation/AiutaEntryProviderScope.addEntryProvider|addEntryProvider(kotlin.reflect.KClass<out|0:0>;kotlin.Function3<0:0,androidx.compose.runtime.Composer,kotlin.Int,kotlin.Unit>){0§<1:0>}[0]
+    final fun <#A1: #A> aiutaEntry(#A1, kotlin/Function3<#A1, androidx.compose.runtime/Composer, kotlin/Int, kotlin/Unit>) // com.aiuta.fashionsdk.internal.navigation/AiutaEntryProviderScope.aiutaEntry|aiutaEntry(0:0;kotlin.Function3<0:0,androidx.compose.runtime.Composer,kotlin.Int,kotlin.Unit>){0§<1:0>}[0]
+    final fun build(): kotlin/Function1<#A, com.aiuta.fashionsdk.internal.navigation/AiutaNavEntry<#A>> // com.aiuta.fashionsdk.internal.navigation/AiutaEntryProviderScope.build|build(){}[0]
+    final inline fun <#A1: reified #A> aiutaEntry(noinline kotlin/Function3<#A1, androidx.compose.runtime/Composer, kotlin/Int, kotlin/Unit>) // com.aiuta.fashionsdk.internal.navigation/AiutaEntryProviderScope.aiutaEntry|aiutaEntry(kotlin.Function3<0:0,androidx.compose.runtime.Composer,kotlin.Int,kotlin.Unit>){0§<1:0>}[0]
+}
+
+final class <#A: com.aiuta.fashionsdk.internal.navigation/AiutaNavKey> com.aiuta.fashionsdk.internal.navigation/AiutaNavEntry { // com.aiuta.fashionsdk.internal.navigation/AiutaNavEntry|null[0]
+    constructor <init>(#A, kotlin/Function3<#A, androidx.compose.runtime/Composer, kotlin/Int, kotlin/Unit>) // com.aiuta.fashionsdk.internal.navigation/AiutaNavEntry.<init>|<init>(1:0;kotlin.Function3<1:0,androidx.compose.runtime.Composer,kotlin.Int,kotlin.Unit>){}[0]
+
+    final val content // com.aiuta.fashionsdk.internal.navigation/AiutaNavEntry.content|{}content[0]
+        final fun <get-content>(): kotlin/Function3<#A, androidx.compose.runtime/Composer, kotlin/Int, kotlin/Unit> // com.aiuta.fashionsdk.internal.navigation/AiutaNavEntry.content.<get-content>|<get-content>(){}[0]
+    final val key // com.aiuta.fashionsdk.internal.navigation/AiutaNavEntry.key|{}key[0]
+        final fun <get-key>(): #A // com.aiuta.fashionsdk.internal.navigation/AiutaNavEntry.key.<get-key>|<get-key>(){}[0]
+
+    final fun Content(androidx.compose.runtime/Composer?, kotlin/Int) // com.aiuta.fashionsdk.internal.navigation/AiutaNavEntry.Content|Content(androidx.compose.runtime.Composer?;kotlin.Int){}[0]
+    final fun equals(kotlin/Any?): kotlin/Boolean // com.aiuta.fashionsdk.internal.navigation/AiutaNavEntry.equals|equals(kotlin.Any?){}[0]
+    final fun hashCode(): kotlin/Int // com.aiuta.fashionsdk.internal.navigation/AiutaNavEntry.hashCode|hashCode(){}[0]
+}
+
+final class com.aiuta.fashionsdk.internal.navigation.bottomsheet/AiutaBottomSheetNavigator { // com.aiuta.fashionsdk.internal.navigation.bottomsheet/AiutaBottomSheetNavigator|null[0]
+    final val isVisible // com.aiuta.fashionsdk.internal.navigation.bottomsheet/AiutaBottomSheetNavigator.isVisible|{}isVisible[0]
+        final fun <get-isVisible>(): kotlin/Boolean // com.aiuta.fashionsdk.internal.navigation.bottomsheet/AiutaBottomSheetNavigator.isVisible.<get-isVisible>|<get-isVisible>(){}[0]
+    final val lastBottomSheetScreen // com.aiuta.fashionsdk.internal.navigation.bottomsheet/AiutaBottomSheetNavigator.lastBottomSheetScreen|{}lastBottomSheetScreen[0]
+        final fun <get-lastBottomSheetScreen>(): androidx.compose.runtime/MutableState<com.aiuta.fashionsdk.internal.navigation.bottomsheet/AiutaNavigationBottomSheetScreen> // com.aiuta.fashionsdk.internal.navigation.bottomsheet/AiutaBottomSheetNavigator.lastBottomSheetScreen.<get-lastBottomSheetScreen>|<get-lastBottomSheetScreen>(){}[0]
+
+    final fun change(com.aiuta.fashionsdk.internal.navigation.bottomsheet/AiutaNavigationBottomSheetScreen) // com.aiuta.fashionsdk.internal.navigation.bottomsheet/AiutaBottomSheetNavigator.change|change(com.aiuta.fashionsdk.internal.navigation.bottomsheet.AiutaNavigationBottomSheetScreen){}[0]
+    final fun hide() // com.aiuta.fashionsdk.internal.navigation.bottomsheet/AiutaBottomSheetNavigator.hide|hide(){}[0]
+    final fun show(com.aiuta.fashionsdk.internal.navigation.bottomsheet/AiutaNavigationBottomSheetScreen) // com.aiuta.fashionsdk.internal.navigation.bottomsheet/AiutaBottomSheetNavigator.show|show(com.aiuta.fashionsdk.internal.navigation.bottomsheet.AiutaNavigationBottomSheetScreen){}[0]
+}
+
+final class com.aiuta.fashionsdk.internal.navigation.controller/AiutaNavigationController { // com.aiuta.fashionsdk.internal.navigation.controller/AiutaNavigationController|null[0]
+    final val currentScreen // com.aiuta.fashionsdk.internal.navigation.controller/AiutaNavigationController.currentScreen|{}currentScreen[0]
+        final fun <get-currentScreen>(): androidx.compose.runtime/MutableState<com.aiuta.fashionsdk.internal.navigation/AiutaNavigationScreen> // com.aiuta.fashionsdk.internal.navigation.controller/AiutaNavigationController.currentScreen.<get-currentScreen>|<get-currentScreen>(){}[0]
+
+    final fun clickClose(com.aiuta.fashionsdk.analytics.events/AiutaAnalyticsPageId? = ..., kotlin.collections/List<kotlin/String> = ...) // com.aiuta.fashionsdk.internal.navigation.controller/AiutaNavigationController.clickClose|clickClose(com.aiuta.fashionsdk.analytics.events.AiutaAnalyticsPageId?;kotlin.collections.List<kotlin.String>){}[0]
+    final fun navigateBack() // com.aiuta.fashionsdk.internal.navigation.controller/AiutaNavigationController.navigateBack|navigateBack(){}[0]
+    final fun navigateTo(com.aiuta.fashionsdk.internal.navigation/AiutaNavigationScreen) // com.aiuta.fashionsdk.internal.navigation.controller/AiutaNavigationController.navigateTo|navigateTo(com.aiuta.fashionsdk.internal.navigation.AiutaNavigationScreen){}[0]
+    final fun popUpAndNavigateTo(com.aiuta.fashionsdk.internal.navigation/AiutaNavigationScreen, com.aiuta.fashionsdk.internal.navigation/AiutaNavigationScreen? = ...) // com.aiuta.fashionsdk.internal.navigation.controller/AiutaNavigationController.popUpAndNavigateTo|popUpAndNavigateTo(com.aiuta.fashionsdk.internal.navigation.AiutaNavigationScreen;com.aiuta.fashionsdk.internal.navigation.AiutaNavigationScreen?){}[0]
+}
+
+final class com.aiuta.fashionsdk.internal.navigation.dialog/AiutaDialogController { // com.aiuta.fashionsdk.internal.navigation.dialog/AiutaDialogController|null[0]
+    final fun hideDialog() // com.aiuta.fashionsdk.internal.navigation.dialog/AiutaDialogController.hideDialog|hideDialog(){}[0]
+    final fun showDialog(com.aiuta.fashionsdk.internal.navigation.dialog/AiutaDialogState) // com.aiuta.fashionsdk.internal.navigation.dialog/AiutaDialogController.showDialog|showDialog(com.aiuta.fashionsdk.internal.navigation.dialog.AiutaDialogState){}[0]
+}
+
+final class com.aiuta.fashionsdk.internal.navigation.dialog/AiutaDialogState { // com.aiuta.fashionsdk.internal.navigation.dialog/AiutaDialogState|null[0]
+    constructor <init>(kotlin/String? = ..., kotlin/String, kotlin/String, kotlin/Function0<kotlin/Unit>, kotlin/Function0<kotlin/Unit>? = ...) // com.aiuta.fashionsdk.internal.navigation.dialog/AiutaDialogState.<init>|<init>(kotlin.String?;kotlin.String;kotlin.String;kotlin.Function0<kotlin.Unit>;kotlin.Function0<kotlin.Unit>?){}[0]
+
+    final val confirmButton // com.aiuta.fashionsdk.internal.navigation.dialog/AiutaDialogState.confirmButton|{}confirmButton[0]
+        final fun <get-confirmButton>(): kotlin/String // com.aiuta.fashionsdk.internal.navigation.dialog/AiutaDialogState.confirmButton.<get-confirmButton>|<get-confirmButton>(){}[0]
+    final val description // com.aiuta.fashionsdk.internal.navigation.dialog/AiutaDialogState.description|{}description[0]
+        final fun <get-description>(): kotlin/String // com.aiuta.fashionsdk.internal.navigation.dialog/AiutaDialogState.description.<get-description>|<get-description>(){}[0]
+    final val onConfirm // com.aiuta.fashionsdk.internal.navigation.dialog/AiutaDialogState.onConfirm|{}onConfirm[0]
+        final fun <get-onConfirm>(): kotlin/Function0<kotlin/Unit> // com.aiuta.fashionsdk.internal.navigation.dialog/AiutaDialogState.onConfirm.<get-onConfirm>|<get-onConfirm>(){}[0]
+    final val onDismiss // com.aiuta.fashionsdk.internal.navigation.dialog/AiutaDialogState.onDismiss|{}onDismiss[0]
+        final fun <get-onDismiss>(): kotlin/Function0<kotlin/Unit>? // com.aiuta.fashionsdk.internal.navigation.dialog/AiutaDialogState.onDismiss.<get-onDismiss>|<get-onDismiss>(){}[0]
+    final val title // com.aiuta.fashionsdk.internal.navigation.dialog/AiutaDialogState.title|{}title[0]
+        final fun <get-title>(): kotlin/String? // com.aiuta.fashionsdk.internal.navigation.dialog/AiutaDialogState.title.<get-title>|<get-title>(){}[0]
+}
+
+final class com.aiuta.fashionsdk.internal.navigation.snackbar/AiutaErrorSnackbarController { // com.aiuta.fashionsdk.internal.navigation.snackbar/AiutaErrorSnackbarController|null[0]
+    final fun hideErrorState() // com.aiuta.fashionsdk.internal.navigation.snackbar/AiutaErrorSnackbarController.hideErrorState|hideErrorState(){}[0]
+    final fun showErrorState(com.aiuta.fashionsdk.internal.navigation.snackbar/AiutaErrorSnackbarState) // com.aiuta.fashionsdk.internal.navigation.snackbar/AiutaErrorSnackbarController.showErrorState|showErrorState(com.aiuta.fashionsdk.internal.navigation.snackbar.AiutaErrorSnackbarState){}[0]
+}
+
+final val com.aiuta.fashionsdk.internal.navigation.bottomsheet/com_aiuta_fashionsdk_internal_navigation_bottomsheet_AiutaBottomSheetNavigator$stableprop // com.aiuta.fashionsdk.internal.navigation.bottomsheet/com_aiuta_fashionsdk_internal_navigation_bottomsheet_AiutaBottomSheetNavigator$stableprop|#static{}com_aiuta_fashionsdk_internal_navigation_bottomsheet_AiutaBottomSheetNavigator$stableprop[0]
+final val com.aiuta.fashionsdk.internal.navigation.bottomsheet/com_aiuta_fashionsdk_internal_navigation_bottomsheet_AiutaNavigationBottomSheetScreen_IDLE$stableprop // com.aiuta.fashionsdk.internal.navigation.bottomsheet/com_aiuta_fashionsdk_internal_navigation_bottomsheet_AiutaNavigationBottomSheetScreen_IDLE$stableprop|#static{}com_aiuta_fashionsdk_internal_navigation_bottomsheet_AiutaNavigationBottomSheetScreen_IDLE$stableprop[0]
+final val com.aiuta.fashionsdk.internal.navigation.composition/LocalAiutaBottomSheetNavigator // com.aiuta.fashionsdk.internal.navigation.composition/LocalAiutaBottomSheetNavigator|{}LocalAiutaBottomSheetNavigator[0]
+    final fun <get-LocalAiutaBottomSheetNavigator>(): androidx.compose.runtime/ProvidableCompositionLocal<com.aiuta.fashionsdk.internal.navigation.bottomsheet/AiutaBottomSheetNavigator> // com.aiuta.fashionsdk.internal.navigation.composition/LocalAiutaBottomSheetNavigator.<get-LocalAiutaBottomSheetNavigator>|<get-LocalAiutaBottomSheetNavigator>(){}[0]
+final val com.aiuta.fashionsdk.internal.navigation.composition/LocalAiutaDialogController // com.aiuta.fashionsdk.internal.navigation.composition/LocalAiutaDialogController|{}LocalAiutaDialogController[0]
+    final fun <get-LocalAiutaDialogController>(): androidx.compose.runtime/ProvidableCompositionLocal<com.aiuta.fashionsdk.internal.navigation.dialog/AiutaDialogController> // com.aiuta.fashionsdk.internal.navigation.composition/LocalAiutaDialogController.<get-LocalAiutaDialogController>|<get-LocalAiutaDialogController>(){}[0]
+final val com.aiuta.fashionsdk.internal.navigation.composition/LocalAiutaErrorSnackbarController // com.aiuta.fashionsdk.internal.navigation.composition/LocalAiutaErrorSnackbarController|{}LocalAiutaErrorSnackbarController[0]
+    final fun <get-LocalAiutaErrorSnackbarController>(): androidx.compose.runtime/ProvidableCompositionLocal<com.aiuta.fashionsdk.internal.navigation.snackbar/AiutaErrorSnackbarController> // com.aiuta.fashionsdk.internal.navigation.composition/LocalAiutaErrorSnackbarController.<get-LocalAiutaErrorSnackbarController>|<get-LocalAiutaErrorSnackbarController>(){}[0]
+final val com.aiuta.fashionsdk.internal.navigation.composition/LocalAiutaLogger // com.aiuta.fashionsdk.internal.navigation.composition/LocalAiutaLogger|{}LocalAiutaLogger[0]
+    final fun <get-LocalAiutaLogger>(): androidx.compose.runtime/ProvidableCompositionLocal<com.aiuta.fashionsdk.logger/AiutaLogger?> // com.aiuta.fashionsdk.internal.navigation.composition/LocalAiutaLogger.<get-LocalAiutaLogger>|<get-LocalAiutaLogger>(){}[0]
+final val com.aiuta.fashionsdk.internal.navigation.composition/LocalAiutaNavigationController // com.aiuta.fashionsdk.internal.navigation.composition/LocalAiutaNavigationController|{}LocalAiutaNavigationController[0]
+    final fun <get-LocalAiutaNavigationController>(): androidx.compose.runtime/ProvidableCompositionLocal<com.aiuta.fashionsdk.internal.navigation.controller/AiutaNavigationController> // com.aiuta.fashionsdk.internal.navigation.composition/LocalAiutaNavigationController.<get-LocalAiutaNavigationController>|<get-LocalAiutaNavigationController>(){}[0]
+final val com.aiuta.fashionsdk.internal.navigation.controller/com_aiuta_fashionsdk_internal_navigation_controller_AiutaNavigationController$stableprop // com.aiuta.fashionsdk.internal.navigation.controller/com_aiuta_fashionsdk_internal_navigation_controller_AiutaNavigationController$stableprop|#static{}com_aiuta_fashionsdk_internal_navigation_controller_AiutaNavigationController$stableprop[0]
+final val com.aiuta.fashionsdk.internal.navigation.dialog/com_aiuta_fashionsdk_internal_navigation_dialog_AiutaDialogController$stableprop // com.aiuta.fashionsdk.internal.navigation.dialog/com_aiuta_fashionsdk_internal_navigation_dialog_AiutaDialogController$stableprop|#static{}com_aiuta_fashionsdk_internal_navigation_dialog_AiutaDialogController$stableprop[0]
+final val com.aiuta.fashionsdk.internal.navigation.dialog/com_aiuta_fashionsdk_internal_navigation_dialog_AiutaDialogState$stableprop // com.aiuta.fashionsdk.internal.navigation.dialog/com_aiuta_fashionsdk_internal_navigation_dialog_AiutaDialogState$stableprop|#static{}com_aiuta_fashionsdk_internal_navigation_dialog_AiutaDialogState$stableprop[0]
+final val com.aiuta.fashionsdk.internal.navigation.internal.utils/leftToRightTransition // com.aiuta.fashionsdk.internal.navigation.internal.utils/leftToRightTransition|{}leftToRightTransition[0]
+    final fun <get-leftToRightTransition>(): androidx.compose.animation/ContentTransform // com.aiuta.fashionsdk.internal.navigation.internal.utils/leftToRightTransition.<get-leftToRightTransition>|<get-leftToRightTransition>(){}[0]
+final val com.aiuta.fashionsdk.internal.navigation.internal.utils/rightToLeftTransition // com.aiuta.fashionsdk.internal.navigation.internal.utils/rightToLeftTransition|{}rightToLeftTransition[0]
+    final fun <get-rightToLeftTransition>(): androidx.compose.animation/ContentTransform // com.aiuta.fashionsdk.internal.navigation.internal.utils/rightToLeftTransition.<get-rightToLeftTransition>|<get-rightToLeftTransition>(){}[0]
+final val com.aiuta.fashionsdk.internal.navigation.snackbar/com_aiuta_fashionsdk_internal_navigation_snackbar_AiutaErrorSnackbarController$stableprop // com.aiuta.fashionsdk.internal.navigation.snackbar/com_aiuta_fashionsdk_internal_navigation_snackbar_AiutaErrorSnackbarController$stableprop|#static{}com_aiuta_fashionsdk_internal_navigation_snackbar_AiutaErrorSnackbarController$stableprop[0]
+final val com.aiuta.fashionsdk.internal.navigation/com_aiuta_fashionsdk_internal_navigation_AiutaEntryProviderScope$stableprop // com.aiuta.fashionsdk.internal.navigation/com_aiuta_fashionsdk_internal_navigation_AiutaEntryProviderScope$stableprop|#static{}com_aiuta_fashionsdk_internal_navigation_AiutaEntryProviderScope$stableprop[0]
+final val com.aiuta.fashionsdk.internal.navigation/com_aiuta_fashionsdk_internal_navigation_AiutaNavEntry$stableprop // com.aiuta.fashionsdk.internal.navigation/com_aiuta_fashionsdk_internal_navigation_AiutaNavEntry$stableprop|#static{}com_aiuta_fashionsdk_internal_navigation_AiutaNavEntry$stableprop[0]
+final val com.aiuta.fashionsdk.internal.navigation/com_aiuta_fashionsdk_internal_navigation_AiutaNavigationScreen$stableprop // com.aiuta.fashionsdk.internal.navigation/com_aiuta_fashionsdk_internal_navigation_AiutaNavigationScreen$stableprop|#static{}com_aiuta_fashionsdk_internal_navigation_AiutaNavigationScreen$stableprop[0]
+
+final fun com.aiuta.fashionsdk.internal.navigation.bottomsheet/com_aiuta_fashionsdk_internal_navigation_bottomsheet_AiutaBottomSheetNavigator$stableprop_getter(): kotlin/Int // com.aiuta.fashionsdk.internal.navigation.bottomsheet/com_aiuta_fashionsdk_internal_navigation_bottomsheet_AiutaBottomSheetNavigator$stableprop_getter|com_aiuta_fashionsdk_internal_navigation_bottomsheet_AiutaBottomSheetNavigator$stableprop_getter(){}[0]
+final fun com.aiuta.fashionsdk.internal.navigation.bottomsheet/com_aiuta_fashionsdk_internal_navigation_bottomsheet_AiutaNavigationBottomSheetScreen_IDLE$stableprop_getter(): kotlin/Int // com.aiuta.fashionsdk.internal.navigation.bottomsheet/com_aiuta_fashionsdk_internal_navigation_bottomsheet_AiutaNavigationBottomSheetScreen_IDLE$stableprop_getter|com_aiuta_fashionsdk_internal_navigation_bottomsheet_AiutaNavigationBottomSheetScreen_IDLE$stableprop_getter(){}[0]
+final fun com.aiuta.fashionsdk.internal.navigation.controller/com_aiuta_fashionsdk_internal_navigation_controller_AiutaNavigationController$stableprop_getter(): kotlin/Int // com.aiuta.fashionsdk.internal.navigation.controller/com_aiuta_fashionsdk_internal_navigation_controller_AiutaNavigationController$stableprop_getter|com_aiuta_fashionsdk_internal_navigation_controller_AiutaNavigationController$stableprop_getter(){}[0]
+final fun com.aiuta.fashionsdk.internal.navigation.dialog/com_aiuta_fashionsdk_internal_navigation_dialog_AiutaDialogController$stableprop_getter(): kotlin/Int // com.aiuta.fashionsdk.internal.navigation.dialog/com_aiuta_fashionsdk_internal_navigation_dialog_AiutaDialogController$stableprop_getter|com_aiuta_fashionsdk_internal_navigation_dialog_AiutaDialogController$stableprop_getter(){}[0]
+final fun com.aiuta.fashionsdk.internal.navigation.dialog/com_aiuta_fashionsdk_internal_navigation_dialog_AiutaDialogState$stableprop_getter(): kotlin/Int // com.aiuta.fashionsdk.internal.navigation.dialog/com_aiuta_fashionsdk_internal_navigation_dialog_AiutaDialogState$stableprop_getter|com_aiuta_fashionsdk_internal_navigation_dialog_AiutaDialogState$stableprop_getter(){}[0]
+final fun com.aiuta.fashionsdk.internal.navigation.snackbar/com_aiuta_fashionsdk_internal_navigation_snackbar_AiutaErrorSnackbarController$stableprop_getter(): kotlin/Int // com.aiuta.fashionsdk.internal.navigation.snackbar/com_aiuta_fashionsdk_internal_navigation_snackbar_AiutaErrorSnackbarController$stableprop_getter|com_aiuta_fashionsdk_internal_navigation_snackbar_AiutaErrorSnackbarController$stableprop_getter(){}[0]
+final fun com.aiuta.fashionsdk.internal.navigation/AiutaNavigationFlow(kotlin/Function1<com.aiuta.fashionsdk.internal.navigation/AiutaNavigationScreen, com.aiuta.fashionsdk.internal.navigation/AiutaNavEntry<com.aiuta.fashionsdk.internal.navigation/AiutaNavigationScreen>>, androidx.compose.ui/Modifier?, androidx.compose.runtime/Composer?, kotlin/Int, kotlin/Int) // com.aiuta.fashionsdk.internal.navigation/AiutaNavigationFlow|AiutaNavigationFlow(kotlin.Function1<com.aiuta.fashionsdk.internal.navigation.AiutaNavigationScreen,com.aiuta.fashionsdk.internal.navigation.AiutaNavEntry<com.aiuta.fashionsdk.internal.navigation.AiutaNavigationScreen>>;androidx.compose.ui.Modifier?;androidx.compose.runtime.Composer?;kotlin.Int;kotlin.Int){}[0]
+final fun com.aiuta.fashionsdk.internal.navigation/AiutaNavigationInitialisation(com.aiuta.fashionsdk.internal.navigation/AiutaNavigationScreen, com.aiuta.fashionsdk.configuration/AiutaConfiguration, kotlin/Function1<com.aiuta.fashionsdk.internal.navigation.bottomsheet/AiutaNavigationBottomSheetScreen, com.aiuta.fashionsdk.internal.navigation/AiutaNavEntry<com.aiuta.fashionsdk.internal.navigation.bottomsheet/AiutaNavigationBottomSheetScreen>>, kotlin/Function2<androidx.compose.runtime/Composer, kotlin/Int, kotlin/Unit>, androidx.compose.runtime/Composer?, kotlin/Int) // com.aiuta.fashionsdk.internal.navigation/AiutaNavigationInitialisation|AiutaNavigationInitialisation(com.aiuta.fashionsdk.internal.navigation.AiutaNavigationScreen;com.aiuta.fashionsdk.configuration.AiutaConfiguration;kotlin.Function1<com.aiuta.fashionsdk.internal.navigation.bottomsheet.AiutaNavigationBottomSheetScreen,com.aiuta.fashionsdk.internal.navigation.AiutaNavEntry<com.aiuta.fashionsdk.internal.navigation.bottomsheet.AiutaNavigationBottomSheetScreen>>;kotlin.Function2<androidx.compose.runtime.Composer,kotlin.Int,kotlin.Unit>;androidx.compose.runtime.Composer?;kotlin.Int){}[0]
+final fun com.aiuta.fashionsdk.internal.navigation/com_aiuta_fashionsdk_internal_navigation_AiutaEntryProviderScope$stableprop_getter(): kotlin/Int // com.aiuta.fashionsdk.internal.navigation/com_aiuta_fashionsdk_internal_navigation_AiutaEntryProviderScope$stableprop_getter|com_aiuta_fashionsdk_internal_navigation_AiutaEntryProviderScope$stableprop_getter(){}[0]
+final fun com.aiuta.fashionsdk.internal.navigation/com_aiuta_fashionsdk_internal_navigation_AiutaNavEntry$stableprop_getter(): kotlin/Int // com.aiuta.fashionsdk.internal.navigation/com_aiuta_fashionsdk_internal_navigation_AiutaNavEntry$stableprop_getter|com_aiuta_fashionsdk_internal_navigation_AiutaNavEntry$stableprop_getter(){}[0]
+final fun com.aiuta.fashionsdk.internal.navigation/com_aiuta_fashionsdk_internal_navigation_AiutaNavigationScreen$stableprop_getter(): kotlin/Int // com.aiuta.fashionsdk.internal.navigation/com_aiuta_fashionsdk_internal_navigation_AiutaNavigationScreen$stableprop_getter|com_aiuta_fashionsdk_internal_navigation_AiutaNavigationScreen$stableprop_getter(){}[0]
+final inline fun <#A: com.aiuta.fashionsdk.internal.navigation/AiutaNavKey> com.aiuta.fashionsdk.internal.navigation/aiutaEntryProvider(noinline kotlin/Function1<#A, com.aiuta.fashionsdk.internal.navigation/AiutaNavEntry<#A>> = ..., kotlin/Function1<com.aiuta.fashionsdk.internal.navigation/AiutaEntryProviderScope<#A>, kotlin/Unit>): kotlin/Function1<#A, com.aiuta.fashionsdk.internal.navigation/AiutaNavEntry<#A>> // com.aiuta.fashionsdk.internal.navigation/aiutaEntryProvider|aiutaEntryProvider(kotlin.Function1<0:0,com.aiuta.fashionsdk.internal.navigation.AiutaNavEntry<0:0>>;kotlin.Function1<com.aiuta.fashionsdk.internal.navigation.AiutaEntryProviderScope<0:0>,kotlin.Unit>){0§<com.aiuta.fashionsdk.internal.navigation.AiutaNavKey>}[0]

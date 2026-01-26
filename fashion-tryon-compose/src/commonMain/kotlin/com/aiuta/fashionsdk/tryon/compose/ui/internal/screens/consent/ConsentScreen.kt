@@ -14,19 +14,19 @@ import androidx.compose.runtime.rememberCoroutineScope
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
+import com.aiuta.fashionsdk.compose.uikit.button.FashionButton
+import com.aiuta.fashionsdk.compose.uikit.button.FashionButtonSizes
+import com.aiuta.fashionsdk.compose.uikit.button.FashionButtonStyles
+import com.aiuta.fashionsdk.compose.uikit.composition.LocalTheme
+import com.aiuta.fashionsdk.compose.uikit.utils.strictProvideFeature
 import com.aiuta.fashionsdk.configuration.features.consent.AiutaConsentStandaloneFeature
+import com.aiuta.fashionsdk.internal.navigation.composition.LocalAiutaNavigationController
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.controller.composition.LocalController
-import com.aiuta.fashionsdk.tryon.compose.ui.internal.controller.navigateBack
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.screens.consent.component.common.ConsentAppBar
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.screens.consent.controller.completeConsentViewing
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.screens.consent.controller.listenIsAllMandatoryConsentChecked
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.screens.consent.controller.rememberConsentController
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.screens.consent.controller.updateConsentState
-import com.aiuta.fashionsdk.tryon.compose.ui.internal.utils.features.strictProvideFeature
-import com.aiuta.fashionsdk.tryon.compose.uikit.button.FashionButton
-import com.aiuta.fashionsdk.tryon.compose.uikit.button.FashionButtonSizes
-import com.aiuta.fashionsdk.tryon.compose.uikit.button.FashionButtonStyles
-import com.aiuta.fashionsdk.tryon.compose.uikit.composition.LocalTheme
 import kotlinx.coroutines.launch
 
 @Composable
@@ -36,6 +36,7 @@ internal fun ConsentScreen(
 ) {
     val theme = LocalTheme.current
     val controller = LocalController.current
+    val navigationController = LocalAiutaNavigationController.current
     val scope = rememberCoroutineScope()
 
     val consentStandaloneFeature = strictProvideFeature<AiutaConsentStandaloneFeature>()
@@ -76,7 +77,7 @@ internal fun ConsentScreen(
             onClick = {
                 scope.launch {
                     consentController.completeConsentViewing(controller.consentInteractor)
-                    controller.navigateBack().apply { onObtainedConsents() }
+                    navigationController.navigateBack().apply { onObtainedConsents() }
                 }
             },
         )

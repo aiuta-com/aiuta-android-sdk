@@ -1,0 +1,35 @@
+// Klib ABI Dump
+// Targets: [iosArm64, iosSimulatorArm64, iosX64]
+// Rendering settings:
+// - Signature version: 2
+// - Show manifest properties: true
+// - Show declarations: true
+
+// Library unique name: <com.aiuta:internal-fashion-storage>
+abstract interface com.aiuta.fashionsdk.internal.storage/AiutaStorage { // com.aiuta.fashionsdk.internal.storage/AiutaStorage|null[0]
+    abstract suspend fun <#A1: kotlin/Any?> get(kotlin/String, kotlinx.serialization/KSerializer<#A1>): #A1? // com.aiuta.fashionsdk.internal.storage/AiutaStorage.get|get(kotlin.String;kotlinx.serialization.KSerializer<0:0>){0§<kotlin.Any?>}[0]
+    abstract suspend fun <#A1: kotlin/Any?> save(kotlin/String, #A1, kotlinx.serialization/KSerializer<#A1>) // com.aiuta.fashionsdk.internal.storage/AiutaStorage.save|save(kotlin.String;0:0;kotlinx.serialization.KSerializer<0:0>){0§<kotlin.Any?>}[0]
+    abstract suspend fun clear() // com.aiuta.fashionsdk.internal.storage/AiutaStorage.clear|clear(){}[0]
+    abstract suspend fun remove(kotlin/String) // com.aiuta.fashionsdk.internal.storage/AiutaStorage.remove|remove(kotlin.String){}[0]
+
+    final class Factory { // com.aiuta.fashionsdk.internal.storage/AiutaStorage.Factory|null[0]
+        constructor <init>() // com.aiuta.fashionsdk.internal.storage/AiutaStorage.Factory.<init>|<init>(){}[0]
+
+        final fun create(kotlin/String, com.aiuta.fashionsdk.context/AiutaPlatformContext): com.aiuta.fashionsdk.internal.storage/AiutaStorage // com.aiuta.fashionsdk.internal.storage/AiutaStorage.Factory.create|create(kotlin.String;com.aiuta.fashionsdk.context.AiutaPlatformContext){}[0]
+    }
+}
+
+final suspend fun (com.aiuta.fashionsdk.internal.storage/AiutaStorage).com.aiuta.fashionsdk.internal.storage/getBoolean(kotlin/String): kotlin/Boolean? // com.aiuta.fashionsdk.internal.storage/getBoolean|getBoolean@com.aiuta.fashionsdk.internal.storage.AiutaStorage(kotlin.String){}[0]
+final suspend fun (com.aiuta.fashionsdk.internal.storage/AiutaStorage).com.aiuta.fashionsdk.internal.storage/getDouble(kotlin/String): kotlin/Double? // com.aiuta.fashionsdk.internal.storage/getDouble|getDouble@com.aiuta.fashionsdk.internal.storage.AiutaStorage(kotlin.String){}[0]
+final suspend fun (com.aiuta.fashionsdk.internal.storage/AiutaStorage).com.aiuta.fashionsdk.internal.storage/getFloat(kotlin/String): kotlin/Float? // com.aiuta.fashionsdk.internal.storage/getFloat|getFloat@com.aiuta.fashionsdk.internal.storage.AiutaStorage(kotlin.String){}[0]
+final suspend fun (com.aiuta.fashionsdk.internal.storage/AiutaStorage).com.aiuta.fashionsdk.internal.storage/getInt(kotlin/String): kotlin/Int? // com.aiuta.fashionsdk.internal.storage/getInt|getInt@com.aiuta.fashionsdk.internal.storage.AiutaStorage(kotlin.String){}[0]
+final suspend fun (com.aiuta.fashionsdk.internal.storage/AiutaStorage).com.aiuta.fashionsdk.internal.storage/getLong(kotlin/String): kotlin/Long? // com.aiuta.fashionsdk.internal.storage/getLong|getLong@com.aiuta.fashionsdk.internal.storage.AiutaStorage(kotlin.String){}[0]
+final suspend fun (com.aiuta.fashionsdk.internal.storage/AiutaStorage).com.aiuta.fashionsdk.internal.storage/getString(kotlin/String): kotlin/String? // com.aiuta.fashionsdk.internal.storage/getString|getString@com.aiuta.fashionsdk.internal.storage.AiutaStorage(kotlin.String){}[0]
+final suspend fun (com.aiuta.fashionsdk.internal.storage/AiutaStorage).com.aiuta.fashionsdk.internal.storage/saveBoolean(kotlin/String, kotlin/Boolean) // com.aiuta.fashionsdk.internal.storage/saveBoolean|saveBoolean@com.aiuta.fashionsdk.internal.storage.AiutaStorage(kotlin.String;kotlin.Boolean){}[0]
+final suspend fun (com.aiuta.fashionsdk.internal.storage/AiutaStorage).com.aiuta.fashionsdk.internal.storage/saveDouble(kotlin/String, kotlin/Double) // com.aiuta.fashionsdk.internal.storage/saveDouble|saveDouble@com.aiuta.fashionsdk.internal.storage.AiutaStorage(kotlin.String;kotlin.Double){}[0]
+final suspend fun (com.aiuta.fashionsdk.internal.storage/AiutaStorage).com.aiuta.fashionsdk.internal.storage/saveFloat(kotlin/String, kotlin/Float) // com.aiuta.fashionsdk.internal.storage/saveFloat|saveFloat@com.aiuta.fashionsdk.internal.storage.AiutaStorage(kotlin.String;kotlin.Float){}[0]
+final suspend fun (com.aiuta.fashionsdk.internal.storage/AiutaStorage).com.aiuta.fashionsdk.internal.storage/saveInt(kotlin/String, kotlin/Int) // com.aiuta.fashionsdk.internal.storage/saveInt|saveInt@com.aiuta.fashionsdk.internal.storage.AiutaStorage(kotlin.String;kotlin.Int){}[0]
+final suspend fun (com.aiuta.fashionsdk.internal.storage/AiutaStorage).com.aiuta.fashionsdk.internal.storage/saveLong(kotlin/String, kotlin/Long) // com.aiuta.fashionsdk.internal.storage/saveLong|saveLong@com.aiuta.fashionsdk.internal.storage.AiutaStorage(kotlin.String;kotlin.Long){}[0]
+final suspend fun (com.aiuta.fashionsdk.internal.storage/AiutaStorage).com.aiuta.fashionsdk.internal.storage/saveString(kotlin/String, kotlin/String) // com.aiuta.fashionsdk.internal.storage/saveString|saveString@com.aiuta.fashionsdk.internal.storage.AiutaStorage(kotlin.String;kotlin.String){}[0]
+final suspend inline fun <#A: reified kotlin/Any?> (com.aiuta.fashionsdk.internal.storage/AiutaStorage).com.aiuta.fashionsdk.internal.storage/get(kotlin/String): #A? // com.aiuta.fashionsdk.internal.storage/get|get@com.aiuta.fashionsdk.internal.storage.AiutaStorage(kotlin.String){0§<kotlin.Any?>}[0]
+final suspend inline fun <#A: reified kotlin/Any?> (com.aiuta.fashionsdk.internal.storage/AiutaStorage).com.aiuta.fashionsdk.internal.storage/save(kotlin/String, #A) // com.aiuta.fashionsdk.internal.storage/save|save@com.aiuta.fashionsdk.internal.storage.AiutaStorage(kotlin.String;0:0){0§<kotlin.Any?>}[0]

@@ -18,22 +18,22 @@ import androidx.compose.ui.graphics.graphicsLayer
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.unit.dp
 import com.aiuta.fashionsdk.analytics.events.AiutaAnalyticsPageId
+import com.aiuta.fashionsdk.compose.uikit.composition.LocalTheme
+import com.aiuta.fashionsdk.compose.uikit.resources.AiutaImage
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.controller.composition.LocalController
-import com.aiuta.fashionsdk.tryon.compose.ui.internal.navigation.NavigationScreen
+import com.aiuta.fashionsdk.tryon.compose.ui.internal.navigation.TryOnScreen
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.screens.base.share.ShareElement
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.screens.base.share.onShare
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.screens.list.components.buttons.ShareButton
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.screens.list.components.navigation.ImageListNavigationBlock
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.utils.offsetForPage
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.utils.paging.collectAsLazyPagingItems
-import com.aiuta.fashionsdk.tryon.compose.uikit.composition.LocalTheme
-import com.aiuta.fashionsdk.tryon.compose.uikit.resources.AiutaImage
 import kotlin.math.absoluteValue
 
 @Composable
 internal fun ImageListScreen(
     modifier: Modifier = Modifier,
-    args: NavigationScreen.ImageListViewer,
+    args: TryOnScreen.ImageListViewer,
 ) {
     val theme = LocalTheme.current
     val controller = LocalController.current
