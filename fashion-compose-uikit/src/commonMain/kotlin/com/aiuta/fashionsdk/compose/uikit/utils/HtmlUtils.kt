@@ -44,6 +44,7 @@ public fun buildAnnotatedStringFromHtml(
                 builder.withLink(LinkAnnotation.Url(link)) {
                     append(text)
                 }
+                currentLink.value = null
             } ?: builder.append(text)
         }
         .build()

@@ -20,7 +20,9 @@ import androidx.compose.runtime.State
 import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.derivedStateOf
 import androidx.compose.runtime.remember
+import androidx.compose.ui.ExperimentalComposeUiApi
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.backhandler.BackHandler
 import androidx.compose.ui.unit.dp
 import androidx.lifecycle.viewmodel.compose.viewModel
 import com.aiuta.fashionsdk.compose.core.context.LocalAiutaPlatformContext
@@ -51,6 +53,7 @@ import com.aiuta.fashionsdk.sizefit.compose.ui.internal.screens.questionary.util
 import com.aiuta.fashionsdk.sizefit.compose.ui.internal.screens.questionary.utils.navigateNextStep
 import com.aiuta.fashionsdk.sizefit.compose.ui.internal.screens.questionary.utils.solvePrimaryButtonText
 
+@OptIn(ExperimentalComposeUiApi::class)
 @Composable
 internal fun QuestionaryScreen(
     productCode: String,
@@ -108,6 +111,10 @@ internal fun QuestionaryScreen(
             recommendationState = recommendationState,
             viewModel = viewModel,
         )
+
+        BackHandler {
+            viewModel.navigateBack()
+        }
 
         Column(
             modifier = modifier
