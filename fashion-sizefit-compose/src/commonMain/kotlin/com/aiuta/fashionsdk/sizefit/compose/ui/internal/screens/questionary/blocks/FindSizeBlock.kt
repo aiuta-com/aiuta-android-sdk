@@ -26,14 +26,14 @@ import com.aiuta.fashionsdk.compose.uikit.utils.strictProvideFeature
 import com.aiuta.fashionsdk.configuration.features.sizefit.AiutaSizeFitFeature
 import com.aiuta.fashionsdk.sizefit.compose.ui.internal.screens.questionary.components.QuestionaryTextField
 import com.aiuta.fashionsdk.sizefit.compose.ui.internal.screens.questionary.components.VariantBox
-import com.aiuta.fashionsdk.sizefit.compose.ui.internal.screens.questionary.state.SizeFitConfigState
+import com.aiuta.fashionsdk.sizefit.compose.ui.internal.screens.questionary.state.SizeFitConfigUiModel
 import com.aiuta.fashionsdk.sizefit.core.AiutaSizeFitConfig
 
 @Composable
 internal fun FindSizeBlock(
-    configState: State<SizeFitConfigState>,
+    configState: State<SizeFitConfigUiModel>,
     shouldShowErrorState: State<Boolean>,
-    updateConfig: (SizeFitConfigState) -> Unit,
+    updateConfig: (SizeFitConfigUiModel) -> Unit,
     modifier: Modifier = Modifier,
 ) {
     val theme = LocalTheme.current
@@ -154,8 +154,8 @@ internal fun FindSizeBlock(
 
 @Composable
 private fun GenderSubBlock(
-    configState: State<SizeFitConfigState>,
-    updateConfig: (SizeFitConfigState) -> Unit,
+    configState: State<SizeFitConfigUiModel>,
+    updateConfig: (SizeFitConfigUiModel) -> Unit,
     modifier: Modifier = Modifier,
 ) {
     val sizeFitFeature = strictProvideFeature<AiutaSizeFitFeature>()

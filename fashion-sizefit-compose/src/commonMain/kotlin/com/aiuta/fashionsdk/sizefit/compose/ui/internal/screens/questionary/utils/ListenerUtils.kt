@@ -10,7 +10,7 @@ import com.aiuta.fashionsdk.internal.navigation.snackbar.AiutaErrorSnackbarState
 import com.aiuta.fashionsdk.sizefit.compose.ui.internal.navigation.SizeFitScreen
 import com.aiuta.fashionsdk.sizefit.compose.ui.internal.screens.questionary.QuestionaryViewModel
 import com.aiuta.fashionsdk.sizefit.compose.ui.internal.screens.questionary.state.RecommendationState
-import com.aiuta.fashionsdk.sizefit.compose.ui.internal.screens.questionary.state.SizeFitConfigState
+import com.aiuta.fashionsdk.sizefit.compose.ui.internal.screens.questionary.state.SizeFitConfigUiModel
 
 @Immutable
 internal class RecommendationLoadError(
@@ -23,7 +23,7 @@ internal class RecommendationLoadError(
 
 @Composable
 internal fun RecommendationStateListener(
-    configState: State<SizeFitConfigState>,
+    configState: State<SizeFitConfigUiModel>,
     recommendationState: State<RecommendationState>,
     viewModel: QuestionaryViewModel,
 ) {

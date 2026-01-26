@@ -12,15 +12,10 @@ import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.windowInsetsPadding
 import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
-import androidx.compose.runtime.remember
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.graphics.Brush
-import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
-import androidx.compose.ui.unit.sp
-import androidx.lifecycle.viewmodel.compose.viewModel
 import com.aiuta.fashionsdk.compose.uikit.appbar.AiutaAppBar
 import com.aiuta.fashionsdk.compose.uikit.appbar.AiutaAppBarIcon
 import com.aiuta.fashionsdk.compose.uikit.button.FashionButton
@@ -32,8 +27,9 @@ import com.aiuta.fashionsdk.compose.uikit.utils.strictProvideFeature
 import com.aiuta.fashionsdk.configuration.features.sizefit.AiutaSizeFitFeature
 import com.aiuta.fashionsdk.internal.navigation.composition.LocalAiutaNavigationController
 import com.aiuta.fashionsdk.sizefit.compose.ui.internal.navigation.SizeFitScreen
-import com.aiuta.fashionsdk.sizefit.compose.ui.internal.screens.questionary.state.SizeFitConfigState
-import com.aiuta.fashionsdk.sizefit.compose.ui.internal.screens.recommendation.components.SizeRecommendationProgress
+import com.aiuta.fashionsdk.sizefit.compose.ui.internal.screens.questionary.state.SizeFitConfigUiModel
+import com.aiuta.fashionsdk.sizefit.compose.ui.internal.screens.recommendation.blocks.ErrorRecommendationBlock
+import com.aiuta.fashionsdk.sizefit.compose.ui.internal.screens.recommendation.blocks.SuccessRecommendationBlock
 import com.aiuta.fashionsdk.sizefit.core.AiutaSizeFitConfig
 
 @Composable
@@ -45,14 +41,7 @@ internal fun RecommendationResultScreen(
     val theme = LocalTheme.current
 
     val sizeFitFeature = strictProvideFeature<AiutaSizeFitFeature>()
-    val sizeFitConfig = args.config
-    val sizeFitRecommendation = args.recommendation
-    val sharedProgressModifier = Modifier.fillMaxWidth().padding(horizontal = 40.dp)
-
-    val viewModel = viewModel { RecommendationResultViewModel() }
-    val (recommendedSizeInfo, nextBestSizeInfo) = remember(sizeFitRecommendation) {
-        viewModel.calculateRecommendationData(sizeFitRecommendation)
-    }
+    val isSuccessState = args.recommendation.recommendedSizeName.isNotBlank()
 
     Column(
         modifier = modifier
@@ -72,57 +61,14 @@ internal fun RecommendationResultScreen(
             },
         )
 
-        Spacer(Modifier.height(20.dp))
-
-        Text(
-            text = sizeFitFeature.strings.recommendedSizeTitle,
-            style = theme.label.typography.titleM,
-            color = theme.color.primary,
-            textAlign = TextAlign.Center,
-        )
-
-        Spacer(Modifier.height(24.dp))
-
-        Text(
-            text = sizeFitRecommendation.recommendedSizeName,
-            style = theme.label.typography.titleM.copy(
-                fontWeight = FontWeight.Normal,
-                fontSize = 140.sp,
-            ),
-            color = theme.color.primary,
-            textAlign = TextAlign.Center,
-        )
-
-        Spacer(Modifier.weight(1f))
-
-        // Recommended size
-        recommendedSizeInfo?.let { sizeInfo ->
-            SizeRecommendationProgress(
-                sizeName = sizeInfo.size.name,
-                percentage = sizeInfo.confidence,
-                progressColor = Brush.horizontalGradient(sizeFitFeature.styles.sizeFitButtonGradient),
-                percentageTextColor = theme.color.background,
-                fitSummary = sizeInfo.fitSummary,
-                modifier = sharedProgressModifier,
-            )
+        if (isSuccessState) {
+            SuccessRecommendationBlock(args = args)
+        } else {
+            ErrorRecommendationBlock()
         }
-
-        Spacer(Modifier.height(26.dp))
-
-        // Next best size
-        nextBestSizeInfo?.let { sizeInfo ->
-            SizeRecommendationProgress(
-                sizeName = sizeInfo.size.name,
-                percentage = sizeInfo.confidence,
-                fitSummary = sizeInfo.fitSummary,
-                modifier = sharedProgressModifier,
-            )
-        }
-
-        Spacer(Modifier.weight(1f))
 
         ParametersBlock(
-            sizeFitConfig = sizeFitConfig,
+            sizeFitConfig = args.config,
         )
 
         Spacer(Modifier.height(36.dp))
@@ -141,7 +87,7 @@ internal fun RecommendationResultScreen(
 
 @Composable
 private fun ColumnScope.ParametersBlock(
-    sizeFitConfig: SizeFitConfigState,
+    sizeFitConfig: SizeFitConfigUiModel,
     modifier: Modifier = Modifier,
 ) {
     val navigationController = LocalAiutaNavigationController.current

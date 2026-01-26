@@ -6,17 +6,17 @@ import com.aiuta.fashionsdk.sizefit.compose.data.buildAiutaSizeFitStorage
 import com.aiuta.fashionsdk.sizefit.compose.domain.models.AiutaSizeFitConfigDTO
 import com.aiuta.fashionsdk.sizefit.compose.domain.models.toDTO
 import com.aiuta.fashionsdk.sizefit.compose.domain.models.toUiState
-import com.aiuta.fashionsdk.sizefit.compose.ui.internal.screens.questionary.state.SizeFitConfigState
+import com.aiuta.fashionsdk.sizefit.compose.ui.internal.screens.questionary.state.SizeFitConfigUiModel
 
 internal class AiutaConfigSlice(
     private val storage: AiutaStorage,
 ) {
-    suspend fun provideConfigState(): SizeFitConfigState? = storage.get(
+    suspend fun provideConfigState(): SizeFitConfigUiModel? = storage.get(
         key = SIZEFIT_CONFIG_KEY,
         serializer = AiutaSizeFitConfigDTO.serializer(),
     )?.toUiState()
 
-    suspend fun saveConfigState(uiConfig: SizeFitConfigState) {
+    suspend fun saveConfigState(uiConfig: SizeFitConfigUiModel) {
         storage.save(
             key = SIZEFIT_CONFIG_KEY,
             value = uiConfig.toDTO(),

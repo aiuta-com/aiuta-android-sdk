@@ -63,7 +63,7 @@ internal class AiutaSizeFitImpl(
             }
 
             val result = response.body<SizeFitResponseDTO>()
-            aiutaLogger?.d("recommendSize(): success - recommended size: ${result.recommendedSizeName}")
+            aiutaLogger?.d("recommendSize(): success - recommended size - ${result.recommendedSizeName}")
 
             return result.fromDTO()
         } catch (e: Exception) {

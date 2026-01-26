@@ -6,7 +6,6 @@ import androidx.compose.foundation.layout.FlowRow
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
-import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.width
 import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
@@ -21,13 +20,13 @@ import com.aiuta.fashionsdk.compose.uikit.composition.LocalTheme
 import com.aiuta.fashionsdk.compose.uikit.utils.strictProvideFeature
 import com.aiuta.fashionsdk.configuration.features.sizefit.AiutaSizeFitFeature
 import com.aiuta.fashionsdk.sizefit.compose.ui.internal.screens.questionary.components.VariantBox
-import com.aiuta.fashionsdk.sizefit.compose.ui.internal.screens.questionary.state.SizeFitConfigState
+import com.aiuta.fashionsdk.sizefit.compose.ui.internal.screens.questionary.state.SizeFitConfigUiModel
 import com.aiuta.fashionsdk.sizefit.core.AiutaSizeFitConfig
 
 @Composable
 internal fun BraScreen(
-    configState: State<SizeFitConfigState>,
-    updateConfig: (SizeFitConfigState) -> Unit,
+    configState: State<SizeFitConfigUiModel>,
+    updateConfig: (SizeFitConfigUiModel) -> Unit,
     modifier: Modifier = Modifier,
 ) {
     val theme = LocalTheme.current

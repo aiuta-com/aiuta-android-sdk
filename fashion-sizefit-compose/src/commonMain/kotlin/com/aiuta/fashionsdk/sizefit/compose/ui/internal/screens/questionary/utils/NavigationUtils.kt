@@ -8,6 +8,7 @@ import com.aiuta.fashionsdk.configuration.features.sizefit.AiutaSizeFitFeature
 import com.aiuta.fashionsdk.sizefit.compose.ui.internal.screens.questionary.QuestionaryViewModel
 import com.aiuta.fashionsdk.sizefit.compose.ui.internal.screens.questionary.state.QuestionaryStep
 import com.aiuta.fashionsdk.sizefit.compose.ui.internal.screens.questionary.state.SizeFitConfigState
+import com.aiuta.fashionsdk.sizefit.compose.ui.internal.screens.questionary.state.SizeFitConfigUiModel
 import com.aiuta.fashionsdk.sizefit.core.AiutaSizeFitConfig
 
 internal fun QuestionaryViewModel.navigateNextStep(
@@ -15,14 +16,14 @@ internal fun QuestionaryViewModel.navigateNextStep(
     makeRecommendation: () -> Unit,
 ) {
     val currentStep = currentStep.value
-    val config = configState.value
+    val config = (configState.value as? SizeFitConfigState.Success)?.config
 
     when (currentStep) {
         QuestionaryStep.FindSizeStep -> {
             // Check config first
-            val isConfigValid = config.run {
+            val isConfigValid = config?.run {
                 age != null && height != null && weight != null
-            }
+            } ?: false
 
             if (!isConfigValid) {
                 updateErrorState(true)
@@ -36,7 +37,7 @@ internal fun QuestionaryViewModel.navigateNextStep(
             val isBraAvailable = sizeFitFeature.bra != null
 
             when {
-                isBraAvailable && config.gender == AiutaSizeFitConfig.Gender.FEMALE -> navigateTo(
+                isBraAvailable && config?.gender == AiutaSizeFitConfig.Gender.FEMALE -> navigateTo(
                     QuestionaryStep.BraStep,
                 )
 
@@ -51,7 +52,7 @@ internal fun QuestionaryViewModel.navigateNextStep(
 @Composable
 internal fun solvePrimaryButtonText(
     stepState: State<QuestionaryStep>,
-    configState: State<SizeFitConfigState>,
+    configState: State<SizeFitConfigUiModel>,
     sizeFitFeature: AiutaSizeFitFeature,
 ): String = remember(
     stepState.value,
@@ -75,7 +76,7 @@ internal fun solvePrimaryButtonText(
 @Composable
 internal fun isPrimaryButtonEnabled(
     stepState: State<QuestionaryStep>,
-    configState: State<SizeFitConfigState>,
+    configState: State<SizeFitConfigUiModel>,
 ): State<Boolean> = remember(
     stepState.value,
     configState.value,

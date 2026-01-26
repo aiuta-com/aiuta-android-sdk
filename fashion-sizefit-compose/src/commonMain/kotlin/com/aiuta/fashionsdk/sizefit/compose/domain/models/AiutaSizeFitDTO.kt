@@ -1,6 +1,6 @@
 package com.aiuta.fashionsdk.sizefit.compose.domain.models
 
-import com.aiuta.fashionsdk.sizefit.compose.ui.internal.screens.questionary.state.SizeFitConfigState
+import com.aiuta.fashionsdk.sizefit.compose.ui.internal.screens.questionary.state.SizeFitConfigUiModel
 import com.aiuta.fashionsdk.sizefit.core.AiutaSizeFitConfig
 import kotlinx.serialization.Serializable
 
@@ -16,7 +16,7 @@ internal class AiutaSizeFitConfigDTO(
     public val braCup: AiutaSizeFitConfig.BraCup? = null,
 )
 
-internal fun AiutaSizeFitConfigDTO.toUiState(): SizeFitConfigState = SizeFitConfigState(
+internal fun AiutaSizeFitConfigDTO.toUiState(): SizeFitConfigUiModel = SizeFitConfigUiModel(
     age = age,
     height = height,
     weight = weight,
@@ -27,9 +27,9 @@ internal fun AiutaSizeFitConfigDTO.toUiState(): SizeFitConfigState = SizeFitConf
     braCup = braCup,
 )
 
-internal fun SizeFitConfigState.toDTO(): AiutaSizeFitConfigDTO {
+internal fun SizeFitConfigUiModel.toDTO(): AiutaSizeFitConfigDTO {
     val errorMessage: (String) -> String = { prop ->
-        "ERROR: Fail to convert SizeFitConfigState to AiutaSizeFitConfigDTO, because $prop is null"
+        "ERROR: Fail to convert SizeFitConfigUiModel to AiutaSizeFitConfigDTO, because $prop is null"
     }
 
     return AiutaSizeFitConfigDTO(
@@ -44,9 +44,9 @@ internal fun SizeFitConfigState.toDTO(): AiutaSizeFitConfigDTO {
     )
 }
 
-internal fun SizeFitConfigState.toCore(): AiutaSizeFitConfig {
+internal fun SizeFitConfigUiModel.toCore(): AiutaSizeFitConfig {
     val errorMessage: (String) -> String = { prop ->
-        "ERROR: Fail to convert SizeFitConfigState to AiutaSizeFitConfigDTO, because $prop is null"
+        "ERROR: Fail to convert SizeFitConfigUiModel to AiutaSizeFitConfigDTO, because $prop is null"
     }
 
     return AiutaSizeFitConfig(

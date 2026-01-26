@@ -21,14 +21,14 @@ import com.aiuta.fashionsdk.compose.uikit.composition.LocalTheme
 import com.aiuta.fashionsdk.compose.uikit.utils.strictProvideFeature
 import com.aiuta.fashionsdk.configuration.features.sizefit.AiutaSizeFitFeature
 import com.aiuta.fashionsdk.sizefit.compose.ui.internal.screens.questionary.components.VariantBox
-import com.aiuta.fashionsdk.sizefit.compose.ui.internal.screens.questionary.state.SizeFitConfigState
+import com.aiuta.fashionsdk.sizefit.compose.ui.internal.screens.questionary.state.SizeFitConfigUiModel
 import com.aiuta.fashionsdk.sizefit.core.AiutaSizeFitConfig
 import kotlin.enums.EnumEntries
 
 @Composable
 internal fun BellyShapeScreen(
-    configState: State<SizeFitConfigState>,
-    updateConfig: (SizeFitConfigState) -> Unit,
+    configState: State<SizeFitConfigUiModel>,
+    updateConfig: (SizeFitConfigUiModel) -> Unit,
     modifier: Modifier = Modifier,
 ) {
     val sizeFitFeature = strictProvideFeature<AiutaSizeFitFeature>()
