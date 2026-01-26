@@ -18,18 +18,15 @@ public final class com/aiuta/fashionsdk/tryon/compose/ui/HistoryFlowKt {
 	public static final fun HistoryFlow (Landroidx/compose/ui/Modifier;Lcom/aiuta/fashionsdk/configuration/AiutaConfiguration;Landroidx/compose/runtime/Composer;II)V
 }
 
-public final class com/aiuta/fashionsdk/tryon/compose/ui/internal/navigation/ComposableSingletons$NavigationContainerKt {
-	public static final field INSTANCE Lcom/aiuta/fashionsdk/tryon/compose/ui/internal/navigation/ComposableSingletons$NavigationContainerKt;
+public final class com/aiuta/fashionsdk/tryon/compose/ui/internal/navigation/ComposableSingletons$TryOnNavigationInitialisationKt {
+	public static final field INSTANCE Lcom/aiuta/fashionsdk/tryon/compose/ui/internal/navigation/ComposableSingletons$TryOnNavigationInitialisationKt;
 	public fun <init> ()V
-	public final fun getLambda$-556568772$fashion_tryon_compose_release ()Lkotlin/jvm/functions/Function2;
-}
-
-public final class com/aiuta/fashionsdk/tryon/compose/ui/internal/navigation/components/appbar/ComposableSingletons$NavigationAppBarKt {
-	public static final field INSTANCE Lcom/aiuta/fashionsdk/tryon/compose/ui/internal/navigation/components/appbar/ComposableSingletons$NavigationAppBarKt;
-	public fun <init> ()V
-	public final fun getLambda$-117611113$fashion_tryon_compose_release ()Lkotlin/jvm/functions/Function3;
-	public final fun getLambda$1799496787$fashion_tryon_compose_release ()Lkotlin/jvm/functions/Function3;
-	public final fun getLambda$1980137522$fashion_tryon_compose_release ()Lkotlin/jvm/functions/Function3;
+	public final fun getLambda$-1052501302$fashion_tryon_compose_release ()Lkotlin/jvm/functions/Function3;
+	public final fun getLambda$-21019993$fashion_tryon_compose_release ()Lkotlin/jvm/functions/Function3;
+	public final fun getLambda$-618630269$fashion_tryon_compose_release ()Lkotlin/jvm/functions/Function3;
+	public final fun getLambda$1270144313$fashion_tryon_compose_release ()Lkotlin/jvm/functions/Function3;
+	public final fun getLambda$1991555597$fashion_tryon_compose_release ()Lkotlin/jvm/functions/Function3;
+	public final fun getLambda$782313008$fashion_tryon_compose_release ()Lkotlin/jvm/functions/Function3;
 }
 
 public final class com/aiuta/fashionsdk/tryon/compose/ui/internal/screens/history/ComposableSingletons$HistoryScreenInternalKt {

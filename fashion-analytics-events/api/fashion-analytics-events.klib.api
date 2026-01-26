@@ -95,6 +95,10 @@ final enum class com.aiuta.fashionsdk.analytics.events/AiutaAnalyticsPageId : ko
     enum entry IMAGE_PICKER // com.aiuta.fashionsdk.analytics.events/AiutaAnalyticsPageId.IMAGE_PICKER|null[0]
     enum entry LOADING // com.aiuta.fashionsdk.analytics.events/AiutaAnalyticsPageId.LOADING|null[0]
     enum entry RESULTS // com.aiuta.fashionsdk.analytics.events/AiutaAnalyticsPageId.RESULTS|null[0]
+    enum entry SIZEFIT_BELLY_SHAPE_SETTINGS // com.aiuta.fashionsdk.analytics.events/AiutaAnalyticsPageId.SIZEFIT_BELLY_SHAPE_SETTINGS|null[0]
+    enum entry SIZEFIT_BRA_SETTINGS // com.aiuta.fashionsdk.analytics.events/AiutaAnalyticsPageId.SIZEFIT_BRA_SETTINGS|null[0]
+    enum entry SIZEFIT_QUESTIONARY // com.aiuta.fashionsdk.analytics.events/AiutaAnalyticsPageId.SIZEFIT_QUESTIONARY|null[0]
+    enum entry SIZEFIT_RECOMMENDATION // com.aiuta.fashionsdk.analytics.events/AiutaAnalyticsPageId.SIZEFIT_RECOMMENDATION|null[0]
     enum entry WELCOME // com.aiuta.fashionsdk.analytics.events/AiutaAnalyticsPageId.WELCOME|null[0]
 
     final val entries // com.aiuta.fashionsdk.analytics.events/AiutaAnalyticsPageId.entries|#static{}entries[0]

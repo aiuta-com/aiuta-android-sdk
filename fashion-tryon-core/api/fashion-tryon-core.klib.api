@@ -173,14 +173,18 @@ final class com.aiuta.fashionsdk.tryon.core.domain.models/ProductGeneratedImage 
 }
 
 final class com.aiuta.fashionsdk.tryon.core.domain.models/ProductGenerationItem { // com.aiuta.fashionsdk.tryon.core.domain.models/ProductGenerationItem|null[0]
-    constructor <init>(kotlin/String, kotlin/String? = ..., kotlin.collections/List<kotlin/String>, kotlin/String) // com.aiuta.fashionsdk.tryon.core.domain.models/ProductGenerationItem.<init>|<init>(kotlin.String;kotlin.String?;kotlin.collections.List<kotlin.String>;kotlin.String){}[0]
+    constructor <init>(kotlin/String, kotlin/String? = ..., kotlin.collections/List<kotlin/String>, kotlin/String, kotlin/Boolean, kotlin/String? = ...) // com.aiuta.fashionsdk.tryon.core.domain.models/ProductGenerationItem.<init>|<init>(kotlin.String;kotlin.String?;kotlin.collections.List<kotlin.String>;kotlin.String;kotlin.Boolean;kotlin.String?){}[0]
 
     final val catalogName // com.aiuta.fashionsdk.tryon.core.domain.models/ProductGenerationItem.catalogName|{}catalogName[0]
         final fun <get-catalogName>(): kotlin/String? // com.aiuta.fashionsdk.tryon.core.domain.models/ProductGenerationItem.catalogName.<get-catalogName>|<get-catalogName>(){}[0]
     final val imageUrls // com.aiuta.fashionsdk.tryon.core.domain.models/ProductGenerationItem.imageUrls|{}imageUrls[0]
         final fun <get-imageUrls>(): kotlin.collections/List<kotlin/String> // com.aiuta.fashionsdk.tryon.core.domain.models/ProductGenerationItem.imageUrls.<get-imageUrls>|<get-imageUrls>(){}[0]
+    final val isReady // com.aiuta.fashionsdk.tryon.core.domain.models/ProductGenerationItem.isReady|{}isReady[0]
+        final fun <get-isReady>(): kotlin/Boolean // com.aiuta.fashionsdk.tryon.core.domain.models/ProductGenerationItem.isReady.<get-isReady>|<get-isReady>(){}[0]
     final val productId // com.aiuta.fashionsdk.tryon.core.domain.models/ProductGenerationItem.productId|{}productId[0]
         final fun <get-productId>(): kotlin/String // com.aiuta.fashionsdk.tryon.core.domain.models/ProductGenerationItem.productId.<get-productId>|<get-productId>(){}[0]
+    final val sizeChartCode // com.aiuta.fashionsdk.tryon.core.domain.models/ProductGenerationItem.sizeChartCode|{}sizeChartCode[0]
+        final fun <get-sizeChartCode>(): kotlin/String? // com.aiuta.fashionsdk.tryon.core.domain.models/ProductGenerationItem.sizeChartCode.<get-sizeChartCode>|<get-sizeChartCode>(){}[0]
     final val title // com.aiuta.fashionsdk.tryon.core.domain.models/ProductGenerationItem.title|{}title[0]
         final fun <get-title>(): kotlin/String // com.aiuta.fashionsdk.tryon.core.domain.models/ProductGenerationItem.title.<get-title>|<get-title>(){}[0]
 
@@ -188,7 +192,9 @@ final class com.aiuta.fashionsdk.tryon.core.domain.models/ProductGenerationItem 
     final fun component2(): kotlin/String? // com.aiuta.fashionsdk.tryon.core.domain.models/ProductGenerationItem.component2|component2(){}[0]
     final fun component3(): kotlin.collections/List<kotlin/String> // com.aiuta.fashionsdk.tryon.core.domain.models/ProductGenerationItem.component3|component3(){}[0]
     final fun component4(): kotlin/String // com.aiuta.fashionsdk.tryon.core.domain.models/ProductGenerationItem.component4|component4(){}[0]
-    final fun copy(kotlin/String = ..., kotlin/String? = ..., kotlin.collections/List<kotlin/String> = ..., kotlin/String = ...): com.aiuta.fashionsdk.tryon.core.domain.models/ProductGenerationItem // com.aiuta.fashionsdk.tryon.core.domain.models/ProductGenerationItem.copy|copy(kotlin.String;kotlin.String?;kotlin.collections.List<kotlin.String>;kotlin.String){}[0]
+    final fun component5(): kotlin/Boolean // com.aiuta.fashionsdk.tryon.core.domain.models/ProductGenerationItem.component5|component5(){}[0]
+    final fun component6(): kotlin/String? // com.aiuta.fashionsdk.tryon.core.domain.models/ProductGenerationItem.component6|component6(){}[0]
+    final fun copy(kotlin/String = ..., kotlin/String? = ..., kotlin.collections/List<kotlin/String> = ..., kotlin/String = ..., kotlin/Boolean = ..., kotlin/String? = ...): com.aiuta.fashionsdk.tryon.core.domain.models/ProductGenerationItem // com.aiuta.fashionsdk.tryon.core.domain.models/ProductGenerationItem.copy|copy(kotlin.String;kotlin.String?;kotlin.collections.List<kotlin.String>;kotlin.String;kotlin.Boolean;kotlin.String?){}[0]
     final fun equals(kotlin/Any?): kotlin/Boolean // com.aiuta.fashionsdk.tryon.core.domain.models/ProductGenerationItem.equals|equals(kotlin.Any?){}[0]
     final fun hashCode(): kotlin/Int // com.aiuta.fashionsdk.tryon.core.domain.models/ProductGenerationItem.hashCode|hashCode(){}[0]
     final fun toString(): kotlin/String // com.aiuta.fashionsdk.tryon.core.domain.models/ProductGenerationItem.toString|toString(){}[0]

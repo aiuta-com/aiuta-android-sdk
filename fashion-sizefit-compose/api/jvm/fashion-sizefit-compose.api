@@ -1,0 +1,4 @@
+public final class com/aiuta/fashionsdk/sizefit/compose/ui/AiutaSizeFitFlowKt {
+	public static final fun AiutaSizeFitFlow (Lcom/aiuta/fashionsdk/configuration/AiutaConfiguration;Lcom/aiuta/fashionsdk/sizefit/core/AiutaSizeFit;Ljava/lang/String;Landroidx/compose/ui/Modifier;Landroidx/compose/runtime/Composer;II)V
+}
+

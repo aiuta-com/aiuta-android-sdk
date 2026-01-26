@@ -244,6 +244,10 @@ public final class com/aiuta/fashionsdk/analytics/events/AiutaAnalyticsPageId : 
 	public static final field IMAGE_PICKER Lcom/aiuta/fashionsdk/analytics/events/AiutaAnalyticsPageId;
 	public static final field LOADING Lcom/aiuta/fashionsdk/analytics/events/AiutaAnalyticsPageId;
 	public static final field RESULTS Lcom/aiuta/fashionsdk/analytics/events/AiutaAnalyticsPageId;
+	public static final field SIZEFIT_BELLY_SHAPE_SETTINGS Lcom/aiuta/fashionsdk/analytics/events/AiutaAnalyticsPageId;
+	public static final field SIZEFIT_BRA_SETTINGS Lcom/aiuta/fashionsdk/analytics/events/AiutaAnalyticsPageId;
+	public static final field SIZEFIT_QUESTIONARY Lcom/aiuta/fashionsdk/analytics/events/AiutaAnalyticsPageId;
+	public static final field SIZEFIT_RECOMMENDATION Lcom/aiuta/fashionsdk/analytics/events/AiutaAnalyticsPageId;
 	public static final field WELCOME Lcom/aiuta/fashionsdk/analytics/events/AiutaAnalyticsPageId;
 	public static fun getEntries ()Lkotlin/enums/EnumEntries;
 	public static fun valueOf (Ljava/lang/String;)Lcom/aiuta/fashionsdk/analytics/events/AiutaAnalyticsPageId;
