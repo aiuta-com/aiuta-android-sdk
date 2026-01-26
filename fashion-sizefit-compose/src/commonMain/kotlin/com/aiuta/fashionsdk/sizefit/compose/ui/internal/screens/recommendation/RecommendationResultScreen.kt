@@ -12,6 +12,7 @@ import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.windowInsetsPadding
 import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.remember
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Brush
@@ -19,6 +20,7 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import androidx.lifecycle.viewmodel.compose.viewModel
 import com.aiuta.fashionsdk.compose.uikit.appbar.AiutaAppBar
 import com.aiuta.fashionsdk.compose.uikit.appbar.AiutaAppBarIcon
 import com.aiuta.fashionsdk.compose.uikit.button.FashionButton
@@ -46,6 +48,11 @@ internal fun RecommendationResultScreen(
     val sizeFitConfig = args.config
     val sizeFitRecommendation = args.recommendation
     val sharedProgressModifier = Modifier.fillMaxWidth().padding(horizontal = 40.dp)
+
+    val viewModel = viewModel { RecommendationResultViewModel() }
+    val (recommendedSizeInfo, nextBestSizeInfo) = remember(sizeFitRecommendation) {
+        viewModel.calculateRecommendationData(sizeFitRecommendation)
+    }
 
     Column(
         modifier = modifier
@@ -88,21 +95,29 @@ internal fun RecommendationResultScreen(
 
         Spacer(Modifier.weight(1f))
 
-        SizeRecommendationProgress(
-            sizeName = "36", // TODO
-            percentage = 59, // TODO
-            progressColor = Brush.horizontalGradient(sizeFitFeature.styles.sizeFitButtonGradient),
-            percentageTextColor = theme.color.background,
-            modifier = sharedProgressModifier,
-        )
+        // Recommended size
+        recommendedSizeInfo?.let { sizeInfo ->
+            SizeRecommendationProgress(
+                sizeName = sizeInfo.size.name,
+                percentage = sizeInfo.confidence,
+                progressColor = Brush.horizontalGradient(sizeFitFeature.styles.sizeFitButtonGradient),
+                percentageTextColor = theme.color.background,
+                fitSummary = sizeInfo.fitSummary,
+                modifier = sharedProgressModifier,
+            )
+        }
 
         Spacer(Modifier.height(26.dp))
 
-        SizeRecommendationProgress(
-            sizeName = "34", // TODO
-            percentage = 40, // TODO
-            modifier = sharedProgressModifier,
-        )
+        // Next best size
+        nextBestSizeInfo?.let { sizeInfo ->
+            SizeRecommendationProgress(
+                sizeName = sizeInfo.size.name,
+                percentage = sizeInfo.confidence,
+                fitSummary = sizeInfo.fitSummary,
+                modifier = sharedProgressModifier,
+            )
+        }
 
         Spacer(Modifier.weight(1f))
 
