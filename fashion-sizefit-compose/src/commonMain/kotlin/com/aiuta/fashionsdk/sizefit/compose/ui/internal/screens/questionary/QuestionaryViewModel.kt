@@ -2,6 +2,7 @@ package com.aiuta.fashionsdk.sizefit.compose.ui.internal.screens.questionary
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import com.aiuta.fashionsdk.configuration.features.sizefit.dataprovider.AiutaSizeFitFeatureDataProvider
 import com.aiuta.fashionsdk.logger.AiutaLogger
 import com.aiuta.fashionsdk.logger.d
 import com.aiuta.fashionsdk.sizefit.compose.domain.models.toCore
@@ -20,6 +21,7 @@ internal class QuestionaryViewModel(
     private val configSlice: AiutaConfigSlice,
     private val productCode: String,
     private val logger: AiutaLogger?,
+    private val sizeFitDataProvider: AiutaSizeFitFeatureDataProvider,
     private val onBack: () -> Unit,
 ) : ViewModel() {
     private val _currentStep = MutableStateFlow<QuestionaryStep>(QuestionaryStep.FindSizeStep)
@@ -96,6 +98,13 @@ internal class QuestionaryViewModel(
                     code = productCode,
                     config = configState.config.toCore(),
                 )
+
+                // Notify host
+                runCatching {
+                    if (recommendation.recommendedSizeName.isNotBlank()) {
+                        sizeFitDataProvider.recommendationCompleted(recommendation.recommendedSizeName)
+                    }
+                }
 
                 // Then move with result
                 _recommendationState.value = RecommendationState.Success(recommendation)

@@ -4,6 +4,7 @@ import androidx.compose.runtime.Immutable
 import com.aiuta.fashionsdk.annotations.AiutaDsl
 import com.aiuta.fashionsdk.configuration.features.AiutaFeature
 import com.aiuta.fashionsdk.configuration.features.AiutaFeatures
+import com.aiuta.fashionsdk.configuration.features.sizefit.dataprovider.AiutaSizeFitFeatureDataProvider
 import com.aiuta.fashionsdk.configuration.features.sizefit.icons.AiutaSizeFitFeatureIcons
 import com.aiuta.fashionsdk.configuration.features.sizefit.strings.AiutaSizeFitFeatureStrings
 import com.aiuta.fashionsdk.configuration.features.sizefit.styles.AiutaSizeFitFeatureStyles
@@ -19,6 +20,7 @@ import com.aiuta.fashionsdk.configuration.internal.utils.checkNotNullWithDescrip
  * @property icons Required icon resources configuration
  * @property strings Required text content and localization configuration
  * @property styles Required visual styling configuration
+ * @property dataProvider Optional data provider for handling size recommendation events
  * @see AiutaFeature
  */
 @Immutable
@@ -27,6 +29,7 @@ public class AiutaSizeFitFeature(
     public val icons: AiutaSizeFitFeatureIcons,
     public val strings: AiutaSizeFitFeatureStrings,
     public val styles: AiutaSizeFitFeatureStyles,
+    public val dataProvider: AiutaSizeFitFeatureDataProvider? = null,
 ) : AiutaFeature {
 
     /**
@@ -53,6 +56,11 @@ public class AiutaSizeFitFeature(
         public var styles: AiutaSizeFitFeatureStyles? = null
 
         /**
+         * Optional data provider for handling size recommendation events.
+         */
+        public var dataProvider: AiutaSizeFitFeatureDataProvider? = null
+
+        /**
          * Creates an [AiutaSizeFitFeature] instance with the configured properties.
          *
          * @return Configured [AiutaSizeFitFeature] instance
@@ -74,6 +82,7 @@ public class AiutaSizeFitFeature(
                     parentClass = parentClass,
                     property = "styles",
                 ),
+                dataProvider = dataProvider,
             )
         }
     }
