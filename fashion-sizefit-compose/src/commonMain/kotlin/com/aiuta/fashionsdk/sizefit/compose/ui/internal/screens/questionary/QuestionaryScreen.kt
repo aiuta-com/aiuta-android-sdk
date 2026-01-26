@@ -62,6 +62,7 @@ internal fun QuestionaryScreen(
     val theme = LocalTheme.current
     val logger = LocalAiutaLogger.current
 
+    val sizeFitFeature = strictProvideFeature<AiutaSizeFitFeature>()
     val viewModel: QuestionaryViewModel = viewModel {
         QuestionaryViewModel(
             aiutaSizeFit = aiutaSizeFit,
@@ -70,6 +71,7 @@ internal fun QuestionaryScreen(
             ),
             productCode = productCode,
             logger = logger,
+            sizeFitDataProvider = sizeFitFeature.dataProvider,
             onBack = navigationController::navigateBack,
         )
     }
@@ -77,7 +79,6 @@ internal fun QuestionaryScreen(
     val configState = viewModel.configState.collectAsState()
     val shouldShowQuestionaryErrorState = viewModel.shouldShowQuestionaryErrorState.collectAsState()
     val recommendationState = viewModel.recommendationState.collectAsState()
-    val sizeFitFeature = strictProvideFeature<AiutaSizeFitFeature>()
 
     val isRecommendationLoading = remember {
         derivedStateOf { recommendationState.value is RecommendationState.Loading }
@@ -146,7 +147,6 @@ internal fun QuestionaryScreen(
                 ).value,
                 onClick = {
                     viewModel.navigateNextStep(
-                        sizeFitFeature = sizeFitFeature,
                         makeRecommendation = viewModel::makeRecommendation,
                     )
                 },

@@ -12,7 +12,6 @@ import com.aiuta.fashionsdk.sizefit.compose.ui.internal.screens.questionary.stat
 import com.aiuta.fashionsdk.sizefit.core.AiutaSizeFitConfig
 
 internal fun QuestionaryViewModel.navigateNextStep(
-    sizeFitFeature: AiutaSizeFitFeature,
     makeRecommendation: () -> Unit,
 ) {
     val currentStep = currentStep.value
@@ -34,10 +33,8 @@ internal fun QuestionaryViewModel.navigateNextStep(
         }
 
         QuestionaryStep.BellyShapeStep -> {
-            val isBraAvailable = sizeFitFeature.bra != null
-
             when {
-                isBraAvailable && config?.gender == AiutaSizeFitConfig.Gender.FEMALE -> navigateTo(
+                config?.gender == AiutaSizeFitConfig.Gender.FEMALE -> navigateTo(
                     QuestionaryStep.BraStep,
                 )
 

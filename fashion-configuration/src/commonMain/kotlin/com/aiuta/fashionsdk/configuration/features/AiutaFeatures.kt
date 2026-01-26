@@ -20,8 +20,6 @@ import com.aiuta.fashionsdk.configuration.features.picker.model.AiutaImagePicker
 import com.aiuta.fashionsdk.configuration.features.share.AiutaShareFeature
 import com.aiuta.fashionsdk.configuration.features.share.watermark.AiutaShareWatermarkFeature
 import com.aiuta.fashionsdk.configuration.features.sizefit.AiutaSizeFitFeature
-import com.aiuta.fashionsdk.configuration.features.sizefit.belly.AiutaSizeFitBellyFeature
-import com.aiuta.fashionsdk.configuration.features.sizefit.bra.AiutaSizeFitBraFeature
 import com.aiuta.fashionsdk.configuration.features.tryon.AiutaTryOnFeature
 import com.aiuta.fashionsdk.configuration.features.tryon.cart.AiutaTryOnCartFeature
 import com.aiuta.fashionsdk.configuration.features.tryon.cart.outfit.AiutaTryOnCartOutfitFeature
@@ -126,8 +124,6 @@ public class AiutaFeatures(
         AiutaWishlistFeature::class -> wishlist
         // Size fit
         AiutaSizeFitFeature::class -> sizeFit
-        AiutaSizeFitBellyFeature::class -> sizeFit?.belly
-        AiutaSizeFitBraFeature::class -> sizeFit?.bra
         else -> throw NoSuchFeatureException(T::class.simpleName)
     } as? T
 

@@ -21,7 +21,7 @@ internal class QuestionaryViewModel(
     private val configSlice: AiutaConfigSlice,
     private val productCode: String,
     private val logger: AiutaLogger?,
-    private val sizeFitDataProvider: AiutaSizeFitFeatureDataProvider,
+    private val sizeFitDataProvider: AiutaSizeFitFeatureDataProvider?,
     private val onBack: () -> Unit,
 ) : ViewModel() {
     private val _currentStep = MutableStateFlow<QuestionaryStep>(QuestionaryStep.FindSizeStep)
@@ -54,15 +54,11 @@ internal class QuestionaryViewModel(
 
     // Navigation
     fun navigateTo(step: QuestionaryStep) {
-        logger?.d("QuestionaryViewModel: navigateTo() - $step")
-
         _shouldShowQuestionaryErrorState.value = false
         _currentStep.value = step
     }
 
     fun navigateBack() {
-        logger?.d("QuestionaryViewModel: navigateBack()")
-
         _currentStep.value.previousStep?.let { prevStep ->
             _currentStep.value = prevStep
         } ?: onBack()
@@ -70,14 +66,10 @@ internal class QuestionaryViewModel(
 
     // Config
     fun updateConfig(newConfig: SizeFitConfigUiModel) {
-        logger?.d("QuestionaryViewModel: updateConfig() - $newConfig")
-
         _configState.value = SizeFitConfigState.Success(newConfig)
     }
 
     fun updateErrorState(newState: Boolean) {
-        logger?.d("QuestionaryViewModel: updateErrorState() - $newState")
-
         _shouldShowQuestionaryErrorState.value = newState
     }
 
@@ -102,7 +94,7 @@ internal class QuestionaryViewModel(
                 // Notify host
                 runCatching {
                     if (recommendation.recommendedSizeName.isNotBlank()) {
-                        sizeFitDataProvider.recommendationCompleted(recommendation.recommendedSizeName)
+                        sizeFitDataProvider?.recommendationCompleted(recommendation.recommendedSizeName)
                     }
                 }
 
@@ -115,8 +107,6 @@ internal class QuestionaryViewModel(
     }
 
     fun reset() {
-        logger?.d("QuestionaryViewModel: reset()")
-
         _currentStep.value = QuestionaryStep.FindSizeStep
         _shouldShowQuestionaryErrorState.value = false
         _recommendationState.value = RecommendationState.Idle
