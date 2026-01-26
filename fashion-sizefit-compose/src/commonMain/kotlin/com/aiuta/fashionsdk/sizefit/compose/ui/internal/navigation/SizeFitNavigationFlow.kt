@@ -31,8 +31,9 @@ internal fun SizeFitNavigationFlow(
                         modifier = sharedModifier,
                     )
                 }
-                aiutaEntry<SizeFitScreen.RecommendationResult> {
+                aiutaEntry<SizeFitScreen.RecommendationResult> { args ->
                     RecommendationResultScreen(
+                        args = args,
                         modifier = sharedModifier,
                     )
                 }

@@ -56,6 +56,7 @@ public interface AiutaSizeFitFeatureStrings {
 
     // Result screen
     public val parametersTitle: String
+    public val yearsSuffix: String
     public val changeButton: String
     public val recommendedSizeTitle: String
     public val doneButton: String
@@ -103,6 +104,7 @@ public interface AiutaSizeFitFeatureStrings {
 
         // Result screen
         override val parametersTitle: String = "Parameters"
+        override val yearsSuffix: String = "years"
         override val changeButton: String = "Change"
         override val recommendedSizeTitle: String = "Recommended size"
         override val doneButton: String = "Done"

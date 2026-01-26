@@ -8,7 +8,9 @@ import com.aiuta.fashionsdk.internal.navigation.composition.LocalAiutaErrorSnack
 import com.aiuta.fashionsdk.internal.navigation.composition.LocalAiutaNavigationController
 import com.aiuta.fashionsdk.internal.navigation.snackbar.AiutaErrorSnackbarState
 import com.aiuta.fashionsdk.sizefit.compose.ui.internal.navigation.SizeFitScreen
+import com.aiuta.fashionsdk.sizefit.compose.ui.internal.screens.questionary.QuestionaryViewModel
 import com.aiuta.fashionsdk.sizefit.compose.ui.internal.screens.questionary.state.RecommendationState
+import com.aiuta.fashionsdk.sizefit.compose.ui.internal.screens.questionary.state.SizeFitConfigState
 
 @Immutable
 internal class RecommendationLoadError(
@@ -21,8 +23,9 @@ internal class RecommendationLoadError(
 
 @Composable
 internal fun RecommendationStateListener(
+    configState: State<SizeFitConfigState>,
     recommendationState: State<RecommendationState>,
-    retryRecommendation: () -> Unit,
+    viewModel: QuestionaryViewModel,
 ) {
     val navigationController = LocalAiutaNavigationController.current
     val errorSnackbarController = LocalAiutaErrorSnackbarController.current
@@ -32,16 +35,18 @@ internal fun RecommendationStateListener(
             is RecommendationState.Error -> {
                 errorSnackbarController.showErrorState(
                     newErrorState = RecommendationLoadError(
-                        retryRecommendation = retryRecommendation,
+                        retryRecommendation = viewModel::makeRecommendation,
                     ),
                 )
             }
             is RecommendationState.Success -> {
                 navigationController.navigateTo(
                     newScreen = SizeFitScreen.RecommendationResult(
+                        config = configState.value,
                         recommendation = state.recommendation,
                     ),
                 )
+                viewModel.reset()
             }
             else -> Unit
         }

@@ -83,4 +83,10 @@ internal class QuestionaryViewModel(
             }
         }
     }
+
+    fun reset() {
+        _currentStep.value = QuestionaryStep.FindSizeStep
+        _shouldShowQuestionaryErrorState.value = false
+        _recommendationState.value = RecommendationState.Idle
+    }
 }

@@ -80,15 +80,16 @@ internal fun QuestionaryScreen(
     val topPadding = screenSize.heightDp * 0.07f
 
     RecommendationStateListener(
+        configState = configState,
         recommendationState = recommendationState,
-        retryRecommendation = viewModel::makeRecommendation,
+        viewModel = viewModel,
     )
 
     Column(
         modifier = modifier
             .background(theme.color.background)
             .windowInsetsPadding(WindowInsets.navigationBars)
-            .padding(16.dp),
+            .padding(horizontal = 16.dp),
         verticalArrangement = Arrangement.Center,
     ) {
         QuestionaryAppBar(
@@ -128,6 +129,8 @@ internal fun QuestionaryScreen(
                 )
             },
         )
+
+        Spacer(Modifier.height(16.dp))
     }
 }
 
