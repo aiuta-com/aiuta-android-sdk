@@ -29,6 +29,9 @@ import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.unit.dp
+import androidx.paging.compose.collectAsLazyPagingItems
+import androidx.paging.compose.itemContentType
+import androidx.paging.compose.itemKey
 import com.aiuta.fashionsdk.analytics.events.AiutaAnalyticsPageId
 import com.aiuta.fashionsdk.analytics.events.AiutaAnalyticsPickerEventType
 import com.aiuta.fashionsdk.compose.uikit.button.FashionButton
@@ -57,8 +60,6 @@ import com.aiuta.fashionsdk.tryon.compose.ui.internal.controller.updateActiveOpe
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.navigation.TryOnBottomSheetScreen
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.sheets.components.SheetDivider
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.sheets.operations.controller.GeneratedOperationsSheetListener
-import com.aiuta.fashionsdk.tryon.compose.ui.internal.utils.paging.collectAsLazyPagingItems
-import com.aiuta.fashionsdk.tryon.compose.ui.internal.utils.paging.itemContentType
 import kotlinx.coroutines.launch
 
 @Composable
@@ -115,7 +116,7 @@ internal fun GeneratedOperationsSheet(
         ) {
             items(
                 count = generatedOperations.itemCount,
-                key = { generatedOperations[it]?.operationId ?: 0 },
+                key = generatedOperations.itemKey { it.operationId },
                 contentType = generatedOperations.itemContentType { it },
             ) {
                 val generatedOperation = generatedOperations[it]

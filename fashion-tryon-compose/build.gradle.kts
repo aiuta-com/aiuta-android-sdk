@@ -48,7 +48,7 @@ kotlin {
                 api(projects.fashionConfiguration)
                 api(projects.fashionTryonCore)
 
-                implementation(libs.androidx.paging.common)
+                implementation(libs.androidx.paging.compose)
                 implementation(libs.coil3.compose)
                 implementation(libs.coil3.network.ktor3)
                 implementation(libs.compose.placeholder)
@@ -99,7 +99,6 @@ dependencies {
         "kspAndroid",
         "kspJvm",
         "kspIosSimulatorArm64",
-        "kspIosX64",
         "kspIosArm64",
     ).forEach { configurationName ->
         add(configurationName, libs.room.compiler)

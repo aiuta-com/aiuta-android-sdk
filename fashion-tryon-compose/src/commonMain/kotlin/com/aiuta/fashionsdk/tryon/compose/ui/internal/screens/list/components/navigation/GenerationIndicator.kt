@@ -27,15 +27,15 @@ import androidx.compose.ui.graphics.lerp
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.platform.LocalDensity
 import androidx.compose.ui.unit.dp
+import androidx.paging.compose.LazyPagingItems
+import androidx.paging.compose.itemContentType
+import androidx.paging.compose.itemKey
 import com.aiuta.fashionsdk.compose.uikit.composition.LocalTheme
 import com.aiuta.fashionsdk.compose.uikit.resources.AiutaImage
 import com.aiuta.fashionsdk.compose.uikit.utils.clickableUnindicated
 import com.aiuta.fashionsdk.tryon.compose.domain.models.internal.generated.images.GeneratedImageUIModel
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.screens.list.utils.fadingEdge
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.utils.offsetForPage
-import com.aiuta.fashionsdk.tryon.compose.ui.internal.utils.paging.LazyPagingItems
-import com.aiuta.fashionsdk.tryon.compose.ui.internal.utils.paging.itemContentType
-import com.aiuta.fashionsdk.tryon.compose.ui.internal.utils.paging.itemKey
 import kotlin.math.absoluteValue
 import kotlinx.coroutines.launch
 
