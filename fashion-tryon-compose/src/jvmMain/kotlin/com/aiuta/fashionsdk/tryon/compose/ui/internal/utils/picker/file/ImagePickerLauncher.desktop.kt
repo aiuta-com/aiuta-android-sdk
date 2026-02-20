@@ -27,7 +27,7 @@ internal actual fun rememberImagePickerLauncher(
 }
 
 internal actual class ImagePickerLauncher actual constructor(
-    private val onLaunch: () -> Unit,
+    actual val onLaunch: () -> Unit,
 ) {
     actual fun launch() {
         onLaunch()

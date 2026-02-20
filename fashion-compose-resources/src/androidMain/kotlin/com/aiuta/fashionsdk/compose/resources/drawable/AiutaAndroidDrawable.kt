@@ -1,18 +1,16 @@
 package com.aiuta.fashionsdk.compose.resources.drawable
 
 import android.graphics.drawable.Drawable
-import androidx.annotation.DrawableRes
 
 /**
- * Android implementation of [AiutaDrawableResource] using [Drawable] objects.
+ * Android implementation of [AiutaDrawableResource] using Drawable objects.
  *
- * This implementation allows you to use Android [Drawable] instances directly
+ * This implementation allows you to use Android Drawable instances directly
  * within the Aiuta SDK. This is useful when you have programmatically created
  * drawables or when working with drawables obtained from other Android APIs.
  *
  *
- * @property resource The Android [Drawable] instance
- * @see Drawable
+ * @property resource The Android Drawable instance
  * @see AiutaDrawableResource
  */
 public class AiutaAndroidDrawable(
@@ -31,5 +29,5 @@ public class AiutaAndroidDrawable(
  * @see AiutaDrawableResource
  */
 public class AiutaAndroidDrawableRes(
-    @DrawableRes public override val resource: Int,
+    public override val resource: Int,
 ) : AiutaDrawableResource

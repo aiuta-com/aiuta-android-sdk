@@ -11,5 +11,7 @@ internal expect fun rememberImagePickerLauncher(
 internal expect class ImagePickerLauncher(
     onLaunch: () -> Unit,
 ) {
+    val onLaunch: () -> Unit
+
     fun launch()
 }

@@ -9,5 +9,7 @@ internal expect fun rememberCameraManager(onResult: (AiutaPlatformFile) -> Unit)
 internal expect class CameraManager(
     onLaunch: () -> Unit,
 ) {
+    val onLaunch: () -> Unit
+
     fun launch()
 }

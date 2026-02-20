@@ -36,7 +36,7 @@ kotlin {
                 implementation(libs.ktor.engine.okhttp)
             }
         }
-        androidUnitTest {
+        getByName("androidHostTest") {
             dependencies {
                 implementation(kotlin("test"))
                 implementation(libs.mockk)

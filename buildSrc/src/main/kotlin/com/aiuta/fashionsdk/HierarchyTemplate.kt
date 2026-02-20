@@ -79,9 +79,10 @@ private fun KotlinHierarchyBuilder.groupMobile() {
     group("mobile") {
         withCompilations { compilation ->
             val platformType = compilation.target.platformType.name
-            val targetName = compilation.target.name
-            platformType == "androidJvm" || targetName.startsWith("ios")
+            platformType == "androidJvm"
         }
+//        withAndroidTarget()
+        groupNative()
     }
 }
 

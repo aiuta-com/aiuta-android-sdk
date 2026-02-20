@@ -17,11 +17,9 @@ multiplatformAndroidLibrary(name = "com.aiuta.fashionsdk.compose.resources") {
 
 kotlin {
     sourceSets {
-        commonMain {
-            dependencies {
-                implementation(libs.jetbrains.compose.components.resources)
-                implementation(libs.jetbrains.compose.foundation)
-            }
+        commonMain.dependencies {
+            implementation(libs.jetbrains.compose.components.resources)
+            implementation(libs.jetbrains.compose.foundation)
         }
     }
 }

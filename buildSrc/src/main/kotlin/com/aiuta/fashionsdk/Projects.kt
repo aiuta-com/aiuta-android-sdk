@@ -200,7 +200,8 @@ private fun Project.setupDokka(
             }
 
             externalDocumentationLinks.register("android") {
-                url.set(uri("https://developer.android.com/reference/"))
+                url.set(uri("https://developer.android.com/reference/kotlin/"))
+                packageListUrl.set(uri("https://developer.android.com/reference/kotlin/package-list"))
             }
             externalDocumentationLinks.register("coroutines") {
                 url.set(uri("https://kotlinlang.org/api/kotlinx.coroutines/"))
