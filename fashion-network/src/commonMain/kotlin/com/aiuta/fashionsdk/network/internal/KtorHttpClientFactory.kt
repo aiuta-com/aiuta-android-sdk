@@ -37,6 +37,10 @@ internal class KtorHttpClientFactory(
     private val internalHost = host ?: DEFAULT_HOST
     private val internalEncodedPath = encodedPath ?: DEFAULT_ENCODED_PATH
 
+    init {
+        aiutaLogger?.d("New instance of KtorHttpClientFactory - $internalHost, $internalEncodedPath")
+    }
+
     private fun <T : HttpClientEngineConfig> HttpClientConfig<T>.installSerialization() = apply {
         install(ContentNegotiation) {
             json(jsonSerializer)
@@ -87,7 +91,7 @@ internal class KtorHttpClientFactory(
                 request.installSubscriptionIdHeader(authenticationStrategy.subscriptionId)
             }
 
-            handleErrors { execute(request) }
+            handleErrors(aiutaLogger) { execute(request) }
         }
     }
 
@@ -102,6 +106,6 @@ internal class KtorHttpClientFactory(
 
     private companion object {
         const val DEFAULT_HOST = "api.aiuta.com"
-        const val DEFAULT_ENCODED_PATH = "digital-try-on/v1"
+        const val DEFAULT_ENCODED_PATH = "digital-try-on/v1/"
     }
 }

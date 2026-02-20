@@ -46,6 +46,6 @@ internal fun newImageUri(
     )
 } catch (e: Exception) {
     // Fallback with null
-    logger?.e("Failed to create new image uri - $e", e)
+    logger?.e("Failed to create new image uri", e)
     null
 }

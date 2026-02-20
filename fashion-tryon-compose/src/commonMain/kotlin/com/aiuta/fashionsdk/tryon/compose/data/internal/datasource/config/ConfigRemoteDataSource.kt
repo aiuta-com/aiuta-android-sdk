@@ -26,7 +26,7 @@ internal class ConfigRemoteDataSource(
     }
 
     companion object {
-        private const val BACKEND_CONFIG_PATH = "/predefined_try_on_models"
+        private const val BACKEND_CONFIG_PATH = "predefined_try_on_models"
 
         private const val IF_NOT_MATCH_HEADER_PARAM = "if-none-match"
         private const val ETAG_HEADER_PARAM = "etag"

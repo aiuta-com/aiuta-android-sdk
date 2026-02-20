@@ -42,7 +42,7 @@ internal fun AiutaLabel(modifier: Modifier = Modifier) {
                 logger?.d("AiutaLabel: Power by sticker is visible: ${isLabelVisible.value}")
             }
             .onFailure { exception ->
-                logger?.e("AiutaLabel: Failed to load power by sticker - $exception")
+                logger?.e("AiutaLabel: Failed to load power by sticker", exception)
             }
     }
 

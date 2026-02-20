@@ -19,7 +19,7 @@ internal suspend fun <T> AiutaTryOnImpl.trackException(
     // Just rethrow cancellation, because we don't want to track it
     throw e
 } catch (e: AiutaTryOnGenerationException) {
-    logger?.e("trackException(): failed with aiuta exception - $e")
+    logger?.e("trackException(): failed with aiuta exception", e)
     analytic.sendErrorEvent(
         container = container,
         exception = e,
@@ -27,7 +27,7 @@ internal suspend fun <T> AiutaTryOnImpl.trackException(
     throw e
 } catch (e: Exception) {
     // Logging general exception
-    logger?.e("trackException(): failed with general exception - $e")
+    logger?.e("trackException(): failed with general exception", e)
     analytic.sendPublicTryOnErrorEvent(
         container = container,
         exception = e,

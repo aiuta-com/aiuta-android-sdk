@@ -26,7 +26,7 @@ internal class SubscriptionDetailsRemoteDataSource(
     }
 
     companion object Companion {
-        private const val BACKEND_CONFIG_PATH = "/subscription_details"
+        private const val BACKEND_CONFIG_PATH = "subscription_details"
 
         private const val IF_NOT_MATCH_HEADER_PARAM = "if-none-match"
         private const val ETAG_HEADER_PARAM = "etag"

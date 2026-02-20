@@ -8,13 +8,11 @@ internal actual fun nativeLog(
     throwable: Throwable?,
     message: String,
 ) {
-    Log.println(priority.toInt(), tag, message)
-}
-
-private fun AiutaLogger.Level.toInt() = when (this) {
-    AiutaLogger.Level.VERBOSE -> Log.VERBOSE
-    AiutaLogger.Level.DEBUG -> Log.DEBUG
-    AiutaLogger.Level.INFO -> Log.INFO
-    AiutaLogger.Level.WARN -> Log.WARN
-    AiutaLogger.Level.ERROR -> Log.ERROR
+    when (priority) {
+        AiutaLogger.Level.VERBOSE -> Log.v(tag, message, throwable)
+        AiutaLogger.Level.DEBUG -> Log.d(tag, message, throwable)
+        AiutaLogger.Level.INFO -> Log.i(tag, message, throwable)
+        AiutaLogger.Level.WARN -> Log.w(tag, message, throwable)
+        AiutaLogger.Level.ERROR -> Log.e(tag, message, throwable)
+    }
 }
