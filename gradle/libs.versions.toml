@@ -34,7 +34,7 @@ jetbrains-lifecycle = "2.9.6"
 
 kotlin = "2.3.10"
 ktlint = "1.5.0"
-ksp = "2.3.4"
+ksp = "2.3.6"
 
 room = "2.8.4"
 
