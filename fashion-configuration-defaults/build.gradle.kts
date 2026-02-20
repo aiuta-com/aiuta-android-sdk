@@ -18,7 +18,7 @@ kotlin {
                 api(projects.fashionConfigurationDefaultsIcons)
                 api(projects.fashionConfigurationDefaultsImages)
 
-                api(compose.runtime)
+                api(libs.jetbrains.compose.runtime)
             }
         }
     }

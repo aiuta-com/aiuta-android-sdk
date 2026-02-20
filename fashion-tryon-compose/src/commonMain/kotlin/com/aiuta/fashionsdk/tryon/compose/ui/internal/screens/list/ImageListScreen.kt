@@ -17,6 +17,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.graphicsLayer
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.unit.dp
+import androidx.paging.compose.collectAsLazyPagingItems
 import com.aiuta.fashionsdk.analytics.events.AiutaAnalyticsPageId
 import com.aiuta.fashionsdk.compose.uikit.composition.LocalTheme
 import com.aiuta.fashionsdk.compose.uikit.resources.AiutaImage
@@ -27,7 +28,6 @@ import com.aiuta.fashionsdk.tryon.compose.ui.internal.screens.base.share.onShare
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.screens.list.components.buttons.ShareButton
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.screens.list.components.navigation.ImageListNavigationBlock
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.utils.offsetForPage
-import com.aiuta.fashionsdk.tryon.compose.ui.internal.utils.paging.collectAsLazyPagingItems
 import kotlin.math.absoluteValue
 
 @Composable

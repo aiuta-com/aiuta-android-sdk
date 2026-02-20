@@ -2,9 +2,9 @@ package com.aiuta.fashionsdk.tryon.compose.ui.internal.screens.history.controlle
 
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
+import androidx.paging.compose.LazyPagingItems
 import com.aiuta.fashionsdk.internal.navigation.composition.LocalAiutaNavigationController
 import com.aiuta.fashionsdk.tryon.compose.domain.models.internal.generated.images.GeneratedImageUIModel
-import com.aiuta.fashionsdk.tryon.compose.ui.internal.utils.paging.LazyPagingItems
 
 @Composable
 internal fun HistoryScreenListeners(generatedImages: LazyPagingItems<GeneratedImageUIModel>) {

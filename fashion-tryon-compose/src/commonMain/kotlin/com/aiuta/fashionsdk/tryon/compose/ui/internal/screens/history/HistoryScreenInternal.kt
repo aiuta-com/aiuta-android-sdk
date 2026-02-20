@@ -35,6 +35,10 @@ import androidx.compose.ui.draw.clipToBounds
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.unit.dp
+import androidx.paging.compose.LazyPagingItems
+import androidx.paging.compose.collectAsLazyPagingItems
+import androidx.paging.compose.itemContentType
+import androidx.paging.compose.itemKey
 import coil3.compose.LocalPlatformContext
 import coil3.request.ImageRequest
 import coil3.size.SizeResolver.Companion.ORIGINAL
@@ -61,10 +65,6 @@ import com.aiuta.fashionsdk.tryon.compose.ui.internal.screens.history.controller
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.screens.history.models.SelectorMode
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.screens.history.utils.calculateMinGridItemWidth
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.screens.history.utils.deleteGeneratedImages
-import com.aiuta.fashionsdk.tryon.compose.ui.internal.utils.paging.LazyPagingItems
-import com.aiuta.fashionsdk.tryon.compose.ui.internal.utils.paging.collectAsLazyPagingItems
-import com.aiuta.fashionsdk.tryon.compose.ui.internal.utils.paging.itemContentType
-import com.aiuta.fashionsdk.tryon.compose.ui.internal.utils.paging.itemKey
 
 @Composable
 internal fun HistoryScreen(modifier: Modifier = Modifier) {
