@@ -1,6 +1,5 @@
 package sample.tryon.kmp.web.blocks
 
-import androidx.compose.animation.AnimatedVisibility
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
@@ -11,10 +10,10 @@ import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.shape.RoundedCornerShape
-import androidx.compose.material3.Button
-import androidx.compose.material3.CircularProgressIndicator
-import androidx.compose.material3.MaterialTheme
-import androidx.compose.material3.Text
+import androidx.compose.material.Button
+import androidx.compose.material.CircularProgressIndicator
+import androidx.compose.material.MaterialTheme
+import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.State
 import androidx.compose.runtime.collectAsState
@@ -107,8 +106,8 @@ internal fun GenerationBlock(
             ) {
                 CircularProgressIndicator(
                     modifier = Modifier.width(32.dp),
-                    color = MaterialTheme.colorScheme.secondary,
-                    trackColor = MaterialTheme.colorScheme.surfaceVariant,
+                    color = MaterialTheme.colors.secondary,
+                    backgroundColor = MaterialTheme.colors.surface,
                 )
             }
         }
@@ -126,7 +125,7 @@ internal fun GenerationBlock(
         ) {
             Text(
                 text = "Try on",
-                style = MaterialTheme.typography.bodyMedium,
+                style = MaterialTheme.typography.body2,
             )
         }
 

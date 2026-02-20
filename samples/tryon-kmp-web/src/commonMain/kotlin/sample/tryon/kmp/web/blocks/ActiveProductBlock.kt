@@ -13,8 +13,8 @@ import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.shape.RoundedCornerShape
-import androidx.compose.material3.MaterialTheme
-import androidx.compose.material3.Text
+import androidx.compose.material.MaterialTheme
+import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.State
 import androidx.compose.runtime.derivedStateOf
@@ -98,7 +98,7 @@ private fun ActiveProductBlockContent(
             product.catalogName?.let {
                 Text(
                     text = it,
-                    style = MaterialTheme.typography.bodySmall,
+                    style = MaterialTheme.typography.body1,
                 )
 
                 Spacer(Modifier.height(8.dp))
@@ -106,7 +106,7 @@ private fun ActiveProductBlockContent(
 
             Text(
                 text = product.title,
-                style = MaterialTheme.typography.bodyMedium,
+                style = MaterialTheme.typography.body2,
             )
         }
     }

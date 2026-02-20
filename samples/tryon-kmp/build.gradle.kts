@@ -1,3 +1,4 @@
+import com.aiuta.fashionsdk.applyAiutaHierarchyTemplate
 import com.aiuta.fashionsdk.desktopMain
 import com.aiuta.fashionsdk.multiplatformAndroidLibrary
 import com.codingfeline.buildkonfig.compiler.FieldSpec.Type.STRING
@@ -34,6 +35,8 @@ buildkonfig {
 }
 
 kotlin {
+    applyAiutaHierarchyTemplate()
+
     listOf(
         iosX64(),
         iosArm64(),
