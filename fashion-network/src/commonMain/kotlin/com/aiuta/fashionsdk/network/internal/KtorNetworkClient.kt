@@ -39,8 +39,7 @@ internal class KtorNetworkClient(
             host: String? = null,
             encodedPath: String? = null,
         ): NetworkClient = KtorNetworkClient(
-            httpClient =
-            KtorHttpClientFactory(
+            httpClient = KtorHttpClientFactory(
                 authenticationStrategy = aiuta.authenticationStrategy,
                 aiutaLogger = aiuta.logger,
                 host = host,

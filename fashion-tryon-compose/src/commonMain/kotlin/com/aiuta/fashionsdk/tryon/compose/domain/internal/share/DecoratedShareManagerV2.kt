@@ -53,7 +53,7 @@ internal class DecoratedShareManagerV2(
             imageUrls = imageUrls,
             watermark = watermark,
         ).onFailure { exception ->
-            logger?.e("DecoratedShareManagerV2: Failed to share images - $exception, ${exception.message}")
+            logger?.e("DecoratedShareManagerV2: Failed to share images", exception)
         }
     }
 }

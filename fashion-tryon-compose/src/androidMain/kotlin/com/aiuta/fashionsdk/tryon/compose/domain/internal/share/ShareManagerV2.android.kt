@@ -92,7 +92,7 @@ internal class AndroidShareManagerV2(
             }
         } catch (e: Exception) {
             // Failed get bitmap
-            logger?.e("AndroidShareManagerV2: Failed to convert bitmap url $bitmap to uri - $e")
+            logger?.e("AndroidShareManagerV2: Failed to convert bitmap url $bitmap to uri", e)
             coroutineContext.ensureActive()
             null
         }
@@ -107,7 +107,7 @@ internal class AndroidShareManagerV2(
         SingletonImageLoader.get(coilContext).execute(request).image?.toBitmap()
     } catch (e: Exception) {
         // Failed to resolve bitmap
-        logger?.e("AndroidShareManagerV2: Failed to convert url $imageUrl to bitmap - $e")
+        logger?.e("AndroidShareManagerV2: Failed to convert url $imageUrl to bitmap", e)
         coroutineContext.ensureActive()
         null
     }

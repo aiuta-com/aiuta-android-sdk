@@ -5,7 +5,7 @@ import kotlinx.serialization.Serializable
 
 @Serializable
 @SerialName(AiutaAnalyticsEvent.EventType.CONFIGURE_EVENT)
-public class AiutaAnalyticsConfigureEvent(
+public data class AiutaAnalyticsConfigureEvent(
     @SerialName("pageId")
     override val pageId: AiutaAnalyticsPageId? = null,
     @SerialName("productIds")

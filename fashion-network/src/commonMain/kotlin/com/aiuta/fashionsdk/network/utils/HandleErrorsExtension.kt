@@ -1,5 +1,7 @@
 package com.aiuta.fashionsdk.network.utils
 
+import com.aiuta.fashionsdk.logger.AiutaLogger
+import com.aiuta.fashionsdk.logger.e
 import com.aiuta.fashionsdk.network.exceptions.FashionIOException
 import com.aiuta.fashionsdk.network.exceptions.FashionNetworkDisconnectedException
 import com.aiuta.fashionsdk.network.internal.models.FashionErrorBody
@@ -13,11 +15,13 @@ private const val REQUEST_ID_HEADER = "x-cloud-trace-context"
 private const val DATE_HEADER = "date"
 
 internal suspend inline fun handleErrors(
+    aiutaLogger: AiutaLogger?,
     getHttpClientCall: () -> HttpClientCall,
 ): HttpClientCall {
     val httpClientCall = try {
         getHttpClientCall()
     } catch (e: IOException) {
+        aiutaLogger?.e("handleErrors(): failed to execute request", e)
         throw FashionNetworkDisconnectedException()
     }
 
@@ -27,6 +31,7 @@ internal suspend inline fun handleErrors(
 
     val fashionIOException = getFashionIOException(httpClientCall.response)
     if (fashionIOException != null) {
+        aiutaLogger?.e("handleErrors(): response is not success", fashionIOException)
         throw fashionIOException
     }
     return httpClientCall

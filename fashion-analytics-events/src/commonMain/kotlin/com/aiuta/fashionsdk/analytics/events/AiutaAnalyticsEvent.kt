@@ -1,7 +1,9 @@
 package com.aiuta.fashionsdk.analytics.events
 
+import kotlinx.serialization.Serializable
 import kotlinx.serialization.json.Json
 
+@Serializable
 public sealed interface AiutaAnalyticsEvent : InternalAiutaAnalyticsEvent {
 
     public fun serialize(): String = Json.encodeToString<InternalAiutaAnalyticsEvent>(this)

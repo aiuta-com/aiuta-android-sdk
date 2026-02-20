@@ -59,7 +59,7 @@ internal class FashionImageRemoteDataSource(
     ).body()
 
     private companion object {
-        const val PATH_UPLOADED_IMAGES = "/uploaded_images"
+        const val PATH_UPLOADED_IMAGES = "uploaded_images"
         const val KEY_IMAGE_DATA = "image_data"
     }
 }

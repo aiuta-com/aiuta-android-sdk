@@ -48,7 +48,7 @@ internal class FashionProductRemoteDataSource(
     ).body()
 
     private companion object {
-        const val PATH_SKU_ITEMS = "/sku_items"
-        const val PATH_SKU_CATALOGS = "/sku_catalogs"
+        const val PATH_SKU_ITEMS = "sku_items"
+        const val PATH_SKU_CATALOGS = "sku_catalogs"
     }
 }

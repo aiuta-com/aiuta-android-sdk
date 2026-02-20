@@ -41,7 +41,7 @@ internal fun Context.getUriFromBitmap(
             )
     } catch (e: IOException) {
         // If an IOException occurs, ignore fallback
-        logger?.e("AndroidShareManagerV2: Failed to get uri from bitmap - $e ")
+        logger?.e("AndroidShareManagerV2: Failed to get uri from bitmap", e)
     }
     // Return the Uri object, which may be null if an exception was caught.
     return bmpUri

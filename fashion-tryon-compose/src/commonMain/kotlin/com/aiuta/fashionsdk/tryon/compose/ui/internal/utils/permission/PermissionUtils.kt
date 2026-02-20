@@ -38,7 +38,7 @@ internal fun CoroutineScope.actionWithPermission(
                     logger?.w("actionWithPermission(): DeniedAlwaysException exception - $e")
                     onAlwaysDenied()
                 } catch (e: Exception) {
-                    logger?.e("actionWithPermission(): general exception - $e")
+                    logger?.e("actionWithPermission(): general exception", e)
                     // Just intercept
                 }
             }

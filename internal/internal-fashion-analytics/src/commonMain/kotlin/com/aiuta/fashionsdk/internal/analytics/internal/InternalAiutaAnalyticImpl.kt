@@ -26,7 +26,7 @@ internal class InternalAiutaAnalyticImpl(
     private val platformContext: AiutaPlatformContext,
     private val networkClient: NetworkClient,
     private val logger: AiutaLogger?,
-) : BaseUpdater(),
+) : BaseUpdater(logger),
     InternalAiutaAnalytic {
     private val _analyticFlow = MutableSharedFlow<AiutaAnalyticsEvent?>(extraBufferCapacity = 10)
     override val analyticFlow: Flow<AiutaAnalyticsEvent> = _analyticFlow.mapNotNull { it }
