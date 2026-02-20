@@ -1,15 +1,19 @@
 import com.aiuta.fashionsdk.addAllMultiplatformTargets
-import com.aiuta.fashionsdk.androidLibrary
+import com.aiuta.fashionsdk.multiplatformAndroidLibrary
 
 plugins {
-    id("com.android.library")
+    id("com.android.kotlin.multiplatform.library")
     id("kotlin-multiplatform")
     id("org.jetbrains.compose")
     id("org.jetbrains.kotlin.plugin.compose")
 }
 
 addAllMultiplatformTargets()
-androidLibrary(name = "com.aiuta.fashionsdk.configuration.defaults.icons")
+multiplatformAndroidLibrary(name = "com.aiuta.fashionsdk.configuration.defaults.icons") {
+    androidResources {
+        enable = true
+    }
+}
 
 kotlin {
     sourceSets {

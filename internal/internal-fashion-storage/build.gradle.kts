@@ -1,15 +1,15 @@
 import com.aiuta.fashionsdk.addAllMultiplatformTargets
-import com.aiuta.fashionsdk.androidLibrary
+import com.aiuta.fashionsdk.multiplatformAndroidLibrary
 
 plugins {
-    id("com.android.library")
+    id("com.android.kotlin.multiplatform.library")
     id("kotlin-multiplatform")
     alias(libs.plugins.kotlinx.serialization)
 }
 
 // DataStore doesn't support JS/WASM yet, so we disable extended targets
 addAllMultiplatformTargets(enableExtendedTargets = false)
-androidLibrary(name = "com.aiuta.fashionsdk.internal.storage")
+multiplatformAndroidLibrary(name = "com.aiuta.fashionsdk.internal.storage")
 
 kotlin {
     sourceSets {

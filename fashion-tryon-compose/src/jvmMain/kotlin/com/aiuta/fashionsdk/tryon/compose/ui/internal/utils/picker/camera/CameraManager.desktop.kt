@@ -11,7 +11,7 @@ internal actual fun rememberCameraManager(onResult: (AiutaPlatformFile) -> Unit)
 )
 
 internal actual class CameraManager actual constructor(
-    private val onLaunch: () -> Unit,
+    actual val onLaunch: () -> Unit,
 ) {
     actual fun launch() {
         error("Camera is not supported on this platform")

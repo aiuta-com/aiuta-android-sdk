@@ -1,8 +1,8 @@
 import com.aiuta.fashionsdk.addAllMultiplatformTargets
-import com.aiuta.fashionsdk.androidLibrary
+import com.aiuta.fashionsdk.multiplatformAndroidLibrary
 
 plugins {
-    id("com.android.library")
+    id("com.android.kotlin.multiplatform.library")
     id("kotlin-multiplatform")
     id("org.jetbrains.compose")
     id("org.jetbrains.kotlin.plugin.compose")
@@ -10,7 +10,7 @@ plugins {
 }
 
 addAllMultiplatformTargets(enableExtendedTargets = false)
-androidLibrary(name = "com.aiuta.fashionsdk.sizefit.compose")
+multiplatformAndroidLibrary(name = "com.aiuta.fashionsdk.sizefit.compose")
 
 kotlin {
     sourceSets {

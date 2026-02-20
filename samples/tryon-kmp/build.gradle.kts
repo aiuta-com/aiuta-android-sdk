@@ -1,38 +1,19 @@
-import com.aiuta.fashionsdk.androidApplication
+import com.aiuta.fashionsdk.applyAiutaHierarchyTemplate
 import com.aiuta.fashionsdk.desktopMain
+import com.aiuta.fashionsdk.multiplatformAndroidLibrary
 import com.codingfeline.buildkonfig.compiler.FieldSpec.Type.STRING
 import org.jetbrains.compose.desktop.application.dsl.TargetFormat
 import org.jetbrains.kotlin.konan.properties.Properties
 
 plugins {
-    id("com.android.application")
+    id("com.android.kotlin.multiplatform.library")
     id("kotlin-multiplatform")
     id("org.jetbrains.compose")
     id("org.jetbrains.kotlin.plugin.compose")
     alias(libs.plugins.buildKonfig)
 }
 
-androidApplication(name = "sample.tryon.kmp") {
-    compileOptions {
-        sourceCompatibility = JavaVersion.VERSION_11
-        targetCompatibility = JavaVersion.VERSION_11
-    }
-    buildFeatures {
-        buildConfig = true
-    }
-    buildTypes {
-        release {
-            isDebuggable = false
-            isMinifyEnabled = true
-            isShrinkResources = true
-            proguardFiles(
-                "./shrinker-rules.pro",
-                "./shrinker-rules-android.pro",
-            )
-            signingConfig = signingConfigs["debug"]
-        }
-    }
-}
+multiplatformAndroidLibrary(name = "sample.tryon.kmp")
 
 buildkonfig {
     packageName = "sample.tryon.kmp"
@@ -54,7 +35,7 @@ buildkonfig {
 }
 
 kotlin {
-    androidTarget()
+    applyAiutaHierarchyTemplate()
 
     listOf(
         iosX64(),
@@ -70,9 +51,6 @@ kotlin {
     jvm("desktop")
 
     sourceSets {
-        androidMain.dependencies {
-            implementation(libs.androidx.activity.compose)
-        }
         commonMain.dependencies {
             implementation(projects.fashionTryonCompose)
             implementation(projects.fashionSizefitCompose)

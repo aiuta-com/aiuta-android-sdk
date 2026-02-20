@@ -3,7 +3,6 @@ package com.aiuta.fashionsdk
 import org.gradle.api.NamedDomainObjectContainer
 import org.gradle.api.NamedDomainObjectProvider
 import org.gradle.api.Project
-import org.gradle.api.Task
 import org.gradle.kotlin.dsl.configure
 import org.gradle.kotlin.dsl.invoke
 import org.jetbrains.kotlin.gradle.ExperimentalWasmDsl
@@ -16,16 +15,6 @@ fun Project.addAllMultiplatformTargets(
     plugins.withId("org.jetbrains.kotlin.multiplatform") {
         extensions.configure<KotlinMultiplatformExtension> {
             applyAiutaHierarchyTemplate()
-
-            val isAndroidApp = plugins.hasPlugin("com.android.application")
-            val isAndroidLibrary = plugins.hasPlugin("com.android.library")
-            if (isAndroidApp || isAndroidLibrary) {
-                androidTarget {
-                    if (isAndroidLibrary) {
-                        publishLibraryVariants("release")
-                    }
-                }
-            }
 
             jvm()
 

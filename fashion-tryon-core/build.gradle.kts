@@ -1,8 +1,8 @@
 import com.aiuta.fashionsdk.addAllMultiplatformTargets
-import com.aiuta.fashionsdk.androidLibrary
+import com.aiuta.fashionsdk.multiplatformAndroidLibrary
 
 plugins {
-    id("com.android.library")
+    id("com.android.kotlin.multiplatform.library")
     id("kotlin-multiplatform")
     id("org.jetbrains.compose")
     id("org.jetbrains.kotlin.plugin.compose")
@@ -10,7 +10,7 @@ plugins {
 }
 
 addAllMultiplatformTargets()
-androidLibrary(name = "com.aiuta.fashionsdk.tryon.core")
+multiplatformAndroidLibrary(name = "com.aiuta.fashionsdk.tryon.core")
 
 kotlin {
     sourceSets {

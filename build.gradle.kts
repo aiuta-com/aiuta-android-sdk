@@ -3,7 +3,6 @@ import com.aiuta.fashionsdk.publicModulePath
 import com.aiuta.fashionsdk.publicModules
 import com.aiuta.fashionsdk.versionName
 import com.diffplug.gradle.spotless.SpotlessExtension
-import com.diffplug.gradle.spotless.SpotlessExtensionPredeclare
 import kotlinx.validation.ApiValidationExtension
 import kotlinx.validation.ExperimentalBCVApi
 import org.jetbrains.kotlin.gradle.dsl.JvmTarget
@@ -68,7 +67,6 @@ tasks.register<Exec>("installGitHooks") {
 val initialTaskNames: List<String> = project.gradle.startParameter.taskNames
 project.gradle.startParameter.setTaskNames(initialTaskNames + listOf(":installGitHooks"))
 
-
 allprojects {
     repositories {
         google()
@@ -91,7 +89,7 @@ allprojects {
 
     apply(plugin = "com.diffplug.spotless")
 
-    val configureSpotless: SpotlessExtension.() -> Unit = {
+    extensions.configure<SpotlessExtension> {
         kotlin {
             target("**/*.kt", "**/*.kts")
             targetExclude(
@@ -103,13 +101,6 @@ allprojects {
             leadingTabsToSpaces()
             trimTrailingWhitespace()
         }
-    }
-
-    if (project === rootProject) {
-        spotless { predeclareDeps() }
-        extensions.configure<SpotlessExtensionPredeclare>(configureSpotless)
-    } else {
-        extensions.configure<SpotlessExtension>(configureSpotless)
     }
 }
 

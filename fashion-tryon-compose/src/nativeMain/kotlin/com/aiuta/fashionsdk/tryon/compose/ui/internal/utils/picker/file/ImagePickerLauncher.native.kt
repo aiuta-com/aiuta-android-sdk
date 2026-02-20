@@ -82,7 +82,7 @@ internal actual fun rememberImagePickerLauncher(onResult: (List<AiutaPlatformFil
 }
 
 internal actual class ImagePickerLauncher actual constructor(
-    private val onLaunch: () -> Unit,
+    actual val onLaunch: () -> Unit,
 ) {
     public actual fun launch() {
         onLaunch()

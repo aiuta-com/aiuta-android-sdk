@@ -25,12 +25,10 @@ val publicModules = setOf(
     "internal-fashion-storage",
 )
 
-fun publicModulePath(moduleName: String): String {
-    return buildString {
-        append(":")
-        if (moduleName.startsWith("internal")) {
-            append("internal:")
-        }
-        append(moduleName)
+fun publicModulePath(moduleName: String): String = buildString {
+    append(":")
+    if (moduleName.startsWith("internal")) {
+        append("internal:")
     }
+    append(moduleName)
 }

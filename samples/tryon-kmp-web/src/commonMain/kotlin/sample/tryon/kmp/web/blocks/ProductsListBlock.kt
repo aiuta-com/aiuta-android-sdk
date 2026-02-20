@@ -14,8 +14,8 @@ import androidx.compose.foundation.lazy.grid.GridCells
 import androidx.compose.foundation.lazy.grid.LazyVerticalGrid
 import androidx.compose.foundation.lazy.grid.items
 import androidx.compose.foundation.shape.RoundedCornerShape
-import androidx.compose.material3.MaterialTheme
-import androidx.compose.material3.Text
+import androidx.compose.material.MaterialTheme
+import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
@@ -87,7 +87,7 @@ internal fun ProductsListBlock(
                         .fillMaxWidth()
                         .height(20.dp),
                     text = product.title,
-                    style = MaterialTheme.typography.bodyMedium,
+                    style = MaterialTheme.typography.body1,
                     overflow = TextOverflow.Ellipsis,
                     maxLines = 2,
                 )

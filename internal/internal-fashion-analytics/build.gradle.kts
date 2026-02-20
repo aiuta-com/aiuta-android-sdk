@@ -1,17 +1,17 @@
 import com.aiuta.fashionsdk.addAllMultiplatformTargets
-import com.aiuta.fashionsdk.androidLibrary
+import com.aiuta.fashionsdk.multiplatformAndroidLibrary
 import com.aiuta.fashionsdk.versionName
 import com.codingfeline.buildkonfig.compiler.FieldSpec.Type.STRING
 
 plugins {
-    id("com.android.library")
+    id("com.android.kotlin.multiplatform.library")
     id("kotlin-multiplatform")
     alias(libs.plugins.buildKonfig)
     alias(libs.plugins.kotlinx.serialization)
 }
 
 addAllMultiplatformTargets()
-androidLibrary(name = "com.aiuta.fashionsdk.internal.analytic")
+multiplatformAndroidLibrary(name = "com.aiuta.fashionsdk.internal.analytic")
 
 buildkonfig {
     packageName = "com.aiuta.fashionsdk.internal.analytic"
