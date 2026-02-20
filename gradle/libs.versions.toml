@@ -19,7 +19,7 @@ dokka = "2.1.0"
 gradle-plugin-android = "8.13.2"
 gradle-plugin-vanniktech-publish = "0.36.0"
 
-haze = "1.7.1"
+haze = "1.7.2"
 
 kotlinx-atomicfu = "0.31.0"
 kotlinx-browser = "0.5.0"
