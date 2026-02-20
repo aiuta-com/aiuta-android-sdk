@@ -1,9 +1,12 @@
+@file:OptIn(ExperimentalKotlinGradlePluginApi::class)
+
 import com.aiuta.fashionsdk.addAllMultiplatformTargets
-import com.aiuta.fashionsdk.androidLibrary
 import com.aiuta.fashionsdk.mobileMain
+import com.aiuta.fashionsdk.multiplatformAndroidLibrary
+import org.jetbrains.kotlin.gradle.ExperimentalKotlinGradlePluginApi
 
 plugins {
-    id("com.android.library")
+    id("com.android.kotlin.multiplatform.library")
     id("kotlin-multiplatform")
     id("org.jetbrains.compose")
     id("org.jetbrains.kotlin.plugin.compose")
@@ -13,9 +16,13 @@ plugins {
 }
 
 addAllMultiplatformTargets(enableExtendedTargets = false)
-androidLibrary(name = "com.aiuta.fashionsdk.tryon.compose") {
-    defaultConfig {
-        consumerProguardFiles("shrinker-rules.pro")
+multiplatformAndroidLibrary(name = "com.aiuta.fashionsdk.tryon.compose") {
+    androidResources {
+        enable = true
+    }
+    optimization {
+        consumerKeepRules.publish = true
+        consumerKeepRules.files += project.file("shrinker-rules.pro")
     }
 }
 
@@ -25,6 +32,7 @@ kotlin {
             dependencies {
                 implementation(libs.androidx.core)
                 implementation(libs.androidx.activity.compose)
+                implementation(libs.androidx.ui.unit.android)
                 implementation(libs.ktor.engine.okhttp)
             }
         }
@@ -82,15 +90,18 @@ kotlin {
     }
 }
 
-dependencies {
-    implementation(libs.androidx.ui.unit.android)
-    add("kspAndroid", libs.room.compiler)
-    add("kspJvm", libs.room.compiler)
-    add("kspIosSimulatorArm64", libs.room.compiler)
-    add("kspIosX64", libs.room.compiler)
-    add("kspIosArm64", libs.room.compiler)
-}
-
 room {
     schemaDirectory("$projectDir/schemas")
+}
+
+dependencies {
+    listOf(
+        "kspAndroid",
+        "kspJvm",
+        "kspIosSimulatorArm64",
+        "kspIosX64",
+        "kspIosArm64",
+    ).forEach { configurationName ->
+        add(configurationName, libs.room.compiler)
+    }
 }

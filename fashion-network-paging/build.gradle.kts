@@ -1,14 +1,14 @@
 import com.aiuta.fashionsdk.addAllMultiplatformTargets
-import com.aiuta.fashionsdk.androidLibrary
+import com.aiuta.fashionsdk.multiplatformAndroidLibrary
 
 plugins {
-    id("com.android.library")
+    id("com.android.kotlin.multiplatform.library")
     id("kotlin-multiplatform")
     alias(libs.plugins.kotlinx.serialization)
 }
 
 addAllMultiplatformTargets()
-androidLibrary(name = "com.aiuta.fashionsdk.network.paging")
+multiplatformAndroidLibrary(name = "com.aiuta.fashionsdk.network.paging")
 
 kotlin {
     sourceSets {

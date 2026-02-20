@@ -1,161 +1,74 @@
 package com.aiuta.fashionsdk
 
+import com.aiuta.fashionsdk.minSdk
+import com.aiuta.fashionsdk.targetSdk
+import com.aiuta.fashionsdk.versionName
+import com.android.build.api.dsl.ApplicationExtension
 import com.android.build.api.dsl.CommonExtension
+import com.android.build.api.dsl.KotlinMultiplatformAndroidLibraryTarget
 import com.android.build.api.dsl.Lint
-import com.android.build.gradle.BaseExtension
-import com.android.build.gradle.LibraryExtension
-import com.android.build.gradle.internal.dsl.BaseAppModuleExtension
+import com.vanniktech.maven.publish.JavadocJar.Dokka
+import com.vanniktech.maven.publish.KotlinMultiplatform
+import kotlin.plus
 import org.gradle.api.Project
 import org.gradle.kotlin.dsl.apply
 import org.gradle.kotlin.dsl.configure
-import org.gradle.kotlin.dsl.get
 import org.gradle.kotlin.dsl.withType
-import org.jetbrains.kotlin.gradle.dsl.ExplicitApiMode
+import org.jetbrains.dokka.gradle.DokkaExtension
+import org.jetbrains.dokka.gradle.engine.parameters.KotlinPlatform
 import org.jetbrains.kotlin.gradle.dsl.KotlinMultiplatformExtension
 import org.jetbrains.kotlin.gradle.tasks.KotlinCompile
-import com.vanniktech.maven.publish.AndroidSingleVariantLibrary
-import com.vanniktech.maven.publish.KotlinMultiplatform
-import com.vanniktech.maven.publish.JavadocJar.Dokka
-import org.jetbrains.dokka.gradle.DokkaExtension
 
-fun Project.androidLibrary(
-    name: String,
-    config: Boolean = false,
-    action: LibraryExtension.() -> Unit = {},
-) = androidBase<LibraryExtension>(
-    name = name,
-    config = config,
-) {
-    buildFeatures {
-        buildConfig = config
-    }
-    sourceSets["main"].resources {
-        srcDirs("src/commonMain/resources")
-    }
-    if (project.name in publicModules) {
-        apply(plugin = "org.jetbrains.dokka")
-        apply(plugin = "com.vanniktech.maven.publish.base")
-        setupDokka()
-        setupPublishing {
-            val platform = if (project.plugins.hasPlugin("org.jetbrains.kotlin.multiplatform")) {
-                KotlinMultiplatform(Dokka("dokkaGenerate"))
-            } else {
-                AndroidSingleVariantLibrary()
-            }
-            configure(platform)
-        }
-    }
-    if (config) {
-        defaultConfig {
-            buildConfigField("String", "VERSION_NAME", "\"${versionName}\"")
-        }
-    }
-    action()
-}
+private val DISABLED_LINT_RULES = listOf(
+    "ComposableNaming",
+    "UnknownIssueId",
+    "VectorPath",
+    "VectorRaster",
+    "ObsoleteLintCustomCheck",
+    "MonochromeLauncherIcon",
+    "IconLocation",
+    // Renovate bot checks deps updates
+    "NewerVersionAvailable",
+    "AndroidGradlePluginVersion",
+    "GradleDependency",
+)
 
+private val RESOURCE_DUPLICATE_OVERRIDES = listOf(
+    "META-INF/AL2.0",
+    "META-INF/LGPL2.1",
+    "META-INF/*kotlin_module",
+)
 
-fun Project.androidApplication(
-    name: String,
-    action: BaseAppModuleExtension.() -> Unit = {},
-) = androidBase<BaseAppModuleExtension>(
-    name = name,
-) {
-    defaultConfig {
-        applicationId = name
-        versionCode = project.versionCode
-        versionName = project.versionName
-        androidResources.localeFilters += "en"
-        vectorDrawables.useSupportLibrary = true
-    }
-    action()
-}
-
-private fun <T : BaseExtension> Project.androidBase(
-    name: String,
-    config: Boolean = false,
-    action: T.() -> Unit,
-) {
-    android<T> {
-        namespace = name
-        compileSdkVersion(project.compileSdk)
-        defaultConfig {
-            minSdk = project.minSdk
-            targetSdk = project.targetSdk
-            testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
-
-            if (config) {
-                buildConfigField("String", "VERSION_NAME", "\"${versionName}\"")
-            }
-        }
-        packagingOptions {
-            resources.pickFirsts += listOf(
-                "META-INF/AL2.0",
-                "META-INF/LGPL2.1",
-                "META-INF/*kotlin_module",
-            )
-        }
-        testOptions {
-            unitTests.isIncludeAndroidResources = true
-        }
-        lint {
-            warningsAsErrors = true
-            disable += listOf(
-                "ComposableNaming",
-                "UnknownIssueId",
-                "VectorPath",
-                "VectorRaster",
-                "ObsoleteLintCustomCheck",
-                "MonochromeLauncherIcon",
-                "IconLocation",
-                // Renovate bot checks deps updates
-                "NewerVersionAvailable",
-                "AndroidGradlePluginVersion",
-                "GradleDependency"
-            )
-        }
-        action()
-    }
+private fun Project.configureKotlinMultiplatform() {
     plugins.withId("org.jetbrains.kotlin.multiplatform") {
         extensions.configure<KotlinMultiplatformExtension> {
-            if (project.name in publicModules) {
-                explicitApi = ExplicitApiMode.Strict
-            }
-
-            targets.configureEach {
-                compilations.configureEach {
-                    // https://youtrack.jetbrains.com/issue/KT-61573#focus=Comments-27-9822729.0-0
-                    @Suppress("DEPRECATION")
-                    compilerOptions.configure {
-                        val arguments = listOf(
-                            // https://kotlinlang.org/docs/compiler-reference.html#progressive
-                            "-progressive",
-                            // https://youtrack.jetbrains.com/issue/KT-61573
-                            "-Xexpect-actual-classes",
-                        )
-                        freeCompilerArgs.addAll(arguments)
-                    }
-                }
+            compilerOptions {
+                // https://youtrack.jetbrains.com/issue/KT-61573
+                freeCompilerArgs.add("-Xexpect-actual-classes")
             }
         }
     }
+}
+
+private fun Project.configureKotlinCompile() {
     tasks.withType<KotlinCompile>().configureEach {
         compilerOptions {
-            val arguments = mutableListOf<String>()
+            val arguments = buildList {
+                // https://kotlinlang.org/docs/compiler-reference.html#progressive
+                add("-progressive")
 
-            // https://kotlinlang.org/docs/compiler-reference.html#progressive
-            arguments += "-progressive"
+                // Enable Java default method generation.
+                add("-Xjvm-default=all")
 
-            // Enable Java default method generation.
-            arguments += "-Xjvm-default=all"
+                // Generate smaller bytecode by not generating runtime not-null assertions.
+                add("-Xno-call-assertions")
+                add("-Xno-param-assertions")
+                add("-Xno-receiver-assertions")
 
-            // Generate smaller bytecode by not generating runtime not-null assertions.
-            arguments += "-Xno-call-assertions"
-            arguments += "-Xno-param-assertions"
-            arguments += "-Xno-receiver-assertions"
-
-            // For explicitApi strict mode - make as error
-            if (project.name in publicModules) {
-                arguments += "-Xexplicit-api=strict"
+                // For explicitApi strict mode - make as error
+                if (project.name in publicModules) {
+                    add("-Xexplicit-api=strict")
+                }
             }
 
             freeCompilerArgs.addAll(arguments)
@@ -163,12 +76,104 @@ private fun <T : BaseExtension> Project.androidBase(
     }
 }
 
-internal fun <T : BaseExtension> Project.android(action: T.() -> Unit) {
+fun Project.multiplatformAndroidLibrary(
+    name: String,
+    action: KotlinMultiplatformAndroidLibraryTarget.() -> Unit = {},
+) {
+    configureKotlinMultiplatform()
+    configureKotlinCompile()
+
+    plugins.withId("org.jetbrains.kotlin.multiplatform") {
+        extensions.configure<KotlinMultiplatformExtension> {
+            targets.withType<KotlinMultiplatformAndroidLibraryTarget>().configureEach {
+                namespace = name
+                compileSdk = project.compileSdk
+                minSdk = project.minSdk
+
+                withHostTest {
+                    isIncludeAndroidResources = true
+                }
+
+                withDeviceTest {
+                    instrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
+                }
+
+                lint {
+                    warningsAsErrors = true
+                    disable += DISABLED_LINT_RULES
+                }
+
+                packaging {
+                    resources.pickFirsts += RESOURCE_DUPLICATE_OVERRIDES
+                }
+
+                action()
+            }
+        }
+    }
+
+    if (project.name in publicModules) {
+        apply(plugin = "org.jetbrains.dokka")
+        apply(plugin = "com.vanniktech.maven.publish.base")
+        setupDokka()
+        setupPublishing {
+            configure(KotlinMultiplatform(Dokka("dokkaGenerate")))
+        }
+    }
+}
+
+fun Project.androidApplication(
+    name: String,
+    action: ApplicationExtension.() -> Unit = {},
+) = androidBase<ApplicationExtension>(
+    name = name,
+) {
+    defaultConfig {
+        minSdk = project.minSdk
+        targetSdk = project.targetSdk
+        testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
+
+        applicationId = name
+        versionCode = project.versionCode
+        versionName = project.versionName
+        androidResources.localeFilters += "en"
+        vectorDrawables.useSupportLibrary = true
+    }
+    packaging {
+        resources.pickFirsts += RESOURCE_DUPLICATE_OVERRIDES
+    }
+    testOptions {
+        unitTests.isIncludeAndroidResources = true
+    }
+    action()
+}
+
+private fun <T : CommonExtension> Project.androidBase(
+    name: String,
+    action: T.() -> Unit,
+) {
+    configureKotlinMultiplatform()
+    configureKotlinCompile()
+
+    android<T> {
+        namespace = name
+        compileSdk {
+            version = release(project.compileSdk)
+        }
+        lint {
+            warningsAsErrors = true
+            disable += DISABLED_LINT_RULES
+        }
+        action()
+    }
+}
+
+internal fun <T : CommonExtension> Project.android(action: T.() -> Unit) {
     extensions.configure("android", action)
 }
 
-private fun BaseExtension.lint(action: Lint.() -> Unit) {
-    (this as CommonExtension<*, *, *, *, *, *>).lint(action)
+private fun CommonExtension.lint(action: Lint.() -> Unit) {
+    this.lint.apply(action)
 }
 
 private fun Project.setupDokka(
@@ -182,6 +187,17 @@ private fun Project.setupDokka(
         dokkaSourceSets.configureEach {
             jdkVersion.set(8)
             skipDeprecated.set(true)
+
+            if (name == "jvmCommonMain") {
+                analysisPlatform.set(KotlinPlatform.JVM)
+            }
+
+            // Suppress the 'main' source set for non-multiplatform Android
+            // libraries to avoid conflicting with the 'release' source set.
+            // https://github.com/Kotlin/dokka/issues/3701
+            if (name == "main" && !project.plugins.hasPlugin("org.jetbrains.kotlin.multiplatform")) {
+                suppress.set(true)
+            }
 
             externalDocumentationLinks.register("android") {
                 url.set(uri("https://developer.android.com/reference/"))

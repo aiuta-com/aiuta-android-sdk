@@ -50,8 +50,10 @@ private fun KotlinHierarchyBuilder.groupNonJsCommon() {
 
 private fun KotlinHierarchyBuilder.groupJvmCommon() {
     group("jvmCommon") {
-        withAndroidTarget()
-        withJvm()
+        withCompilations { compilation ->
+            compilation.target.platformType.name == "androidJvm" ||
+                compilation.target.platformType.name == "jvm"
+        }
     }
 }
 
@@ -75,8 +77,11 @@ private fun KotlinHierarchyBuilder.groupNative() {
 
 private fun KotlinHierarchyBuilder.groupMobile() {
     group("mobile") {
-        withAndroidTarget()
-        groupNative()
+        withCompilations { compilation ->
+            val platformType = compilation.target.platformType.name
+            val targetName = compilation.target.name
+            platformType == "androidJvm" || targetName.startsWith("ios")
+        }
     }
 }
 

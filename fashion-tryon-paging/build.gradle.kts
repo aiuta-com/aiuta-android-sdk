@@ -1,8 +1,8 @@
 import com.aiuta.fashionsdk.addAllMultiplatformTargets
-import com.aiuta.fashionsdk.androidLibrary
+import com.aiuta.fashionsdk.multiplatformAndroidLibrary
 
 plugins {
-    id("com.android.library")
+    id("com.android.kotlin.multiplatform.library")
     id("kotlin-multiplatform")
 }
 
@@ -10,7 +10,7 @@ addAllMultiplatformTargets(
     // TODO Add targets with paging v3.4.0
     enableExtendedTargets = false,
 )
-androidLibrary(name = "com.aiuta.fashionsdk.tryon.paging")
+multiplatformAndroidLibrary(name = "com.aiuta.fashionsdk.tryon.paging")
 
 kotlin {
     sourceSets {

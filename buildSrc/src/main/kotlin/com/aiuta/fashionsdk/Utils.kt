@@ -13,14 +13,12 @@ val Project.targetSdk: Int
 val Project.compileSdk: Int
     get() = intProperty("compileSdk")
 
-
 // ID
 val Project.groupId: String
     get() = stringProperty("POM_GROUP_ID")
 
 val Project.artifactId: String
     get() = stringProperty("POM_ARTIFACT_ID")
-
 
 // POM
 val Project.pomName: String
@@ -34,7 +32,6 @@ val Project.pomUrl: String
 
 val Project.pomUrlIssue: String
     get() = stringProperty("POM_URL_ISSUE")
-
 
 // SCM
 val Project.scmUrl: String
@@ -55,7 +52,6 @@ val Project.licenceUrl: String
 
 val Project.licenceDist: String
     get() = stringProperty("POM_LICENCE_DIST")
-
 
 // Version
 val Project.versionName: String
