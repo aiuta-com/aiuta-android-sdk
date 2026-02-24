@@ -54,7 +54,8 @@ internal fun GenerationResultFooterList(
             )
         }
 
-        spacerBlock(index = 2, height = navigationBars)
+        spacerBlock(index = 2, height = 24.dp)
+        spacerBlock(index = 3, height = navigationBars)
     }
 }
 
