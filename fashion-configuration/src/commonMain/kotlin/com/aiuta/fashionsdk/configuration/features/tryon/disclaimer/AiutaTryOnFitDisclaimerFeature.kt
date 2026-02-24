@@ -4,7 +4,6 @@ import com.aiuta.fashionsdk.configuration.features.AiutaFeature
 import com.aiuta.fashionsdk.configuration.features.tryon.AiutaTryOnFeature
 import com.aiuta.fashionsdk.configuration.features.tryon.disclaimer.icons.AiutaTryOnFitDisclaimerFeatureIcons
 import com.aiuta.fashionsdk.configuration.features.tryon.disclaimer.strings.AiutaTryOnFitDisclaimerFeatureStrings
-import com.aiuta.fashionsdk.configuration.features.tryon.disclaimer.typography.AiutaTryOnFitDisclaimerFeatureTypography
 import com.aiuta.fashionsdk.configuration.internal.utils.checkNotNullWithDescription
 
 /**
@@ -16,16 +15,13 @@ import com.aiuta.fashionsdk.configuration.internal.utils.checkNotNullWithDescrip
  * Required components:
  * - [icons]: Icon resources for disclaimer UI
  * - [strings]: Text content for disclaimer messages
- * - [typography]: Typography styles for disclaimer text
  *
  * @property icons Icon resources for disclaimer UI elements
  * @property strings Text content for disclaimer messages
- * @property typography Typography styles for disclaimer text
  */
 public class AiutaTryOnFitDisclaimerFeature(
     public val icons: AiutaTryOnFitDisclaimerFeatureIcons,
     public val strings: AiutaTryOnFitDisclaimerFeatureStrings,
-    public val typography: AiutaTryOnFitDisclaimerFeatureTypography,
 ) : AiutaFeature {
 
     /**
@@ -34,7 +30,6 @@ public class AiutaTryOnFitDisclaimerFeature(
     public class Builder : AiutaFeature.Builder {
         public var icons: AiutaTryOnFitDisclaimerFeatureIcons? = null
         public var strings: AiutaTryOnFitDisclaimerFeatureStrings? = null
-        public var typography: AiutaTryOnFitDisclaimerFeatureTypography? = null
 
         public override fun build(): AiutaTryOnFitDisclaimerFeature {
             val parentClass = "AiutaTryOnFitDisclaimerFeature"
@@ -47,10 +42,6 @@ public class AiutaTryOnFitDisclaimerFeature(
                 strings = strings.checkNotNullWithDescription(
                     parentClass = parentClass,
                     property = "strings",
-                ),
-                typography = typography.checkNotNullWithDescription(
-                    parentClass = parentClass,
-                    property = "typography",
                 ),
             )
         }

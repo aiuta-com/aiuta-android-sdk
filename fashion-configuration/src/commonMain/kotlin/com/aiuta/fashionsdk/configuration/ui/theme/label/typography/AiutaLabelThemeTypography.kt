@@ -19,12 +19,14 @@ import androidx.compose.ui.unit.sp
  * @property titleM Text style for medium titles
  * @property regular Text style for regular label text
  * @property subtle Text style for subtle or secondary label text
+ * @property footnote Text style for footnotes
  */
 public interface AiutaLabelThemeTypography {
     public val titleL: TextStyle
     public val titleM: TextStyle
     public val regular: TextStyle
     public val subtle: TextStyle
+    public val footnote: TextStyle
 
     /**
      * Default implementation of [AiutaLabelThemeTypography].
@@ -63,6 +65,12 @@ public interface AiutaLabelThemeTypography {
             fontWeight = FontWeight.Normal,
             fontSize = 15.sp,
             lineHeight = 18.sp,
+            letterSpacing = TextUnit(-0.01f, TextUnitType.Sp),
+        )
+        override val footnote: TextStyle = TextStyle(
+            fontFamily = FontFamily.Default,
+            fontWeight = FontWeight.Normal,
+            fontSize = 12.sp,
             letterSpacing = TextUnit(-0.01f, TextUnitType.Sp),
         )
     }

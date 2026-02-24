@@ -37,6 +37,7 @@ import com.aiuta.fashionsdk.compose.uikit.utils.strictProvideFeature
 import com.aiuta.fashionsdk.configuration.features.consent.AiutaConsentStandaloneImagePickerPageFeature
 import com.aiuta.fashionsdk.configuration.features.picker.AiutaImagePickerFeature
 import com.aiuta.fashionsdk.configuration.features.picker.model.AiutaImagePickerPredefinedModelFeature
+import com.aiuta.fashionsdk.configuration.features.picker.protection.AiutaImagePickerProtectionDisclaimerFeature
 import com.aiuta.fashionsdk.internal.navigation.composition.LocalAiutaBottomSheetNavigator
 import com.aiuta.fashionsdk.internal.navigation.composition.LocalAiutaNavigationController
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.controller.composition.LocalController
@@ -60,6 +61,7 @@ internal fun ImageSelectorScreenEmptyBodyBlock(modifier: Modifier) {
 
     val imageSelectorFeature = strictProvideFeature<AiutaImagePickerFeature>()
     val predefinedModelFeature = provideFeature<AiutaImagePickerPredefinedModelFeature>()
+    val protectionFeature = provideFeature<AiutaImagePickerProtectionDisclaimerFeature>()
     val standaloneImagePickerPageFeature =
         provideFeature<AiutaConsentStandaloneImagePickerPageFeature>()
 
@@ -109,6 +111,15 @@ internal fun ImageSelectorScreenEmptyBodyBlock(modifier: Modifier) {
             color = theme.color.primary,
             textAlign = TextAlign.Center,
         )
+
+        protectionFeature?.let {
+            Spacer(Modifier.height(16.dp))
+
+            ProtectionBlock(
+                modifier = Modifier.fillMaxWidth(),
+                protectionFeature = protectionFeature,
+            )
+        }
 
         Spacer(Modifier.height(32.dp))
 
