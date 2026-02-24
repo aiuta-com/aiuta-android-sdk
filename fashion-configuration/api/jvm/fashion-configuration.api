@@ -489,11 +489,12 @@ public final class com/aiuta/fashionsdk/configuration/features/onboarding/string
 
 public final class com/aiuta/fashionsdk/configuration/features/picker/AiutaImagePickerFeature : com/aiuta/fashionsdk/configuration/features/AiutaFeature {
 	public static final field $stable I
-	public fun <init> (Lcom/aiuta/fashionsdk/configuration/features/picker/camera/AiutaImagePickerCameraFeature;Lcom/aiuta/fashionsdk/configuration/features/picker/gallery/AiutaImagePickerPhotoGalleryFeature;Lcom/aiuta/fashionsdk/configuration/features/picker/model/AiutaImagePickerPredefinedModelFeature;Lcom/aiuta/fashionsdk/configuration/features/picker/history/AiutaImagePickerUploadsHistoryFeature;Lcom/aiuta/fashionsdk/configuration/features/picker/images/AiutaImagePickerFeatureImages;Lcom/aiuta/fashionsdk/configuration/features/picker/strings/AiutaImagePickerFeatureStrings;)V
+	public fun <init> (Lcom/aiuta/fashionsdk/configuration/features/picker/camera/AiutaImagePickerCameraFeature;Lcom/aiuta/fashionsdk/configuration/features/picker/gallery/AiutaImagePickerPhotoGalleryFeature;Lcom/aiuta/fashionsdk/configuration/features/picker/model/AiutaImagePickerPredefinedModelFeature;Lcom/aiuta/fashionsdk/configuration/features/picker/protection/AiutaImagePickerProtectionDisclaimerFeature;Lcom/aiuta/fashionsdk/configuration/features/picker/history/AiutaImagePickerUploadsHistoryFeature;Lcom/aiuta/fashionsdk/configuration/features/picker/images/AiutaImagePickerFeatureImages;Lcom/aiuta/fashionsdk/configuration/features/picker/strings/AiutaImagePickerFeatureStrings;)V
 	public final fun getCamera ()Lcom/aiuta/fashionsdk/configuration/features/picker/camera/AiutaImagePickerCameraFeature;
 	public final fun getImages ()Lcom/aiuta/fashionsdk/configuration/features/picker/images/AiutaImagePickerFeatureImages;
 	public final fun getPhotoGallery ()Lcom/aiuta/fashionsdk/configuration/features/picker/gallery/AiutaImagePickerPhotoGalleryFeature;
 	public final fun getPredefinedModels ()Lcom/aiuta/fashionsdk/configuration/features/picker/model/AiutaImagePickerPredefinedModelFeature;
+	public final fun getProtectionDisclaimer ()Lcom/aiuta/fashionsdk/configuration/features/picker/protection/AiutaImagePickerProtectionDisclaimerFeature;
 	public final fun getStrings ()Lcom/aiuta/fashionsdk/configuration/features/picker/strings/AiutaImagePickerFeatureStrings;
 	public final fun getUploadsHistory ()Lcom/aiuta/fashionsdk/configuration/features/picker/history/AiutaImagePickerUploadsHistoryFeature;
 }
@@ -507,12 +508,14 @@ public final class com/aiuta/fashionsdk/configuration/features/picker/AiutaImage
 	public final fun getImages ()Lcom/aiuta/fashionsdk/configuration/features/picker/images/AiutaImagePickerFeatureImages;
 	public final fun getPhotoGallery ()Lcom/aiuta/fashionsdk/configuration/features/picker/gallery/AiutaImagePickerPhotoGalleryFeature;
 	public final fun getPredefinedModels ()Lcom/aiuta/fashionsdk/configuration/features/picker/model/AiutaImagePickerPredefinedModelFeature;
+	public final fun getProtectionDisclaimer ()Lcom/aiuta/fashionsdk/configuration/features/picker/protection/AiutaImagePickerProtectionDisclaimerFeature;
 	public final fun getStrings ()Lcom/aiuta/fashionsdk/configuration/features/picker/strings/AiutaImagePickerFeatureStrings;
 	public final fun getUploadsHistory ()Lcom/aiuta/fashionsdk/configuration/features/picker/history/AiutaImagePickerUploadsHistoryFeature;
 	public final fun setCamera (Lcom/aiuta/fashionsdk/configuration/features/picker/camera/AiutaImagePickerCameraFeature;)V
 	public final fun setImages (Lcom/aiuta/fashionsdk/configuration/features/picker/images/AiutaImagePickerFeatureImages;)V
 	public final fun setPhotoGallery (Lcom/aiuta/fashionsdk/configuration/features/picker/gallery/AiutaImagePickerPhotoGalleryFeature;)V
 	public final fun setPredefinedModels (Lcom/aiuta/fashionsdk/configuration/features/picker/model/AiutaImagePickerPredefinedModelFeature;)V
+	public final fun setProtectionDisclaimer (Lcom/aiuta/fashionsdk/configuration/features/picker/protection/AiutaImagePickerProtectionDisclaimerFeature;)V
 	public final fun setStrings (Lcom/aiuta/fashionsdk/configuration/features/picker/strings/AiutaImagePickerFeatureStrings;)V
 	public final fun setUploadsHistory (Lcom/aiuta/fashionsdk/configuration/features/picker/history/AiutaImagePickerUploadsHistoryFeature;)V
 }
@@ -716,6 +719,42 @@ public final class com/aiuta/fashionsdk/configuration/features/picker/model/stri
 	public fun getPredefinedModelErrorEmptyModelsList ()Ljava/lang/String;
 	public fun getPredefinedModelOr ()Ljava/lang/String;
 	public fun getPredefinedModelPageTitle ()Ljava/lang/String;
+}
+
+public final class com/aiuta/fashionsdk/configuration/features/picker/protection/AiutaImagePickerProtectionDisclaimerFeature : com/aiuta/fashionsdk/configuration/features/AiutaFeature {
+	public static final field $stable I
+	public fun <init> (Lcom/aiuta/fashionsdk/configuration/features/picker/protection/icons/AiutaImagePickerProtectionDisclaimerFeatureIcons;Lcom/aiuta/fashionsdk/configuration/features/picker/protection/strings/AiutaImagePickerProtectionDisclaimerFeatureStrings;)V
+	public final fun getIcons ()Lcom/aiuta/fashionsdk/configuration/features/picker/protection/icons/AiutaImagePickerProtectionDisclaimerFeatureIcons;
+	public final fun getStrings ()Lcom/aiuta/fashionsdk/configuration/features/picker/protection/strings/AiutaImagePickerProtectionDisclaimerFeatureStrings;
+}
+
+public final class com/aiuta/fashionsdk/configuration/features/picker/protection/AiutaImagePickerProtectionDisclaimerFeature$Builder : com/aiuta/fashionsdk/configuration/features/AiutaFeature$Builder {
+	public static final field $stable I
+	public fun <init> ()V
+	public synthetic fun build ()Lcom/aiuta/fashionsdk/configuration/features/AiutaFeature;
+	public fun build ()Lcom/aiuta/fashionsdk/configuration/features/picker/protection/AiutaImagePickerProtectionDisclaimerFeature;
+	public final fun getIcons ()Lcom/aiuta/fashionsdk/configuration/features/picker/protection/icons/AiutaImagePickerProtectionDisclaimerFeatureIcons;
+	public final fun getStrings ()Lcom/aiuta/fashionsdk/configuration/features/picker/protection/strings/AiutaImagePickerProtectionDisclaimerFeatureStrings;
+	public final fun setIcons (Lcom/aiuta/fashionsdk/configuration/features/picker/protection/icons/AiutaImagePickerProtectionDisclaimerFeatureIcons;)V
+	public final fun setStrings (Lcom/aiuta/fashionsdk/configuration/features/picker/protection/strings/AiutaImagePickerProtectionDisclaimerFeatureStrings;)V
+}
+
+public final class com/aiuta/fashionsdk/configuration/features/picker/protection/AiutaImagePickerProtectionDisclaimerFeatureKt {
+	public static final fun protectionDisclaimer (Lcom/aiuta/fashionsdk/configuration/features/picker/AiutaImagePickerFeature$Builder;Lkotlin/jvm/functions/Function1;)Lcom/aiuta/fashionsdk/configuration/features/picker/AiutaImagePickerFeature$Builder;
+}
+
+public abstract interface class com/aiuta/fashionsdk/configuration/features/picker/protection/icons/AiutaImagePickerProtectionDisclaimerFeatureIcons {
+	public abstract fun getProtection16 ()Lcom/aiuta/fashionsdk/compose/resources/drawable/AiutaIcon;
+}
+
+public abstract interface class com/aiuta/fashionsdk/configuration/features/picker/protection/strings/AiutaImagePickerProtectionDisclaimerFeatureStrings {
+	public abstract fun getProtectionDisclaimer ()Ljava/lang/String;
+}
+
+public final class com/aiuta/fashionsdk/configuration/features/picker/protection/strings/AiutaImagePickerProtectionDisclaimerFeatureStrings$Default : com/aiuta/fashionsdk/configuration/features/picker/protection/strings/AiutaImagePickerProtectionDisclaimerFeatureStrings {
+	public static final field $stable I
+	public fun <init> ()V
+	public fun getProtectionDisclaimer ()Ljava/lang/String;
 }
 
 public abstract interface class com/aiuta/fashionsdk/configuration/features/picker/strings/AiutaImagePickerFeatureStrings {
@@ -1040,10 +1079,9 @@ public final class com/aiuta/fashionsdk/configuration/features/tryon/cart/string
 
 public final class com/aiuta/fashionsdk/configuration/features/tryon/disclaimer/AiutaTryOnFitDisclaimerFeature : com/aiuta/fashionsdk/configuration/features/AiutaFeature {
 	public static final field $stable I
-	public fun <init> (Lcom/aiuta/fashionsdk/configuration/features/tryon/disclaimer/icons/AiutaTryOnFitDisclaimerFeatureIcons;Lcom/aiuta/fashionsdk/configuration/features/tryon/disclaimer/strings/AiutaTryOnFitDisclaimerFeatureStrings;Lcom/aiuta/fashionsdk/configuration/features/tryon/disclaimer/typography/AiutaTryOnFitDisclaimerFeatureTypography;)V
+	public fun <init> (Lcom/aiuta/fashionsdk/configuration/features/tryon/disclaimer/icons/AiutaTryOnFitDisclaimerFeatureIcons;Lcom/aiuta/fashionsdk/configuration/features/tryon/disclaimer/strings/AiutaTryOnFitDisclaimerFeatureStrings;)V
 	public final fun getIcons ()Lcom/aiuta/fashionsdk/configuration/features/tryon/disclaimer/icons/AiutaTryOnFitDisclaimerFeatureIcons;
 	public final fun getStrings ()Lcom/aiuta/fashionsdk/configuration/features/tryon/disclaimer/strings/AiutaTryOnFitDisclaimerFeatureStrings;
-	public final fun getTypography ()Lcom/aiuta/fashionsdk/configuration/features/tryon/disclaimer/typography/AiutaTryOnFitDisclaimerFeatureTypography;
 }
 
 public final class com/aiuta/fashionsdk/configuration/features/tryon/disclaimer/AiutaTryOnFitDisclaimerFeature$Builder : com/aiuta/fashionsdk/configuration/features/AiutaFeature$Builder {
@@ -1053,10 +1091,8 @@ public final class com/aiuta/fashionsdk/configuration/features/tryon/disclaimer/
 	public fun build ()Lcom/aiuta/fashionsdk/configuration/features/tryon/disclaimer/AiutaTryOnFitDisclaimerFeature;
 	public final fun getIcons ()Lcom/aiuta/fashionsdk/configuration/features/tryon/disclaimer/icons/AiutaTryOnFitDisclaimerFeatureIcons;
 	public final fun getStrings ()Lcom/aiuta/fashionsdk/configuration/features/tryon/disclaimer/strings/AiutaTryOnFitDisclaimerFeatureStrings;
-	public final fun getTypography ()Lcom/aiuta/fashionsdk/configuration/features/tryon/disclaimer/typography/AiutaTryOnFitDisclaimerFeatureTypography;
 	public final fun setIcons (Lcom/aiuta/fashionsdk/configuration/features/tryon/disclaimer/icons/AiutaTryOnFitDisclaimerFeatureIcons;)V
 	public final fun setStrings (Lcom/aiuta/fashionsdk/configuration/features/tryon/disclaimer/strings/AiutaTryOnFitDisclaimerFeatureStrings;)V
-	public final fun setTypography (Lcom/aiuta/fashionsdk/configuration/features/tryon/disclaimer/typography/AiutaTryOnFitDisclaimerFeatureTypography;)V
 }
 
 public final class com/aiuta/fashionsdk/configuration/features/tryon/disclaimer/AiutaTryOnFitDisclaimerFeatureKt {
@@ -1079,17 +1115,6 @@ public final class com/aiuta/fashionsdk/configuration/features/tryon/disclaimer/
 	public fun getTryOnFitButtonClose ()Ljava/lang/String;
 	public fun getTryOnFitDescription ()Ljava/lang/String;
 	public fun getTryOnFitTitle ()Ljava/lang/String;
-}
-
-public abstract interface class com/aiuta/fashionsdk/configuration/features/tryon/disclaimer/typography/AiutaTryOnFitDisclaimerFeatureTypography {
-	public abstract fun getDisclaimer ()Landroidx/compose/ui/text/TextStyle;
-}
-
-public final class com/aiuta/fashionsdk/configuration/features/tryon/disclaimer/typography/AiutaTryOnFitDisclaimerFeatureTypography$Default : com/aiuta/fashionsdk/configuration/features/tryon/disclaimer/typography/AiutaTryOnFitDisclaimerFeatureTypography {
-	public static final field $stable I
-	public fun <init> ()V
-	public fun <init> (Landroidx/compose/ui/text/TextStyle;)V
-	public fun getDisclaimer ()Landroidx/compose/ui/text/TextStyle;
 }
 
 public final class com/aiuta/fashionsdk/configuration/features/tryon/feedback/AiutaTryOnFeedbackFeature : com/aiuta/fashionsdk/configuration/features/AiutaFeature {
@@ -1800,6 +1825,7 @@ public final class com/aiuta/fashionsdk/configuration/ui/theme/label/AiutaLabelT
 }
 
 public abstract interface class com/aiuta/fashionsdk/configuration/ui/theme/label/typography/AiutaLabelThemeTypography {
+	public abstract fun getFootnote ()Landroidx/compose/ui/text/TextStyle;
 	public abstract fun getRegular ()Landroidx/compose/ui/text/TextStyle;
 	public abstract fun getSubtle ()Landroidx/compose/ui/text/TextStyle;
 	public abstract fun getTitleL ()Landroidx/compose/ui/text/TextStyle;
@@ -1809,6 +1835,7 @@ public abstract interface class com/aiuta/fashionsdk/configuration/ui/theme/labe
 public final class com/aiuta/fashionsdk/configuration/ui/theme/label/typography/AiutaLabelThemeTypography$Default : com/aiuta/fashionsdk/configuration/ui/theme/label/typography/AiutaLabelThemeTypography {
 	public static final field $stable I
 	public fun <init> ()V
+	public fun getFootnote ()Landroidx/compose/ui/text/TextStyle;
 	public fun getRegular ()Landroidx/compose/ui/text/TextStyle;
 	public fun getSubtle ()Landroidx/compose/ui/text/TextStyle;
 	public fun getTitleL ()Landroidx/compose/ui/text/TextStyle;
