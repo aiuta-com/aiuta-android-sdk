@@ -105,29 +105,31 @@ internal fun ConsentContent(
             key = { _, consentModel -> consentModel.consent.id },
             contentType = { _, _ -> "CONSENT_POINT_TYPE" },
         ) { index, consentModel ->
-            if (index == 0) {
-                Spacer(Modifier.height(28.dp))
-            }
-
             val consentType = consentModel.consent.type
             val sharedModifier = Modifier.fillMaxWidth()
             val finalModifier = if (consentStandaloneFeature.styles.drawBordersAroundConsents) {
-                sharedModifier.border(
-                    color = theme.color.border,
-                    width = 1.dp,
-                    shape = RoundedCornerShape(
-                        topStart = 8.dp.takeIf { index == 0 } ?: 0.dp,
-                        topEnd = 8.dp.takeIf { index == 0 } ?: 0.dp,
-                        bottomStart = 8.dp.takeIf { index == consentStandaloneFeature.data.consents.lastIndex } ?: 0.dp,
-                        bottomEnd = 8.dp.takeIf { index == consentStandaloneFeature.data.consents.lastIndex } ?: 0.dp,
-                    ),
-                )
+                sharedModifier
+                    .border(
+                        color = theme.color.border,
+                        width = 1.dp,
+                        shape = RoundedCornerShape(
+                            topStart = 8.dp.takeIf { index == 0 } ?: 0.dp,
+                            topEnd = 8.dp.takeIf { index == 0 } ?: 0.dp,
+                            bottomStart = 8.dp.takeIf {
+                                index == consentStandaloneFeature.data.consents.lastIndex
+                            } ?: 0.dp,
+                            bottomEnd = 8.dp.takeIf {
+                                index == consentStandaloneFeature.data.consents.lastIndex
+                            } ?: 0.dp,
+                        ),
+                    )
+                    .padding(16.dp)
             } else {
                 sharedModifier
             }
 
             AgreePoint(
-                modifier = finalModifier.padding(16.dp),
+                modifier = finalModifier,
                 text = consentModel.consent.consentHtml,
                 isAgreementChecked = consentModel.isObtained,
                 type = consentType,
@@ -135,6 +137,11 @@ internal fun ConsentContent(
                     onUpdateConsentState(consentModel, newState)
                 },
             )
+
+            if (!consentStandaloneFeature.styles.drawBordersAroundConsents) {
+                // Should add padding, because it's not handled by inner padding of point
+                Spacer(Modifier.height(28.dp))
+            }
         }
 
         consentStandaloneFeature.strings.consentFooterHtml?.let { footerText ->
@@ -142,7 +149,9 @@ internal fun ConsentContent(
                 key = "CONSENT_FOOTER",
                 contentType = { "CONSENT_FOOTER" },
             ) {
-                Spacer(Modifier.height(28.dp))
+                if (consentStandaloneFeature.styles.drawBordersAroundConsents) {
+                    Spacer(Modifier.height(28.dp))
+                }
 
                 Text(
                     modifier = Modifier.fillMaxWidth(),
