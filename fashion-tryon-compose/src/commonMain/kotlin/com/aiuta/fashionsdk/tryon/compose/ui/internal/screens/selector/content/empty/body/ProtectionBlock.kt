@@ -1,7 +1,5 @@
 package com.aiuta.fashionsdk.tryon.compose.ui.internal.screens.selector.content.empty.body
 
-import androidx.compose.foundation.layout.Row
-import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.text.InlineTextContent
@@ -9,7 +7,6 @@ import androidx.compose.foundation.text.appendInlineContent
 import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.layout.FirstBaseline
 import androidx.compose.ui.text.Placeholder
 import androidx.compose.ui.text.PlaceholderVerticalAlign
 import androidx.compose.ui.text.buildAnnotatedString
@@ -41,8 +38,8 @@ internal fun ProtectionBlock(
                 Placeholder(
                     width = 16.sp,
                     height = 16.sp,
-                    placeholderVerticalAlign = PlaceholderVerticalAlign.TextCenter
-                )
+                    placeholderVerticalAlign = PlaceholderVerticalAlign.TextCenter,
+                ),
             ) {
                 AiutaIcon(
                     modifier = Modifier.size(16.dp),
@@ -50,8 +47,8 @@ internal fun ProtectionBlock(
                     contentDescription = null,
                     tint = theme.color.secondary,
                 )
-            }
-        )
+            },
+        ),
     )
 
     Text(
