@@ -38,38 +38,40 @@ internal fun ActionBlock(
         horizontalAlignment = Alignment.CenterHorizontally,
     ) {
         ShareElement {
-            IconLoadingButton(
-                icon = shareFeature.icons.share24,
-                isLoading = isShareActive.value,
-                onClick = {
-                    onShare(
-                        activeProductItems = controller.activeProductItems,
-                        imageUrl = sessionImage.imageUrl,
+            Column {
+                IconLoadingButton(
+                    icon = shareFeature.icons.share24,
+                    isLoading = isShareActive.value,
+                    onClick = {
+                        onShare(
+                            activeProductItems = controller.activeProductItems,
+                            imageUrl = sessionImage.imageUrl,
+                            pageId = AiutaAnalyticsPageId.RESULTS,
+                        )
+                    },
+                )
+
+                Spacer(Modifier.height(10.dp))
+            }
+        }
+
+        wishlistFeature?.let {
+            val inWishlist = wishlistFeature.inWishlistListener()
+
+            LikeButton(
+                modifier = Modifier.size(38.dp),
+                isLiked = inWishlist.value,
+                iconSize = 24.dp,
+                wishlistFeature = wishlistFeature,
+                onClick = { currentState ->
+                    controller.clickAddToWishListActiveSKU(
                         pageId = AiutaAnalyticsPageId.RESULTS,
+                        updatedWishlistState = !currentState,
+                        dataProvider = wishlistFeature.dataProvider,
+                        productIds = sessionImage.productIds,
                     )
                 },
             )
         }
-
-        Spacer(Modifier.height(10.dp))
-    }
-
-    wishlistFeature?.let {
-        val inWishlist = wishlistFeature.inWishlistListener()
-
-        LikeButton(
-            modifier = Modifier.size(38.dp),
-            isLiked = inWishlist.value,
-            iconSize = 24.dp,
-            wishlistFeature = wishlistFeature,
-            onClick = { currentState ->
-                controller.clickAddToWishListActiveSKU(
-                    pageId = AiutaAnalyticsPageId.RESULTS,
-                    updatedWishlistState = !currentState,
-                    dataProvider = wishlistFeature.dataProvider,
-                    productIds = sessionImage.productIds,
-                )
-            },
-        )
     }
 }
