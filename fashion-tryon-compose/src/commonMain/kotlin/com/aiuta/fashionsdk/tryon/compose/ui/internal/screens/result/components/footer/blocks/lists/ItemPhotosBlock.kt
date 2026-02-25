@@ -19,7 +19,6 @@ import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.draw.alpha
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.geometry.Offset
 import androidx.compose.ui.geometry.Size
@@ -35,7 +34,7 @@ import com.aiuta.fashionsdk.compose.uikit.utils.clickableUnindicated
 import com.aiuta.fashionsdk.tryon.compose.domain.models.internal.zoom.ZoomImageUiModel
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.controller.composition.LocalController
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.screens.base.transition.controller.openScreen
-import com.aiuta.fashionsdk.tryon.compose.ui.internal.screens.result.components.footer.blocks.common.alphaForBottomSheetConnection
+import com.aiuta.fashionsdk.tryon.compose.ui.internal.screens.result.components.footer.blocks.common.foregroundForBottomSheetConnection
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.screens.result.controller.GenerationResultController
 
 internal fun LazyGridScope.itemPhotosBlock(
@@ -63,10 +62,6 @@ private fun ItemPhotosBlock(
     val theme = LocalTheme.current
 
     val activeSKUItem = controller.activeProductItems.first()
-    val alphaRow = alphaForBottomSheetConnection(
-        generationResultController = generationResultController,
-    )
-
     val sharedSharedModifier =
         Modifier
             .height(226.dp)
@@ -76,7 +71,9 @@ private fun ItemPhotosBlock(
     val sharedImageModifier = Modifier.fillMaxSize().clip(theme.image.shapes.imageMShape)
 
     LazyRow(
-        modifier = modifier.alpha(alphaRow.value),
+        modifier = modifier.foregroundForBottomSheetConnection(
+            generationResultController = generationResultController,
+        ),
         verticalAlignment = Alignment.CenterVertically,
         contentPadding = PaddingValues(horizontal = 16.dp),
         horizontalArrangement = Arrangement.spacedBy(8.dp),
@@ -106,14 +103,15 @@ private fun ItemPhotosBlock(
                 contentAlignment = Alignment.Center,
             ) {
                 AiutaImage(
-                    modifier = finalImageModifier
+                    modifier =
+                    finalImageModifier
                         .onGloballyPositioned { coordinates ->
                             parentImageOffset = coordinates.positionInRoot()
                             imageSize = coordinates.size.toSize()
-                        }
-                        .clickableUnindicated {
+                        }.clickableUnindicated {
                             controller.zoomImageController.openScreen(
-                                model = ZoomImageUiModel(
+                                model =
+                                ZoomImageUiModel(
                                     imageSize = imageSize,
                                     initialCornerRadius = theme.image.shapes.imageM,
                                     imageUrl = url,

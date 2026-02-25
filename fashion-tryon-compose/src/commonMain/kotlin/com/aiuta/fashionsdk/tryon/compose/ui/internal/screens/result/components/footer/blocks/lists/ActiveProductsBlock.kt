@@ -18,7 +18,6 @@ import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.draw.alpha
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.text.style.TextOverflow
@@ -33,7 +32,7 @@ import com.aiuta.fashionsdk.internal.navigation.composition.LocalAiutaBottomShee
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.controller.FashionTryOnController
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.controller.composition.LocalController
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.navigation.TryOnBottomSheetScreen
-import com.aiuta.fashionsdk.tryon.compose.ui.internal.screens.result.components.footer.blocks.common.alphaForBottomSheetConnection
+import com.aiuta.fashionsdk.tryon.compose.ui.internal.screens.result.components.footer.blocks.common.foregroundForBottomSheetConnection
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.screens.result.controller.GenerationResultController
 
 internal fun LazyGridScope.activeProductsBlock(
@@ -61,12 +60,10 @@ private fun ActiveProductsBlock(
     val theme = LocalTheme.current
 
     val activeProductItems = controller.activeProductItems
-    val alphaRow = alphaForBottomSheetConnection(
-        generationResultController = generationResultController,
-    )
-
     LazyRow(
-        modifier = modifier.alpha(alphaRow.value),
+        modifier = modifier.foregroundForBottomSheetConnection(
+            generationResultController = generationResultController,
+        ),
         verticalAlignment = Alignment.CenterVertically,
         contentPadding = PaddingValues(horizontal = 16.dp),
         horizontalArrangement = Arrangement.spacedBy(8.dp),
@@ -94,21 +91,24 @@ private fun ActiveProductItem(
     val bottomSheetNavigator = LocalAiutaBottomSheetNavigator.current
 
     val productItemUrl = productItem.imageUrls.first()
-    val commonImageModifier = Modifier
-        .fillMaxWidth()
-        .height(208.dp)
-        .clip(theme.image.shapes.imageMShape)
-    val imageModifier = if (theme.productBar.toggles.applyProductFirstImageExtraPadding) {
-        commonImageModifier.padding(
-            horizontal = 32.dp,
-            vertical = 24.dp,
-        )
-    } else {
-        commonImageModifier
-    }
+    val commonImageModifier =
+        Modifier
+            .fillMaxWidth()
+            .height(208.dp)
+            .clip(theme.image.shapes.imageMShape)
+    val imageModifier =
+        if (theme.productBar.toggles.applyProductFirstImageExtraPadding) {
+            commonImageModifier.padding(
+                horizontal = 32.dp,
+                vertical = 24.dp,
+            )
+        } else {
+            commonImageModifier
+        }
 
     Column(
-        modifier = modifier
+        modifier =
+        modifier
             .width(176.dp)
             .clickableUnindicated {
                 bottomSheetNavigator.show(

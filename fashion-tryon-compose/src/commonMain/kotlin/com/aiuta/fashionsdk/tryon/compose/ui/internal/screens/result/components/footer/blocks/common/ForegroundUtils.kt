@@ -2,16 +2,18 @@ package com.aiuta.fashionsdk.tryon.compose.ui.internal.screens.result.components
 
 import androidx.compose.material.BottomSheetValue
 import androidx.compose.runtime.Composable
-import androidx.compose.runtime.State
 import androidx.compose.runtime.derivedStateOf
 import androidx.compose.runtime.remember
-import androidx.compose.ui.util.lerp
+import androidx.compose.ui.Modifier
+import androidx.compose.ui.draw.drawWithContent
+import androidx.compose.ui.graphics.Brush
+import androidx.compose.ui.graphics.Color
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.screens.result.controller.GenerationResultController
 
 @Composable
-internal fun alphaForBottomSheetConnection(
+internal fun Modifier.foregroundForBottomSheetConnection(
     generationResultController: GenerationResultController,
-): State<Float> {
+): Modifier {
     val bottomSheetState = generationResultController
         .bottomSheetScaffoldState
         .bottomSheetState
@@ -24,13 +26,22 @@ internal fun alphaForBottomSheetConnection(
         }
     }
 
-    return remember(sheetProgress.value) {
+    val gradientAlpha = remember {
         derivedStateOf {
-            lerp(
-                start = 0.1f,
-                stop = 1f,
-                fraction = sheetProgress.value,
-            )
+            (1f - sheetProgress.value).coerceIn(0f, 1f)
         }
+    }
+
+    return drawWithContent {
+        drawContent()
+        drawRect(
+            brush =
+            Brush.verticalGradient(
+                colors = listOf(
+                    Color.White.copy(alpha = 0.1f * gradientAlpha.value),
+                    Color.White.copy(alpha = 0.9f * gradientAlpha.value),
+                ),
+            ),
+        )
     }
 }
