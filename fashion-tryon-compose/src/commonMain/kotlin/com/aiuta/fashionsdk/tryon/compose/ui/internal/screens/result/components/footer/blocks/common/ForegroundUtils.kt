@@ -38,7 +38,7 @@ internal fun Modifier.foregroundForBottomSheetConnection(
             brush =
             Brush.verticalGradient(
                 colors = listOf(
-                    Color.White.copy(alpha = 0.1f * gradientAlpha.value),
+                    Color.White.copy(alpha = 0.4f * gradientAlpha.value),
                     Color.White.copy(alpha = 0.9f * gradientAlpha.value),
                 ),
             ),
