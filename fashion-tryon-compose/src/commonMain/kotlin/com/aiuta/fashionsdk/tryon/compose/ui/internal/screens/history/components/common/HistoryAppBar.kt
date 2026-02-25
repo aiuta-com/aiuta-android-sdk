@@ -1,12 +1,10 @@
 package com.aiuta.fashionsdk.tryon.compose.ui.internal.screens.history.components.common
 
-import androidx.compose.animation.animateColorAsState
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.text.style.TextAlign
 import com.aiuta.fashionsdk.compose.uikit.appbar.AiutaAppBar
 import com.aiuta.fashionsdk.compose.uikit.appbar.AiutaAppBarIcon
@@ -17,6 +15,7 @@ import com.aiuta.fashionsdk.configuration.features.tryon.history.AiutaTryOnGener
 import com.aiuta.fashionsdk.internal.navigation.composition.LocalAiutaNavigationController
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.controller.activateSelectMode
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.controller.composition.LocalController
+import com.aiuta.fashionsdk.tryon.compose.ui.internal.controller.deactivateSelectMode
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.controller.isAppbarSelectAvailable
 
 @Composable
@@ -28,20 +27,6 @@ internal fun HistoryAppBar(modifier: Modifier = Modifier) {
     val generationsHistoryFeature = strictProvideFeature<AiutaTryOnGenerationsHistoryFeature>()
 
     val isAppbarSelectAvailable = controller.isAppbarSelectAvailable()
-
-    val actionColorCalculation: (Boolean) -> Color = { active ->
-        if (active) {
-            theme.color.primary
-        } else {
-            theme.color.secondary
-        }
-    }
-
-    val selectColorTransition =
-        animateColorAsState(
-            targetValue = actionColorCalculation(isAppbarSelectAvailable.value),
-            label = "selectColorTransition",
-        )
 
     AiutaAppBar(
         modifier = modifier,
@@ -66,10 +51,20 @@ internal fun HistoryAppBar(modifier: Modifier = Modifier) {
             Text(
                 modifier = Modifier
                     .align(Alignment.CenterEnd)
-                    .clickableUnindicated { if (isAppbarSelectAvailable.value) controller.activateSelectMode() },
-                text = theme.selectionSnackbar.strings.select,
+                    .clickableUnindicated {
+                        if (isAppbarSelectAvailable.value) {
+                            controller.activateSelectMode()
+                        } else {
+                            controller.deactivateSelectMode()
+                        }
+                    },
+                text = if (isAppbarSelectAvailable.value) {
+                    theme.selectionSnackbar.strings.select
+                } else {
+                    theme.selectionSnackbar.strings.cancel
+                },
                 style = theme.pageBar.typography.pageTitle,
-                color = selectColorTransition.value,
+                color = theme.color.primary,
             )
         },
     )

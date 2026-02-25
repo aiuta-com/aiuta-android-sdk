@@ -106,7 +106,7 @@ internal fun ExtraFeedbackSheet(
         Spacer(Modifier.weight(1f))
 
         FashionButton(
-            modifier = Modifier.fillMaxWidth().windowInsetsPadding(WindowInsets.ime),
+            modifier = Modifier.fillMaxWidth(),
             text = otherFeedbackFeature.strings.otherFeedbackButtonSend,
             style = FashionButtonStyles.primaryStyle(theme),
             size = FashionButtonSizes.lSize(),

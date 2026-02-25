@@ -57,12 +57,12 @@ import com.aiuta.fashionsdk.tryon.compose.ui.internal.controller.composition.Loc
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.controller.deactivateSelectMode
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.controller.isSelectModeActive
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.navigation.TryOnScreen
-import com.aiuta.fashionsdk.tryon.compose.ui.internal.screens.base.share.ShareElement
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.screens.history.analytic.sendDeleteHistoryEvent
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.screens.history.components.SelectorCard
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.screens.history.components.common.HistoryAppBar
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.screens.history.controller.HistoryScreenListeners
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.screens.history.models.SelectorMode
+import com.aiuta.fashionsdk.tryon.compose.ui.internal.screens.history.models.ShareInfo
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.screens.history.utils.calculateMinGridItemWidth
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.screens.history.utils.deleteGeneratedImages
 
@@ -78,8 +78,7 @@ internal fun HistoryScreen(modifier: Modifier = Modifier) {
             .windowInsetsPadding(WindowInsets.navigationBars),
     ) {
         HistoryAppBar(
-            modifier =
-            Modifier
+            modifier = Modifier
                 .fillMaxWidth()
                 .padding(horizontal = 16.dp),
         )
@@ -279,41 +278,38 @@ private fun BoxScope.HistoryScreenInterface(
         enter = fadeIn(),
         exit = fadeOut(),
     ) {
-        ShareElement {
-            SelectorCard(
-                modifier = Modifier.fillMaxWidth(),
-                selectionMode = controller.selectorState,
-                isActionActive = !controller.selectorHolder.isEmpty(),
-                onSelectAll = {
-                    controller.selectorHolder.reset(generatedImages.itemSnapshotList.items)
-                    controller.selectorState.value = SelectorMode.ALL_IS_SELECTED
-                },
-                onDeselectAll = {
-                    controller.selectorHolder.removeAll()
-                    controller.selectorState.value = SelectorMode.ALL_IS_NOT_SELECTED
-                },
-                onCancel = {
-                    controller.deactivateSelectMode()
-                },
-                isShareLoading = isShareActive.value,
-                onShare = {
-                    onShare(
-                        activeProductItems = controller.activeProductItems,
-                        imageUrls = controller
-                            .selectorHolder
-                            .getList()
-                            .map { it.imageUrl },
-                        pageId = AiutaAnalyticsPageId.HISTORY,
-                    )
-                },
-                onDelete = {
-                    controller.sendDeleteHistoryEvent()
-                    controller.deleteGeneratedImages(
-                        errorSnackbarController = errorSnackbarController,
-                        loadingActionsController = loadingActionsController,
-                    )
-                },
-            )
-        }
+        SelectorCard(
+            modifier = Modifier.fillMaxWidth(),
+            selectionMode = controller.selectorState,
+            isActionActive = !controller.selectorHolder.isEmpty(),
+            onSelectAll = {
+                controller.selectorHolder.reset(generatedImages.itemSnapshotList.items)
+                controller.selectorState.value = SelectorMode.ALL_IS_SELECTED
+            },
+            onDeselectAll = {
+                controller.selectorHolder.removeAll()
+                controller.selectorState.value = SelectorMode.ALL_IS_NOT_SELECTED
+            },
+            onCancel = {
+                controller.deactivateSelectMode()
+            },
+            provideShareInfo = {
+                ShareInfo(
+                    activeProductItems = controller.activeProductItems,
+                    imageUrls = controller
+                        .selectorHolder
+                        .getList()
+                        .map { it.imageUrl },
+                    pageId = AiutaAnalyticsPageId.HISTORY,
+                )
+            },
+            onDelete = {
+                controller.sendDeleteHistoryEvent()
+                controller.deleteGeneratedImages(
+                    errorSnackbarController = errorSnackbarController,
+                    loadingActionsController = loadingActionsController,
+                )
+            },
+        )
     }
 }

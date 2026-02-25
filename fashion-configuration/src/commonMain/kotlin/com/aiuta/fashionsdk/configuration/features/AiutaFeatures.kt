@@ -17,6 +17,7 @@ import com.aiuta.fashionsdk.configuration.features.picker.camera.AiutaImagePicke
 import com.aiuta.fashionsdk.configuration.features.picker.gallery.AiutaImagePickerPhotoGalleryFeature
 import com.aiuta.fashionsdk.configuration.features.picker.history.AiutaImagePickerUploadsHistoryFeature
 import com.aiuta.fashionsdk.configuration.features.picker.model.AiutaImagePickerPredefinedModelFeature
+import com.aiuta.fashionsdk.configuration.features.picker.protection.AiutaImagePickerProtectionDisclaimerFeature
 import com.aiuta.fashionsdk.configuration.features.share.AiutaShareFeature
 import com.aiuta.fashionsdk.configuration.features.share.watermark.AiutaShareWatermarkFeature
 import com.aiuta.fashionsdk.configuration.features.sizefit.AiutaSizeFitFeature
@@ -105,6 +106,7 @@ public class AiutaFeatures(
         AiutaImagePickerCameraFeature::class -> imagePicker.camera
         AiutaImagePickerPhotoGalleryFeature::class -> imagePicker.photoGallery
         AiutaImagePickerPredefinedModelFeature::class -> imagePicker.predefinedModels
+        AiutaImagePickerProtectionDisclaimerFeature::class -> imagePicker.protectionDisclaimer
         AiutaImagePickerUploadsHistoryFeature::class -> imagePicker.uploadsHistory
         // Try on
         AiutaTryOnFeature::class -> tryOn

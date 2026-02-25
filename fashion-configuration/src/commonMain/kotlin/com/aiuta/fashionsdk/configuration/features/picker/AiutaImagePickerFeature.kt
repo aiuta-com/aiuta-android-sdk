@@ -8,6 +8,7 @@ import com.aiuta.fashionsdk.configuration.features.picker.gallery.AiutaImagePick
 import com.aiuta.fashionsdk.configuration.features.picker.history.AiutaImagePickerUploadsHistoryFeature
 import com.aiuta.fashionsdk.configuration.features.picker.images.AiutaImagePickerFeatureImages
 import com.aiuta.fashionsdk.configuration.features.picker.model.AiutaImagePickerPredefinedModelFeature
+import com.aiuta.fashionsdk.configuration.features.picker.protection.AiutaImagePickerProtectionDisclaimerFeature
 import com.aiuta.fashionsdk.configuration.features.picker.strings.AiutaImagePickerFeatureStrings
 import com.aiuta.fashionsdk.configuration.internal.utils.checkNotNullWithDescription
 
@@ -27,11 +28,13 @@ import com.aiuta.fashionsdk.configuration.internal.utils.checkNotNullWithDescrip
  * - [camera]: Camera capture functionality
  * - [predefinedModels]: Predefined model images
  * - [uploadsHistory]: Previously uploaded images history
+ * - [protectionDisclaimer]: Privacy notice for uploaded photos
  *
  *
  * @property camera Optional camera capture feature configuration
  * @property photoGallery Required photo gallery selection feature configuration
  * @property predefinedModels Optional predefined model images feature configuration
+ * @property protectionDisclaimer Optional protection disclaimer feature configuration
  * @property uploadsHistory Optional upload history feature configuration
  * @property images Required image resources and placeholders configuration
  * @property strings Required text content and localization configuration
@@ -45,6 +48,7 @@ public class AiutaImagePickerFeature(
     public val camera: AiutaImagePickerCameraFeature?,
     public val photoGallery: AiutaImagePickerPhotoGalleryFeature,
     public val predefinedModels: AiutaImagePickerPredefinedModelFeature?,
+    public val protectionDisclaimer: AiutaImagePickerProtectionDisclaimerFeature?,
     public val uploadsHistory: AiutaImagePickerUploadsHistoryFeature?,
     // General
     public val images: AiutaImagePickerFeatureImages,
@@ -79,6 +83,11 @@ public class AiutaImagePickerFeature(
         public var uploadsHistory: AiutaImagePickerUploadsHistoryFeature? = null
 
         /**
+         * Optional protection disclaimer feature configuration.
+         */
+        public var protectionDisclaimer: AiutaImagePickerProtectionDisclaimerFeature? = null
+
+        /**
          * Required image resources and placeholders configuration.
          */
         public var images: AiutaImagePickerFeatureImages? = null
@@ -105,6 +114,7 @@ public class AiutaImagePickerFeature(
                 ),
                 predefinedModels = predefinedModels,
                 uploadsHistory = uploadsHistory,
+                protectionDisclaimer = protectionDisclaimer,
                 images = images.checkNotNullWithDescription(
                     parentClass = parentClass,
                     property = "images",
