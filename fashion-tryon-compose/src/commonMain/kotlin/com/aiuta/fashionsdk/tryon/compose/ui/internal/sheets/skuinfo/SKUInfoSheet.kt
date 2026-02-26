@@ -17,27 +17,40 @@ import androidx.compose.foundation.lazy.LazyRow
 import androidx.compose.foundation.lazy.itemsIndexed
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.remember
+import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
+import androidx.compose.ui.geometry.Offset
+import androidx.compose.ui.geometry.Size
 import androidx.compose.ui.layout.ContentScale
+import androidx.compose.ui.layout.onGloballyPositioned
+import androidx.compose.ui.layout.positionInRoot
 import androidx.compose.ui.unit.dp
+import androidx.compose.ui.unit.toSize
 import com.aiuta.fashionsdk.analytics.events.AiutaAnalyticsPageId
 import com.aiuta.fashionsdk.compose.uikit.button.FashionButton
 import com.aiuta.fashionsdk.compose.uikit.button.FashionButtonSizes
 import com.aiuta.fashionsdk.compose.uikit.button.FashionButtonStyles
 import com.aiuta.fashionsdk.compose.uikit.composition.LocalTheme
 import com.aiuta.fashionsdk.compose.uikit.resources.AiutaImage
+import com.aiuta.fashionsdk.compose.uikit.utils.clickableUnindicated
 import com.aiuta.fashionsdk.compose.uikit.utils.provideFeature
 import com.aiuta.fashionsdk.compose.uikit.utils.strictProvideFeature
 import com.aiuta.fashionsdk.configuration.features.tryon.cart.AiutaTryOnCartFeature
 import com.aiuta.fashionsdk.configuration.features.wishlist.AiutaWishlistFeature
+import com.aiuta.fashionsdk.tryon.compose.domain.models.internal.zoom.ZoomImageUiModel
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.analytic.clickAddProductToCart
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.analytic.clickAddToWishListActiveSKU
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.components.block.ProductInfo
+import com.aiuta.fashionsdk.tryon.compose.ui.internal.controller.FashionTryOnController
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.controller.composition.LocalController
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.navigation.TryOnBottomSheetScreen
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.navigation.TryOnBottomSheetScreen.ProductInfo.PrimaryButtonState
+import com.aiuta.fashionsdk.tryon.compose.ui.internal.screens.base.transition.controller.openScreen
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.sheets.components.SheetDivider
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.utils.features.wishlist.inWishlistListener
 
@@ -46,6 +59,7 @@ internal fun ProductInfoSheet(
     productInfo: TryOnBottomSheetScreen.ProductInfo,
     modifier: Modifier = Modifier,
 ) {
+    val controller = LocalController.current
     val sharedHorizontalPadding = 16.dp
 
     Column(modifier = modifier) {
@@ -63,12 +77,12 @@ internal fun ProductInfoSheet(
                 key = { index, _ -> index },
             ) { _, imageUrl ->
                 ImageContainer(
-                    modifier =
-                    Modifier.size(
+                    modifier = Modifier.size(
                         width = 154.dp,
                         height = 202.dp,
                     ),
                     imageUrl = imageUrl,
+                    controller = controller,
                 )
             }
         }
@@ -99,15 +113,35 @@ internal fun ProductInfoSheet(
 private fun ImageContainer(
     modifier: Modifier = Modifier,
     imageUrl: String,
+    controller: FashionTryOnController,
 ) {
     val theme = LocalTheme.current
 
-    val sharedShape = RoundedCornerShape(8.dp)
+    var parentImageOffset by remember { mutableStateOf(Offset.Unspecified) }
+    var imageSize by remember { mutableStateOf(Size.Zero) }
+
+    val sharedShapeDp = 8.dp
+    val sharedShape = RoundedCornerShape(sharedShapeDp)
 
     AiutaImage(
         modifier = modifier
             .clip(sharedShape)
-            .background(theme.color.background),
+            .background(theme.color.background)
+            .onGloballyPositioned { coordinates ->
+                parentImageOffset = coordinates.positionInRoot()
+                imageSize = coordinates.size.toSize()
+            }
+            .clickableUnindicated {
+                controller.zoomImageController.openScreen(
+                    model = ZoomImageUiModel(
+                        imageSize = imageSize,
+                        initialCornerRadius = sharedShapeDp,
+                        imageUrl = imageUrl,
+                        parentImageOffset = parentImageOffset,
+                        originPageId = AiutaAnalyticsPageId.RESULTS,
+                    ),
+                )
+            },
         imageUrl = imageUrl,
         shape = sharedShape,
         contentScale = ContentScale.Crop,
