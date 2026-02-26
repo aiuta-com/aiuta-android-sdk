@@ -441,8 +441,8 @@ final class com.aiuta.fashionsdk.analytics.events/AiutaAnalyticsHistoryEvent : c
 final class com.aiuta.fashionsdk.analytics.events/AiutaAnalyticsOnboardingEvent : com.aiuta.fashionsdk.analytics.events/AiutaAnalyticsEvent { // com.aiuta.fashionsdk.analytics.events/AiutaAnalyticsOnboardingEvent|null[0]
     constructor <init>(com.aiuta.fashionsdk.analytics.events/AiutaAnalyticOnboardingEventType, com.aiuta.fashionsdk.analytics.events/AiutaAnalyticsPageId?, kotlin.collections/List<kotlin/String>, kotlin.collections/List<kotlin/String>? = ...) // com.aiuta.fashionsdk.analytics.events/AiutaAnalyticsOnboardingEvent.<init>|<init>(com.aiuta.fashionsdk.analytics.events.AiutaAnalyticOnboardingEventType;com.aiuta.fashionsdk.analytics.events.AiutaAnalyticsPageId?;kotlin.collections.List<kotlin.String>;kotlin.collections.List<kotlin.String>?){}[0]
 
-    final val consentsIds // com.aiuta.fashionsdk.analytics.events/AiutaAnalyticsOnboardingEvent.consentsIds|{}consentsIds[0]
-        final fun <get-consentsIds>(): kotlin.collections/List<kotlin/String>? // com.aiuta.fashionsdk.analytics.events/AiutaAnalyticsOnboardingEvent.consentsIds.<get-consentsIds>|<get-consentsIds>(){}[0]
+    final val consentIds // com.aiuta.fashionsdk.analytics.events/AiutaAnalyticsOnboardingEvent.consentIds|{}consentIds[0]
+        final fun <get-consentIds>(): kotlin.collections/List<kotlin/String>? // com.aiuta.fashionsdk.analytics.events/AiutaAnalyticsOnboardingEvent.consentIds.<get-consentIds>|<get-consentIds>(){}[0]
     final val event // com.aiuta.fashionsdk.analytics.events/AiutaAnalyticsOnboardingEvent.event|{}event[0]
         final fun <get-event>(): com.aiuta.fashionsdk.analytics.events/AiutaAnalyticOnboardingEventType // com.aiuta.fashionsdk.analytics.events/AiutaAnalyticsOnboardingEvent.event.<get-event>|<get-event>(){}[0]
     final val pageId // com.aiuta.fashionsdk.analytics.events/AiutaAnalyticsOnboardingEvent.pageId|{}pageId[0]
