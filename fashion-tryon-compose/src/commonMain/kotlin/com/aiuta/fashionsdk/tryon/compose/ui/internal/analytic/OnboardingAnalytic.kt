@@ -15,7 +15,7 @@ internal fun FashionTryOnController.sendOnboardingEvent(
             event = eventType,
             pageId = pageId,
             productIds = activeProductItemsIds,
-            consentsIds = consentsIds?.takeIf { it.isNotEmpty() },
+            consentIds = consentsIds?.takeIf { it.isNotEmpty() },
         ),
     )
 }
