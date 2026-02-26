@@ -5,19 +5,14 @@ import androidx.compose.ui.unit.Dp
 import com.aiuta.fashionsdk.compose.core.size.rememberScreenSize
 
 @Composable
-internal fun calculateMinGridItemWidth(
+internal fun calculateGridColumnsCount(
     preferredWidth: Dp,
     minColumnsCount: Int,
     contentPadding: Dp,
-    horizontalPadding: Dp,
-): Dp {
+    horizontalSpacing: Dp,
+): Int {
     val screenSize = rememberScreenSize()
-
-    val totalHorizontalPadding = horizontalPadding * 2
-    val totalContentPadding = contentPadding * (minColumnsCount - 1)
-    val totalPadding = totalHorizontalPadding + totalContentPadding
-
-    return ((screenSize.widthDp - totalPadding) / minColumnsCount).coerceAtMost(
-        maximumValue = preferredWidth,
-    )
+    val availableWidth = screenSize.widthDp - contentPadding * 2
+    val adaptiveCount = ((availableWidth + horizontalSpacing) / (preferredWidth + horizontalSpacing)).toInt()
+    return maxOf(minColumnsCount, adaptiveCount)
 }

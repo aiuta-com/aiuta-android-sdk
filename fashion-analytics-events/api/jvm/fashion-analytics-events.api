@@ -223,7 +223,7 @@ public final class com/aiuta/fashionsdk/analytics/events/AiutaAnalyticsOnboardin
 	public static final field Companion Lcom/aiuta/fashionsdk/analytics/events/AiutaAnalyticsOnboardingEvent$Companion;
 	public fun <init> (Lcom/aiuta/fashionsdk/analytics/events/AiutaAnalyticOnboardingEventType;Lcom/aiuta/fashionsdk/analytics/events/AiutaAnalyticsPageId;Ljava/util/List;Ljava/util/List;)V
 	public synthetic fun <init> (Lcom/aiuta/fashionsdk/analytics/events/AiutaAnalyticOnboardingEventType;Lcom/aiuta/fashionsdk/analytics/events/AiutaAnalyticsPageId;Ljava/util/List;Ljava/util/List;ILkotlin/jvm/internal/DefaultConstructorMarker;)V
-	public final fun getConsentsIds ()Ljava/util/List;
+	public final fun getConsentIds ()Ljava/util/List;
 	public final fun getEvent ()Lcom/aiuta/fashionsdk/analytics/events/AiutaAnalyticOnboardingEventType;
 	public fun getPageId ()Lcom/aiuta/fashionsdk/analytics/events/AiutaAnalyticsPageId;
 	public fun getProductIds ()Ljava/util/List;

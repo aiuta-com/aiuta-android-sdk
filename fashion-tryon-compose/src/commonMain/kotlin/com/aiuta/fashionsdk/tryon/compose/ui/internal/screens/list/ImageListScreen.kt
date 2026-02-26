@@ -5,28 +5,35 @@ import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.WindowInsets
 import androidx.compose.foundation.layout.fillMaxHeight
 import androidx.compose.foundation.layout.fillMaxSize
+import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
-import androidx.compose.foundation.layout.statusBars
+import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.systemBars
 import androidx.compose.foundation.layout.windowInsetsPadding
 import androidx.compose.foundation.pager.VerticalPager
 import androidx.compose.foundation.pager.rememberPagerState
+import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.graphicsLayer
 import androidx.compose.ui.layout.ContentScale
+import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import androidx.paging.compose.collectAsLazyPagingItems
 import com.aiuta.fashionsdk.analytics.events.AiutaAnalyticsPageId
+import com.aiuta.fashionsdk.compose.uikit.appbar.AiutaAppBar
+import com.aiuta.fashionsdk.compose.uikit.appbar.AiutaAppBarIcon
 import com.aiuta.fashionsdk.compose.uikit.composition.LocalTheme
 import com.aiuta.fashionsdk.compose.uikit.resources.AiutaImage
+import com.aiuta.fashionsdk.compose.uikit.utils.clickableUnindicated
+import com.aiuta.fashionsdk.internal.navigation.composition.LocalAiutaNavigationController
+import com.aiuta.fashionsdk.tryon.compose.ui.internal.components.icons.AiutaLoadingComponent
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.controller.composition.LocalController
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.navigation.TryOnScreen
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.screens.base.share.ShareElement
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.screens.base.share.onShare
-import com.aiuta.fashionsdk.tryon.compose.ui.internal.screens.list.components.buttons.ShareButton
-import com.aiuta.fashionsdk.tryon.compose.ui.internal.screens.list.components.navigation.ImageListNavigationBlock
+import com.aiuta.fashionsdk.tryon.compose.ui.internal.screens.list.components.navigation.GenerationIndicator
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.utils.offsetForPage
 import kotlin.math.absoluteValue
 
@@ -37,6 +44,7 @@ internal fun ImageListScreen(
 ) {
     val theme = LocalTheme.current
     val controller = LocalController.current
+    val navigationController = LocalAiutaNavigationController.current
 
     val generatedImages = controller
         .generatedImageInteractor
@@ -74,32 +82,54 @@ internal fun ImageListScreen(
             )
         }
 
-        ImageListNavigationBlock(
+        GenerationIndicator(
             modifier = Modifier
                 .fillMaxHeight()
                 .align(Alignment.TopStart)
                 .windowInsetsPadding(WindowInsets.systemBars)
-                .padding(top = 12.dp, start = 16.dp),
+                .padding(start = 16.dp),
             pagerState = pagerState,
             generatedImages = generatedImages,
         )
 
-        ShareElement {
-            ShareButton(
-                modifier = Modifier
-                    .align(Alignment.TopEnd)
-                    .windowInsetsPadding(WindowInsets.statusBars)
-                    .padding(top = 12.dp, end = 16.dp),
-                isLoading = isShareActive,
-                shareText = shareFeature.strings.shareButton,
-                onClick = {
-                    onShare(
-                        activeProductItems = controller.activeProductItems,
-                        imageUrl = generatedImages[pagerState.settledPage]?.imageUrl,
-                        pageId = AiutaAnalyticsPageId.HISTORY,
+        AiutaAppBar(
+            modifier = Modifier
+                .align(Alignment.TopCenter)
+                .fillMaxWidth()
+                .padding(horizontal = 16.dp),
+            navigationIcon = {
+                AiutaAppBarIcon(
+                    modifier = Modifier.align(Alignment.CenterStart),
+                    icon = theme.pageBar.icons.close24,
+                    color = theme.color.onDark,
+                    onClick = navigationController::navigateBack,
+                )
+            },
+            actions = {
+                ShareElement {
+                    AiutaLoadingComponent(
+                        modifier = Modifier.align(Alignment.CenterEnd),
+                        circleColor = theme.color.onLight,
+                        circleSize = 24.dp,
+                        isLoading = isShareActive.value,
+                        component = {
+                            Text(
+                                modifier = Modifier.clickableUnindicated {
+                                    onShare(
+                                        activeProductItems = controller.activeProductItems,
+                                        imageUrl = generatedImages[pagerState.settledPage]?.imageUrl,
+                                        pageId = AiutaAnalyticsPageId.HISTORY,
+                                    )
+                                },
+                                style = theme.button.typography.buttonM,
+                                color = theme.color.onDark,
+                                textAlign = TextAlign.Center,
+                                text = shareFeature.strings.shareButton,
+                            )
+                        },
                     )
-                },
-            )
-        }
+                }
+            },
+        )
     }
 }

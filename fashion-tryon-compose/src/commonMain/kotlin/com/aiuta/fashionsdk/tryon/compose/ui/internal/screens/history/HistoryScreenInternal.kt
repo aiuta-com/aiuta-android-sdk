@@ -63,7 +63,7 @@ import com.aiuta.fashionsdk.tryon.compose.ui.internal.screens.history.components
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.screens.history.controller.HistoryScreenListeners
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.screens.history.models.SelectorMode
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.screens.history.models.ShareInfo
-import com.aiuta.fashionsdk.tryon.compose.ui.internal.screens.history.utils.calculateMinGridItemWidth
+import com.aiuta.fashionsdk.tryon.compose.ui.internal.screens.history.utils.calculateGridColumnsCount
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.screens.history.utils.deleteGeneratedImages
 
 @Composable
@@ -100,11 +100,11 @@ private fun HistoryScreenInternal(modifier: Modifier = Modifier) {
     val contentPadding = 8.dp
     val horizontalPadding = 8.dp
 
-    val columnMinWidth = calculateMinGridItemWidth(
+    val columnsCount = calculateGridColumnsCount(
         preferredWidth = 120.dp,
         minColumnsCount = minColumnsCount,
         contentPadding = contentPadding,
-        horizontalPadding = horizontalPadding,
+        horizontalSpacing = horizontalPadding,
     )
 
     val generatedImages = controller
@@ -121,7 +121,7 @@ private fun HistoryScreenInternal(modifier: Modifier = Modifier) {
     ) {
         LazyVerticalGrid(
             modifier = Modifier.fillMaxSize(),
-            columns = GridCells.Adaptive(minSize = columnMinWidth),
+            columns = GridCells.Fixed(columnsCount),
             contentPadding = PaddingValues(contentPadding),
             horizontalArrangement = Arrangement.spacedBy(horizontalPadding),
             verticalArrangement = Arrangement.spacedBy(horizontalPadding),

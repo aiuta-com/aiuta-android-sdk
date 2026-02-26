@@ -3,6 +3,7 @@ package com.aiuta.fashionsdk.tryon.compose.ui.internal.screens.consent
 import androidx.compose.foundation.border
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
+import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
@@ -11,6 +12,8 @@ import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.itemsIndexed
 import androidx.compose.foundation.shape.RoundedCornerShape
+import androidx.compose.foundation.text.InlineTextContent
+import androidx.compose.foundation.text.appendInlineContent
 import androidx.compose.material.Checkbox
 import androidx.compose.material.CheckboxDefaults
 import androidx.compose.material.ExperimentalMaterialApi
@@ -23,9 +26,11 @@ import androidx.compose.runtime.mutableFloatStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
 import androidx.compose.runtime.snapshots.SnapshotStateList
-import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.text.Placeholder
+import androidx.compose.ui.text.PlaceholderVerticalAlign
 import androidx.compose.ui.text.TextLayoutResult
+import androidx.compose.ui.text.buildAnnotatedString
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import com.aiuta.fashionsdk.analytics.events.AiutaAnalyticsPageId
@@ -62,28 +67,44 @@ internal fun ConsentContent(
             key = "CONSENT_HEADER",
             contentType = { "CONSENT_HEADER_TYPE" },
         ) {
-            Row(
-                modifier = Modifier.fillMaxWidth(),
-                verticalAlignment = Alignment.CenterVertically,
-            ) {
-                Text(
-                    modifier = Modifier.fillMaxWidth(),
-                    text = consentStandaloneFeature.strings.consentTitle,
-                    style = theme.label.typography.titleL,
-                    color = theme.color.primary,
-                    textAlign = TextAlign.Start,
-                )
-
-                consentStandaloneFeature.icons.consentTitle24?.let { consentTitle24 ->
-                    Spacer(Modifier.width(8.dp))
-
-                    AiutaIcon(
-                        modifier = Modifier.size(24.dp),
-                        icon = consentTitle24,
-                        contentDescription = null,
-                    )
+            val iconId = "ICON_ID"
+            val titleText = buildAnnotatedString {
+                append(consentStandaloneFeature.strings.consentTitle)
+                consentStandaloneFeature.icons.consentTitle24?.let {
+                    append(" ")
+                    appendInlineContent(iconId, "[icon]")
                 }
             }
+
+            val inlineContent = mapOf(
+                Pair(
+                    iconId,
+                    InlineTextContent(
+                        Placeholder(
+                            width = theme.label.typography.titleL.fontSize,
+                            height = theme.label.typography.titleL.fontSize,
+                            placeholderVerticalAlign = PlaceholderVerticalAlign.TextCenter,
+                        ),
+                    ) {
+                        consentStandaloneFeature.icons.consentTitle24?.let { consentTitle24 ->
+                            AiutaIcon(
+                                modifier = Modifier.fillMaxSize(),
+                                icon = consentTitle24,
+                                contentDescription = null,
+                            )
+                        }
+                    },
+                ),
+            )
+
+            Text(
+                modifier = Modifier.fillMaxWidth(),
+                text = titleText,
+                style = theme.label.typography.titleL,
+                color = theme.color.primary,
+                textAlign = TextAlign.Start,
+                inlineContent = inlineContent,
+            )
 
             Spacer(Modifier.height(18.dp))
 
@@ -193,11 +214,11 @@ private fun AgreePoint(
                     checked = isAgreementChecked,
                     onCheckedChange = onAgreementCheckedChange,
                     enabled = type != AiutaConsentType.IMPLICIT_WITH_CHECKBOX,
-                    colors =
-                    CheckboxDefaults.colors(
+                    colors = CheckboxDefaults.colors(
                         checkedColor = theme.color.brand,
-                        uncheckedColor = theme.color.neutral,
+                        uncheckedColor = theme.color.border,
                         checkmarkColor = theme.color.onDark,
+                        disabledColor = theme.color.border.copy(alpha = 0.4f),
                     ),
                 )
             }

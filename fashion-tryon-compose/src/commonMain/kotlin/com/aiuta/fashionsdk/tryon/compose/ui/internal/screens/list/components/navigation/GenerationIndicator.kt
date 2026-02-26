@@ -5,6 +5,7 @@ import androidx.compose.foundation.gestures.scrollBy
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.layout.height
+import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.rememberLazyListState
@@ -71,10 +72,12 @@ internal fun GenerationIndicator(
     }
 
     LazyColumn(
-        modifier = modifier.fadingEdge(brush = fadeBrush),
+        modifier = modifier
+            .padding(top = 52.dp) // app bar padding
+            .fadingEdge(brush = fadeBrush),
         state = indicatorState,
         verticalArrangement = Arrangement.spacedBy(5.dp, Alignment.CenterVertically),
-        contentPadding = PaddingValues(vertical = 12.dp),
+        contentPadding = PaddingValues(bottom = 12.dp),
     ) {
         items(
             count = generatedImages.itemCount,

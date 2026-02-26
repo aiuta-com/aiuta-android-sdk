@@ -38,6 +38,7 @@ internal fun AiutaLoadingComponent(
     }
 
     AnimatedContent(
+        modifier = modifier,
         targetState = isProgressVisible.value,
         transitionSpec = { fadeIn() togetherWith fadeOut() },
         contentAlignment = Alignment.Center,
