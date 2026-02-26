@@ -193,11 +193,11 @@ private fun AgreePoint(
                     checked = isAgreementChecked,
                     onCheckedChange = onAgreementCheckedChange,
                     enabled = type != AiutaConsentType.IMPLICIT_WITH_CHECKBOX,
-                    colors =
-                    CheckboxDefaults.colors(
+                    colors = CheckboxDefaults.colors(
                         checkedColor = theme.color.brand,
-                        uncheckedColor = theme.color.neutral,
+                        uncheckedColor = theme.color.border,
                         checkmarkColor = theme.color.onDark,
+                        disabledColor = theme.color.border.copy(alpha = 0.4f)
                     ),
                 )
             }
