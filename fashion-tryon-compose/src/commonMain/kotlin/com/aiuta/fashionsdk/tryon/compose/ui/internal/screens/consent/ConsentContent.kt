@@ -70,7 +70,7 @@ internal fun ConsentContent(
             val iconId = "ICON_ID"
             val titleText = buildAnnotatedString {
                 append(consentStandaloneFeature.strings.consentTitle)
-                consentStandaloneFeature.icons.consentTitle24?.let {
+                consentStandaloneFeature.icons?.consentTitle24?.let {
                     append(" ")
                     appendInlineContent(iconId, "[icon]")
                 }
@@ -86,7 +86,7 @@ internal fun ConsentContent(
                             placeholderVerticalAlign = PlaceholderVerticalAlign.TextCenter,
                         ),
                     ) {
-                        consentStandaloneFeature.icons.consentTitle24?.let { consentTitle24 ->
+                        consentStandaloneFeature.icons?.consentTitle24?.let { consentTitle24 ->
                             AiutaIcon(
                                 modifier = Modifier.fillMaxSize(),
                                 icon = consentTitle24,

@@ -31,7 +31,7 @@ public class AiutaConsentStandaloneOnboardingPageFeature(
     public override val strings: AiutaConsentStandaloneFeatureStrings,
     public override val data: AiutaConsentStandaloneFeatureData,
     public override val dataProvider: AiutaConsentStandaloneFeatureDataProvider,
-    public override val icons: AiutaConsentStandaloneFeatureIcons,
+    public override val icons: AiutaConsentStandaloneFeatureIcons?,
     public override val styles: AiutaConsentStandaloneFeatureStyles,
 ) : AiutaConsentStandaloneFeature {
 
@@ -63,10 +63,7 @@ public class AiutaConsentStandaloneOnboardingPageFeature(
                     parentClass = parentClass,
                     property = "dataProvider",
                 ),
-                icons = icons.checkNotNullWithDescription(
-                    parentClass = parentClass,
-                    property = "icons",
-                ),
+                icons = icons,
                 styles = styles.checkNotNullWithDescription(
                     parentClass = parentClass,
                     property = "styles",
