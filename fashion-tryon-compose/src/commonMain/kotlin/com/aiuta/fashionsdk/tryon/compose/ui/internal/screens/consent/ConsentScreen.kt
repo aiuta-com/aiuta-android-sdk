@@ -76,7 +76,9 @@ internal fun ConsentScreen(
             isEnable = consentController.listenIsAllMandatoryConsentChecked().value,
             onClick = {
                 scope.launch {
-                    consentController.completeConsentViewing(controller.consentInteractor)
+                    controller.completeConsentViewing(
+                        consentController = consentController,
+                    )
                     navigationController.navigateBack().apply { onObtainedConsents() }
                 }
             },
