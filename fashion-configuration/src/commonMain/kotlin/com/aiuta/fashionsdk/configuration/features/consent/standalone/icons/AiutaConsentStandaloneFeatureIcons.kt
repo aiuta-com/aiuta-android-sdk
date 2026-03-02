@@ -8,8 +8,8 @@ import com.aiuta.fashionsdk.compose.resources.drawable.AiutaIcon
  * This interface defines the icon resources used in the standalone consent interface,
  * allowing for customization of visual elements in the consent UI.
  *
- * @property consentTitle24 Optional 24x24 pixel icon for the consent title section
+ * @property consentTitle24 24x24 pixel icon for the consent title section
  */
 public interface AiutaConsentStandaloneFeatureIcons {
-    public val consentTitle24: AiutaIcon?
+    public val consentTitle24: AiutaIcon
 }

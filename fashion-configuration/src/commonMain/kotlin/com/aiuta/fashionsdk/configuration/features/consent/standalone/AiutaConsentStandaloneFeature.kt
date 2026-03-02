@@ -29,6 +29,6 @@ public interface AiutaConsentStandaloneFeature : AiutaConsentFeature {
     public val strings: AiutaConsentStandaloneFeatureStrings
     public val data: AiutaConsentStandaloneFeatureData
     public val dataProvider: AiutaConsentStandaloneFeatureDataProvider
-    public val icons: AiutaConsentStandaloneFeatureIcons
+    public val icons: AiutaConsentStandaloneFeatureIcons?
     public val styles: AiutaConsentStandaloneFeatureStyles
 }
