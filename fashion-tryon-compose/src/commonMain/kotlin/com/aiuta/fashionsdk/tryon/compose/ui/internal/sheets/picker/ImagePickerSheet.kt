@@ -137,7 +137,13 @@ internal fun ImagePickerSheet(
                                     pickerSource = AiutaPickerSource.CAMERA,
                                     permissionHandler = permissionHandler,
                                     logger = logger,
-                                    onGranted = cameraManager::launch,
+                                    onGranted = {
+                                        controller.sendPickerAnalytic(
+                                            event = AiutaAnalyticsPickerEventType.CAMERA_OPENED,
+                                            pageId = pickerData.originPageId,
+                                        )
+                                        cameraManager.launch()
+                                    },
                                     onAlwaysDenied = {
                                         bottomSheetNavigator.hide()
                                         dialogController.showDialog(
@@ -154,15 +160,17 @@ internal fun ImagePickerSheet(
                             }
 
                             is AiutaImagePickerPhotoGalleryFeature -> {
-                                controller.sendPickerAnalytic(
-                                    event = AiutaAnalyticsPickerEventType.PHOTO_GALLERY_OPENED,
-                                    pageId = pickerData.originPageId,
-                                )
                                 scope.actionWithPermission(
                                     pickerSource = AiutaPickerSource.GALLERY,
                                     permissionHandler = permissionHandler,
                                     logger = logger,
-                                    onGranted = galleryManager::launch,
+                                    onGranted = {
+                                        controller.sendPickerAnalytic(
+                                            event = AiutaAnalyticsPickerEventType.PHOTO_GALLERY_OPENED,
+                                            pageId = pickerData.originPageId,
+                                        )
+                                        galleryManager.launch()
+                                    },
                                     onAlwaysDenied = {
                                         // Show nothing
                                         bottomSheetNavigator.hide()

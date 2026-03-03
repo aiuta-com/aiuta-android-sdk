@@ -10,10 +10,10 @@ import com.aiuta.fashionsdk.internal.navigation.controller.AiutaNavigationContro
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.analytic.sendOnboardingEvent
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.controller.FashionTryOnController
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.navigation.TryOnScreen
+import com.aiuta.fashionsdk.tryon.compose.ui.internal.screens.consent.controller.completeConsentViewing
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.screens.consent.controller.isAllMandatoryConsentChecked
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.screens.onboarding.controller.state.ConsentPage
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.screens.onboarding.controller.state.TryOnPage
-import com.aiuta.fashionsdk.tryon.compose.ui.internal.utils.features.dataprovider.safeInvoke
 import kotlinx.coroutines.launch
 
 internal fun OnboardingController.nextPage(
@@ -36,22 +36,15 @@ internal fun OnboardingController.nextPage(
 
             pagerState.animateScrollToPage(nextPageIndex)
         } else {
-            // Close onboarding and move on
-            val consentsList = consentController?.consentsList
-            val obtainedConsentId = consentsList?.mapNotNull { consentModel ->
-                consentModel.consent.id.takeIf { consentModel.isObtained }
-            }.orEmpty()
-
             // Save or notify host as completed onboarding
             controller.onboardingInteractor.completeOnboarding()
 
             // Consent
-            controller.sendOnboardingEvent(
-                eventType = AiutaAnalyticOnboardingEventType.CONSENT_GIVEN,
-                pageId = AiutaAnalyticsPageId.CONSENT,
-                consentsIds = consentsList?.map { consent -> consent.consent.id },
-            )
-            controller.consentInteractor::obtainConsent.safeInvoke(obtainedConsentId)
+            consentController?.let {
+                controller.completeConsentViewing(
+                    consentController = it,
+                )
+            }
 
             // Finish
             controller.sendOnboardingEvent(

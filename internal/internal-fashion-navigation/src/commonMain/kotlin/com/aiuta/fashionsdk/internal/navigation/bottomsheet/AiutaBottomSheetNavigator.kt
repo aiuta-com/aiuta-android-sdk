@@ -20,15 +20,17 @@ import androidx.compose.runtime.rememberCoroutineScope
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
 import com.aiuta.fashionsdk.internal.navigation.AiutaNavEntry
+import com.aiuta.fashionsdk.logger.AiutaLogger
+import com.aiuta.fashionsdk.logger.d
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.launch
 
 @Composable
 internal fun rememberAiutaBottomSheetNavigator(
+    logger: AiutaLogger?,
     bottomSheetEntryProvider: (AiutaNavigationBottomSheetScreen) -> AiutaNavEntry<AiutaNavigationBottomSheetScreen>,
 ): AiutaBottomSheetNavigator {
     val defaultScope = rememberCoroutineScope()
-
     val defaultBottomSheetState = rememberModalBottomSheetState(
         initialValue = ModalBottomSheetValue.Hidden,
         skipHalfExpanded = true,
@@ -36,12 +38,13 @@ internal fun rememberAiutaBottomSheetNavigator(
 
     return remember(
         defaultScope,
-        bottomSheetEntryProvider,
         defaultBottomSheetState,
+        logger,
     ) {
         AiutaBottomSheetNavigator(
             scope = defaultScope,
             bottomSheetEntryProvider = bottomSheetEntryProvider,
+            logger = logger,
             sheetState = defaultBottomSheetState,
         )
     }
@@ -52,6 +55,7 @@ internal fun rememberAiutaBottomSheetNavigator(
 public class AiutaBottomSheetNavigator internal constructor(
     private val scope: CoroutineScope,
     private val bottomSheetEntryProvider: (AiutaNavigationBottomSheetScreen) -> AiutaNavEntry<AiutaNavigationBottomSheetScreen>,
+    private val logger: AiutaLogger?,
     internal val sheetState: ModalBottomSheetState,
 ) {
     private val currentBottomSheetScreen =
@@ -74,6 +78,8 @@ public class AiutaBottomSheetNavigator internal constructor(
 
     public fun show(newSheetScreen: AiutaNavigationBottomSheetScreen) {
         scope.launch {
+            logger?.d("AiutaBottomSheetNavigator: show $newSheetScreen")
+
             currentBottomSheetScreen.value = newSheetScreen
             sheetState.show()
         }
@@ -81,6 +87,8 @@ public class AiutaBottomSheetNavigator internal constructor(
 
     public fun hide() {
         scope.launch {
+            logger?.d("AiutaBottomSheetNavigator: hide")
+
             sheetState.hide()
             lastBottomSheetScreen.value = currentBottomSheetScreen.value
             currentBottomSheetScreen.value = AiutaNavigationBottomSheetScreen.IDLE
@@ -89,6 +97,8 @@ public class AiutaBottomSheetNavigator internal constructor(
 
     public fun change(newSheetScreen: AiutaNavigationBottomSheetScreen) {
         scope.launch {
+            logger?.d("AiutaBottomSheetNavigator: change to $newSheetScreen")
+
             sheetState.hide()
             currentBottomSheetScreen.value = newSheetScreen
             sheetState.show()
