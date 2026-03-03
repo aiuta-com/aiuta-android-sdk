@@ -29,6 +29,7 @@ public fun AiutaNavigationInitialisation(
         aiutaConfiguration = aiutaConfiguration,
     )
     val bottomSheetNavigator = rememberAiutaBottomSheetNavigator(
+        logger = aiutaConfiguration.aiuta.logger,
         bottomSheetEntryProvider = bottomSheetEntryProvider,
     )
     val errorSnackbarController = rememberAiutaErrorSnackbarController()
