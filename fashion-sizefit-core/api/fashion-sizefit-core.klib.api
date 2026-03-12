@@ -8,22 +8,6 @@
 // Library unique name: <com.aiuta:fashion-sizefit-core>
 abstract interface com.aiuta.fashionsdk.sizefit.core/AiutaSizeFit : kotlin/AutoCloseable { // com.aiuta.fashionsdk.sizefit.core/AiutaSizeFit|null[0]
     abstract suspend fun recommendSize(kotlin/String, com.aiuta.fashionsdk.sizefit.core/AiutaSizeFitConfig): com.aiuta.fashionsdk.sizefit.core/AiutaSizeFitRecommendation // com.aiuta.fashionsdk.sizefit.core/AiutaSizeFit.recommendSize|recommendSize(kotlin.String;com.aiuta.fashionsdk.sizefit.core.AiutaSizeFitConfig){}[0]
-
-    final class Builder { // com.aiuta.fashionsdk.sizefit.core/AiutaSizeFit.Builder|null[0]
-        constructor <init>() // com.aiuta.fashionsdk.sizefit.core/AiutaSizeFit.Builder.<init>|<init>(){}[0]
-
-        final var aiuta // com.aiuta.fashionsdk.sizefit.core/AiutaSizeFit.Builder.aiuta|{}aiuta[0]
-            final fun <get-aiuta>(): com.aiuta.fashionsdk/Aiuta? // com.aiuta.fashionsdk.sizefit.core/AiutaSizeFit.Builder.aiuta.<get-aiuta>|<get-aiuta>(){}[0]
-            final fun <set-aiuta>(com.aiuta.fashionsdk/Aiuta?) // com.aiuta.fashionsdk.sizefit.core/AiutaSizeFit.Builder.aiuta.<set-aiuta>|<set-aiuta>(com.aiuta.fashionsdk.Aiuta?){}[0]
-        final var apiKey // com.aiuta.fashionsdk.sizefit.core/AiutaSizeFit.Builder.apiKey|{}apiKey[0]
-            final fun <get-apiKey>(): kotlin/String? // com.aiuta.fashionsdk.sizefit.core/AiutaSizeFit.Builder.apiKey.<get-apiKey>|<get-apiKey>(){}[0]
-            final fun <set-apiKey>(kotlin/String?) // com.aiuta.fashionsdk.sizefit.core/AiutaSizeFit.Builder.apiKey.<set-apiKey>|<set-apiKey>(kotlin.String?){}[0]
-        final var partitionHeader // com.aiuta.fashionsdk.sizefit.core/AiutaSizeFit.Builder.partitionHeader|{}partitionHeader[0]
-            final fun <get-partitionHeader>(): kotlin/String? // com.aiuta.fashionsdk.sizefit.core/AiutaSizeFit.Builder.partitionHeader.<get-partitionHeader>|<get-partitionHeader>(){}[0]
-            final fun <set-partitionHeader>(kotlin/String?) // com.aiuta.fashionsdk.sizefit.core/AiutaSizeFit.Builder.partitionHeader.<set-partitionHeader>|<set-partitionHeader>(kotlin.String?){}[0]
-
-        final fun build(): com.aiuta.fashionsdk.sizefit.core/AiutaSizeFit // com.aiuta.fashionsdk.sizefit.core/AiutaSizeFit.Builder.build|build(){}[0]
-    }
 }
 
 final class com.aiuta.fashionsdk.sizefit.core.exceptions/SizeFitApiException : kotlin/Exception { // com.aiuta.fashionsdk.sizefit.core.exceptions/SizeFitApiException|null[0]
@@ -173,4 +157,5 @@ final class com.aiuta.fashionsdk.sizefit.core/AiutaSizeFitRecommendation { // co
     }
 }
 
-final inline fun com.aiuta.fashionsdk.sizefit.core/aiutaSizeFit(kotlin/Function1<com.aiuta.fashionsdk.sizefit.core/AiutaSizeFit.Builder, kotlin/Unit>): com.aiuta.fashionsdk.sizefit.core/AiutaSizeFit // com.aiuta.fashionsdk.sizefit.core/aiutaSizeFit|aiutaSizeFit(kotlin.Function1<com.aiuta.fashionsdk.sizefit.core.AiutaSizeFit.Builder,kotlin.Unit>){}[0]
+final val com.aiuta.fashionsdk.sizefit.core/sizeFit // com.aiuta.fashionsdk.sizefit.core/sizeFit|@com.aiuta.fashionsdk.Aiuta{}sizeFit[0]
+    final fun (com.aiuta.fashionsdk/Aiuta).<get-sizeFit>(): com.aiuta.fashionsdk.sizefit.core/AiutaSizeFit // com.aiuta.fashionsdk.sizefit.core/sizeFit.<get-sizeFit>|<get-sizeFit>@com.aiuta.fashionsdk.Aiuta(){}[0]
