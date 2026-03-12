@@ -145,7 +145,7 @@ internal fun GeneratedOperationsSheet(
                                                     image = AiutaInputImage(
                                                         id = image.imageId,
                                                         url = image.imageUrl,
-                                                        type = image.imageType.toPublicHistory(),
+                                                        ownerType = image.imageType.toPublicHistory(),
                                                     ),
                                                 )
                                         }

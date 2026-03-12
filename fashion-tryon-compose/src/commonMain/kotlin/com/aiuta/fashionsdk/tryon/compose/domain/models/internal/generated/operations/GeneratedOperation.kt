@@ -31,13 +31,13 @@ internal fun GeneratedOperationWithImages.toUiModel(): GeneratedOperationUIModel
 // History image
 internal fun AiutaInputImage.toOperationUiModel(): GeneratedOperationUIModel = GeneratedOperationUIModel(
     operationId = id,
-    urlImages = listOf(UrlImage(imageId = id, imageUrl = url, imageType = type.toPublicCore())),
+    urlImages = listOf(UrlImage(imageId = id, imageUrl = url, imageType = ownerType.toPublicCore())),
 )
 
 internal fun GeneratedOperationUIModel.toPublic(): List<AiutaInputImage> = urlImages.map { image ->
     AiutaInputImage(
         id = image.imageId,
         url = image.imageUrl,
-        type = image.imageType.toPublicHistory(),
+        ownerType = image.imageType.toPublicHistory(),
     )
 }
