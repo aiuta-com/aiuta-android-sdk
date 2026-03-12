@@ -10,5 +10,5 @@ internal data class UploadedImage(
     @SerialName("url")
     val url: String,
     @SerialName("owner_type")
-    val type: AiutaFileType,
+    val ownerType: AiutaFileType,
 )

@@ -11,21 +11,21 @@ import com.aiuta.fashionsdk.tryon.core.domain.models.ProductGeneratedImage
 internal data class GeneratedImageUIModel(
     val id: String,
     val imageUrl: String,
-    val type: AiutaFileType,
+    val ownerType: AiutaFileType,
     val productIds: List<String> = emptyList(),
 )
 
 internal fun GeneratedImageEntity.toUiModel(): GeneratedImageUIModel = GeneratedImageUIModel(
     id = id,
     imageUrl = imageUrl,
-    type = type,
+    ownerType = type,
     productIds = productIds,
 )
 
 internal fun GeneratedImageUIModel.toEntity(): GeneratedImageEntity = GeneratedImageEntity(
     id = id,
     imageUrl = imageUrl,
-    type = type,
+    type = ownerType,
     productIds = productIds,
 )
 
@@ -38,7 +38,7 @@ internal fun GeneratedImageUIModel.toSessionUiModel(): SessionImageUIModel = Ses
 internal fun ProductGeneratedImage.toUiModel(): GeneratedImageUIModel = GeneratedImageUIModel(
     id = id,
     imageUrl = url,
-    type = type,
+    ownerType = type,
     productIds = productIds,
 )
 
@@ -46,14 +46,14 @@ internal fun ProductGeneratedImage.toUiModel(): GeneratedImageUIModel = Generate
 internal fun GeneratedImageUIModel.toPublic(): AiutaGeneratedImage = AiutaGeneratedImage(
     id = id,
     url = imageUrl,
-    type = type.toPublicHistory(),
+    ownerType = ownerType.toPublicHistory(),
     productIds = productIds,
 )
 
 internal fun AiutaGeneratedImage.toImageUiModel(): GeneratedImageUIModel = GeneratedImageUIModel(
     id = id,
     imageUrl = url,
-    type = type.toPublicCore(),
+    ownerType = ownerType.toPublicCore(),
 )
 
 // Type

@@ -9,13 +9,13 @@ package com.aiuta.fashionsdk.configuration.features.models.images
  *
  * @property id Unique identifier for the generated image
  * @property url URL where the generated image can be accessed
- * @property type Ownership type of the image (user or Aiuta)
+ * @property ownerType Ownership ownerType of the image (user or Aiuta)
  * @property productIds List of product identifiers associated with this generated image
  * @see AiutaOwnerType
  */
 public class AiutaGeneratedImage(
     public val id: String,
     public val url: String,
-    public val type: AiutaOwnerType,
+    public val ownerType: AiutaOwnerType,
     public val productIds: List<String>,
 )

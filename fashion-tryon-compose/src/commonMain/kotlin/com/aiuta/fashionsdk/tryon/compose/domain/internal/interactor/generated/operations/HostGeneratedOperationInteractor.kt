@@ -50,7 +50,7 @@ internal class HostGeneratedOperationInteractor(
                 AiutaInputImage(
                     id = sourceImageId,
                     url = sourceImageUrl,
-                    type = sourceImageType.toPublicHistory(),
+                    ownerType = sourceImageType.toPublicHistory(),
                 ),
             ),
         )

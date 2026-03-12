@@ -162,7 +162,7 @@ internal class AiutaTryOnImpl(
                     statusId = statusId,
                     sourceImageId = uploadedImage.id,
                     sourceImageUrl = uploadedImage.url,
-                    sourceImageType = uploadedImage.type,
+                    sourceImageType = uploadedImage.ownerType,
                     images = generations.map { it.toPublic(container) },
                     metadata = metadataBuilder.build(),
                 ),
@@ -184,7 +184,7 @@ internal class AiutaTryOnImpl(
             UploadedImage(
                 id = container.fileId,
                 url = container.fileUrl,
-                type = container.fileType,
+                ownerType = container.fileType,
             )
         }
     }

@@ -266,8 +266,8 @@ public final class com/aiuta/fashionsdk/configuration/features/models/images/Aiu
 	public static final field $stable I
 	public fun <init> (Ljava/lang/String;Ljava/lang/String;Lcom/aiuta/fashionsdk/configuration/features/models/images/AiutaOwnerType;Ljava/util/List;)V
 	public final fun getId ()Ljava/lang/String;
+	public final fun getOwnerType ()Lcom/aiuta/fashionsdk/configuration/features/models/images/AiutaOwnerType;
 	public final fun getProductIds ()Ljava/util/List;
-	public final fun getType ()Lcom/aiuta/fashionsdk/configuration/features/models/images/AiutaOwnerType;
 	public final fun getUrl ()Ljava/lang/String;
 }
 
@@ -275,7 +275,7 @@ public final class com/aiuta/fashionsdk/configuration/features/models/images/Aiu
 	public static final field $stable I
 	public fun <init> (Ljava/lang/String;Ljava/lang/String;Lcom/aiuta/fashionsdk/configuration/features/models/images/AiutaOwnerType;)V
 	public final fun getId ()Ljava/lang/String;
-	public final fun getType ()Lcom/aiuta/fashionsdk/configuration/features/models/images/AiutaOwnerType;
+	public final fun getOwnerType ()Lcom/aiuta/fashionsdk/configuration/features/models/images/AiutaOwnerType;
 	public final fun getUrl ()Ljava/lang/String;
 }
 
