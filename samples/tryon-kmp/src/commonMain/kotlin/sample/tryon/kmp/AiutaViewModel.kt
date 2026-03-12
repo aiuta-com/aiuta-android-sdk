@@ -18,8 +18,6 @@ import com.aiuta.fashionsdk.configuration.features.tryon.cart.handler.AiutaTryOn
 import com.aiuta.fashionsdk.configuration.ui.actions.AiutaUserInterfaceActions
 import com.aiuta.fashionsdk.context.AiutaPlatformContext
 import com.aiuta.fashionsdk.logger.DebugAiutaLogger
-import com.aiuta.fashionsdk.sizefit.core.AiutaSizeFit
-import com.aiuta.fashionsdk.sizefit.core.aiutaSizeFit
 import com.aiuta.fashionsdk.tryon.core.AiutaTryOn
 import com.aiuta.fashionsdk.tryon.core.domain.models.ProductGenerationItem
 import kotlinx.coroutines.flow.MutableStateFlow
@@ -56,12 +54,6 @@ class AiutaViewModel : ViewModel() {
             defaultShare()
             defaultSizeFit(privacyPolicyUrl = "https://you-domain.com/you-pp")
         }
-    }
-
-    fun buildAiutaSizeFit(aiuta: Aiuta): AiutaSizeFit = aiutaSizeFit {
-        this.aiuta = aiuta
-        this.apiKey = BuildKonfig.SIZEFIT_API_KEY
-        this.partitionHeader = BuildKonfig.SIZEFIT_PARTITION
     }
 
     // Navigation

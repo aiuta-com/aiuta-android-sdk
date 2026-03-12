@@ -12,20 +12,17 @@ import com.aiuta.fashionsdk.internal.navigation.composition.LocalAiutaBottomShee
 import com.aiuta.fashionsdk.internal.navigation.composition.LocalAiutaNavigationController
 import com.aiuta.fashionsdk.sizefit.compose.ui.internal.screens.questionary.QuestionaryScreen
 import com.aiuta.fashionsdk.sizefit.compose.ui.internal.screens.recommendation.RecommendationResultScreen
-import com.aiuta.fashionsdk.sizefit.core.AiutaSizeFit
 
 @OptIn(ExperimentalComposeUiApi::class)
 @Composable
 internal fun SizeFitNavigationFlow(
     aiutaConfiguration: AiutaConfiguration,
-    aiutaSizeFit: AiutaSizeFit,
     productCode: String,
     modifier: Modifier = Modifier,
 ) {
     val sharedModifier = Modifier.fillMaxSize()
 
     SizeFitNavigationInitialisation(
-        aiutaSizeFit = aiutaSizeFit,
         aiutaConfiguration = aiutaConfiguration,
     ) {
         val bottomSheetNavigator = LocalAiutaBottomSheetNavigator.current

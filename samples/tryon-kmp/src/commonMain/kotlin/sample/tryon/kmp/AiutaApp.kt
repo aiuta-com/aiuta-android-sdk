@@ -26,9 +26,6 @@ fun AiutaApp() {
     val aiutaConfiguration = remember {
         viewModel.buildAiutaConfiguration(aiutaPlatformContext)
     }
-    val aiutaSizeFit = remember {
-        viewModel.buildAiutaSizeFit(aiutaConfiguration.aiuta)
-    }
 
     when (navigationState.value) {
         NavigationState.Selector -> {
@@ -75,7 +72,6 @@ fun AiutaApp() {
             AiutaSizeFitFlow(
                 modifier = Modifier.fillMaxSize(),
                 aiutaConfiguration = aiutaConfiguration,
-                aiutaSizeFit = aiutaSizeFit,
                 productCode = BuildKonfig.SIZEFIT_PRODUCT_CODE,
             )
         }

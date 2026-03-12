@@ -21,6 +21,7 @@ kotlin {
             dependencies {
                 api(projects.fashion)
 
+                implementation(projects.fashionNetwork)
                 implementation(libs.kotlinx.serialization)
                 implementation(libs.ktor.core)
                 implementation(libs.ktor.negotiation)
