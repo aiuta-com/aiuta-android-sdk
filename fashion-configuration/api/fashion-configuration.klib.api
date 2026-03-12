@@ -1461,10 +1461,10 @@ final class com.aiuta.fashionsdk.configuration.features.models.images/AiutaGener
 
     final val id // com.aiuta.fashionsdk.configuration.features.models.images/AiutaGeneratedImage.id|{}id[0]
         final fun <get-id>(): kotlin/String // com.aiuta.fashionsdk.configuration.features.models.images/AiutaGeneratedImage.id.<get-id>|<get-id>(){}[0]
+    final val ownerType // com.aiuta.fashionsdk.configuration.features.models.images/AiutaGeneratedImage.ownerType|{}ownerType[0]
+        final fun <get-ownerType>(): com.aiuta.fashionsdk.configuration.features.models.images/AiutaOwnerType // com.aiuta.fashionsdk.configuration.features.models.images/AiutaGeneratedImage.ownerType.<get-ownerType>|<get-ownerType>(){}[0]
     final val productIds // com.aiuta.fashionsdk.configuration.features.models.images/AiutaGeneratedImage.productIds|{}productIds[0]
         final fun <get-productIds>(): kotlin.collections/List<kotlin/String> // com.aiuta.fashionsdk.configuration.features.models.images/AiutaGeneratedImage.productIds.<get-productIds>|<get-productIds>(){}[0]
-    final val type // com.aiuta.fashionsdk.configuration.features.models.images/AiutaGeneratedImage.type|{}type[0]
-        final fun <get-type>(): com.aiuta.fashionsdk.configuration.features.models.images/AiutaOwnerType // com.aiuta.fashionsdk.configuration.features.models.images/AiutaGeneratedImage.type.<get-type>|<get-type>(){}[0]
     final val url // com.aiuta.fashionsdk.configuration.features.models.images/AiutaGeneratedImage.url|{}url[0]
         final fun <get-url>(): kotlin/String // com.aiuta.fashionsdk.configuration.features.models.images/AiutaGeneratedImage.url.<get-url>|<get-url>(){}[0]
 }
@@ -1474,8 +1474,8 @@ final class com.aiuta.fashionsdk.configuration.features.models.images/AiutaInput
 
     final val id // com.aiuta.fashionsdk.configuration.features.models.images/AiutaInputImage.id|{}id[0]
         final fun <get-id>(): kotlin/String // com.aiuta.fashionsdk.configuration.features.models.images/AiutaInputImage.id.<get-id>|<get-id>(){}[0]
-    final val type // com.aiuta.fashionsdk.configuration.features.models.images/AiutaInputImage.type|{}type[0]
-        final fun <get-type>(): com.aiuta.fashionsdk.configuration.features.models.images/AiutaOwnerType // com.aiuta.fashionsdk.configuration.features.models.images/AiutaInputImage.type.<get-type>|<get-type>(){}[0]
+    final val ownerType // com.aiuta.fashionsdk.configuration.features.models.images/AiutaInputImage.ownerType|{}ownerType[0]
+        final fun <get-ownerType>(): com.aiuta.fashionsdk.configuration.features.models.images/AiutaOwnerType // com.aiuta.fashionsdk.configuration.features.models.images/AiutaInputImage.ownerType.<get-ownerType>|<get-ownerType>(){}[0]
     final val url // com.aiuta.fashionsdk.configuration.features.models.images/AiutaInputImage.url|{}url[0]
         final fun <get-url>(): kotlin/String // com.aiuta.fashionsdk.configuration.features.models.images/AiutaInputImage.url.<get-url>|<get-url>(){}[0]
 }
