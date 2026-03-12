@@ -2,17 +2,6 @@ public abstract interface class com/aiuta/fashionsdk/sizefit/core/AiutaSizeFit :
 	public abstract fun recommendSize (Ljava/lang/String;Lcom/aiuta/fashionsdk/sizefit/core/AiutaSizeFitConfig;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
 }
 
-public final class com/aiuta/fashionsdk/sizefit/core/AiutaSizeFit$Builder {
-	public fun <init> ()V
-	public final fun build ()Lcom/aiuta/fashionsdk/sizefit/core/AiutaSizeFit;
-	public final fun getAiuta ()Lcom/aiuta/fashionsdk/Aiuta;
-	public final fun getApiKey ()Ljava/lang/String;
-	public final fun getPartitionHeader ()Ljava/lang/String;
-	public final fun setAiuta (Lcom/aiuta/fashionsdk/Aiuta;)V
-	public final fun setApiKey (Ljava/lang/String;)V
-	public final fun setPartitionHeader (Ljava/lang/String;)V
-}
-
 public final class com/aiuta/fashionsdk/sizefit/core/AiutaSizeFitConfig {
 	public fun <init> (IIILcom/aiuta/fashionsdk/sizefit/core/AiutaSizeFitConfig$Gender;Lcom/aiuta/fashionsdk/sizefit/core/AiutaSizeFitConfig$HipShape;Lcom/aiuta/fashionsdk/sizefit/core/AiutaSizeFitConfig$BellyShape;Ljava/lang/Integer;Lcom/aiuta/fashionsdk/sizefit/core/AiutaSizeFitConfig$BraCup;)V
 	public synthetic fun <init> (IIILcom/aiuta/fashionsdk/sizefit/core/AiutaSizeFitConfig$Gender;Lcom/aiuta/fashionsdk/sizefit/core/AiutaSizeFitConfig$HipShape;Lcom/aiuta/fashionsdk/sizefit/core/AiutaSizeFitConfig$BellyShape;Ljava/lang/Integer;Lcom/aiuta/fashionsdk/sizefit/core/AiutaSizeFitConfig$BraCup;ILkotlin/jvm/internal/DefaultConstructorMarker;)V
@@ -68,7 +57,7 @@ public final class com/aiuta/fashionsdk/sizefit/core/AiutaSizeFitConfig$HipShape
 }
 
 public final class com/aiuta/fashionsdk/sizefit/core/AiutaSizeFitKt {
-	public static final fun aiutaSizeFit (Lkotlin/jvm/functions/Function1;)Lcom/aiuta/fashionsdk/sizefit/core/AiutaSizeFit;
+	public static final fun getSizeFit (Lcom/aiuta/fashionsdk/Aiuta;)Lcom/aiuta/fashionsdk/sizefit/core/AiutaSizeFit;
 }
 
 public final class com/aiuta/fashionsdk/sizefit/core/AiutaSizeFitRecommendation {
