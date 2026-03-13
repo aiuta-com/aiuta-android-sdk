@@ -91,7 +91,7 @@ public final class com/aiuta/fashionsdk/compose/uikit/resources/painter/AiutaPai
 }
 
 public final class com/aiuta/fashionsdk/compose/uikit/utils/HtmlUtilsKt {
-	public static final fun buildAnnotatedStringFromHtml (Ljava/lang/String;ZLandroidx/compose/runtime/Composer;II)Landroidx/compose/ui/text/AnnotatedString;
+	public static final fun buildAnnotatedStringFromHtml (Ljava/lang/String;Lcom/aiuta/fashionsdk/logger/AiutaLogger;ZLandroidx/compose/runtime/Composer;II)Landroidx/compose/ui/text/AnnotatedString;
 }
 
 public final class com/aiuta/fashionsdk/compose/uikit/utils/ModifierUtilsKt {

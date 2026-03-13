@@ -41,6 +41,7 @@ import com.aiuta.fashionsdk.compose.uikit.utils.clickableUnindicated
 import com.aiuta.fashionsdk.compose.uikit.utils.strictProvideFeature
 import com.aiuta.fashionsdk.configuration.features.consent.AiutaConsentStandaloneFeature
 import com.aiuta.fashionsdk.configuration.features.consent.models.AiutaConsentType
+import com.aiuta.fashionsdk.internal.navigation.composition.LocalAiutaLogger
 import com.aiuta.fashionsdk.tryon.compose.domain.models.internal.screen.onboarding.AiutaConsentUiModel
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.analytic.sendPageEvent
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.utils.CenterAlignmentLine
@@ -53,6 +54,7 @@ internal fun ConsentContent(
     onUpdateConsentState: (consent: AiutaConsentUiModel, newState: Boolean) -> Unit,
 ) {
     val theme = LocalTheme.current
+    val logger = LocalAiutaLogger.current
 
     val consentStandaloneFeature = strictProvideFeature<AiutaConsentStandaloneFeature>()
 
@@ -111,7 +113,8 @@ internal fun ConsentContent(
             Text(
                 modifier = Modifier.fillMaxWidth(),
                 text = buildAnnotatedStringFromHtml(
-                    consentStandaloneFeature.strings.consentDescriptionHtml,
+                    input = consentStandaloneFeature.strings.consentDescriptionHtml,
+                    logger = logger,
                 ),
                 style = theme.label.typography.regular,
                 color = theme.color.primary,
@@ -176,7 +179,10 @@ internal fun ConsentContent(
 
                 Text(
                     modifier = Modifier.fillMaxWidth(),
-                    text = buildAnnotatedStringFromHtml(footerText),
+                    text = buildAnnotatedStringFromHtml(
+                        input = footerText,
+                        logger = logger,
+                    ),
                     style = theme.label.typography.regular,
                     color = theme.color.primary,
                     textAlign = TextAlign.Start,
@@ -196,6 +202,7 @@ private fun AgreePoint(
     onAgreementCheckedChange: (Boolean) -> Unit,
 ) {
     val theme = LocalTheme.current
+    val logger = LocalAiutaLogger.current
 
     val lineIndexToCenter = 0
     var topTextPosition by remember { mutableFloatStateOf(0f) }
@@ -235,7 +242,10 @@ private fun AgreePoint(
                 }
                 .alignBy(CenterAlignmentLine)
                 .createCenterAlignmentLine(topTextPosition, bottomTextPosition),
-            text = buildAnnotatedStringFromHtml(text),
+            text = buildAnnotatedStringFromHtml(
+                input = text,
+                logger = logger,
+            ),
             style = theme.label.typography.regular,
             color = theme.color.primary,
             textAlign = TextAlign.Start,

@@ -17,6 +17,7 @@ import com.aiuta.fashionsdk.compose.uikit.composition.LocalTheme
 import com.aiuta.fashionsdk.compose.uikit.utils.buildAnnotatedStringFromHtml
 import com.aiuta.fashionsdk.compose.uikit.utils.provideFeature
 import com.aiuta.fashionsdk.configuration.features.consent.AiutaConsentEmbeddedIntoOnboardingFeature
+import com.aiuta.fashionsdk.internal.navigation.composition.LocalAiutaLogger
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.screens.onboarding.controller.OnboardingController
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.screens.onboarding.controller.state.TryOnPage
 
@@ -26,6 +27,7 @@ internal fun SmallConsentContent(
     onboardingController: OnboardingController,
 ) {
     val theme = LocalTheme.current
+    val logger = LocalAiutaLogger.current
 
     val consentBuiltInFeature = provideFeature<AiutaConsentEmbeddedIntoOnboardingFeature>()
 
@@ -53,7 +55,10 @@ internal fun SmallConsentContent(
 
                 Text(
                     modifier = Modifier.fillMaxWidth(),
-                    text = buildAnnotatedStringFromHtml(consentBuiltInFeature.strings.consentHtml),
+                    text = buildAnnotatedStringFromHtml(
+                        input = consentBuiltInFeature.strings.consentHtml,
+                        logger = logger,
+                    ),
                     style = theme.productBar.typography.product,
                     color = theme.color.secondary,
                     textAlign = TextAlign.Center,
