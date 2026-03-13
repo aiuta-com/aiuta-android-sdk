@@ -19,6 +19,7 @@ kotlin {
     sourceSets {
         androidMain {
             dependencies {
+                implementation(libs.androidx.browser)
                 implementation(libs.ktor.engine.okhttp)
             }
         }

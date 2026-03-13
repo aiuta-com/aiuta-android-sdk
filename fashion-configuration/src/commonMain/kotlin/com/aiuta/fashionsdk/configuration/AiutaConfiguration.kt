@@ -7,6 +7,8 @@ import com.aiuta.fashionsdk.Aiuta
 import com.aiuta.fashionsdk.annotations.AiutaDsl
 import com.aiuta.fashionsdk.configuration.debug.AiutaDebugSettings
 import com.aiuta.fashionsdk.configuration.debug.DefaultAiutaDebugSettings
+import com.aiuta.fashionsdk.configuration.experimental.AiutaExperimentalSettings
+import com.aiuta.fashionsdk.configuration.experimental.DefaultAiutaExperimentalSettings
 import com.aiuta.fashionsdk.configuration.features.AiutaFeatures
 import com.aiuta.fashionsdk.configuration.internal.analytic.sendConfigurationEvent
 import com.aiuta.fashionsdk.configuration.internal.utils.checkNotNullWithDescription
@@ -43,6 +45,7 @@ import com.aiuta.fashionsdk.internal.analytics.internalAiutaAnalytic
  *
  * @property aiuta The core Aiuta SDK instance
  * @property debugSettings Debug and validation settings for development
+ * @property experimentalSettings Opt-in settings for experimental or non-default behavior
  * @property features Feature configuration defining which SDK features are enabled
  * @property userInterface UI configuration including theme and actions
  *
@@ -50,11 +53,13 @@ import com.aiuta.fashionsdk.internal.analytics.internalAiutaAnalytic
  * @see AiutaFeatures
  * @see AiutaUserInterfaceConfiguration
  * @see AiutaDebugSettings
+ * @see AiutaExperimentalSettings
  */
 @Immutable
 public class AiutaConfiguration(
     public val aiuta: Aiuta,
     public val debugSettings: AiutaDebugSettings,
+    public val experimentalSettings: AiutaExperimentalSettings,
     public val features: AiutaFeatures,
     public val userInterface: AiutaUserInterfaceConfiguration,
 ) {
@@ -81,6 +86,12 @@ public class AiutaConfiguration(
         public var debugSettings: AiutaDebugSettings? = null
 
         /**
+         * Experimental settings for opt-in non-default behavior.
+         * If not set, [DefaultAiutaExperimentalSettings] will be used.
+         */
+        public var experimentalSettings: AiutaExperimentalSettings? = null
+
+        /**
          * Feature configuration defining enabled SDK features.
          */
         public var features: AiutaFeatures? = null
@@ -103,6 +114,7 @@ public class AiutaConfiguration(
             val parentClass = "AiutaTryOnConfiguration"
 
             val innerDebugSettings = debugSettings ?: DefaultAiutaDebugSettings
+            val innerExperimentalSettings = experimentalSettings ?: DefaultAiutaExperimentalSettings
 
             val internalAiuta = aiuta.checkNotNullWithDescription(
                 parentClass = parentClass,
@@ -130,6 +142,7 @@ public class AiutaConfiguration(
             return AiutaConfiguration(
                 aiuta = internalAiuta,
                 debugSettings = innerDebugSettings,
+                experimentalSettings = innerExperimentalSettings,
                 features = internalFeatures,
                 userInterface = innerUserInterface,
             ).also {

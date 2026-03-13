@@ -56,6 +56,7 @@ public abstract interface class com/aiuta/fashionsdk/compose/uikit/button/intern
 }
 
 public final class com/aiuta/fashionsdk/compose/uikit/composition/CompositionLocalKt {
+	public static final fun getLocalAiutaExperimentalSettings ()Landroidx/compose/runtime/ProvidableCompositionLocal;
 	public static final fun getLocalAiutaFeatures ()Landroidx/compose/runtime/ProvidableCompositionLocal;
 	public static final fun getLocalTheme ()Landroidx/compose/runtime/ProvidableCompositionLocal;
 }

@@ -2,6 +2,8 @@ package com.aiuta.fashionsdk.compose.uikit.composition
 
 import androidx.compose.runtime.ProvidableCompositionLocal
 import androidx.compose.runtime.staticCompositionLocalOf
+import com.aiuta.fashionsdk.configuration.experimental.AiutaExperimentalSettings
+import com.aiuta.fashionsdk.configuration.experimental.DefaultAiutaExperimentalSettings
 import com.aiuta.fashionsdk.configuration.features.AiutaFeatures
 import com.aiuta.fashionsdk.configuration.ui.theme.AiutaTheme
 
@@ -21,6 +23,15 @@ public val LocalTheme: ProvidableCompositionLocal<AiutaTheme> =
 public val LocalAiutaFeatures: ProvidableCompositionLocal<AiutaFeatures> =
     staticCompositionLocalOf {
         noLocalProvidedFor("LocalAiutaConfiguration")
+    }
+
+/**
+ * A composition local that provides access to the current [AiutaExperimentalSettings].
+ * Falls back to [DefaultAiutaExperimentalSettings] if not explicitly provided.
+ */
+public val LocalAiutaExperimentalSettings: ProvidableCompositionLocal<AiutaExperimentalSettings> =
+    staticCompositionLocalOf {
+        noLocalProvidedFor("LocalAiutaExperimentalSettings")
     }
 
 /**
