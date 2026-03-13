@@ -1,8 +1,9 @@
 public final class com/aiuta/fashionsdk/configuration/AiutaConfiguration {
 	public static final field $stable I
-	public fun <init> (Lcom/aiuta/fashionsdk/Aiuta;Lcom/aiuta/fashionsdk/configuration/debug/AiutaDebugSettings;Lcom/aiuta/fashionsdk/configuration/features/AiutaFeatures;Lcom/aiuta/fashionsdk/configuration/ui/AiutaUserInterfaceConfiguration;)V
+	public fun <init> (Lcom/aiuta/fashionsdk/Aiuta;Lcom/aiuta/fashionsdk/configuration/debug/AiutaDebugSettings;Lcom/aiuta/fashionsdk/configuration/experimental/AiutaExperimentalSettings;Lcom/aiuta/fashionsdk/configuration/features/AiutaFeatures;Lcom/aiuta/fashionsdk/configuration/ui/AiutaUserInterfaceConfiguration;)V
 	public final fun getAiuta ()Lcom/aiuta/fashionsdk/Aiuta;
 	public final fun getDebugSettings ()Lcom/aiuta/fashionsdk/configuration/debug/AiutaDebugSettings;
+	public final fun getExperimentalSettings ()Lcom/aiuta/fashionsdk/configuration/experimental/AiutaExperimentalSettings;
 	public final fun getFeatures ()Lcom/aiuta/fashionsdk/configuration/features/AiutaFeatures;
 	public final fun getUserInterface ()Lcom/aiuta/fashionsdk/configuration/ui/AiutaUserInterfaceConfiguration;
 }
@@ -13,10 +14,12 @@ public final class com/aiuta/fashionsdk/configuration/AiutaConfiguration$Builder
 	public final fun build ()Lcom/aiuta/fashionsdk/configuration/AiutaConfiguration;
 	public final fun getAiuta ()Lcom/aiuta/fashionsdk/Aiuta;
 	public final fun getDebugSettings ()Lcom/aiuta/fashionsdk/configuration/debug/AiutaDebugSettings;
+	public final fun getExperimentalSettings ()Lcom/aiuta/fashionsdk/configuration/experimental/AiutaExperimentalSettings;
 	public final fun getFeatures ()Lcom/aiuta/fashionsdk/configuration/features/AiutaFeatures;
 	public final fun getUserInterface ()Lcom/aiuta/fashionsdk/configuration/ui/AiutaUserInterfaceConfiguration;
 	public final fun setAiuta (Lcom/aiuta/fashionsdk/Aiuta;)V
 	public final fun setDebugSettings (Lcom/aiuta/fashionsdk/configuration/debug/AiutaDebugSettings;)V
+	public final fun setExperimentalSettings (Lcom/aiuta/fashionsdk/configuration/experimental/AiutaExperimentalSettings;)V
 	public final fun setFeatures (Lcom/aiuta/fashionsdk/configuration/features/AiutaFeatures;)V
 	public final fun setUserInterface (Lcom/aiuta/fashionsdk/configuration/ui/AiutaUserInterfaceConfiguration;)V
 }
@@ -44,6 +47,16 @@ public final class com/aiuta/fashionsdk/configuration/debug/AiutaValidationPolic
 	public static fun getEntries ()Lkotlin/enums/EnumEntries;
 	public static fun valueOf (Ljava/lang/String;)Lcom/aiuta/fashionsdk/configuration/debug/AiutaValidationPolicy;
 	public static fun values ()[Lcom/aiuta/fashionsdk/configuration/debug/AiutaValidationPolicy;
+}
+
+public final class com/aiuta/fashionsdk/configuration/experimental/AiutaExperimentalSettings {
+	public static final field $stable I
+	public fun <init> (Z)V
+	public final fun getShouldOpenLinksInCustomTab ()Z
+}
+
+public final class com/aiuta/fashionsdk/configuration/experimental/AiutaExperimentalSettingsKt {
+	public static final fun getDefaultAiutaExperimentalSettings ()Lcom/aiuta/fashionsdk/configuration/experimental/AiutaExperimentalSettings;
 }
 
 public abstract interface class com/aiuta/fashionsdk/configuration/features/AiutaFeature {
