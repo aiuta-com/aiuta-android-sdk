@@ -12,6 +12,7 @@ import androidx.compose.runtime.remember
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.platform.LocalUriHandler
 import androidx.compose.ui.platform.UriHandler
+import com.aiuta.fashionsdk.compose.uikit.composition.LocalAiutaExperimentalSettings
 import com.aiuta.fashionsdk.logger.AiutaLogger
 import com.aiuta.fashionsdk.logger.d
 import com.aiuta.fashionsdk.logger.e
@@ -21,16 +22,18 @@ import com.aiuta.fashionsdk.logger.w
 internal actual fun rememberAiutaUriHandler(logger: AiutaLogger?): UriHandler {
     val context = LocalContext.current
     val defaultUriHandler = LocalUriHandler.current
+    val shouldOpenInCustomTab = LocalAiutaExperimentalSettings.current.shouldOpenLinksInCustomTab
 
     val handler = remember(
         defaultUriHandler,
         logger,
+        shouldOpenInCustomTab,
     ) {
         AndroidAiutaUriHandler(
             context = context,
             defaultUriHandler = defaultUriHandler,
             aiutaLogger = logger,
-            shouldOpenInCustomTab = true,
+            shouldOpenInCustomTab = shouldOpenInCustomTab,
         )
     }
 
