@@ -5,11 +5,15 @@ import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.ui.text.AnnotatedString
 import androidx.compose.ui.text.LinkAnnotation
+import androidx.compose.ui.text.LinkInteractionListener
 import androidx.compose.ui.text.SpanStyle
 import androidx.compose.ui.text.font.FontStyle
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextDecoration
 import androidx.compose.ui.text.withLink
+import com.aiuta.fashionsdk.logger.AiutaLogger
+import com.aiuta.fashionsdk.logger.d
+import com.aiuta.fashionsdk.logger.w
 import com.mohamedrejeb.ksoup.entities.KsoupEntities
 import com.mohamedrejeb.ksoup.html.parser.KsoupHtmlHandler
 import com.mohamedrejeb.ksoup.html.parser.KsoupHtmlParser
@@ -17,10 +21,12 @@ import com.mohamedrejeb.ksoup.html.parser.KsoupHtmlParser
 @Composable
 public fun buildAnnotatedStringFromHtml(
     input: String,
+    logger: AiutaLogger? = null,
     isClickable: Boolean = true,
 ): AnnotatedString {
     val builder = AnnotatedString.Builder()
     val currentLink = remember { mutableStateOf<String?>(null) }
+    val uriHandler = rememberAiutaUriHandler(logger)
 
     val handler = KsoupHtmlHandler.Builder()
         .onOpenTag { name, attributes, _ ->
@@ -41,7 +47,19 @@ public fun buildAnnotatedStringFromHtml(
         }
         .onText { text ->
             currentLink.value?.let { link ->
-                builder.withLink(LinkAnnotation.Url(link)) {
+                builder.withLink(
+                    LinkAnnotation.Url(
+                        url = link,
+                        linkInteractionListener = LinkInteractionListener { link ->
+                            logger?.d("buildAnnotatedStringFromHtml(): link is url - ${link is LinkAnnotation.Url}")
+                            if (link is LinkAnnotation.Url) {
+                                uriHandler.openUri(link.url)
+                            } else {
+                                logger?.w("buildAnnotatedStringFromHtml(): can't open url because it's not LinkAnnotation.Url")
+                            }
+                        },
+                    ),
+                ) {
                     append(text)
                 }
                 currentLink.value = null
