@@ -34,7 +34,7 @@ jobs:
                     bash ./scripts/update_version.sh ${{ github.event.release.name }}
 
             -   name: Setup gradle
-                uses: gradle/actions/setup-gradle@v5
+                uses: gradle/actions/setup-gradle@v6
 
             -   name: Release on maven central
                 env:
