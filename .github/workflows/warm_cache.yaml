@@ -1,0 +1,26 @@
+name: Warm Gradle cache
+
+on:
+    push:
+        branches: [ main ]
+
+concurrency:
+    group: warm-cache-${{ github.ref }}
+    cancel-in-progress: true
+
+jobs:
+    warm:
+        name: Warm Gradle cache (ubuntu)
+        runs-on: ubuntu-latest
+        timeout-minutes: 40
+        steps:
+            -   name: Checkout
+                uses: actions/checkout@v6
+                with:
+                    fetch-depth: 0
+
+            -   name: Base setup
+                uses: ./.github/actions/setup-base
+
+            -   name: Warm caches
+                run: ./gradlew spotlessCheck lint apiCheck
