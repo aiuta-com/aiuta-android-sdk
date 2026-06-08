@@ -35,7 +35,7 @@ jobs:
                 run: ./scripts/make_docs.sh
 
             -   name: Setup Pages
-                uses: actions/configure-pages@v5.0.0
+                uses: actions/configure-pages@v6.0.0
 
             -   name: Upload artifact
                 uses: actions/upload-pages-artifact@v4.0.0
