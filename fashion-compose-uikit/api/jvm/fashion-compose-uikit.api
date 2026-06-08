@@ -7,9 +7,9 @@ public final class com/aiuta/fashionsdk/compose/uikit/appbar/AiutaAppBarKt {
 public final class com/aiuta/fashionsdk/compose/uikit/appbar/ComposableSingletons$AiutaAppBarKt {
 	public static final field INSTANCE Lcom/aiuta/fashionsdk/compose/uikit/appbar/ComposableSingletons$AiutaAppBarKt;
 	public fun <init> ()V
-	public final fun getLambda$-1096892943$fashion_compose_uikit ()Lkotlin/jvm/functions/Function3;
-	public final fun getLambda$1161345618$fashion_compose_uikit ()Lkotlin/jvm/functions/Function3;
-	public final fun getLambda$722832534$fashion_compose_uikit ()Lkotlin/jvm/functions/Function3;
+	public final fun getLambda$-1096892943$com_aiuta_fashion_compose_uikit ()Lkotlin/jvm/functions/Function3;
+	public final fun getLambda$1161345618$com_aiuta_fashion_compose_uikit ()Lkotlin/jvm/functions/Function3;
+	public final fun getLambda$722832534$com_aiuta_fashion_compose_uikit ()Lkotlin/jvm/functions/Function3;
 }
 
 public final class com/aiuta/fashionsdk/compose/uikit/button/FashionButtonKt {
