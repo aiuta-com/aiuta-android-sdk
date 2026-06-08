@@ -31,7 +31,7 @@ ktor = "3.4.0"
 ksoup = "0.6.0"
 
 jetbrains-compose = "1.11.1"
-jetbrains-lifecycle = "2.9.6"
+jetbrains-lifecycle = "2.10.0"
 
 kotlin = "2.4.0"
 ktlint = "1.5.0"
