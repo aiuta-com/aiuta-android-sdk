@@ -20,8 +20,7 @@ androidApplication(name = "sample.tryon.kmp.android") {
             isMinifyEnabled = true
             isShrinkResources = true
             proguardFiles(
-                "./shrinker-rules.pro",
-                "./shrinker-rules-android.pro",
+                getDefaultProguardFile("proguard-android-optimize.txt"),
             )
             signingConfig = signingConfigs["debug"]
         }

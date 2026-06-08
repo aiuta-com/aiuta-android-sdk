@@ -20,10 +20,6 @@ multiplatformAndroidLibrary(name = "com.aiuta.fashionsdk.tryon.compose") {
     androidResources {
         enable = true
     }
-    optimization {
-        consumerKeepRules.publish = true
-        consumerKeepRules.files += project.file("shrinker-rules.pro")
-    }
 }
 
 kotlin {
