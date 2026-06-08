@@ -32,7 +32,7 @@ jobs:
 
     build-samples:
         name: Build samples
-        runs-on: macos-15
+        runs-on: macos-26
         timeout-minutes: 40
         steps:
             -   name: Checkout
