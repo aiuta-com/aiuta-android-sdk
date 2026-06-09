@@ -54,6 +54,7 @@ kotlin {
             implementation(projects.fashionTryonCompose)
             implementation(projects.fashionSizefitCompose)
             implementation(projects.fashionConfigurationDefaults)
+            implementation(projects.internal.internalBenchmarkTags)
 
             implementation(libs.jetbrains.compose.foundation)
             implementation(libs.jetbrains.compose.material)

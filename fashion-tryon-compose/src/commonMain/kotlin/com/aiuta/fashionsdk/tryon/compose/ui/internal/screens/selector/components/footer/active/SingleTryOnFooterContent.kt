@@ -19,10 +19,12 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Brush
 import androidx.compose.ui.layout.ContentScale
+import androidx.compose.ui.platform.testTag
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import coil3.compose.LocalPlatformContext
 import com.aiuta.fashionsdk.analytics.events.AiutaAnalyticsPageId
+import com.aiuta.fashionsdk.benchmark.tags.AiutaTestTags
 import com.aiuta.fashionsdk.compose.uikit.button.FashionButton
 import com.aiuta.fashionsdk.compose.uikit.button.FashionButtonSizes
 import com.aiuta.fashionsdk.compose.uikit.button.FashionButtonStyles
@@ -68,7 +70,9 @@ internal fun ColumnScope.SingleTryOnFooterContent(
     Spacer(Modifier.height(24.dp))
 
     FashionButton(
-        modifier = Modifier.fillMaxWidth(),
+        modifier = Modifier
+            .testTag(AiutaTestTags.GENERATE)
+            .fillMaxWidth(),
         text = tryOnFeature.strings.tryOn,
         style = tryOnFeature.styles.tryOnButtonGradient?.let { tryOnButtonGradient ->
             FashionButtonStyles.gradientColors(

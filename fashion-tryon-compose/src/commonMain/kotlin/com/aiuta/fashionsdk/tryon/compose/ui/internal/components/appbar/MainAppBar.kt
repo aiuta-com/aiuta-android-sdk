@@ -7,7 +7,9 @@ import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.platform.testTag
 import androidx.compose.ui.text.style.TextAlign
+import com.aiuta.fashionsdk.benchmark.tags.AiutaTestTags
 import com.aiuta.fashionsdk.compose.uikit.appbar.AiutaAppBar
 import com.aiuta.fashionsdk.compose.uikit.appbar.AiutaAppBarIcon
 import com.aiuta.fashionsdk.compose.uikit.composition.LocalTheme
@@ -42,6 +44,7 @@ internal fun MainAppBar(
                 val generationsHistoryFeature = strictProvideFeature<AiutaTryOnGenerationsHistoryFeature>()
 
                 AiutaAppBarIcon(
+                    modifier = Modifier.testTag(AiutaTestTags.HISTORY_APP_BAR),
                     icon = generationsHistoryFeature.icons.history24,
                     color = theme.color.primary,
                     onClick = {

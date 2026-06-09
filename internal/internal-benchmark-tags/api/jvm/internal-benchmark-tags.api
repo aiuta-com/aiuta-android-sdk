@@ -1,0 +1,15 @@
+public final class com/aiuta/fashionsdk/benchmark/tags/AiutaTestTags {
+	public static final field FLOW_SELECTOR Ljava/lang/String;
+	public static final field GENERATE Ljava/lang/String;
+	public static final field HISTORY_APP_BAR Ljava/lang/String;
+	public static final field HISTORY_FLOW_BUTTON Ljava/lang/String;
+	public static final field HISTORY_GRID Ljava/lang/String;
+	public static final field INSTANCE Lcom/aiuta/fashionsdk/benchmark/tags/AiutaTestTags;
+	public static final field MODEL_TRY_ON Ljava/lang/String;
+	public static final field ONBOARDING_NEXT Ljava/lang/String;
+	public static final field RESULT_SCREEN Ljava/lang/String;
+	public static final field SELECT_MODEL Ljava/lang/String;
+	public static final field TRY_ON_FLOW_BUTTON Ljava/lang/String;
+	public static final field WELCOME_START Ljava/lang/String;
+}
+

@@ -14,9 +14,11 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Brush
 import androidx.compose.ui.layout.ContentScale
+import androidx.compose.ui.platform.testTag
 import androidx.compose.ui.unit.dp
 import com.aiuta.fashionsdk.analytics.events.AiutaAnalyticsPageId
 import com.aiuta.fashionsdk.analytics.events.AiutaAnalyticsPickerEventType
+import com.aiuta.fashionsdk.benchmark.tags.AiutaTestTags
 import com.aiuta.fashionsdk.compose.core.size.rememberScreenSize
 import com.aiuta.fashionsdk.compose.uikit.button.FashionButton
 import com.aiuta.fashionsdk.compose.uikit.button.FashionButtonSizes
@@ -108,6 +110,7 @@ internal fun ModelSelectorShowContent(
 
             FashionButton(
                 modifier = Modifier
+                    .testTag(AiutaTestTags.MODEL_TRY_ON)
                     .fillMaxWidth()
                     .padding(horizontal = 16.dp),
                 text = tryOnFeature.strings.tryOn,

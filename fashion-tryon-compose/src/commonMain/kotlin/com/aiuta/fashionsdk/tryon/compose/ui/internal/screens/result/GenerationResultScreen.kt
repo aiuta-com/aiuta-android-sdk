@@ -23,8 +23,10 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.lerp
 import androidx.compose.ui.platform.LocalDensity
+import androidx.compose.ui.platform.testTag
 import androidx.compose.ui.unit.dp
 import com.aiuta.fashionsdk.analytics.events.AiutaAnalyticsPageId
+import com.aiuta.fashionsdk.benchmark.tags.AiutaTestTags
 import com.aiuta.fashionsdk.compose.core.size.rememberScreenSize
 import com.aiuta.fashionsdk.compose.uikit.composition.LocalTheme
 import com.aiuta.fashionsdk.compose.uikit.utils.clickableUnindicated
@@ -75,7 +77,7 @@ private fun GenerationResultScreenContent(modifier: Modifier = Modifier) {
     val sheetHeight = screenHeight - 16.dp - imageHeight - 32.dp - disclaimerHeight + extraPadding
 
     BottomSheetScaffold(
-        modifier = modifier,
+        modifier = modifier.testTag(AiutaTestTags.RESULT_SCREEN),
         scaffoldState = generationResultController.bottomSheetScaffoldState,
         sheetContent = {
             GenerationResultFooterList(

@@ -20,7 +20,9 @@ import androidx.compose.ui.ExperimentalComposeUiApi
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.backhandler.BackHandler
 import androidx.compose.ui.draw.alpha
+import androidx.compose.ui.platform.testTag
 import androidx.compose.ui.unit.dp
+import com.aiuta.fashionsdk.benchmark.tags.AiutaTestTags
 import com.aiuta.fashionsdk.compose.uikit.button.FashionButton
 import com.aiuta.fashionsdk.compose.uikit.button.FashionButtonSizes
 import com.aiuta.fashionsdk.compose.uikit.button.FashionButtonStyles
@@ -89,6 +91,7 @@ internal fun OnboardingScreen(modifier: Modifier = Modifier) {
 
         FashionButton(
             modifier = Modifier
+                .testTag(AiutaTestTags.ONBOARDING_NEXT)
                 .fillMaxWidth()
                 .padding(horizontal = generalHorizontalPadding),
             text = with(onboardingController) {

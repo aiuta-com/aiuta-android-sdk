@@ -14,6 +14,7 @@ enableFeaturePreview("TYPESAFE_PROJECT_ACCESSORS")
 
 // Private modules
 include(
+    ":internal:benchmark",
     ":samples:tryon-kmp",
     ":samples:tryon-kmp-android",
     ":samples:tryon-kmp-web",
@@ -21,6 +22,7 @@ include(
 
 // Public modules
 include(
+    ":internal:internal-benchmark-tags",
     ":internal:internal-fashion-analytics",
     ":internal:internal-fashion-navigation",
     ":internal:internal-fashion-storage",

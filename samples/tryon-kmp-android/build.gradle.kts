@@ -4,6 +4,9 @@ plugins {
     id("com.android.application")
     id("org.jetbrains.compose")
     id("org.jetbrains.kotlin.plugin.compose")
+    // Creates nonMinifiedRelease / benchmarkRelease variants for Baseline
+    // Profile generation; the real `release` build stays minified.
+    id("androidx.baselineprofile.apptarget")
 }
 
 androidApplication(name = "sample.tryon.kmp.android") {
@@ -30,4 +33,9 @@ androidApplication(name = "sample.tryon.kmp.android") {
 dependencies {
     implementation(libs.androidx.activity.compose)
     implementation(projects.samples.tryonKmp)
+
+    // Needed for the testTagsAsResourceId root wrapper that exposes Compose
+    // testTags to the Baseline Profile generator (UiAutomator By.res(...)).
+    implementation(compose.foundation)
+    implementation(compose.ui)
 }

@@ -13,6 +13,7 @@ plugins {
     alias(libs.plugins.ksp)
     alias(libs.plugins.kotlinx.serialization)
     alias(libs.plugins.room)
+    id("androidx.baselineprofile.consumer")
 }
 
 addAllMultiplatformTargets(enableExtendedTargets = false)
@@ -61,6 +62,7 @@ kotlin {
 
                 implementation(projects.fashionAnalyticsEvents)
                 implementation(projects.fashionComposeUikit)
+                implementation(projects.internal.internalBenchmarkTags)
                 implementation(projects.internal.internalFashionAnalytics)
                 implementation(projects.internal.internalFashionNavigation)
             }
@@ -88,6 +90,26 @@ kotlin {
 
 room {
     schemaDirectory("$projectDir/schemas")
+}
+
+baselineProfile {
+    // Ship the generated profile inside the AAR (androidMain source set) so
+    // every consumer app gets it merged into its own profile automatically.
+    saveInSrc = true
+    mergeIntoMain = true
+
+    // Keep only the SDK's own classes in the shipped profile — consumer apps
+    // generate their own profiles for everything else.
+    filter {
+        include("com.aiuta.fashionsdk.**")
+    }
+
+    // Pull the collected rules from the producer module's journeys.
+    variants {
+        create("androidMain") {
+            from(project(":internal:benchmark"))
+        }
+    }
 }
 
 dependencies {

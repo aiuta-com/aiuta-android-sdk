@@ -10,10 +10,12 @@ import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.platform.testTag
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import com.aiuta.fashionsdk.benchmark.tags.AiutaTestTags
 
 @Composable
 fun FlowSelectorScreen(
@@ -24,6 +26,7 @@ fun FlowSelectorScreen(
 ) {
     Column(
         modifier = modifier
+            .testTag(AiutaTestTags.FLOW_SELECTOR)
             .fillMaxSize()
             .padding(24.dp),
         horizontalAlignment = Alignment.CenterHorizontally,
@@ -43,13 +46,17 @@ fun FlowSelectorScreen(
         FlowButton(
             onClick = onTryOnClick,
             text = "Try On Flow",
-            modifier = Modifier.fillMaxWidth(),
+            modifier = Modifier
+                .fillMaxWidth()
+                .testTag(AiutaTestTags.TRY_ON_FLOW_BUTTON),
         )
 
         FlowButton(
             onClick = onHistoryClick,
             text = "History Flow",
-            modifier = Modifier.fillMaxWidth(),
+            modifier = Modifier
+                .fillMaxWidth()
+                .testTag(AiutaTestTags.HISTORY_FLOW_BUTTON),
         )
 
         FlowButton(

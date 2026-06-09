@@ -22,9 +22,11 @@ import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.graphicsLayer
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.platform.LocalDensity
+import androidx.compose.ui.platform.testTag
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import com.aiuta.fashionsdk.analytics.events.AiutaAnalyticsPageId
+import com.aiuta.fashionsdk.benchmark.tags.AiutaTestTags
 import com.aiuta.fashionsdk.compose.core.size.rememberScreenSize
 import com.aiuta.fashionsdk.compose.resources.drawable.AiutaDrawableResource
 import com.aiuta.fashionsdk.compose.uikit.button.FashionButton
@@ -158,7 +160,9 @@ internal fun ImageSelectorScreenEmptyBodyBlock(modifier: Modifier) {
             Spacer(Modifier.height(20.dp))
 
             FashionButton(
-                modifier = Modifier.fillMaxWidth(),
+                modifier = Modifier
+                    .testTag(AiutaTestTags.SELECT_MODEL)
+                    .fillMaxWidth(),
                 text = predefinedModelFeature.strings.predefinedModelPageTitle,
                 style = FashionButtonStyles.adaptiveContrastStyle(theme),
                 size = FashionButtonSizes.lSize(),

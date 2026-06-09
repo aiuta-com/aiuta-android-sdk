@@ -1,0 +1,32 @@
+// Klib ABI Dump
+// Targets: [iosArm64, iosSimulatorArm64, js, wasmJs]
+// Rendering settings:
+// - Signature version: 2
+// - Show manifest properties: true
+// - Show declarations: true
+
+// Library unique name: <com.aiuta:internal-benchmark-tags>
+final object com.aiuta.fashionsdk.benchmark.tags/AiutaTestTags { // com.aiuta.fashionsdk.benchmark.tags/AiutaTestTags|null[0]
+    final const val FLOW_SELECTOR // com.aiuta.fashionsdk.benchmark.tags/AiutaTestTags.FLOW_SELECTOR|{}FLOW_SELECTOR[0]
+        final fun <get-FLOW_SELECTOR>(): kotlin/String // com.aiuta.fashionsdk.benchmark.tags/AiutaTestTags.FLOW_SELECTOR.<get-FLOW_SELECTOR>|<get-FLOW_SELECTOR>(){}[0]
+    final const val GENERATE // com.aiuta.fashionsdk.benchmark.tags/AiutaTestTags.GENERATE|{}GENERATE[0]
+        final fun <get-GENERATE>(): kotlin/String // com.aiuta.fashionsdk.benchmark.tags/AiutaTestTags.GENERATE.<get-GENERATE>|<get-GENERATE>(){}[0]
+    final const val HISTORY_APP_BAR // com.aiuta.fashionsdk.benchmark.tags/AiutaTestTags.HISTORY_APP_BAR|{}HISTORY_APP_BAR[0]
+        final fun <get-HISTORY_APP_BAR>(): kotlin/String // com.aiuta.fashionsdk.benchmark.tags/AiutaTestTags.HISTORY_APP_BAR.<get-HISTORY_APP_BAR>|<get-HISTORY_APP_BAR>(){}[0]
+    final const val HISTORY_FLOW_BUTTON // com.aiuta.fashionsdk.benchmark.tags/AiutaTestTags.HISTORY_FLOW_BUTTON|{}HISTORY_FLOW_BUTTON[0]
+        final fun <get-HISTORY_FLOW_BUTTON>(): kotlin/String // com.aiuta.fashionsdk.benchmark.tags/AiutaTestTags.HISTORY_FLOW_BUTTON.<get-HISTORY_FLOW_BUTTON>|<get-HISTORY_FLOW_BUTTON>(){}[0]
+    final const val HISTORY_GRID // com.aiuta.fashionsdk.benchmark.tags/AiutaTestTags.HISTORY_GRID|{}HISTORY_GRID[0]
+        final fun <get-HISTORY_GRID>(): kotlin/String // com.aiuta.fashionsdk.benchmark.tags/AiutaTestTags.HISTORY_GRID.<get-HISTORY_GRID>|<get-HISTORY_GRID>(){}[0]
+    final const val MODEL_TRY_ON // com.aiuta.fashionsdk.benchmark.tags/AiutaTestTags.MODEL_TRY_ON|{}MODEL_TRY_ON[0]
+        final fun <get-MODEL_TRY_ON>(): kotlin/String // com.aiuta.fashionsdk.benchmark.tags/AiutaTestTags.MODEL_TRY_ON.<get-MODEL_TRY_ON>|<get-MODEL_TRY_ON>(){}[0]
+    final const val ONBOARDING_NEXT // com.aiuta.fashionsdk.benchmark.tags/AiutaTestTags.ONBOARDING_NEXT|{}ONBOARDING_NEXT[0]
+        final fun <get-ONBOARDING_NEXT>(): kotlin/String // com.aiuta.fashionsdk.benchmark.tags/AiutaTestTags.ONBOARDING_NEXT.<get-ONBOARDING_NEXT>|<get-ONBOARDING_NEXT>(){}[0]
+    final const val RESULT_SCREEN // com.aiuta.fashionsdk.benchmark.tags/AiutaTestTags.RESULT_SCREEN|{}RESULT_SCREEN[0]
+        final fun <get-RESULT_SCREEN>(): kotlin/String // com.aiuta.fashionsdk.benchmark.tags/AiutaTestTags.RESULT_SCREEN.<get-RESULT_SCREEN>|<get-RESULT_SCREEN>(){}[0]
+    final const val SELECT_MODEL // com.aiuta.fashionsdk.benchmark.tags/AiutaTestTags.SELECT_MODEL|{}SELECT_MODEL[0]
+        final fun <get-SELECT_MODEL>(): kotlin/String // com.aiuta.fashionsdk.benchmark.tags/AiutaTestTags.SELECT_MODEL.<get-SELECT_MODEL>|<get-SELECT_MODEL>(){}[0]
+    final const val TRY_ON_FLOW_BUTTON // com.aiuta.fashionsdk.benchmark.tags/AiutaTestTags.TRY_ON_FLOW_BUTTON|{}TRY_ON_FLOW_BUTTON[0]
+        final fun <get-TRY_ON_FLOW_BUTTON>(): kotlin/String // com.aiuta.fashionsdk.benchmark.tags/AiutaTestTags.TRY_ON_FLOW_BUTTON.<get-TRY_ON_FLOW_BUTTON>|<get-TRY_ON_FLOW_BUTTON>(){}[0]
+    final const val WELCOME_START // com.aiuta.fashionsdk.benchmark.tags/AiutaTestTags.WELCOME_START|{}WELCOME_START[0]
+        final fun <get-WELCOME_START>(): kotlin/String // com.aiuta.fashionsdk.benchmark.tags/AiutaTestTags.WELCOME_START.<get-WELCOME_START>|<get-WELCOME_START>(){}[0]
+}

@@ -20,6 +20,7 @@ val publicModules = setOf(
     "fashion-tryon-compose",
     "fashion-tryon-core",
     "fashion-tryon-paging",
+    "internal-benchmark-tags",
     "internal-fashion-analytics",
     "internal-fashion-navigation",
     "internal-fashion-storage",
