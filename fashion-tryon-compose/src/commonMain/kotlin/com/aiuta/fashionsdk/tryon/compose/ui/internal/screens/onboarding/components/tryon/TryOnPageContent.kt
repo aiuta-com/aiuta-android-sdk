@@ -14,6 +14,7 @@ import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.width
+import androidx.compose.foundation.pager.PagerState
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.derivedStateOf
 import androidx.compose.runtime.key
@@ -30,22 +31,22 @@ import com.aiuta.fashionsdk.configuration.features.onboarding.AiutaOnboardingFea
 import com.aiuta.fashionsdk.configuration.features.onboarding.howworks.AiutaOnboardingHowItWorksPageFeature
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.analytic.sendPageEvent
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.screens.onboarding.components.common.CentredTextBlock
-import com.aiuta.fashionsdk.tryon.compose.ui.internal.screens.onboarding.controller.OnboardingController
-import com.aiuta.fashionsdk.tryon.compose.ui.internal.screens.onboarding.controller.changeInternalTryOnPage
-import com.aiuta.fashionsdk.tryon.compose.ui.internal.screens.onboarding.controller.state.TryOnPage
+import com.aiuta.fashionsdk.tryon.compose.ui.internal.screens.onboarding.models.OnboardingScreenEvent
+import com.aiuta.fashionsdk.tryon.compose.ui.internal.screens.onboarding.models.TryOnPage
 
 @Composable
 internal fun TryOnPageContent(
-    modifier: Modifier = Modifier,
-    onboardingController: OnboardingController,
+    pagerState: PagerState,
     state: TryOnPage,
+    eventHandler: (OnboardingScreenEvent) -> Unit,
+    modifier: Modifier = Modifier,
 ) {
     val tryOnPageFeature = strictProvideFeature<AiutaOnboardingHowItWorksPageFeature>()
 
     val currentPage =
-        remember(onboardingController.pagerState.settledPage) {
+        remember(pagerState.settledPage) {
             derivedStateOf {
-                state.internalPages.getOrNull(onboardingController.pagerState.settledPage)
+                state.internalPages.getOrNull(pagerState.settledPage)
                     ?: state.internalPages.last()
             }
         }
@@ -70,8 +71,9 @@ internal fun TryOnPageContent(
                 .weight(0.65f)
                 .padding(horizontal = 20.dp),
             currentPageTransition = currentPageTransition,
-            onboardingController = onboardingController,
+            pagerState = pagerState,
             state = state,
+            eventHandler = eventHandler,
         )
 
         CentredTextBlock(
@@ -87,10 +89,11 @@ internal fun TryOnPageContent(
 
 @Composable
 private fun ImagesBlock(
-    modifier: Modifier = Modifier,
     currentPageTransition: Transition<TryOnPage.InternalPage>,
-    onboardingController: OnboardingController,
+    pagerState: PagerState,
     state: TryOnPage,
+    eventHandler: (OnboardingScreenEvent) -> Unit,
+    modifier: Modifier = Modifier,
 ) {
     val onboardingFeature = strictProvideFeature<AiutaOnboardingFeature>()
 
@@ -128,9 +131,9 @@ private fun ImagesBlock(
                 key(page.uniqueGeneratedId) {
                     ItemContent(
                         itemImage = page.itemImage,
-                        isActive = index == onboardingController.pagerState.settledPage,
+                        isActive = index == pagerState.settledPage,
                         onClick = {
-                            onboardingController.changeInternalTryOnPage(index)
+                            eventHandler(OnboardingScreenEvent.InternalTryOnPageClicked(index))
                         },
                     )
                 }

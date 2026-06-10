@@ -3,8 +3,10 @@ package com.aiuta.fashionsdk.tryon.compose.ui.internal.screens.onboarding.compon
 import androidx.compose.animation.AnimatedContent
 import androidx.compose.animation.core.updateTransition
 import androidx.compose.foundation.layout.fillMaxWidth
+import androidx.compose.foundation.pager.PagerState
 import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.State
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.text.font.FontSynthesis
@@ -14,26 +16,24 @@ import com.aiuta.fashionsdk.compose.uikit.appbar.AiutaAppBar
 import com.aiuta.fashionsdk.compose.uikit.appbar.AiutaAppBarIcon
 import com.aiuta.fashionsdk.compose.uikit.composition.LocalTheme
 import com.aiuta.fashionsdk.compose.uikit.utils.buildAnnotatedStringFromHtml
-import com.aiuta.fashionsdk.internal.navigation.composition.LocalAiutaNavigationController
-import com.aiuta.fashionsdk.tryon.compose.ui.internal.analytic.clickClose
-import com.aiuta.fashionsdk.tryon.compose.ui.internal.controller.composition.LocalController
-import com.aiuta.fashionsdk.tryon.compose.ui.internal.screens.onboarding.controller.OnboardingController
-import com.aiuta.fashionsdk.tryon.compose.ui.internal.screens.onboarding.controller.previousPage
-import com.aiuta.fashionsdk.tryon.compose.ui.internal.screens.onboarding.controller.state.BestResultPage
-import com.aiuta.fashionsdk.tryon.compose.ui.internal.screens.onboarding.controller.state.ConsentPage
-import com.aiuta.fashionsdk.tryon.compose.ui.internal.screens.onboarding.controller.state.TryOnPage
+import com.aiuta.fashionsdk.tryon.compose.ui.internal.screens.onboarding.models.BestResultPage
+import com.aiuta.fashionsdk.tryon.compose.ui.internal.screens.onboarding.models.ConsentPage
+import com.aiuta.fashionsdk.tryon.compose.ui.internal.screens.onboarding.models.OnboardingScreenEvent
+import com.aiuta.fashionsdk.tryon.compose.ui.internal.screens.onboarding.models.OnboardingScreenViewState
+import com.aiuta.fashionsdk.tryon.compose.ui.internal.screens.onboarding.models.TryOnPage
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.utils.transitionAnimation
 
 @Composable
 internal fun OnboardingAppBar(
+    viewState: State<OnboardingScreenViewState>,
+    pagerState: PagerState,
+    eventHandler: (OnboardingScreenEvent) -> Unit,
     modifier: Modifier = Modifier,
-    onboardingController: OnboardingController,
 ) {
-    val controller = LocalController.current
-    val navigationController = LocalAiutaNavigationController.current
     val theme = LocalTheme.current
 
-    val titleTransition = updateTransition(onboardingController.state.value)
+    val currentStep = viewState.value.currentStep
+    val titleTransition = updateTransition(currentStep)
 
     AiutaAppBar(
         modifier = modifier,
@@ -43,7 +43,7 @@ internal fun OnboardingAppBar(
                 icon = theme.pageBar.icons.back24,
                 color = theme.color.primary,
                 onClick = {
-                    onboardingController.previousPage(navigationController)
+                    eventHandler(OnboardingScreenEvent.BackClicked(settledPage = pagerState.settledPage))
                 },
             )
         },
@@ -53,8 +53,8 @@ internal fun OnboardingAppBar(
                     .fillMaxWidth()
                     .align(Alignment.Center),
                 transitionSpec = { transitionAnimation },
-            ) { state ->
-                state.pageTitle?.let { pageTitle ->
+            ) { step ->
+                step.pageTitle?.let { pageTitle ->
                     Text(
                         modifier =
                         Modifier
@@ -82,13 +82,14 @@ internal fun OnboardingAppBar(
                     icon = theme.pageBar.icons.close24,
                     color = theme.color.primary,
                     onClick = {
-                        controller.clickClose(
-                            navigationController = navigationController,
-                            pageId = when (onboardingController.state.value) {
-                                is TryOnPage -> AiutaAnalyticsPageId.HOW_IT_WORKS
-                                is BestResultPage -> AiutaAnalyticsPageId.BEST_RESULTS
-                                is ConsentPage -> AiutaAnalyticsPageId.CONSENT
-                            },
+                        eventHandler(
+                            OnboardingScreenEvent.CloseClicked(
+                                pageId = when (currentStep) {
+                                    is TryOnPage -> AiutaAnalyticsPageId.HOW_IT_WORKS
+                                    is BestResultPage -> AiutaAnalyticsPageId.BEST_RESULTS
+                                    is ConsentPage -> AiutaAnalyticsPageId.CONSENT
+                                },
+                            ),
                         )
                     },
                 )

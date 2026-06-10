@@ -55,6 +55,7 @@ kotlin {
                 implementation(libs.room.runtime)
                 implementation(libs.room.paging)
                 implementation(libs.jetbrains.lifecycle)
+                implementation(libs.jetbrains.viewmodel)
                 implementation(libs.jetbrains.compose.material)
                 implementation(libs.jetbrains.compose.ui.backhandler)
                 implementation(libs.sqlite.bundled)
