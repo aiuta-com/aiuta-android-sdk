@@ -70,7 +70,7 @@ public interface AiutaLabelThemeTypography {
         override val footnote: TextStyle = TextStyle(
             fontFamily = FontFamily.Default,
             fontWeight = FontWeight.Normal,
-            fontSize = 12.sp,
+            fontSize = 11.sp,
             letterSpacing = TextUnit(-0.01f, TextUnitType.Sp),
         )
     }
