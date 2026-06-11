@@ -4,6 +4,7 @@ androidx-benchmark = "1.4.1"
 androidx-browser = "1.10.0"
 androidx-core = "1.19.0"
 androidx-datastore = "1.2.1"
+androidx-media3 = "1.10.1"
 androidx-paging = "3.5.0"
 androidx-exifinterface = "1.4.2"
 
@@ -100,6 +101,9 @@ ktor-negotiation = { module = "io.ktor:ktor-client-content-negotiation", version
 ktor-serialization = { module = "io.ktor:ktor-serialization-kotlinx-json", version.ref = "ktor" }
 ksoup-html = { module = "com.mohamedrejeb.ksoup:ksoup-html", version.ref = "ksoup" }
 ksoup-entities = { module = "com.mohamedrejeb.ksoup:ksoup-entities", version.ref = "ksoup" }
+
+androidx-media3-exoplayer = { module = "androidx.media3:media3-exoplayer", version.ref = "androidx-media3" }
+androidx-media3-ui-compose = { module = "androidx.media3:media3-ui-compose", version.ref = "androidx-media3" }
 
 mockk = { module = "io.mockk:mockk", version.ref = "mockk" }
 moko-permissions-camera = { module = "dev.icerock.moko:permissions-camera", version.ref = "moko" }

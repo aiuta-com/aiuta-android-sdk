@@ -17,3 +17,20 @@ public final class com/aiuta/fashionsdk/compose/resources/drawable/AiutaIcon {
 	public final fun getShouldDrawAsIs ()Z
 }
 
+public final class com/aiuta/fashionsdk/compose/resources/media/AiutaMedia {
+	public static final field $stable I
+	public fun <init> (Lcom/aiuta/fashionsdk/compose/resources/drawable/AiutaDrawableResource;Ljava/lang/String;Lcom/aiuta/fashionsdk/compose/resources/media/AiutaMediaContentScale;)V
+	public synthetic fun <init> (Lcom/aiuta/fashionsdk/compose/resources/drawable/AiutaDrawableResource;Ljava/lang/String;Lcom/aiuta/fashionsdk/compose/resources/media/AiutaMediaContentScale;ILkotlin/jvm/internal/DefaultConstructorMarker;)V
+	public final fun getContentScale ()Lcom/aiuta/fashionsdk/compose/resources/media/AiutaMediaContentScale;
+	public final fun getImageResource ()Lcom/aiuta/fashionsdk/compose/resources/drawable/AiutaDrawableResource;
+	public final fun getVideoSource ()Ljava/lang/String;
+}
+
+public final class com/aiuta/fashionsdk/compose/resources/media/AiutaMediaContentScale : java/lang/Enum {
+	public static final field FILL Lcom/aiuta/fashionsdk/compose/resources/media/AiutaMediaContentScale;
+	public static final field FIT Lcom/aiuta/fashionsdk/compose/resources/media/AiutaMediaContentScale;
+	public static fun getEntries ()Lkotlin/enums/EnumEntries;
+	public static fun valueOf (Ljava/lang/String;)Lcom/aiuta/fashionsdk/compose/resources/media/AiutaMediaContentScale;
+	public static fun values ()[Lcom/aiuta/fashionsdk/compose/resources/media/AiutaMediaContentScale;
+}
+

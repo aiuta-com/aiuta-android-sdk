@@ -321,11 +321,10 @@ public final class com/aiuta/fashionsdk/configuration/features/models/product/Pr
 
 public final class com/aiuta/fashionsdk/configuration/features/onboarding/AiutaOnboardingFeature : com/aiuta/fashionsdk/configuration/features/AiutaFeature {
 	public static final field $stable I
-	public fun <init> (Lcom/aiuta/fashionsdk/configuration/features/onboarding/howworks/AiutaOnboardingHowItWorksPageFeature;Lcom/aiuta/fashionsdk/configuration/features/onboarding/bestresult/AiutaOnboardingBestResultsPageFeature;Lcom/aiuta/fashionsdk/configuration/features/onboarding/strings/AiutaOnboardingFeatureStrings;Lcom/aiuta/fashionsdk/configuration/features/onboarding/shapes/AiutaOnboardingFeatureShapes;Lcom/aiuta/fashionsdk/configuration/features/onboarding/dataprovider/AiutaOnboardingFeatureDataProvider;)V
+	public fun <init> (Lcom/aiuta/fashionsdk/configuration/features/onboarding/howworks/AiutaOnboardingHowItWorksPageFeature;Lcom/aiuta/fashionsdk/configuration/features/onboarding/bestresult/AiutaOnboardingBestResultsPageFeature;Lcom/aiuta/fashionsdk/configuration/features/onboarding/strings/AiutaOnboardingFeatureStrings;Lcom/aiuta/fashionsdk/configuration/features/onboarding/dataprovider/AiutaOnboardingFeatureDataProvider;)V
 	public final fun getBestResultsPage ()Lcom/aiuta/fashionsdk/configuration/features/onboarding/bestresult/AiutaOnboardingBestResultsPageFeature;
 	public final fun getDataProvider ()Lcom/aiuta/fashionsdk/configuration/features/onboarding/dataprovider/AiutaOnboardingFeatureDataProvider;
 	public final fun getHowItWorksPage ()Lcom/aiuta/fashionsdk/configuration/features/onboarding/howworks/AiutaOnboardingHowItWorksPageFeature;
-	public final fun getShapes ()Lcom/aiuta/fashionsdk/configuration/features/onboarding/shapes/AiutaOnboardingFeatureShapes;
 	public final fun getStrings ()Lcom/aiuta/fashionsdk/configuration/features/onboarding/strings/AiutaOnboardingFeatureStrings;
 }
 
@@ -337,12 +336,10 @@ public final class com/aiuta/fashionsdk/configuration/features/onboarding/AiutaO
 	public final fun getBestResultsPage ()Lcom/aiuta/fashionsdk/configuration/features/onboarding/bestresult/AiutaOnboardingBestResultsPageFeature;
 	public final fun getDataProvider ()Lcom/aiuta/fashionsdk/configuration/features/onboarding/dataprovider/AiutaOnboardingFeatureDataProvider;
 	public final fun getHowItWorksPage ()Lcom/aiuta/fashionsdk/configuration/features/onboarding/howworks/AiutaOnboardingHowItWorksPageFeature;
-	public final fun getShapes ()Lcom/aiuta/fashionsdk/configuration/features/onboarding/shapes/AiutaOnboardingFeatureShapes;
 	public final fun getStrings ()Lcom/aiuta/fashionsdk/configuration/features/onboarding/strings/AiutaOnboardingFeatureStrings;
 	public final fun setBestResultsPage (Lcom/aiuta/fashionsdk/configuration/features/onboarding/bestresult/AiutaOnboardingBestResultsPageFeature;)V
 	public final fun setDataProvider (Lcom/aiuta/fashionsdk/configuration/features/onboarding/dataprovider/AiutaOnboardingFeatureDataProvider;)V
 	public final fun setHowItWorksPage (Lcom/aiuta/fashionsdk/configuration/features/onboarding/howworks/AiutaOnboardingHowItWorksPageFeature;)V
-	public final fun setShapes (Lcom/aiuta/fashionsdk/configuration/features/onboarding/shapes/AiutaOnboardingFeatureShapes;)V
 	public final fun setStrings (Lcom/aiuta/fashionsdk/configuration/features/onboarding/strings/AiutaOnboardingFeatureStrings;)V
 }
 
@@ -352,11 +349,9 @@ public final class com/aiuta/fashionsdk/configuration/features/onboarding/AiutaO
 
 public final class com/aiuta/fashionsdk/configuration/features/onboarding/bestresult/AiutaOnboardingBestResultsPageFeature : com/aiuta/fashionsdk/configuration/features/AiutaFeature {
 	public static final field $stable I
-	public fun <init> (Lcom/aiuta/fashionsdk/configuration/features/onboarding/bestresult/images/AiutaOnboardingBestResultsPageFeatureImages;Lcom/aiuta/fashionsdk/configuration/features/onboarding/bestresult/icons/AiutaOnboardingBestResultsPageFeatureIcons;Lcom/aiuta/fashionsdk/configuration/features/onboarding/bestresult/strings/AiutaOnboardingBestResultsPageFeatureStrings;Lcom/aiuta/fashionsdk/configuration/features/onboarding/bestresult/styles/AiutaOnboardingBestResultsPageFeatureStyles;)V
-	public final fun getIcons ()Lcom/aiuta/fashionsdk/configuration/features/onboarding/bestresult/icons/AiutaOnboardingBestResultsPageFeatureIcons;
+	public fun <init> (Lcom/aiuta/fashionsdk/configuration/features/onboarding/bestresult/images/AiutaOnboardingBestResultsPageFeatureImages;Lcom/aiuta/fashionsdk/configuration/features/onboarding/bestresult/strings/AiutaOnboardingBestResultsPageFeatureStrings;)V
 	public final fun getImages ()Lcom/aiuta/fashionsdk/configuration/features/onboarding/bestresult/images/AiutaOnboardingBestResultsPageFeatureImages;
 	public final fun getStrings ()Lcom/aiuta/fashionsdk/configuration/features/onboarding/bestresult/strings/AiutaOnboardingBestResultsPageFeatureStrings;
-	public final fun getStyles ()Lcom/aiuta/fashionsdk/configuration/features/onboarding/bestresult/styles/AiutaOnboardingBestResultsPageFeatureStyles;
 }
 
 public final class com/aiuta/fashionsdk/configuration/features/onboarding/bestresult/AiutaOnboardingBestResultsPageFeature$Builder : com/aiuta/fashionsdk/configuration/features/AiutaFeature$Builder {
@@ -364,23 +359,14 @@ public final class com/aiuta/fashionsdk/configuration/features/onboarding/bestre
 	public fun <init> ()V
 	public synthetic fun build ()Lcom/aiuta/fashionsdk/configuration/features/AiutaFeature;
 	public fun build ()Lcom/aiuta/fashionsdk/configuration/features/onboarding/bestresult/AiutaOnboardingBestResultsPageFeature;
-	public final fun getIcons ()Lcom/aiuta/fashionsdk/configuration/features/onboarding/bestresult/icons/AiutaOnboardingBestResultsPageFeatureIcons;
 	public final fun getImages ()Lcom/aiuta/fashionsdk/configuration/features/onboarding/bestresult/images/AiutaOnboardingBestResultsPageFeatureImages;
 	public final fun getStrings ()Lcom/aiuta/fashionsdk/configuration/features/onboarding/bestresult/strings/AiutaOnboardingBestResultsPageFeatureStrings;
-	public final fun getStyles ()Lcom/aiuta/fashionsdk/configuration/features/onboarding/bestresult/styles/AiutaOnboardingBestResultsPageFeatureStyles;
-	public final fun setIcons (Lcom/aiuta/fashionsdk/configuration/features/onboarding/bestresult/icons/AiutaOnboardingBestResultsPageFeatureIcons;)V
 	public final fun setImages (Lcom/aiuta/fashionsdk/configuration/features/onboarding/bestresult/images/AiutaOnboardingBestResultsPageFeatureImages;)V
 	public final fun setStrings (Lcom/aiuta/fashionsdk/configuration/features/onboarding/bestresult/strings/AiutaOnboardingBestResultsPageFeatureStrings;)V
-	public final fun setStyles (Lcom/aiuta/fashionsdk/configuration/features/onboarding/bestresult/styles/AiutaOnboardingBestResultsPageFeatureStyles;)V
 }
 
 public final class com/aiuta/fashionsdk/configuration/features/onboarding/bestresult/AiutaOnboardingBestResultsPageFeatureKt {
 	public static final fun bestResultsPage (Lcom/aiuta/fashionsdk/configuration/features/onboarding/AiutaOnboardingFeature$Builder;Lkotlin/jvm/functions/Function1;)Lcom/aiuta/fashionsdk/configuration/features/onboarding/AiutaOnboardingFeature$Builder;
-}
-
-public abstract interface class com/aiuta/fashionsdk/configuration/features/onboarding/bestresult/icons/AiutaOnboardingBestResultsPageFeatureIcons {
-	public abstract fun getOnboardingBestResultsBad24 ()Lcom/aiuta/fashionsdk/compose/resources/drawable/AiutaIcon;
-	public abstract fun getOnboardingBestResultsGood24 ()Lcom/aiuta/fashionsdk/compose/resources/drawable/AiutaIcon;
 }
 
 public abstract interface class com/aiuta/fashionsdk/configuration/features/onboarding/bestresult/images/AiutaOnboardingBestResultsPageFeatureImages {
@@ -400,16 +386,6 @@ public final class com/aiuta/fashionsdk/configuration/features/onboarding/bestre
 	public fun getOnboardingBestResultsDescription ()Ljava/lang/String;
 	public fun getOnboardingBestResultsPageTitle ()Ljava/lang/String;
 	public fun getOnboardingBestResultsTitle ()Ljava/lang/String;
-}
-
-public abstract interface class com/aiuta/fashionsdk/configuration/features/onboarding/bestresult/styles/AiutaOnboardingBestResultsPageFeatureStyles {
-	public abstract fun getReduceOnboardingBestResultsShadows ()Z
-}
-
-public final class com/aiuta/fashionsdk/configuration/features/onboarding/bestresult/styles/AiutaOnboardingBestResultsPageFeatureStyles$Default : com/aiuta/fashionsdk/configuration/features/onboarding/bestresult/styles/AiutaOnboardingBestResultsPageFeatureStyles {
-	public static final field $stable I
-	public fun <init> ()V
-	public fun getReduceOnboardingBestResultsShadows ()Z
 }
 
 public abstract interface class com/aiuta/fashionsdk/configuration/features/onboarding/dataprovider/AiutaOnboardingFeatureDataProvider {
@@ -449,6 +425,7 @@ public final class com/aiuta/fashionsdk/configuration/features/onboarding/howwor
 
 public abstract interface class com/aiuta/fashionsdk/configuration/features/onboarding/howworks/images/AiutaOnboardingHowItWorksPageFeatureImages {
 	public abstract fun getOnboardingHowItWorksItems ()Ljava/util/List;
+	public abstract fun getOnboardingHowItWorksItem ()Lcom/aiuta/fashionsdk/compose/resources/media/AiutaMedia;
 }
 
 public final class com/aiuta/fashionsdk/configuration/features/onboarding/howworks/images/AiutaOnboardingHowItWorksPageFeatureImages$OnboardingHowItWorksItem {
@@ -470,22 +447,6 @@ public final class com/aiuta/fashionsdk/configuration/features/onboarding/howwor
 	public fun getOnboardingHowItWorksDescription ()Ljava/lang/String;
 	public fun getOnboardingHowItWorksPageTitle ()Ljava/lang/String;
 	public fun getOnboardingHowItWorksTitle ()Ljava/lang/String;
-}
-
-public abstract class com/aiuta/fashionsdk/configuration/features/onboarding/shapes/AiutaOnboardingFeatureShapes {
-	public static final field $stable I
-	public fun <init> ()V
-	public abstract fun getOnboardingImageL-D9Ej5fM ()F
-	public final fun getOnboardingImageLShape ()Landroidx/compose/foundation/shape/CornerBasedShape;
-	public abstract fun getOnboardingImageS-D9Ej5fM ()F
-	public final fun getOnboardingImageSShape ()Landroidx/compose/foundation/shape/CornerBasedShape;
-}
-
-public final class com/aiuta/fashionsdk/configuration/features/onboarding/shapes/AiutaOnboardingFeatureShapes$Default : com/aiuta/fashionsdk/configuration/features/onboarding/shapes/AiutaOnboardingFeatureShapes {
-	public static final field $stable I
-	public fun <init> ()V
-	public fun getOnboardingImageL-D9Ej5fM ()F
-	public fun getOnboardingImageS-D9Ej5fM ()F
 }
 
 public abstract interface class com/aiuta/fashionsdk/configuration/features/onboarding/strings/AiutaOnboardingFeatureStrings {

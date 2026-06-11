@@ -21,6 +21,8 @@ kotlin {
             dependencies {
                 implementation(libs.androidx.browser)
                 implementation(libs.ktor.engine.okhttp)
+                implementation(libs.androidx.media3.exoplayer)
+                implementation(libs.androidx.media3.ui.compose)
             }
         }
         commonMain {

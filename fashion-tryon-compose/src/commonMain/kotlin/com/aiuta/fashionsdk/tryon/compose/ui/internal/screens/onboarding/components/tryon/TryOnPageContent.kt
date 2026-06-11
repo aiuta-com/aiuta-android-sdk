@@ -1,12 +1,12 @@
 package com.aiuta.fashionsdk.tryon.compose.ui.internal.screens.onboarding.components.tryon
 
-import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import com.aiuta.fashionsdk.analytics.events.AiutaAnalyticsPageId
+import com.aiuta.fashionsdk.compose.uikit.resources.AiutaVideoSurface
 import com.aiuta.fashionsdk.compose.uikit.utils.strictProvideFeature
 import com.aiuta.fashionsdk.configuration.features.onboarding.howworks.AiutaOnboardingHowItWorksPageFeature
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.analytic.sendPageEvent
@@ -26,21 +26,14 @@ internal fun TryOnPageContent(
         modifier = modifier,
         horizontalAlignment = Alignment.CenterHorizontally,
     ) {
-        // TODO Add video here from
-//        AiutaImage(
-//            modifier = Modifier
-//                .fillMaxWidth()
-//                .weight(0.65f),
-//            image = page.mainImage,
-//            contentDescription = null,
-//            contentScale = ContentScale.Crop,
-//        )
-        // TODO Remove
-        Box(
-            modifier = Modifier
-                .fillMaxWidth()
-                .weight(0.65f),
-        )
+        state.video?.let { media ->
+            AiutaVideoSurface(
+                modifier = Modifier
+                    .fillMaxWidth()
+                    .weight(0.65f),
+                video = media,
+            )
+        }
 
         CentredTextBlock(
             modifier = Modifier
