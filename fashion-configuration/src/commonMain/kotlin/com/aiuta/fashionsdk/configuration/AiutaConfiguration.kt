@@ -13,7 +13,9 @@ import com.aiuta.fashionsdk.configuration.features.AiutaFeatures
 import com.aiuta.fashionsdk.configuration.internal.analytic.sendConfigurationEvent
 import com.aiuta.fashionsdk.configuration.internal.utils.checkNotNullWithDescription
 import com.aiuta.fashionsdk.configuration.internal.validation.features.validateWithSettings
+import com.aiuta.fashionsdk.configuration.internal.validation.mode.validateWithSettings
 import com.aiuta.fashionsdk.configuration.internal.validation.theme.validateWithSettings
+import com.aiuta.fashionsdk.configuration.mode.AiutaModes
 import com.aiuta.fashionsdk.configuration.ui.AiutaUserInterfaceConfiguration
 import com.aiuta.fashionsdk.internal.analytics.InternalAiutaAnalytic
 import com.aiuta.fashionsdk.internal.analytics.internalAiutaAnalytic
@@ -48,12 +50,14 @@ import com.aiuta.fashionsdk.internal.analytics.internalAiutaAnalytic
  * @property experimentalSettings Opt-in settings for experimental or non-default behavior
  * @property features Feature configuration defining which SDK features are enabled
  * @property userInterface UI configuration including theme and actions
+ * @property modes Per-mode configuration overrides (e.g. shoes mode)
  *
  * @see Aiuta
  * @see AiutaFeatures
  * @see AiutaUserInterfaceConfiguration
  * @see AiutaDebugSettings
  * @see AiutaExperimentalSettings
+ * @see AiutaModes
  */
 @Immutable
 public class AiutaConfiguration(
@@ -62,6 +66,7 @@ public class AiutaConfiguration(
     public val experimentalSettings: AiutaExperimentalSettings,
     public val features: AiutaFeatures,
     public val userInterface: AiutaUserInterfaceConfiguration,
+    public val modes: AiutaModes,
 ) {
     internal val aiutaAnalytic: InternalAiutaAnalytic by lazy { aiuta.internalAiutaAnalytic }
 
@@ -102,6 +107,12 @@ public class AiutaConfiguration(
         public var userInterface: AiutaUserInterfaceConfiguration? = null
 
         /**
+         * Per-mode configuration overrides (e.g. shoes mode).
+         * If not set, an empty [AiutaModes] (no modes configured) will be used.
+         */
+        public var modes: AiutaModes? = null
+
+        /**
          * Creates an [AiutaConfiguration] instance with the configured properties.
          *
          * This method validates all required properties and performs configuration
@@ -138,6 +149,12 @@ public class AiutaConfiguration(
                     debugSettings = innerDebugSettings,
                 )
             }
+            val innerModes = (modes ?: AiutaModes()).also { modes ->
+                modes.validateWithSettings(
+                    logger = internalAiuta.logger,
+                    debugSettings = innerDebugSettings,
+                )
+            }
 
             return AiutaConfiguration(
                 aiuta = internalAiuta,
@@ -145,6 +162,7 @@ public class AiutaConfiguration(
                 experimentalSettings = innerExperimentalSettings,
                 features = internalFeatures,
                 userInterface = innerUserInterface,
+                modes = innerModes,
             ).also {
                 it.sendConfigurationEvent()
             }
