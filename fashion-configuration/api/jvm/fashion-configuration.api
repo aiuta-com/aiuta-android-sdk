@@ -1,10 +1,11 @@
 public final class com/aiuta/fashionsdk/configuration/AiutaConfiguration {
 	public static final field $stable I
-	public fun <init> (Lcom/aiuta/fashionsdk/Aiuta;Lcom/aiuta/fashionsdk/configuration/debug/AiutaDebugSettings;Lcom/aiuta/fashionsdk/configuration/experimental/AiutaExperimentalSettings;Lcom/aiuta/fashionsdk/configuration/features/AiutaFeatures;Lcom/aiuta/fashionsdk/configuration/ui/AiutaUserInterfaceConfiguration;)V
+	public fun <init> (Lcom/aiuta/fashionsdk/Aiuta;Lcom/aiuta/fashionsdk/configuration/debug/AiutaDebugSettings;Lcom/aiuta/fashionsdk/configuration/experimental/AiutaExperimentalSettings;Lcom/aiuta/fashionsdk/configuration/features/AiutaFeatures;Lcom/aiuta/fashionsdk/configuration/ui/AiutaUserInterfaceConfiguration;Lcom/aiuta/fashionsdk/configuration/mode/AiutaModes;)V
 	public final fun getAiuta ()Lcom/aiuta/fashionsdk/Aiuta;
 	public final fun getDebugSettings ()Lcom/aiuta/fashionsdk/configuration/debug/AiutaDebugSettings;
 	public final fun getExperimentalSettings ()Lcom/aiuta/fashionsdk/configuration/experimental/AiutaExperimentalSettings;
 	public final fun getFeatures ()Lcom/aiuta/fashionsdk/configuration/features/AiutaFeatures;
+	public final fun getModes ()Lcom/aiuta/fashionsdk/configuration/mode/AiutaModes;
 	public final fun getUserInterface ()Lcom/aiuta/fashionsdk/configuration/ui/AiutaUserInterfaceConfiguration;
 }
 
@@ -16,11 +17,13 @@ public final class com/aiuta/fashionsdk/configuration/AiutaConfiguration$Builder
 	public final fun getDebugSettings ()Lcom/aiuta/fashionsdk/configuration/debug/AiutaDebugSettings;
 	public final fun getExperimentalSettings ()Lcom/aiuta/fashionsdk/configuration/experimental/AiutaExperimentalSettings;
 	public final fun getFeatures ()Lcom/aiuta/fashionsdk/configuration/features/AiutaFeatures;
+	public final fun getModes ()Lcom/aiuta/fashionsdk/configuration/mode/AiutaModes;
 	public final fun getUserInterface ()Lcom/aiuta/fashionsdk/configuration/ui/AiutaUserInterfaceConfiguration;
 	public final fun setAiuta (Lcom/aiuta/fashionsdk/Aiuta;)V
 	public final fun setDebugSettings (Lcom/aiuta/fashionsdk/configuration/debug/AiutaDebugSettings;)V
 	public final fun setExperimentalSettings (Lcom/aiuta/fashionsdk/configuration/experimental/AiutaExperimentalSettings;)V
 	public final fun setFeatures (Lcom/aiuta/fashionsdk/configuration/features/AiutaFeatures;)V
+	public final fun setModes (Lcom/aiuta/fashionsdk/configuration/mode/AiutaModes;)V
 	public final fun setUserInterface (Lcom/aiuta/fashionsdk/configuration/ui/AiutaUserInterfaceConfiguration;)V
 }
 
@@ -1465,6 +1468,162 @@ public final class com/aiuta/fashionsdk/configuration/features/wishlist/strings/
 	public static final field $stable I
 	public fun <init> ()V
 	public fun getWishlistButtonAdd ()Ljava/lang/String;
+}
+
+public final class com/aiuta/fashionsdk/configuration/mode/AiutaMode : java/lang/Enum {
+	public static final field GENERAL Lcom/aiuta/fashionsdk/configuration/mode/AiutaMode;
+	public static final field SHOES Lcom/aiuta/fashionsdk/configuration/mode/AiutaMode;
+	public static fun getEntries ()Lkotlin/enums/EnumEntries;
+	public static fun valueOf (Ljava/lang/String;)Lcom/aiuta/fashionsdk/configuration/mode/AiutaMode;
+	public static fun values ()[Lcom/aiuta/fashionsdk/configuration/mode/AiutaMode;
+}
+
+public final class com/aiuta/fashionsdk/configuration/mode/AiutaModes {
+	public static final field $stable I
+	public fun <init> ()V
+	public fun <init> (Lcom/aiuta/fashionsdk/configuration/mode/shoes/AiutaShoesMode;)V
+	public synthetic fun <init> (Lcom/aiuta/fashionsdk/configuration/mode/shoes/AiutaShoesMode;ILkotlin/jvm/internal/DefaultConstructorMarker;)V
+	public final fun getShoes ()Lcom/aiuta/fashionsdk/configuration/mode/shoes/AiutaShoesMode;
+}
+
+public final class com/aiuta/fashionsdk/configuration/mode/AiutaModes$Builder {
+	public static final field $stable I
+	public fun <init> ()V
+	public final fun build ()Lcom/aiuta/fashionsdk/configuration/mode/AiutaModes;
+	public final fun getShoes ()Lcom/aiuta/fashionsdk/configuration/mode/shoes/AiutaShoesMode;
+	public final fun setShoes (Lcom/aiuta/fashionsdk/configuration/mode/shoes/AiutaShoesMode;)V
+}
+
+public final class com/aiuta/fashionsdk/configuration/mode/AiutaModesKt {
+	public static final fun modes (Lcom/aiuta/fashionsdk/configuration/AiutaConfiguration$Builder;Lkotlin/jvm/functions/Function1;)Lcom/aiuta/fashionsdk/configuration/AiutaConfiguration$Builder;
+}
+
+public final class com/aiuta/fashionsdk/configuration/mode/shoes/AiutaShoesMode {
+	public static final field $stable I
+	public fun <init> (Lcom/aiuta/fashionsdk/configuration/mode/shoes/onboarding/AiutaShoesModeOnboardingPage;Lcom/aiuta/fashionsdk/configuration/mode/shoes/picker/AiutaShoesModeImagePicker;)V
+	public final fun getImagePicker ()Lcom/aiuta/fashionsdk/configuration/mode/shoes/picker/AiutaShoesModeImagePicker;
+	public final fun getOnboardingShoesPage ()Lcom/aiuta/fashionsdk/configuration/mode/shoes/onboarding/AiutaShoesModeOnboardingPage;
+}
+
+public final class com/aiuta/fashionsdk/configuration/mode/shoes/AiutaShoesMode$Builder {
+	public static final field $stable I
+	public fun <init> ()V
+	public final fun build ()Lcom/aiuta/fashionsdk/configuration/mode/shoes/AiutaShoesMode;
+	public final fun getImagePicker ()Lcom/aiuta/fashionsdk/configuration/mode/shoes/picker/AiutaShoesModeImagePicker;
+	public final fun getOnboardingShoesPage ()Lcom/aiuta/fashionsdk/configuration/mode/shoes/onboarding/AiutaShoesModeOnboardingPage;
+	public final fun setImagePicker (Lcom/aiuta/fashionsdk/configuration/mode/shoes/picker/AiutaShoesModeImagePicker;)V
+	public final fun setOnboardingShoesPage (Lcom/aiuta/fashionsdk/configuration/mode/shoes/onboarding/AiutaShoesModeOnboardingPage;)V
+}
+
+public final class com/aiuta/fashionsdk/configuration/mode/shoes/AiutaShoesModeKt {
+	public static final fun shoes (Lcom/aiuta/fashionsdk/configuration/mode/AiutaModes$Builder;Lkotlin/jvm/functions/Function1;)Lcom/aiuta/fashionsdk/configuration/mode/AiutaModes$Builder;
+}
+
+public final class com/aiuta/fashionsdk/configuration/mode/shoes/onboarding/AiutaShoesModeOnboardingPage {
+	public static final field $stable I
+	public fun <init> (Lcom/aiuta/fashionsdk/configuration/mode/shoes/onboarding/images/AiutaShoesModeOnboardingPageImages;Lcom/aiuta/fashionsdk/configuration/mode/shoes/onboarding/strings/AiutaShoesModeOnboardingPageStrings;)V
+	public final fun getImages ()Lcom/aiuta/fashionsdk/configuration/mode/shoes/onboarding/images/AiutaShoesModeOnboardingPageImages;
+	public final fun getStrings ()Lcom/aiuta/fashionsdk/configuration/mode/shoes/onboarding/strings/AiutaShoesModeOnboardingPageStrings;
+}
+
+public final class com/aiuta/fashionsdk/configuration/mode/shoes/onboarding/AiutaShoesModeOnboardingPage$Builder {
+	public static final field $stable I
+	public fun <init> ()V
+	public final fun build ()Lcom/aiuta/fashionsdk/configuration/mode/shoes/onboarding/AiutaShoesModeOnboardingPage;
+	public final fun getImages ()Lcom/aiuta/fashionsdk/configuration/mode/shoes/onboarding/images/AiutaShoesModeOnboardingPageImages;
+	public final fun getStrings ()Lcom/aiuta/fashionsdk/configuration/mode/shoes/onboarding/strings/AiutaShoesModeOnboardingPageStrings;
+	public final fun setImages (Lcom/aiuta/fashionsdk/configuration/mode/shoes/onboarding/images/AiutaShoesModeOnboardingPageImages;)V
+	public final fun setStrings (Lcom/aiuta/fashionsdk/configuration/mode/shoes/onboarding/strings/AiutaShoesModeOnboardingPageStrings;)V
+}
+
+public final class com/aiuta/fashionsdk/configuration/mode/shoes/onboarding/AiutaShoesModeOnboardingPageKt {
+	public static final fun onboardingShoesPage (Lcom/aiuta/fashionsdk/configuration/mode/shoes/AiutaShoesMode$Builder;Lkotlin/jvm/functions/Function1;)Lcom/aiuta/fashionsdk/configuration/mode/shoes/AiutaShoesMode$Builder;
+}
+
+public abstract interface class com/aiuta/fashionsdk/configuration/mode/shoes/onboarding/images/AiutaShoesModeOnboardingPageImages {
+	public abstract fun getOnboardingShoesBestResultsItem ()Lcom/aiuta/fashionsdk/compose/resources/media/AiutaMedia;
+}
+
+public abstract interface class com/aiuta/fashionsdk/configuration/mode/shoes/onboarding/strings/AiutaShoesModeOnboardingPageStrings {
+	public abstract fun getOnboardingShoesBestResultsDescription ()Ljava/lang/String;
+	public abstract fun getOnboardingShoesBestResultsPageTitle ()Ljava/lang/String;
+	public abstract fun getOnboardingShoesBestResultsTitle ()Ljava/lang/String;
+}
+
+public final class com/aiuta/fashionsdk/configuration/mode/shoes/onboarding/strings/AiutaShoesModeOnboardingPageStrings$Default : com/aiuta/fashionsdk/configuration/mode/shoes/onboarding/strings/AiutaShoesModeOnboardingPageStrings {
+	public static final field $stable I
+	public fun <init> ()V
+	public fun getOnboardingShoesBestResultsDescription ()Ljava/lang/String;
+	public fun getOnboardingShoesBestResultsPageTitle ()Ljava/lang/String;
+	public fun getOnboardingShoesBestResultsTitle ()Ljava/lang/String;
+}
+
+public final class com/aiuta/fashionsdk/configuration/mode/shoes/picker/AiutaShoesModeImagePicker {
+	public static final field $stable I
+	public fun <init> (Lcom/aiuta/fashionsdk/configuration/mode/shoes/picker/model/AiutaShoesModeImagePickerPredefinedModels;Lcom/aiuta/fashionsdk/configuration/mode/shoes/picker/images/AiutaShoesModeImagePickerImages;Lcom/aiuta/fashionsdk/configuration/mode/shoes/picker/strings/AiutaShoesModeImagePickerStrings;)V
+	public final fun getImages ()Lcom/aiuta/fashionsdk/configuration/mode/shoes/picker/images/AiutaShoesModeImagePickerImages;
+	public final fun getPredefinedModels ()Lcom/aiuta/fashionsdk/configuration/mode/shoes/picker/model/AiutaShoesModeImagePickerPredefinedModels;
+	public final fun getStrings ()Lcom/aiuta/fashionsdk/configuration/mode/shoes/picker/strings/AiutaShoesModeImagePickerStrings;
+}
+
+public final class com/aiuta/fashionsdk/configuration/mode/shoes/picker/AiutaShoesModeImagePicker$Builder {
+	public static final field $stable I
+	public fun <init> ()V
+	public final fun build ()Lcom/aiuta/fashionsdk/configuration/mode/shoes/picker/AiutaShoesModeImagePicker;
+	public final fun getImages ()Lcom/aiuta/fashionsdk/configuration/mode/shoes/picker/images/AiutaShoesModeImagePickerImages;
+	public final fun getPredefinedModels ()Lcom/aiuta/fashionsdk/configuration/mode/shoes/picker/model/AiutaShoesModeImagePickerPredefinedModels;
+	public final fun getStrings ()Lcom/aiuta/fashionsdk/configuration/mode/shoes/picker/strings/AiutaShoesModeImagePickerStrings;
+	public final fun setImages (Lcom/aiuta/fashionsdk/configuration/mode/shoes/picker/images/AiutaShoesModeImagePickerImages;)V
+	public final fun setPredefinedModels (Lcom/aiuta/fashionsdk/configuration/mode/shoes/picker/model/AiutaShoesModeImagePickerPredefinedModels;)V
+	public final fun setStrings (Lcom/aiuta/fashionsdk/configuration/mode/shoes/picker/strings/AiutaShoesModeImagePickerStrings;)V
+}
+
+public final class com/aiuta/fashionsdk/configuration/mode/shoes/picker/AiutaShoesModeImagePickerKt {
+	public static final fun imagePicker (Lcom/aiuta/fashionsdk/configuration/mode/shoes/AiutaShoesMode$Builder;Lkotlin/jvm/functions/Function1;)Lcom/aiuta/fashionsdk/configuration/mode/shoes/AiutaShoesMode$Builder;
+}
+
+public abstract interface class com/aiuta/fashionsdk/configuration/mode/shoes/picker/images/AiutaShoesModeImagePickerImages {
+	public abstract fun getExample ()Lcom/aiuta/fashionsdk/compose/resources/drawable/AiutaDrawableResource;
+}
+
+public final class com/aiuta/fashionsdk/configuration/mode/shoes/picker/model/AiutaShoesModeImagePickerPredefinedModels {
+	public static final field $stable I
+	public fun <init> (Lcom/aiuta/fashionsdk/configuration/mode/shoes/picker/model/strings/AiutaShoesModeImagePickerPredefinedModelsStrings;)V
+	public final fun getStrings ()Lcom/aiuta/fashionsdk/configuration/mode/shoes/picker/model/strings/AiutaShoesModeImagePickerPredefinedModelsStrings;
+}
+
+public final class com/aiuta/fashionsdk/configuration/mode/shoes/picker/model/AiutaShoesModeImagePickerPredefinedModels$Builder {
+	public static final field $stable I
+	public fun <init> ()V
+	public final fun build ()Lcom/aiuta/fashionsdk/configuration/mode/shoes/picker/model/AiutaShoesModeImagePickerPredefinedModels;
+	public final fun getStrings ()Lcom/aiuta/fashionsdk/configuration/mode/shoes/picker/model/strings/AiutaShoesModeImagePickerPredefinedModelsStrings;
+	public final fun setStrings (Lcom/aiuta/fashionsdk/configuration/mode/shoes/picker/model/strings/AiutaShoesModeImagePickerPredefinedModelsStrings;)V
+}
+
+public final class com/aiuta/fashionsdk/configuration/mode/shoes/picker/model/AiutaShoesModeImagePickerPredefinedModelsKt {
+	public static final fun predefinedModels (Lcom/aiuta/fashionsdk/configuration/mode/shoes/picker/AiutaShoesModeImagePicker$Builder;Lkotlin/jvm/functions/Function1;)Lcom/aiuta/fashionsdk/configuration/mode/shoes/picker/AiutaShoesModeImagePicker$Builder;
+}
+
+public abstract interface class com/aiuta/fashionsdk/configuration/mode/shoes/picker/model/strings/AiutaShoesModeImagePickerPredefinedModelsStrings {
+	public abstract fun getPredefinedModelShoesCategories ()Ljava/util/Map;
+	public abstract fun getPredefinedModelShoesPageTitle ()Ljava/lang/String;
+}
+
+public final class com/aiuta/fashionsdk/configuration/mode/shoes/picker/model/strings/AiutaShoesModeImagePickerPredefinedModelsStrings$Default : com/aiuta/fashionsdk/configuration/mode/shoes/picker/model/strings/AiutaShoesModeImagePickerPredefinedModelsStrings {
+	public static final field $stable I
+	public fun <init> ()V
+	public fun getPredefinedModelShoesCategories ()Ljava/util/Map;
+	public fun getPredefinedModelShoesPageTitle ()Ljava/lang/String;
+}
+
+public abstract interface class com/aiuta/fashionsdk/configuration/mode/shoes/picker/strings/AiutaShoesModeImagePickerStrings {
+	public abstract fun getImagePickerShoesDescriptionEmpty ()Ljava/lang/String;
+}
+
+public final class com/aiuta/fashionsdk/configuration/mode/shoes/picker/strings/AiutaShoesModeImagePickerStrings$Default : com/aiuta/fashionsdk/configuration/mode/shoes/picker/strings/AiutaShoesModeImagePickerStrings {
+	public static final field $stable I
+	public fun <init> ()V
+	public fun getImagePickerShoesDescriptionEmpty ()Ljava/lang/String;
 }
 
 public final class com/aiuta/fashionsdk/configuration/ui/AiutaUserInterfaceConfiguration {
