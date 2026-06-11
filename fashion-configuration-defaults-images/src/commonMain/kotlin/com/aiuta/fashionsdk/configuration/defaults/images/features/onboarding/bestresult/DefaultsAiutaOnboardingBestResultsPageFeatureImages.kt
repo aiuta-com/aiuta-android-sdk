@@ -1,31 +1,26 @@
 package com.aiuta.fashionsdk.configuration.defaults.images.features.onboarding.bestresult
 
 import com.aiuta.fashion_configuration_defaults_images.generated.resources.Res
-import com.aiuta.fashion_configuration_defaults_images.generated.resources.onboarding_bad_image_1
-import com.aiuta.fashion_configuration_defaults_images.generated.resources.onboarding_bad_image_2
-import com.aiuta.fashion_configuration_defaults_images.generated.resources.onboarding_good_image_1
-import com.aiuta.fashion_configuration_defaults_images.generated.resources.onboarding_good_image_2
+import com.aiuta.fashion_configuration_defaults_images.generated.resources.onboarding_best_results_cover
 import com.aiuta.fashionsdk.compose.resources.drawable.AiutaComposeDrawableResource
-import com.aiuta.fashionsdk.compose.resources.drawable.AiutaDrawableResource
+import com.aiuta.fashionsdk.compose.resources.media.AiutaMedia
+import com.aiuta.fashionsdk.compose.resources.media.AiutaMediaContentScale
 import com.aiuta.fashionsdk.configuration.features.onboarding.bestresult.images.AiutaOnboardingBestResultsPageFeatureImages
 
 /**
  * Default implementation of [AiutaOnboardingBestResultsPageFeatureImages].
  *
- * This class provides the default image resources for the onboarding best results page,
- * including examples of good and bad try-on results to help users understand
- * what makes for a successful try-on experience.
+ * Provides the default media for the onboarding "Best Results" page — a cover
+ * image illustrating good and bad input examples that help users understand what
+ * makes for a successful try-on.
  *
- * @property onboardingBestResultsGood List of images showing good examples of try-on results
- * @property onboardingBestResultsBad List of images showing bad examples of try-on results
+ * @property onboardingBestResultsItem Default [AiutaMedia] — the bundled "best results"
+ *   cover image (no video), scaled to fit the surface.
  */
 public class DefaultsAiutaOnboardingBestResultsPageFeatureImages : AiutaOnboardingBestResultsPageFeatureImages {
-    override val onboardingBestResultsGood: List<AiutaDrawableResource> = listOf(
-        AiutaComposeDrawableResource(Res.drawable.onboarding_good_image_1),
-        AiutaComposeDrawableResource(Res.drawable.onboarding_good_image_2),
-    )
-    override val onboardingBestResultsBad: List<AiutaDrawableResource> = listOf(
-        AiutaComposeDrawableResource(Res.drawable.onboarding_bad_image_1),
-        AiutaComposeDrawableResource(Res.drawable.onboarding_bad_image_2),
+    override val onboardingBestResultsItem: AiutaMedia = AiutaMedia(
+        imageResource = AiutaComposeDrawableResource(Res.drawable.onboarding_best_results_cover),
+        videoSource = null,
+        contentScale = AiutaMediaContentScale.FIT,
     )
 }
