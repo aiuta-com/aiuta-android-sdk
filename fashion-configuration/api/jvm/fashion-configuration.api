@@ -370,8 +370,7 @@ public final class com/aiuta/fashionsdk/configuration/features/onboarding/bestre
 }
 
 public abstract interface class com/aiuta/fashionsdk/configuration/features/onboarding/bestresult/images/AiutaOnboardingBestResultsPageFeatureImages {
-	public abstract fun getOnboardingBestResultsBad ()Ljava/util/List;
-	public abstract fun getOnboardingBestResultsGood ()Ljava/util/List;
+	public abstract fun getOnboardingBestResultsItem ()Lcom/aiuta/fashionsdk/compose/resources/media/AiutaMedia;
 }
 
 public abstract interface class com/aiuta/fashionsdk/configuration/features/onboarding/bestresult/strings/AiutaOnboardingBestResultsPageFeatureStrings {
@@ -424,15 +423,7 @@ public final class com/aiuta/fashionsdk/configuration/features/onboarding/howwor
 }
 
 public abstract interface class com/aiuta/fashionsdk/configuration/features/onboarding/howworks/images/AiutaOnboardingHowItWorksPageFeatureImages {
-	public abstract fun getOnboardingHowItWorksItems ()Ljava/util/List;
 	public abstract fun getOnboardingHowItWorksItem ()Lcom/aiuta/fashionsdk/compose/resources/media/AiutaMedia;
-}
-
-public final class com/aiuta/fashionsdk/configuration/features/onboarding/howworks/images/AiutaOnboardingHowItWorksPageFeatureImages$OnboardingHowItWorksItem {
-	public static final field $stable I
-	public fun <init> (Lcom/aiuta/fashionsdk/compose/resources/drawable/AiutaDrawableResource;Lcom/aiuta/fashionsdk/compose/resources/drawable/AiutaDrawableResource;)V
-	public final fun getItemPhoto ()Lcom/aiuta/fashionsdk/compose/resources/drawable/AiutaDrawableResource;
-	public final fun getItemPreview ()Lcom/aiuta/fashionsdk/compose/resources/drawable/AiutaDrawableResource;
 }
 
 public abstract interface class com/aiuta/fashionsdk/configuration/features/onboarding/howworks/strings/AiutaOnboardingHowItWorksPageFeatureStrings {

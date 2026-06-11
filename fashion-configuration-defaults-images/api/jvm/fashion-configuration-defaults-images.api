@@ -1,14 +1,13 @@
 public final class com/aiuta/fashionsdk/configuration/defaults/images/features/onboarding/bestresult/DefaultsAiutaOnboardingBestResultsPageFeatureImages : com/aiuta/fashionsdk/configuration/features/onboarding/bestresult/images/AiutaOnboardingBestResultsPageFeatureImages {
 	public static final field $stable I
 	public fun <init> ()V
-	public fun getOnboardingBestResultsBad ()Ljava/util/List;
-	public fun getOnboardingBestResultsGood ()Ljava/util/List;
+	public fun getOnboardingBestResultsItem ()Lcom/aiuta/fashionsdk/compose/resources/media/AiutaMedia;
 }
 
 public final class com/aiuta/fashionsdk/configuration/defaults/images/features/onboarding/tryon/DefaultAiutaOnboardingHowItWorksPageFeatureImages : com/aiuta/fashionsdk/configuration/features/onboarding/howworks/images/AiutaOnboardingHowItWorksPageFeatureImages {
 	public static final field $stable I
 	public fun <init> ()V
-	public fun getOnboardingHowItWorksItems ()Ljava/util/List;
+	public fun getOnboardingHowItWorksItem ()Lcom/aiuta/fashionsdk/compose/resources/media/AiutaMedia;
 }
 
 public final class com/aiuta/fashionsdk/configuration/defaults/images/features/selector/DefaultAiutaImagePickerFeatureImages : com/aiuta/fashionsdk/configuration/features/picker/images/AiutaImagePickerFeatureImages {
