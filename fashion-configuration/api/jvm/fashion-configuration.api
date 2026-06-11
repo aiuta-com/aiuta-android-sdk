@@ -1392,7 +1392,7 @@ public abstract interface class com/aiuta/fashionsdk/configuration/features/welc
 }
 
 public abstract interface class com/aiuta/fashionsdk/configuration/features/welcome/images/AiutaWelcomeScreenFeatureImages {
-	public abstract fun getWelcomeBackground ()Lcom/aiuta/fashionsdk/compose/resources/drawable/AiutaDrawableResource;
+	public abstract fun getWelcomeBackground ()Lcom/aiuta/fashionsdk/compose/resources/media/AiutaMedia;
 }
 
 public abstract interface class com/aiuta/fashionsdk/configuration/features/welcome/strings/AiutaWelcomeScreenFeatureStrings {
