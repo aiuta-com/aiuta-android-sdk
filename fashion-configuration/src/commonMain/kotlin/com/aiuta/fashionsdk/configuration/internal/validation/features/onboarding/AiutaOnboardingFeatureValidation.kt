@@ -2,7 +2,6 @@ package com.aiuta.fashionsdk.configuration.internal.validation.features.onboardi
 
 import com.aiuta.fashionsdk.configuration.debug.AiutaDebugSettings
 import com.aiuta.fashionsdk.configuration.features.onboarding.AiutaOnboardingFeature
-import com.aiuta.fashionsdk.configuration.internal.validation.validateListWithSettings
 import com.aiuta.fashionsdk.configuration.internal.validation.validateStringWithSettings
 import com.aiuta.fashionsdk.logger.AiutaLogger
 
@@ -54,12 +53,5 @@ internal fun AiutaOnboardingFeature.validateWithSettings(
         propertyName = "onboardingButtonStart",
         logger = logger,
         debugSettings = debugSettings,
-    )
-
-    // Lists
-    howItWorksPage.images.onboardingHowItWorksItems.validateListWithSettings(
-        "onboardingHowItWorksItems",
-        logger,
-        debugSettings,
     )
 }

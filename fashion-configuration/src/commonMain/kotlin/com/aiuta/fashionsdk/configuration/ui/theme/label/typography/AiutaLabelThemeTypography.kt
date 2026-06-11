@@ -55,7 +55,7 @@ public interface AiutaLabelThemeTypography {
         )
         override val regular: TextStyle = TextStyle(
             fontFamily = FontFamily.Default,
-            fontWeight = FontWeight.Medium,
+            fontWeight = FontWeight.Normal,
             fontSize = 17.sp,
             lineHeight = 22.sp,
             letterSpacing = TextUnit(-0.03f, TextUnitType.Sp),
@@ -70,7 +70,7 @@ public interface AiutaLabelThemeTypography {
         override val footnote: TextStyle = TextStyle(
             fontFamily = FontFamily.Default,
             fontWeight = FontWeight.Normal,
-            fontSize = 12.sp,
+            fontSize = 11.sp,
             letterSpacing = TextUnit(-0.01f, TextUnitType.Sp),
         )
     }

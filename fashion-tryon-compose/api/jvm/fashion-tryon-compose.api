@@ -30,12 +30,6 @@ public final class com/aiuta/fashionsdk/tryon/compose/ui/internal/screens/histor
 	public final fun getLambda$771927991$com_aiuta_fashion_tryon_compose ()Lkotlin/jvm/functions/Function3;
 }
 
-public final class com/aiuta/fashionsdk/tryon/compose/ui/internal/screens/onboarding/ComposableSingletons$OnboardingScreenKt {
-	public static final field INSTANCE Lcom/aiuta/fashionsdk/tryon/compose/ui/internal/screens/onboarding/ComposableSingletons$OnboardingScreenKt;
-	public fun <init> ()V
-	public final fun getLambda$97996762$com_aiuta_fashion_tryon_compose ()Lkotlin/jvm/functions/Function4;
-}
-
 public final class com/aiuta/fashionsdk/tryon/compose/ui/internal/screens/selector/components/body/ComposableSingletons$ImageSelectorPhotoKt {
 	public static final field INSTANCE Lcom/aiuta/fashionsdk/tryon/compose/ui/internal/screens/selector/components/body/ComposableSingletons$ImageSelectorPhotoKt;
 	public fun <init> ()V

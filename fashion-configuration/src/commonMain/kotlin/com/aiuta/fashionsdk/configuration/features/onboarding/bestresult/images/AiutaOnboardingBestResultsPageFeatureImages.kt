@@ -1,6 +1,6 @@
 package com.aiuta.fashionsdk.configuration.features.onboarding.bestresult.images
 
-import com.aiuta.fashionsdk.compose.resources.drawable.AiutaDrawableResource
+import com.aiuta.fashionsdk.compose.resources.media.AiutaMedia
 
 /**
  * Interface defining images used in the best results page of the onboarding flow.
@@ -9,15 +9,11 @@ import com.aiuta.fashionsdk.compose.resources.drawable.AiutaDrawableResource
  * examples of app usage in the best results showcase.
  */
 public interface AiutaOnboardingBestResultsPageFeatureImages {
-    /**
-     * List of images showing good examples of app usage.
-     * These images demonstrate optimal results and best practices.
-     */
-    public val onboardingBestResultsGood: List<AiutaDrawableResource>
 
     /**
-     * List of images showing bad examples of app usage.
-     * These images demonstrate common mistakes and what to avoid.
+     * Media (image with an optional looping video) shown on the "Best Results"
+     * page to illustrate good and bad input examples. When the media has no
+     * video source, its image is shown as the content.
      */
-    public val onboardingBestResultsBad: List<AiutaDrawableResource>
+    public val onboardingBestResultsItem: AiutaMedia
 }

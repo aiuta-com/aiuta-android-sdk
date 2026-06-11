@@ -25,7 +25,6 @@ import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableFloatStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
-import androidx.compose.runtime.snapshots.SnapshotStateList
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.text.Placeholder
 import androidx.compose.ui.text.PlaceholderVerticalAlign
@@ -50,7 +49,7 @@ import com.aiuta.fashionsdk.tryon.compose.ui.internal.utils.createCenterAlignmen
 @Composable
 internal fun ConsentContent(
     modifier: Modifier = Modifier,
-    consentsList: SnapshotStateList<AiutaConsentUiModel>,
+    consentsList: List<AiutaConsentUiModel>,
     onUpdateConsentState: (consent: AiutaConsentUiModel, newState: Boolean) -> Unit,
 ) {
     val theme = LocalTheme.current

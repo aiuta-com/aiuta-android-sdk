@@ -87,6 +87,10 @@ public final class com/aiuta/fashionsdk/compose/uikit/resources/AiutaPlatformIma
 	public static final fun AiutaPlatformImage (Lcom/aiuta/fashionsdk/io/AiutaPlatformFile;Ljava/lang/String;Landroidx/compose/ui/Modifier;Landroidx/compose/ui/Alignment;Landroidx/compose/ui/layout/ContentScale;FLandroidx/compose/ui/graphics/ColorFilter;Landroidx/compose/runtime/Composer;II)V
 }
 
+public final class com/aiuta/fashionsdk/compose/uikit/resources/AiutaVideoSurfaceKt {
+	public static final fun AiutaVideoSurface (Lcom/aiuta/fashionsdk/compose/resources/media/AiutaMedia;Landroidx/compose/ui/Modifier;ZZZLandroidx/compose/runtime/Composer;II)V
+}
+
 public final class com/aiuta/fashionsdk/compose/uikit/resources/painter/AiutaPainter_desktopKt {
 	public static final fun painterResource (Lcom/aiuta/fashionsdk/compose/resources/drawable/AiutaDrawableResource;Landroidx/compose/runtime/Composer;I)Landroidx/compose/ui/graphics/painter/Painter;
 }

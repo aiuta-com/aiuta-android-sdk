@@ -1,10 +1,3 @@
-public final class com/aiuta/fashionsdk/configuration/defaults/icons/features/onboarding/bestresult/DefaultAiutaOnboardingBestResultsPageFeatureIcons : com/aiuta/fashionsdk/configuration/features/onboarding/bestresult/icons/AiutaOnboardingBestResultsPageFeatureIcons {
-	public static final field $stable I
-	public fun <init> ()V
-	public fun getOnboardingBestResultsBad24 ()Lcom/aiuta/fashionsdk/compose/resources/drawable/AiutaIcon;
-	public fun getOnboardingBestResultsGood24 ()Lcom/aiuta/fashionsdk/compose/resources/drawable/AiutaIcon;
-}
-
 public final class com/aiuta/fashionsdk/configuration/defaults/icons/features/selector/camera/DefaultAiutaImagePickerCameraFeatureIcons : com/aiuta/fashionsdk/configuration/features/picker/camera/icons/AiutaImagePickerCameraFeatureIcons {
 	public static final field $stable I
 	public fun <init> ()V
