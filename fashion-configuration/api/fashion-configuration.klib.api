@@ -785,7 +785,7 @@ abstract interface com.aiuta.fashionsdk.configuration.features.welcome.icons/Aiu
 
 abstract interface com.aiuta.fashionsdk.configuration.features.welcome.images/AiutaWelcomeScreenFeatureImages { // com.aiuta.fashionsdk.configuration.features.welcome.images/AiutaWelcomeScreenFeatureImages|null[0]
     abstract val welcomeBackground // com.aiuta.fashionsdk.configuration.features.welcome.images/AiutaWelcomeScreenFeatureImages.welcomeBackground|{}welcomeBackground[0]
-        abstract fun <get-welcomeBackground>(): com.aiuta.fashionsdk.compose.resources.drawable/AiutaDrawableResource // com.aiuta.fashionsdk.configuration.features.welcome.images/AiutaWelcomeScreenFeatureImages.welcomeBackground.<get-welcomeBackground>|<get-welcomeBackground>(){}[0]
+        abstract fun <get-welcomeBackground>(): com.aiuta.fashionsdk.compose.resources.media/AiutaMedia // com.aiuta.fashionsdk.configuration.features.welcome.images/AiutaWelcomeScreenFeatureImages.welcomeBackground.<get-welcomeBackground>|<get-welcomeBackground>(){}[0]
 }
 
 abstract interface com.aiuta.fashionsdk.configuration.features.welcome.strings/AiutaWelcomeScreenFeatureStrings { // com.aiuta.fashionsdk.configuration.features.welcome.strings/AiutaWelcomeScreenFeatureStrings|null[0]

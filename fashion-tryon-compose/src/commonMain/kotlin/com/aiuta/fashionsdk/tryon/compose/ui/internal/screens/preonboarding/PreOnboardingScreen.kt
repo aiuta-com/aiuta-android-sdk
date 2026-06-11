@@ -16,7 +16,6 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
-import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import com.aiuta.fashionsdk.analytics.events.AiutaAnalyticOnboardingEventType
@@ -25,7 +24,7 @@ import com.aiuta.fashionsdk.compose.uikit.appbar.AiutaAppBar
 import com.aiuta.fashionsdk.compose.uikit.appbar.AiutaAppBarIcon
 import com.aiuta.fashionsdk.compose.uikit.composition.LocalTheme
 import com.aiuta.fashionsdk.compose.uikit.resources.AiutaIcon
-import com.aiuta.fashionsdk.compose.uikit.resources.AiutaImage
+import com.aiuta.fashionsdk.compose.uikit.resources.AiutaVideoSurface
 import com.aiuta.fashionsdk.compose.uikit.utils.clickableUnindicated
 import com.aiuta.fashionsdk.compose.uikit.utils.strictProvideFeature
 import com.aiuta.fashionsdk.configuration.features.welcome.AiutaWelcomeScreenFeature
@@ -50,11 +49,9 @@ internal fun PreOnboardingScreen(modifier: Modifier = Modifier) {
         modifier = modifier.background(theme.color.background),
         contentAlignment = Alignment.Center,
     ) {
-        AiutaImage(
+        AiutaVideoSurface(
             modifier = Modifier.fillMaxSize(),
-            image = welcomeScreenFeature.images.welcomeBackground,
-            contentScale = ContentScale.Crop,
-            contentDescription = null,
+            video = welcomeScreenFeature.images.welcomeBackground,
         )
 
         AiutaAppBar(
