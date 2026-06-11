@@ -6,7 +6,6 @@ import com.aiuta.fashionsdk.configuration.features.AiutaFeatures
 import com.aiuta.fashionsdk.configuration.features.onboarding.bestresult.AiutaOnboardingBestResultsPageFeature
 import com.aiuta.fashionsdk.configuration.features.onboarding.dataprovider.AiutaOnboardingFeatureDataProvider
 import com.aiuta.fashionsdk.configuration.features.onboarding.howworks.AiutaOnboardingHowItWorksPageFeature
-import com.aiuta.fashionsdk.configuration.features.onboarding.shapes.AiutaOnboardingFeatureShapes
 import com.aiuta.fashionsdk.configuration.features.onboarding.strings.AiutaOnboardingFeatureStrings
 import com.aiuta.fashionsdk.configuration.internal.utils.checkNotNullWithDescription
 
@@ -32,7 +31,6 @@ public class AiutaOnboardingFeature(
     public val bestResultsPage: AiutaOnboardingBestResultsPageFeature?,
     // General
     public val strings: AiutaOnboardingFeatureStrings,
-    public val shapes: AiutaOnboardingFeatureShapes,
     public val dataProvider: AiutaOnboardingFeatureDataProvider,
 ) : AiutaFeature {
 
@@ -46,7 +44,6 @@ public class AiutaOnboardingFeature(
         public var howItWorksPage: AiutaOnboardingHowItWorksPageFeature? = null
         public var bestResultsPage: AiutaOnboardingBestResultsPageFeature? = null
         public var strings: AiutaOnboardingFeatureStrings? = null
-        public var shapes: AiutaOnboardingFeatureShapes? = null
         public var dataProvider: AiutaOnboardingFeatureDataProvider? = null
 
         public override fun build(): AiutaOnboardingFeature {
@@ -61,10 +58,6 @@ public class AiutaOnboardingFeature(
                 strings = strings.checkNotNullWithDescription(
                     parentClass = parentClass,
                     property = "strings",
-                ),
-                shapes = shapes.checkNotNullWithDescription(
-                    parentClass = parentClass,
-                    property = "shapes",
                 ),
                 dataProvider = dataProvider.checkNotNullWithDescription(
                     parentClass = parentClass,

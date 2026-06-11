@@ -1,6 +1,5 @@
 package com.aiuta.fashionsdk.tryon.compose.ui.internal.screens.onboarding
 
-import androidx.compose.foundation.pager.rememberPagerState
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.ui.Modifier
@@ -31,17 +30,8 @@ internal fun OnboardingScreen(modifier: Modifier = Modifier) {
     val viewState = viewModel.viewState.collectAsStateWithLifecycle()
     val viewAction = viewModel.viewAction.collectAsStateWithLifecycle()
 
-    val pagerState = rememberPagerState(
-        pageCount = { viewState.value.onboardingStatesQueue.sumOf { it.pageSize() } },
-    )
-
     LaunchedEffect(viewAction.value) {
         when (val action = viewAction.value) {
-            is OnboardingScreenAction.ScrollToPage -> {
-                pagerState.animateScrollToPage(action.page)
-                viewModel.clearAction()
-            }
-
             is OnboardingScreenAction.NavigateBack -> {
                 navigationController.navigateBack()
                 viewModel.clearAction()
@@ -66,7 +56,6 @@ internal fun OnboardingScreen(modifier: Modifier = Modifier) {
 
     OnboardingScreenContent(
         viewState = viewState,
-        pagerState = pagerState,
         eventHandler = viewModel::obtainEvent,
         modifier = modifier,
     )

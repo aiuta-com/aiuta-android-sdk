@@ -6,14 +6,11 @@ import com.aiuta.fashionsdk.tryon.compose.domain.models.internal.screen.onboardi
 internal sealed interface OnboardingScreenEvent {
 
     // App bar / navigation
-    data class BackClicked(val settledPage: Int) : OnboardingScreenEvent
+    data object BackClicked : OnboardingScreenEvent
     data class CloseClicked(val pageId: AiutaAnalyticsPageId) : OnboardingScreenEvent
 
     // Primary button
-    data class NextClicked(val settledPage: Int) : OnboardingScreenEvent
-
-    // Try on page
-    data class InternalTryOnPageClicked(val index: Int) : OnboardingScreenEvent
+    data object NextClicked : OnboardingScreenEvent
 
     // Consent page
     data class ConsentToggled(

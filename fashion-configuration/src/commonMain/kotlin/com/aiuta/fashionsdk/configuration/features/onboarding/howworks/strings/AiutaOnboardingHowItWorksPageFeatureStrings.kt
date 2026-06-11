@@ -29,7 +29,7 @@ public interface AiutaOnboardingHowItWorksPageFeatureStrings {
      */
     public class Default : AiutaOnboardingHowItWorksPageFeatureStrings {
         override val onboardingHowItWorksPageTitle: String = "<b>Step 1/3</b> - How it works"
-        override val onboardingHowItWorksTitle: String = "Try on before buying"
+        override val onboardingHowItWorksTitle: String = "Virtual try-on"
         override val onboardingHowItWorksDescription: String = "Upload a photo and see how items look on you"
     }
 }

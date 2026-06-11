@@ -45,15 +45,12 @@ internal class OnboardingViewModel(
 
     fun obtainEvent(event: OnboardingScreenEvent) {
         when (event) {
-            is OnboardingScreenEvent.BackClicked -> navigatePreviousPage(event.settledPage)
+            is OnboardingScreenEvent.BackClicked -> navigatePreviousPage()
             is OnboardingScreenEvent.CloseClicked -> {
                 _viewAction.update { OnboardingScreenAction.Close(event.pageId) }
             }
 
-            is OnboardingScreenEvent.NextClicked -> navigateNextPage(event.settledPage)
-            is OnboardingScreenEvent.InternalTryOnPageClicked -> {
-                _viewAction.update { OnboardingScreenAction.ScrollToPage(event.index) }
-            }
+            is OnboardingScreenEvent.NextClicked -> navigateNextPage()
 
             is OnboardingScreenEvent.ConsentToggled -> toggleConsent(event.consent, event.isObtained)
         }

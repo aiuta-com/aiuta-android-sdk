@@ -2,6 +2,7 @@ package com.aiuta.fashionsdk.tryon.compose.ui.internal.screens.onboarding.compon
 
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.ExperimentalGridApi
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.aspectRatio
@@ -13,8 +14,10 @@ import androidx.compose.foundation.layout.width
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.unit.dp
 import com.aiuta.fashionsdk.analytics.events.AiutaAnalyticsPageId
+import com.aiuta.fashionsdk.compose.uikit.resources.AiutaImage
 import com.aiuta.fashionsdk.compose.uikit.utils.strictProvideFeature
 import com.aiuta.fashionsdk.configuration.features.onboarding.bestresult.AiutaOnboardingBestResultsPageFeature
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.analytic.sendPageEvent
@@ -34,9 +37,10 @@ internal fun BestResultPageContent(
         modifier = modifier,
         verticalArrangement = Arrangement.spacedBy(6.dp),
     ) {
+        Spacer(Modifier.height(32.dp))
+
         BestImagesBlock(
-            modifier =
-            Modifier
+            modifier = Modifier
                 .weight(0.65f)
                 .fillMaxWidth()
                 .padding(horizontal = 32.dp),
@@ -44,8 +48,7 @@ internal fun BestResultPageContent(
         )
 
         CentredTextBlock(
-            modifier =
-            Modifier
+            modifier = Modifier
                 .weight(0.35f)
                 .fillMaxWidth(),
             title = bestResultsPageFeature.strings.onboardingBestResultsTitle,
@@ -54,12 +57,15 @@ internal fun BestResultPageContent(
     }
 }
 
+@OptIn(ExperimentalGridApi::class)
 @Composable
 private fun BestImagesBlock(
     modifier: Modifier = Modifier,
     state: BestResultPage,
 ) {
-    val cardModifier = Modifier.fillMaxHeight().aspectRatio(0.55f)
+    val cardModifier = Modifier
+        .fillMaxHeight()
+        .aspectRatio(0.55f)
 
     Column(
         modifier = modifier,
@@ -70,10 +76,11 @@ private fun BestImagesBlock(
             horizontalArrangement = Arrangement.Center,
         ) {
             state.goodImages.forEachIndexed { index, image ->
-                BestResultPageItem(
+                AiutaImage(
                     modifier = cardModifier,
                     image = image,
-                    isGoodImage = true,
+                    contentDescription = null,
+                    contentScale = ContentScale.Crop,
                 )
 
                 if (index != state.goodImages.lastIndex) {
@@ -89,10 +96,11 @@ private fun BestImagesBlock(
             horizontalArrangement = Arrangement.Center,
         ) {
             state.badImages.forEachIndexed { index, image ->
-                BestResultPageItem(
+                AiutaImage(
                     modifier = cardModifier,
                     image = image,
-                    isGoodImage = false,
+                    contentDescription = null,
+                    contentScale = ContentScale.Crop,
                 )
 
                 if (index != state.goodImages.lastIndex) {

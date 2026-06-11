@@ -3,7 +3,6 @@ package com.aiuta.fashionsdk.tryon.compose.ui.internal.screens.onboarding.compon
 import androidx.compose.animation.AnimatedContent
 import androidx.compose.animation.core.updateTransition
 import androidx.compose.foundation.layout.fillMaxWidth
-import androidx.compose.foundation.pager.PagerState
 import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.State
@@ -26,7 +25,6 @@ import com.aiuta.fashionsdk.tryon.compose.ui.internal.utils.transitionAnimation
 @Composable
 internal fun OnboardingAppBar(
     viewState: State<OnboardingScreenViewState>,
-    pagerState: PagerState,
     eventHandler: (OnboardingScreenEvent) -> Unit,
     modifier: Modifier = Modifier,
 ) {
@@ -43,7 +41,7 @@ internal fun OnboardingAppBar(
                 icon = theme.pageBar.icons.back24,
                 color = theme.color.primary,
                 onClick = {
-                    eventHandler(OnboardingScreenEvent.BackClicked(settledPage = pagerState.settledPage))
+                    eventHandler(OnboardingScreenEvent.BackClicked)
                 },
             )
         },

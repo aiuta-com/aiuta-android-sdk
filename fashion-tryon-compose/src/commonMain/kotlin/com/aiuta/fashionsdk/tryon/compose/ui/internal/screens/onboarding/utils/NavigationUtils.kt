@@ -2,30 +2,23 @@ package com.aiuta.fashionsdk.tryon.compose.ui.internal.screens.onboarding.utils
 
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.screens.onboarding.OnboardingViewModel
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.screens.onboarding.models.OnboardingScreenAction
-import com.aiuta.fashionsdk.tryon.compose.ui.internal.screens.onboarding.models.TryOnPage
 
 /**
  * Mirrors the old `OnboardingController.nextPage`. The flattened pager index ([settledPage]) is
  * genuine scaffold state owned by the composable and is passed in via the event; the view model
  * owns the logical step + queue and decides what should happen next.
  */
-internal fun OnboardingViewModel.navigateNextPage(settledPage: Int) {
+internal fun OnboardingViewModel.navigateNextPage() {
     val state = viewState.value
+
     val currentStep = state.currentStep
-    val nextPageIndex = settledPage + 1
-    val nextStep = state.onboardingStatesQueue.getOrNull(
-        index = (nextPageIndex - TryOnPage.INTERNAL_PAGES_LAST_INDEX).coerceAtLeast(0),
-    )
+    val currentStepIndex = state.onboardingStatesQueue.indexOf(currentStep)
+
+    val nextPageIndex = currentStepIndex + 1
+    val nextStep = state.onboardingStatesQueue.getOrNull(nextPageIndex)
 
     if (nextStep != null) {
-        val isLastPageOfTryOn = settledPage == TryOnPage.INTERNAL_PAGES_LAST_INDEX
-
-        // Skip step change while still inside the Try on page internal pages
-        if (currentStep !is TryOnPage || isLastPageOfTryOn) {
-            changeStep(nextStep)
-        }
-
-        emitAction(OnboardingScreenAction.ScrollToPage(nextPageIndex))
+        changeStep(nextStep)
     } else {
         completeOnboarding()
     }
@@ -34,23 +27,17 @@ internal fun OnboardingViewModel.navigateNextPage(settledPage: Int) {
 /**
  * Mirrors the old `OnboardingController.previousPage`.
  */
-internal fun OnboardingViewModel.navigatePreviousPage(settledPage: Int) {
+internal fun OnboardingViewModel.navigatePreviousPage() {
     val state = viewState.value
-    val currentStep = state.currentStep
-    val previousPageIndex = settledPage - 1
-    val isFirstPage = settledPage == 0
 
-    val previousStep = state.onboardingStatesQueue.getOrNull(
-        index = (previousPageIndex - TryOnPage.INTERNAL_PAGES_LAST_INDEX).coerceAtLeast(0),
-    ).takeIf { !isFirstPage }
+    val currentStep = state.currentStep
+    val currentStepIndex = state.onboardingStatesQueue.indexOf(currentStep)
+
+    val prevStepIndex = currentStepIndex - 1
+    val previousStep = state.onboardingStatesQueue.getOrNull(prevStepIndex)
 
     if (previousStep != null) {
-        // Skip step change for the Try on page case
-        if (currentStep !is TryOnPage) {
-            changeStep(previousStep)
-        }
-
-        emitAction(OnboardingScreenAction.ScrollToPage(previousPageIndex))
+        changeStep(previousStep)
     } else {
         emitAction(OnboardingScreenAction.NavigateBack)
     }

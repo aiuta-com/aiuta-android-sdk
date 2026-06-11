@@ -13,15 +13,12 @@ import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.navigationBars
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.windowInsetsPadding
-import androidx.compose.foundation.pager.PagerState
-import androidx.compose.foundation.pager.VerticalPager
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.State
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.ExperimentalComposeUiApi
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.backhandler.BackHandler
-import androidx.compose.ui.draw.alpha
 import androidx.compose.ui.unit.dp
 import com.aiuta.fashionsdk.compose.uikit.button.FashionButton
 import com.aiuta.fashionsdk.compose.uikit.button.FashionButtonSizes
@@ -33,9 +30,9 @@ import com.aiuta.fashionsdk.configuration.features.consent.AiutaConsentStandalon
 import com.aiuta.fashionsdk.configuration.features.onboarding.AiutaOnboardingFeature
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.navigation.transition.leftToRightTransition
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.navigation.transition.rightToLeftTransition
-import com.aiuta.fashionsdk.tryon.compose.ui.internal.screens.consent.ConsentContent
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.screens.onboarding.components.best.BestResultPageContent
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.screens.onboarding.components.common.OnboardingAppBar
+import com.aiuta.fashionsdk.tryon.compose.ui.internal.screens.onboarding.components.consent.ConsentPageContent
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.screens.onboarding.components.consent.SmallConsentContent
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.screens.onboarding.components.tryon.TryOnPageContent
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.screens.onboarding.models.BestResultPage
@@ -49,7 +46,6 @@ import com.aiuta.fashionsdk.tryon.compose.ui.internal.screens.onboarding.utils.s
 @Composable
 internal fun OnboardingScreenContent(
     viewState: State<OnboardingScreenViewState>,
-    pagerState: PagerState,
     eventHandler: (OnboardingScreenEvent) -> Unit,
     modifier: Modifier = Modifier,
 ) {
@@ -61,7 +57,7 @@ internal fun OnboardingScreenContent(
     val generalHorizontalPadding = 16.dp
 
     BackHandler {
-        eventHandler(OnboardingScreenEvent.BackClicked(settledPage = pagerState.settledPage))
+        eventHandler(OnboardingScreenEvent.BackClicked)
     }
 
     Column(
@@ -75,18 +71,14 @@ internal fun OnboardingScreenContent(
                 .padding(horizontal = generalHorizontalPadding)
                 .fillMaxWidth(),
             viewState = viewState,
-            pagerState = pagerState,
             eventHandler = eventHandler,
         )
-
-        Spacer(Modifier.height(32.dp))
 
         OnboardingPages(
             modifier = Modifier
                 .fillMaxWidth()
                 .weight(1f),
             viewState = viewState,
-            pagerState = pagerState,
             eventHandler = eventHandler,
         )
 
@@ -96,7 +88,6 @@ internal fun OnboardingScreenContent(
                 .padding(horizontal = generalHorizontalPadding),
             text = solvePrimaryButtonText(
                 viewState = viewState,
-                pagerState = pagerState,
                 onboardingFeature = onboardingFeature,
                 consentStandaloneOnboardingFeature = consentStandaloneOnboardingFeature,
             ),
@@ -104,7 +95,7 @@ internal fun OnboardingScreenContent(
             size = FashionButtonSizes.lSize(),
             isEnable = viewState.value.isPrimaryButtonEnabled,
             onClick = {
-                eventHandler(OnboardingScreenEvent.NextClicked(settledPage = pagerState.settledPage))
+                eventHandler(OnboardingScreenEvent.NextClicked)
             },
         )
 
@@ -120,28 +111,20 @@ internal fun OnboardingScreenContent(
 @Composable
 private fun OnboardingPages(
     viewState: State<OnboardingScreenViewState>,
-    pagerState: PagerState,
     eventHandler: (OnboardingScreenEvent) -> Unit,
     modifier: Modifier = Modifier,
 ) {
     val state = viewState.value
     val onboardingStatesQueue = state.onboardingStatesQueue
 
-    val onboardingState =
-        updateTransition(
-            targetState = state.currentStep,
-            label = "onboardingState",
-        )
+    val onboardingState = updateTransition(
+        targetState = state.currentStep,
+        label = "onboardingState",
+    )
 
     Box(
         modifier = modifier,
     ) {
-        // Just for collect pager state
-        VerticalPager(
-            modifier = Modifier.alpha(0f),
-            state = pagerState,
-        ) {}
-
         onboardingState.AnimatedContent(
             modifier = modifier,
             transitionSpec = {
@@ -159,9 +142,7 @@ private fun OnboardingPages(
                 is TryOnPage -> {
                     TryOnPageContent(
                         modifier = Modifier.fillMaxSize(),
-                        pagerState = pagerState,
                         state = step,
-                        eventHandler = eventHandler,
                     )
                 }
 
@@ -173,17 +154,10 @@ private fun OnboardingPages(
                 }
 
                 is ConsentPage -> {
-                    ConsentContent(
+                    ConsentPageContent(
+                        state = state,
+                        eventHandler = eventHandler,
                         modifier = Modifier.fillMaxSize(),
-                        consentsList = state.consents,
-                        onUpdateConsentState = { consent, isObtained ->
-                            eventHandler(
-                                OnboardingScreenEvent.ConsentToggled(
-                                    consent = consent,
-                                    isObtained = isObtained,
-                                ),
-                            )
-                        },
                     )
                 }
             }
