@@ -21,7 +21,7 @@ public interface AiutaShoesModeImagePickerPredefinedModelsStrings {
      * Provides standard English text for the shoes-mode predefined models interface.
      */
     public class Default : AiutaShoesModeImagePickerPredefinedModelsStrings {
-        override val predefinedModelShoesPageTitle: String = "Select example"
+        override val predefinedModelShoesPageTitle: String = "Select shoesExample"
         override val predefinedModelShoesCategories: Map<String, String> = buildMap {
             put(key = "woman", value = "Woman")
             put(key = "man", value = "Man")

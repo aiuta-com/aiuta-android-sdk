@@ -1583,7 +1583,7 @@ public final class com/aiuta/fashionsdk/configuration/mode/shoes/picker/AiutaSho
 }
 
 public abstract interface class com/aiuta/fashionsdk/configuration/mode/shoes/picker/images/AiutaShoesModeImagePickerImages {
-	public abstract fun getExample ()Lcom/aiuta/fashionsdk/compose/resources/drawable/AiutaDrawableResource;
+	public abstract fun getShoesExample ()Lcom/aiuta/fashionsdk/compose/resources/drawable/AiutaDrawableResource;
 }
 
 public final class com/aiuta/fashionsdk/configuration/mode/shoes/picker/model/AiutaShoesModeImagePickerPredefinedModels {

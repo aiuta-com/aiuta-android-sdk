@@ -21,7 +21,7 @@ internal fun ImageSelectorScreenEmptyContent(modifier: Modifier = Modifier) {
             modifier = Modifier.fillMaxWidth().weight(1f),
         )
 
-        Spacer(Modifier.height(38.dp))
+        Spacer(Modifier.height(60.dp))
 
         AiutaLabel()
 
