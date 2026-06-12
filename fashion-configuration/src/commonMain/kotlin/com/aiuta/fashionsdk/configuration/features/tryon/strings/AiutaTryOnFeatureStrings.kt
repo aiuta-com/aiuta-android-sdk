@@ -22,7 +22,7 @@ public interface AiutaTryOnFeatureStrings {
      * Provides standard English text strings for the try-on feature.
      */
     public class Default : AiutaTryOnFeatureStrings {
-        override val tryOnPageTitle: String = "Virtual Try-on"
+        override val tryOnPageTitle: String = "Virtual Try-On"
         override val tryOn: String = "Try on"
         override val outfitTitle: String = "Items from the outfit"
     }

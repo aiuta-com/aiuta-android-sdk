@@ -21,7 +21,7 @@ public interface AiutaTryOnLoadingPageFeatureStrings {
      * Provides standard English text strings for the loading interface.
      */
     public class Default : AiutaTryOnLoadingPageFeatureStrings {
-        override val tryOnLoadingStatusUploadingImage: String = "Uploading image"
+        override val tryOnLoadingStatusUploadingImage: String = "Uploading your photo"
         override val tryOnLoadingStatusScanningBody: String = "Scanning your body"
         override val tryOnLoadingStatusGeneratingOutfit: String = "Generating outfit"
     }
