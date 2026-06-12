@@ -11,10 +11,7 @@ import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.draw.clip
-import androidx.compose.ui.draw.clipToBounds
 import com.aiuta.fashionsdk.analytics.events.AiutaAnalyticsPageId
-import com.aiuta.fashionsdk.compose.uikit.composition.LocalTheme
 import com.aiuta.fashionsdk.tryon.compose.domain.models.internal.generated.images.imageSource
 import com.aiuta.fashionsdk.tryon.compose.domain.models.internal.generated.sku.ProductGenerationUIStatus
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.analytic.sendPageEvent
@@ -24,30 +21,22 @@ import com.aiuta.fashionsdk.tryon.compose.ui.internal.controller.composition.Loc
 @Composable
 internal fun ImageSelectorPhoto(modifier: Modifier = Modifier) {
     val controller = LocalController.current
-    val theme = LocalTheme.current
 
     val generationStatus = controller.generationStatus
 
-    val sharedCornerShape = theme.image.shapes.imageLShape
-
     // Animation
-    val lastSavedPhotoUrisTransition =
-        updateTransition(
-            targetState = controller.lastSavedImages.value.imageSource,
-            label = "lastSavedPhotoUrisTransition",
-        )
+    val lastSavedPhotoUrisTransition = updateTransition(
+        targetState = controller.lastSavedImages.value.imageSource,
+        label = "lastSavedPhotoUrisTransition",
+    )
 
-    val skuGenerationTransition =
-        updateTransition(
-            targetState = generationStatus.value,
-            label = "skuGenerationTransition",
-        )
+    val skuGenerationTransition = updateTransition(
+        targetState = generationStatus.value,
+        label = "skuGenerationTransition",
+    )
 
     Box(
-        modifier =
-        modifier
-            .clip(sharedCornerShape)
-            .clipToBounds(),
+        modifier = modifier,
         contentAlignment = Alignment.Center,
     ) {
         lastSavedPhotoUrisTransition.AnimatedContent(
@@ -55,10 +44,7 @@ internal fun ImageSelectorPhoto(modifier: Modifier = Modifier) {
             transitionSpec = { fadeIn() togetherWith fadeOut() },
         ) { images ->
             ImagesContainer(
-                modifier =
-                Modifier
-                    .fillMaxSize()
-                    .clip(sharedCornerShape),
+                modifier = Modifier.fillMaxSize(),
                 getImages = { images },
             )
         }

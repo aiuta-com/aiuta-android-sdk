@@ -17,11 +17,13 @@ internal fun ImageSelectorScreenEmptyContent(modifier: Modifier = Modifier) {
         modifier = modifier,
         horizontalAlignment = Alignment.CenterHorizontally,
     ) {
+        Spacer(Modifier.height(40.dp))
+
         ImageSelectorScreenEmptyBodyBlock(
             modifier = Modifier.fillMaxWidth().weight(1f),
         )
 
-        Spacer(Modifier.height(38.dp))
+        Spacer(Modifier.height(60.dp))
 
         AiutaLabel()
 

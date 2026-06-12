@@ -4,7 +4,6 @@ import com.aiuta.fashionsdk.configuration.features.AiutaFeature
 import com.aiuta.fashionsdk.configuration.features.picker.AiutaImagePickerFeature
 import com.aiuta.fashionsdk.configuration.features.picker.history.dataprovider.AiutaImagePickerUploadsHistoryFeatureDataProvider
 import com.aiuta.fashionsdk.configuration.features.picker.history.strings.AiutaImagePickerUploadsHistoryFeatureStrings
-import com.aiuta.fashionsdk.configuration.features.picker.history.styles.AiutaImagePickerUploadsHistoryFeatureStyles
 import com.aiuta.fashionsdk.configuration.internal.utils.checkNotNullWithDescription
 
 /**
@@ -15,12 +14,10 @@ import com.aiuta.fashionsdk.configuration.internal.utils.checkNotNullWithDescrip
  *
  * Required components:
  * - [strings]: Text strings for the history interface
- * - [styles]: Visual styles for the history UI
  * - [dataProvider]: Provider for history data operations
  */
 public class AiutaImagePickerUploadsHistoryFeature(
     public val strings: AiutaImagePickerUploadsHistoryFeatureStrings,
-    public val styles: AiutaImagePickerUploadsHistoryFeatureStyles,
     public val dataProvider: AiutaImagePickerUploadsHistoryFeatureDataProvider,
 ) : AiutaFeature {
     /**
@@ -31,7 +28,6 @@ public class AiutaImagePickerUploadsHistoryFeature(
      */
     public class Builder : AiutaFeature.Builder {
         public var strings: AiutaImagePickerUploadsHistoryFeatureStrings? = null
-        public var styles: AiutaImagePickerUploadsHistoryFeatureStyles? = null
         public var dataProvider: AiutaImagePickerUploadsHistoryFeatureDataProvider? = null
 
         public override fun build(): AiutaImagePickerUploadsHistoryFeature {
@@ -41,10 +37,6 @@ public class AiutaImagePickerUploadsHistoryFeature(
                 strings = strings.checkNotNullWithDescription(
                     parentClass = parentClass,
                     property = "strings",
-                ),
-                styles = styles.checkNotNullWithDescription(
-                    parentClass = parentClass,
-                    property = "styles",
                 ),
                 dataProvider = dataProvider.checkNotNullWithDescription(
                     parentClass = parentClass,

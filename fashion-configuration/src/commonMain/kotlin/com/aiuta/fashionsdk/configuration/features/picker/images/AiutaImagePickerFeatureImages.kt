@@ -1,16 +1,16 @@
 package com.aiuta.fashionsdk.configuration.features.picker.images
 
-import com.aiuta.fashionsdk.compose.resources.drawable.AiutaDrawableResource
+import com.aiuta.fashionsdk.compose.resources.media.AiutaMedia
 
 /**
  * Interface defining image resources used in the image picker feature.
  *
- * This interface provides a list of example images that can be displayed
- * in the image picker UI, such as sample photos or suggestions.
+ * This interface provides an shoesExample image that can be displayed
+ * in the image picker UI, such as a sample photo or suggestion.
  */
 public interface AiutaImagePickerFeatureImages {
     /**
-     * List of drawable resources representing example images for the image picker.
+     * Drawable resource representing an shoesExample image for the image picker.
      */
-    public val examples: List<AiutaDrawableResource>
+    public val example: AiutaMedia
 }

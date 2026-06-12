@@ -40,8 +40,7 @@ public object FashionButtonSizes {
         shape: Shape = LocalTheme.current.button.shapes.buttonMShape,
         textStyle: TextStyle = LocalTheme.current.button.typography.buttonM,
     ): FashionButtonSize = DefaultFashionButtonSize(
-        paddingValues =
-        PaddingValues(
+        paddingValues = PaddingValues(
             vertical = verticalPadding,
             horizontal = horizontalPadding,
         ),
@@ -72,8 +71,7 @@ public object FashionButtonSizes {
         shape: Shape = LocalTheme.current.button.shapes.buttonSShape,
         textStyle: TextStyle = LocalTheme.current.button.typography.buttonS,
     ): FashionButtonSize = DefaultFashionButtonSize(
-        paddingValues =
-        PaddingValues(
+        paddingValues = PaddingValues(
             vertical = verticalPadding,
             horizontal = horizontalPadding,
         ),

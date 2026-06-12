@@ -13,6 +13,6 @@ public final class com/aiuta/fashionsdk/configuration/defaults/images/features/o
 public final class com/aiuta/fashionsdk/configuration/defaults/images/features/selector/DefaultAiutaImagePickerFeatureImages : com/aiuta/fashionsdk/configuration/features/picker/images/AiutaImagePickerFeatureImages {
 	public static final field $stable I
 	public fun <init> ()V
-	public fun getExamples ()Ljava/util/List;
+	public fun getExample ()Lcom/aiuta/fashionsdk/compose/resources/media/AiutaMedia;
 }
 

@@ -2,6 +2,7 @@ package com.aiuta.fashionsdk.internal.navigation
 
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.CompositionLocalProvider
+import com.aiuta.fashionsdk.compose.uikit.composition.LocalAiutaConfiguration
 import com.aiuta.fashionsdk.compose.uikit.composition.LocalAiutaExperimentalSettings
 import com.aiuta.fashionsdk.compose.uikit.composition.LocalAiutaFeatures
 import com.aiuta.fashionsdk.compose.uikit.composition.LocalTheme
@@ -42,6 +43,7 @@ public fun AiutaNavigationInitialisation(
         LocalAiutaErrorSnackbarController provides errorSnackbarController,
         LocalAiutaDialogController provides dialogController,
         LocalTheme provides theme,
+        LocalAiutaConfiguration provides aiutaConfiguration,
         LocalAiutaLogger provides aiutaConfiguration.aiuta.logger,
         LocalAiutaFeatures provides aiutaConfiguration.features,
         LocalAiutaExperimentalSettings provides aiutaConfiguration.experimentalSettings,

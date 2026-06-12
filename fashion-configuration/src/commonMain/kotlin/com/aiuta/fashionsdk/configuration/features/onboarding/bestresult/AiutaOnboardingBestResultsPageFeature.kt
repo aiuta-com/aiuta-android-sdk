@@ -9,7 +9,7 @@ import com.aiuta.fashionsdk.configuration.internal.utils.checkNotNullWithDescrip
 /**
  * Configuration for the "Best Results" page in the onboarding flow.
  *
- * This feature showcases example results to demonstrate the app's capabilities
+ * This feature showcases shoesExample results to demonstrate the app's capabilities
  * and set user expectations. It includes sample images, icons, text strings,
  * and styling options.
  *
