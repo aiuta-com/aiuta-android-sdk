@@ -5,8 +5,7 @@ public final class com/aiuta/fashionsdk/tryon/compose/domain/models/ProductConfi
 }
 
 public final class com/aiuta/fashionsdk/tryon/compose/ui/AiutaTryOnFlowKt {
-	public static final fun AiutaTryOnFlow (Landroidx/compose/ui/Modifier;Lcom/aiuta/fashionsdk/configuration/AiutaConfiguration;Lcom/aiuta/fashionsdk/configuration/features/models/product/ProductItem;Landroidx/compose/runtime/Composer;II)V
-	public static final fun AiutaTryOnFlow (Landroidx/compose/ui/Modifier;Lcom/aiuta/fashionsdk/configuration/AiutaConfiguration;Lcom/aiuta/fashionsdk/tryon/compose/domain/models/ProductConfiguration;Landroidx/compose/runtime/Composer;II)V
+	public static final fun AiutaTryOnFlow (Landroidx/compose/ui/Modifier;Lcom/aiuta/fashionsdk/configuration/AiutaConfiguration;Lcom/aiuta/fashionsdk/tryon/compose/domain/models/ProductConfiguration;Lcom/aiuta/fashionsdk/configuration/mode/AiutaMode;Landroidx/compose/runtime/Composer;II)V
 }
 
 public final class com/aiuta/fashionsdk/tryon/compose/ui/HistoryFlowKt {
@@ -16,12 +15,12 @@ public final class com/aiuta/fashionsdk/tryon/compose/ui/HistoryFlowKt {
 public final class com/aiuta/fashionsdk/tryon/compose/ui/internal/navigation/ComposableSingletons$TryOnNavigationInitialisationKt {
 	public static final field INSTANCE Lcom/aiuta/fashionsdk/tryon/compose/ui/internal/navigation/ComposableSingletons$TryOnNavigationInitialisationKt;
 	public fun <init> ()V
-	public final fun getLambda$-1052501302$com_aiuta_fashion_tryon_compose ()Lkotlin/jvm/functions/Function3;
-	public final fun getLambda$-21019993$com_aiuta_fashion_tryon_compose ()Lkotlin/jvm/functions/Function3;
-	public final fun getLambda$-618630269$com_aiuta_fashion_tryon_compose ()Lkotlin/jvm/functions/Function3;
-	public final fun getLambda$1270144313$com_aiuta_fashion_tryon_compose ()Lkotlin/jvm/functions/Function3;
-	public final fun getLambda$1991555597$com_aiuta_fashion_tryon_compose ()Lkotlin/jvm/functions/Function3;
-	public final fun getLambda$782313008$com_aiuta_fashion_tryon_compose ()Lkotlin/jvm/functions/Function3;
+	public final fun getLambda$-1308156383$com_aiuta_fashion_tryon_compose ()Lkotlin/jvm/functions/Function3;
+	public final fun getLambda$-1367256616$com_aiuta_fashion_tryon_compose ()Lkotlin/jvm/functions/Function3;
+	public final fun getLambda$-1960026646$com_aiuta_fashion_tryon_compose ()Lkotlin/jvm/functions/Function3;
+	public final fun getLambda$1847368251$com_aiuta_fashion_tryon_compose ()Lkotlin/jvm/functions/Function3;
+	public final fun getLambda$443367870$com_aiuta_fashion_tryon_compose ()Lkotlin/jvm/functions/Function3;
+	public final fun getLambda$464527284$com_aiuta_fashion_tryon_compose ()Lkotlin/jvm/functions/Function3;
 }
 
 public final class com/aiuta/fashionsdk/tryon/compose/ui/internal/screens/history/ComposableSingletons$HistoryScreenInternalKt {
