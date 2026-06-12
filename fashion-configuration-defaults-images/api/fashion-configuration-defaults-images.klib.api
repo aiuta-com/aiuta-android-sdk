@@ -23,8 +23,8 @@ final class com.aiuta.fashionsdk.configuration.defaults.images.features.onboardi
 final class com.aiuta.fashionsdk.configuration.defaults.images.features.selector/DefaultAiutaImagePickerFeatureImages : com.aiuta.fashionsdk.configuration.features.picker.images/AiutaImagePickerFeatureImages { // com.aiuta.fashionsdk.configuration.defaults.images.features.selector/DefaultAiutaImagePickerFeatureImages|null[0]
     constructor <init>() // com.aiuta.fashionsdk.configuration.defaults.images.features.selector/DefaultAiutaImagePickerFeatureImages.<init>|<init>(){}[0]
 
-    final val examples // com.aiuta.fashionsdk.configuration.defaults.images.features.selector/DefaultAiutaImagePickerFeatureImages.examples|{}examples[0]
-        final fun <get-examples>(): kotlin.collections/List<com.aiuta.fashionsdk.compose.resources.drawable/AiutaDrawableResource> // com.aiuta.fashionsdk.configuration.defaults.images.features.selector/DefaultAiutaImagePickerFeatureImages.examples.<get-examples>|<get-examples>(){}[0]
+    final val example // com.aiuta.fashionsdk.configuration.defaults.images.features.selector/DefaultAiutaImagePickerFeatureImages.example|{}example[0]
+        final fun <get-example>(): com.aiuta.fashionsdk.compose.resources.media/AiutaMedia // com.aiuta.fashionsdk.configuration.defaults.images.features.selector/DefaultAiutaImagePickerFeatureImages.example.<get-example>|<get-example>(){}[0]
 }
 
 final val com.aiuta.fashion_configuration_defaults_images.generated.resources/com_aiuta_fashion_configuration_defaults_images_generated_resources_Res_array$stableprop // com.aiuta.fashion_configuration_defaults_images.generated.resources/com_aiuta_fashion_configuration_defaults_images_generated_resources_Res_array$stableprop|#static{}com_aiuta_fashion_configuration_defaults_images_generated_resources_Res_array$stableprop[0]

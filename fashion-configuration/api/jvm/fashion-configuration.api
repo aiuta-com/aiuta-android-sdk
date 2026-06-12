@@ -34,9 +34,10 @@ public final class com/aiuta/fashionsdk/configuration/AiutaConfigurationKt {
 
 public final class com/aiuta/fashionsdk/configuration/debug/AiutaDebugSettings {
 	public static final field $stable I
-	public fun <init> (Lcom/aiuta/fashionsdk/configuration/debug/AiutaValidationPolicy;Lcom/aiuta/fashionsdk/configuration/debug/AiutaValidationPolicy;)V
+	public fun <init> (Lcom/aiuta/fashionsdk/configuration/debug/AiutaValidationPolicy;Lcom/aiuta/fashionsdk/configuration/debug/AiutaValidationPolicy;Lcom/aiuta/fashionsdk/configuration/debug/AiutaValidationPolicy;)V
 	public final fun getEmptyStringsPolicy ()Lcom/aiuta/fashionsdk/configuration/debug/AiutaValidationPolicy;
 	public final fun getListSizePolicy ()Lcom/aiuta/fashionsdk/configuration/debug/AiutaValidationPolicy;
+	public final fun getModeFallbackPolicy ()Lcom/aiuta/fashionsdk/configuration/debug/AiutaValidationPolicy;
 }
 
 public final class com/aiuta/fashionsdk/configuration/debug/AiutaDebugSettingsKt {
@@ -572,10 +573,9 @@ public final class com/aiuta/fashionsdk/configuration/features/picker/gallery/st
 
 public final class com/aiuta/fashionsdk/configuration/features/picker/history/AiutaImagePickerUploadsHistoryFeature : com/aiuta/fashionsdk/configuration/features/AiutaFeature {
 	public static final field $stable I
-	public fun <init> (Lcom/aiuta/fashionsdk/configuration/features/picker/history/strings/AiutaImagePickerUploadsHistoryFeatureStrings;Lcom/aiuta/fashionsdk/configuration/features/picker/history/styles/AiutaImagePickerUploadsHistoryFeatureStyles;Lcom/aiuta/fashionsdk/configuration/features/picker/history/dataprovider/AiutaImagePickerUploadsHistoryFeatureDataProvider;)V
+	public fun <init> (Lcom/aiuta/fashionsdk/configuration/features/picker/history/strings/AiutaImagePickerUploadsHistoryFeatureStrings;Lcom/aiuta/fashionsdk/configuration/features/picker/history/dataprovider/AiutaImagePickerUploadsHistoryFeatureDataProvider;)V
 	public final fun getDataProvider ()Lcom/aiuta/fashionsdk/configuration/features/picker/history/dataprovider/AiutaImagePickerUploadsHistoryFeatureDataProvider;
 	public final fun getStrings ()Lcom/aiuta/fashionsdk/configuration/features/picker/history/strings/AiutaImagePickerUploadsHistoryFeatureStrings;
-	public final fun getStyles ()Lcom/aiuta/fashionsdk/configuration/features/picker/history/styles/AiutaImagePickerUploadsHistoryFeatureStyles;
 }
 
 public final class com/aiuta/fashionsdk/configuration/features/picker/history/AiutaImagePickerUploadsHistoryFeature$Builder : com/aiuta/fashionsdk/configuration/features/AiutaFeature$Builder {
@@ -585,10 +585,8 @@ public final class com/aiuta/fashionsdk/configuration/features/picker/history/Ai
 	public fun build ()Lcom/aiuta/fashionsdk/configuration/features/picker/history/AiutaImagePickerUploadsHistoryFeature;
 	public final fun getDataProvider ()Lcom/aiuta/fashionsdk/configuration/features/picker/history/dataprovider/AiutaImagePickerUploadsHistoryFeatureDataProvider;
 	public final fun getStrings ()Lcom/aiuta/fashionsdk/configuration/features/picker/history/strings/AiutaImagePickerUploadsHistoryFeatureStrings;
-	public final fun getStyles ()Lcom/aiuta/fashionsdk/configuration/features/picker/history/styles/AiutaImagePickerUploadsHistoryFeatureStyles;
 	public final fun setDataProvider (Lcom/aiuta/fashionsdk/configuration/features/picker/history/dataprovider/AiutaImagePickerUploadsHistoryFeatureDataProvider;)V
 	public final fun setStrings (Lcom/aiuta/fashionsdk/configuration/features/picker/history/strings/AiutaImagePickerUploadsHistoryFeatureStrings;)V
-	public final fun setStyles (Lcom/aiuta/fashionsdk/configuration/features/picker/history/styles/AiutaImagePickerUploadsHistoryFeatureStyles;)V
 }
 
 public final class com/aiuta/fashionsdk/configuration/features/picker/history/AiutaImagePickerUploadsHistoryFeatureKt {
@@ -624,18 +622,8 @@ public final class com/aiuta/fashionsdk/configuration/features/picker/history/st
 	public fun getUploadsHistoryTitle ()Ljava/lang/String;
 }
 
-public abstract interface class com/aiuta/fashionsdk/configuration/features/picker/history/styles/AiutaImagePickerUploadsHistoryFeatureStyles {
-	public abstract fun getChangePhotoButtonStyle ()Lcom/aiuta/fashionsdk/configuration/features/styles/AiutaComponentStyle;
-}
-
-public final class com/aiuta/fashionsdk/configuration/features/picker/history/styles/AiutaImagePickerUploadsHistoryFeatureStyles$Default : com/aiuta/fashionsdk/configuration/features/picker/history/styles/AiutaImagePickerUploadsHistoryFeatureStyles {
-	public static final field $stable I
-	public fun <init> ()V
-	public fun getChangePhotoButtonStyle ()Lcom/aiuta/fashionsdk/configuration/features/styles/AiutaComponentStyle;
-}
-
 public abstract interface class com/aiuta/fashionsdk/configuration/features/picker/images/AiutaImagePickerFeatureImages {
-	public abstract fun getExamples ()Ljava/util/List;
+	public abstract fun getExample ()Lcom/aiuta/fashionsdk/compose/resources/media/AiutaMedia;
 }
 
 public final class com/aiuta/fashionsdk/configuration/features/picker/model/AiutaImagePickerPredefinedModelFeature : com/aiuta/fashionsdk/configuration/features/AiutaFeature {
@@ -908,17 +896,6 @@ public final class com/aiuta/fashionsdk/configuration/features/sizefit/styles/Ai
 	public fun <init> ()V
 	public fun getSizeFitButtonGradient ()Ljava/util/List;
 	public fun getSuffixColor-0d7_KjU ()J
-}
-
-public final class com/aiuta/fashionsdk/configuration/features/styles/AiutaComponentStyle : java/lang/Enum {
-	public static final field BLURRED Lcom/aiuta/fashionsdk/configuration/features/styles/AiutaComponentStyle;
-	public static final field BLURRED_WITH_OUTLINE Lcom/aiuta/fashionsdk/configuration/features/styles/AiutaComponentStyle;
-	public static final field BRAND Lcom/aiuta/fashionsdk/configuration/features/styles/AiutaComponentStyle;
-	public static final field CONTRAST Lcom/aiuta/fashionsdk/configuration/features/styles/AiutaComponentStyle;
-	public static final field CONTRAST_INVERTED Lcom/aiuta/fashionsdk/configuration/features/styles/AiutaComponentStyle;
-	public static fun getEntries ()Lkotlin/enums/EnumEntries;
-	public static fun valueOf (Ljava/lang/String;)Lcom/aiuta/fashionsdk/configuration/features/styles/AiutaComponentStyle;
-	public static fun values ()[Lcom/aiuta/fashionsdk/configuration/features/styles/AiutaComponentStyle;
 }
 
 public final class com/aiuta/fashionsdk/configuration/features/tryon/AiutaTryOnFeature : com/aiuta/fashionsdk/configuration/features/AiutaFeature {
@@ -1264,14 +1241,12 @@ public final class com/aiuta/fashionsdk/configuration/features/tryon/loading/str
 
 public abstract interface class com/aiuta/fashionsdk/configuration/features/tryon/loading/styles/AiutaTryOnLoadingPageFeatureStyles {
 	public abstract fun getLoadingStatusBackgroundGradient ()Ljava/util/List;
-	public abstract fun getLoadingStatusStyle ()Lcom/aiuta/fashionsdk/configuration/features/styles/AiutaComponentStyle;
 }
 
 public final class com/aiuta/fashionsdk/configuration/features/tryon/loading/styles/AiutaTryOnLoadingPageFeatureStyles$Default : com/aiuta/fashionsdk/configuration/features/tryon/loading/styles/AiutaTryOnLoadingPageFeatureStyles {
 	public static final field $stable I
 	public fun <init> ()V
 	public fun getLoadingStatusBackgroundGradient ()Ljava/util/List;
-	public fun getLoadingStatusStyle ()Lcom/aiuta/fashionsdk/configuration/features/styles/AiutaComponentStyle;
 }
 
 public final class com/aiuta/fashionsdk/configuration/features/tryon/other/AiutaTryOnWithOtherPhotoFeature : com/aiuta/fashionsdk/configuration/features/AiutaFeature {
@@ -1583,7 +1558,7 @@ public final class com/aiuta/fashionsdk/configuration/mode/shoes/picker/AiutaSho
 }
 
 public abstract interface class com/aiuta/fashionsdk/configuration/mode/shoes/picker/images/AiutaShoesModeImagePickerImages {
-	public abstract fun getShoesExample ()Lcom/aiuta/fashionsdk/compose/resources/drawable/AiutaDrawableResource;
+	public abstract fun getShoesExample ()Lcom/aiuta/fashionsdk/compose/resources/media/AiutaMedia;
 }
 
 public final class com/aiuta/fashionsdk/configuration/mode/shoes/picker/model/AiutaShoesModeImagePickerPredefinedModels {
