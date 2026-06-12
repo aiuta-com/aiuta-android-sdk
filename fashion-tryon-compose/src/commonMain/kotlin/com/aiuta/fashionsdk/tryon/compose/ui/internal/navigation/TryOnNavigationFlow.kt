@@ -9,6 +9,7 @@ import androidx.compose.ui.backhandler.BackHandler
 import com.aiuta.fashionsdk.analytics.events.AiutaAnalyticsSessionEvent
 import com.aiuta.fashionsdk.configuration.AiutaConfiguration
 import com.aiuta.fashionsdk.configuration.features.models.product.ProductItem
+import com.aiuta.fashionsdk.configuration.mode.AiutaMode
 import com.aiuta.fashionsdk.internal.navigation.AiutaNavigationFlow
 import com.aiuta.fashionsdk.internal.navigation.aiutaEntryProvider
 import com.aiuta.fashionsdk.internal.navigation.composition.LocalAiutaBottomSheetNavigator
@@ -36,6 +37,7 @@ internal fun TryOnNavigationFlow(
     aiutaConfiguration: AiutaConfiguration,
     productConfiguration: ProductConfiguration,
     startScreen: TryOnScreen,
+    mode: AiutaMode,
     // Analytics
     flowType: AiutaAnalyticsSessionEvent.FlowType,
     modifier: Modifier = Modifier,
@@ -46,6 +48,7 @@ internal fun TryOnNavigationFlow(
         aiutaConfiguration = aiutaConfiguration,
         startScreen = startScreen,
         productConfiguration = productConfiguration,
+        mode = mode,
         modifier = modifier,
     ) {
         sendSessionEvent(flowType)
