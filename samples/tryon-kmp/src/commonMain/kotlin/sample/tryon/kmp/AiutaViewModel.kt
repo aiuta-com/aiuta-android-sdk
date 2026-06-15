@@ -68,18 +68,11 @@ class AiutaViewModel : ViewModel() {
     // Preload
     fun loadActiveProduct(aiutaTryOn: AiutaTryOn) {
         viewModelScope.launch {
-            // Let's get catalogs
-            val catalogs = aiutaTryOn.getProductCatalogs().result
-
-            // Take first catalog and get first page of product items
-            val productItems = catalogs.firstOrNull()?.let {
-                aiutaTryOn.getProductItems(
-                    catalogName = it.catalogName,
-                )
-            }
+            // Take first page of product items
+            val productItems = aiutaTryOn.getProductItems()
 
             // And finally take first product item
-            activeProductItems.value = productItems?.result ?: emptyList()
+            activeProductItems.value = productItems.items
         }
     }
 

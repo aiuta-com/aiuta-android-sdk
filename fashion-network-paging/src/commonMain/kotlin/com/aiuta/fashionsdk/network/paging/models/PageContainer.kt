@@ -11,23 +11,16 @@ public data class PageContainer<T>(
     /**
      * Result list of new page
      */
-    @SerialName("result")
-    val result: List<T>,
+    @SerialName("items")
+    val items: List<T>,
     /**
-     * Key of first element in page.
-     * Use it, to get previous page
+     * Total number of items in list
      */
-    @SerialName("before")
-    var beforeKey: String,
+    @SerialName("total")
+    var total: Int,
     /**
-     * Key of last element in page.
-     * Use it, to get next page
+     * Offset for next page
      */
-    @SerialName("after")
-    var afterKey: String,
-    /**
-     * List of possible errors from backend
-     */
-    @SerialName("errors")
-    val errors: List<String>,
+    @SerialName("next_offset")
+    var nextOffset: Int? = null,
 )

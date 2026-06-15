@@ -43,5 +43,4 @@ include(
     ":fashion-sizefit-core",
     ":fashion-tryon-compose",
     ":fashion-tryon-core",
-    ":fashion-tryon-paging",
 )

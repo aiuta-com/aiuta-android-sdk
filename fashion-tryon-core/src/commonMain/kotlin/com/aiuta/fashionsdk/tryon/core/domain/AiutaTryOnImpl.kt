@@ -5,7 +5,6 @@ import com.aiuta.fashionsdk.internal.analytics.InternalAiutaAnalytic
 import com.aiuta.fashionsdk.internal.analytics.internalAiutaAnalytic
 import com.aiuta.fashionsdk.logger.AiutaLogger
 import com.aiuta.fashionsdk.network.paging.models.PageContainer
-import com.aiuta.fashionsdk.network.paging.models.PaginationOffset
 import com.aiuta.fashionsdk.tryon.core.AiutaTryOn
 import com.aiuta.fashionsdk.tryon.core.data.datasource.image.models.UploadedImage
 import com.aiuta.fashionsdk.tryon.core.data.datasource.operation.FashionProductOperationsDataSource
@@ -16,7 +15,6 @@ import com.aiuta.fashionsdk.tryon.core.data.datasource.sku.productDataSourceFact
 import com.aiuta.fashionsdk.tryon.core.domain.analytic.sendInitTryOnEvent
 import com.aiuta.fashionsdk.tryon.core.domain.analytic.sendStartTryOnEvent
 import com.aiuta.fashionsdk.tryon.core.domain.analytic.sendTryOnPhotoUploadedEvent
-import com.aiuta.fashionsdk.tryon.core.domain.models.ProductCatalog
 import com.aiuta.fashionsdk.tryon.core.domain.models.ProductGenerationContainer
 import com.aiuta.fashionsdk.tryon.core.domain.models.ProductGenerationItem
 import com.aiuta.fashionsdk.tryon.core.domain.models.ProductGenerationPlatformImageContainer
@@ -48,39 +46,20 @@ internal class AiutaTryOnImpl(
     private val productDataSource: FashionProductDataSource,
     private val productOperationsDataSource: FashionProductOperationsDataSource,
 ) : AiutaTryOn {
-    override suspend fun getProductCatalogs(
-        paginationOffset: PaginationOffset?,
-        paginationLimit: Int?,
-    ): PageContainer<ProductCatalog> {
-        val skuCatalogs = productDataSource.getProductCatalogs(
-            paginationOffset = paginationOffset,
-            paginationLimit,
-        )
-
-        return PageContainer(
-            result = skuCatalogs.result.map { it.toPublic() },
-            beforeKey = skuCatalogs.beforeKey,
-            afterKey = skuCatalogs.afterKey,
-            errors = skuCatalogs.errors,
-        )
-    }
 
     override suspend fun getProductItems(
-        catalogName: String,
-        paginationOffset: PaginationOffset?,
+        paginationOffset: Int?,
         paginationLimit: Int?,
     ): PageContainer<ProductGenerationItem> {
         val skuDTOs = productDataSource.getProductItems(
-            productCatalogName = catalogName,
             paginationOffset = paginationOffset,
             paginationLimit = paginationLimit,
         )
 
         return PageContainer(
-            result = skuDTOs.result.map { it.toPublic() },
-            beforeKey = skuDTOs.beforeKey,
-            afterKey = skuDTOs.afterKey,
-            errors = skuDTOs.errors,
+            items = skuDTOs.items.map { it.toPublic() },
+            total = skuDTOs.total,
+            nextOffset = skuDTOs.nextOffset,
         )
     }
 

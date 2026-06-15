@@ -4,9 +4,7 @@ import com.aiuta.fashionsdk.Aiuta
 import com.aiuta.fashionsdk.network.exceptions.FashionIOException
 import com.aiuta.fashionsdk.network.exceptions.FashionNetworkDisconnectedException
 import com.aiuta.fashionsdk.network.paging.models.PageContainer
-import com.aiuta.fashionsdk.network.paging.models.PaginationOffset
 import com.aiuta.fashionsdk.tryon.core.domain.AiutaTryOnImpl
-import com.aiuta.fashionsdk.tryon.core.domain.models.ProductCatalog
 import com.aiuta.fashionsdk.tryon.core.domain.models.ProductGenerationContainer
 import com.aiuta.fashionsdk.tryon.core.domain.models.ProductGenerationItem
 import com.aiuta.fashionsdk.tryon.core.domain.models.ProductGenerationStatus
@@ -24,31 +22,17 @@ public val Aiuta.tryon: AiutaTryOn
  * Entry point for all functionality of Digital try on
  */
 public interface AiutaTryOn {
-    /**
-     * Get new page of [ProductCatalog]
-     *
-     * @param paginationOffset Offset for new page request
-     * @param paginationLimit Limit for items in page
-     * @throws FashionIOException If the backend returns an error response
-     * @throws FashionNetworkDisconnectedException If the network is unavailable
-     */
-    public suspend fun getProductCatalogs(
-        paginationOffset: PaginationOffset? = null,
-        paginationLimit: Int? = null,
-    ): PageContainer<ProductCatalog>
 
     /**
      * Get new page of [ProductGenerationItem]
      *
-     * @param catalogName Name of catalog for concrete product
      * @param paginationOffset Offset for new page request
      * @param paginationLimit Limit for items in page
      * @throws FashionIOException If the backend returns an error response
      * @throws FashionNetworkDisconnectedException If the network is unavailable
      */
     public suspend fun getProductItems(
-        catalogName: String,
-        paginationOffset: PaginationOffset? = null,
+        paginationOffset: Int? = null,
         paginationLimit: Int? = null,
     ): PageContainer<ProductGenerationItem>
 

@@ -8,7 +8,7 @@ internal data class CreateProductOperationResponse(
     @SerialName("details")
     val details: String? = null,
     @SerialName("errors")
-    val errors: List<String>,
+    val errors: List<String>?,
     @SerialName("operation_id")
     val operationId: String,
 )

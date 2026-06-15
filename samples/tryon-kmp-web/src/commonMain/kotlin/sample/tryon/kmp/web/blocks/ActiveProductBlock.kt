@@ -9,7 +9,6 @@ import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.aspectRatio
 import androidx.compose.foundation.layout.fillMaxWidth
-import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.shape.RoundedCornerShape
@@ -95,15 +94,6 @@ private fun ActiveProductBlockContent(
             modifier = Modifier.weight(1f),
             verticalArrangement = Arrangement.Center,
         ) {
-            product.catalogName?.let {
-                Text(
-                    text = it,
-                    style = MaterialTheme.typography.body1,
-                )
-
-                Spacer(Modifier.height(8.dp))
-            }
-
             Text(
                 text = product.title,
                 style = MaterialTheme.typography.body2,
