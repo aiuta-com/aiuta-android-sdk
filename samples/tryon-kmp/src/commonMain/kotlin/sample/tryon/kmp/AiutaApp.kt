@@ -8,6 +8,7 @@ import androidx.compose.runtime.remember
 import androidx.compose.ui.Modifier
 import androidx.lifecycle.viewmodel.compose.viewModel
 import com.aiuta.fashionsdk.compose.core.context.LocalAiutaPlatformContext
+import com.aiuta.fashionsdk.configuration.mode.AiutaMode
 import com.aiuta.fashionsdk.sizefit.compose.ui.AiutaSizeFitFlow
 import com.aiuta.fashionsdk.tryon.compose.ui.AiutaTryOnFlow
 import com.aiuta.fashionsdk.tryon.compose.ui.HistoryFlow
@@ -57,6 +58,7 @@ fun AiutaApp() {
                     modifier = Modifier.fillMaxSize(),
                     aiutaConfiguration = aiutaConfiguration,
                     productConfiguration = mockProductConfiguration,
+                    mode = AiutaMode.GENERAL,
                 )
             }
         }

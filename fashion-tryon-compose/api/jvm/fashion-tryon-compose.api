@@ -33,6 +33,7 @@ public final class com/aiuta/fashionsdk/tryon/compose/ui/internal/screens/select
 	public static final field INSTANCE Lcom/aiuta/fashionsdk/tryon/compose/ui/internal/screens/selector/components/body/ComposableSingletons$ImageSelectorPhotoKt;
 	public fun <init> ()V
 	public final fun getLambda$-1680946254$com_aiuta_fashion_tryon_compose ()Lkotlin/jvm/functions/Function3;
+	public final fun getLambda$472443412$com_aiuta_fashion_tryon_compose ()Lkotlin/jvm/functions/Function4;
 }
 
 public final class com/aiuta/fashionsdk/tryon/compose/ui/internal/screens/selector/components/footer/ComposableSingletons$ImageSelectorFooterKt {

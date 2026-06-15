@@ -2,6 +2,7 @@ package com.aiuta.fashionsdk.compose.uikit.composition
 
 import androidx.compose.runtime.ProvidableCompositionLocal
 import androidx.compose.runtime.staticCompositionLocalOf
+import com.aiuta.fashionsdk.configuration.AiutaConfiguration
 import com.aiuta.fashionsdk.configuration.experimental.AiutaExperimentalSettings
 import com.aiuta.fashionsdk.configuration.experimental.DefaultAiutaExperimentalSettings
 import com.aiuta.fashionsdk.configuration.features.AiutaFeatures
@@ -32,6 +33,15 @@ public val LocalAiutaFeatures: ProvidableCompositionLocal<AiutaFeatures> =
 public val LocalAiutaExperimentalSettings: ProvidableCompositionLocal<AiutaExperimentalSettings> =
     staticCompositionLocalOf {
         noLocalProvidedFor("LocalAiutaExperimentalSettings")
+    }
+
+/**
+ * A composition local that provides access to the current [AiutaConfiguration].
+ * This can be used to access the full SDK configuration throughout the composition tree.
+ */
+public val LocalAiutaConfiguration: ProvidableCompositionLocal<AiutaConfiguration> =
+    staticCompositionLocalOf {
+        noLocalProvidedFor("AiutaConfiguration")
     }
 
 /**

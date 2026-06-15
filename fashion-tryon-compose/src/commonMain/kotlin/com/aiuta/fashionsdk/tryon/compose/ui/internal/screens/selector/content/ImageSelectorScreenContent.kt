@@ -4,11 +4,9 @@ import androidx.compose.animation.AnimatedContent
 import androidx.compose.animation.core.updateTransition
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Column
-import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.WindowInsets
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
-import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.navigationBars
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.windowInsetsPadding
@@ -58,8 +56,6 @@ internal fun ImageSelectorScreenContent(modifier: Modifier = Modifier) {
                 .padding(horizontal = 16.dp),
             title = tryOnFeature.strings.tryOnPageTitle,
         )
-
-        Spacer(Modifier.height(16.dp))
 
         screenStateTransition.AnimatedContent(
             modifier = Modifier

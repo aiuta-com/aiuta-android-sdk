@@ -42,20 +42,6 @@ final enum class com.aiuta.fashionsdk.configuration.features.models.images/Aiuta
     final fun values(): kotlin/Array<com.aiuta.fashionsdk.configuration.features.models.images/AiutaOwnerType> // com.aiuta.fashionsdk.configuration.features.models.images/AiutaOwnerType.values|values#static(){}[0]
 }
 
-final enum class com.aiuta.fashionsdk.configuration.features.styles/AiutaComponentStyle : kotlin/Enum<com.aiuta.fashionsdk.configuration.features.styles/AiutaComponentStyle> { // com.aiuta.fashionsdk.configuration.features.styles/AiutaComponentStyle|null[0]
-    enum entry BLURRED // com.aiuta.fashionsdk.configuration.features.styles/AiutaComponentStyle.BLURRED|null[0]
-    enum entry BLURRED_WITH_OUTLINE // com.aiuta.fashionsdk.configuration.features.styles/AiutaComponentStyle.BLURRED_WITH_OUTLINE|null[0]
-    enum entry BRAND // com.aiuta.fashionsdk.configuration.features.styles/AiutaComponentStyle.BRAND|null[0]
-    enum entry CONTRAST // com.aiuta.fashionsdk.configuration.features.styles/AiutaComponentStyle.CONTRAST|null[0]
-    enum entry CONTRAST_INVERTED // com.aiuta.fashionsdk.configuration.features.styles/AiutaComponentStyle.CONTRAST_INVERTED|null[0]
-
-    final val entries // com.aiuta.fashionsdk.configuration.features.styles/AiutaComponentStyle.entries|#static{}entries[0]
-        final fun <get-entries>(): kotlin.enums/EnumEntries<com.aiuta.fashionsdk.configuration.features.styles/AiutaComponentStyle> // com.aiuta.fashionsdk.configuration.features.styles/AiutaComponentStyle.entries.<get-entries>|<get-entries>#static(){}[0]
-
-    final fun valueOf(kotlin/String): com.aiuta.fashionsdk.configuration.features.styles/AiutaComponentStyle // com.aiuta.fashionsdk.configuration.features.styles/AiutaComponentStyle.valueOf|valueOf#static(kotlin.String){}[0]
-    final fun values(): kotlin/Array<com.aiuta.fashionsdk.configuration.features.styles/AiutaComponentStyle> // com.aiuta.fashionsdk.configuration.features.styles/AiutaComponentStyle.values|values#static(){}[0]
-}
-
 final enum class com.aiuta.fashionsdk.configuration.mode/AiutaMode : kotlin/Enum<com.aiuta.fashionsdk.configuration.mode/AiutaMode> { // com.aiuta.fashionsdk.configuration.mode/AiutaMode|null[0]
     enum entry GENERAL // com.aiuta.fashionsdk.configuration.mode/AiutaMode.GENERAL|null[0]
     enum entry SHOES // com.aiuta.fashionsdk.configuration.mode/AiutaMode.SHOES|null[0]
@@ -308,21 +294,9 @@ abstract interface com.aiuta.fashionsdk.configuration.features.picker.history.st
     }
 }
 
-abstract interface com.aiuta.fashionsdk.configuration.features.picker.history.styles/AiutaImagePickerUploadsHistoryFeatureStyles { // com.aiuta.fashionsdk.configuration.features.picker.history.styles/AiutaImagePickerUploadsHistoryFeatureStyles|null[0]
-    abstract val changePhotoButtonStyle // com.aiuta.fashionsdk.configuration.features.picker.history.styles/AiutaImagePickerUploadsHistoryFeatureStyles.changePhotoButtonStyle|{}changePhotoButtonStyle[0]
-        abstract fun <get-changePhotoButtonStyle>(): com.aiuta.fashionsdk.configuration.features.styles/AiutaComponentStyle // com.aiuta.fashionsdk.configuration.features.picker.history.styles/AiutaImagePickerUploadsHistoryFeatureStyles.changePhotoButtonStyle.<get-changePhotoButtonStyle>|<get-changePhotoButtonStyle>(){}[0]
-
-    final class Default : com.aiuta.fashionsdk.configuration.features.picker.history.styles/AiutaImagePickerUploadsHistoryFeatureStyles { // com.aiuta.fashionsdk.configuration.features.picker.history.styles/AiutaImagePickerUploadsHistoryFeatureStyles.Default|null[0]
-        constructor <init>() // com.aiuta.fashionsdk.configuration.features.picker.history.styles/AiutaImagePickerUploadsHistoryFeatureStyles.Default.<init>|<init>(){}[0]
-
-        final val changePhotoButtonStyle // com.aiuta.fashionsdk.configuration.features.picker.history.styles/AiutaImagePickerUploadsHistoryFeatureStyles.Default.changePhotoButtonStyle|{}changePhotoButtonStyle[0]
-            final fun <get-changePhotoButtonStyle>(): com.aiuta.fashionsdk.configuration.features.styles/AiutaComponentStyle // com.aiuta.fashionsdk.configuration.features.picker.history.styles/AiutaImagePickerUploadsHistoryFeatureStyles.Default.changePhotoButtonStyle.<get-changePhotoButtonStyle>|<get-changePhotoButtonStyle>(){}[0]
-    }
-}
-
 abstract interface com.aiuta.fashionsdk.configuration.features.picker.images/AiutaImagePickerFeatureImages { // com.aiuta.fashionsdk.configuration.features.picker.images/AiutaImagePickerFeatureImages|null[0]
-    abstract val examples // com.aiuta.fashionsdk.configuration.features.picker.images/AiutaImagePickerFeatureImages.examples|{}examples[0]
-        abstract fun <get-examples>(): kotlin.collections/List<com.aiuta.fashionsdk.compose.resources.drawable/AiutaDrawableResource> // com.aiuta.fashionsdk.configuration.features.picker.images/AiutaImagePickerFeatureImages.examples.<get-examples>|<get-examples>(){}[0]
+    abstract val example // com.aiuta.fashionsdk.configuration.features.picker.images/AiutaImagePickerFeatureImages.example|{}example[0]
+        abstract fun <get-example>(): com.aiuta.fashionsdk.compose.resources.media/AiutaMedia // com.aiuta.fashionsdk.configuration.features.picker.images/AiutaImagePickerFeatureImages.example.<get-example>|<get-example>(){}[0]
 }
 
 abstract interface com.aiuta.fashionsdk.configuration.features.picker.model.icons/AiutaImagePickerPredefinedModelFeatureIcons { // com.aiuta.fashionsdk.configuration.features.picker.model.icons/AiutaImagePickerPredefinedModelFeatureIcons|null[0]
@@ -711,16 +685,12 @@ abstract interface com.aiuta.fashionsdk.configuration.features.tryon.loading.str
 abstract interface com.aiuta.fashionsdk.configuration.features.tryon.loading.styles/AiutaTryOnLoadingPageFeatureStyles { // com.aiuta.fashionsdk.configuration.features.tryon.loading.styles/AiutaTryOnLoadingPageFeatureStyles|null[0]
     abstract val loadingStatusBackgroundGradient // com.aiuta.fashionsdk.configuration.features.tryon.loading.styles/AiutaTryOnLoadingPageFeatureStyles.loadingStatusBackgroundGradient|{}loadingStatusBackgroundGradient[0]
         abstract fun <get-loadingStatusBackgroundGradient>(): kotlin.collections/List<androidx.compose.ui.graphics/Color>? // com.aiuta.fashionsdk.configuration.features.tryon.loading.styles/AiutaTryOnLoadingPageFeatureStyles.loadingStatusBackgroundGradient.<get-loadingStatusBackgroundGradient>|<get-loadingStatusBackgroundGradient>(){}[0]
-    abstract val loadingStatusStyle // com.aiuta.fashionsdk.configuration.features.tryon.loading.styles/AiutaTryOnLoadingPageFeatureStyles.loadingStatusStyle|{}loadingStatusStyle[0]
-        abstract fun <get-loadingStatusStyle>(): com.aiuta.fashionsdk.configuration.features.styles/AiutaComponentStyle // com.aiuta.fashionsdk.configuration.features.tryon.loading.styles/AiutaTryOnLoadingPageFeatureStyles.loadingStatusStyle.<get-loadingStatusStyle>|<get-loadingStatusStyle>(){}[0]
 
     final class Default : com.aiuta.fashionsdk.configuration.features.tryon.loading.styles/AiutaTryOnLoadingPageFeatureStyles { // com.aiuta.fashionsdk.configuration.features.tryon.loading.styles/AiutaTryOnLoadingPageFeatureStyles.Default|null[0]
         constructor <init>() // com.aiuta.fashionsdk.configuration.features.tryon.loading.styles/AiutaTryOnLoadingPageFeatureStyles.Default.<init>|<init>(){}[0]
 
         final val loadingStatusBackgroundGradient // com.aiuta.fashionsdk.configuration.features.tryon.loading.styles/AiutaTryOnLoadingPageFeatureStyles.Default.loadingStatusBackgroundGradient|{}loadingStatusBackgroundGradient[0]
             final fun <get-loadingStatusBackgroundGradient>(): kotlin.collections/List<androidx.compose.ui.graphics/Color> // com.aiuta.fashionsdk.configuration.features.tryon.loading.styles/AiutaTryOnLoadingPageFeatureStyles.Default.loadingStatusBackgroundGradient.<get-loadingStatusBackgroundGradient>|<get-loadingStatusBackgroundGradient>(){}[0]
-        final val loadingStatusStyle // com.aiuta.fashionsdk.configuration.features.tryon.loading.styles/AiutaTryOnLoadingPageFeatureStyles.Default.loadingStatusStyle|{}loadingStatusStyle[0]
-            final fun <get-loadingStatusStyle>(): com.aiuta.fashionsdk.configuration.features.styles/AiutaComponentStyle // com.aiuta.fashionsdk.configuration.features.tryon.loading.styles/AiutaTryOnLoadingPageFeatureStyles.Default.loadingStatusStyle.<get-loadingStatusStyle>|<get-loadingStatusStyle>(){}[0]
     }
 }
 
@@ -894,8 +864,8 @@ abstract interface com.aiuta.fashionsdk.configuration.mode.shoes.onboarding.stri
 }
 
 abstract interface com.aiuta.fashionsdk.configuration.mode.shoes.picker.images/AiutaShoesModeImagePickerImages { // com.aiuta.fashionsdk.configuration.mode.shoes.picker.images/AiutaShoesModeImagePickerImages|null[0]
-    abstract val example // com.aiuta.fashionsdk.configuration.mode.shoes.picker.images/AiutaShoesModeImagePickerImages.example|{}example[0]
-        abstract fun <get-example>(): com.aiuta.fashionsdk.compose.resources.drawable/AiutaDrawableResource // com.aiuta.fashionsdk.configuration.mode.shoes.picker.images/AiutaShoesModeImagePickerImages.example.<get-example>|<get-example>(){}[0]
+    abstract val shoesExample // com.aiuta.fashionsdk.configuration.mode.shoes.picker.images/AiutaShoesModeImagePickerImages.shoesExample|{}shoesExample[0]
+        abstract fun <get-shoesExample>(): com.aiuta.fashionsdk.compose.resources.media/AiutaMedia // com.aiuta.fashionsdk.configuration.mode.shoes.picker.images/AiutaShoesModeImagePickerImages.shoesExample.<get-shoesExample>|<get-shoesExample>(){}[0]
 }
 
 abstract interface com.aiuta.fashionsdk.configuration.mode.shoes.picker.model.strings/AiutaShoesModeImagePickerPredefinedModelsStrings { // com.aiuta.fashionsdk.configuration.mode.shoes.picker.model.strings/AiutaShoesModeImagePickerPredefinedModelsStrings|null[0]
@@ -1359,12 +1329,14 @@ abstract class com.aiuta.fashionsdk.configuration.ui.theme.sheet.shapes/AiutaBot
 }
 
 final class com.aiuta.fashionsdk.configuration.debug/AiutaDebugSettings { // com.aiuta.fashionsdk.configuration.debug/AiutaDebugSettings|null[0]
-    constructor <init>(com.aiuta.fashionsdk.configuration.debug/AiutaValidationPolicy, com.aiuta.fashionsdk.configuration.debug/AiutaValidationPolicy) // com.aiuta.fashionsdk.configuration.debug/AiutaDebugSettings.<init>|<init>(com.aiuta.fashionsdk.configuration.debug.AiutaValidationPolicy;com.aiuta.fashionsdk.configuration.debug.AiutaValidationPolicy){}[0]
+    constructor <init>(com.aiuta.fashionsdk.configuration.debug/AiutaValidationPolicy, com.aiuta.fashionsdk.configuration.debug/AiutaValidationPolicy, com.aiuta.fashionsdk.configuration.debug/AiutaValidationPolicy) // com.aiuta.fashionsdk.configuration.debug/AiutaDebugSettings.<init>|<init>(com.aiuta.fashionsdk.configuration.debug.AiutaValidationPolicy;com.aiuta.fashionsdk.configuration.debug.AiutaValidationPolicy;com.aiuta.fashionsdk.configuration.debug.AiutaValidationPolicy){}[0]
 
     final val emptyStringsPolicy // com.aiuta.fashionsdk.configuration.debug/AiutaDebugSettings.emptyStringsPolicy|{}emptyStringsPolicy[0]
         final fun <get-emptyStringsPolicy>(): com.aiuta.fashionsdk.configuration.debug/AiutaValidationPolicy // com.aiuta.fashionsdk.configuration.debug/AiutaDebugSettings.emptyStringsPolicy.<get-emptyStringsPolicy>|<get-emptyStringsPolicy>(){}[0]
     final val listSizePolicy // com.aiuta.fashionsdk.configuration.debug/AiutaDebugSettings.listSizePolicy|{}listSizePolicy[0]
         final fun <get-listSizePolicy>(): com.aiuta.fashionsdk.configuration.debug/AiutaValidationPolicy // com.aiuta.fashionsdk.configuration.debug/AiutaDebugSettings.listSizePolicy.<get-listSizePolicy>|<get-listSizePolicy>(){}[0]
+    final val modeFallbackPolicy // com.aiuta.fashionsdk.configuration.debug/AiutaDebugSettings.modeFallbackPolicy|{}modeFallbackPolicy[0]
+        final fun <get-modeFallbackPolicy>(): com.aiuta.fashionsdk.configuration.debug/AiutaValidationPolicy // com.aiuta.fashionsdk.configuration.debug/AiutaDebugSettings.modeFallbackPolicy.<get-modeFallbackPolicy>|<get-modeFallbackPolicy>(){}[0]
 }
 
 final class com.aiuta.fashionsdk.configuration.experimental/AiutaExperimentalSettings { // com.aiuta.fashionsdk.configuration.experimental/AiutaExperimentalSettings|null[0]
@@ -1649,14 +1621,12 @@ final class com.aiuta.fashionsdk.configuration.features.picker.gallery/AiutaImag
 }
 
 final class com.aiuta.fashionsdk.configuration.features.picker.history/AiutaImagePickerUploadsHistoryFeature : com.aiuta.fashionsdk.configuration.features/AiutaFeature { // com.aiuta.fashionsdk.configuration.features.picker.history/AiutaImagePickerUploadsHistoryFeature|null[0]
-    constructor <init>(com.aiuta.fashionsdk.configuration.features.picker.history.strings/AiutaImagePickerUploadsHistoryFeatureStrings, com.aiuta.fashionsdk.configuration.features.picker.history.styles/AiutaImagePickerUploadsHistoryFeatureStyles, com.aiuta.fashionsdk.configuration.features.picker.history.dataprovider/AiutaImagePickerUploadsHistoryFeatureDataProvider) // com.aiuta.fashionsdk.configuration.features.picker.history/AiutaImagePickerUploadsHistoryFeature.<init>|<init>(com.aiuta.fashionsdk.configuration.features.picker.history.strings.AiutaImagePickerUploadsHistoryFeatureStrings;com.aiuta.fashionsdk.configuration.features.picker.history.styles.AiutaImagePickerUploadsHistoryFeatureStyles;com.aiuta.fashionsdk.configuration.features.picker.history.dataprovider.AiutaImagePickerUploadsHistoryFeatureDataProvider){}[0]
+    constructor <init>(com.aiuta.fashionsdk.configuration.features.picker.history.strings/AiutaImagePickerUploadsHistoryFeatureStrings, com.aiuta.fashionsdk.configuration.features.picker.history.dataprovider/AiutaImagePickerUploadsHistoryFeatureDataProvider) // com.aiuta.fashionsdk.configuration.features.picker.history/AiutaImagePickerUploadsHistoryFeature.<init>|<init>(com.aiuta.fashionsdk.configuration.features.picker.history.strings.AiutaImagePickerUploadsHistoryFeatureStrings;com.aiuta.fashionsdk.configuration.features.picker.history.dataprovider.AiutaImagePickerUploadsHistoryFeatureDataProvider){}[0]
 
     final val dataProvider // com.aiuta.fashionsdk.configuration.features.picker.history/AiutaImagePickerUploadsHistoryFeature.dataProvider|{}dataProvider[0]
         final fun <get-dataProvider>(): com.aiuta.fashionsdk.configuration.features.picker.history.dataprovider/AiutaImagePickerUploadsHistoryFeatureDataProvider // com.aiuta.fashionsdk.configuration.features.picker.history/AiutaImagePickerUploadsHistoryFeature.dataProvider.<get-dataProvider>|<get-dataProvider>(){}[0]
     final val strings // com.aiuta.fashionsdk.configuration.features.picker.history/AiutaImagePickerUploadsHistoryFeature.strings|{}strings[0]
         final fun <get-strings>(): com.aiuta.fashionsdk.configuration.features.picker.history.strings/AiutaImagePickerUploadsHistoryFeatureStrings // com.aiuta.fashionsdk.configuration.features.picker.history/AiutaImagePickerUploadsHistoryFeature.strings.<get-strings>|<get-strings>(){}[0]
-    final val styles // com.aiuta.fashionsdk.configuration.features.picker.history/AiutaImagePickerUploadsHistoryFeature.styles|{}styles[0]
-        final fun <get-styles>(): com.aiuta.fashionsdk.configuration.features.picker.history.styles/AiutaImagePickerUploadsHistoryFeatureStyles // com.aiuta.fashionsdk.configuration.features.picker.history/AiutaImagePickerUploadsHistoryFeature.styles.<get-styles>|<get-styles>(){}[0]
 
     final class Builder : com.aiuta.fashionsdk.configuration.features/AiutaFeature.Builder { // com.aiuta.fashionsdk.configuration.features.picker.history/AiutaImagePickerUploadsHistoryFeature.Builder|null[0]
         constructor <init>() // com.aiuta.fashionsdk.configuration.features.picker.history/AiutaImagePickerUploadsHistoryFeature.Builder.<init>|<init>(){}[0]
@@ -1667,9 +1637,6 @@ final class com.aiuta.fashionsdk.configuration.features.picker.history/AiutaImag
         final var strings // com.aiuta.fashionsdk.configuration.features.picker.history/AiutaImagePickerUploadsHistoryFeature.Builder.strings|{}strings[0]
             final fun <get-strings>(): com.aiuta.fashionsdk.configuration.features.picker.history.strings/AiutaImagePickerUploadsHistoryFeatureStrings? // com.aiuta.fashionsdk.configuration.features.picker.history/AiutaImagePickerUploadsHistoryFeature.Builder.strings.<get-strings>|<get-strings>(){}[0]
             final fun <set-strings>(com.aiuta.fashionsdk.configuration.features.picker.history.strings/AiutaImagePickerUploadsHistoryFeatureStrings?) // com.aiuta.fashionsdk.configuration.features.picker.history/AiutaImagePickerUploadsHistoryFeature.Builder.strings.<set-strings>|<set-strings>(com.aiuta.fashionsdk.configuration.features.picker.history.strings.AiutaImagePickerUploadsHistoryFeatureStrings?){}[0]
-        final var styles // com.aiuta.fashionsdk.configuration.features.picker.history/AiutaImagePickerUploadsHistoryFeature.Builder.styles|{}styles[0]
-            final fun <get-styles>(): com.aiuta.fashionsdk.configuration.features.picker.history.styles/AiutaImagePickerUploadsHistoryFeatureStyles? // com.aiuta.fashionsdk.configuration.features.picker.history/AiutaImagePickerUploadsHistoryFeature.Builder.styles.<get-styles>|<get-styles>(){}[0]
-            final fun <set-styles>(com.aiuta.fashionsdk.configuration.features.picker.history.styles/AiutaImagePickerUploadsHistoryFeatureStyles?) // com.aiuta.fashionsdk.configuration.features.picker.history/AiutaImagePickerUploadsHistoryFeature.Builder.styles.<set-styles>|<set-styles>(com.aiuta.fashionsdk.configuration.features.picker.history.styles.AiutaImagePickerUploadsHistoryFeatureStyles?){}[0]
 
         final fun build(): com.aiuta.fashionsdk.configuration.features.picker.history/AiutaImagePickerUploadsHistoryFeature // com.aiuta.fashionsdk.configuration.features.picker.history/AiutaImagePickerUploadsHistoryFeature.Builder.build|build(){}[0]
     }
@@ -2790,7 +2757,6 @@ final val com.aiuta.fashionsdk.configuration.features.picker.gallery/com_aiuta_f
 final val com.aiuta.fashionsdk.configuration.features.picker.gallery/com_aiuta_fashionsdk_configuration_features_picker_gallery_AiutaImagePickerPhotoGalleryFeature_Builder$stableprop // com.aiuta.fashionsdk.configuration.features.picker.gallery/com_aiuta_fashionsdk_configuration_features_picker_gallery_AiutaImagePickerPhotoGalleryFeature_Builder$stableprop|#static{}com_aiuta_fashionsdk_configuration_features_picker_gallery_AiutaImagePickerPhotoGalleryFeature_Builder$stableprop[0]
 final val com.aiuta.fashionsdk.configuration.features.picker.history.dataprovider/com_aiuta_fashionsdk_configuration_features_picker_history_dataprovider_AiutaImagePickerUploadsHistoryFeatureDataProviderBuiltIn$stableprop // com.aiuta.fashionsdk.configuration.features.picker.history.dataprovider/com_aiuta_fashionsdk_configuration_features_picker_history_dataprovider_AiutaImagePickerUploadsHistoryFeatureDataProviderBuiltIn$stableprop|#static{}com_aiuta_fashionsdk_configuration_features_picker_history_dataprovider_AiutaImagePickerUploadsHistoryFeatureDataProviderBuiltIn$stableprop[0]
 final val com.aiuta.fashionsdk.configuration.features.picker.history.strings/com_aiuta_fashionsdk_configuration_features_picker_history_strings_AiutaImagePickerUploadsHistoryFeatureStrings_Default$stableprop // com.aiuta.fashionsdk.configuration.features.picker.history.strings/com_aiuta_fashionsdk_configuration_features_picker_history_strings_AiutaImagePickerUploadsHistoryFeatureStrings_Default$stableprop|#static{}com_aiuta_fashionsdk_configuration_features_picker_history_strings_AiutaImagePickerUploadsHistoryFeatureStrings_Default$stableprop[0]
-final val com.aiuta.fashionsdk.configuration.features.picker.history.styles/com_aiuta_fashionsdk_configuration_features_picker_history_styles_AiutaImagePickerUploadsHistoryFeatureStyles_Default$stableprop // com.aiuta.fashionsdk.configuration.features.picker.history.styles/com_aiuta_fashionsdk_configuration_features_picker_history_styles_AiutaImagePickerUploadsHistoryFeatureStyles_Default$stableprop|#static{}com_aiuta_fashionsdk_configuration_features_picker_history_styles_AiutaImagePickerUploadsHistoryFeatureStyles_Default$stableprop[0]
 final val com.aiuta.fashionsdk.configuration.features.picker.history/com_aiuta_fashionsdk_configuration_features_picker_history_AiutaImagePickerUploadsHistoryFeature$stableprop // com.aiuta.fashionsdk.configuration.features.picker.history/com_aiuta_fashionsdk_configuration_features_picker_history_AiutaImagePickerUploadsHistoryFeature$stableprop|#static{}com_aiuta_fashionsdk_configuration_features_picker_history_AiutaImagePickerUploadsHistoryFeature$stableprop[0]
 final val com.aiuta.fashionsdk.configuration.features.picker.history/com_aiuta_fashionsdk_configuration_features_picker_history_AiutaImagePickerUploadsHistoryFeature_Builder$stableprop // com.aiuta.fashionsdk.configuration.features.picker.history/com_aiuta_fashionsdk_configuration_features_picker_history_AiutaImagePickerUploadsHistoryFeature_Builder$stableprop|#static{}com_aiuta_fashionsdk_configuration_features_picker_history_AiutaImagePickerUploadsHistoryFeature_Builder$stableprop[0]
 final val com.aiuta.fashionsdk.configuration.features.picker.model.data/com_aiuta_fashionsdk_configuration_features_picker_model_data_AiutaImagePickerPredefinedModelFeatureData$stableprop // com.aiuta.fashionsdk.configuration.features.picker.model.data/com_aiuta_fashionsdk_configuration_features_picker_model_data_AiutaImagePickerPredefinedModelFeatureData$stableprop|#static{}com_aiuta_fashionsdk_configuration_features_picker_model_data_AiutaImagePickerPredefinedModelFeatureData$stableprop[0]
@@ -2957,7 +2923,6 @@ final fun com.aiuta.fashionsdk.configuration.features.picker.gallery/com_aiuta_f
 final fun com.aiuta.fashionsdk.configuration.features.picker.gallery/com_aiuta_fashionsdk_configuration_features_picker_gallery_AiutaImagePickerPhotoGalleryFeature_Builder$stableprop_getter(): kotlin/Int // com.aiuta.fashionsdk.configuration.features.picker.gallery/com_aiuta_fashionsdk_configuration_features_picker_gallery_AiutaImagePickerPhotoGalleryFeature_Builder$stableprop_getter|com_aiuta_fashionsdk_configuration_features_picker_gallery_AiutaImagePickerPhotoGalleryFeature_Builder$stableprop_getter(){}[0]
 final fun com.aiuta.fashionsdk.configuration.features.picker.history.dataprovider/com_aiuta_fashionsdk_configuration_features_picker_history_dataprovider_AiutaImagePickerUploadsHistoryFeatureDataProviderBuiltIn$stableprop_getter(): kotlin/Int // com.aiuta.fashionsdk.configuration.features.picker.history.dataprovider/com_aiuta_fashionsdk_configuration_features_picker_history_dataprovider_AiutaImagePickerUploadsHistoryFeatureDataProviderBuiltIn$stableprop_getter|com_aiuta_fashionsdk_configuration_features_picker_history_dataprovider_AiutaImagePickerUploadsHistoryFeatureDataProviderBuiltIn$stableprop_getter(){}[0]
 final fun com.aiuta.fashionsdk.configuration.features.picker.history.strings/com_aiuta_fashionsdk_configuration_features_picker_history_strings_AiutaImagePickerUploadsHistoryFeatureStrings_Default$stableprop_getter(): kotlin/Int // com.aiuta.fashionsdk.configuration.features.picker.history.strings/com_aiuta_fashionsdk_configuration_features_picker_history_strings_AiutaImagePickerUploadsHistoryFeatureStrings_Default$stableprop_getter|com_aiuta_fashionsdk_configuration_features_picker_history_strings_AiutaImagePickerUploadsHistoryFeatureStrings_Default$stableprop_getter(){}[0]
-final fun com.aiuta.fashionsdk.configuration.features.picker.history.styles/com_aiuta_fashionsdk_configuration_features_picker_history_styles_AiutaImagePickerUploadsHistoryFeatureStyles_Default$stableprop_getter(): kotlin/Int // com.aiuta.fashionsdk.configuration.features.picker.history.styles/com_aiuta_fashionsdk_configuration_features_picker_history_styles_AiutaImagePickerUploadsHistoryFeatureStyles_Default$stableprop_getter|com_aiuta_fashionsdk_configuration_features_picker_history_styles_AiutaImagePickerUploadsHistoryFeatureStyles_Default$stableprop_getter(){}[0]
 final fun com.aiuta.fashionsdk.configuration.features.picker.history/com_aiuta_fashionsdk_configuration_features_picker_history_AiutaImagePickerUploadsHistoryFeature$stableprop_getter(): kotlin/Int // com.aiuta.fashionsdk.configuration.features.picker.history/com_aiuta_fashionsdk_configuration_features_picker_history_AiutaImagePickerUploadsHistoryFeature$stableprop_getter|com_aiuta_fashionsdk_configuration_features_picker_history_AiutaImagePickerUploadsHistoryFeature$stableprop_getter(){}[0]
 final fun com.aiuta.fashionsdk.configuration.features.picker.history/com_aiuta_fashionsdk_configuration_features_picker_history_AiutaImagePickerUploadsHistoryFeature_Builder$stableprop_getter(): kotlin/Int // com.aiuta.fashionsdk.configuration.features.picker.history/com_aiuta_fashionsdk_configuration_features_picker_history_AiutaImagePickerUploadsHistoryFeature_Builder$stableprop_getter|com_aiuta_fashionsdk_configuration_features_picker_history_AiutaImagePickerUploadsHistoryFeature_Builder$stableprop_getter(){}[0]
 final fun com.aiuta.fashionsdk.configuration.features.picker.model.data/com_aiuta_fashionsdk_configuration_features_picker_model_data_AiutaImagePickerPredefinedModelFeatureData$stableprop_getter(): kotlin/Int // com.aiuta.fashionsdk.configuration.features.picker.model.data/com_aiuta_fashionsdk_configuration_features_picker_model_data_AiutaImagePickerPredefinedModelFeatureData$stableprop_getter|com_aiuta_fashionsdk_configuration_features_picker_model_data_AiutaImagePickerPredefinedModelFeatureData$stableprop_getter(){}[0]
