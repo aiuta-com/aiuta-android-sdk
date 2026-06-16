@@ -1,4 +1,4 @@
-package com.aiuta.fashionsdk.tryon.compose.ui.internal.screens.model.components.loading
+package com.aiuta.fashionsdk.tryon.compose.ui.internal.screens.model.general.components.loading
 
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column

@@ -1,4 +1,4 @@
-package com.aiuta.fashionsdk.tryon.compose.ui.internal.screens.model.components.appbar
+package com.aiuta.fashionsdk.tryon.compose.ui.internal.screens.model.components.selector
 
 import androidx.compose.animation.animateColorAsState
 import androidx.compose.foundation.background
@@ -7,7 +7,6 @@ import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxHeight
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
-import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
@@ -16,7 +15,6 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.unit.dp
-import com.aiuta.fashionsdk.compose.core.size.rememberScreenSize
 import com.aiuta.fashionsdk.compose.uikit.composition.LocalTheme
 import com.aiuta.fashionsdk.compose.uikit.utils.clickableUnindicated
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.screens.model.general.models.GenderTabUiModel
@@ -30,12 +28,8 @@ internal fun GenderSelector(
 ) {
     val theme = LocalTheme.current
 
-    val screenSize = rememberScreenSize()
-    val selectorWidth = screenSize.widthDp * 0.6f
-
     Row(
         modifier = modifier
-            .width(selectorWidth)
             .height(40.dp)
             .clip(RoundedCornerShape(100.dp))
             .background(theme.color.neutral)

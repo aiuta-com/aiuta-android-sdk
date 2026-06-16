@@ -41,6 +41,11 @@ internal abstract class TryOnScreen : AiutaNavigationScreen() {
         override val shouldSaveInBackStack: Boolean = false
     }
 
+    object ModelSelectorShoes : TryOnScreen() {
+        override val exitPageId: AiutaAnalyticsPageId = AiutaAnalyticsPageId.IMAGE_PICKER
+        override val shouldSaveInBackStack: Boolean = false
+    }
+
     object GenerationResult : TryOnScreen() {
         override val exitPageId: AiutaAnalyticsPageId = AiutaAnalyticsPageId.RESULTS
     }

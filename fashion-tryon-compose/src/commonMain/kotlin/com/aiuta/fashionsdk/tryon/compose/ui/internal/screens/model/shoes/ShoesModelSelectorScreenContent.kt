@@ -1,8 +1,9 @@
-package com.aiuta.fashionsdk.tryon.compose.ui.internal.screens.model.general
+package com.aiuta.fashionsdk.tryon.compose.ui.internal.screens.model.shoes
 
 import androidx.compose.animation.AnimatedContent
 import androidx.compose.animation.core.updateTransition
 import androidx.compose.foundation.background
+import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.WindowInsets
@@ -12,24 +13,24 @@ import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.navigationBars
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.windowInsetsPadding
+import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.State
-import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
 import com.aiuta.fashionsdk.compose.uikit.composition.LocalTheme
-import com.aiuta.fashionsdk.tryon.compose.ui.internal.screens.model.general.components.appbar.ModelSelectorAppBar
-import com.aiuta.fashionsdk.tryon.compose.ui.internal.screens.model.general.components.content.ModelSelectorShowContent
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.screens.model.components.error.ModelSelectorEmptyModelsErrorContent
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.screens.model.components.error.ModelSelectorGeneralErrorContent
-import com.aiuta.fashionsdk.tryon.compose.ui.internal.screens.model.general.components.loading.ModelSelectorLoadingContent
-import com.aiuta.fashionsdk.tryon.compose.ui.internal.screens.model.general.models.ModelSelectorScreenEvent
-import com.aiuta.fashionsdk.tryon.compose.ui.internal.screens.model.general.models.ModelSelectorScreenViewState
+import com.aiuta.fashionsdk.tryon.compose.ui.internal.screens.model.shoes.blocks.shoesModelsBlock
+import com.aiuta.fashionsdk.tryon.compose.ui.internal.screens.model.shoes.components.appbar.ShoesModelSelectorAppBar
+import com.aiuta.fashionsdk.tryon.compose.ui.internal.screens.model.shoes.components.loading.ShoesModelSelectorLoadingContent
+import com.aiuta.fashionsdk.tryon.compose.ui.internal.screens.model.shoes.models.ShoesModelSelectorScreenEvent
+import com.aiuta.fashionsdk.tryon.compose.ui.internal.screens.model.shoes.models.ShoesModelSelectorScreenViewState
 
 @Composable
-internal fun ModelSelectorScreenContent(
-    viewState: State<ModelSelectorScreenViewState>,
-    eventHandler: (ModelSelectorScreenEvent) -> Unit,
+internal fun ShoesModelSelectorScreenContent(
+    viewState: State<ShoesModelSelectorScreenViewState>,
+    eventHandler: (ShoesModelSelectorScreenEvent) -> Unit,
     modifier: Modifier = Modifier,
 ) {
     val theme = LocalTheme.current
@@ -41,18 +42,17 @@ internal fun ModelSelectorScreenContent(
         modifier = modifier
             .background(theme.color.background)
             .windowInsetsPadding(WindowInsets.navigationBars),
-        horizontalAlignment = Alignment.CenterHorizontally,
     ) {
-        ModelSelectorAppBar(
+        ShoesModelSelectorAppBar(
             modifier = Modifier
                 .fillMaxWidth()
                 .padding(horizontal = 16.dp),
             genders = viewState.value.genders,
             activeGenderId = viewState.value.activeGender?.id,
             onGenderClick = { genderId ->
-                eventHandler(ModelSelectorScreenEvent.GenderSelected(genderId))
+                eventHandler(ShoesModelSelectorScreenEvent.GenderSelected(genderId))
             },
-            onBack = { eventHandler(ModelSelectorScreenEvent.BackClicked) },
+            onBack = { eventHandler(ShoesModelSelectorScreenEvent.BackClicked) },
         )
 
         Spacer(Modifier.height(16.dp))
@@ -61,27 +61,34 @@ internal fun ModelSelectorScreenContent(
             modifier = Modifier.fillMaxSize(),
         ) { status ->
             when (status) {
-                ModelSelectorScreenViewState.Status.CONTENT -> {
-                    ModelSelectorShowContent(
+                ShoesModelSelectorScreenViewState.Status.CONTENT -> {
+                    LazyColumn(
                         modifier = sharedModifier,
-                        viewState = viewState,
-                        eventHandler = eventHandler,
-                    )
+                        verticalArrangement = Arrangement.spacedBy(24.dp),
+                    ) {
+                        viewState.value.activeGender?.let { activeGender ->
+                            shoesModelsBlock(
+                                activeGender = activeGender,
+                                theme = theme,
+                                eventHandler = eventHandler,
+                            )
+                        }
+                    }
                 }
 
-                ModelSelectorScreenViewState.Status.EMPTY_MODELS_ERROR -> {
+                ShoesModelSelectorScreenViewState.Status.EMPTY_MODELS_ERROR -> {
                     ModelSelectorEmptyModelsErrorContent(modifier = sharedModifier)
                 }
 
-                ModelSelectorScreenViewState.Status.GENERAL_ERROR -> {
+                ShoesModelSelectorScreenViewState.Status.GENERAL_ERROR -> {
                     ModelSelectorGeneralErrorContent(
                         modifier = sharedModifier,
-                        onRetry = { eventHandler(ModelSelectorScreenEvent.RetryClicked) },
+                        onRetry = { eventHandler(ShoesModelSelectorScreenEvent.RetryClicked) },
                     )
                 }
 
-                ModelSelectorScreenViewState.Status.LOADING -> {
-                    ModelSelectorLoadingContent(modifier = sharedModifier)
+                ShoesModelSelectorScreenViewState.Status.LOADING -> {
+                    ShoesModelSelectorLoadingContent(modifier = sharedModifier)
                 }
             }
         }

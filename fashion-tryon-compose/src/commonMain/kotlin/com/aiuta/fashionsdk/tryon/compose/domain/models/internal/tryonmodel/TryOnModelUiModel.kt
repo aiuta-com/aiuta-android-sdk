@@ -10,15 +10,23 @@ internal data class TryOnModelUiModel(
     val id: String,
     val url: String,
     val type: AiutaFileType,
-    val tags: Map<String, String>,
+    val tags: TryOnModelTags,
 )
 
-internal fun TryOnModelDTO.toUiModel(): TryOnModelUiModel = TryOnModelUiModel(
-    id = id,
-    url = url,
-    type = ownerType,
-    tags = tags,
-)
+/**
+ * Projects a DTO into the UI model, parsing its raw `tags` into a typed [TryOnModelTags]. Returns
+ * `null` when `gender`/`view` is missing or holds an unrecognized value — such models are simply
+ * not shown.
+ */
+internal fun TryOnModelDTO.toUiModel(): TryOnModelUiModel? {
+    val tags = tags.toTryOnModelTags() ?: return null
+    return TryOnModelUiModel(
+        id = id,
+        url = url,
+        type = ownerType,
+        tags = tags,
+    )
+}
 
 internal fun TryOnModelUiModel.toUrlImage(): UrlImage = UrlImage(
     imageId = id,

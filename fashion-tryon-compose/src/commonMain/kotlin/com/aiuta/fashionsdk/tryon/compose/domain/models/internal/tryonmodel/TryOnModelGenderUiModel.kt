@@ -16,29 +16,30 @@ internal data class TryOnModelGenderUiModel(
     val models: List<TryOnModelUiModel>,
 )
 
-internal const val TAG_GENDER = "gender"
-internal const val TAG_VIEW = "view"
-
 // The single `view` shown in the GENERAL flow
-internal const val VIEW_GENERAL = "full-height"
+private val VIEW_GENERAL = ModelView.FULL_HEIGHT
 
 /**
  * Builds the gender dimension for the GENERAL model selector from a flat list of models.
  *
- * Keeps only models with `view == `[VIEW_GENERAL], then groups them by their `gender` tag.
- * [predefinedModelCategories] is used purely to resolve a gender's title — genders without a tag
- * or without a matching label are skipped (no invented fallbacks). Gender order follows the models.
+ * Keeps only models with `view == `[VIEW_GENERAL], then builds one tab per [Gender.selectorGenders]
+ * value, folding [Gender.UNISEX] models into both. [predefinedModelCategories] resolves a gender's
+ * title — genders without a matching label or without any models are skipped (no invented
+ * fallbacks).
  */
 internal fun List<TryOnModelUiModel>.toGenders(
     predefinedModelCategories: Map<String, String>,
-): List<TryOnModelGenderUiModel> = this
-    .filter { model -> model.tags[TAG_VIEW] == VIEW_GENERAL }
-    .groupBy { model -> model.tags[TAG_GENDER] }
-    .mapNotNull { (genderId, genderModels) ->
-        val title = genderId?.let(predefinedModelCategories::get) ?: return@mapNotNull null
+): List<TryOnModelGenderUiModel> {
+    val generalModels = filter { model -> model.tags.view == VIEW_GENERAL }
+
+    return Gender.selectorGenders.mapNotNull { gender ->
+        val title = predefinedModelCategories[gender.id] ?: return@mapNotNull null
+        val models = generalModels.filter { model -> model.tags.gender.matches(gender) }
+        if (models.isEmpty()) return@mapNotNull null
         TryOnModelGenderUiModel(
-            id = genderId,
+            id = gender.id,
             title = title,
-            models = genderModels,
+            models = models,
         )
     }
+}

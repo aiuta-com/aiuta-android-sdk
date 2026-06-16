@@ -36,9 +36,10 @@ import com.aiuta.fashionsdk.internal.navigation.dialog.AiutaDialogState
 import com.aiuta.fashionsdk.tryon.compose.domain.models.internal.generated.images.LastSavedImages
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.analytic.sendPickerAnalytic
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.controller.activateAutoTryOn
+import com.aiuta.fashionsdk.tryon.compose.ui.internal.controller.composition.LocalAiutaMode
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.controller.composition.LocalController
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.navigation.TryOnBottomSheetScreen
-import com.aiuta.fashionsdk.tryon.compose.ui.internal.navigation.TryOnScreen
+import com.aiuta.fashionsdk.tryon.compose.ui.internal.screens.model.navigateToModelSelector
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.sheets.components.SheetDivider
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.sheets.picker.exceptions.NotSupportedImageSourceException
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.utils.permission.AiutaPickerSource
@@ -58,6 +59,7 @@ internal fun ImagePickerSheet(
     val dialogController = LocalAiutaDialogController.current
     val navigationController = LocalAiutaNavigationController.current
     val logger = LocalAiutaLogger.current
+    val mode = LocalAiutaMode.current
 
     val cameraFeature = provideFeature<AiutaImagePickerCameraFeature>()
     val photoGalleryFeature = provideFeature<AiutaImagePickerPhotoGalleryFeature>()
@@ -180,9 +182,7 @@ internal fun ImagePickerSheet(
 
                             is AiutaImagePickerPredefinedModelFeature -> {
                                 bottomSheetNavigator.hide()
-                                navigationController.navigateTo(
-                                    newScreen = TryOnScreen.ModelSelector,
-                                )
+                                navigationController.navigateToModelSelector(mode)
                             }
 
                             else -> throw NotSupportedImageSourceException()
