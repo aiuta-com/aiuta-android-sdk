@@ -5,14 +5,13 @@ import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.Immutable
 import androidx.compose.runtime.LaunchedEffect
+import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
+import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.graphics.ColorFilter
-import androidx.compose.ui.graphics.DefaultAlpha
-import androidx.compose.ui.layout.ContentScale
-import coil3.compose.SubcomposeAsyncImage
+import androidx.compose.ui.unit.Dp
 import com.aiuta.fashionsdk.compose.core.context.LocalAiutaPlatformContext
 import com.aiuta.fashionsdk.compose.uikit.internal.progress.ErrorProgress
 import com.aiuta.fashionsdk.io.AiutaPlatformFile
@@ -42,34 +41,33 @@ internal sealed interface AiutaPlatformImageLoadingState {
 }
 
 /**
- * A composable that displays an image from a platform-specific file.
- * This component handles loading states and errors automatically.
+ * Displays an image from a platform-specific file.
+ *
+ * Reads the file's bytes (showing [ErrorProgress] if that fails) and renders them through
+ * [AiutaAdaptiveImage], so platform files get the same adaptive cover / contain+blur treatment and
+ * view-sized decoding as URL images.
  *
  * @param platformFile The platform-specific file containing the image data
  * @param contentDescription The content description for accessibility
- * @param modifier The modifier to be applied to the image
+ * @param modifier The modifier to be applied to the container
+ * @param shapeDp The corner radius used to clip the image (and the shimmer placeholder)
  * @param alignment The alignment of the image within its bounds
- * @param contentScale The scale type of the image
- * @param alpha The alpha value for the image
- * @param colorFilter Optional color filter to be applied to the image
  */
 @Composable
-public fun AiutaPlatformImage(
+public fun AiutaPlatformAdaptiveImage(
     platformFile: AiutaPlatformFile,
     contentDescription: String?,
     modifier: Modifier = Modifier,
+    shapeDp: Dp? = null,
     alignment: Alignment = Alignment.Center,
-    contentScale: ContentScale = ContentScale.Fit,
-    alpha: Float = DefaultAlpha,
-    colorFilter: ColorFilter? = null,
 ) {
-    val imageState = remember {
+    val context = LocalAiutaPlatformContext.current
+    var imageState by remember {
         mutableStateOf<AiutaPlatformImageLoadingState>(AiutaPlatformImageLoadingState.Loading)
     }
-    val context = LocalAiutaPlatformContext.current
 
-    LaunchedEffect(Unit) {
-        imageState.value = try {
+    LaunchedEffect(platformFile) {
+        imageState = try {
             AiutaPlatformImageLoadingState.Success(platformFile.readByteArray(context))
         } catch (e: Exception) {
             AiutaPlatformImageLoadingState.Error
@@ -78,18 +76,16 @@ public fun AiutaPlatformImage(
 
     // Need box for more smooth transition
     Box(modifier = modifier) {
-        when (val state = imageState.value) {
+        when (val state = imageState) {
             is AiutaPlatformImageLoadingState.Loading -> Unit
-            is AiutaPlatformImageLoadingState.Error -> ErrorProgress(modifier = modifier)
+            is AiutaPlatformImageLoadingState.Error -> ErrorProgress(modifier = Modifier.fillMaxSize())
             is AiutaPlatformImageLoadingState.Success -> {
-                SubcomposeAsyncImage(
-                    modifier = Modifier.fillMaxSize(),
+                AiutaAdaptiveImage(
                     model = state.byteArray,
-                    contentScale = contentScale,
-                    alignment = alignment,
-                    alpha = alpha,
-                    colorFilter = colorFilter,
                     contentDescription = contentDescription,
+                    shapeDp = shapeDp,
+                    modifier = Modifier.fillMaxSize(),
+                    alignment = alignment,
                 )
             }
         }

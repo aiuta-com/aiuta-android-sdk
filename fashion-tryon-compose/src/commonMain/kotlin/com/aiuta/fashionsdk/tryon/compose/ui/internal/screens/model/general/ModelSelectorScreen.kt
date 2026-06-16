@@ -1,4 +1,4 @@
-package com.aiuta.fashionsdk.tryon.compose.ui.internal.screens.model
+package com.aiuta.fashionsdk.tryon.compose.ui.internal.screens.model.general
 
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
@@ -15,7 +15,7 @@ import com.aiuta.fashionsdk.tryon.compose.ui.internal.analytic.sendPickerAnalyti
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.controller.composition.LocalAiutaTryOnDataController
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.controller.composition.LocalController
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.navigation.TryOnScreen
-import com.aiuta.fashionsdk.tryon.compose.ui.internal.screens.model.models.ModelSelectorScreenAction
+import com.aiuta.fashionsdk.tryon.compose.ui.internal.screens.model.general.models.ModelSelectorScreenAction
 
 @Composable
 internal fun ModelSelectorScreen(modifier: Modifier = Modifier) {

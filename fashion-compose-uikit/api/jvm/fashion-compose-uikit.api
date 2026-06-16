@@ -74,6 +74,10 @@ public final class com/aiuta/fashionsdk/compose/uikit/indicator/PagerIndicatorKt
 	public static final fun PagerIndicator-8BndoHw (Landroidx/compose/ui/Modifier;Landroidx/compose/foundation/pager/PagerState;JIIFFFFLcom/aiuta/fashionsdk/compose/uikit/indicator/IndicatorOrientation;Landroidx/compose/runtime/Composer;II)V
 }
 
+public final class com/aiuta/fashionsdk/compose/uikit/resources/AiutaAdaptiveImageKt {
+	public static final fun AiutaAdaptiveImage-vtUHdqY (Ljava/lang/Object;Ljava/lang/String;Landroidx/compose/ui/unit/Dp;Landroidx/compose/ui/Modifier;Landroidx/compose/ui/Alignment;FLandroidx/compose/runtime/Composer;II)V
+}
+
 public final class com/aiuta/fashionsdk/compose/uikit/resources/AiutaIconKt {
 	public static final fun AiutaIcon-ww6aTOc (Lcom/aiuta/fashionsdk/compose/resources/drawable/AiutaIcon;Ljava/lang/String;Landroidx/compose/ui/Modifier;JLandroidx/compose/runtime/Composer;II)V
 }
@@ -85,7 +89,7 @@ public final class com/aiuta/fashionsdk/compose/uikit/resources/AiutaImageKt {
 }
 
 public final class com/aiuta/fashionsdk/compose/uikit/resources/AiutaPlatformImageKt {
-	public static final fun AiutaPlatformImage (Lcom/aiuta/fashionsdk/io/AiutaPlatformFile;Ljava/lang/String;Landroidx/compose/ui/Modifier;Landroidx/compose/ui/Alignment;Landroidx/compose/ui/layout/ContentScale;FLandroidx/compose/ui/graphics/ColorFilter;Landroidx/compose/runtime/Composer;II)V
+	public static final fun AiutaPlatformAdaptiveImage-oilTxCY (Lcom/aiuta/fashionsdk/io/AiutaPlatformFile;Ljava/lang/String;Landroidx/compose/ui/Modifier;Landroidx/compose/ui/unit/Dp;Landroidx/compose/ui/Alignment;Landroidx/compose/runtime/Composer;II)V
 }
 
 public final class com/aiuta/fashionsdk/compose/uikit/resources/AiutaVideoSurfaceKt {

@@ -29,13 +29,13 @@ import com.aiuta.fashionsdk.configuration.features.consent.AiutaConsentStandalon
 import com.aiuta.fashionsdk.configuration.features.picker.AiutaImagePickerFeature
 import com.aiuta.fashionsdk.configuration.features.picker.model.AiutaImagePickerPredefinedModelFeature
 import com.aiuta.fashionsdk.configuration.features.picker.protection.AiutaImagePickerProtectionDisclaimerFeature
-import com.aiuta.fashionsdk.configuration.mode.AiutaMode
 import com.aiuta.fashionsdk.internal.navigation.composition.LocalAiutaBottomSheetNavigator
 import com.aiuta.fashionsdk.internal.navigation.composition.LocalAiutaNavigationController
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.controller.composition.LocalAiutaMode
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.controller.composition.LocalController
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.navigation.TryOnBottomSheetScreen
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.navigation.TryOnScreen
+import com.aiuta.fashionsdk.tryon.compose.ui.internal.screens.model.navigateToModelSelector
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.utils.mode.resolveByMode
 
 @Composable
@@ -159,12 +159,7 @@ internal fun ImageSelectorScreenEmptyBodyBlock(modifier: Modifier) {
                 style = FashionButtonStyles.adaptiveContrastStyle(theme),
                 size = FashionButtonSizes.lSize(),
                 onClick = {
-                    navigationController.navigateTo(
-                        newScreen = when (mode) {
-                            AiutaMode.GENERAL -> TryOnScreen.ModelSelector
-                            AiutaMode.SHOES -> TODO("Add new screen?")
-                        },
-                    )
+                    navigationController.navigateToModelSelector(mode)
                 },
             )
 

@@ -1,4 +1,4 @@
-package com.aiuta.fashionsdk.tryon.compose.ui.internal.screens.model.components.content
+package com.aiuta.fashionsdk.tryon.compose.ui.internal.screens.model.general.components.content
 
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.fillMaxSize
@@ -18,7 +18,7 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.lerp
 import com.aiuta.fashionsdk.compose.uikit.resources.AiutaImage
 import com.aiuta.fashionsdk.tryon.compose.domain.models.internal.tryonmodel.TryOnModelUiModel
-import com.aiuta.fashionsdk.tryon.compose.ui.internal.screens.model.components.list.CentredModelsHorizontalPager
+import com.aiuta.fashionsdk.tryon.compose.ui.internal.screens.model.general.components.list.CentredModelsHorizontalPager
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.utils.offsetForPage
 import kotlin.math.absoluteValue
 

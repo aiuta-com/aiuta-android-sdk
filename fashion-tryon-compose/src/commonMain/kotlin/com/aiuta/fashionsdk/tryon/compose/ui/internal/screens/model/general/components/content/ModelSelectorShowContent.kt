@@ -1,4 +1,4 @@
-package com.aiuta.fashionsdk.tryon.compose.ui.internal.screens.model.components.content
+package com.aiuta.fashionsdk.tryon.compose.ui.internal.screens.model.general.components.content
 
 import androidx.compose.animation.AnimatedContent
 import androidx.compose.animation.core.updateTransition
@@ -22,8 +22,8 @@ import com.aiuta.fashionsdk.compose.uikit.composition.LocalTheme
 import com.aiuta.fashionsdk.compose.uikit.resources.AiutaImage
 import com.aiuta.fashionsdk.compose.uikit.utils.strictProvideFeature
 import com.aiuta.fashionsdk.configuration.features.tryon.AiutaTryOnFeature
-import com.aiuta.fashionsdk.tryon.compose.ui.internal.screens.model.models.ModelSelectorScreenEvent
-import com.aiuta.fashionsdk.tryon.compose.ui.internal.screens.model.models.ModelSelectorScreenViewState
+import com.aiuta.fashionsdk.tryon.compose.ui.internal.screens.model.general.models.ModelSelectorScreenEvent
+import com.aiuta.fashionsdk.tryon.compose.ui.internal.screens.model.general.models.ModelSelectorScreenViewState
 
 @Composable
 internal fun ModelSelectorShowContent(

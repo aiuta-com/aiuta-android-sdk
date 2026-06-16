@@ -27,18 +27,14 @@ import androidx.compose.ui.draw.clipToBounds
 import androidx.compose.ui.geometry.Offset
 import androidx.compose.ui.geometry.Size
 import androidx.compose.ui.graphics.graphicsLayer
-import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.layout.onGloballyPositioned
 import androidx.compose.ui.layout.positionInRoot
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.toSize
-import coil3.compose.LocalPlatformContext
-import coil3.request.ImageRequest
-import coil3.size.SizeResolver.Companion.ORIGINAL
 import com.aiuta.fashionsdk.analytics.events.AiutaAnalyticsPageId
 import com.aiuta.fashionsdk.compose.core.size.rememberScreenSize
 import com.aiuta.fashionsdk.compose.uikit.composition.LocalTheme
-import com.aiuta.fashionsdk.compose.uikit.resources.AiutaImage
+import com.aiuta.fashionsdk.compose.uikit.resources.AiutaAdaptiveImage
 import com.aiuta.fashionsdk.compose.uikit.utils.clickableUnindicated
 import com.aiuta.fashionsdk.tryon.compose.domain.models.internal.generated.images.SessionImageUIModel
 import com.aiuta.fashionsdk.tryon.compose.domain.models.internal.zoom.ZoomImageUiModel
@@ -120,7 +116,6 @@ private fun PagerItem(
     pageOffset: State<Float>,
 ) {
     val controller = LocalController.current
-    val coilContext = LocalPlatformContext.current
     val theme = LocalTheme.current
 
     val sharedCornerRadius = theme.image.shapes.imageL
@@ -137,7 +132,7 @@ private fun PagerItem(
                 shape = RoundedCornerShape(sharedCornerRadius),
             ),
     ) {
-        AiutaImage(
+        AiutaAdaptiveImage(
             modifier = Modifier
                 .clipToBounds()
                 .fillMaxSize()
@@ -157,10 +152,8 @@ private fun PagerItem(
                         ),
                     )
                 },
-            imageUrl = sessionImage.imageUrl,
+            model = sessionImage.imageUrl,
             shapeDp = sharedCornerRadius,
-            imageBuilder = ImageRequest.Builder(coilContext).size(ORIGINAL),
-            contentScale = ContentScale.Crop,
             contentDescription = null,
         )
 

@@ -18,7 +18,7 @@ internal suspend fun AiutaTryOnDataController.provideTryOnModels(
 ): Result<List<TryOnModelUiModel>> = runCatching {
     tryOnModelsRepository
         .loadTryOnModels(forceUpdate)
-        .map { model -> model.toUiModel() }
+        .mapNotNull { model -> model.toUiModel() }
 }
 
 internal suspend fun AiutaTryOnDataController.providePowerBySticker(
