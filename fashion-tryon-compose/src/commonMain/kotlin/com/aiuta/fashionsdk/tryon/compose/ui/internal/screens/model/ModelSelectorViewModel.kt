@@ -82,22 +82,21 @@ internal class ModelSelectorViewModel(
                         predefinedModelCategories = predefinedModelFeature.strings.predefinedModelCategories,
                     )
 
-                    gendersById = genders.associateBy { it.id }
-
                     if (genders.isEmpty()) {
                         _viewState.update {
                             it.copy(status = ModelSelectorScreenViewState.Status.EMPTY_MODELS_ERROR)
                         }
                     } else {
                         val preferredGenderId = predefinedModelFeature.data?.preferredCategoryId
-                        val activeGender = genders
-                            .firstOrNull { it.id == preferredGenderId }
-                            ?: genders.first()
+                        val orderedGenders = genders.sortedByDescending { it.id == preferredGenderId }
+                        val activeGender = orderedGenders.first()
+
+                        gendersById = orderedGenders.associateBy { it.id }
 
                         _viewState.update {
                             it.copy(
                                 status = ModelSelectorScreenViewState.Status.CONTENT,
-                                genders = genders.map { gender -> GenderTabUiModel(id = gender.id, title = gender.title) },
+                                genders = orderedGenders.map { gender -> GenderTabUiModel(id = gender.id, title = gender.title) },
                                 activeGender = activeGender,
                                 activeModel = activeGender.models.firstOrNull(),
                             )
