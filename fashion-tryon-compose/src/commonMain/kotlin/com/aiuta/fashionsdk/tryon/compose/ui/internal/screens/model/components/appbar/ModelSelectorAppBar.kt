@@ -10,7 +10,7 @@ import androidx.compose.ui.Modifier
 import com.aiuta.fashionsdk.compose.uikit.appbar.AiutaAppBar
 import com.aiuta.fashionsdk.compose.uikit.appbar.AiutaAppBarIcon
 import com.aiuta.fashionsdk.compose.uikit.composition.LocalTheme
-import com.aiuta.fashionsdk.tryon.compose.ui.internal.screens.model.models.GenderTabUiModel
+import com.aiuta.fashionsdk.tryon.compose.ui.internal.screens.model.general.models.GenderTabUiModel
 
 @Composable
 internal fun ModelSelectorAppBar(

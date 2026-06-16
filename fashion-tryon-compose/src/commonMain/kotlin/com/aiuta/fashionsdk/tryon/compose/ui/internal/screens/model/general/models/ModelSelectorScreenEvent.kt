@@ -1,4 +1,4 @@
-package com.aiuta.fashionsdk.tryon.compose.ui.internal.screens.model.models
+package com.aiuta.fashionsdk.tryon.compose.ui.internal.screens.model.general.models
 
 import com.aiuta.fashionsdk.tryon.compose.domain.models.internal.tryonmodel.TryOnModelUiModel
 

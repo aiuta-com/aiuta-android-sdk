@@ -1,4 +1,4 @@
-package com.aiuta.fashionsdk.tryon.compose.ui.internal.screens.model
+package com.aiuta.fashionsdk.tryon.compose.ui.internal.screens.model.general
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
@@ -17,10 +17,10 @@ import com.aiuta.fashionsdk.tryon.compose.ui.internal.controller.FashionTryOnCon
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.controller.activateAutoTryOn
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.controller.data.AiutaTryOnDataController
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.controller.data.provideTryOnModels
-import com.aiuta.fashionsdk.tryon.compose.ui.internal.screens.model.models.GenderTabUiModel
-import com.aiuta.fashionsdk.tryon.compose.ui.internal.screens.model.models.ModelSelectorScreenAction
-import com.aiuta.fashionsdk.tryon.compose.ui.internal.screens.model.models.ModelSelectorScreenEvent
-import com.aiuta.fashionsdk.tryon.compose.ui.internal.screens.model.models.ModelSelectorScreenViewState
+import com.aiuta.fashionsdk.tryon.compose.ui.internal.screens.model.general.models.GenderTabUiModel
+import com.aiuta.fashionsdk.tryon.compose.ui.internal.screens.model.general.models.ModelSelectorScreenAction
+import com.aiuta.fashionsdk.tryon.compose.ui.internal.screens.model.general.models.ModelSelectorScreenEvent
+import com.aiuta.fashionsdk.tryon.compose.ui.internal.screens.model.general.models.ModelSelectorScreenViewState
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.flow.update

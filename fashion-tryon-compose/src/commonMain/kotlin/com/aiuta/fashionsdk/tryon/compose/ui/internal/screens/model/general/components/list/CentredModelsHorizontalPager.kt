@@ -1,4 +1,4 @@
-package com.aiuta.fashionsdk.tryon.compose.ui.internal.screens.model.components.list
+package com.aiuta.fashionsdk.tryon.compose.ui.internal.screens.model.general.components.list
 
 import androidx.compose.foundation.gestures.Orientation
 import androidx.compose.foundation.gestures.TargetedFlingBehavior

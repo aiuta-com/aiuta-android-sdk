@@ -19,7 +19,7 @@ import androidx.compose.ui.unit.dp
 import com.aiuta.fashionsdk.compose.core.size.rememberScreenSize
 import com.aiuta.fashionsdk.compose.uikit.composition.LocalTheme
 import com.aiuta.fashionsdk.compose.uikit.utils.clickableUnindicated
-import com.aiuta.fashionsdk.tryon.compose.ui.internal.screens.model.models.GenderTabUiModel
+import com.aiuta.fashionsdk.tryon.compose.ui.internal.screens.model.general.models.GenderTabUiModel
 
 @Composable
 internal fun GenderSelector(

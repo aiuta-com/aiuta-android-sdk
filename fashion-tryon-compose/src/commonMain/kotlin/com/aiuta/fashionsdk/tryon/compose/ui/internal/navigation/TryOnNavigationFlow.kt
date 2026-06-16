@@ -22,7 +22,7 @@ import com.aiuta.fashionsdk.tryon.compose.ui.internal.screens.base.transition.co
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.screens.consent.ConsentScreen
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.screens.history.HistoryScreen
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.screens.list.ImageListScreen
-import com.aiuta.fashionsdk.tryon.compose.ui.internal.screens.model.ModelSelectorScreen
+import com.aiuta.fashionsdk.tryon.compose.ui.internal.screens.model.general.ModelSelectorScreen
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.screens.onboarding.OnboardingScreen
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.screens.preonboarding.PreOnboardingScreen
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.screens.result.GenerationResultScreen
