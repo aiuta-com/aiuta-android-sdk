@@ -173,9 +173,9 @@ abstract interface com.aiuta.fashionsdk.configuration.features.onboarding.bestre
 
 abstract interface com.aiuta.fashionsdk.configuration.features.onboarding.dataprovider/AiutaOnboardingFeatureDataProviderCustom : com.aiuta.fashionsdk.configuration.features.onboarding.dataprovider/AiutaOnboardingFeatureDataProvider { // com.aiuta.fashionsdk.configuration.features.onboarding.dataprovider/AiutaOnboardingFeatureDataProviderCustom|null[0]
     abstract val isOnboardingCompleted // com.aiuta.fashionsdk.configuration.features.onboarding.dataprovider/AiutaOnboardingFeatureDataProviderCustom.isOnboardingCompleted|{}isOnboardingCompleted[0]
-        abstract fun <get-isOnboardingCompleted>(): kotlinx.coroutines.flow/StateFlow<kotlin/Boolean> // com.aiuta.fashionsdk.configuration.features.onboarding.dataprovider/AiutaOnboardingFeatureDataProviderCustom.isOnboardingCompleted.<get-isOnboardingCompleted>|<get-isOnboardingCompleted>(){}[0]
+        abstract fun <get-isOnboardingCompleted>(): kotlinx.coroutines.flow/Flow<kotlin.collections/Map<com.aiuta.fashionsdk.configuration.mode/AiutaMode, kotlin/Boolean>> // com.aiuta.fashionsdk.configuration.features.onboarding.dataprovider/AiutaOnboardingFeatureDataProviderCustom.isOnboardingCompleted.<get-isOnboardingCompleted>|<get-isOnboardingCompleted>(){}[0]
 
-    abstract suspend fun completeOnboarding() // com.aiuta.fashionsdk.configuration.features.onboarding.dataprovider/AiutaOnboardingFeatureDataProviderCustom.completeOnboarding|completeOnboarding(){}[0]
+    abstract suspend fun completeOnboarding(com.aiuta.fashionsdk.configuration.mode/AiutaMode) // com.aiuta.fashionsdk.configuration.features.onboarding.dataprovider/AiutaOnboardingFeatureDataProviderCustom.completeOnboarding|completeOnboarding(com.aiuta.fashionsdk.configuration.mode.AiutaMode){}[0]
 }
 
 abstract interface com.aiuta.fashionsdk.configuration.features.onboarding.howworks.images/AiutaOnboardingHowItWorksPageFeatureImages { // com.aiuta.fashionsdk.configuration.features.onboarding.howworks.images/AiutaOnboardingHowItWorksPageFeatureImages|null[0]

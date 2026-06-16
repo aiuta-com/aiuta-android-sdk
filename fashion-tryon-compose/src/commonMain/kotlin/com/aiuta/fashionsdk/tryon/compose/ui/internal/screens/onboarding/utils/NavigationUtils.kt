@@ -12,6 +12,10 @@ internal fun OnboardingViewModel.navigateNextPage() {
     val state = viewState.value
 
     val currentStep = state.currentStep
+
+    // Record per-slide completion for the slide we are leaving before advancing.
+    currentStep?.let { recordCompletionOnLeaving(it) }
+
     val currentStepIndex = state.onboardingStatesQueue.indexOf(currentStep)
 
     val nextPageIndex = currentStepIndex + 1
@@ -20,7 +24,7 @@ internal fun OnboardingViewModel.navigateNextPage() {
     if (nextStep != null) {
         changeStep(nextStep)
     } else {
-        completeOnboarding()
+        finishOnboarding()
     }
 }
 

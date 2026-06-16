@@ -19,6 +19,7 @@ import com.aiuta.fashionsdk.tryon.compose.ui.internal.screens.onboarding.models.
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.screens.onboarding.models.ConsentPage
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.screens.onboarding.models.OnboardingScreenEvent
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.screens.onboarding.models.OnboardingScreenViewState
+import com.aiuta.fashionsdk.tryon.compose.ui.internal.screens.onboarding.models.ShoesBestResultPage
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.screens.onboarding.models.TryOnPage
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.utils.transitionAnimation
 
@@ -52,7 +53,7 @@ internal fun OnboardingAppBar(
                     .align(Alignment.Center),
                 transitionSpec = { transitionAnimation },
             ) { step ->
-                step.pageTitle?.let { pageTitle ->
+                step?.pageTitle?.let { pageTitle ->
                     Text(
                         modifier =
                         Modifier
@@ -85,7 +86,9 @@ internal fun OnboardingAppBar(
                                 pageId = when (currentStep) {
                                     is TryOnPage -> AiutaAnalyticsPageId.HOW_IT_WORKS
                                     is BestResultPage -> AiutaAnalyticsPageId.BEST_RESULTS
+                                    is ShoesBestResultPage -> AiutaAnalyticsPageId.BEST_RESULTS
                                     is ConsentPage -> AiutaAnalyticsPageId.CONSENT
+                                    null -> AiutaAnalyticsPageId.HOW_IT_WORKS
                                 },
                             ),
                         )

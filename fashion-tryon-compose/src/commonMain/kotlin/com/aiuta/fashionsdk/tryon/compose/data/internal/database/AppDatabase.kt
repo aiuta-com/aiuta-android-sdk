@@ -16,7 +16,6 @@ import com.aiuta.fashionsdk.tryon.compose.data.internal.datasource.consent.dao.C
 import com.aiuta.fashionsdk.tryon.compose.data.internal.datasource.generated.images.dao.GeneratedImageDao
 import com.aiuta.fashionsdk.tryon.compose.data.internal.datasource.generated.operations.dao.GeneratedOperationDao
 import com.aiuta.fashionsdk.tryon.compose.data.internal.datasource.generated.operations.dao.SourceImageDao
-import com.aiuta.fashionsdk.tryon.compose.data.internal.datasource.onboarding.dao.OnboardingDao
 import com.aiuta.fashionsdk.tryon.compose.data.internal.datasource.subscription.dao.SubscriptionDetailsDao
 import com.aiuta.fashionsdk.tryon.compose.data.internal.datasource.time.dao.TimeDao
 import com.aiuta.fashionsdk.tryon.compose.data.internal.entity.local.code.AiutaCodeEntity
@@ -24,7 +23,6 @@ import com.aiuta.fashionsdk.tryon.compose.data.internal.entity.local.consent.Obt
 import com.aiuta.fashionsdk.tryon.compose.data.internal.entity.local.generated.images.GeneratedImageEntity
 import com.aiuta.fashionsdk.tryon.compose.data.internal.entity.local.generated.images.SourceImageEntity
 import com.aiuta.fashionsdk.tryon.compose.data.internal.entity.local.generated.operations.GeneratedOperationEntity
-import com.aiuta.fashionsdk.tryon.compose.data.internal.entity.local.onboarding.OnboardingEntity
 import com.aiuta.fashionsdk.tryon.compose.data.internal.entity.local.subscription.SubscriptionDetailsEntity
 import com.aiuta.fashionsdk.tryon.compose.data.internal.entity.local.time.TimestampEntity
 import kotlin.concurrent.Volatile
@@ -36,7 +34,7 @@ import kotlinx.coroutines.sync.Mutex
 import kotlinx.coroutines.sync.withLock
 import kotlinx.coroutines.withContext
 
-internal const val DATABASE_VERSION = 20
+internal const val DATABASE_VERSION = 21
 internal const val ANDROID_DATABASE_NAME = "fashionsdk-database"
 internal const val DATABASE_NAME = "fashionsdk-database.db"
 
@@ -57,9 +55,6 @@ internal const val DATABASE_NAME = "fashionsdk-database.db"
         // Generation operation
         GeneratedOperationEntity::class,
         SourceImageEntity::class,
-
-        // Onboarding saver
-        OnboardingEntity::class,
 
         // Aiuta code checker
         AiutaCodeEntity::class,
@@ -88,9 +83,6 @@ internal abstract class AppDatabase : RoomDatabase() {
     abstract fun generatedOperationDao(): GeneratedOperationDao
 
     abstract fun sourceImageDao(): SourceImageDao
-
-    // Onboarding saver
-    abstract fun onboardingDao(): OnboardingDao
 
     // Consent saver
     abstract fun consentDao(): ConsentDao

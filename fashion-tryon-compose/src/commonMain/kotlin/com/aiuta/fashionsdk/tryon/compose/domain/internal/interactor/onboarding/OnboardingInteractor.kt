@@ -15,7 +15,7 @@ internal interface OnboardingInteractor : AiutaOnboardingFeatureDataProviderCust
         ): OnboardingInteractor = when (val dataProvider = onboardingFeature?.dataProvider) {
             null -> EmptyOnboardingInteractor()
 
-            is AiutaOnboardingFeatureDataProviderBuiltIn -> DatabaseOnboardingInteractor.getInstance(
+            is AiutaOnboardingFeatureDataProviderBuiltIn -> StorageOnboardingInteractor.getInstance(
                 scope = scope,
                 platformContext = aiuta.platformContext,
             )

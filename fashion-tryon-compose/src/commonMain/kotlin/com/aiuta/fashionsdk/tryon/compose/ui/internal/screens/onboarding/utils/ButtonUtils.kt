@@ -21,7 +21,7 @@ internal fun solvePrimaryButtonText(
     val onboardingStatesQueue = viewState.value.onboardingStatesQueue
 
     return when {
-        currentStep != onboardingStatesQueue.last() -> onboardingFeature.strings.onboardingButtonNext
+        currentStep != onboardingStatesQueue.lastOrNull() -> onboardingFeature.strings.onboardingButtonNext
 
         currentStep is ConsentPage && consentStandaloneOnboardingFeature != null -> {
             consentStandaloneOnboardingFeature.strings.consentButtonAccept

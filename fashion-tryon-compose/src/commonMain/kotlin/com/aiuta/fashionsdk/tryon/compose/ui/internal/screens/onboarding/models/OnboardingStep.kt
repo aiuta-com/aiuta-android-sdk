@@ -5,6 +5,7 @@ import com.aiuta.fashionsdk.compose.resources.media.AiutaMedia
 import com.aiuta.fashionsdk.configuration.features.consent.AiutaConsentStandaloneOnboardingPageFeature
 import com.aiuta.fashionsdk.configuration.features.onboarding.bestresult.AiutaOnboardingBestResultsPageFeature
 import com.aiuta.fashionsdk.configuration.features.onboarding.howworks.AiutaOnboardingHowItWorksPageFeature
+import com.aiuta.fashionsdk.configuration.mode.shoes.onboarding.AiutaShoesModeOnboardingPage
 
 @Immutable
 internal sealed interface OnboardingStep {
@@ -26,6 +27,21 @@ internal class BestResultPage(
     override val pageTitle: String? = bestResultsPageFeature.strings.onboardingBestResultsPageTitle
 
     val mediaItem: AiutaMedia = bestResultsPageFeature.images.onboardingBestResultsItem
+}
+
+/**
+ * Shoes-mode "best results" slide. Uses the same layout as [BestResultPage], but its content comes
+ * from [AiutaShoesModeOnboardingPage] (shoes-mode config) rather than the registered features, so the
+ * values are held directly on the step instead of being resolved via `strictProvideFeature`.
+ */
+internal class ShoesBestResultPage(
+    onboardingShoesPage: AiutaShoesModeOnboardingPage,
+) : OnboardingStep {
+    override val pageTitle: String? = onboardingShoesPage.strings.onboardingShoesBestResultsPageTitle
+
+    val title: String = onboardingShoesPage.strings.onboardingShoesBestResultsTitle
+    val subtitle: String = onboardingShoesPage.strings.onboardingShoesBestResultsDescription
+    val mediaItem: AiutaMedia = onboardingShoesPage.images.onboardingShoesBestResultsItem
 }
 
 internal class ConsentPage(
