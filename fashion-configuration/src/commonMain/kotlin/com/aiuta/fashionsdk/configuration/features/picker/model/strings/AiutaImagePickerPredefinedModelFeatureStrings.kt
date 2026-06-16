@@ -39,8 +39,8 @@ public interface AiutaImagePickerPredefinedModelFeatureStrings {
         override val predefinedModelOr: String = "Or"
         override val predefinedModelErrorEmptyModelsList: String = "The models list is empty"
         override val predefinedModelCategories: Map<String, String> = buildMap {
-            put(key = "male", value = "Men")
             put(key = "female", value = "Women")
+            put(key = "male", value = "Men")
         }
     }
 }

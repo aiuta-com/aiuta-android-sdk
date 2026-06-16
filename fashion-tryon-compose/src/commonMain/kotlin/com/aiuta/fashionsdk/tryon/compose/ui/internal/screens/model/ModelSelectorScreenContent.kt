@@ -47,6 +47,11 @@ internal fun ModelSelectorScreenContent(
             modifier = Modifier
                 .fillMaxWidth()
                 .padding(horizontal = 16.dp),
+            genders = viewState.value.genders,
+            activeGenderId = viewState.value.activeGender?.id,
+            onGenderClick = { genderId ->
+                eventHandler(ModelSelectorScreenEvent.GenderSelected(genderId))
+            },
             onBack = { eventHandler(ModelSelectorScreenEvent.BackClicked) },
         )
 

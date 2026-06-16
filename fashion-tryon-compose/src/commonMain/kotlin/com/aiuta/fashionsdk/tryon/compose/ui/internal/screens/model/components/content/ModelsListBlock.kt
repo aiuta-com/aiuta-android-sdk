@@ -46,21 +46,20 @@ internal fun ModelsListBlock(
     ) { index ->
         val pageOffset = remember {
             derivedStateOf {
-                1 -
-                    horizontalPager.offsetForPage(
-                        index,
-                    ).absoluteValue.coerceIn(
-                        0f,
-                        1f,
-                    )
+                1 - horizontalPager.offsetForPage(
+                    index,
+                ).absoluteValue.coerceIn(
+                    0f,
+                    1f,
+                )
             }
         }
 
         val itemHeight = remember {
             derivedStateOf {
                 lerp(
-                    105.dp,
-                    124.dp,
+                    97.dp,
+                    114.dp,
                     pageOffset.value,
                 )
             }
@@ -69,8 +68,8 @@ internal fun ModelsListBlock(
         val itemWidth = remember {
             derivedStateOf {
                 lerp(
-                    66.dp,
-                    76.dp,
+                    61.dp,
+                    70.dp,
                     pageOffset.value,
                 )
             }
