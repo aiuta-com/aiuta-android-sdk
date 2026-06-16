@@ -1,5 +1,7 @@
 package com.aiuta.fashionsdk.tryon.compose.ui.internal.screens.model.components.content
 
+import androidx.compose.animation.AnimatedContent
+import androidx.compose.animation.core.updateTransition
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxWidth
@@ -7,16 +9,13 @@ import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.runtime.Composable
-import androidx.compose.runtime.mutableStateOf
-import androidx.compose.runtime.remember
+import androidx.compose.runtime.State
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Brush
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.unit.dp
-import com.aiuta.fashionsdk.analytics.events.AiutaAnalyticsPageId
-import com.aiuta.fashionsdk.analytics.events.AiutaAnalyticsPickerEventType
 import com.aiuta.fashionsdk.compose.core.size.rememberScreenSize
 import com.aiuta.fashionsdk.compose.uikit.button.FashionButton
 import com.aiuta.fashionsdk.compose.uikit.button.FashionButtonSizes
@@ -25,24 +24,17 @@ import com.aiuta.fashionsdk.compose.uikit.composition.LocalTheme
 import com.aiuta.fashionsdk.compose.uikit.resources.AiutaImage
 import com.aiuta.fashionsdk.compose.uikit.utils.strictProvideFeature
 import com.aiuta.fashionsdk.configuration.features.tryon.AiutaTryOnFeature
-import com.aiuta.fashionsdk.internal.navigation.composition.LocalAiutaNavigationController
-import com.aiuta.fashionsdk.tryon.compose.domain.models.internal.config.features.toUrlImage
-import com.aiuta.fashionsdk.tryon.compose.domain.models.internal.generated.images.LastSavedImages
-import com.aiuta.fashionsdk.tryon.compose.domain.models.internal.screen.model.ModelSelectorScreenState
-import com.aiuta.fashionsdk.tryon.compose.ui.internal.analytic.sendPickerAnalytic
-import com.aiuta.fashionsdk.tryon.compose.ui.internal.controller.activateAutoTryOn
-import com.aiuta.fashionsdk.tryon.compose.ui.internal.controller.composition.LocalController
-import com.aiuta.fashionsdk.tryon.compose.ui.internal.navigation.TryOnScreen
+import com.aiuta.fashionsdk.tryon.compose.ui.internal.screens.model.models.ModelSelectorScreenEvent
+import com.aiuta.fashionsdk.tryon.compose.ui.internal.screens.model.models.ModelSelectorScreenViewState
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.screens.model.utils.MODEL_IMAGE_BOTTOM_PADDING_COEF
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.screens.model.utils.MODEL_IMAGE_HORIZONTAL_PADDING_COEF
 
 @Composable
 internal fun ModelSelectorShowContent(
+    viewState: State<ModelSelectorScreenViewState>,
+    eventHandler: (ModelSelectorScreenEvent) -> Unit,
     modifier: Modifier = Modifier,
-    state: ModelSelectorScreenState.Content,
 ) {
-    val controller = LocalController.current
-    val navigationController = LocalAiutaNavigationController.current
     val theme = LocalTheme.current
 
     val screenSize = rememberScreenSize()
@@ -51,21 +43,7 @@ internal fun ModelSelectorShowContent(
     val imageHorizontalPadding = screenSize.widthDp * MODEL_IMAGE_HORIZONTAL_PADDING_COEF
     val bottomPadding = screenSize.heightDp * MODEL_IMAGE_BOTTOM_PADDING_COEF
 
-    val activeCategory = remember {
-        mutableStateOf(
-            with(state) {
-                val defaultCategory = state.categories.firstOrNull()
-
-                preferredCategoryId?.let {
-                    categories.find { model ->
-                        model.id == preferredCategoryId
-                    } ?: defaultCategory
-                } ?: defaultCategory
-            },
-        )
-    }
-    val activeImageModel = remember { mutableStateOf(activeCategory.value?.models?.firstOrNull()) }
-
+    val state = viewState.value
     val sharedShape = RoundedCornerShape(24.dp)
 
     Column(
@@ -78,7 +56,7 @@ internal fun ModelSelectorShowContent(
                 .fillMaxWidth()
                 .padding(horizontal = imageHorizontalPadding)
                 .clip(sharedShape),
-            imageUrl = activeImageModel.value?.url,
+            imageUrl = state.activeModel?.url,
             shape = sharedShape,
             contentScale = ContentScale.Crop,
             contentDescription = null,
@@ -86,18 +64,30 @@ internal fun ModelSelectorShowContent(
 
         Spacer(Modifier.height(26.dp))
 
-        ModelsCategoriesBlock(
-            state = state,
-            activeCategory = activeCategory,
+        GendersBlock(
+            genders = state.genders,
+            activeGenderId = state.activeGender?.id,
+            onGenderClick = { genderId ->
+                eventHandler(ModelSelectorScreenEvent.GenderSelected(genderId))
+            },
         )
 
         Spacer(Modifier.height(30.dp))
 
-        ModelsListBlock(
+        val activeGenderTransition = updateTransition(state.activeGender)
+        activeGenderTransition.AnimatedContent(
             modifier = Modifier.fillMaxWidth(),
-            activeCategory = activeCategory,
-            activeImageModel = activeImageModel,
-        )
+            contentKey = { it?.id },
+        ) { gender ->
+            gender?.let {
+                ModelsListBlock(
+                    models = it.models,
+                    onActiveModelChanged = { model ->
+                        eventHandler(ModelSelectorScreenEvent.ActiveModelChanged(model))
+                    },
+                )
+            }
+        }
 
         Spacer(Modifier.height(20.dp))
 
@@ -120,23 +110,7 @@ internal fun ModelSelectorShowContent(
                 size = FashionButtonSizes.lSize(),
                 icon = tryOnFeature.icons.tryOn20,
                 onClick = {
-                    activeImageModel.value?.let { model ->
-                        controller.sendPickerAnalytic(
-                            event = AiutaAnalyticsPickerEventType.PREDEFINED_MODEL_SELECTED,
-                            pageId = AiutaAnalyticsPageId.IMAGE_PICKER,
-                        )
-
-                        // Save model
-                        controller.lastSavedImages.value =
-                            LastSavedImages.UrlSource.PregeneratedModels(
-                                urlImages = listOf(model.toUrlImage()),
-                            )
-                        // Activate try on
-                        controller.activateAutoTryOn()
-
-                        // Go back to picker
-                        navigationController.navigateTo(TryOnScreen.ImageSelector)
-                    }
+                    eventHandler(ModelSelectorScreenEvent.TryOnClicked)
                 },
             )
 

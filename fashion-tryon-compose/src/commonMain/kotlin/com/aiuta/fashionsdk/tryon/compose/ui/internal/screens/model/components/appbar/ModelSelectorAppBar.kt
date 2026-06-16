@@ -11,11 +11,12 @@ import com.aiuta.fashionsdk.compose.uikit.appbar.AiutaAppBarIcon
 import com.aiuta.fashionsdk.compose.uikit.composition.LocalTheme
 import com.aiuta.fashionsdk.compose.uikit.utils.strictProvideFeature
 import com.aiuta.fashionsdk.configuration.features.picker.model.AiutaImagePickerPredefinedModelFeature
-import com.aiuta.fashionsdk.internal.navigation.composition.LocalAiutaNavigationController
 
 @Composable
-internal fun ModelSelectorAppBar(modifier: Modifier = Modifier) {
-    val navigationController = LocalAiutaNavigationController.current
+internal fun ModelSelectorAppBar(
+    onBack: () -> Unit,
+    modifier: Modifier = Modifier,
+) {
     val theme = LocalTheme.current
 
     val predefinedModelFeature = strictProvideFeature<AiutaImagePickerPredefinedModelFeature>()
@@ -27,7 +28,7 @@ internal fun ModelSelectorAppBar(modifier: Modifier = Modifier) {
                 modifier = Modifier.align(Alignment.CenterStart),
                 icon = theme.pageBar.icons.back24,
                 color = theme.color.primary,
-                onClick = navigationController::navigateBack,
+                onClick = onBack,
             )
         },
         title = {

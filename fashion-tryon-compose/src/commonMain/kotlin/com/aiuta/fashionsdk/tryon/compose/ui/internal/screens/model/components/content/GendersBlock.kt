@@ -5,7 +5,6 @@ import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Row
 import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
-import androidx.compose.runtime.MutableState
 import androidx.compose.runtime.key
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
@@ -17,28 +16,26 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.aiuta.fashionsdk.compose.uikit.composition.LocalTheme
 import com.aiuta.fashionsdk.compose.uikit.utils.clickableUnindicated
-import com.aiuta.fashionsdk.tryon.compose.domain.models.internal.config.features.TryOnModelsCategoryUiModel
-import com.aiuta.fashionsdk.tryon.compose.domain.models.internal.screen.model.ModelSelectorScreenState
+import com.aiuta.fashionsdk.tryon.compose.ui.internal.screens.model.models.GenderTabUiModel
 
 @Composable
-internal fun ModelsCategoriesBlock(
+internal fun GendersBlock(
+    genders: List<GenderTabUiModel>,
+    activeGenderId: String?,
+    onGenderClick: (String) -> Unit,
     modifier: Modifier = Modifier,
-    state: ModelSelectorScreenState.Content,
-    activeCategory: MutableState<TryOnModelsCategoryUiModel?>,
 ) {
     Row(
         modifier = modifier,
         verticalAlignment = Alignment.CenterVertically,
         horizontalArrangement = Arrangement.spacedBy(20.dp),
     ) {
-        state.categories.forEach { category ->
-            key(category.category) {
-                ModelsCategoryBlock(
-                    category = category.category,
-                    isActive = category == activeCategory.value,
-                    onClick = {
-                        activeCategory.value = category
-                    },
+        genders.forEach { gender ->
+            key(gender.id) {
+                GenderBlock(
+                    title = gender.title,
+                    isActive = gender.id == activeGenderId,
+                    onClick = { onGenderClick(gender.id) },
                 )
             }
         }
@@ -46,25 +43,24 @@ internal fun ModelsCategoriesBlock(
 }
 
 @Composable
-internal fun ModelsCategoryBlock(
-    modifier: Modifier = Modifier,
-    category: String,
+internal fun GenderBlock(
+    title: String,
     isActive: Boolean,
     onClick: () -> Unit,
+    modifier: Modifier = Modifier,
 ) {
     val theme = LocalTheme.current
 
     val sharedModifier = modifier.clickableUnindicated { onClick() }
 
-    val textColor =
-        animateColorAsState(
-            targetValue =
-            if (isActive) {
-                theme.color.primary
-            } else {
-                theme.color.secondary
-            },
-        )
+    val textColor = animateColorAsState(
+        targetValue =
+        if (isActive) {
+            theme.color.primary
+        } else {
+            theme.color.secondary
+        },
+    )
 
     Text(
         modifier =
@@ -86,7 +82,7 @@ internal fun ModelsCategoryBlock(
         } else {
             sharedModifier
         },
-        text = category,
+        text = title,
         style = theme.button.typography.buttonS,
         color = textColor.value,
         textAlign = TextAlign.Center,

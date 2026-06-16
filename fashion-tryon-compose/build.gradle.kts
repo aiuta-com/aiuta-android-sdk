@@ -64,6 +64,7 @@ kotlin {
                 implementation(projects.fashionComposeUikit)
                 implementation(projects.internal.internalFashionAnalytics)
                 implementation(projects.internal.internalFashionNavigation)
+                implementation(projects.internal.internalFashionStorage)
             }
         }
         jvmMain {

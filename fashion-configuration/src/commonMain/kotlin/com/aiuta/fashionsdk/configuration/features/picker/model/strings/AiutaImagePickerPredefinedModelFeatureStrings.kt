@@ -10,6 +10,7 @@ public interface AiutaImagePickerPredefinedModelFeatureStrings {
     /**
      * Title displayed at the top of the predefined models selection page.
      */
+    @Deprecated("Remove")
     public val predefinedModelPageTitle: String
 
     /**
@@ -38,8 +39,8 @@ public interface AiutaImagePickerPredefinedModelFeatureStrings {
         override val predefinedModelOr: String = "Or"
         override val predefinedModelErrorEmptyModelsList: String = "The models list is empty"
         override val predefinedModelCategories: Map<String, String> = buildMap {
-            put(key = "woman", value = "Woman")
-            put(key = "man", value = "Man")
+            put(key = "male", value = "Men")
+            put(key = "female", value = "Women")
         }
     }
 }
