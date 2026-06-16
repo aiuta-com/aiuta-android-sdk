@@ -5,11 +5,6 @@ package com.aiuta.fashionsdk.configuration.mode.shoes.picker.model.strings
  */
 public interface AiutaShoesModeImagePickerPredefinedModelsStrings {
     /**
-     * Title displayed at the top of the predefined models selection page.
-     */
-    public val predefinedModelShoesPageTitle: String
-
-    /**
      * Map of category IDs to their display names.
      * Used to show localized category names in the model selection interface.
      */
@@ -21,10 +16,9 @@ public interface AiutaShoesModeImagePickerPredefinedModelsStrings {
      * Provides standard English text for the shoes-mode predefined models interface.
      */
     public class Default : AiutaShoesModeImagePickerPredefinedModelsStrings {
-        override val predefinedModelShoesPageTitle: String = "Select shoesExample"
         override val predefinedModelShoesCategories: Map<String, String> = buildMap {
-            put(key = "woman", value = "Woman")
-            put(key = "man", value = "Man")
+            put(key = "female", value = "Women")
+            put(key = "male", value = "Men")
         }
     }
 }

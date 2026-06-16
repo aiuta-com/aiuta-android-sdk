@@ -32,9 +32,9 @@ final class com.aiuta.fashionsdk.network.exceptions/FashionNetworkDisconnectedEx
     constructor <init>() // com.aiuta.fashionsdk.network.exceptions/FashionNetworkDisconnectedException.<init>|<init>(){}[0]
 }
 
-final fun (io.ktor.http/URLBuilder).com.aiuta.fashionsdk.network.utils/saveAppend(kotlin/String, kotlin.collections/List<kotlin/String>) // com.aiuta.fashionsdk.network.utils/saveAppend|saveAppend@io.ktor.http.URLBuilder(kotlin.String;kotlin.collections.List<kotlin.String>){}[0]
 final fun (io.ktor.http/URLBuilder).com.aiuta.fashionsdk.network.utils/saveAppend(kotlin/String, kotlin/Int?) // com.aiuta.fashionsdk.network.utils/saveAppend|saveAppend@io.ktor.http.URLBuilder(kotlin.String;kotlin.Int?){}[0]
 final fun (io.ktor.http/URLBuilder).com.aiuta.fashionsdk.network.utils/saveAppend(kotlin/String, kotlin/String?) // com.aiuta.fashionsdk.network.utils/saveAppend|saveAppend@io.ktor.http.URLBuilder(kotlin.String;kotlin.String?){}[0]
 final fun (io.ktor.http/URLBuilder).com.aiuta.fashionsdk.network.utils/saveAppendLimit(kotlin/Int?) // com.aiuta.fashionsdk.network.utils/saveAppendLimit|saveAppendLimit@io.ktor.http.URLBuilder(kotlin.Int?){}[0]
+final fun (io.ktor.http/URLBuilder).com.aiuta.fashionsdk.network.utils/saveAppendOffset(kotlin/Int?) // com.aiuta.fashionsdk.network.utils/saveAppendOffset|saveAppendOffset@io.ktor.http.URLBuilder(kotlin.Int?){}[0]
 final fun com.aiuta.fashionsdk.network/createNetworkClient(com.aiuta.fashionsdk/Aiuta, kotlin/String? = ..., kotlin/String? = ...): com.aiuta.fashionsdk.network/NetworkClient // com.aiuta.fashionsdk.network/createNetworkClient|createNetworkClient(com.aiuta.fashionsdk.Aiuta;kotlin.String?;kotlin.String?){}[0]
 final fun com.aiuta.fashionsdk.network/defaultNetworkClient(com.aiuta.fashionsdk/Aiuta, kotlin/String? = ..., kotlin/String? = ...): com.aiuta.fashionsdk.network/NetworkClient // com.aiuta.fashionsdk.network/defaultNetworkClient|defaultNetworkClient(com.aiuta.fashionsdk.Aiuta;kotlin.String?;kotlin.String?){}[0]

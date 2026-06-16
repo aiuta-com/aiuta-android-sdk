@@ -106,6 +106,6 @@ internal class KtorHttpClientFactory(
 
     internal companion object {
         const val DEFAULT_HOST = "api.aiuta.com"
-        const val DEFAULT_ENCODED_PATH = "/digital-try-on/v1/"
+        const val DEFAULT_ENCODED_PATH = "/v1/"
     }
 }

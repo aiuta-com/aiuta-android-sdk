@@ -10,10 +10,8 @@ import com.aiuta.fashionsdk.context.AiutaPlatformContext
 import com.aiuta.fashionsdk.tryon.compose.data.internal.database.builder.buildRoomDatabase
 import com.aiuta.fashionsdk.tryon.compose.data.internal.database.converters.ListStringsConverter
 import com.aiuta.fashionsdk.tryon.compose.data.internal.database.converters.PowerByStickerConverter
-import com.aiuta.fashionsdk.tryon.compose.data.internal.database.converters.TryOnModelsCategoriesConverter
 import com.aiuta.fashionsdk.tryon.compose.data.internal.datasource.code.dao.AiutaCodeDao
 import com.aiuta.fashionsdk.tryon.compose.data.internal.datasource.code.dao.replaceAll
-import com.aiuta.fashionsdk.tryon.compose.data.internal.datasource.config.dao.ConfigDao
 import com.aiuta.fashionsdk.tryon.compose.data.internal.datasource.consent.dao.ConsentDao
 import com.aiuta.fashionsdk.tryon.compose.data.internal.datasource.generated.images.dao.GeneratedImageDao
 import com.aiuta.fashionsdk.tryon.compose.data.internal.datasource.generated.operations.dao.GeneratedOperationDao
@@ -22,7 +20,6 @@ import com.aiuta.fashionsdk.tryon.compose.data.internal.datasource.onboarding.da
 import com.aiuta.fashionsdk.tryon.compose.data.internal.datasource.subscription.dao.SubscriptionDetailsDao
 import com.aiuta.fashionsdk.tryon.compose.data.internal.datasource.time.dao.TimeDao
 import com.aiuta.fashionsdk.tryon.compose.data.internal.entity.local.code.AiutaCodeEntity
-import com.aiuta.fashionsdk.tryon.compose.data.internal.entity.local.config.ClientConfigEntity
 import com.aiuta.fashionsdk.tryon.compose.data.internal.entity.local.consent.ObtainedConsentEntity
 import com.aiuta.fashionsdk.tryon.compose.data.internal.entity.local.generated.images.GeneratedImageEntity
 import com.aiuta.fashionsdk.tryon.compose.data.internal.entity.local.generated.images.SourceImageEntity
@@ -39,14 +36,13 @@ import kotlinx.coroutines.sync.Mutex
 import kotlinx.coroutines.sync.withLock
 import kotlinx.coroutines.withContext
 
-internal const val DATABASE_VERSION = 19
+internal const val DATABASE_VERSION = 20
 internal const val ANDROID_DATABASE_NAME = "fashionsdk-database"
 internal const val DATABASE_NAME = "fashionsdk-database.db"
 
 @Database(
     entities = [
-        // Config
-        ClientConfigEntity::class,
+        // Subscription details
         SubscriptionDetailsEntity::class,
 
         // Consent
@@ -73,8 +69,6 @@ internal const val DATABASE_NAME = "fashionsdk-database.db"
 )
 @TypeConverters(
     value = [
-        // Config
-        TryOnModelsCategoriesConverter::class,
         ListStringsConverter::class,
         // Subscription details
         PowerByStickerConverter::class,
@@ -82,9 +76,6 @@ internal const val DATABASE_NAME = "fashionsdk-database.db"
 )
 @ConstructedBy(AppDatabaseConstructor::class)
 internal abstract class AppDatabase : RoomDatabase() {
-    // Remote config
-    abstract fun configDao(): ConfigDao
-
     abstract fun subscriptionDetailsDao(): SubscriptionDetailsDao
 
     // Remote config

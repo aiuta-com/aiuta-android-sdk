@@ -1,5 +1,0 @@
-public final class com/aiuta/fashionsdk/tryon/paging/FashionTryOnPagingExtensionsKt {
-	public static final fun getProductCatalogs (Lcom/aiuta/fashionsdk/tryon/core/AiutaTryOn;)Lkotlinx/coroutines/flow/Flow;
-	public static final fun getProductItems (Lcom/aiuta/fashionsdk/tryon/core/AiutaTryOn;Ljava/lang/String;)Lkotlinx/coroutines/flow/Flow;
-}
-

@@ -706,7 +706,7 @@ public abstract interface class com/aiuta/fashionsdk/configuration/features/pick
 	public abstract fun getPredefinedModelCategories ()Ljava/util/Map;
 	public abstract fun getPredefinedModelErrorEmptyModelsList ()Ljava/lang/String;
 	public abstract fun getPredefinedModelOr ()Ljava/lang/String;
-	public abstract fun getPredefinedModelPageTitle ()Ljava/lang/String;
+	public abstract fun getPredefinedModelPageButton ()Ljava/lang/String;
 }
 
 public final class com/aiuta/fashionsdk/configuration/features/picker/model/strings/AiutaImagePickerPredefinedModelFeatureStrings$Default : com/aiuta/fashionsdk/configuration/features/picker/model/strings/AiutaImagePickerPredefinedModelFeatureStrings {
@@ -715,7 +715,7 @@ public final class com/aiuta/fashionsdk/configuration/features/picker/model/stri
 	public fun getPredefinedModelCategories ()Ljava/util/Map;
 	public fun getPredefinedModelErrorEmptyModelsList ()Ljava/lang/String;
 	public fun getPredefinedModelOr ()Ljava/lang/String;
-	public fun getPredefinedModelPageTitle ()Ljava/lang/String;
+	public fun getPredefinedModelPageButton ()Ljava/lang/String;
 }
 
 public abstract interface class com/aiuta/fashionsdk/configuration/features/picker/strings/AiutaImagePickerFeatureStrings {

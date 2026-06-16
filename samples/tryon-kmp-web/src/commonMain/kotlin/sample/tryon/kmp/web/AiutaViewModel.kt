@@ -36,18 +36,11 @@ class AiutaViewModel : ViewModel() {
             val aiuta = buildAiuta(context)
             aiutaTryOn = aiuta.tryon
 
-            // Let's get catalogs
-            val catalogs = aiutaTryOn?.getProductCatalogs()?.result
-
-            // Take first catalog and get first page of product items
-            val productItems = catalogs?.firstOrNull()?.let {
-                aiutaTryOn?.getProductItems(
-                    catalogName = it.catalogName,
-                )
-            }
+            // Take first page of product items
+            val productItems = aiutaTryOn?.getProductItems()
 
             // And finally put list
-            _activeProductItems.value = productItems?.result ?: emptyList()
+            _activeProductItems.value = productItems?.items ?: emptyList()
         }
     }
 

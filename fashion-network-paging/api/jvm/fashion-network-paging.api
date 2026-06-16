@@ -1,20 +1,19 @@
 public final class com/aiuta/fashionsdk/network/paging/models/PageContainer {
 	public static final field Companion Lcom/aiuta/fashionsdk/network/paging/models/PageContainer$Companion;
-	public fun <init> (Ljava/util/List;Ljava/lang/String;Ljava/lang/String;Ljava/util/List;)V
+	public fun <init> (Ljava/util/List;ILjava/lang/Integer;)V
+	public synthetic fun <init> (Ljava/util/List;ILjava/lang/Integer;ILkotlin/jvm/internal/DefaultConstructorMarker;)V
 	public final fun component1 ()Ljava/util/List;
-	public final fun component2 ()Ljava/lang/String;
-	public final fun component3 ()Ljava/lang/String;
-	public final fun component4 ()Ljava/util/List;
-	public final fun copy (Ljava/util/List;Ljava/lang/String;Ljava/lang/String;Ljava/util/List;)Lcom/aiuta/fashionsdk/network/paging/models/PageContainer;
-	public static synthetic fun copy$default (Lcom/aiuta/fashionsdk/network/paging/models/PageContainer;Ljava/util/List;Ljava/lang/String;Ljava/lang/String;Ljava/util/List;ILjava/lang/Object;)Lcom/aiuta/fashionsdk/network/paging/models/PageContainer;
+	public final fun component2 ()I
+	public final fun component3 ()Ljava/lang/Integer;
+	public final fun copy (Ljava/util/List;ILjava/lang/Integer;)Lcom/aiuta/fashionsdk/network/paging/models/PageContainer;
+	public static synthetic fun copy$default (Lcom/aiuta/fashionsdk/network/paging/models/PageContainer;Ljava/util/List;ILjava/lang/Integer;ILjava/lang/Object;)Lcom/aiuta/fashionsdk/network/paging/models/PageContainer;
 	public fun equals (Ljava/lang/Object;)Z
-	public final fun getAfterKey ()Ljava/lang/String;
-	public final fun getBeforeKey ()Ljava/lang/String;
-	public final fun getErrors ()Ljava/util/List;
-	public final fun getResult ()Ljava/util/List;
+	public final fun getItems ()Ljava/util/List;
+	public final fun getNextOffset ()Ljava/lang/Integer;
+	public final fun getTotal ()I
 	public fun hashCode ()I
-	public final fun setAfterKey (Ljava/lang/String;)V
-	public final fun setBeforeKey (Ljava/lang/String;)V
+	public final fun setNextOffset (Ljava/lang/Integer;)V
+	public final fun setTotal (I)V
 	public fun toString ()Ljava/lang/String;
 }
 
@@ -31,31 +30,5 @@ public final synthetic class com/aiuta/fashionsdk/network/paging/models/PageCont
 
 public final class com/aiuta/fashionsdk/network/paging/models/PageContainer$Companion {
 	public final fun serializer (Lkotlinx/serialization/KSerializer;)Lkotlinx/serialization/KSerializer;
-}
-
-public final class com/aiuta/fashionsdk/network/paging/models/PaginationDirection : java/lang/Enum {
-	public static final field AFTER Lcom/aiuta/fashionsdk/network/paging/models/PaginationDirection;
-	public static final field BEFORE Lcom/aiuta/fashionsdk/network/paging/models/PaginationDirection;
-	public static fun getEntries ()Lkotlin/enums/EnumEntries;
-	public final fun getHttpQueryKey ()Ljava/lang/String;
-	public static fun valueOf (Ljava/lang/String;)Lcom/aiuta/fashionsdk/network/paging/models/PaginationDirection;
-	public static fun values ()[Lcom/aiuta/fashionsdk/network/paging/models/PaginationDirection;
-}
-
-public final class com/aiuta/fashionsdk/network/paging/models/PaginationOffset {
-	public fun <init> (Lcom/aiuta/fashionsdk/network/paging/models/PaginationDirection;Ljava/lang/String;)V
-	public final fun component1 ()Lcom/aiuta/fashionsdk/network/paging/models/PaginationDirection;
-	public final fun component2 ()Ljava/lang/String;
-	public final fun copy (Lcom/aiuta/fashionsdk/network/paging/models/PaginationDirection;Ljava/lang/String;)Lcom/aiuta/fashionsdk/network/paging/models/PaginationOffset;
-	public static synthetic fun copy$default (Lcom/aiuta/fashionsdk/network/paging/models/PaginationOffset;Lcom/aiuta/fashionsdk/network/paging/models/PaginationDirection;Ljava/lang/String;ILjava/lang/Object;)Lcom/aiuta/fashionsdk/network/paging/models/PaginationOffset;
-	public fun equals (Ljava/lang/Object;)Z
-	public final fun getDirection ()Lcom/aiuta/fashionsdk/network/paging/models/PaginationDirection;
-	public final fun getKey ()Ljava/lang/String;
-	public fun hashCode ()I
-	public fun toString ()Ljava/lang/String;
-}
-
-public final class com/aiuta/fashionsdk/network/paging/utils/URLBuilderExtensionsKt {
-	public static final fun saveAppend (Lio/ktor/http/URLBuilder;Lcom/aiuta/fashionsdk/network/paging/models/PaginationOffset;)V
 }
 

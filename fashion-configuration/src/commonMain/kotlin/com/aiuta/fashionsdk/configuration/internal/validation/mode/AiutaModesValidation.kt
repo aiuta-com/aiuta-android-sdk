@@ -29,11 +29,6 @@ internal fun AiutaModes.validateWithSettings(
     )
 
     // Image picker predefined models
-    shoes?.imagePicker?.predefinedModels?.strings?.predefinedModelShoesPageTitle.validateStringWithSettings(
-        propertyName = "predefinedModelShoesPageTitle",
-        logger = logger,
-        debugSettings = debugSettings,
-    )
     shoes?.imagePicker?.predefinedModels?.strings?.predefinedModelShoesCategories.validateMapWithSettings(
         propertyName = "predefinedModelShoesCategories",
         logger = logger,

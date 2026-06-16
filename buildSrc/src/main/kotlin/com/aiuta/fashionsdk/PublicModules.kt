@@ -19,7 +19,6 @@ val publicModules = setOf(
     "fashion-sizefit-core",
     "fashion-tryon-compose",
     "fashion-tryon-core",
-    "fashion-tryon-paging",
     "internal-fashion-analytics",
     "internal-fashion-navigation",
     "internal-fashion-storage",
