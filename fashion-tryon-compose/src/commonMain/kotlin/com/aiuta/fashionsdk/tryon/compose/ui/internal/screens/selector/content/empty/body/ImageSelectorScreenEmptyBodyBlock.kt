@@ -55,6 +55,10 @@ internal fun ImageSelectorScreenEmptyBodyBlock(modifier: Modifier) {
 
     val shouldShowConsent = remember { mutableStateOf(false) }
 
+    val sharedModifier = Modifier
+        .fillMaxWidth()
+        .padding(horizontal = 40.dp)
+
     LaunchedEffect(Unit) {
         shouldShowConsent.value = standaloneImagePickerPageFeature?.let {
             controller.consentInteractor.shouldShowConsent(standaloneImagePickerPageFeature)
@@ -67,14 +71,13 @@ internal fun ImageSelectorScreenEmptyBodyBlock(modifier: Modifier) {
             .background(
                 color = theme.color.neutral,
                 shape = RoundedCornerShape(24.dp),
-            )
-            .padding(horizontal = 40.dp),
+            ),
         horizontalAlignment = Alignment.CenterHorizontally,
     ) {
         Spacer(Modifier.height(50.dp))
 
         AiutaVideoSurface(
-            modifier = modifier
+            modifier = Modifier
                 .fillMaxWidth()
                 .weight(1f),
             video = resolveByMode(
@@ -87,7 +90,7 @@ internal fun ImageSelectorScreenEmptyBodyBlock(modifier: Modifier) {
         Spacer(Modifier.height(50.dp))
 
         Text(
-            modifier = Modifier.fillMaxWidth(),
+            modifier = sharedModifier,
             text = imageSelectorFeature.strings.imagePickerTitleEmpty,
             style = theme.label.typography.titleM,
             color = theme.color.primary,
@@ -97,7 +100,7 @@ internal fun ImageSelectorScreenEmptyBodyBlock(modifier: Modifier) {
         Spacer(Modifier.height(16.dp))
 
         Text(
-            modifier = Modifier.fillMaxWidth(),
+            modifier = sharedModifier,
             text = resolveByMode(
                 propertyName = "imageSelectorFeature.images.example",
                 general = { imageSelectorFeature.strings.imagePickerDescriptionEmpty },
@@ -112,7 +115,7 @@ internal fun ImageSelectorScreenEmptyBodyBlock(modifier: Modifier) {
             Spacer(Modifier.height(16.dp))
 
             ProtectionBlock(
-                modifier = Modifier.fillMaxWidth(),
+                modifier = sharedModifier,
                 protectionFeature = protectionFeature,
             )
         }
@@ -120,7 +123,7 @@ internal fun ImageSelectorScreenEmptyBodyBlock(modifier: Modifier) {
         Spacer(Modifier.height(32.dp))
 
         FashionButton(
-            modifier = Modifier.fillMaxWidth(),
+            modifier = sharedModifier,
             text = imageSelectorFeature.strings.imagePickerButtonUploadImage,
             style = FashionButtonStyles.primaryStyle(theme),
             size = FashionButtonSizes.lSize(),
@@ -144,7 +147,7 @@ internal fun ImageSelectorScreenEmptyBodyBlock(modifier: Modifier) {
             Spacer(Modifier.height(20.dp))
 
             Text(
-                modifier = Modifier.fillMaxWidth(),
+                modifier = sharedModifier,
                 text = predefinedModelFeature.strings.predefinedModelOr,
                 style = theme.label.typography.subtle,
                 color = theme.color.primary,
@@ -154,7 +157,7 @@ internal fun ImageSelectorScreenEmptyBodyBlock(modifier: Modifier) {
             Spacer(Modifier.height(20.dp))
 
             FashionButton(
-                modifier = Modifier.fillMaxWidth(),
+                modifier = sharedModifier,
                 text = predefinedModelFeature.strings.predefinedModelPageButton,
                 style = FashionButtonStyles.adaptiveContrastStyle(theme),
                 size = FashionButtonSizes.lSize(),
