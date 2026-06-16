@@ -127,7 +127,7 @@ internal fun ImagePickerSheet(
                     text = when (feature) {
                         is AiutaImagePickerCameraFeature -> feature.strings.cameraButtonTakePhoto
                         is AiutaImagePickerPhotoGalleryFeature -> feature.strings.galleryButtonSelectPhoto
-                        is AiutaImagePickerPredefinedModelFeature -> feature.strings.predefinedModelPageTitle
+                        is AiutaImagePickerPredefinedModelFeature -> feature.strings.predefinedModelPageButton
                         else -> throw NotSupportedImageSourceException()
                     },
                     onClick = {

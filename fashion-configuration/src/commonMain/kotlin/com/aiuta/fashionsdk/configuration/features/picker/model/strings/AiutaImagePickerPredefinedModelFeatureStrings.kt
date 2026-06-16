@@ -8,10 +8,9 @@ package com.aiuta.fashionsdk.configuration.features.picker.model.strings
  */
 public interface AiutaImagePickerPredefinedModelFeatureStrings {
     /**
-     * Title displayed at the top of the predefined models selection page.
+     * Main button to navigate to predefined models selection page.
      */
-    @Deprecated("Remove")
-    public val predefinedModelPageTitle: String
+    public val predefinedModelPageButton: String
 
     /**
      * Text displayed as a separator between different model selection options.
@@ -35,7 +34,7 @@ public interface AiutaImagePickerPredefinedModelFeatureStrings {
      * Provides standard English text for the predefined models interface.
      */
     public class Default : AiutaImagePickerPredefinedModelFeatureStrings {
-        override val predefinedModelPageTitle: String = "Select your model"
+        override val predefinedModelPageButton: String = "Select your model"
         override val predefinedModelOr: String = "Or"
         override val predefinedModelErrorEmptyModelsList: String = "The models list is empty"
         override val predefinedModelCategories: Map<String, String> = buildMap {

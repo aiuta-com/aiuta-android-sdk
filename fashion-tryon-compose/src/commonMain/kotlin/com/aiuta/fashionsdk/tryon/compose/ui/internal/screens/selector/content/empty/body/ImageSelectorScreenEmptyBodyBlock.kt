@@ -155,7 +155,7 @@ internal fun ImageSelectorScreenEmptyBodyBlock(modifier: Modifier) {
 
             FashionButton(
                 modifier = Modifier.fillMaxWidth(),
-                text = predefinedModelFeature.strings.predefinedModelPageTitle,
+                text = predefinedModelFeature.strings.predefinedModelPageButton,
                 style = FashionButtonStyles.adaptiveContrastStyle(theme),
                 size = FashionButtonSizes.lSize(),
                 onClick = {
