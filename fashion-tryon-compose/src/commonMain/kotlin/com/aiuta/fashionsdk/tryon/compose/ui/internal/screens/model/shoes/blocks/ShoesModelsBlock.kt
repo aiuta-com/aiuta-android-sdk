@@ -24,7 +24,6 @@ import com.aiuta.fashionsdk.tryon.compose.domain.models.internal.tryonmodel.Mode
 import com.aiuta.fashionsdk.tryon.compose.domain.models.internal.tryonmodel.ShoesModelGenderUiModel
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.screens.model.shoes.models.ShoesModelSelectorScreenEvent
 
-
 internal fun LazyListScope.shoesModelsBlock(
     activeGender: ShoesModelGenderUiModel,
     theme: AiutaTheme,

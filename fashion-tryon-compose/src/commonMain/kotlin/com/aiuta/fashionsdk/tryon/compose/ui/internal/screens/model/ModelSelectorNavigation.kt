@@ -10,12 +10,10 @@ import com.aiuta.fashionsdk.tryon.compose.ui.internal.navigation.TryOnScreen
  * [TryOnScreen.ModelSelectorShoes] for [AiutaMode.SHOES].
  */
 internal fun AiutaNavigationController.navigateToModelSelector(mode: AiutaMode) {
-    // TODO
     navigateTo(
-        newScreen = TryOnScreen.ModelSelectorShoes
-//            when (mode) {
-//            AiutaMode.GENERAL -> TryOnScreen.ModelSelector
-//            AiutaMode.SHOES -> TryOnScreen.ModelSelectorShoes
-//        },
+        newScreen = when (mode) {
+            AiutaMode.GENERAL -> TryOnScreen.ModelSelector
+            AiutaMode.SHOES -> TryOnScreen.ModelSelectorShoes
+        },
     )
 }

@@ -18,10 +18,10 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
 import com.aiuta.fashionsdk.compose.uikit.composition.LocalTheme
-import com.aiuta.fashionsdk.tryon.compose.ui.internal.screens.model.general.components.appbar.ModelSelectorAppBar
-import com.aiuta.fashionsdk.tryon.compose.ui.internal.screens.model.general.components.content.ModelSelectorShowContent
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.screens.model.components.error.ModelSelectorEmptyModelsErrorContent
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.screens.model.components.error.ModelSelectorGeneralErrorContent
+import com.aiuta.fashionsdk.tryon.compose.ui.internal.screens.model.general.components.appbar.ModelSelectorAppBar
+import com.aiuta.fashionsdk.tryon.compose.ui.internal.screens.model.general.components.content.ModelSelectorShowContent
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.screens.model.general.components.loading.ModelSelectorLoadingContent
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.screens.model.general.models.ModelSelectorScreenEvent
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.screens.model.general.models.ModelSelectorScreenViewState

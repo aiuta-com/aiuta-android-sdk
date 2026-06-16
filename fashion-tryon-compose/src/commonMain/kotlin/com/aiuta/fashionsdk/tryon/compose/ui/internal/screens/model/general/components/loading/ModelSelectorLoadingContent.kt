@@ -89,10 +89,10 @@ private fun ModelsListShimmer(
 
         Box(
             modifier =
-                Modifier
-                    .width(itemWidth.value)
-                    .height(itemHeight.value)
-                    .placeholderFadeConnecting(shapeDp = 8.dp),
+            Modifier
+                .width(itemWidth.value)
+                .height(itemHeight.value)
+                .placeholderFadeConnecting(shapeDp = 8.dp),
         )
     }
 }
