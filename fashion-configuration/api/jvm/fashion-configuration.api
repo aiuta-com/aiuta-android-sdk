@@ -1581,12 +1581,14 @@ public final class com/aiuta/fashionsdk/configuration/mode/shoes/picker/model/Ai
 
 public abstract interface class com/aiuta/fashionsdk/configuration/mode/shoes/picker/model/strings/AiutaShoesModeImagePickerPredefinedModelsStrings {
 	public abstract fun getPredefinedModelShoesCategories ()Ljava/util/Map;
+	public abstract fun getPredefinedModelShoesPageTitle ()Ljava/lang/String;
 }
 
 public final class com/aiuta/fashionsdk/configuration/mode/shoes/picker/model/strings/AiutaShoesModeImagePickerPredefinedModelsStrings$Default : com/aiuta/fashionsdk/configuration/mode/shoes/picker/model/strings/AiutaShoesModeImagePickerPredefinedModelsStrings {
 	public static final field $stable I
 	public fun <init> ()V
 	public fun getPredefinedModelShoesCategories ()Ljava/util/Map;
+	public fun getPredefinedModelShoesPageTitle ()Ljava/lang/String;
 }
 
 public abstract interface class com/aiuta/fashionsdk/configuration/mode/shoes/picker/strings/AiutaShoesModeImagePickerStrings {
