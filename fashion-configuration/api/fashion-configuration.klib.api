@@ -311,8 +311,8 @@ abstract interface com.aiuta.fashionsdk.configuration.features.picker.model.stri
         abstract fun <get-predefinedModelErrorEmptyModelsList>(): kotlin/String // com.aiuta.fashionsdk.configuration.features.picker.model.strings/AiutaImagePickerPredefinedModelFeatureStrings.predefinedModelErrorEmptyModelsList.<get-predefinedModelErrorEmptyModelsList>|<get-predefinedModelErrorEmptyModelsList>(){}[0]
     abstract val predefinedModelOr // com.aiuta.fashionsdk.configuration.features.picker.model.strings/AiutaImagePickerPredefinedModelFeatureStrings.predefinedModelOr|{}predefinedModelOr[0]
         abstract fun <get-predefinedModelOr>(): kotlin/String // com.aiuta.fashionsdk.configuration.features.picker.model.strings/AiutaImagePickerPredefinedModelFeatureStrings.predefinedModelOr.<get-predefinedModelOr>|<get-predefinedModelOr>(){}[0]
-    abstract val predefinedModelPageTitle // com.aiuta.fashionsdk.configuration.features.picker.model.strings/AiutaImagePickerPredefinedModelFeatureStrings.predefinedModelPageTitle|{}predefinedModelPageTitle[0]
-        abstract fun <get-predefinedModelPageTitle>(): kotlin/String // com.aiuta.fashionsdk.configuration.features.picker.model.strings/AiutaImagePickerPredefinedModelFeatureStrings.predefinedModelPageTitle.<get-predefinedModelPageTitle>|<get-predefinedModelPageTitle>(){}[0]
+    abstract val predefinedModelPageButton // com.aiuta.fashionsdk.configuration.features.picker.model.strings/AiutaImagePickerPredefinedModelFeatureStrings.predefinedModelPageButton|{}predefinedModelPageButton[0]
+        abstract fun <get-predefinedModelPageButton>(): kotlin/String // com.aiuta.fashionsdk.configuration.features.picker.model.strings/AiutaImagePickerPredefinedModelFeatureStrings.predefinedModelPageButton.<get-predefinedModelPageButton>|<get-predefinedModelPageButton>(){}[0]
 
     final class Default : com.aiuta.fashionsdk.configuration.features.picker.model.strings/AiutaImagePickerPredefinedModelFeatureStrings { // com.aiuta.fashionsdk.configuration.features.picker.model.strings/AiutaImagePickerPredefinedModelFeatureStrings.Default|null[0]
         constructor <init>() // com.aiuta.fashionsdk.configuration.features.picker.model.strings/AiutaImagePickerPredefinedModelFeatureStrings.Default.<init>|<init>(){}[0]
@@ -323,8 +323,8 @@ abstract interface com.aiuta.fashionsdk.configuration.features.picker.model.stri
             final fun <get-predefinedModelErrorEmptyModelsList>(): kotlin/String // com.aiuta.fashionsdk.configuration.features.picker.model.strings/AiutaImagePickerPredefinedModelFeatureStrings.Default.predefinedModelErrorEmptyModelsList.<get-predefinedModelErrorEmptyModelsList>|<get-predefinedModelErrorEmptyModelsList>(){}[0]
         final val predefinedModelOr // com.aiuta.fashionsdk.configuration.features.picker.model.strings/AiutaImagePickerPredefinedModelFeatureStrings.Default.predefinedModelOr|{}predefinedModelOr[0]
             final fun <get-predefinedModelOr>(): kotlin/String // com.aiuta.fashionsdk.configuration.features.picker.model.strings/AiutaImagePickerPredefinedModelFeatureStrings.Default.predefinedModelOr.<get-predefinedModelOr>|<get-predefinedModelOr>(){}[0]
-        final val predefinedModelPageTitle // com.aiuta.fashionsdk.configuration.features.picker.model.strings/AiutaImagePickerPredefinedModelFeatureStrings.Default.predefinedModelPageTitle|{}predefinedModelPageTitle[0]
-            final fun <get-predefinedModelPageTitle>(): kotlin/String // com.aiuta.fashionsdk.configuration.features.picker.model.strings/AiutaImagePickerPredefinedModelFeatureStrings.Default.predefinedModelPageTitle.<get-predefinedModelPageTitle>|<get-predefinedModelPageTitle>(){}[0]
+        final val predefinedModelPageButton // com.aiuta.fashionsdk.configuration.features.picker.model.strings/AiutaImagePickerPredefinedModelFeatureStrings.Default.predefinedModelPageButton|{}predefinedModelPageButton[0]
+            final fun <get-predefinedModelPageButton>(): kotlin/String // com.aiuta.fashionsdk.configuration.features.picker.model.strings/AiutaImagePickerPredefinedModelFeatureStrings.Default.predefinedModelPageButton.<get-predefinedModelPageButton>|<get-predefinedModelPageButton>(){}[0]
     }
 }
 
@@ -871,16 +871,12 @@ abstract interface com.aiuta.fashionsdk.configuration.mode.shoes.picker.images/A
 abstract interface com.aiuta.fashionsdk.configuration.mode.shoes.picker.model.strings/AiutaShoesModeImagePickerPredefinedModelsStrings { // com.aiuta.fashionsdk.configuration.mode.shoes.picker.model.strings/AiutaShoesModeImagePickerPredefinedModelsStrings|null[0]
     abstract val predefinedModelShoesCategories // com.aiuta.fashionsdk.configuration.mode.shoes.picker.model.strings/AiutaShoesModeImagePickerPredefinedModelsStrings.predefinedModelShoesCategories|{}predefinedModelShoesCategories[0]
         abstract fun <get-predefinedModelShoesCategories>(): kotlin.collections/Map<kotlin/String, kotlin/String> // com.aiuta.fashionsdk.configuration.mode.shoes.picker.model.strings/AiutaShoesModeImagePickerPredefinedModelsStrings.predefinedModelShoesCategories.<get-predefinedModelShoesCategories>|<get-predefinedModelShoesCategories>(){}[0]
-    abstract val predefinedModelShoesPageTitle // com.aiuta.fashionsdk.configuration.mode.shoes.picker.model.strings/AiutaShoesModeImagePickerPredefinedModelsStrings.predefinedModelShoesPageTitle|{}predefinedModelShoesPageTitle[0]
-        abstract fun <get-predefinedModelShoesPageTitle>(): kotlin/String // com.aiuta.fashionsdk.configuration.mode.shoes.picker.model.strings/AiutaShoesModeImagePickerPredefinedModelsStrings.predefinedModelShoesPageTitle.<get-predefinedModelShoesPageTitle>|<get-predefinedModelShoesPageTitle>(){}[0]
 
     final class Default : com.aiuta.fashionsdk.configuration.mode.shoes.picker.model.strings/AiutaShoesModeImagePickerPredefinedModelsStrings { // com.aiuta.fashionsdk.configuration.mode.shoes.picker.model.strings/AiutaShoesModeImagePickerPredefinedModelsStrings.Default|null[0]
         constructor <init>() // com.aiuta.fashionsdk.configuration.mode.shoes.picker.model.strings/AiutaShoesModeImagePickerPredefinedModelsStrings.Default.<init>|<init>(){}[0]
 
         final val predefinedModelShoesCategories // com.aiuta.fashionsdk.configuration.mode.shoes.picker.model.strings/AiutaShoesModeImagePickerPredefinedModelsStrings.Default.predefinedModelShoesCategories|{}predefinedModelShoesCategories[0]
             final fun <get-predefinedModelShoesCategories>(): kotlin.collections/Map<kotlin/String, kotlin/String> // com.aiuta.fashionsdk.configuration.mode.shoes.picker.model.strings/AiutaShoesModeImagePickerPredefinedModelsStrings.Default.predefinedModelShoesCategories.<get-predefinedModelShoesCategories>|<get-predefinedModelShoesCategories>(){}[0]
-        final val predefinedModelShoesPageTitle // com.aiuta.fashionsdk.configuration.mode.shoes.picker.model.strings/AiutaShoesModeImagePickerPredefinedModelsStrings.Default.predefinedModelShoesPageTitle|{}predefinedModelShoesPageTitle[0]
-            final fun <get-predefinedModelShoesPageTitle>(): kotlin/String // com.aiuta.fashionsdk.configuration.mode.shoes.picker.model.strings/AiutaShoesModeImagePickerPredefinedModelsStrings.Default.predefinedModelShoesPageTitle.<get-predefinedModelShoesPageTitle>|<get-predefinedModelShoesPageTitle>(){}[0]
     }
 }
 

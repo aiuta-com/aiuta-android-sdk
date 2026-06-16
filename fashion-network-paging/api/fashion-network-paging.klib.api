@@ -6,39 +6,23 @@
 // - Show declarations: true
 
 // Library unique name: <com.aiuta:fashion-network-paging>
-final enum class com.aiuta.fashionsdk.network.paging.models/PaginationDirection : kotlin/Enum<com.aiuta.fashionsdk.network.paging.models/PaginationDirection> { // com.aiuta.fashionsdk.network.paging.models/PaginationDirection|null[0]
-    enum entry AFTER // com.aiuta.fashionsdk.network.paging.models/PaginationDirection.AFTER|null[0]
-    enum entry BEFORE // com.aiuta.fashionsdk.network.paging.models/PaginationDirection.BEFORE|null[0]
-
-    final val entries // com.aiuta.fashionsdk.network.paging.models/PaginationDirection.entries|#static{}entries[0]
-        final fun <get-entries>(): kotlin.enums/EnumEntries<com.aiuta.fashionsdk.network.paging.models/PaginationDirection> // com.aiuta.fashionsdk.network.paging.models/PaginationDirection.entries.<get-entries>|<get-entries>#static(){}[0]
-    final val httpQueryKey // com.aiuta.fashionsdk.network.paging.models/PaginationDirection.httpQueryKey|{}httpQueryKey[0]
-        final fun <get-httpQueryKey>(): kotlin/String // com.aiuta.fashionsdk.network.paging.models/PaginationDirection.httpQueryKey.<get-httpQueryKey>|<get-httpQueryKey>(){}[0]
-
-    final fun valueOf(kotlin/String): com.aiuta.fashionsdk.network.paging.models/PaginationDirection // com.aiuta.fashionsdk.network.paging.models/PaginationDirection.valueOf|valueOf#static(kotlin.String){}[0]
-    final fun values(): kotlin/Array<com.aiuta.fashionsdk.network.paging.models/PaginationDirection> // com.aiuta.fashionsdk.network.paging.models/PaginationDirection.values|values#static(){}[0]
-}
-
 final class <#A: kotlin/Any?> com.aiuta.fashionsdk.network.paging.models/PageContainer { // com.aiuta.fashionsdk.network.paging.models/PageContainer|null[0]
-    constructor <init>(kotlin.collections/List<#A>, kotlin/String, kotlin/String, kotlin.collections/List<kotlin/String>) // com.aiuta.fashionsdk.network.paging.models/PageContainer.<init>|<init>(kotlin.collections.List<1:0>;kotlin.String;kotlin.String;kotlin.collections.List<kotlin.String>){}[0]
+    constructor <init>(kotlin.collections/List<#A>, kotlin/Int, kotlin/Int? = ...) // com.aiuta.fashionsdk.network.paging.models/PageContainer.<init>|<init>(kotlin.collections.List<1:0>;kotlin.Int;kotlin.Int?){}[0]
 
-    final val errors // com.aiuta.fashionsdk.network.paging.models/PageContainer.errors|{}errors[0]
-        final fun <get-errors>(): kotlin.collections/List<kotlin/String> // com.aiuta.fashionsdk.network.paging.models/PageContainer.errors.<get-errors>|<get-errors>(){}[0]
-    final val result // com.aiuta.fashionsdk.network.paging.models/PageContainer.result|{}result[0]
-        final fun <get-result>(): kotlin.collections/List<#A> // com.aiuta.fashionsdk.network.paging.models/PageContainer.result.<get-result>|<get-result>(){}[0]
+    final val items // com.aiuta.fashionsdk.network.paging.models/PageContainer.items|{}items[0]
+        final fun <get-items>(): kotlin.collections/List<#A> // com.aiuta.fashionsdk.network.paging.models/PageContainer.items.<get-items>|<get-items>(){}[0]
 
-    final var afterKey // com.aiuta.fashionsdk.network.paging.models/PageContainer.afterKey|{}afterKey[0]
-        final fun <get-afterKey>(): kotlin/String // com.aiuta.fashionsdk.network.paging.models/PageContainer.afterKey.<get-afterKey>|<get-afterKey>(){}[0]
-        final fun <set-afterKey>(kotlin/String) // com.aiuta.fashionsdk.network.paging.models/PageContainer.afterKey.<set-afterKey>|<set-afterKey>(kotlin.String){}[0]
-    final var beforeKey // com.aiuta.fashionsdk.network.paging.models/PageContainer.beforeKey|{}beforeKey[0]
-        final fun <get-beforeKey>(): kotlin/String // com.aiuta.fashionsdk.network.paging.models/PageContainer.beforeKey.<get-beforeKey>|<get-beforeKey>(){}[0]
-        final fun <set-beforeKey>(kotlin/String) // com.aiuta.fashionsdk.network.paging.models/PageContainer.beforeKey.<set-beforeKey>|<set-beforeKey>(kotlin.String){}[0]
+    final var nextOffset // com.aiuta.fashionsdk.network.paging.models/PageContainer.nextOffset|{}nextOffset[0]
+        final fun <get-nextOffset>(): kotlin/Int? // com.aiuta.fashionsdk.network.paging.models/PageContainer.nextOffset.<get-nextOffset>|<get-nextOffset>(){}[0]
+        final fun <set-nextOffset>(kotlin/Int?) // com.aiuta.fashionsdk.network.paging.models/PageContainer.nextOffset.<set-nextOffset>|<set-nextOffset>(kotlin.Int?){}[0]
+    final var total // com.aiuta.fashionsdk.network.paging.models/PageContainer.total|{}total[0]
+        final fun <get-total>(): kotlin/Int // com.aiuta.fashionsdk.network.paging.models/PageContainer.total.<get-total>|<get-total>(){}[0]
+        final fun <set-total>(kotlin/Int) // com.aiuta.fashionsdk.network.paging.models/PageContainer.total.<set-total>|<set-total>(kotlin.Int){}[0]
 
     final fun component1(): kotlin.collections/List<#A> // com.aiuta.fashionsdk.network.paging.models/PageContainer.component1|component1(){}[0]
-    final fun component2(): kotlin/String // com.aiuta.fashionsdk.network.paging.models/PageContainer.component2|component2(){}[0]
-    final fun component3(): kotlin/String // com.aiuta.fashionsdk.network.paging.models/PageContainer.component3|component3(){}[0]
-    final fun component4(): kotlin.collections/List<kotlin/String> // com.aiuta.fashionsdk.network.paging.models/PageContainer.component4|component4(){}[0]
-    final fun copy(kotlin.collections/List<#A> = ..., kotlin/String = ..., kotlin/String = ..., kotlin.collections/List<kotlin/String> = ...): com.aiuta.fashionsdk.network.paging.models/PageContainer<#A> // com.aiuta.fashionsdk.network.paging.models/PageContainer.copy|copy(kotlin.collections.List<1:0>;kotlin.String;kotlin.String;kotlin.collections.List<kotlin.String>){}[0]
+    final fun component2(): kotlin/Int // com.aiuta.fashionsdk.network.paging.models/PageContainer.component2|component2(){}[0]
+    final fun component3(): kotlin/Int? // com.aiuta.fashionsdk.network.paging.models/PageContainer.component3|component3(){}[0]
+    final fun copy(kotlin.collections/List<#A> = ..., kotlin/Int = ..., kotlin/Int? = ...): com.aiuta.fashionsdk.network.paging.models/PageContainer<#A> // com.aiuta.fashionsdk.network.paging.models/PageContainer.copy|copy(kotlin.collections.List<1:0>;kotlin.Int;kotlin.Int?){}[0]
     final fun equals(kotlin/Any?): kotlin/Boolean // com.aiuta.fashionsdk.network.paging.models/PageContainer.equals|equals(kotlin.Any?){}[0]
     final fun hashCode(): kotlin/Int // com.aiuta.fashionsdk.network.paging.models/PageContainer.hashCode|hashCode(){}[0]
     final fun toString(): kotlin/String // com.aiuta.fashionsdk.network.paging.models/PageContainer.toString|toString(){}[0]
@@ -59,27 +43,8 @@ final class <#A: kotlin/Any?> com.aiuta.fashionsdk.network.paging.models/PageCon
     final object Companion : kotlinx.serialization.internal/SerializerFactory { // com.aiuta.fashionsdk.network.paging.models/PageContainer.Companion|null[0]
         final val $cachedDescriptor // com.aiuta.fashionsdk.network.paging.models/PageContainer.Companion.$cachedDescriptor|{}$cachedDescriptor[0]
             final fun <get-$cachedDescriptor>(): kotlinx.serialization.descriptors/SerialDescriptor // com.aiuta.fashionsdk.network.paging.models/PageContainer.Companion.$cachedDescriptor.<get-$cachedDescriptor>|<get-$cachedDescriptor>(){}[0]
-        final val $childSerializers // com.aiuta.fashionsdk.network.paging.models/PageContainer.Companion.$childSerializers|{}$childSerializers[0]
 
         final fun <#A2: kotlin/Any?> serializer(kotlinx.serialization/KSerializer<#A2>): kotlinx.serialization/KSerializer<com.aiuta.fashionsdk.network.paging.models/PageContainer<#A2>> // com.aiuta.fashionsdk.network.paging.models/PageContainer.Companion.serializer|serializer(kotlinx.serialization.KSerializer<0:0>){0§<kotlin.Any?>}[0]
         final fun serializer(kotlin/Array<out kotlinx.serialization/KSerializer<*>>...): kotlinx.serialization/KSerializer<*> // com.aiuta.fashionsdk.network.paging.models/PageContainer.Companion.serializer|serializer(kotlin.Array<out|kotlinx.serialization.KSerializer<*>>...){}[0]
     }
 }
-
-final class com.aiuta.fashionsdk.network.paging.models/PaginationOffset { // com.aiuta.fashionsdk.network.paging.models/PaginationOffset|null[0]
-    constructor <init>(com.aiuta.fashionsdk.network.paging.models/PaginationDirection, kotlin/String) // com.aiuta.fashionsdk.network.paging.models/PaginationOffset.<init>|<init>(com.aiuta.fashionsdk.network.paging.models.PaginationDirection;kotlin.String){}[0]
-
-    final val direction // com.aiuta.fashionsdk.network.paging.models/PaginationOffset.direction|{}direction[0]
-        final fun <get-direction>(): com.aiuta.fashionsdk.network.paging.models/PaginationDirection // com.aiuta.fashionsdk.network.paging.models/PaginationOffset.direction.<get-direction>|<get-direction>(){}[0]
-    final val key // com.aiuta.fashionsdk.network.paging.models/PaginationOffset.key|{}key[0]
-        final fun <get-key>(): kotlin/String // com.aiuta.fashionsdk.network.paging.models/PaginationOffset.key.<get-key>|<get-key>(){}[0]
-
-    final fun component1(): com.aiuta.fashionsdk.network.paging.models/PaginationDirection // com.aiuta.fashionsdk.network.paging.models/PaginationOffset.component1|component1(){}[0]
-    final fun component2(): kotlin/String // com.aiuta.fashionsdk.network.paging.models/PaginationOffset.component2|component2(){}[0]
-    final fun copy(com.aiuta.fashionsdk.network.paging.models/PaginationDirection = ..., kotlin/String = ...): com.aiuta.fashionsdk.network.paging.models/PaginationOffset // com.aiuta.fashionsdk.network.paging.models/PaginationOffset.copy|copy(com.aiuta.fashionsdk.network.paging.models.PaginationDirection;kotlin.String){}[0]
-    final fun equals(kotlin/Any?): kotlin/Boolean // com.aiuta.fashionsdk.network.paging.models/PaginationOffset.equals|equals(kotlin.Any?){}[0]
-    final fun hashCode(): kotlin/Int // com.aiuta.fashionsdk.network.paging.models/PaginationOffset.hashCode|hashCode(){}[0]
-    final fun toString(): kotlin/String // com.aiuta.fashionsdk.network.paging.models/PaginationOffset.toString|toString(){}[0]
-}
-
-final fun (io.ktor.http/URLBuilder).com.aiuta.fashionsdk.network.paging.utils/saveAppend(com.aiuta.fashionsdk.network.paging.models/PaginationOffset?) // com.aiuta.fashionsdk.network.paging.utils/saveAppend|saveAppend@io.ktor.http.URLBuilder(com.aiuta.fashionsdk.network.paging.models.PaginationOffset?){}[0]
