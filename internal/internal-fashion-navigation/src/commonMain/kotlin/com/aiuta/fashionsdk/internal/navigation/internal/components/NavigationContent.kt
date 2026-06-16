@@ -87,5 +87,15 @@ internal fun NavigationContent(
         ) {
             entry.Content()
         }
+
+        // Clear this screen's ViewModelStore only once it has actually left composition AND is no
+        // longer reachable (not the current screen and not in the back stack).
+        DisposableEffect(targetScreen.id) {
+            onDispose {
+                if (!navigationController.isScreenPreserved(targetScreen)) {
+                    viewModelStoreManager.clearViewModelStoreForScreen(targetScreen.id)
+                }
+            }
+        }
     }
 }

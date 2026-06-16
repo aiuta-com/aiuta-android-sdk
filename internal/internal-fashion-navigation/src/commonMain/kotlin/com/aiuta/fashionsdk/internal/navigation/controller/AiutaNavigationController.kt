@@ -54,12 +54,9 @@ public class AiutaNavigationController internal constructor(
     }
 
     public fun navigateTo(newScreen: AiutaNavigationScreen) {
-        // Save previous screen, if we should not skip it in back stack
+        // Save previous screen, if we should not skip it in back stack.
         if (currentScreen.value.shouldSaveInBackStack) {
             backStack.addLast(currentScreen.value)
-        } else {
-            // If screen is not saved in backstack, clear its ViewModelStore immediately
-            viewModelStoreManager?.clearViewModelStoreForScreen(currentScreen.value.id)
         }
 
         // Set direction and new screen
@@ -97,16 +94,21 @@ public class AiutaNavigationController internal constructor(
     public fun navigateBack() {
         aiutaNavigationDirection = AiutaNavigationDirection.Backward
         if (backStack.isNotEmpty()) {
-            // Clear ViewModelStore for the current screen before navigating back
-            val screenToRemove = currentScreen.value
-            viewModelStoreManager?.clearViewModelStoreForScreen(screenToRemove.id)
-
+            // The screen we leave is cleared by NavigationContent's onDispose once it actually
+            // leaves composition (see navigateTo) — not eagerly here, while it is still animating.
             val previousScreen = backStack.removeLast()
             currentScreen.value = previousScreen
         } else {
             clickClose()
         }
     }
+
+    /**
+     * Whether [screen] must keep its [androidx.lifecycle.ViewModelStore] alive: it is either the
+     * current screen or still present in the back stack. NavigationContent uses this on disposal to
+     * decide whether a screen leaving composition should have its store cleared.
+     */
+    internal fun isScreenPreserved(screen: AiutaNavigationScreen): Boolean = currentScreen.value == screen || backStack.contains(screen)
 
     public fun clickClose(
         pageId: AiutaAnalyticsPageId? = null,

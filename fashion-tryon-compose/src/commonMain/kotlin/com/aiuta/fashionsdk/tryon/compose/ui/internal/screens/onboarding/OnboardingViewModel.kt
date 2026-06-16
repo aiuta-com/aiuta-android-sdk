@@ -84,7 +84,10 @@ internal class OnboardingViewModel(
 
             is OnboardingScreenEvent.NextClicked -> navigateNextPage()
 
-            is OnboardingScreenEvent.ConsentToggled -> toggleConsent(event.consent, event.isObtained)
+            is OnboardingScreenEvent.ConsentToggled -> toggleConsent(
+                consent = event.consent,
+                isObtained = event.isObtained,
+            )
         }
     }
 
@@ -214,7 +217,7 @@ internal class OnboardingViewModel(
         val resolution = OnboardingResolutionInput(
             mode = mode,
             isOnboardingEnabled = true,
-            isHowItWorksEnabled = true,
+            isHowItWorksEnabled = onboardingFeature.howItWorksPage != null,
             isGeneralBestResultsEnabled = isGeneralBestResultsEnabled,
             isShoesBestResultsEnabled = onboardingShoesPage != null,
             completion = completion,
@@ -223,7 +226,9 @@ internal class OnboardingViewModel(
         val onboardingStatesQueue = buildList {
             // How it works
             if (resolution.showHowItWorks()) {
-                add(TryOnPage(onboardingFeature.howItWorksPage))
+                onboardingFeature.howItWorksPage?.let { howItWorksPageFeature ->
+                    add(TryOnPage(howItWorksPageFeature))
+                }
             }
 
             // Best result (general)
