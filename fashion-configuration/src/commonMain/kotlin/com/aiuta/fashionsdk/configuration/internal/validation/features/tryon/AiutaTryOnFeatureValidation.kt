@@ -117,6 +117,31 @@ internal fun AiutaTryOnFeature.validateWithSettings(
         logger = logger,
         debugSettings = debugSettings,
     )
+    inputImageValidation.strings.noPeopleDetectedDescription.validateStringWithSettings(
+        propertyName = "noPeopleDetectedDescription",
+        logger = logger,
+        debugSettings = debugSettings,
+    )
+    inputImageValidation.strings.tooManyPeopleDetectedDescription.validateStringWithSettings(
+        propertyName = "tooManyPeopleDetectedDescription",
+        logger = logger,
+        debugSettings = debugSettings,
+    )
+    inputImageValidation.strings.childDetectedDescription.validateStringWithSettings(
+        propertyName = "childDetectedDescription",
+        logger = logger,
+        debugSettings = debugSettings,
+    )
+    inputImageValidation.strings.insufficientTargetAreaDescription.validateStringWithSettings(
+        propertyName = "insufficientTargetAreaDescription",
+        logger = logger,
+        debugSettings = debugSettings,
+    )
+    inputImageValidation.strings.internalRestrictionDescription.validateStringWithSettings(
+        propertyName = "internalRestrictionDescription",
+        logger = logger,
+        debugSettings = debugSettings,
+    )
 
     // General
     strings.tryOnPageTitle.validateStringWithSettings(

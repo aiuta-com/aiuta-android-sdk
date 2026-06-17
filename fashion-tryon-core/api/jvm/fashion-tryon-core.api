@@ -158,6 +158,18 @@ public final class com/aiuta/fashionsdk/tryon/core/domain/models/policies/AiutaT
 	public static final fun getDefaultAiutaTryOnRetryPolicies ()Lcom/aiuta/fashionsdk/tryon/core/domain/models/policies/AiutaTryOnRetryPolicies;
 }
 
+public final class com/aiuta/fashionsdk/tryon/core/domain/slice/ping/exception/AiutaTryOnAbortReason : java/lang/Enum {
+	public static final field CHILD_DETECTED Lcom/aiuta/fashionsdk/tryon/core/domain/slice/ping/exception/AiutaTryOnAbortReason;
+	public static final field INSUFFICIENT_TARGET_AREA Lcom/aiuta/fashionsdk/tryon/core/domain/slice/ping/exception/AiutaTryOnAbortReason;
+	public static final field INTERNAL_RESTRICTION Lcom/aiuta/fashionsdk/tryon/core/domain/slice/ping/exception/AiutaTryOnAbortReason;
+	public static final field NO_PEOPLE_DETECTED Lcom/aiuta/fashionsdk/tryon/core/domain/slice/ping/exception/AiutaTryOnAbortReason;
+	public static final field TOO_MANY_PEOPLE_DETECTED Lcom/aiuta/fashionsdk/tryon/core/domain/slice/ping/exception/AiutaTryOnAbortReason;
+	public static final field UNKNOWN Lcom/aiuta/fashionsdk/tryon/core/domain/slice/ping/exception/AiutaTryOnAbortReason;
+	public static fun getEntries ()Lkotlin/enums/EnumEntries;
+	public static fun valueOf (Ljava/lang/String;)Lcom/aiuta/fashionsdk/tryon/core/domain/slice/ping/exception/AiutaTryOnAbortReason;
+	public static fun values ()[Lcom/aiuta/fashionsdk/tryon/core/domain/slice/ping/exception/AiutaTryOnAbortReason;
+}
+
 public final class com/aiuta/fashionsdk/tryon/core/domain/slice/ping/exception/AiutaTryOnExceptionType : java/lang/Enum {
 	public static final field DOWNLOAD_RESULT_FAILED Lcom/aiuta/fashionsdk/tryon/core/domain/slice/ping/exception/AiutaTryOnExceptionType;
 	public static final field OPERATION_ABORTED_FAILED Lcom/aiuta/fashionsdk/tryon/core/domain/slice/ping/exception/AiutaTryOnExceptionType;
@@ -174,8 +186,9 @@ public final class com/aiuta/fashionsdk/tryon/core/domain/slice/ping/exception/A
 
 public final class com/aiuta/fashionsdk/tryon/core/domain/slice/ping/exception/AiutaTryOnGenerationException : java/lang/RuntimeException {
 	public static final field $stable I
-	public fun <init> (Lcom/aiuta/fashionsdk/tryon/core/domain/slice/ping/exception/AiutaTryOnExceptionType;Ljava/lang/String;)V
-	public synthetic fun <init> (Lcom/aiuta/fashionsdk/tryon/core/domain/slice/ping/exception/AiutaTryOnExceptionType;Ljava/lang/String;ILkotlin/jvm/internal/DefaultConstructorMarker;)V
+	public fun <init> (Lcom/aiuta/fashionsdk/tryon/core/domain/slice/ping/exception/AiutaTryOnExceptionType;Ljava/lang/String;Lcom/aiuta/fashionsdk/tryon/core/domain/slice/ping/exception/AiutaTryOnAbortReason;)V
+	public synthetic fun <init> (Lcom/aiuta/fashionsdk/tryon/core/domain/slice/ping/exception/AiutaTryOnExceptionType;Ljava/lang/String;Lcom/aiuta/fashionsdk/tryon/core/domain/slice/ping/exception/AiutaTryOnAbortReason;ILkotlin/jvm/internal/DefaultConstructorMarker;)V
+	public final fun getAbortReason ()Lcom/aiuta/fashionsdk/tryon/core/domain/slice/ping/exception/AiutaTryOnAbortReason;
 	public fun getMessage ()Ljava/lang/String;
 	public final fun getType ()Lcom/aiuta/fashionsdk/tryon/core/domain/slice/ping/exception/AiutaTryOnExceptionType;
 }

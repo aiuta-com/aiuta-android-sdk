@@ -22,6 +22,21 @@ final enum class com.aiuta.fashionsdk.tryon.core.data.datasource.image.models/Ai
     }
 }
 
+final enum class com.aiuta.fashionsdk.tryon.core.domain.slice.ping.exception/AiutaTryOnAbortReason : kotlin/Enum<com.aiuta.fashionsdk.tryon.core.domain.slice.ping.exception/AiutaTryOnAbortReason> { // com.aiuta.fashionsdk.tryon.core.domain.slice.ping.exception/AiutaTryOnAbortReason|null[0]
+    enum entry CHILD_DETECTED // com.aiuta.fashionsdk.tryon.core.domain.slice.ping.exception/AiutaTryOnAbortReason.CHILD_DETECTED|null[0]
+    enum entry INSUFFICIENT_TARGET_AREA // com.aiuta.fashionsdk.tryon.core.domain.slice.ping.exception/AiutaTryOnAbortReason.INSUFFICIENT_TARGET_AREA|null[0]
+    enum entry INTERNAL_RESTRICTION // com.aiuta.fashionsdk.tryon.core.domain.slice.ping.exception/AiutaTryOnAbortReason.INTERNAL_RESTRICTION|null[0]
+    enum entry NO_PEOPLE_DETECTED // com.aiuta.fashionsdk.tryon.core.domain.slice.ping.exception/AiutaTryOnAbortReason.NO_PEOPLE_DETECTED|null[0]
+    enum entry TOO_MANY_PEOPLE_DETECTED // com.aiuta.fashionsdk.tryon.core.domain.slice.ping.exception/AiutaTryOnAbortReason.TOO_MANY_PEOPLE_DETECTED|null[0]
+    enum entry UNKNOWN // com.aiuta.fashionsdk.tryon.core.domain.slice.ping.exception/AiutaTryOnAbortReason.UNKNOWN|null[0]
+
+    final val entries // com.aiuta.fashionsdk.tryon.core.domain.slice.ping.exception/AiutaTryOnAbortReason.entries|#static{}entries[0]
+        final fun <get-entries>(): kotlin.enums/EnumEntries<com.aiuta.fashionsdk.tryon.core.domain.slice.ping.exception/AiutaTryOnAbortReason> // com.aiuta.fashionsdk.tryon.core.domain.slice.ping.exception/AiutaTryOnAbortReason.entries.<get-entries>|<get-entries>#static(){}[0]
+
+    final fun valueOf(kotlin/String): com.aiuta.fashionsdk.tryon.core.domain.slice.ping.exception/AiutaTryOnAbortReason // com.aiuta.fashionsdk.tryon.core.domain.slice.ping.exception/AiutaTryOnAbortReason.valueOf|valueOf#static(kotlin.String){}[0]
+    final fun values(): kotlin/Array<com.aiuta.fashionsdk.tryon.core.domain.slice.ping.exception/AiutaTryOnAbortReason> // com.aiuta.fashionsdk.tryon.core.domain.slice.ping.exception/AiutaTryOnAbortReason.values|values#static(){}[0]
+}
+
 final enum class com.aiuta.fashionsdk.tryon.core.domain.slice.ping.exception/AiutaTryOnExceptionType : kotlin/Enum<com.aiuta.fashionsdk.tryon.core.domain.slice.ping.exception/AiutaTryOnExceptionType> { // com.aiuta.fashionsdk.tryon.core.domain.slice.ping.exception/AiutaTryOnExceptionType|null[0]
     enum entry DOWNLOAD_RESULT_FAILED // com.aiuta.fashionsdk.tryon.core.domain.slice.ping.exception/AiutaTryOnExceptionType.DOWNLOAD_RESULT_FAILED|null[0]
     enum entry OPERATION_ABORTED_FAILED // com.aiuta.fashionsdk.tryon.core.domain.slice.ping.exception/AiutaTryOnExceptionType.OPERATION_ABORTED_FAILED|null[0]
@@ -213,8 +228,10 @@ final class com.aiuta.fashionsdk.tryon.core.domain.models/ProductGenerationUrlCo
 }
 
 final class com.aiuta.fashionsdk.tryon.core.domain.slice.ping.exception/AiutaTryOnGenerationException : kotlin/RuntimeException { // com.aiuta.fashionsdk.tryon.core.domain.slice.ping.exception/AiutaTryOnGenerationException|null[0]
-    constructor <init>(com.aiuta.fashionsdk.tryon.core.domain.slice.ping.exception/AiutaTryOnExceptionType, kotlin/String? = ...) // com.aiuta.fashionsdk.tryon.core.domain.slice.ping.exception/AiutaTryOnGenerationException.<init>|<init>(com.aiuta.fashionsdk.tryon.core.domain.slice.ping.exception.AiutaTryOnExceptionType;kotlin.String?){}[0]
+    constructor <init>(com.aiuta.fashionsdk.tryon.core.domain.slice.ping.exception/AiutaTryOnExceptionType, kotlin/String? = ..., com.aiuta.fashionsdk.tryon.core.domain.slice.ping.exception/AiutaTryOnAbortReason? = ...) // com.aiuta.fashionsdk.tryon.core.domain.slice.ping.exception/AiutaTryOnGenerationException.<init>|<init>(com.aiuta.fashionsdk.tryon.core.domain.slice.ping.exception.AiutaTryOnExceptionType;kotlin.String?;com.aiuta.fashionsdk.tryon.core.domain.slice.ping.exception.AiutaTryOnAbortReason?){}[0]
 
+    final val abortReason // com.aiuta.fashionsdk.tryon.core.domain.slice.ping.exception/AiutaTryOnGenerationException.abortReason|{}abortReason[0]
+        final fun <get-abortReason>(): com.aiuta.fashionsdk.tryon.core.domain.slice.ping.exception/AiutaTryOnAbortReason? // com.aiuta.fashionsdk.tryon.core.domain.slice.ping.exception/AiutaTryOnGenerationException.abortReason.<get-abortReason>|<get-abortReason>(){}[0]
     final val message // com.aiuta.fashionsdk.tryon.core.domain.slice.ping.exception/AiutaTryOnGenerationException.message|{}message[0]
         final fun <get-message>(): kotlin/String? // com.aiuta.fashionsdk.tryon.core.domain.slice.ping.exception/AiutaTryOnGenerationException.message.<get-message>|<get-message>(){}[0]
     final val type // com.aiuta.fashionsdk.tryon.core.domain.slice.ping.exception/AiutaTryOnGenerationException.type|{}type[0]

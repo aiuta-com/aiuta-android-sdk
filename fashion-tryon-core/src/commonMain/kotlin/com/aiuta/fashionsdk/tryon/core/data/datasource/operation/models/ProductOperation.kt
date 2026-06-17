@@ -7,6 +7,8 @@ import kotlinx.serialization.Serializable
 internal data class ProductOperation(
     @SerialName("error")
     val error: String? = null,
+    @SerialName("abort_reason")
+    val abortReason: AbortReason? = null,
     @SerialName("generated_images")
     val generatedImages: List<GeneratedImage>,
     @SerialName("id")
