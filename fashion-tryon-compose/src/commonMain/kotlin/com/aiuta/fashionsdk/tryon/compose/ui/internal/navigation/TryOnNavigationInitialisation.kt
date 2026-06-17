@@ -76,7 +76,10 @@ internal fun TryOnNavigationInitialisation(
                     aiuta = { aiutaConfiguration.aiuta },
                 ),
                 LocalAiutaTryOnLoadingActionsController provides rememberAiutaTryOnLoadingActionsController(),
-                LocalAiutaMode provides mode,
+                LocalAiutaMode provides resolveAiutaMode(
+                    productConfiguration = productConfiguration,
+                    mode = mode,
+                ),
             ) {
                 // Init listeners
                 val loadingActionsController = LocalAiutaTryOnLoadingActionsController.current
@@ -88,4 +91,19 @@ internal fun TryOnNavigationInitialisation(
             }
         }
     }
+}
+
+/**
+ * Resolves the final [AiutaMode] that should be provided to [LocalAiutaMode].
+ *
+ * When more than one product is requested for generation, the flow always runs
+ * in [AiutaMode.GENERAL]; otherwise the externally provided [mode] is used.
+ */
+private fun resolveAiutaMode(
+    productConfiguration: ProductConfiguration,
+    mode: AiutaMode,
+): AiutaMode = if (productConfiguration.productsForGeneration.size > 1) {
+    AiutaMode.GENERAL
+} else {
+    mode
 }
