@@ -21,6 +21,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
 import com.aiuta.fashionsdk.analytics.events.AiutaAnalyticsPickerEventType
 import com.aiuta.fashionsdk.compose.resources.drawable.AiutaIcon
+import com.aiuta.fashionsdk.compose.uikit.composition.LocalAiutaConfiguration
 import com.aiuta.fashionsdk.compose.uikit.composition.LocalTheme
 import com.aiuta.fashionsdk.compose.uikit.resources.AiutaIcon
 import com.aiuta.fashionsdk.compose.uikit.utils.clickableUnindicated
@@ -60,6 +61,7 @@ internal fun ImagePickerSheet(
     val navigationController = LocalAiutaNavigationController.current
     val logger = LocalAiutaLogger.current
     val mode = LocalAiutaMode.current
+    val configuration = LocalAiutaConfiguration.current
 
     val cameraFeature = provideFeature<AiutaImagePickerCameraFeature>()
     val photoGalleryFeature = provideFeature<AiutaImagePickerPhotoGalleryFeature>()
@@ -182,7 +184,10 @@ internal fun ImagePickerSheet(
 
                             is AiutaImagePickerPredefinedModelFeature -> {
                                 bottomSheetNavigator.hide()
-                                navigationController.navigateToModelSelector(mode)
+                                navigationController.navigateToModelSelector(
+                                    mode = mode,
+                                    shoesMode = configuration.modes.shoes,
+                                )
                             }
 
                             else -> throw NotSupportedImageSourceException()

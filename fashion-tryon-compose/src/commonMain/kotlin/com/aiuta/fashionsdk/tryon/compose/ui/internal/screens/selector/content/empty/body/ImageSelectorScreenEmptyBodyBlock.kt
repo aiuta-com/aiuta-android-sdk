@@ -162,7 +162,10 @@ internal fun ImageSelectorScreenEmptyBodyBlock(modifier: Modifier) {
                 style = FashionButtonStyles.adaptiveContrastStyle(theme),
                 size = FashionButtonSizes.lSize(),
                 onClick = {
-                    navigationController.navigateToModelSelector(mode)
+                    navigationController.navigateToModelSelector(
+                        mode = mode,
+                        shoesMode = configuration.modes.shoes,
+                    )
                 },
             )
 
