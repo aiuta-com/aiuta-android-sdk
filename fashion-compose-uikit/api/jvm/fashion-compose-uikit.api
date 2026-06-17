@@ -75,7 +75,7 @@ public final class com/aiuta/fashionsdk/compose/uikit/indicator/PagerIndicatorKt
 }
 
 public final class com/aiuta/fashionsdk/compose/uikit/resources/AiutaAdaptiveImageKt {
-	public static final fun AiutaAdaptiveImage-vtUHdqY (Ljava/lang/Object;Ljava/lang/String;Landroidx/compose/ui/unit/Dp;Landroidx/compose/ui/Modifier;Landroidx/compose/ui/Alignment;FLandroidx/compose/runtime/Composer;II)V
+	public static final fun AiutaAdaptiveImage-C6SZ4nQ (Ljava/lang/Object;Ljava/lang/String;Landroidx/compose/ui/unit/Dp;Landroidx/compose/ui/Modifier;Landroidx/compose/ui/Alignment;FLkotlin/jvm/functions/Function1;Landroidx/compose/runtime/Composer;II)V
 }
 
 public final class com/aiuta/fashionsdk/compose/uikit/resources/AiutaIconKt {
