@@ -5,9 +5,11 @@ import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.ui.Modifier
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import androidx.lifecycle.viewmodel.compose.viewModel
+import com.aiuta.fashionsdk.compose.uikit.composition.LocalAiutaConfiguration
 import com.aiuta.fashionsdk.compose.uikit.composition.LocalAiutaFeatures
 import com.aiuta.fashionsdk.internal.navigation.composition.LocalAiutaNavigationController
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.analytic.clickClose
+import com.aiuta.fashionsdk.tryon.compose.ui.internal.controller.composition.LocalAiutaMode
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.controller.composition.LocalController
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.navigation.TryOnScreen
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.screens.onboarding.models.OnboardingScreenAction
@@ -17,6 +19,9 @@ internal fun OnboardingScreen(modifier: Modifier = Modifier) {
     val controller = LocalController.current
     val navigationController = LocalAiutaNavigationController.current
     val features = LocalAiutaFeatures.current
+    val mode = LocalAiutaMode.current
+    // Shoes-mode "best results" content lives in the mode config, not in the registered features.
+    val onboardingShoesPage = LocalAiutaConfiguration.current.modes.shoes?.onboardingShoesPage
 
     val viewModel = viewModel {
         OnboardingViewModel(
@@ -24,6 +29,8 @@ internal fun OnboardingScreen(modifier: Modifier = Modifier) {
             controller = controller,
             onboardingInteractor = controller.onboardingInteractor,
             consentInteractor = controller.consentInteractor,
+            mode = mode,
+            onboardingShoesPage = onboardingShoesPage,
         )
     }
 

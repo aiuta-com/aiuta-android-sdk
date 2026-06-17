@@ -16,18 +16,17 @@ import com.aiuta.fashionsdk.configuration.internal.utils.checkNotNullWithDescrip
  * a series of pages explaining how the app works and showcasing best results.
  *
  * Required components:
- * - [howItWorksPage]: Configuration for the "How It Works" page
  * - [strings]: Text strings used throughout the onboarding flow
- * - [shapes]: Visual shapes and layouts for the onboarding UI
  * - [dataProvider]: Provider for onboarding data and content
  *
  * Optional components:
+ * - [howItWorksPage]: Configuration for the "How It Works" page
  * - [bestResultsPage]: Configuration for the "Best Results" showcase page
  */
 @Immutable
 public class AiutaOnboardingFeature(
     // Features
-    public val howItWorksPage: AiutaOnboardingHowItWorksPageFeature,
+    public val howItWorksPage: AiutaOnboardingHowItWorksPageFeature?,
     public val bestResultsPage: AiutaOnboardingBestResultsPageFeature?,
     // General
     public val strings: AiutaOnboardingFeatureStrings,
@@ -50,11 +49,8 @@ public class AiutaOnboardingFeature(
             val parentClass = "AiutaOnboardingFeature"
 
             return AiutaOnboardingFeature(
-                howItWorksPage = howItWorksPage.checkNotNullWithDescription(
-                    parentClass = parentClass,
-                    property = "howItWorksPage",
-                ),
-                bestResultsPage = this.bestResultsPage,
+                howItWorksPage = howItWorksPage,
+                bestResultsPage = bestResultsPage,
                 strings = strings.checkNotNullWithDescription(
                     parentClass = parentClass,
                     property = "strings",
@@ -76,10 +72,9 @@ public class AiutaOnboardingFeature(
  * features {
  *     onboarding {
  *         howItWorksPage = howItWorksPage {
- *             // Configure how it works page
+ *             // Configure how it works page (optional)
  *         }
  *         strings = ...
- *         shapes = ...
  *         dataProvider = ...
  *     }
  * }

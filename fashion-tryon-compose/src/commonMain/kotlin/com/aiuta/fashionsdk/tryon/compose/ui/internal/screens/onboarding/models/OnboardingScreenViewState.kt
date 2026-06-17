@@ -6,7 +6,7 @@ import com.aiuta.fashionsdk.tryon.compose.domain.models.internal.screen.onboardi
 @Immutable
 internal data class OnboardingScreenViewState(
     val onboardingStatesQueue: List<OnboardingStep>,
-    val currentStep: OnboardingStep,
+    val currentStep: OnboardingStep?,
     val consents: List<AiutaConsentUiModel> = emptyList(),
     val isPrimaryButtonEnabled: Boolean = true,
 )

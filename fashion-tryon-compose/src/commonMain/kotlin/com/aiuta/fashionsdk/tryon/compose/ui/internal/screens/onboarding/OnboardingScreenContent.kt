@@ -31,6 +31,7 @@ import com.aiuta.fashionsdk.configuration.features.onboarding.AiutaOnboardingFea
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.navigation.transition.leftToRightTransition
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.navigation.transition.rightToLeftTransition
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.screens.onboarding.components.best.BestResultPageContent
+import com.aiuta.fashionsdk.tryon.compose.ui.internal.screens.onboarding.components.best.ShoesBestResultPageContent
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.screens.onboarding.components.common.OnboardingAppBar
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.screens.onboarding.components.consent.ConsentPageContent
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.screens.onboarding.components.consent.SmallConsentContent
@@ -39,6 +40,7 @@ import com.aiuta.fashionsdk.tryon.compose.ui.internal.screens.onboarding.models.
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.screens.onboarding.models.ConsentPage
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.screens.onboarding.models.OnboardingScreenEvent
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.screens.onboarding.models.OnboardingScreenViewState
+import com.aiuta.fashionsdk.tryon.compose.ui.internal.screens.onboarding.models.ShoesBestResultPage
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.screens.onboarding.models.TryOnPage
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.screens.onboarding.utils.solvePrimaryButtonText
 
@@ -153,6 +155,13 @@ private fun OnboardingPages(
                     )
                 }
 
+                is ShoesBestResultPage -> {
+                    ShoesBestResultPageContent(
+                        modifier = Modifier.fillMaxSize(),
+                        state = step,
+                    )
+                }
+
                 is ConsentPage -> {
                     ConsentPageContent(
                         state = state,
@@ -160,6 +169,8 @@ private fun OnboardingPages(
                         modifier = Modifier.fillMaxSize(),
                     )
                 }
+
+                null -> Unit
             }
         }
     }

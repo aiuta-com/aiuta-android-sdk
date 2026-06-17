@@ -1,13 +1,14 @@
 package com.aiuta.fashionsdk.tryon.compose.domain.internal.interactor.onboarding
 
+import com.aiuta.fashionsdk.configuration.mode.AiutaMode
+import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.MutableStateFlow
-import kotlinx.coroutines.flow.StateFlow
 
 internal class EmptyOnboardingInteractor : OnboardingInteractor {
 
-    override val isOnboardingCompleted: StateFlow<Boolean> = MutableStateFlow(false)
+    override val isOnboardingCompleted: Flow<Map<AiutaMode, Boolean>> = MutableStateFlow(emptyMap())
 
-    override suspend fun completeOnboarding() {
+    override suspend fun completeOnboarding(mode: AiutaMode) {
         error(
             message = """
             You are trying to call onboarding data provider without initialization.

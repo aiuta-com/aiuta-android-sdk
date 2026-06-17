@@ -11,17 +11,17 @@ internal fun AiutaOnboardingFeature.validateWithSettings(
 ) {
     // Strings
     // Features
-    howItWorksPage.strings.onboardingHowItWorksPageTitle.validateStringWithSettings(
+    howItWorksPage?.strings?.onboardingHowItWorksPageTitle.validateStringWithSettings(
         propertyName = "onboardingHowItWorksPageTitle",
         logger = logger,
         debugSettings = debugSettings,
     )
-    howItWorksPage.strings.onboardingHowItWorksTitle.validateStringWithSettings(
+    howItWorksPage?.strings?.onboardingHowItWorksTitle.validateStringWithSettings(
         propertyName = "onboardingHowItWorksTitle",
         logger = logger,
         debugSettings = debugSettings,
     )
-    howItWorksPage.strings.onboardingHowItWorksDescription.validateStringWithSettings(
+    howItWorksPage?.strings?.onboardingHowItWorksDescription.validateStringWithSettings(
         propertyName = "onboardingHowItWorksDescription",
         logger = logger,
         debugSettings = debugSettings,

@@ -18,6 +18,8 @@ import androidx.compose.ui.unit.sp
 @Composable
 fun FlowSelectorScreen(
     onTryOnClick: () -> Unit,
+    onMultiTryOnClick: () -> Unit,
+    onShoesTryOnClick: () -> Unit,
     onHistoryClick: () -> Unit,
     onSizeFitClick: () -> Unit,
     modifier: Modifier = Modifier,
@@ -43,6 +45,18 @@ fun FlowSelectorScreen(
         FlowButton(
             onClick = onTryOnClick,
             text = "Try On Flow",
+            modifier = Modifier.fillMaxWidth(),
+        )
+
+        FlowButton(
+            onClick = onMultiTryOnClick,
+            text = "Multi Try On Flow",
+            modifier = Modifier.fillMaxWidth(),
+        )
+
+        FlowButton(
+            onClick = onShoesTryOnClick,
+            text = "Shoes Try On Flow",
             modifier = Modifier.fillMaxWidth(),
         )
 

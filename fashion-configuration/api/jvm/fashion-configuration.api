@@ -400,8 +400,8 @@ public final class com/aiuta/fashionsdk/configuration/features/onboarding/datapr
 }
 
 public abstract interface class com/aiuta/fashionsdk/configuration/features/onboarding/dataprovider/AiutaOnboardingFeatureDataProviderCustom : com/aiuta/fashionsdk/configuration/features/onboarding/dataprovider/AiutaOnboardingFeatureDataProvider {
-	public abstract fun completeOnboarding (Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
-	public abstract fun isOnboardingCompleted ()Lkotlinx/coroutines/flow/StateFlow;
+	public abstract fun completeOnboarding (Lcom/aiuta/fashionsdk/configuration/mode/AiutaMode;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
+	public abstract fun isOnboardingCompleted ()Lkotlinx/coroutines/flow/Flow;
 }
 
 public final class com/aiuta/fashionsdk/configuration/features/onboarding/howworks/AiutaOnboardingHowItWorksPageFeature : com/aiuta/fashionsdk/configuration/features/AiutaFeature {

@@ -23,6 +23,7 @@ import com.aiuta.fashionsdk.tryon.core.domain.models.ProductGenerationItem
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.launch
 import sample.tryon.kmp.navigation.NavigationState
+import sample.tryon.kmp.utils.sampleShoesMode
 
 class AiutaViewModel : ViewModel() {
     val activeProductItems: MutableStateFlow<List<ProductGenerationItem>> =
@@ -54,6 +55,8 @@ class AiutaViewModel : ViewModel() {
             defaultShare()
             defaultSizeFit(privacyPolicyUrl = "https://you-domain.com/you-pp")
         }
+        // Shoes try-on mode overrides (used by AiutaTryOnFlow with mode = AiutaMode.SHOES).
+        sampleShoesMode()
     }
 
     // Navigation
@@ -67,12 +70,15 @@ class AiutaViewModel : ViewModel() {
 
     // Preload
     fun loadActiveProduct(aiutaTryOn: AiutaTryOn) {
+        // Products don't change within a session — load them once and reuse across all try-on flows.
+        if (activeProductItems.value.isNotEmpty()) return
+
         viewModelScope.launch {
             // Take first page of product items
             val productItems = aiutaTryOn.getProductItems()
 
-            // And finally take first product item
-            activeProductItems.value = productItems.items
+            // And finally take product item
+            activeProductItems.value = productItems.items.take(2)
         }
     }
 
