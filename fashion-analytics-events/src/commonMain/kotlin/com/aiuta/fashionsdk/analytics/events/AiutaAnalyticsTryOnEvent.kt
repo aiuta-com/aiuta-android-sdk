@@ -70,7 +70,6 @@ public enum class AiutaAnalyticsTryOnErrorType {
     @SerialName("operationFailed")
     OPERATION_FAILED,
 
-    @Deprecated("Use AiutaAnalyticsTryOnAbortedReasonType")
     @SerialName("operationAborted")
     OPERATION_ABORTED,
 
@@ -95,4 +94,19 @@ public enum class AiutaAnalyticsTryOnAbortedReasonType {
 
     @SerialName("userCancelled")
     USER_CANCELED,
+
+    @SerialName("noPeopleDetected")
+    NO_PEOPLE_DETECTED,
+
+    @SerialName("tooManyPeopleDetected")
+    TOO_MANY_PEOPLE_DETECTED,
+
+    @SerialName("childDetected")
+    CHILD_DETECTED,
+
+    @SerialName("insufficientTargetArea")
+    INSUFFICIENT_TARGET_AREA,
+
+    @SerialName("internalRestriction")
+    INTERNAL_RESTRICTION,
 }

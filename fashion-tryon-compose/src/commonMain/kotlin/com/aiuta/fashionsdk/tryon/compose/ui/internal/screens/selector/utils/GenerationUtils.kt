@@ -30,6 +30,7 @@ import com.aiuta.fashionsdk.tryon.compose.ui.internal.navigation.TryOnScreen
 import com.aiuta.fashionsdk.tryon.core.domain.models.ProductGenerationPlatformImageContainer
 import com.aiuta.fashionsdk.tryon.core.domain.models.ProductGenerationStatus
 import com.aiuta.fashionsdk.tryon.core.domain.models.ProductGenerationUrlContainer
+import com.aiuta.fashionsdk.tryon.core.domain.slice.ping.exception.AiutaTryOnGenerationException
 import com.aiuta.fashionsdk.tryon.core.domain.slice.ping.exception.isTryOnGenerationAbortedException
 import kotlin.time.measureTimedValue
 import kotlinx.atomicfu.atomic
@@ -264,10 +265,12 @@ private suspend fun FashionTryOnController.solveOperationCollecting(
                     // Change to last success or empty operation
                     updateActiveOperationWithFirstOrSetEmpty()
 
+                    val abortReason = (operation.exception as? AiutaTryOnGenerationException)?.abortReason
+
                     // Need to change photo from user
                     dialogController.showDialog(
                         dialogState = AiutaDialogState(
-                            description = inputImageValidationStrings.invalidInputImageDescription,
+                            description = inputImageValidationStrings.descriptionFor(abortReason),
                             confirmButton = inputImageValidationStrings.invalidInputImageChangePhotoButton,
                             onConfirm = dialogController::hideDialog,
                         ),

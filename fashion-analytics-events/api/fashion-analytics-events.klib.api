@@ -154,7 +154,12 @@ final enum class com.aiuta.fashionsdk.analytics.events/AiutaAnalyticsResultsEven
 }
 
 final enum class com.aiuta.fashionsdk.analytics.events/AiutaAnalyticsTryOnAbortedReasonType : kotlin/Enum<com.aiuta.fashionsdk.analytics.events/AiutaAnalyticsTryOnAbortedReasonType> { // com.aiuta.fashionsdk.analytics.events/AiutaAnalyticsTryOnAbortedReasonType|null[0]
+    enum entry CHILD_DETECTED // com.aiuta.fashionsdk.analytics.events/AiutaAnalyticsTryOnAbortedReasonType.CHILD_DETECTED|null[0]
+    enum entry INSUFFICIENT_TARGET_AREA // com.aiuta.fashionsdk.analytics.events/AiutaAnalyticsTryOnAbortedReasonType.INSUFFICIENT_TARGET_AREA|null[0]
+    enum entry INTERNAL_RESTRICTION // com.aiuta.fashionsdk.analytics.events/AiutaAnalyticsTryOnAbortedReasonType.INTERNAL_RESTRICTION|null[0]
+    enum entry NO_PEOPLE_DETECTED // com.aiuta.fashionsdk.analytics.events/AiutaAnalyticsTryOnAbortedReasonType.NO_PEOPLE_DETECTED|null[0]
     enum entry OPERATION_ABORTED // com.aiuta.fashionsdk.analytics.events/AiutaAnalyticsTryOnAbortedReasonType.OPERATION_ABORTED|null[0]
+    enum entry TOO_MANY_PEOPLE_DETECTED // com.aiuta.fashionsdk.analytics.events/AiutaAnalyticsTryOnAbortedReasonType.TOO_MANY_PEOPLE_DETECTED|null[0]
     enum entry USER_CANCELED // com.aiuta.fashionsdk.analytics.events/AiutaAnalyticsTryOnAbortedReasonType.USER_CANCELED|null[0]
 
     final val entries // com.aiuta.fashionsdk.analytics.events/AiutaAnalyticsTryOnAbortedReasonType.entries|#static{}entries[0]

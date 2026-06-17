@@ -6,6 +6,7 @@ import com.aiuta.fashionsdk.tryon.core.data.datasource.operation.models.ProductO
 import com.aiuta.fashionsdk.tryon.core.domain.slice.ping.PingOperationSlice
 import com.aiuta.fashionsdk.tryon.core.domain.slice.ping.exception.AiutaTryOnExceptionType
 import com.aiuta.fashionsdk.tryon.core.domain.slice.ping.exception.AiutaTryOnGenerationException
+import com.aiuta.fashionsdk.tryon.core.domain.slice.ping.exception.toPublic
 import com.aiuta.fashionsdk.tryon.core.domain.slice.ping.internal.utils.defaultGenerationDelaySequence
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.sync.Mutex
@@ -42,6 +43,7 @@ internal class PingOperationSliceImpl(
                 throw AiutaTryOnGenerationException(
                     type = AiutaTryOnExceptionType.OPERATION_ABORTED_FAILED,
                     message = operation.error,
+                    abortReason = operation.abortReason?.toPublic(),
                 )
             }
 

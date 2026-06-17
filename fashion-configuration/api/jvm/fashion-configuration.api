@@ -1326,15 +1326,25 @@ public final class com/aiuta/fashionsdk/configuration/features/tryon/validation/
 }
 
 public abstract interface class com/aiuta/fashionsdk/configuration/features/tryon/validation/strings/AiutaTryOnInputImageValidationFeatureStrings {
+	public abstract fun getChildDetectedDescription ()Ljava/lang/String;
+	public abstract fun getInsufficientTargetAreaDescription ()Ljava/lang/String;
+	public abstract fun getInternalRestrictionDescription ()Ljava/lang/String;
 	public abstract fun getInvalidInputImageChangePhotoButton ()Ljava/lang/String;
 	public abstract fun getInvalidInputImageDescription ()Ljava/lang/String;
+	public abstract fun getNoPeopleDetectedDescription ()Ljava/lang/String;
+	public abstract fun getTooManyPeopleDetectedDescription ()Ljava/lang/String;
 }
 
 public final class com/aiuta/fashionsdk/configuration/features/tryon/validation/strings/AiutaTryOnInputImageValidationFeatureStrings$Default : com/aiuta/fashionsdk/configuration/features/tryon/validation/strings/AiutaTryOnInputImageValidationFeatureStrings {
 	public static final field $stable I
 	public fun <init> ()V
+	public fun getChildDetectedDescription ()Ljava/lang/String;
+	public fun getInsufficientTargetAreaDescription ()Ljava/lang/String;
+	public fun getInternalRestrictionDescription ()Ljava/lang/String;
 	public fun getInvalidInputImageChangePhotoButton ()Ljava/lang/String;
 	public fun getInvalidInputImageDescription ()Ljava/lang/String;
+	public fun getNoPeopleDetectedDescription ()Ljava/lang/String;
+	public fun getTooManyPeopleDetectedDescription ()Ljava/lang/String;
 }
 
 public final class com/aiuta/fashionsdk/configuration/features/welcome/AiutaWelcomeScreenFeature : com/aiuta/fashionsdk/configuration/features/AiutaFeature {

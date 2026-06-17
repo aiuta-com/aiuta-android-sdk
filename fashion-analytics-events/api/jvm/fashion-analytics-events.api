@@ -425,8 +425,13 @@ public final class com/aiuta/fashionsdk/analytics/events/AiutaAnalyticsShareEven
 }
 
 public final class com/aiuta/fashionsdk/analytics/events/AiutaAnalyticsTryOnAbortedReasonType : java/lang/Enum {
+	public static final field CHILD_DETECTED Lcom/aiuta/fashionsdk/analytics/events/AiutaAnalyticsTryOnAbortedReasonType;
 	public static final field Companion Lcom/aiuta/fashionsdk/analytics/events/AiutaAnalyticsTryOnAbortedReasonType$Companion;
+	public static final field INSUFFICIENT_TARGET_AREA Lcom/aiuta/fashionsdk/analytics/events/AiutaAnalyticsTryOnAbortedReasonType;
+	public static final field INTERNAL_RESTRICTION Lcom/aiuta/fashionsdk/analytics/events/AiutaAnalyticsTryOnAbortedReasonType;
+	public static final field NO_PEOPLE_DETECTED Lcom/aiuta/fashionsdk/analytics/events/AiutaAnalyticsTryOnAbortedReasonType;
 	public static final field OPERATION_ABORTED Lcom/aiuta/fashionsdk/analytics/events/AiutaAnalyticsTryOnAbortedReasonType;
+	public static final field TOO_MANY_PEOPLE_DETECTED Lcom/aiuta/fashionsdk/analytics/events/AiutaAnalyticsTryOnAbortedReasonType;
 	public static final field USER_CANCELED Lcom/aiuta/fashionsdk/analytics/events/AiutaAnalyticsTryOnAbortedReasonType;
 	public static fun getEntries ()Lkotlin/enums/EnumEntries;
 	public static fun valueOf (Ljava/lang/String;)Lcom/aiuta/fashionsdk/analytics/events/AiutaAnalyticsTryOnAbortedReasonType;

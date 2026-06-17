@@ -1,13 +1,13 @@
 package com.aiuta.fashionsdk.tryon.core.domain.analytic
 
 import com.aiuta.fashionsdk.analytics.events.AiutaAnalyticsPageId
-import com.aiuta.fashionsdk.analytics.events.AiutaAnalyticsTryOnAbortedReasonType
 import com.aiuta.fashionsdk.analytics.events.AiutaAnalyticsTryOnErrorType
 import com.aiuta.fashionsdk.analytics.events.AiutaAnalyticsTryOnEvent
 import com.aiuta.fashionsdk.analytics.events.AiutaAnalyticsTryOnEventType
 import com.aiuta.fashionsdk.internal.analytics.InternalAiutaAnalytic
 import com.aiuta.fashionsdk.network.exceptions.FashionIOException
 import com.aiuta.fashionsdk.tryon.core.domain.models.ProductGenerationContainer
+import com.aiuta.fashionsdk.tryon.core.domain.slice.ping.exception.AiutaTryOnAbortReason
 import com.aiuta.fashionsdk.tryon.core.domain.slice.ping.exception.AiutaTryOnExceptionType
 import com.aiuta.fashionsdk.tryon.core.domain.slice.ping.exception.AiutaTryOnGenerationException
 
@@ -67,11 +67,12 @@ internal fun InternalAiutaAnalytic.sendPublicTryOnErrorEvent(
 
 internal fun InternalAiutaAnalytic.sendPublicTryOnAbortedErrorEvent(
     container: ProductGenerationContainer,
+    abortReason: AiutaTryOnAbortReason? = null,
 ) {
     sendEvent(
         event = AiutaAnalyticsTryOnEvent(
             event = AiutaAnalyticsTryOnEventType.TRY_ON_ABORTED,
-            abortReason = AiutaAnalyticsTryOnAbortedReasonType.OPERATION_ABORTED,
+            abortReason = abortReason.toAnalyticsReason(),
             pageId = AiutaAnalyticsPageId.LOADING,
             productIds = container.productIds,
         ),
@@ -86,6 +87,7 @@ internal fun InternalAiutaAnalytic.sendErrorEvent(
         AiutaTryOnExceptionType.OPERATION_ABORTED_FAILED -> {
             sendPublicTryOnAbortedErrorEvent(
                 container = container,
+                abortReason = exception.abortReason,
             )
         }
 
