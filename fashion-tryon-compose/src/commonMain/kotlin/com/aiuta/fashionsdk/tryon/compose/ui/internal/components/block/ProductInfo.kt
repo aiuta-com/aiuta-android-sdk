@@ -28,7 +28,7 @@ internal fun ProductInfo(
         Text(
             text = productItem.brand,
             style = theme.productBar.typography.brand,
-            color = theme.color.primary,
+            color = theme.color.secondary,
         )
 
         Spacer(Modifier.height(2.dp))
@@ -39,7 +39,7 @@ internal fun ProductInfo(
             color = theme.color.primary,
         )
 
-        Spacer(Modifier.height(4.dp))
+        Spacer(Modifier.height(2.dp))
 
         PriceInfo(
             modifier = Modifier.fillMaxWidth(),

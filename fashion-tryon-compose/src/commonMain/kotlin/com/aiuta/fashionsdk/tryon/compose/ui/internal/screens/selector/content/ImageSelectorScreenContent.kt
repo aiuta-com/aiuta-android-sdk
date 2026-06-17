@@ -33,15 +33,14 @@ internal fun ImageSelectorScreenContent(modifier: Modifier = Modifier) {
 
     val tryOnFeature = strictProvideFeature<AiutaTryOnFeature>()
 
-    val screenState =
-        remember {
-            derivedStateOf {
-                when {
-                    controller.lastSavedImages.value.isNotEmpty() -> ImageSelectorScreenState.NON_EMPTY_SCREEN
-                    else -> ImageSelectorScreenState.EMPTY_SCREEN
-                }
+    val screenState = remember {
+        derivedStateOf {
+            when {
+                controller.lastSavedImages.value.isNotEmpty() -> ImageSelectorScreenState.NON_EMPTY_SCREEN
+                else -> ImageSelectorScreenState.EMPTY_SCREEN
             }
         }
+    }
     val screenStateTransition = updateTransition(screenState.value)
 
     Column(

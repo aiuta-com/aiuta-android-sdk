@@ -172,8 +172,7 @@ private fun OptionItem(
     val theme = LocalTheme.current
 
     Box(
-        modifier =
-        modifier
+        modifier = modifier
             .border(
                 width = 2.dp,
                 color = if (isSelected) {
