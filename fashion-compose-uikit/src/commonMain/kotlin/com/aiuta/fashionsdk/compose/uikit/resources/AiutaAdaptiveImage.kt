@@ -5,20 +5,29 @@ import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.derivedStateOf
 import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
+import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.blur
 import androidx.compose.ui.draw.clip
+import androidx.compose.ui.geometry.Offset
+import androidx.compose.ui.geometry.Rect
+import androidx.compose.ui.geometry.Size
 import androidx.compose.ui.geometry.isSpecified
 import androidx.compose.ui.graphics.ColorFilter
 import androidx.compose.ui.graphics.ColorMatrix
 import androidx.compose.ui.graphics.graphicsLayer
 import androidx.compose.ui.layout.ContentScale
+import androidx.compose.ui.layout.onGloballyPositioned
+import androidx.compose.ui.layout.positionInRoot
 import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
+import androidx.compose.ui.unit.toSize
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import coil3.compose.AsyncImage
 import coil3.compose.AsyncImagePainter
@@ -78,6 +87,10 @@ private const val BLUR_BG_BRIGHTNESS = 0.9f
  *   any container-level modifiers (e.g. `hazeSource`, `onGloballyPositioned`, click) here.
  * @param alignment The alignment of the image within its bounds.
  * @param aspectThreshold The width/height boundary between cover and contain+blur.
+ * @param onContentRectChanged Optional callback reporting the rect (in root coordinates) actually
+ *   occupied by the painted image. In cover mode this equals the container; in contain mode it is
+ *   the Fit-letterboxed sub-rect, so callers (e.g. shared-element zoom) animate from the real image
+ *   bounds instead of the whole view.
  */
 @Composable
 public fun AiutaAdaptiveImage(
@@ -87,6 +100,7 @@ public fun AiutaAdaptiveImage(
     modifier: Modifier = Modifier,
     alignment: Alignment = Alignment.Center,
     aspectThreshold: Float = ADAPTIVE_ASPECT_THRESHOLD,
+    onContentRectChanged: ((Rect) -> Unit)? = null,
 ) {
     val context = LocalPlatformContext.current
 
@@ -120,7 +134,35 @@ public fun AiutaAdaptiveImage(
     val ratio = aspectRatio
     val isContain = ratio != null && ratio < aspectThreshold
 
-    Box(modifier = modifier.clip(sharedShape)) {
+    // Track the container bounds so we can report the painted image rect (see onContentRectChanged).
+    var containerOffset by remember { mutableStateOf(Offset.Unspecified) }
+    var containerSize by remember { mutableStateOf(Size.Zero) }
+
+    if (onContentRectChanged != null) {
+        LaunchedEffect(containerOffset, containerSize, isContain, ratio) {
+            if (containerOffset.isSpecified && containerSize.width > 0f && containerSize.height > 0f) {
+                onContentRectChanged(
+                    resolveContentRect(
+                        containerOffset = containerOffset,
+                        containerSize = containerSize,
+                        isContain = isContain,
+                        aspectRatio = ratio,
+                    ),
+                )
+            }
+        }
+    }
+
+    val positionModifier = if (onContentRectChanged != null) {
+        Modifier.onGloballyPositioned { coordinates ->
+            containerOffset = coordinates.positionInRoot()
+            containerSize = coordinates.size.toSize()
+        }
+    } else {
+        Modifier
+    }
+
+    Box(modifier = modifier.clip(sharedShape).then(positionModifier)) {
         if (isContain) {
             BlurredBackground(model = model)
         }
@@ -187,4 +229,35 @@ private fun BlurredBackground(model: Any?) {
         contentScale = ContentScale.Crop,
         colorFilter = colorFilter,
     )
+}
+
+/**
+ * Resolves the rect actually covered by the painted image inside the container. For cover (or while
+ * the aspect ratio is unknown) this is the full container; for contain it is the centered
+ * Fit-letterboxed sub-rect.
+ */
+private fun resolveContentRect(
+    containerOffset: Offset,
+    containerSize: Size,
+    isContain: Boolean,
+    aspectRatio: Float?,
+): Rect {
+    if (!isContain || aspectRatio == null) {
+        return Rect(containerOffset, containerSize)
+    }
+
+    val containerWidth = containerSize.width
+    val containerHeight = containerSize.height
+
+    // Fit: scale to fill width first, fall back to height when that would overflow.
+    var width = containerWidth
+    var height = containerWidth / aspectRatio
+    if (height > containerHeight) {
+        height = containerHeight
+        width = containerHeight * aspectRatio
+    }
+
+    val left = containerOffset.x + (containerWidth - width) / 2f
+    val top = containerOffset.y + (containerHeight - height) / 2f
+    return Rect(Offset(left, top), Size(width, height))
 }
