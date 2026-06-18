@@ -7,12 +7,13 @@ import com.aiuta.fashionsdk.analytics.events.AiutaAnalyticsPickerEvent
 import com.aiuta.fashionsdk.analytics.events.AiutaAnalyticsPickerEventType
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.controller.FashionTryOnController
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.controller.composition.LocalController
+import com.aiuta.fashionsdk.tryon.compose.ui.internal.controller.sendAnalyticEvent
 
 internal fun FashionTryOnController.sendPickerAnalytic(
     event: AiutaAnalyticsPickerEventType,
     pageId: AiutaAnalyticsPageId,
 ) {
-    analytic.sendEvent(
+    sendAnalyticEvent(
         event = AiutaAnalyticsPickerEvent(
             event = event,
             pageId = pageId,

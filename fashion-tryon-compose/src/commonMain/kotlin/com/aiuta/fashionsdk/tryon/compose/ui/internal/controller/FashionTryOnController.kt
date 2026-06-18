@@ -18,6 +18,7 @@ import com.aiuta.fashionsdk.configuration.features.onboarding.AiutaOnboardingFea
 import com.aiuta.fashionsdk.configuration.features.picker.history.AiutaImagePickerUploadsHistoryFeature
 import com.aiuta.fashionsdk.configuration.features.tryon.AiutaTryOnFeature
 import com.aiuta.fashionsdk.configuration.features.tryon.history.AiutaTryOnGenerationsHistoryFeature
+import com.aiuta.fashionsdk.configuration.mode.AiutaMode
 import com.aiuta.fashionsdk.configuration.ui.actions.AiutaUserInterfaceActions
 import com.aiuta.fashionsdk.internal.analytics.InternalAiutaAnalytic
 import com.aiuta.fashionsdk.internal.analytics.internalAiutaAnalytic
@@ -47,6 +48,7 @@ import kotlinx.coroutines.cancel
 internal fun BoxWithConstraintsScope.rememberFashionTryOnController(
     aiutaConfiguration: AiutaConfiguration,
     productConfiguration: ProductConfiguration,
+    mode: AiutaMode,
 ): FashionTryOnController {
     val uiScope = rememberCoroutineScope()
     val coilContext = LocalPlatformContext.current
@@ -71,6 +73,7 @@ internal fun BoxWithConstraintsScope.rememberFashionTryOnController(
         FashionTryOnController(
             zoomImageController = zoomImageController,
             activeProductItems = activeProductItems,
+            mode = mode,
             aiuta = aiutaConfiguration.aiuta,
             aiutaTryOn = aiutaConfiguration.aiuta.tryon,
             aiutaUserInterfaceActions = aiutaConfiguration.userInterface.actions,
@@ -115,6 +118,7 @@ internal class FashionTryOnController(
     public val zoomImageController: ZoomImageController,
     // Data
     public val activeProductItems: SnapshotStateList<ProductItem>,
+    public val mode: AiutaMode,
     // Domain
     public val aiuta: Aiuta,
     public val aiutaTryOn: AiutaTryOn,

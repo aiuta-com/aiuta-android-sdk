@@ -12,6 +12,8 @@ public class AiutaAnalyticsSessionEvent(
     override val productIds: List<String>,
     @SerialName("flow")
     public val flow: FlowType,
+    @SerialName("mode")
+    override var mode: AiutaAnalyticsMode? = null,
 ) : AiutaAnalyticsEvent {
     @Serializable
     public enum class FlowType {

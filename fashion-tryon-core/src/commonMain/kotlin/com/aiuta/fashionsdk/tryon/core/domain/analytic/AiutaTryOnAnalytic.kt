@@ -17,6 +17,7 @@ internal fun InternalAiutaAnalytic.sendStartTryOnEvent(container: ProductGenerat
             event = AiutaAnalyticsTryOnEventType.TRY_ON_STARTED,
             pageId = AiutaAnalyticsPageId.LOADING,
             productIds = container.productIds,
+            mode = container.meta?.mode,
         ),
     )
 }
@@ -27,6 +28,7 @@ internal fun InternalAiutaAnalytic.sendInitTryOnEvent(container: ProductGenerati
             event = AiutaAnalyticsTryOnEventType.INITIATED,
             pageId = AiutaAnalyticsPageId.IMAGE_PICKER,
             productIds = container.productIds,
+            mode = container.meta?.mode,
         ),
     )
 }
@@ -61,6 +63,7 @@ internal fun InternalAiutaAnalytic.sendPublicTryOnErrorEvent(
             errorMessage = exception.message,
             pageId = AiutaAnalyticsPageId.LOADING,
             productIds = container.productIds,
+            mode = container.meta?.mode,
         ),
     )
 }
@@ -75,6 +78,7 @@ internal fun InternalAiutaAnalytic.sendPublicTryOnAbortedErrorEvent(
             abortReason = abortReason.toAnalyticsReason(),
             pageId = AiutaAnalyticsPageId.LOADING,
             productIds = container.productIds,
+            mode = container.meta?.mode,
         ),
     )
 }
@@ -103,6 +107,7 @@ internal fun InternalAiutaAnalytic.sendTryOnPhotoUploadedEvent(container: Produc
             event = AiutaAnalyticsTryOnEventType.PHOTO_UPLOADED,
             pageId = AiutaAnalyticsPageId.LOADING,
             productIds = container.productIds,
+            mode = container.meta?.mode,
         ),
     )
 }

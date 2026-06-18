@@ -12,6 +12,8 @@ public class AiutaAnalyticsHistoryEvent(
     public override val pageId: AiutaAnalyticsPageId?,
     @SerialName("productIds")
     override val productIds: List<String>,
+    @SerialName("mode")
+    override var mode: AiutaAnalyticsMode? = null,
 ) : AiutaAnalyticsEvent
 
 @Serializable

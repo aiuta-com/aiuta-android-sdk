@@ -27,6 +27,8 @@ public class AiutaAnalyticsTryOnEvent(
     public val downloadDuration: Double? = null,
     @SerialName("totalDuration")
     public val totalDuration: Double? = null,
+    @SerialName("mode")
+    override var mode: AiutaAnalyticsMode? = null,
 ) : AiutaAnalyticsEvent
 
 @Serializable

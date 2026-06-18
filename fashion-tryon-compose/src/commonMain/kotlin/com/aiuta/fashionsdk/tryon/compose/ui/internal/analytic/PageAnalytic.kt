@@ -6,9 +6,10 @@ import com.aiuta.fashionsdk.analytics.events.AiutaAnalyticsPageEvent
 import com.aiuta.fashionsdk.analytics.events.AiutaAnalyticsPageId
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.controller.FashionTryOnController
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.controller.composition.LocalController
+import com.aiuta.fashionsdk.tryon.compose.ui.internal.controller.sendAnalyticEvent
 
 internal fun FashionTryOnController.sendPageEvent(pageId: AiutaAnalyticsPageId) {
-    analytic.sendEvent(
+    sendAnalyticEvent(
         event = AiutaAnalyticsPageEvent(
             pageId = pageId,
             productIds = activeProductItemsIds,

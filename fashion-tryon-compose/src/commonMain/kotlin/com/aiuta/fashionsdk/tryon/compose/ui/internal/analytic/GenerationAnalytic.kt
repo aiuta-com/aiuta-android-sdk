@@ -5,6 +5,7 @@ import com.aiuta.fashionsdk.analytics.events.AiutaAnalyticsTryOnErrorType
 import com.aiuta.fashionsdk.analytics.events.AiutaAnalyticsTryOnEvent
 import com.aiuta.fashionsdk.analytics.events.AiutaAnalyticsTryOnEventType
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.controller.FashionTryOnController
+import com.aiuta.fashionsdk.tryon.compose.ui.internal.controller.sendAnalyticEvent
 import com.aiuta.fashionsdk.tryon.core.domain.models.meta.AiutaTryOnMetadata
 import kotlin.time.Duration
 import kotlin.time.DurationUnit
@@ -16,7 +17,7 @@ internal fun FashionTryOnController.sendSuccessTryOnEvent(
     val finishTryOnTime = AiutaTryOnMetadata.markNow()
     val totalDuration = finishTryOnTime - metadata.startSecondsTimestamp
 
-    analytic.sendEvent(
+    sendAnalyticEvent(
         event = AiutaAnalyticsTryOnEvent(
             event = AiutaAnalyticsTryOnEventType.TRY_ON_FINISHED,
             pageId = AiutaAnalyticsPageId.LOADING,
@@ -30,7 +31,7 @@ internal fun FashionTryOnController.sendSuccessTryOnEvent(
 }
 
 internal fun FashionTryOnController.sendErrorDownloadResultEvent() {
-    analytic.sendEvent(
+    sendAnalyticEvent(
         event = AiutaAnalyticsTryOnEvent(
             event = AiutaAnalyticsTryOnEventType.TRY_ON_ERROR,
             errorType = AiutaAnalyticsTryOnErrorType.DOWNLOAD_RESULT_FAILED,

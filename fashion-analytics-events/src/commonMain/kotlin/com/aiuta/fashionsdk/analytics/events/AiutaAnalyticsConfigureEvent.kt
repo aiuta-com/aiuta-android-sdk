@@ -45,6 +45,8 @@ public data class AiutaAnalyticsConfigureEvent(
     public val shareWatermarkFeatureEnabled: Boolean,
     @SerialName("wishlistFeatureEnabled")
     public val wishlistFeatureEnabled: Boolean,
+    @SerialName("mode")
+    override var mode: AiutaAnalyticsMode? = null,
 ) : AiutaAnalyticsEvent
 
 @Serializable

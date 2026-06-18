@@ -11,6 +11,12 @@ import com.aiuta.fashionsdk.tryon.core.data.datasource.image.models.AiutaFileTyp
  */
 public sealed interface ProductGenerationContainer {
     public val productIds: List<String>
+
+    /**
+     * Optional meta information about the generation flow, used for enriching
+     * analytics events emitted from the core (e.g. with the active try-on mode).
+     */
+    public val meta: ProductGenerationMeta?
 }
 
 /**
@@ -23,6 +29,7 @@ public sealed interface ProductGenerationContainer {
 public class ProductGenerationPlatformImageContainer(
     public val platformFile: AiutaPlatformFile,
     override val productIds: List<String>,
+    override val meta: ProductGenerationMeta? = null,
 ) : ProductGenerationContainer
 
 /**
@@ -37,4 +44,5 @@ public class ProductGenerationUrlContainer(
     public val fileUrl: String,
     public val fileType: AiutaFileType,
     override val productIds: List<String>,
+    override val meta: ProductGenerationMeta? = null,
 ) : ProductGenerationContainer

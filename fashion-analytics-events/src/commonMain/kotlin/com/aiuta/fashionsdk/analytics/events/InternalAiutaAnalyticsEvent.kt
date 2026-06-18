@@ -11,4 +11,7 @@ public sealed interface InternalAiutaAnalyticsEvent {
     public val pageId: AiutaAnalyticsPageId?
 
     public val productIds: List<String>
+
+    // Make var for more flexible changing during building final event
+    public var mode: AiutaAnalyticsMode?
 }

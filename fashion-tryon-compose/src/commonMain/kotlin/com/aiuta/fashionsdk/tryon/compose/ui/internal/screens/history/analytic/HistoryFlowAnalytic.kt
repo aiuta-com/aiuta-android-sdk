@@ -4,6 +4,7 @@ import com.aiuta.fashionsdk.analytics.events.AiutaAnalyticsHistoryEvent
 import com.aiuta.fashionsdk.analytics.events.AiutaAnalyticsHistoryEventType
 import com.aiuta.fashionsdk.analytics.events.AiutaAnalyticsPageId
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.controller.FashionTryOnController
+import com.aiuta.fashionsdk.tryon.compose.ui.internal.controller.sendAnalyticEvent
 
 internal fun FashionTryOnController.sendDeleteHistoryEvent() {
     val productIds = selectorHolder
@@ -22,7 +23,7 @@ internal fun FashionTryOnController.sendHistoryEvent(
     eventType: AiutaAnalyticsHistoryEventType,
     productIds: List<String>,
 ) {
-    analytic.sendEvent(
+    sendAnalyticEvent(
         event = AiutaAnalyticsHistoryEvent(
             event = eventType,
             pageId = AiutaAnalyticsPageId.HISTORY,

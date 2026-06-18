@@ -14,6 +14,8 @@ public class AiutaAnalyticsOnboardingEvent(
     override val productIds: List<String>,
     @SerialName("consentIds")
     public val consentIds: List<String>? = null,
+    @SerialName("mode")
+    override var mode: AiutaAnalyticsMode? = null,
 ) : AiutaAnalyticsEvent
 
 @Serializable

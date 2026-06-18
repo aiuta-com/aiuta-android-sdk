@@ -13,6 +13,7 @@ import com.aiuta.fashionsdk.internal.storage.AiutaStorage
 import kotlinx.coroutines.flow.first
 import kotlinx.coroutines.flow.map
 import kotlinx.serialization.KSerializer
+import kotlinx.serialization.SerializationException
 import kotlinx.serialization.descriptors.PrimitiveKind
 import kotlinx.serialization.json.Json
 
@@ -62,7 +63,12 @@ internal class DataStoreStorage(
             PrimitiveKind.DOUBLE -> readPreference(doublePreferencesKey(key)) as T?
             else -> {
                 val jsonString = readPreference(stringPreferencesKey(key)) ?: return null
-                json.decodeFromString(serializer, jsonString)
+                try {
+                    json.decodeFromString(serializer, jsonString)
+                } catch (e: SerializationException) {
+                    // Stored JSON is incompatible with the current schema
+                    null
+                }
             }
         }
     }
