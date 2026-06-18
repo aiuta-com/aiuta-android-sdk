@@ -13,7 +13,7 @@ internal interface UploadImageSlice {
      * Will try to compress image by default config (or use
      * default, if not), and then will upload image on backend
      *
-     * @param fileUri is uri of uploaded file
+     * @param container holds the platform image to be uploaded
      * @param fileName is name of file with input image
      *
      * @throws FashionReadBytesException if the provided ByteArray will be empty or null

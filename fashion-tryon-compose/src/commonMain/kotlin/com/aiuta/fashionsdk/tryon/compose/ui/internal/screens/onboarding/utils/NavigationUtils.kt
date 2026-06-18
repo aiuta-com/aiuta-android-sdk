@@ -4,7 +4,7 @@ import com.aiuta.fashionsdk.tryon.compose.ui.internal.screens.onboarding.Onboard
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.screens.onboarding.models.OnboardingScreenAction
 
 /**
- * Mirrors the old `OnboardingController.nextPage`. The flattened pager index ([settledPage]) is
+ * Mirrors the old `OnboardingController.nextPage`. The flattened pager index (`settledPage`) is
  * genuine scaffold state owned by the composable and is passed in via the event; the view model
  * owns the logical step + queue and decides what should happen next.
  */

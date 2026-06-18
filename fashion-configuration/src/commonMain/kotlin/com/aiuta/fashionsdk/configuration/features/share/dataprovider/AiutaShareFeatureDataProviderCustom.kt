@@ -8,9 +8,13 @@ package com.aiuta.fashionsdk.configuration.features.share.dataprovider
  * text generation or localization systems.
  *
  * @property getShareText Generates share text for the given product IDs
- * @param productIds List of product identifiers to generate share text for
- * @return The generated share text
  */
 public interface AiutaShareFeatureDataProviderCustom {
+    /**
+     * Generates share text for the given product IDs.
+     *
+     * @param productIds List of product identifiers to generate share text for
+     * @return The generated share text
+     */
     public suspend fun getShareText(productIds: List<String>): String
 }
