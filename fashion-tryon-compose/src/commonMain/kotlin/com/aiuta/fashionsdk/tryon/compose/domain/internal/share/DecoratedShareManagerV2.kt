@@ -6,16 +6,16 @@ import androidx.compose.ui.graphics.painter.Painter
 import com.aiuta.fashionsdk.analytics.events.AiutaAnalyticsPageId
 import com.aiuta.fashionsdk.analytics.events.AiutaAnalyticsShareEvent
 import com.aiuta.fashionsdk.analytics.events.AiutaShareEventType
-import com.aiuta.fashionsdk.internal.analytics.InternalAiutaAnalytic
 import com.aiuta.fashionsdk.logger.AiutaLogger
 import com.aiuta.fashionsdk.logger.d
 import com.aiuta.fashionsdk.logger.e
-import com.aiuta.fashionsdk.tryon.compose.ui.internal.controller.composition.LocalAnalytic
+import com.aiuta.fashionsdk.tryon.compose.ui.internal.controller.FashionTryOnController
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.controller.composition.LocalController
+import com.aiuta.fashionsdk.tryon.compose.ui.internal.controller.sendAnalyticEvent
 
 internal class DecoratedShareManagerV2(
     private val actualShareManager: ShareManagerV2,
-    private val analytic: InternalAiutaAnalytic,
+    private val controller: FashionTryOnController,
     private val logger: AiutaLogger?,
 ) : ShareManagerV2 {
 
@@ -27,7 +27,7 @@ internal class DecoratedShareManagerV2(
         watermark: Painter?,
     ): Result<Unit> {
         // Decorate with analytic
-        analytic.sendEvent(
+        controller.sendAnalyticEvent(
             event = AiutaAnalyticsShareEvent(
                 pageId = pageId,
                 productIds = productIds,
@@ -61,17 +61,15 @@ internal class DecoratedShareManagerV2(
 @Composable
 internal fun rememberShareManagerV2(): ShareManagerV2 {
     val actualShareManager = rememberActualShareManagerV2()
-    val analytic = LocalAnalytic.current
     val controller = LocalController.current
 
     return remember(
         actualShareManager,
-        analytic,
         controller,
     ) {
         DecoratedShareManagerV2(
             actualShareManager = actualShareManager,
-            analytic = analytic,
+            controller = controller,
             logger = controller.aiuta.logger,
         )
     }

@@ -63,9 +63,17 @@ internal fun TryOnNavigationInitialisation(
                 }
             },
         ) {
+            // Mode is constant per flow, so resolve it once and share it between
+            // the controller (analytics) and LocalAiutaMode (UI).
+            val resolvedMode = resolveAiutaMode(
+                productConfiguration = productConfiguration,
+                mode = mode,
+            )
+
             val controller = rememberFashionTryOnController(
                 aiutaConfiguration = aiutaConfiguration,
                 productConfiguration = productConfiguration,
+                mode = resolvedMode,
             )
 
             // Feature init
@@ -76,10 +84,7 @@ internal fun TryOnNavigationInitialisation(
                     aiuta = { aiutaConfiguration.aiuta },
                 ),
                 LocalAiutaTryOnLoadingActionsController provides rememberAiutaTryOnLoadingActionsController(),
-                LocalAiutaMode provides resolveAiutaMode(
-                    productConfiguration = productConfiguration,
-                    mode = mode,
-                ),
+                LocalAiutaMode provides resolvedMode,
             ) {
                 // Init listeners
                 val loadingActionsController = LocalAiutaTryOnLoadingActionsController.current

@@ -9,6 +9,7 @@ import com.aiuta.fashionsdk.analytics.events.AiutaAnalyticsTryOnEvent
 import com.aiuta.fashionsdk.analytics.events.AiutaAnalyticsTryOnEventType
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.controller.FashionTryOnController
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.controller.composition.LocalController
+import com.aiuta.fashionsdk.tryon.compose.ui.internal.controller.sendAnalyticEvent
 
 @Composable
 internal fun sendSessionEvent(flow: AiutaAnalyticsSessionEvent.FlowType) {
@@ -16,7 +17,7 @@ internal fun sendSessionEvent(flow: AiutaAnalyticsSessionEvent.FlowType) {
 
     LaunchedEffect(Unit) {
         with(controller) {
-            analytic.sendEvent(
+            sendAnalyticEvent(
                 event = AiutaAnalyticsSessionEvent(
                     flow = flow,
                     productIds = activeProductItemsIds,
@@ -27,7 +28,7 @@ internal fun sendSessionEvent(flow: AiutaAnalyticsSessionEvent.FlowType) {
 }
 
 internal fun FashionTryOnController.sendTerminateEvent() {
-    analytic.sendEvent(
+    sendAnalyticEvent(
         event = AiutaAnalyticsTryOnEvent(
             event = AiutaAnalyticsTryOnEventType.TRY_ON_ABORTED,
             abortReason = AiutaAnalyticsTryOnAbortedReasonType.USER_CANCELED,

@@ -14,6 +14,8 @@ public class AiutaAnalyticsShareEvent(
     public val event: AiutaShareEventType,
     @SerialName("targetId")
     public val targetId: String?,
+    @SerialName("mode")
+    override var mode: AiutaAnalyticsMode? = null,
 ) : AiutaAnalyticsEvent
 
 @Serializable

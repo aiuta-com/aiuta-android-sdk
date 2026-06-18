@@ -2,11 +2,14 @@ package com.aiuta.fashionsdk.tryon.compose.ui.internal.controller
 
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.State
-import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.derivedStateOf
 import androidx.compose.runtime.remember
+import androidx.lifecycle.compose.collectAsStateWithLifecycle
+import com.aiuta.fashionsdk.analytics.events.AiutaAnalyticsEvent
+import com.aiuta.fashionsdk.analytics.events.AiutaAnalyticsMode
 import com.aiuta.fashionsdk.compose.uikit.utils.isFeatureInitialize
 import com.aiuta.fashionsdk.configuration.features.tryon.history.AiutaTryOnGenerationsHistoryFeature
+import com.aiuta.fashionsdk.configuration.mode.AiutaMode
 import com.aiuta.fashionsdk.tryon.compose.domain.models.internal.generated.images.LastSavedImages
 import com.aiuta.fashionsdk.tryon.compose.domain.models.internal.generated.images.isNotEmpty
 import com.aiuta.fashionsdk.tryon.compose.domain.models.internal.generated.images.toLastSavedImages
@@ -85,7 +88,7 @@ internal suspend fun FashionTryOnController.updateActiveOperationWithFirstOrSetE
 // Checks
 @Composable
 internal fun FashionTryOnController.isAppbarHistoryAvailable(): State<Boolean> {
-    val historyImageCount = generatedImageInteractor.countFlow().collectAsState(0)
+    val historyImageCount = generatedImageInteractor.countFlow().collectAsStateWithLifecycle(0)
     val isGenerationsHistoryFeatureAvailable =
         isFeatureInitialize<AiutaTryOnGenerationsHistoryFeature>()
 
@@ -125,4 +128,21 @@ internal fun FashionTryOnController.isSingleTryOnMode(): State<Boolean> = rememb
     derivedStateOf {
         activeProductItems.size == 1
     }
+}
+
+// Analytics
+/**
+ * Single entry point for sending analytics events from the UI layer.
+ *
+ * Enriches the [event] with the flow's [FashionTryOnController.mode] (mapped to
+ * analytics representation) before delegating to the analytics pipeline.
+ */
+internal fun FashionTryOnController.sendAnalyticEvent(event: AiutaAnalyticsEvent) {
+    event.mode = mode.toAnalyticsMode()
+    analytic.sendEvent(event)
+}
+
+internal fun AiutaMode.toAnalyticsMode(): AiutaAnalyticsMode = when (this) {
+    AiutaMode.GENERAL -> AiutaAnalyticsMode.GENERAL
+    AiutaMode.SHOES -> AiutaAnalyticsMode.SHOES
 }

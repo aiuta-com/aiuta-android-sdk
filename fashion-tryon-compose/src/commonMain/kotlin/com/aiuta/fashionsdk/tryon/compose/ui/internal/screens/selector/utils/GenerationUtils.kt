@@ -24,9 +24,11 @@ import com.aiuta.fashionsdk.tryon.compose.ui.internal.controller.FashionTryOnCon
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.controller.TryOnToastErrorState
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.controller.activateGeneration
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.controller.deactivateGeneration
+import com.aiuta.fashionsdk.tryon.compose.ui.internal.controller.toAnalyticsMode
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.controller.updateActiveOperationOrSetEmpty
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.controller.updateActiveOperationWithFirstOrSetEmpty
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.navigation.TryOnScreen
+import com.aiuta.fashionsdk.tryon.core.domain.models.ProductGenerationMeta
 import com.aiuta.fashionsdk.tryon.core.domain.models.ProductGenerationPlatformImageContainer
 import com.aiuta.fashionsdk.tryon.core.domain.models.ProductGenerationStatus
 import com.aiuta.fashionsdk.tryon.core.domain.models.ProductGenerationUrlContainer
@@ -119,6 +121,7 @@ private fun FashionTryOnController.startGenerationWithUriSource(
             container = ProductGenerationPlatformImageContainer(
                 platformFile = file,
                 productIds = activeProductItemsIds,
+                meta = ProductGenerationMeta(mode = mode.toAnalyticsMode()),
             ),
         )
         .onEach { status ->
@@ -150,6 +153,7 @@ private fun FashionTryOnController.startGenerationWithUrlSource(
                 fileUrl = sourceImage.imageUrl,
                 fileType = sourceImage.imageType,
                 productIds = activeProductItemsIds,
+                meta = ProductGenerationMeta(mode = mode.toAnalyticsMode()),
             ),
         )
         .onEach { status ->
