@@ -8,9 +8,13 @@ package com.aiuta.fashionsdk.configuration.features.tryon.cart.outfit.handler
  * from an outfit to the cart.
  *
  * @property addToCartOutfit Adds multiple products from an outfit to the shopping cart
- * @param productIds List of product identifiers to add to cart
  */
 public interface AiutaTryOnCartOutfitFeatureHandler {
 
+    /**
+     * Adds multiple products from an outfit to the shopping cart.
+     *
+     * @param productIds List of product identifiers to add to cart
+     */
     public fun addToCartOutfit(productIds: List<String>)
 }

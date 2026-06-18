@@ -95,7 +95,7 @@ internal suspend inline fun File.writeByteArray(
 /**
  * Function for generating file name, depends on current time
  *
- * @param fileDateFormat which will use for style naming
+ * @param fileNameAdditional which will be appended to the generated name
  * @param fileExtension is extension of output file
  *
  * @return [String] with name of file. By default, will be `2015-12-31-12-30-123.jpeg`, for example

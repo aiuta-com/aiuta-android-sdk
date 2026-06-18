@@ -5,7 +5,7 @@ import com.aiuta.fashionsdk.tryon.core.domain.slice.ping.exception.AiutaTryOnAbo
 
 /**
  * Resolves the validation dialog description for the given abort [reason]. An unknown or
- * missing reason falls back to the generic [invalidInputImageDescription].
+ * missing reason falls back to the generic `invalidInputImageDescription`.
  */
 internal fun AiutaTryOnInputImageValidationFeatureStrings.descriptionFor(
     reason: AiutaTryOnAbortReason?,

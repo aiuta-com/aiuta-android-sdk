@@ -14,7 +14,7 @@ import androidx.compose.ui.unit.dp
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.utils.placeholderFadeConnecting
 
 /**
- * SHOES mode loading skeleton — mirrors the [shoesModelsBlock] layout: a couple of placeholder
+ * SHOES mode loading skeleton — mirrors the `shoesModelsBlock` layout: a couple of placeholder
  * title bars, each followed by a row of placeholder thumbnail boxes.
  */
 @Composable
