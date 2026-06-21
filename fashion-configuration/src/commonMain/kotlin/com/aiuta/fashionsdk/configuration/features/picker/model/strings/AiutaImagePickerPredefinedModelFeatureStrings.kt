@@ -34,7 +34,7 @@ public interface AiutaImagePickerPredefinedModelFeatureStrings {
      * Provides standard English text for the predefined models interface.
      */
     public class Default : AiutaImagePickerPredefinedModelFeatureStrings {
-        override val predefinedModelPageButton: String = "Select your model"
+        override val predefinedModelPageButton: String = "Select a model"
         override val predefinedModelOr: String = "Or"
         override val predefinedModelErrorEmptyModelsList: String = "The models list is empty"
         override val predefinedModelCategories: Map<String, String> = buildMap {

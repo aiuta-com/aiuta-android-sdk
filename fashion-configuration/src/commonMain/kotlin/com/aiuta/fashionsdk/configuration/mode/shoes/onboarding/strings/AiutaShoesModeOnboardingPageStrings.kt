@@ -27,6 +27,6 @@ public interface AiutaShoesModeOnboardingPageStrings {
     public class Default : AiutaShoesModeOnboardingPageStrings {
         override val onboardingShoesBestResultsPageTitle: String? = null
         override val onboardingShoesBestResultsTitle: String = "For best results"
-        override val onboardingShoesBestResultsDescription: String = "Upload a photo where your feet are clearly visible — any angle works"
+        override val onboardingShoesBestResultsDescription: String = "Upload a photo where your feet are fully visible"
     }
 }

@@ -30,6 +30,6 @@ public interface AiutaOnboardingBestResultsPageFeatureStrings {
     public class Default : AiutaOnboardingBestResultsPageFeatureStrings {
         override val onboardingBestResultsPageTitle: String = "<b>Step 2/3</b> - For best result"
         override val onboardingBestResultsTitle: String = "For best results"
-        override val onboardingBestResultsDescription: String = "Use a photo with good lighting, stand straight a plain background"
+        override val onboardingBestResultsDescription: String = "Use a photo with good lighting, standing straight against a plain background"
     }
 }

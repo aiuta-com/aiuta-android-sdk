@@ -23,8 +23,9 @@ public interface AiutaShoesModeImagePickerPredefinedModelsStrings {
     public class Default : AiutaShoesModeImagePickerPredefinedModelsStrings {
         override val predefinedModelShoesPageTitle: String = "Select example"
         override val predefinedModelShoesCategories: Map<String, String> = buildMap {
-            put(key = "female", value = "Women")
-            put(key = "male", value = "Men")
+            put(key = "full-height", value = "Full body view")
+            put(key = "bird-view", value = "Top-view shoe")
+            put(key = "side-view", value = "Side-view shoe")
         }
     }
 }
