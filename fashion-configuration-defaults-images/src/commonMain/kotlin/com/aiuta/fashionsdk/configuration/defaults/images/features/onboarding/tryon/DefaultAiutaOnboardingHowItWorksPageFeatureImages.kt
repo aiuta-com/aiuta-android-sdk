@@ -21,7 +21,7 @@ public class DefaultAiutaOnboardingHowItWorksPageFeatureImages : AiutaOnboarding
 
     override val onboardingHowItWorksItem: AiutaMedia = AiutaMedia(
         imageResource = AiutaComposeDrawableResource(Res.drawable.onboarding_how_works_cover),
-        videoSource = null,
+        videoSource = "https://static.aiuta.com/defaults/onboarding/howItWorks/howItWorks_onboarding.mp4",
         contentScale = AiutaMediaContentScale.FILL,
     )
 }
