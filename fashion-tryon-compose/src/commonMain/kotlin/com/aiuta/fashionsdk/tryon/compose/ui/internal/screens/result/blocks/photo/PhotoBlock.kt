@@ -8,6 +8,7 @@ import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.WindowInsets
+import androidx.compose.foundation.layout.fillMaxHeight
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
@@ -15,8 +16,8 @@ import androidx.compose.foundation.layout.navigationBars
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.statusBars
 import androidx.compose.foundation.lazy.LazyListScope
-import androidx.compose.foundation.pager.HorizontalPager
 import androidx.compose.foundation.pager.PagerState
+import androidx.compose.foundation.pager.VerticalPager
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.State
 import androidx.compose.runtime.derivedStateOf
@@ -28,6 +29,7 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.geometry.Offset
 import androidx.compose.ui.geometry.Size
+import androidx.compose.ui.graphics.graphicsLayer
 import androidx.compose.ui.platform.LocalDensity
 import androidx.compose.ui.unit.dp
 import com.aiuta.fashionsdk.compose.core.size.rememberScreenSize
@@ -35,6 +37,7 @@ import com.aiuta.fashionsdk.compose.uikit.composition.LocalTheme
 import com.aiuta.fashionsdk.compose.uikit.resources.AiutaAdaptiveImage
 import com.aiuta.fashionsdk.compose.uikit.utils.clickableUnindicated
 import com.aiuta.fashionsdk.tryon.compose.domain.models.internal.generated.images.SessionImageUIModel
+import com.aiuta.fashionsdk.tryon.compose.ui.internal.screens.list.components.navigation.GenerationIndicator
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.screens.result.blocks.photo.components.ActionBlock
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.screens.result.blocks.photo.components.DisclaimerStrip
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.screens.result.blocks.photo.components.FeedbackBlock
@@ -69,23 +72,49 @@ internal fun LazyListScope.photoBlock(
         val navigationBarHeight = with(density) { WindowInsets.navigationBars.getBottom(this).toDp() }
         val photoHeight = (screenSize.heightDp - statusBarHeight - navigationBarHeight - APP_BAR_CONTENT_HEIGHT) * MAIN_IMAGE_SIZE
 
-        HorizontalPager(
+        Box(
             modifier = Modifier
                 .fillMaxWidth()
                 .height(photoHeight),
-            state = pagerState,
-        ) { index ->
-            val pageOffset = remember {
-                derivedStateOf { pagerState.offsetForPage(index).absoluteValue }
+        ) {
+            VerticalPager(
+                modifier = Modifier.fillMaxSize(),
+                state = pagerState,
+                key = { index -> viewState.value.generations.getOrNull(index)?.id ?: index },
+            ) { index ->
+                val pageOffset = remember {
+                    derivedStateOf { pagerState.offsetForPage(index).absoluteValue }
+                }
+
+                viewState.value.generations.getOrNull(index)?.let { sessionImage ->
+                    PhotoCard(
+                        modifier = Modifier
+                            .fillMaxSize()
+                            .graphicsLayer {
+                                val offset = pagerState.offsetForPage(index)
+                                translationY = offset * size.height
+
+                                alpha = when {
+                                    offset > 0f -> 1f
+                                    else -> 1f - offset.absoluteValue.coerceIn(0f, 1f)
+                                }
+                            },
+                        sessionImage = sessionImage,
+                        viewState = viewState,
+                        pageOffset = pageOffset,
+                        eventHandler = eventHandler,
+                    )
+                }
             }
 
-            viewState.value.generations.getOrNull(index)?.let { sessionImage ->
-                PhotoCard(
-                    modifier = Modifier.fillMaxSize(),
-                    sessionImage = sessionImage,
-                    viewState = viewState,
-                    pageOffset = pageOffset,
-                    eventHandler = eventHandler,
+            if (viewState.value.generations.size > 1) {
+                GenerationIndicator(
+                    modifier = Modifier
+                        .align(Alignment.TopStart)
+                        .fillMaxHeight()
+                        .padding(start = 16.dp),
+                    pagerState = pagerState,
+                    generations = viewState.value.generations,
                 )
             }
         }

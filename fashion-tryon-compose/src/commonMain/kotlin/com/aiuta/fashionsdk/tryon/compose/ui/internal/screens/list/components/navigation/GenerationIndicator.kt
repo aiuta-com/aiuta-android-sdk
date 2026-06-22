@@ -27,26 +27,61 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.lerp
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.platform.LocalDensity
+import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
 import androidx.paging.compose.LazyPagingItems
-import androidx.paging.compose.itemContentType
-import androidx.paging.compose.itemKey
 import com.aiuta.fashionsdk.compose.uikit.composition.LocalTheme
 import com.aiuta.fashionsdk.compose.uikit.resources.AiutaImage
 import com.aiuta.fashionsdk.compose.uikit.utils.clickableUnindicated
 import com.aiuta.fashionsdk.tryon.compose.domain.models.internal.generated.images.GeneratedImageUIModel
+import com.aiuta.fashionsdk.tryon.compose.domain.models.internal.generated.images.SessionImageUIModel
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.screens.list.utils.fadingEdge
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.utils.offsetForPage
 import kotlin.math.absoluteValue
 import kotlinx.coroutines.launch
 
-private val ITEM_HEIGHT = 108.dp
+private val ITEM_HEIGHT = 64.dp
 
 @Composable
 internal fun GenerationIndicator(
     modifier: Modifier = Modifier,
     pagerState: PagerState,
     generatedImages: LazyPagingItems<GeneratedImageUIModel>,
+) {
+    GenerationIndicatorCore(
+        modifier = modifier,
+        pagerState = pagerState,
+        itemCount = generatedImages.itemCount,
+        key = { index -> generatedImages[index]?.id ?: index },
+        imageUrl = { index -> generatedImages[index]?.imageUrl },
+    )
+}
+
+@Composable
+internal fun GenerationIndicator(
+    modifier: Modifier = Modifier,
+    pagerState: PagerState,
+    generations: List<SessionImageUIModel>,
+    topPadding: Dp = 0.dp,
+) {
+    GenerationIndicatorCore(
+        modifier = modifier,
+        pagerState = pagerState,
+        itemCount = generations.size,
+        key = { index -> generations.getOrNull(index)?.id ?: index },
+        imageUrl = { index -> generations.getOrNull(index)?.imageUrl },
+        topPadding = topPadding,
+    )
+}
+
+@Composable
+private fun GenerationIndicatorCore(
+    modifier: Modifier = Modifier,
+    pagerState: PagerState,
+    itemCount: Int,
+    key: (Int) -> Any,
+    imageUrl: (Int) -> String?,
+    topPadding: Dp = 52.dp, // app bar padding
 ) {
     val theme = LocalTheme.current
 
@@ -73,22 +108,22 @@ internal fun GenerationIndicator(
 
     LazyColumn(
         modifier = modifier
-            .padding(top = 52.dp) // app bar padding
+            .padding(top = topPadding)
             .fadingEdge(brush = fadeBrush),
         state = indicatorState,
-        verticalArrangement = Arrangement.spacedBy(5.dp, Alignment.CenterVertically),
+        verticalArrangement = Arrangement.spacedBy(6.dp, Alignment.CenterVertically),
         contentPadding = PaddingValues(bottom = 12.dp),
     ) {
         items(
-            count = generatedImages.itemCount,
-            key = generatedImages.itemKey { it.id },
-            contentType = generatedImages.itemContentType { "INDICATOR_CONTENT_TYPE" },
+            count = itemCount,
+            key = { index -> key(index) },
+            contentType = { "INDICATOR_CONTENT_TYPE" },
         ) { index ->
             val pageOffset = remember { derivedStateOf { pagerState.offsetForPage(index) } }
 
             GenerationItem(
                 pageOffset = pageOffset,
-                imageUrl = generatedImages[index]?.imageUrl,
+                imageUrl = imageUrl(index),
                 onClick = {
                     scope.launch {
                         pagerState.animateScrollToPage(index)
@@ -119,7 +154,7 @@ private fun GenerationItem(
     AiutaImage(
         modifier = modifier
             .height(ITEM_HEIGHT)
-            .width(54.dp)
+            .width(44.dp)
             .clip(sharedShape)
             .border(
                 width = 3.dp,
