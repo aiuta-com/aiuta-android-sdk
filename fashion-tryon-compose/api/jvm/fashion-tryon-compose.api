@@ -26,7 +26,7 @@ public final class com/aiuta/fashionsdk/tryon/compose/ui/internal/navigation/Com
 public final class com/aiuta/fashionsdk/tryon/compose/ui/internal/screens/history/ComposableSingletons$HistoryScreenInternalKt {
 	public static final field INSTANCE Lcom/aiuta/fashionsdk/tryon/compose/ui/internal/screens/history/ComposableSingletons$HistoryScreenInternalKt;
 	public fun <init> ()V
-	public final fun getLambda$771927991$com_aiuta_fashion_tryon_compose ()Lkotlin/jvm/functions/Function3;
+	public final fun getLambda$-1261466055$com_aiuta_fashion_tryon_compose ()Lkotlin/jvm/functions/Function3;
 }
 
 public final class com/aiuta/fashionsdk/tryon/compose/ui/internal/screens/result/ComposableSingletons$GenerationResultScreenContentKt {

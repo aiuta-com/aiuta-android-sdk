@@ -15,6 +15,6 @@ public interface AiutaShoesModeImagePickerStrings {
      * Provides standard English text for the shoes-mode image picker.
      */
     public class Default : AiutaShoesModeImagePickerStrings {
-        override val imagePickerShoesDescriptionEmpty: String = "Select a photo where your feet are clearly visible"
+        override val imagePickerShoesDescriptionEmpty: String = "Upload a photo where your feet are fully visible"
     }
 }

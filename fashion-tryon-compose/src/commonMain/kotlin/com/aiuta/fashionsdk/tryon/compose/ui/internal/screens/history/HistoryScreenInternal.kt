@@ -27,14 +27,22 @@ import androidx.compose.foundation.lazy.grid.LazyVerticalGrid
 import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.derivedStateOf
+import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
+import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.draw.clipToBounds
+import androidx.compose.ui.geometry.Offset
+import androidx.compose.ui.geometry.Size
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.layout.ContentScale
+import androidx.compose.ui.layout.onGloballyPositioned
+import androidx.compose.ui.layout.positionInRoot
 import androidx.compose.ui.unit.dp
+import androidx.compose.ui.unit.toSize
 import androidx.paging.compose.LazyPagingItems
 import androidx.paging.compose.collectAsLazyPagingItems
 import androidx.paging.compose.itemContentType
@@ -48,15 +56,15 @@ import com.aiuta.fashionsdk.compose.uikit.resources.AiutaIcon
 import com.aiuta.fashionsdk.compose.uikit.resources.AiutaImage
 import com.aiuta.fashionsdk.compose.uikit.utils.clickableUnindicated
 import com.aiuta.fashionsdk.internal.navigation.composition.LocalAiutaErrorSnackbarController
-import com.aiuta.fashionsdk.internal.navigation.composition.LocalAiutaNavigationController
 import com.aiuta.fashionsdk.tryon.compose.domain.models.internal.generated.images.GeneratedImageUIModel
+import com.aiuta.fashionsdk.tryon.compose.domain.models.internal.zoom.ZoomImageUiModel
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.analytic.sendPageEvent
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.components.icons.AiutaBoxedLoadingIcon
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.controller.composition.LocalAiutaTryOnLoadingActionsController
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.controller.composition.LocalController
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.controller.deactivateSelectMode
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.controller.isSelectModeActive
-import com.aiuta.fashionsdk.tryon.compose.ui.internal.navigation.TryOnScreen
+import com.aiuta.fashionsdk.tryon.compose.ui.internal.screens.base.transition.controller.openScreen
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.screens.history.analytic.sendDeleteHistoryEvent
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.screens.history.components.SelectorCard
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.screens.history.components.common.HistoryAppBar
@@ -93,7 +101,6 @@ internal fun HistoryScreen(modifier: Modifier = Modifier) {
 private fun HistoryScreenInternal(modifier: Modifier = Modifier) {
     val controller = LocalController.current
     val loadingActionsController = LocalAiutaTryOnLoadingActionsController.current
-    val navigationController = LocalAiutaNavigationController.current
     val theme = LocalTheme.current
 
     val minColumnsCount = 3
@@ -148,7 +155,7 @@ private fun HistoryScreenInternal(modifier: Modifier = Modifier) {
                     isEdit = isSelectModeActive,
                     isSelectedItem = controller.selectorHolder.contain(generatedImage),
                     isLoading = isLoading.value,
-                    onClick = {
+                    onClick = { offset, size ->
                         when {
                             // Don't click if loading
                             isLoading.value -> Unit
@@ -160,11 +167,17 @@ private fun HistoryScreenInternal(modifier: Modifier = Modifier) {
                             }
 
                             else -> {
-                                navigationController.navigateTo(
-                                    newScreen = TryOnScreen.ImageListViewer(
-                                        pickedIndex = index,
-                                    ),
-                                )
+                                generatedImage?.imageUrl?.let { url ->
+                                    controller.zoomImageController.openScreen(
+                                        model = ZoomImageUiModel(
+                                            imageSize = size,
+                                            initialCornerRadius = theme.image.shapes.imageM,
+                                            parentImageOffset = offset,
+                                            imageUrl = url,
+                                            originPageId = AiutaAnalyticsPageId.HISTORY,
+                                        ),
+                                    )
+                                }
                             }
                         }
                     },
@@ -185,10 +198,13 @@ private fun ImageContainer(
     isEdit: Boolean = false,
     isSelectedItem: Boolean = false,
     isLoading: Boolean = false,
-    onClick: () -> Unit,
+    onClick: (offset: Offset, size: Size) -> Unit,
 ) {
     val coilContext = LocalPlatformContext.current
     val theme = LocalTheme.current
+
+    var parentImageOffset by remember { mutableStateOf(Offset.Unspecified) }
+    var imageSize by remember { mutableStateOf(Size.Zero) }
 
     Box(
         modifier = modifier
@@ -196,7 +212,11 @@ private fun ImageContainer(
             .height(178.dp)
             .clip(theme.image.shapes.imageMShape)
             .background(color = theme.color.background)
-            .clickableUnindicated { onClick() },
+            .onGloballyPositioned {
+                parentImageOffset = it.positionInRoot()
+                imageSize = it.size.toSize()
+            }
+            .clickableUnindicated { onClick(parentImageOffset, imageSize) },
         contentAlignment = Alignment.Center,
     ) {
         AiutaImage(

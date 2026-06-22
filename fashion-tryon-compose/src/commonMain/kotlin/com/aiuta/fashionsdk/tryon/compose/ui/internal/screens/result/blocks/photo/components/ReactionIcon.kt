@@ -40,7 +40,7 @@ internal fun ReactionIcon(
             .size(38.dp)
             .clip(CircleShape)
             .hazeEffect(hazeState) {
-                val sharedColor = theme.color.onLight.copy(alpha = 0.4f)
+                val sharedColor = theme.color.onLight.copy(alpha = 0.2f)
 
                 blurRadius = 12.dp
                 backgroundColor = sharedColor

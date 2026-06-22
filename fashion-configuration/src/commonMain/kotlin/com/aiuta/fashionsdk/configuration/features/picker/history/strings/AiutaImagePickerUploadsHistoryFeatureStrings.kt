@@ -28,18 +28,10 @@ public interface AiutaImagePickerUploadsHistoryFeatureStrings {
      *
      * Provides standard English text for the uploads history interface,
      * with dynamic text for the new photo button based on model availability.
-     *
-     * @param isPredefinedModelAvailable Whether predefined models are available
      */
-    public class Default(
-        isPredefinedModelAvailable: Boolean,
-    ) : AiutaImagePickerUploadsHistoryFeatureStrings {
+    public class Default : AiutaImagePickerUploadsHistoryFeatureStrings {
         override val uploadsHistoryTitle: String = "Previously used photos"
-        override val uploadsHistoryButtonNewPhoto: String = if (isPredefinedModelAvailable) {
-            "+ New photo or model"
-        } else {
-            "+ New photo"
-        }
+        override val uploadsHistoryButtonNewPhoto: String = "+ Upload new photo"
         override val uploadsHistoryButtonChangePhoto: String = "Change photo"
     }
 }

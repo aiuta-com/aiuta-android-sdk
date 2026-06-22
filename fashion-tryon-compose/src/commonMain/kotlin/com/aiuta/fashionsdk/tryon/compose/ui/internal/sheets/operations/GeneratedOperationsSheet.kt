@@ -37,15 +37,19 @@ import com.aiuta.fashionsdk.analytics.events.AiutaAnalyticsPickerEventType
 import com.aiuta.fashionsdk.compose.uikit.button.FashionButton
 import com.aiuta.fashionsdk.compose.uikit.button.FashionButtonSizes
 import com.aiuta.fashionsdk.compose.uikit.button.FashionButtonStyles
+import com.aiuta.fashionsdk.compose.uikit.composition.LocalAiutaConfiguration
 import com.aiuta.fashionsdk.compose.uikit.composition.LocalTheme
 import com.aiuta.fashionsdk.compose.uikit.resources.AiutaIcon
 import com.aiuta.fashionsdk.compose.uikit.resources.AiutaImage
 import com.aiuta.fashionsdk.compose.uikit.utils.clickableUnindicated
+import com.aiuta.fashionsdk.compose.uikit.utils.provideFeature
 import com.aiuta.fashionsdk.compose.uikit.utils.strictProvideFeature
 import com.aiuta.fashionsdk.configuration.features.models.images.AiutaInputImage
 import com.aiuta.fashionsdk.configuration.features.picker.history.AiutaImagePickerUploadsHistoryFeature
+import com.aiuta.fashionsdk.configuration.features.picker.model.AiutaImagePickerPredefinedModelFeature
 import com.aiuta.fashionsdk.internal.navigation.composition.LocalAiutaBottomSheetNavigator
 import com.aiuta.fashionsdk.internal.navigation.composition.LocalAiutaErrorSnackbarController
+import com.aiuta.fashionsdk.internal.navigation.composition.LocalAiutaNavigationController
 import com.aiuta.fashionsdk.tryon.compose.domain.internal.interactor.generated.operations.cleanLoadingUploads
 import com.aiuta.fashionsdk.tryon.compose.domain.internal.utils.asCustom
 import com.aiuta.fashionsdk.tryon.compose.domain.models.internal.generated.images.toPublicHistory
@@ -53,13 +57,16 @@ import com.aiuta.fashionsdk.tryon.compose.domain.models.internal.generated.opera
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.analytic.sendPickerAnalytic
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.components.icons.AiutaBoxedLoadingIcon
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.controller.activateAutoTryOn
+import com.aiuta.fashionsdk.tryon.compose.ui.internal.controller.composition.LocalAiutaMode
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.controller.composition.LocalAiutaTryOnLoadingActionsController
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.controller.composition.LocalController
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.controller.loading.listenErrorDeletingUploadedImages
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.controller.updateActiveOperationOrSetEmpty
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.navigation.TryOnBottomSheetScreen
+import com.aiuta.fashionsdk.tryon.compose.ui.internal.screens.model.navigateToModelSelector
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.sheets.components.SheetDivider
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.sheets.operations.controller.GeneratedOperationsSheetListener
+import com.aiuta.fashionsdk.tryon.compose.ui.internal.utils.mode.resolveByMode
 import kotlinx.coroutines.launch
 
 @Composable
@@ -67,12 +74,16 @@ internal fun GeneratedOperationsSheet(
     modifier: Modifier = Modifier,
 ) {
     val bottomSheetNavigator = LocalAiutaBottomSheetNavigator.current
+    val configuration = LocalAiutaConfiguration.current
     val controller = LocalController.current
+    val navigationController = LocalAiutaNavigationController.current
     val theme = LocalTheme.current
+    val mode = LocalAiutaMode.current
 
     val scope = rememberCoroutineScope()
 
     val uploadsHistoryFeature = strictProvideFeature<AiutaImagePickerUploadsHistoryFeature>()
+    val predefinedModelFeature = provideFeature<AiutaImagePickerPredefinedModelFeature>()
 
     val sharedHorizontalPadding = 16.dp
     val sharedOperationsModifier =
@@ -168,8 +179,7 @@ internal fun GeneratedOperationsSheet(
         Spacer(Modifier.height(24.dp))
 
         FashionButton(
-            modifier =
-            Modifier
+            modifier = Modifier
                 .fillMaxWidth()
                 .padding(horizontal = sharedHorizontalPadding),
             text = uploadsHistoryFeature.strings.uploadsHistoryButtonNewPhoto,
@@ -184,6 +194,33 @@ internal fun GeneratedOperationsSheet(
                 )
             },
         )
+
+        predefinedModelFeature?.let {
+            Spacer(Modifier.height(8.dp))
+
+            FashionButton(
+                modifier = Modifier
+                    .fillMaxWidth()
+                    .padding(horizontal = sharedHorizontalPadding),
+                text = resolveByMode(
+                    propertyName = "predefinedModelFeature.strings.predefinedModelPageButton",
+                    general = { predefinedModelFeature.strings.predefinedModelPageButton },
+                    shoes = { configuration.modes.shoes?.imagePicker?.predefinedModels?.strings?.predefinedModelShoesPageTitle },
+                ),
+                style = FashionButtonStyles.primaryStyle(
+                    backgroundColor = theme.color.neutral,
+                    contentColor = theme.color.primary,
+                ),
+                size = FashionButtonSizes.lSize(),
+                onClick = {
+                    bottomSheetNavigator.hide()
+                    navigationController.navigateToModelSelector(
+                        mode = mode,
+                        shoesMode = configuration.modes.shoes,
+                    )
+                },
+            )
+        }
     }
 }
 

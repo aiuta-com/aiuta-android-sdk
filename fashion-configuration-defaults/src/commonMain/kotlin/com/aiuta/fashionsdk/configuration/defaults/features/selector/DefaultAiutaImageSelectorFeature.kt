@@ -38,9 +38,7 @@ public fun AiutaFeatures.Builder.defaultImagePicker(): AiutaFeatures.Builder = i
         strings = AiutaImagePickerPredefinedModelFeatureStrings.Default()
     }
     uploadsHistory {
-        strings = AiutaImagePickerUploadsHistoryFeatureStrings.Default(
-            isPredefinedModelAvailable = true,
-        )
+        strings = AiutaImagePickerUploadsHistoryFeatureStrings.Default()
         dataProvider = AiutaImagePickerUploadsHistoryFeatureDataProviderBuiltIn
     }
     images = DefaultAiutaImagePickerFeatureImages()

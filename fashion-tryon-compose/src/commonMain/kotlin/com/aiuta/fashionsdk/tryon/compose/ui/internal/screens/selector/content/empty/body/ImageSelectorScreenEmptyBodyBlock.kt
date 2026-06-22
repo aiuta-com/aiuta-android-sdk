@@ -158,7 +158,11 @@ internal fun ImageSelectorScreenEmptyBodyBlock(modifier: Modifier) {
 
             FashionButton(
                 modifier = sharedModifier,
-                text = predefinedModelFeature.strings.predefinedModelPageButton,
+                text = resolveByMode(
+                    propertyName = "predefinedModelFeature.strings.predefinedModelPageButton",
+                    general = { predefinedModelFeature.strings.predefinedModelPageButton },
+                    shoes = { configuration.modes.shoes?.imagePicker?.predefinedModels?.strings?.predefinedModelShoesPageTitle },
+                ),
                 style = FashionButtonStyles.adaptiveContrastStyle(theme),
                 size = FashionButtonSizes.lSize(),
                 onClick = {
