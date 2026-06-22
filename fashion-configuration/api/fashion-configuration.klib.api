@@ -283,7 +283,7 @@ abstract interface com.aiuta.fashionsdk.configuration.features.picker.history.st
         abstract fun <get-uploadsHistoryTitle>(): kotlin/String // com.aiuta.fashionsdk.configuration.features.picker.history.strings/AiutaImagePickerUploadsHistoryFeatureStrings.uploadsHistoryTitle.<get-uploadsHistoryTitle>|<get-uploadsHistoryTitle>(){}[0]
 
     final class Default : com.aiuta.fashionsdk.configuration.features.picker.history.strings/AiutaImagePickerUploadsHistoryFeatureStrings { // com.aiuta.fashionsdk.configuration.features.picker.history.strings/AiutaImagePickerUploadsHistoryFeatureStrings.Default|null[0]
-        constructor <init>(kotlin/Boolean) // com.aiuta.fashionsdk.configuration.features.picker.history.strings/AiutaImagePickerUploadsHistoryFeatureStrings.Default.<init>|<init>(kotlin.Boolean){}[0]
+        constructor <init>() // com.aiuta.fashionsdk.configuration.features.picker.history.strings/AiutaImagePickerUploadsHistoryFeatureStrings.Default.<init>|<init>(){}[0]
 
         final val uploadsHistoryButtonChangePhoto // com.aiuta.fashionsdk.configuration.features.picker.history.strings/AiutaImagePickerUploadsHistoryFeatureStrings.Default.uploadsHistoryButtonChangePhoto|{}uploadsHistoryButtonChangePhoto[0]
             final fun <get-uploadsHistoryButtonChangePhoto>(): kotlin/String // com.aiuta.fashionsdk.configuration.features.picker.history.strings/AiutaImagePickerUploadsHistoryFeatureStrings.Default.uploadsHistoryButtonChangePhoto.<get-uploadsHistoryButtonChangePhoto>|<get-uploadsHistoryButtonChangePhoto>(){}[0]
