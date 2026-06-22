@@ -12,7 +12,6 @@ import androidx.compose.foundation.layout.fillMaxHeight
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
-import androidx.compose.foundation.layout.navigationBars
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.statusBars
 import androidx.compose.foundation.lazy.LazyListScope
@@ -31,8 +30,8 @@ import androidx.compose.ui.geometry.Offset
 import androidx.compose.ui.geometry.Size
 import androidx.compose.ui.graphics.graphicsLayer
 import androidx.compose.ui.platform.LocalDensity
+import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
-import com.aiuta.fashionsdk.compose.core.size.rememberScreenSize
 import com.aiuta.fashionsdk.compose.uikit.composition.LocalTheme
 import com.aiuta.fashionsdk.compose.uikit.resources.AiutaAdaptiveImage
 import com.aiuta.fashionsdk.compose.uikit.utils.clickableUnindicated
@@ -50,27 +49,24 @@ import dev.chrisbanes.haze.hazeSource
 import kotlin.math.absoluteValue
 
 /**
- * Height of [com.aiuta.fashionsdk.compose.uikit.appbar.AiutaAppBar] excluding the status-bar inset
+ * Height of [com.aiuta.fashionsdk.compose.uikit.appbar.AiutaAppBar]
  */
-private val APP_BAR_CONTENT_HEIGHT = 52.dp
+private val APP_BAR_CONTENT_HEIGHT = 56.dp
 
 internal fun LazyListScope.photoBlock(
     viewState: State<GenerationResultScreenViewState>,
     pagerState: PagerState,
+    availableHeight: Dp,
     eventHandler: (GenerationResultScreenEvent) -> Unit,
 ) {
     item(
         key = "photo_block",
         contentType = "photo_block",
     ) {
-        val screenSize = rememberScreenSize()
         val density = LocalDensity.current
 
-        // Mirror the selector screen: the photo is MAIN_IMAGE_SIZE of the content area below the
-        // app bar (screen minus status/navigation insets and the app bar), not of the whole screen.
         val statusBarHeight = with(density) { WindowInsets.statusBars.getTop(this).toDp() }
-        val navigationBarHeight = with(density) { WindowInsets.navigationBars.getBottom(this).toDp() }
-        val photoHeight = (screenSize.heightDp - statusBarHeight - navigationBarHeight - APP_BAR_CONTENT_HEIGHT) * MAIN_IMAGE_SIZE
+        val photoHeight = (availableHeight - statusBarHeight - APP_BAR_CONTENT_HEIGHT) * MAIN_IMAGE_SIZE
 
         Box(
             modifier = Modifier

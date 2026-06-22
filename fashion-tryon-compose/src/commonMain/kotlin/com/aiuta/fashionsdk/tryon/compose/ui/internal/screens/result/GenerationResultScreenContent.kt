@@ -1,12 +1,11 @@
 package com.aiuta.fashionsdk.tryon.compose.ui.internal.screens.result
 
 import androidx.compose.foundation.background
-import androidx.compose.foundation.layout.Box
-import androidx.compose.foundation.layout.Spacer
+import androidx.compose.foundation.layout.BoxWithConstraints
 import androidx.compose.foundation.layout.WindowInsets
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.navigationBars
-import androidx.compose.foundation.layout.windowInsetsBottomHeight
+import androidx.compose.foundation.layout.windowInsetsPadding
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.rememberLazyListState
 import androidx.compose.foundation.pager.rememberPagerState
@@ -35,10 +34,11 @@ internal fun GenerationResultScreenContent(
     val pagerState = rememberPagerState(pageCount = { viewState.value.generations.size })
     val lazyListState = rememberLazyListState()
 
-    Box(
+    BoxWithConstraints(
         modifier = modifier
             .fillMaxSize()
-            .background(theme.color.background),
+            .background(theme.color.background)
+            .windowInsetsPadding(WindowInsets.navigationBars),
     ) {
         LazyColumn(
             modifier = Modifier.fillMaxSize(),
@@ -49,6 +49,7 @@ internal fun GenerationResultScreenContent(
             photoBlock(
                 viewState = viewState,
                 pagerState = pagerState,
+                availableHeight = maxHeight,
                 eventHandler = eventHandler,
             )
 
@@ -61,13 +62,6 @@ internal fun GenerationResultScreenContent(
                 viewState = viewState,
                 eventHandler = eventHandler,
             )
-
-            item(
-                key = "navigation_bar_spacer",
-                contentType = "navigation_bar_spacer",
-            ) {
-                Spacer(Modifier.windowInsetsBottomHeight(WindowInsets.navigationBars))
-            }
         }
 
         ThanksFeedbackBlock(

@@ -111,8 +111,8 @@ private fun GenerationIndicatorCore(
             .padding(top = topPadding)
             .fadingEdge(brush = fadeBrush),
         state = indicatorState,
-        verticalArrangement = Arrangement.spacedBy(6.dp, Alignment.CenterVertically),
-        contentPadding = PaddingValues(bottom = 12.dp),
+        verticalArrangement = Arrangement.spacedBy(6.dp, Alignment.Top),
+        contentPadding = PaddingValues(vertical = 16.dp),
     ) {
         items(
             count = itemCount,
