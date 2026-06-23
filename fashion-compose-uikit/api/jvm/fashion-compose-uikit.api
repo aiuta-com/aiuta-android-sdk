@@ -93,7 +93,7 @@ public final class com/aiuta/fashionsdk/compose/uikit/resources/AiutaPlatformIma
 }
 
 public final class com/aiuta/fashionsdk/compose/uikit/resources/AiutaVideoSurfaceKt {
-	public static final fun AiutaVideoSurface (Lcom/aiuta/fashionsdk/compose/resources/media/AiutaMedia;Landroidx/compose/ui/Modifier;ZZZLandroidx/compose/runtime/Composer;II)V
+	public static final fun AiutaVideoSurface (Lcom/aiuta/fashionsdk/compose/resources/media/AiutaMedia;Landroidx/compose/ui/Modifier;ZZZLcom/aiuta/fashionsdk/logger/AiutaLogger;Landroidx/compose/runtime/Composer;II)V
 }
 
 public final class com/aiuta/fashionsdk/compose/uikit/resources/painter/AiutaPainter_desktopKt {
