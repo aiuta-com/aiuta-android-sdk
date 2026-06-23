@@ -30,6 +30,7 @@ import com.aiuta.fashionsdk.configuration.features.picker.AiutaImagePickerFeatur
 import com.aiuta.fashionsdk.configuration.features.picker.model.AiutaImagePickerPredefinedModelFeature
 import com.aiuta.fashionsdk.configuration.features.picker.protection.AiutaImagePickerProtectionDisclaimerFeature
 import com.aiuta.fashionsdk.internal.navigation.composition.LocalAiutaBottomSheetNavigator
+import com.aiuta.fashionsdk.internal.navigation.composition.LocalAiutaLogger
 import com.aiuta.fashionsdk.internal.navigation.composition.LocalAiutaNavigationController
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.controller.composition.LocalAiutaMode
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.controller.composition.LocalController
@@ -46,6 +47,7 @@ internal fun ImageSelectorScreenEmptyBodyBlock(modifier: Modifier) {
     val navigationController = LocalAiutaNavigationController.current
     val theme = LocalTheme.current
     val mode = LocalAiutaMode.current
+    val logger = LocalAiutaLogger.current
 
     val imageSelectorFeature = strictProvideFeature<AiutaImagePickerFeature>()
     val predefinedModelFeature = provideFeature<AiutaImagePickerPredefinedModelFeature>()
@@ -85,6 +87,7 @@ internal fun ImageSelectorScreenEmptyBodyBlock(modifier: Modifier) {
                 general = { imageSelectorFeature.images.example },
                 shoes = { configuration.modes.shoes?.imagePicker?.images?.shoesExample },
             ),
+            logger = logger,
         )
 
         Spacer(Modifier.height(20.dp))

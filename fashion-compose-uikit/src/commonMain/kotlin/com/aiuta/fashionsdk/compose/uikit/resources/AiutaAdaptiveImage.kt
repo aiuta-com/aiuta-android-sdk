@@ -73,8 +73,9 @@ private const val BLUR_BG_BRIGHTNESS = 0.9f
  *   same image (contain + blurred background).
  *
  * The foreground is loaded at the view size via [rememberConstraintsSizeResolver] (instead of
- * `Size.ORIGINAL`), so large source images aren't decoded at full resolution. The painter still
- * exposes `intrinsicSize`, which drives the cover / contain decision.
+ * `Size.ORIGINAL`), so large source images aren't decoded at full resolution. The cover / contain
+ * decision is driven by a separate probe painter decoded at a fixed size, so the same image yields
+ * the same aspect ratio (and thus the same mode) on every device, independent of container size.
  *
  * The blur is produced by decoding a tiny copy of the same image via Coil and upscaling it, then
  * (where supported) a real `Modifier.blur` on top — `blur` is a no-op below Android API 31, so
@@ -114,6 +115,13 @@ public fun AiutaAdaptiveImage(
     )
     val foregroundState by foregroundPainter.state.collectAsStateWithLifecycle()
 
+    val ratioProbePainter = rememberAsyncImagePainter(
+        model = ImageRequest.Builder(context)
+            .data(model)
+            .size(coil3.size.Size.ORIGINAL)
+            .build(),
+    )
+
     val isShimmerVisible by remember {
         derivedStateOf { foregroundState is AsyncImagePainter.State.Loading }
     }
@@ -121,7 +129,7 @@ public fun AiutaAdaptiveImage(
     // null while the image is still loading (intrinsic size unknown) — render cover + shimmer.
     val aspectRatio by remember {
         derivedStateOf {
-            val size = foregroundPainter.intrinsicSize
+            val size = ratioProbePainter.intrinsicSize
             if (size.isSpecified && size.width > 0f && size.height > 0f) {
                 size.width / size.height
             } else {

@@ -4,6 +4,7 @@ import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.DisposableEffect
+import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
@@ -11,30 +12,33 @@ import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.viewinterop.UIKitView
+import com.aiuta.fashionsdk.logger.AiutaLogger
+import com.aiuta.fashionsdk.logger.e
 import kotlinx.cinterop.BetaInteropApi
 import kotlinx.cinterop.ExperimentalForeignApi
+import kotlinx.coroutines.delay
 import platform.AVFoundation.AVLayerVideoGravityResize
 import platform.AVFoundation.AVLayerVideoGravityResizeAspect
 import platform.AVFoundation.AVLayerVideoGravityResizeAspectFill
 import platform.AVFoundation.AVPlayer
 import platform.AVFoundation.AVPlayerItemDidPlayToEndTimeNotification
+import platform.AVFoundation.AVPlayerItemStatusFailed
+import platform.AVFoundation.AVPlayerItemStatusReadyToPlay
 import platform.AVFoundation.AVPlayerLayer
-import platform.AVFoundation.addPeriodicTimeObserverForInterval
+import platform.AVFoundation.currentItem
+import platform.AVFoundation.error
 import platform.AVFoundation.pause
 import platform.AVFoundation.play
-import platform.AVFoundation.removeTimeObserver
 import platform.AVFoundation.seekToTime
 import platform.AVFoundation.setMuted
+import platform.AVFoundation.status
 import platform.CoreGraphics.CGRectMake
-import platform.CoreMedia.CMTimeGetSeconds
 import platform.CoreMedia.CMTimeMake
-import platform.CoreMedia.CMTimeMakeWithSeconds
 import platform.Foundation.NSNotificationCenter
 import platform.Foundation.NSOperationQueue
 import platform.Foundation.NSURL
 import platform.QuartzCore.CATransaction
 import platform.UIKit.UIView
-import platform.darwin.dispatch_get_main_queue
 
 @OptIn(ExperimentalForeignApi::class)
 @Composable
@@ -45,18 +49,54 @@ internal actual fun PlatformVideoPlayer(
     autoPlay: Boolean,
     loop: Boolean,
     muted: Boolean,
+    logger: AiutaLogger?,
     shutter: @Composable () -> Unit,
 ) {
     val player = remember(source) {
         val url = NSURL.URLWithString(source) ?: NSURL.fileURLWithPath(source)
         AVPlayer(uRL = url)
     }
-    // Keep the poster visible until the player starts rendering frames.
+    // Hoisted so we can observe when its first frame is on screen.
+    val playerLayer = remember(player) {
+        AVPlayerLayer().apply { this.player = player }
+    }
+    // Keep the poster visible until the player has rendered its first frame.
     var isReady by remember(source) { mutableStateOf(false) }
 
-    DisposableEffect(player, loop, muted, autoPlay) {
+    // Start playback only once the item is ready. For remote URLs the item loads
+    // asynchronously and is still `.unknown` right after creation — calling play()
+    // too early is dropped by AVPlayer, leaving the video frozen on its first frame.
+    // This mirrors ExoPlayer's `playWhenReady`, which starts when the item is ready.
+    LaunchedEffect(player, autoPlay) {
+        if (!autoPlay) return@LaunchedEffect
+        while (true) {
+            when (player.currentItem?.status) {
+                AVPlayerItemStatusReadyToPlay -> {
+                    player.play()
+                    break
+                }
+                AVPlayerItemStatusFailed -> {
+                    logger?.e(
+                        "AiutaVideoSurface: item failed to load: " +
+                            "${player.currentItem?.error}",
+                    )
+                    break
+                }
+                else -> delay(50)
+            }
+        }
+    }
+
+    // Hide the poster only once the layer actually has a frame to display, so the
+    // poster swaps straight to moving video with no blank gap in between. This is
+    // the AVPlayerLayer equivalent of media3 ContentFrame's shutter on Android.
+    LaunchedEffect(playerLayer) {
+        while (!playerLayer.isReadyForDisplay()) delay(16)
+        isReady = true
+    }
+
+    DisposableEffect(player, loop, muted) {
         player.setMuted(muted)
-        if (autoPlay) player.play()
 
         val endObserver = NSNotificationCenter.defaultCenter.addObserverForName(
             name = AVPlayerItemDidPlayToEndTimeNotification,
@@ -69,19 +109,8 @@ internal actual fun PlatformVideoPlayer(
             }
         }
 
-        // Once playback time advances, the first frame is on screen — hide the poster.
-        val timeObserver = player.addPeriodicTimeObserverForInterval(
-            interval = CMTimeMakeWithSeconds(0.05, 600),
-            queue = dispatch_get_main_queue(),
-        ) { time ->
-            if (CMTimeGetSeconds(time) > 0.0) {
-                isReady = true
-            }
-        }
-
         onDispose {
             NSNotificationCenter.defaultCenter.removeObserver(endObserver)
-            player.removeTimeObserver(timeObserver)
             player.pause()
         }
     }
@@ -90,7 +119,7 @@ internal actual fun PlatformVideoPlayer(
         UIKitView(
             modifier = Modifier.fillMaxSize(),
             factory = {
-                VideoContainerView(player).apply {
+                VideoContainerView(playerLayer).apply {
                     playerLayer.videoGravity = contentScale.toVideoGravity()
                 }
             },
@@ -109,12 +138,8 @@ internal actual fun PlatformVideoPlayer(
 
 @OptIn(ExperimentalForeignApi::class, BetaInteropApi::class)
 private class VideoContainerView(
-    player: AVPlayer,
+    val playerLayer: AVPlayerLayer,
 ) : UIView(frame = CGRectMake(0.0, 0.0, 0.0, 0.0)) {
-
-    val playerLayer: AVPlayerLayer = AVPlayerLayer().apply {
-        this.player = player
-    }
 
     init {
         layer.addSublayer(playerLayer)

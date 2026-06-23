@@ -8,6 +8,7 @@ import androidx.compose.ui.Modifier
 import com.aiuta.fashionsdk.analytics.events.AiutaAnalyticsPageId
 import com.aiuta.fashionsdk.compose.resources.media.AiutaMedia
 import com.aiuta.fashionsdk.compose.uikit.resources.AiutaVideoSurface
+import com.aiuta.fashionsdk.internal.navigation.composition.LocalAiutaLogger
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.analytic.sendPageEvent
 
 /**
@@ -30,6 +31,8 @@ internal fun OnboardingMediaPageContent(
 ) {
     sendPageEvent(pageId = pageId)
 
+    val logger = LocalAiutaLogger.current
+
     Column(
         modifier = modifier,
         horizontalAlignment = Alignment.CenterHorizontally,
@@ -39,6 +42,7 @@ internal fun OnboardingMediaPageContent(
                 .fillMaxWidth()
                 .weight(0.65f),
             video = media,
+            logger = logger,
         )
 
         CentredTextBlock(

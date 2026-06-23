@@ -6,6 +6,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.layout.ContentScale
 import com.aiuta.fashionsdk.compose.resources.media.AiutaMedia
 import com.aiuta.fashionsdk.compose.resources.media.AiutaMediaContentScale
+import com.aiuta.fashionsdk.logger.AiutaLogger
 
 /**
  * Displays an [AiutaMedia] surface, mirroring [AiutaImage].
@@ -25,6 +26,7 @@ import com.aiuta.fashionsdk.compose.resources.media.AiutaMediaContentScale
  * @param autoPlay Whether playback starts automatically
  * @param loop Whether playback loops
  * @param muted Whether audio is muted
+ * @param logger Optional logger used to report playback failures
  */
 @Composable
 public fun AiutaVideoSurface(
@@ -33,6 +35,7 @@ public fun AiutaVideoSurface(
     autoPlay: Boolean = true,
     loop: Boolean = true,
     muted: Boolean = true,
+    logger: AiutaLogger? = null,
 ) {
     val contentScale = video.contentScale.toContentScale()
 
@@ -53,6 +56,7 @@ public fun AiutaVideoSurface(
             autoPlay = autoPlay,
             loop = loop,
             muted = muted,
+            logger = logger,
             shutter = {
                 AiutaImage(
                     image = video.imageResource,
@@ -74,7 +78,7 @@ internal fun AiutaMediaContentScale.toContentScale(): ContentScale = when (this)
 /**
  * Platform player backing [AiutaVideoSurface]. Receives a playable [source]
  * string (a remote URL or a local file URI) and a [shutter] poster shown while
- * the video is not yet rendering / on failure.
+ * the video is not yet rendering / on failure. [logger] reports playback failures.
  */
 @Composable
 internal expect fun PlatformVideoPlayer(
@@ -84,5 +88,6 @@ internal expect fun PlatformVideoPlayer(
     autoPlay: Boolean,
     loop: Boolean,
     muted: Boolean,
+    logger: AiutaLogger?,
     shutter: @Composable () -> Unit,
 )
