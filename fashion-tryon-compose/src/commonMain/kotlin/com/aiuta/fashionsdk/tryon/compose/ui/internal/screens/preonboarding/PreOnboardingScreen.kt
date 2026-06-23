@@ -28,6 +28,7 @@ import com.aiuta.fashionsdk.compose.uikit.resources.AiutaVideoSurface
 import com.aiuta.fashionsdk.compose.uikit.utils.clickableUnindicated
 import com.aiuta.fashionsdk.compose.uikit.utils.strictProvideFeature
 import com.aiuta.fashionsdk.configuration.features.welcome.AiutaWelcomeScreenFeature
+import com.aiuta.fashionsdk.internal.navigation.composition.LocalAiutaLogger
 import com.aiuta.fashionsdk.internal.navigation.composition.LocalAiutaNavigationController
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.analytic.clickClose
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.analytic.sendOnboardingEvent
@@ -40,6 +41,7 @@ internal fun PreOnboardingScreen(modifier: Modifier = Modifier) {
     val controller = LocalController.current
     val navigationController = LocalAiutaNavigationController.current
     val theme = LocalTheme.current
+    val logger = LocalAiutaLogger.current
 
     val welcomeScreenFeature = strictProvideFeature<AiutaWelcomeScreenFeature>()
 
@@ -52,6 +54,7 @@ internal fun PreOnboardingScreen(modifier: Modifier = Modifier) {
         AiutaVideoSurface(
             modifier = Modifier.fillMaxSize(),
             video = welcomeScreenFeature.images.welcomeBackground,
+            logger = logger,
         )
 
         AiutaAppBar(

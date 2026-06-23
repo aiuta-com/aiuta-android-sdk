@@ -4,6 +4,7 @@ import androidx.compose.foundation.layout.Box
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.layout.ContentScale
+import com.aiuta.fashionsdk.logger.AiutaLogger
 
 // JS has no bundled video player; show the poster image.
 @Composable
@@ -14,6 +15,7 @@ internal actual fun PlatformVideoPlayer(
     autoPlay: Boolean,
     loop: Boolean,
     muted: Boolean,
+    logger: AiutaLogger?,
     shutter: @Composable () -> Unit,
 ) {
     Box(modifier = modifier) {

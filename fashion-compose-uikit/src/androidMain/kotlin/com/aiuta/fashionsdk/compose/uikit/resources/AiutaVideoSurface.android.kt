@@ -13,6 +13,7 @@ import androidx.media3.common.Player
 import androidx.media3.common.util.UnstableApi
 import androidx.media3.exoplayer.ExoPlayer
 import androidx.media3.ui.compose.ContentFrame
+import com.aiuta.fashionsdk.logger.AiutaLogger
 
 @OptIn(UnstableApi::class)
 @Composable
@@ -23,6 +24,7 @@ internal actual fun PlatformVideoPlayer(
     autoPlay: Boolean,
     loop: Boolean,
     muted: Boolean,
+    logger: AiutaLogger?,
     shutter: @Composable () -> Unit,
 ) {
     val context = LocalContext.current
