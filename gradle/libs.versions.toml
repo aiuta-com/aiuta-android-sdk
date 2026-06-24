@@ -9,7 +9,7 @@ androidx-paging = "3.5.0"
 androidx-exifinterface = "1.4.2"
 
 binaryCompatibility = "0.18.1"
-buildKonfig = "0.21.2"
+buildKonfig = "0.22.0"
 
 calf-picker = "0.12.0"
 coroutines = "1.11.0"
