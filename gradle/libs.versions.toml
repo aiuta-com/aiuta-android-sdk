@@ -43,7 +43,7 @@ room = "2.8.4"
 mockk = "1.14.11"
 moko = "0.20.1"
 
-spotless = "8.7.0"
+spotless = "8.8.0"
 sqlite = "2.6.2"
 uiUnitAndroid = "1.11.3"
 
