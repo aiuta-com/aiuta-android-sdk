@@ -14,58 +14,47 @@ import kotlinx.coroutines.sync.withLock
 
 internal class PingOperationSliceImpl(
     private val productOperationsDataSource: FashionProductOperationsDataSource,
-    private val delaySequenceFactory: () -> Sequence<Long> = { defaultGenerationDelaySequence() },
+    private val delaySequenceFactory: suspend () -> Sequence<Long> = { defaultGenerationDelaySequence() },
 ) : PingOperationSlice {
     private val mutex = Mutex()
 
     override suspend fun operationPing(operationId: String): List<GeneratedImage> = mutex.withLock {
-        ping(
-            operationId = operationId,
-            delaySequenceIterator = delaySequenceFactory().iterator(),
-        )
-    }
+        val delays = delaySequenceFactory().iterator()
 
-    private suspend fun ping(
-        operationId: String,
-        delaySequenceIterator: Iterator<Long>,
-    ): List<GeneratedImage> {
-        val operation = productOperationsDataSource.getProductOperation(operationId)
+        // Each delay is waited before a poll: right after the operation is
+        // created it is never ready, so there's nothing to ask yet
+        while (delays.hasNext()) {
+            delay(delays.next())
 
-        when (operation.status) {
-            ProductOperationStatus.FAILED -> {
-                throw AiutaTryOnGenerationException(
-                    type = AiutaTryOnExceptionType.OPERATION_FAILED,
-                    message = operation.error,
-                )
-            }
+            val operation = productOperationsDataSource.getProductOperation(operationId)
 
-            ProductOperationStatus.ABORTED -> {
-                throw AiutaTryOnGenerationException(
-                    type = AiutaTryOnExceptionType.OPERATION_ABORTED_FAILED,
-                    message = operation.error,
-                    abortReason = operation.abortReason?.toPublic(),
-                )
-            }
+            when (operation.status) {
+                ProductOperationStatus.FAILED -> {
+                    throw AiutaTryOnGenerationException(
+                        type = AiutaTryOnExceptionType.OPERATION_FAILED,
+                        message = operation.error,
+                    )
+                }
 
-            ProductOperationStatus.CREATED, ProductOperationStatus.IN_PROGRESS -> {
-                // Just wait result
-            }
+                ProductOperationStatus.ABORTED -> {
+                    throw AiutaTryOnGenerationException(
+                        type = AiutaTryOnExceptionType.OPERATION_ABORTED_FAILED,
+                        message = operation.error,
+                        abortReason = operation.abortReason?.toPublic(),
+                    )
+                }
 
-            ProductOperationStatus.SUCCESS -> {
-                return operation.generatedImages
+                ProductOperationStatus.CREATED, ProductOperationStatus.IN_PROGRESS -> {
+                    // Just wait result
+                }
+
+                ProductOperationStatus.SUCCESS -> {
+                    return operation.generatedImages
+                }
             }
         }
 
-        if (delaySequenceIterator.hasNext()) {
-            delay(delaySequenceIterator.next())
-        } else {
-            // We reach time limit
-            throw AiutaTryOnGenerationException(AiutaTryOnExceptionType.OPERATION_TIMEOUT_FAILED)
-        }
-
-        return ping(
-            operationId = operationId,
-            delaySequenceIterator = delaySequenceIterator,
-        )
+        // We reach time limit
+        throw AiutaTryOnGenerationException(AiutaTryOnExceptionType.OPERATION_TIMEOUT_FAILED)
     }
 }
