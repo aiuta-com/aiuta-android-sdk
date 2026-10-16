@@ -8,7 +8,7 @@ androidx-media3 = "1.10.1"
 androidx-paging = "3.5.0"
 androidx-exifinterface = "1.4.2"
 
-binaryCompatibility = "0.18.1"
+binaryCompatibility = "0.18.2"
 buildKonfig = "0.23.0"
 
 calf-picker = "0.12.0"
