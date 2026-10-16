@@ -3,15 +3,20 @@ package com.aiuta.fashionsdk.tryon.core.domain.slice.ping.internal.delays
 import com.aiuta.fashionsdk.tryon.core.data.datasource.subscription.models.OperationDelay
 import kotlin.test.Test
 import kotlin.test.assertEquals
+import kotlin.test.assertNotSame
 import kotlin.test.assertNull
+import kotlin.test.assertSame
 import kotlin.time.Duration.Companion.milliseconds
 import kotlin.time.Duration.Companion.minutes
 import kotlin.time.Duration.Companion.seconds
 import kotlin.time.TestTimeSource
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.async
 import kotlinx.coroutines.awaitAll
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.test.TestScope
 import kotlinx.coroutines.test.runTest
+import kotlinx.coroutines.withContext
 
 internal class OperationDelaysProviderTest {
     private val delays = listOf(OperationDelay(mode = "infinite", delay = 2.0))
@@ -101,6 +106,39 @@ internal class OperationDelaysProviderTest {
         delay(2.seconds)
         assertEquals(delays, provider.getDelays(timeout = 500.milliseconds))
         assertEquals(1, loads)
+    }
+
+    @Test
+    fun instanceIsSharedPerSubscription() {
+        var created = 0
+        val create = {
+            created++
+            OperationDelaysProvider(scope = TestScope(), load = { delays })
+        }
+
+        val first = OperationDelaysProvider.getInstance(subscriptionId = "shared-1", create = create)
+        val same = OperationDelaysProvider.getInstance(subscriptionId = "shared-1", create = create)
+        val other = OperationDelaysProvider.getInstance(subscriptionId = "shared-2", create = create)
+
+        assertSame(first, same)
+        assertNotSame(first, other)
+        assertEquals(2, created)
+    }
+
+    @Test
+    fun concurrentGetInstanceCreatesOneProvider() = runTest {
+        var created = 0
+        val create = {
+            created++
+            OperationDelaysProvider(scope = TestScope(), load = { delays })
+        }
+
+        val providers = withContext(Dispatchers.Default) {
+            List(64) { async { OperationDelaysProvider.getInstance(subscriptionId = "concurrent", create = create) } }.awaitAll()
+        }
+
+        assertEquals(1, providers.toSet().size)
+        assertEquals(1, created)
     }
 
     @Test

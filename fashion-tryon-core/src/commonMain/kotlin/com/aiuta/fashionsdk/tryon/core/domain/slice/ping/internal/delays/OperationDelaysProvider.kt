@@ -3,11 +3,14 @@ package com.aiuta.fashionsdk.tryon.core.domain.slice.ping.internal.delays
 import com.aiuta.fashionsdk.Aiuta
 import com.aiuta.fashionsdk.tryon.core.data.datasource.subscription.models.OperationDelay
 import com.aiuta.fashionsdk.tryon.core.data.datasource.subscription.subscriptionDetailsDataSourceFactory
+import kotlin.concurrent.Volatile
 import kotlin.time.Duration
 import kotlin.time.Duration.Companion.minutes
 import kotlin.time.Duration.Companion.seconds
 import kotlin.time.TimeMark
 import kotlin.time.TimeSource
+import kotlinx.atomicfu.locks.SynchronizedObject
+import kotlinx.atomicfu.locks.synchronized
 import kotlinx.coroutines.CancellationException
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Deferred
@@ -72,30 +75,41 @@ internal class OperationDelaysProvider(
         prefetch().await()
     }
 
-    companion object {
+    companion object : SynchronizedObject() {
         private val CACHE_DURATION = 30.minutes
         private val LOAD_TIMEOUT = 10.seconds
 
+        @Volatile
         private var cached: Pair<String, OperationDelaysProvider>? = null
 
         /**
          * Process-wide instance per subscription, like the network client,
          * so every generation shares the loaded delays
          */
-        fun getInstance(aiuta: Aiuta): OperationDelaysProvider {
-            val subscriptionId = aiuta.authenticationStrategy.subscriptionId
+        fun getInstance(aiuta: Aiuta): OperationDelaysProvider = getInstance(
+            subscriptionId = aiuta.authenticationStrategy.subscriptionId,
+        ) {
+            // The provider outlives this Aiuta, so it keeps only the data
+            // source: holding Aiuta would leak its platform (Android) context
+            val dataSource = aiuta.subscriptionDetailsDataSourceFactory
+            OperationDelaysProvider(
+                scope = CoroutineScope(SupervisorJob() + Dispatchers.Default),
+                load = { dataSource.getOperationDelaysDetails().operationDelaysSequence },
+            )
+        }
+
+        internal fun getInstance(
+            subscriptionId: String,
+            create: () -> OperationDelaysProvider,
+        ): OperationDelaysProvider {
             cached?.let { (cachedSubscriptionId, provider) ->
                 if (cachedSubscriptionId == subscriptionId) return provider
             }
 
-            return OperationDelaysProvider(
-                scope = CoroutineScope(SupervisorJob() + Dispatchers.Default),
-                load = {
-                    aiuta.subscriptionDetailsDataSourceFactory
-                        .getOperationDelaysDetails()
-                        .operationDelaysSequence
-                },
-            ).also { cached = subscriptionId to it }
+            return synchronized(this) {
+                cached?.takeIf { (cachedSubscriptionId) -> cachedSubscriptionId == subscriptionId }?.second
+                    ?: create().also { cached = subscriptionId to it }
+            }
         }
     }
 }

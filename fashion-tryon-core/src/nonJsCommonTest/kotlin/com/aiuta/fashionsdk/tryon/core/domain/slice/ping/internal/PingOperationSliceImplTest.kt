@@ -12,6 +12,7 @@ import com.aiuta.fashionsdk.tryon.core.domain.slice.ping.exception.AiutaTryOnGen
 import kotlin.test.Test
 import kotlin.test.assertEquals
 import kotlin.test.assertFailsWith
+import kotlinx.coroutines.delay
 import kotlinx.coroutines.test.TestScope
 import kotlinx.coroutines.test.currentTime
 import kotlinx.coroutines.test.runTest
@@ -19,10 +20,13 @@ import kotlinx.coroutines.test.runTest
 internal class PingOperationSliceImplTest {
     private val image = GeneratedImage(id = "image", url = "https://example.com/image.jpg", type = AiutaFileType.AIUTA)
 
-    /** Answers polls with [statuses] in order and records the virtual time of each poll */
+    /**
+     * Answers polls with [statuses] in order (null: the request fails like a
+     * network error) and records the virtual time of each poll
+     */
     private class FakeOperationsDataSource(
         private val scope: TestScope,
-        private val statuses: List<ProductOperationStatus>,
+        private val statuses: List<ProductOperationStatus?>,
         private val images: List<GeneratedImage>,
     ) : FashionProductOperationsDataSource {
         val pollTimes = mutableListOf<Long>()
@@ -31,7 +35,7 @@ internal class PingOperationSliceImplTest {
 
         override suspend fun getProductOperation(operationId: String): ProductOperation {
             pollTimes += scope.currentTime
-            val status = statuses[pollTimes.size - 1]
+            val status = statuses[pollTimes.size - 1] ?: throw IllegalStateException("Network error")
             return ProductOperation(
                 id = operationId,
                 status = status,
@@ -41,7 +45,7 @@ internal class PingOperationSliceImplTest {
     }
 
     private fun TestScope.slice(
-        statuses: List<ProductOperationStatus>,
+        statuses: List<ProductOperationStatus?>,
         delays: List<Long>,
     ): Pair<PingOperationSliceImpl, FakeOperationsDataSource> {
         val dataSource = FakeOperationsDataSource(this, statuses, listOf(image))
@@ -99,5 +103,50 @@ internal class PingOperationSliceImplTest {
 
         assertEquals(AiutaTryOnExceptionType.OPERATION_ABORTED_FAILED, exception.type)
         assertEquals(1, dataSource.pollTimes.size)
+    }
+
+    @Test
+    fun retryAfterFailedPollPollsRightAwayAndContinuesTheSchedule() = runTest {
+        val (slice, dataSource) = slice(
+            statuses = listOf(ProductOperationStatus.IN_PROGRESS, null, ProductOperationStatus.IN_PROGRESS, ProductOperationStatus.SUCCESS),
+            delays = listOf(1000L, 1000L, 500L, 500L),
+        )
+
+        assertFailsWith<IllegalStateException> { slice.operationPing("operation") }
+        // The retry policy waits its retry delay, then pings again
+        delay(1000L)
+        val result = slice.operationPing("operation")
+
+        assertEquals(listOf(image), result)
+        // Retry polls at 3000 without an extra wait, then the next delay (500)
+        assertEquals(listOf(1000L, 2000L, 3000L, 3500L), dataSource.pollTimes)
+    }
+
+    @Test
+    fun retryDoesNotRestartAFiniteScheduleSoItStillTimesOut() = runTest {
+        val (slice, dataSource) = slice(
+            statuses = listOf(ProductOperationStatus.IN_PROGRESS, null, ProductOperationStatus.IN_PROGRESS),
+            delays = listOf(1000L, 1000L),
+        )
+
+        assertFailsWith<IllegalStateException> { slice.operationPing("operation") }
+        val exception = assertFailsWith<AiutaTryOnGenerationException> { slice.operationPing("operation") }
+
+        assertEquals(AiutaTryOnExceptionType.OPERATION_TIMEOUT_FAILED, exception.type)
+        assertEquals(3, dataSource.pollTimes.size)
+    }
+
+    @Test
+    fun newOperationStartsItsOwnScheduleWithAWait() = runTest {
+        val (slice, dataSource) = slice(
+            statuses = listOf(null, ProductOperationStatus.SUCCESS),
+            delays = listOf(1000L, 1000L),
+        )
+
+        assertFailsWith<IllegalStateException> { slice.operationPing("first") }
+        slice.operationPing("second")
+
+        // The other operation doesn't resume the failed one: it waits first
+        assertEquals(listOf(1000L, 2000L), dataSource.pollTimes)
     }
 }

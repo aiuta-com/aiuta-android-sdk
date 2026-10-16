@@ -18,13 +18,46 @@ internal class PingOperationSliceImpl(
 ) : PingOperationSlice {
     private val mutex = Mutex()
 
-    override suspend fun operationPing(operationId: String): List<GeneratedImage> = mutex.withLock {
-        val delays = delaySequenceFactory().iterator()
+    // Schedule of the last polled operation, kept until it succeeds
+    private var pollingOperationId: String? = null
+    private var pollingDelays: Iterator<Long>? = null
 
-        // Each delay is waited before a poll: right after the operation is
-        // created it is never ready, so there's nothing to ask yet
-        while (delays.hasNext()) {
-            delay(delays.next())
+    override suspend fun operationPing(operationId: String): List<GeneratedImage> = mutex.withLock {
+        // The retry policy calls ping again after a failed poll and has already
+        // waited its retry delay, so the retry polls right away and goes on
+        // with the same schedule instead of starting it over
+        val resumedDelays = pollingDelays?.takeIf { pollingOperationId == operationId }
+        val delays = resumedDelays ?: delaySequenceFactory().iterator()
+        pollingOperationId = operationId
+        pollingDelays = delays
+
+        poll(
+            operationId = operationId,
+            delays = delays,
+            waitBeforeFirstPoll = resumedDelays == null,
+        ).also {
+            pollingOperationId = null
+            pollingDelays = null
+        }
+    }
+
+    private suspend fun poll(
+        operationId: String,
+        delays: Iterator<Long>,
+        waitBeforeFirstPoll: Boolean,
+    ): List<GeneratedImage> {
+        var shouldWait = waitBeforeFirstPoll
+        while (true) {
+            // Each delay is waited before a poll: right after the operation is
+            // created it is never ready, so there's nothing to ask yet
+            if (shouldWait) {
+                if (!delays.hasNext()) {
+                    // We reach time limit
+                    throw AiutaTryOnGenerationException(AiutaTryOnExceptionType.OPERATION_TIMEOUT_FAILED)
+                }
+                delay(delays.next())
+            }
+            shouldWait = true
 
             val operation = productOperationsDataSource.getProductOperation(operationId)
 
@@ -53,8 +86,5 @@ internal class PingOperationSliceImpl(
                 }
             }
         }
-
-        // We reach time limit
-        throw AiutaTryOnGenerationException(AiutaTryOnExceptionType.OPERATION_TIMEOUT_FAILED)
     }
 }
