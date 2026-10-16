@@ -22,11 +22,23 @@ kotlin {
                 api(projects.fashionNetworkPaging)
 
                 implementation(libs.jetbrains.compose.ui)
+                implementation(libs.kotlinx.atomicfu)
                 implementation(libs.kotlinx.coroutines.core)
                 implementation(libs.kotlinx.datetime)
                 implementation(libs.kotlinx.serialization)
 
                 implementation(projects.internal.internalFashionAnalytics)
+            }
+        }
+        // Not commonTest: JS/Wasm tests would pull the npm test runners
+        // into the shared kotlin-js-store lock files
+        getByName("nonJsCommonTest") {
+            dependencies {
+                implementation(kotlin("test"))
+                implementation(libs.kotlinx.coroutines.test)
+                implementation(libs.ktor.mock)
+                implementation(libs.ktor.negotiation)
+                implementation(libs.ktor.serialization)
             }
         }
     }
