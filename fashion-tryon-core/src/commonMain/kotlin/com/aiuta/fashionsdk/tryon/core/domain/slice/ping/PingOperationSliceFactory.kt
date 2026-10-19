@@ -5,6 +5,7 @@ import com.aiuta.fashionsdk.internal.subscription.internalAiutaSubscription
 import com.aiuta.fashionsdk.tryon.core.data.datasource.operation.productOperationsDataSourceFactory
 import com.aiuta.fashionsdk.tryon.core.domain.slice.ping.internal.PingOperationSliceImpl
 import com.aiuta.fashionsdk.tryon.core.domain.slice.ping.internal.utils.operationDelaySequence
+import com.aiuta.fashionsdk.tryon.core.domain.slice.ping.internal.utils.toPollingDelayStep
 import kotlin.time.Duration.Companion.milliseconds
 
 // How long polling may wait for the subscription details when none are cached
@@ -18,7 +19,8 @@ internal val Aiuta.pingOperationSliceFactory: PingOperationSlice
         return PingOperationSliceImpl(
             productOperationsDataSource = this.productOperationsDataSourceFactory,
             delaySequenceFactory = {
-                operationDelaySequence(subscription.getDetails(timeout = DELAYS_WAIT_TIMEOUT)?.operationDelaysSequence)
+                val delays = subscription.getDetails(timeout = DELAYS_WAIT_TIMEOUT)?.operationDelaysSequence
+                operationDelaySequence(delays?.map { it.toPollingDelayStep() })
             },
         )
     }

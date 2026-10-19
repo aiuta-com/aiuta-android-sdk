@@ -13,22 +13,12 @@ abstract interface com.aiuta.fashionsdk.internal.subscription/InternalAiutaSubsc
 }
 
 final class com.aiuta.fashionsdk.internal.subscription.model/AiutaOperationDelay { // com.aiuta.fashionsdk.internal.subscription.model/AiutaOperationDelay|null[0]
-    constructor <init>(kotlin/String? = ..., kotlin/Double? = ..., kotlin/Int? = ...) // com.aiuta.fashionsdk.internal.subscription.model/AiutaOperationDelay.<init>|<init>(kotlin.String?;kotlin.Double?;kotlin.Int?){}[0]
-
     final val delay // com.aiuta.fashionsdk.internal.subscription.model/AiutaOperationDelay.delay|{}delay[0]
         final fun <get-delay>(): kotlin/Double? // com.aiuta.fashionsdk.internal.subscription.model/AiutaOperationDelay.delay.<get-delay>|<get-delay>(){}[0]
     final val mode // com.aiuta.fashionsdk.internal.subscription.model/AiutaOperationDelay.mode|{}mode[0]
         final fun <get-mode>(): kotlin/String? // com.aiuta.fashionsdk.internal.subscription.model/AiutaOperationDelay.mode.<get-mode>|<get-mode>(){}[0]
     final val repeat // com.aiuta.fashionsdk.internal.subscription.model/AiutaOperationDelay.repeat|{}repeat[0]
         final fun <get-repeat>(): kotlin/Int? // com.aiuta.fashionsdk.internal.subscription.model/AiutaOperationDelay.repeat.<get-repeat>|<get-repeat>(){}[0]
-
-    final fun component1(): kotlin/String? // com.aiuta.fashionsdk.internal.subscription.model/AiutaOperationDelay.component1|component1(){}[0]
-    final fun component2(): kotlin/Double? // com.aiuta.fashionsdk.internal.subscription.model/AiutaOperationDelay.component2|component2(){}[0]
-    final fun component3(): kotlin/Int? // com.aiuta.fashionsdk.internal.subscription.model/AiutaOperationDelay.component3|component3(){}[0]
-    final fun copy(kotlin/String? = ..., kotlin/Double? = ..., kotlin/Int? = ...): com.aiuta.fashionsdk.internal.subscription.model/AiutaOperationDelay // com.aiuta.fashionsdk.internal.subscription.model/AiutaOperationDelay.copy|copy(kotlin.String?;kotlin.Double?;kotlin.Int?){}[0]
-    final fun equals(kotlin/Any?): kotlin/Boolean // com.aiuta.fashionsdk.internal.subscription.model/AiutaOperationDelay.equals|equals(kotlin.Any?){}[0]
-    final fun hashCode(): kotlin/Int // com.aiuta.fashionsdk.internal.subscription.model/AiutaOperationDelay.hashCode|hashCode(){}[0]
-    final fun toString(): kotlin/String // com.aiuta.fashionsdk.internal.subscription.model/AiutaOperationDelay.toString|toString(){}[0]
 
     final object $serializer : kotlinx.serialization.internal/GeneratedSerializer<com.aiuta.fashionsdk.internal.subscription.model/AiutaOperationDelay> { // com.aiuta.fashionsdk.internal.subscription.model/AiutaOperationDelay.$serializer|null[0]
         final val descriptor // com.aiuta.fashionsdk.internal.subscription.model/AiutaOperationDelay.$serializer.descriptor|{}descriptor[0]
@@ -45,22 +35,12 @@ final class com.aiuta.fashionsdk.internal.subscription.model/AiutaOperationDelay
 }
 
 final class com.aiuta.fashionsdk.internal.subscription.model/AiutaPoweredBySticker { // com.aiuta.fashionsdk.internal.subscription.model/AiutaPoweredBySticker|null[0]
-    constructor <init>(kotlin/String? = ..., kotlin/String? = ..., kotlin/Boolean? = ...) // com.aiuta.fashionsdk.internal.subscription.model/AiutaPoweredBySticker.<init>|<init>(kotlin.String?;kotlin.String?;kotlin.Boolean?){}[0]
-
     final val isVisible // com.aiuta.fashionsdk.internal.subscription.model/AiutaPoweredBySticker.isVisible|{}isVisible[0]
         final fun <get-isVisible>(): kotlin/Boolean? // com.aiuta.fashionsdk.internal.subscription.model/AiutaPoweredBySticker.isVisible.<get-isVisible>|<get-isVisible>(){}[0]
     final val urlAndroid // com.aiuta.fashionsdk.internal.subscription.model/AiutaPoweredBySticker.urlAndroid|{}urlAndroid[0]
         final fun <get-urlAndroid>(): kotlin/String? // com.aiuta.fashionsdk.internal.subscription.model/AiutaPoweredBySticker.urlAndroid.<get-urlAndroid>|<get-urlAndroid>(){}[0]
     final val urlIos // com.aiuta.fashionsdk.internal.subscription.model/AiutaPoweredBySticker.urlIos|{}urlIos[0]
         final fun <get-urlIos>(): kotlin/String? // com.aiuta.fashionsdk.internal.subscription.model/AiutaPoweredBySticker.urlIos.<get-urlIos>|<get-urlIos>(){}[0]
-
-    final fun component1(): kotlin/String? // com.aiuta.fashionsdk.internal.subscription.model/AiutaPoweredBySticker.component1|component1(){}[0]
-    final fun component2(): kotlin/String? // com.aiuta.fashionsdk.internal.subscription.model/AiutaPoweredBySticker.component2|component2(){}[0]
-    final fun component3(): kotlin/Boolean? // com.aiuta.fashionsdk.internal.subscription.model/AiutaPoweredBySticker.component3|component3(){}[0]
-    final fun copy(kotlin/String? = ..., kotlin/String? = ..., kotlin/Boolean? = ...): com.aiuta.fashionsdk.internal.subscription.model/AiutaPoweredBySticker // com.aiuta.fashionsdk.internal.subscription.model/AiutaPoweredBySticker.copy|copy(kotlin.String?;kotlin.String?;kotlin.Boolean?){}[0]
-    final fun equals(kotlin/Any?): kotlin/Boolean // com.aiuta.fashionsdk.internal.subscription.model/AiutaPoweredBySticker.equals|equals(kotlin.Any?){}[0]
-    final fun hashCode(): kotlin/Int // com.aiuta.fashionsdk.internal.subscription.model/AiutaPoweredBySticker.hashCode|hashCode(){}[0]
-    final fun toString(): kotlin/String // com.aiuta.fashionsdk.internal.subscription.model/AiutaPoweredBySticker.toString|toString(){}[0]
 
     final object $serializer : kotlinx.serialization.internal/GeneratedSerializer<com.aiuta.fashionsdk.internal.subscription.model/AiutaPoweredBySticker> { // com.aiuta.fashionsdk.internal.subscription.model/AiutaPoweredBySticker.$serializer|null[0]
         final val descriptor // com.aiuta.fashionsdk.internal.subscription.model/AiutaPoweredBySticker.$serializer.descriptor|{}descriptor[0]
@@ -77,19 +57,10 @@ final class com.aiuta.fashionsdk.internal.subscription.model/AiutaPoweredByStick
 }
 
 final class com.aiuta.fashionsdk.internal.subscription.model/AiutaSubscriptionDetails { // com.aiuta.fashionsdk.internal.subscription.model/AiutaSubscriptionDetails|null[0]
-    constructor <init>(com.aiuta.fashionsdk.internal.subscription.model/AiutaPoweredBySticker? = ..., kotlin.collections/List<com.aiuta.fashionsdk.internal.subscription.model/AiutaOperationDelay>? = ...) // com.aiuta.fashionsdk.internal.subscription.model/AiutaSubscriptionDetails.<init>|<init>(com.aiuta.fashionsdk.internal.subscription.model.AiutaPoweredBySticker?;kotlin.collections.List<com.aiuta.fashionsdk.internal.subscription.model.AiutaOperationDelay>?){}[0]
-
     final val operationDelaysSequence // com.aiuta.fashionsdk.internal.subscription.model/AiutaSubscriptionDetails.operationDelaysSequence|{}operationDelaysSequence[0]
         final fun <get-operationDelaysSequence>(): kotlin.collections/List<com.aiuta.fashionsdk.internal.subscription.model/AiutaOperationDelay>? // com.aiuta.fashionsdk.internal.subscription.model/AiutaSubscriptionDetails.operationDelaysSequence.<get-operationDelaysSequence>|<get-operationDelaysSequence>(){}[0]
     final val poweredBySticker // com.aiuta.fashionsdk.internal.subscription.model/AiutaSubscriptionDetails.poweredBySticker|{}poweredBySticker[0]
         final fun <get-poweredBySticker>(): com.aiuta.fashionsdk.internal.subscription.model/AiutaPoweredBySticker? // com.aiuta.fashionsdk.internal.subscription.model/AiutaSubscriptionDetails.poweredBySticker.<get-poweredBySticker>|<get-poweredBySticker>(){}[0]
-
-    final fun component1(): com.aiuta.fashionsdk.internal.subscription.model/AiutaPoweredBySticker? // com.aiuta.fashionsdk.internal.subscription.model/AiutaSubscriptionDetails.component1|component1(){}[0]
-    final fun component2(): kotlin.collections/List<com.aiuta.fashionsdk.internal.subscription.model/AiutaOperationDelay>? // com.aiuta.fashionsdk.internal.subscription.model/AiutaSubscriptionDetails.component2|component2(){}[0]
-    final fun copy(com.aiuta.fashionsdk.internal.subscription.model/AiutaPoweredBySticker? = ..., kotlin.collections/List<com.aiuta.fashionsdk.internal.subscription.model/AiutaOperationDelay>? = ...): com.aiuta.fashionsdk.internal.subscription.model/AiutaSubscriptionDetails // com.aiuta.fashionsdk.internal.subscription.model/AiutaSubscriptionDetails.copy|copy(com.aiuta.fashionsdk.internal.subscription.model.AiutaPoweredBySticker?;kotlin.collections.List<com.aiuta.fashionsdk.internal.subscription.model.AiutaOperationDelay>?){}[0]
-    final fun equals(kotlin/Any?): kotlin/Boolean // com.aiuta.fashionsdk.internal.subscription.model/AiutaSubscriptionDetails.equals|equals(kotlin.Any?){}[0]
-    final fun hashCode(): kotlin/Int // com.aiuta.fashionsdk.internal.subscription.model/AiutaSubscriptionDetails.hashCode|hashCode(){}[0]
-    final fun toString(): kotlin/String // com.aiuta.fashionsdk.internal.subscription.model/AiutaSubscriptionDetails.toString|toString(){}[0]
 
     final object $serializer : kotlinx.serialization.internal/GeneratedSerializer<com.aiuta.fashionsdk.internal.subscription.model/AiutaSubscriptionDetails> { // com.aiuta.fashionsdk.internal.subscription.model/AiutaSubscriptionDetails.$serializer|null[0]
         final val descriptor // com.aiuta.fashionsdk.internal.subscription.model/AiutaSubscriptionDetails.$serializer.descriptor|{}descriptor[0]

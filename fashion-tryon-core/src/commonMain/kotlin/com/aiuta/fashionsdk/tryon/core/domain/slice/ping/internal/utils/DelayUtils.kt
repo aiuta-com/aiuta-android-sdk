@@ -12,13 +12,30 @@ private const val MIN_DELAY_MS = 100L
 private const val MAX_DELAY_MS = 60_000L
 
 /**
+ * One step of the polling schedule. The core keeps its own type instead of
+ * creating [AiutaOperationDelay], whose constructor is internal to
+ * internal-fashion-subscription.
+ */
+internal data class PollingDelayStep(
+    val mode: String?,
+    val delay: Double? = null,
+    val repeat: Int? = null,
+)
+
+internal fun AiutaOperationDelay.toPollingDelayStep(): PollingDelayStep = PollingDelayStep(
+    mode = mode,
+    delay = delay,
+    repeat = repeat,
+)
+
+/**
  * Delay before getting operation status in second:
  * 1 (4 times), 0.5 (20 times), 3 (forever)
  */
-internal val DEFAULT_OPERATION_DELAYS: List<AiutaOperationDelay> = listOf(
-    AiutaOperationDelay(mode = MODE_RECURRING, delay = 1.0, repeat = 4),
-    AiutaOperationDelay(mode = MODE_RECURRING, delay = 0.5, repeat = 20),
-    AiutaOperationDelay(mode = MODE_INFINITE, delay = 3.0),
+internal val DEFAULT_OPERATION_DELAYS: List<PollingDelayStep> = listOf(
+    PollingDelayStep(mode = MODE_RECURRING, delay = 1.0, repeat = 4),
+    PollingDelayStep(mode = MODE_RECURRING, delay = 0.5, repeat = 20),
+    PollingDelayStep(mode = MODE_INFINITE, delay = 3.0),
 )
 
 internal fun defaultGenerationDelaySequence(): Sequence<Long> = generationDelaySequence(DEFAULT_OPERATION_DELAYS)
@@ -31,7 +48,7 @@ internal fun defaultGenerationDelaySequence(): Sequence<Long> = generationDelayS
  * one. The sequence ends (the operation times out) after the last recurring
  * step unless there is an infinite one.
  */
-internal fun operationDelaySequence(delays: List<AiutaOperationDelay>?): Sequence<Long> = sequence {
+internal fun operationDelaySequence(delays: List<PollingDelayStep>?): Sequence<Long> = sequence {
     var hasDelays = false
     for (delay in generationDelaySequence(delays.orEmpty())) {
         hasDelays = true
@@ -43,7 +60,7 @@ internal fun operationDelaySequence(delays: List<AiutaOperationDelay>?): Sequenc
     if (!hasDelays) yieldAll(defaultGenerationDelaySequence())
 }
 
-private fun generationDelaySequence(steps: List<AiutaOperationDelay>): Sequence<Long> = sequence {
+private fun generationDelaySequence(steps: List<PollingDelayStep>): Sequence<Long> = sequence {
     for (step in steps) {
         val delaySeconds = step.delay?.takeIf { it.isFinite() } ?: 0.0
         val delayMs = (delaySeconds * 1000).roundToLong().coerceIn(MIN_DELAY_MS, MAX_DELAY_MS)

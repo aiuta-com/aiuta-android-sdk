@@ -9,11 +9,15 @@ import kotlinx.serialization.Serializable
  * Only the fields the SDK uses are mapped; the backend can send more, they are
  * ignored. Every field is optional: a subscription may not configure it.
  *
+ * The models are created only by deserialization (internal constructors, no
+ * data classes), so new fields can be added without breaking binary
+ * compatibility of the modules reading them.
+ *
  * @property poweredBySticker Settings of the "Powered by Aiuta" sticker
  * @property operationDelaysSequence Delays between try-on operation status polls
  */
 @Serializable
-public data class AiutaSubscriptionDetails(
+public class AiutaSubscriptionDetails internal constructor(
     @SerialName("powered_by_sticker")
     public val poweredBySticker: AiutaPoweredBySticker? = null,
     @SerialName("operation_delays_sequence")
@@ -28,7 +32,7 @@ public data class AiutaSubscriptionDetails(
  * @property isVisible Whether the sticker is shown
  */
 @Serializable
-public data class AiutaPoweredBySticker(
+public class AiutaPoweredBySticker internal constructor(
     @SerialName("url_android")
     public val urlAndroid: String? = null,
     @SerialName("url_ios")
@@ -47,7 +51,7 @@ public data class AiutaPoweredBySticker(
  * @property repeat How many polls a `recurring` step makes
  */
 @Serializable
-public data class AiutaOperationDelay(
+public class AiutaOperationDelay internal constructor(
     @SerialName("mode")
     public val mode: String? = null,
     @SerialName("delay")

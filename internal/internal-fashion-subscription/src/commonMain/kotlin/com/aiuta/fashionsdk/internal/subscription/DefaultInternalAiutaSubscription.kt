@@ -42,7 +42,11 @@ public object InternalAiutaSubscriptionFactory : SynchronizedObject() {
 
         return synchronized(this) {
             cached?.takeIf { (cachedSubscriptionId) -> cachedSubscriptionId == subscriptionId }?.second
-                ?: create().also { cached = subscriptionId to it }
+                ?: create().also { created ->
+                    // The previous subscription's instance is no longer used
+                    (cached?.second as? AutoCloseable)?.close()
+                    cached = subscriptionId to created
+                }
         }
     }
 }

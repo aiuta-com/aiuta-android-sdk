@@ -8,14 +8,19 @@ import com.aiuta.fashionsdk.internal.subscription.model.AiutaOperationDelay
 import com.aiuta.fashionsdk.internal.subscription.model.AiutaSubscriptionDetails
 import kotlin.test.Test
 import kotlin.test.assertEquals
+import kotlin.test.assertFalse
 import kotlin.test.assertNull
 import kotlin.time.Duration.Companion.milliseconds
 import kotlin.time.Duration.Companion.minutes
 import kotlin.time.Duration.Companion.seconds
 import kotlin.time.TestTimeSource
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.SupervisorJob
 import kotlinx.coroutines.async
 import kotlinx.coroutines.awaitAll
 import kotlinx.coroutines.delay
+import kotlinx.coroutines.isActive
+import kotlinx.coroutines.test.StandardTestDispatcher
 import kotlinx.coroutines.test.TestScope
 import kotlinx.coroutines.test.runTest
 
@@ -35,10 +40,14 @@ internal class InternalAiutaSubscriptionImplTest {
     ) : SubscriptionDetailsRemoteDataSource {
         val etags = mutableListOf<String?>()
 
+        var completed = 0
+
         override suspend fun getSubscriptionDetails(etag: String?): SubscriptionDetailsResponse {
             etags += etag
+            val response = responses[etags.size - 1]
             delay(latency)
-            return responses[etags.size - 1] ?: error("Network error")
+            completed++
+            return response ?: error("Network error")
         }
     }
 
@@ -146,7 +155,14 @@ internal class InternalAiutaSubscriptionImplTest {
         delay(1.minutes) // virtual time; also runs the background refresh
         assertEquals(1, store.writes)
 
-        // So the next call retries it
+        // Calls right after the failure don't hit the backend again
+        subscription.getDetails(timeout = 1.seconds)
+        subscription.preload()
+        delay(1.minutes) // virtual time; also runs the background refresh
+        assertEquals(2, remote.etags.size)
+
+        // After the 30 s backoff the next call retries it
+        timeSource += 31.seconds
         subscription.getDetails(timeout = 1.seconds)
         delay(1.minutes) // virtual time; also runs the background refresh
         assertEquals(3, remote.etags.size)
@@ -189,8 +205,34 @@ internal class InternalAiutaSubscriptionImplTest {
         assertNull(subscription.getDetails(timeout = 1.minutes))
         assertEquals(10_000L, testScheduler.currentTime)
 
-        // So the next call loads again
+        // Not retried during the 30 s backoff, then loaded again
+        assertNull(subscription.getDetails(timeout = 1.seconds))
+        assertEquals(1, calls)
+        timeSource += 31.seconds
         assertEquals(fresh, subscription.getDetails(timeout = 1.seconds))
         assertEquals(2, calls)
+    }
+
+    @Test
+    fun closeCancelsTheRefreshAndWaitingCallersGetNull() = runTest {
+        val remote = FakeRemote(listOf(modified(fresh)), latency = 5_000)
+        val scope = CoroutineScope(SupervisorJob() + StandardTestDispatcher(testScheduler))
+        val subscription = InternalAiutaSubscriptionImpl(
+            subscriptionId = "subscription",
+            remoteDataSource = remote,
+            store = FakeStore(),
+            scope = scope,
+            timeSource = timeSource,
+        )
+
+        val waiting = async { subscription.getDetails(timeout = 1.minutes) }
+        delay(1_000)
+        subscription.close()
+
+        // The waiting caller isn't cancelled itself, it just gets no details
+        assertNull(waiting.await())
+        assertFalse(scope.isActive)
+        delay(1.minutes)
+        assertEquals(0, remote.completed)
     }
 }

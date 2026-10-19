@@ -23,6 +23,9 @@ import kotlinx.coroutines.Deferred
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.SupervisorJob
 import kotlinx.coroutines.async
+import kotlinx.coroutines.cancel
+import kotlinx.coroutines.currentCoroutineContext
+import kotlinx.coroutines.ensureActive
 import kotlinx.coroutines.sync.Mutex
 import kotlinx.coroutines.sync.withLock
 import kotlinx.coroutines.withTimeoutOrNull
@@ -35,7 +38,8 @@ internal class InternalAiutaSubscriptionImpl(
     private val logger: AiutaLogger? = null,
     private val timeSource: TimeSource = TimeSource.Monotonic,
     private val loadTimeout: Duration = LOAD_TIMEOUT,
-) : InternalAiutaSubscription {
+) : InternalAiutaSubscription,
+    AutoCloseable {
     private val mutex = Mutex()
 
     // Last known details (from disk or the backend) and when the backend last
@@ -43,6 +47,7 @@ internal class InternalAiutaSubscriptionImpl(
     private var isRestored = false
     private var cached: StoredSubscriptionDetails? = null
     private var refreshedAt: TimeMark? = null
+    private var failedAt: TimeMark? = null
     private var refresh: Deferred<AiutaSubscriptionDetails?>? = null
 
     override suspend fun preload() {
@@ -56,7 +61,15 @@ internal class InternalAiutaSubscriptionImpl(
         // refresh runs in the background
         mutex.withLock { cached?.details }?.let { return it }
 
-        return withTimeoutOrNull(timeout) { refresh.await() }
+        return withTimeoutOrNull(timeout) {
+            try {
+                refresh.await()
+            } catch (e: CancellationException) {
+                // A closed instance cancels its refresh; the caller itself goes on
+                currentCoroutineContext().ensureActive()
+                null
+            }
+        }
     }
 
     private suspend fun startRefreshIfNeeded(): Deferred<AiutaSubscriptionDetails?> {
@@ -66,7 +79,10 @@ internal class InternalAiutaSubscriptionImpl(
             val current = refresh
             val isLoading = current != null && !current.isCompleted
             val isFresh = refreshedAt?.let { it.elapsedNow() < CACHE_DURATION } == true
-            if (current != null && (isLoading || isFresh)) return@withLock current
+            // After a failure the backend isn't asked again for a while, so an
+            // outage doesn't turn every screen and generation into a request
+            val isBackingOff = failedAt?.let { it.elapsedNow() < FAILURE_BACKOFF } == true
+            if (current != null && (isLoading || isFresh || isBackingOff)) return@withLock current
 
             refreshedAt = null
             scope.async { load() }.also { refresh = it }
@@ -115,15 +131,20 @@ internal class InternalAiutaSubscriptionImpl(
                     val stored = StoredSubscriptionDetails(etag = response.etag, details = response.details)
                     cached = stored
                     refreshedAt = timeSource.markNow()
+                    failedAt = null
                     stored.details to stored
                 }
 
                 SubscriptionDetailsResponse.NotModified -> {
                     refreshedAt = timeSource.markNow()
+                    failedAt = null
                     cached?.details to null
                 }
 
-                null -> cached?.details to null
+                null -> {
+                    failedAt = timeSource.markNow()
+                    cached?.details to null
+                }
             }
         }
 
@@ -141,8 +162,17 @@ internal class InternalAiutaSubscriptionImpl(
         }
     }
 
+    /**
+     * Stops the in-flight refresh; called when this instance is replaced by
+     * one for another subscription
+     */
+    override fun close() {
+        scope.cancel()
+    }
+
     companion object {
         private val CACHE_DURATION = 30.minutes
+        private val FAILURE_BACKOFF = 30.seconds
         private val LOAD_TIMEOUT = 10.seconds
 
         /**

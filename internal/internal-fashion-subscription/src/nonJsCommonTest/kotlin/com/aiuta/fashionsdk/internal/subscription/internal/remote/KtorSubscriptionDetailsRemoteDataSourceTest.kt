@@ -1,8 +1,5 @@
 package com.aiuta.fashionsdk.internal.subscription.internal.remote
 
-import com.aiuta.fashionsdk.internal.subscription.model.AiutaOperationDelay
-import com.aiuta.fashionsdk.internal.subscription.model.AiutaPoweredBySticker
-import com.aiuta.fashionsdk.internal.subscription.model.AiutaSubscriptionDetails
 import com.aiuta.fashionsdk.network.NetworkClient
 import com.aiuta.fashionsdk.network.exceptions.FashionIOException
 import io.ktor.client.HttpClient
@@ -19,6 +16,8 @@ import io.ktor.serialization.kotlinx.json.json
 import kotlin.test.Test
 import kotlin.test.assertEquals
 import kotlin.test.assertFailsWith
+import kotlin.test.assertIs
+import kotlin.test.assertNotNull
 import kotlin.test.assertNull
 import kotlinx.coroutines.test.runTest
 import kotlinx.serialization.json.Json
@@ -82,18 +81,16 @@ internal class KtorSubscriptionDetailsRemoteDataSourceTest {
             )
         }.getSubscriptionDetails(etag = null)
 
+        val modified = assertIs<SubscriptionDetailsResponse.Modified>(response)
+        assertEquals("\"v1\"", modified.etag)
+        with(assertNotNull(modified.details.poweredBySticker)) {
+            assertEquals("https://aiuta.com/android", urlAndroid)
+            assertNull(urlIos)
+            assertEquals(true, isVisible)
+        }
         assertEquals(
-            SubscriptionDetailsResponse.Modified(
-                details = AiutaSubscriptionDetails(
-                    poweredBySticker = AiutaPoweredBySticker(urlAndroid = "https://aiuta.com/android", isVisible = true),
-                    operationDelaysSequence = listOf(
-                        AiutaOperationDelay(mode = "recurring", delay = 1.0, repeat = 4),
-                        AiutaOperationDelay(mode = "infinite", delay = 3.0),
-                    ),
-                ),
-                etag = "\"v1\"",
-            ),
-            response,
+            listOf(Triple("recurring", 1.0, 4), Triple("infinite", 3.0, null)),
+            modified.details.operationDelaysSequence?.map { Triple(it.mode, it.delay, it.repeat) },
         )
         assertEquals("/subscription_details", requests.single().url.encodedPath)
         assertNull(requests.single().headers[HttpHeaders.IfNoneMatch])

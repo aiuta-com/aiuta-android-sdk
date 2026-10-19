@@ -40,5 +40,10 @@ kotlin {
                 implementation(libs.ktor.serialization)
             }
         }
+        getByName("androidHostTest") {
+            dependencies {
+                implementation(libs.mockk)
+            }
+        }
     }
 }

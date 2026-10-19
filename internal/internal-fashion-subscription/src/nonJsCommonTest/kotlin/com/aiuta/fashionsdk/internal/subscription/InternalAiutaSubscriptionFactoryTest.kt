@@ -3,8 +3,10 @@ package com.aiuta.fashionsdk.internal.subscription
 import com.aiuta.fashionsdk.internal.subscription.model.AiutaSubscriptionDetails
 import kotlin.test.Test
 import kotlin.test.assertEquals
+import kotlin.test.assertFalse
 import kotlin.test.assertNotSame
 import kotlin.test.assertSame
+import kotlin.test.assertTrue
 import kotlin.time.Duration
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.async
@@ -13,7 +15,15 @@ import kotlinx.coroutines.test.runTest
 import kotlinx.coroutines.withContext
 
 internal class InternalAiutaSubscriptionFactoryTest {
-    private class FakeSubscription : InternalAiutaSubscription {
+    private class FakeSubscription :
+        InternalAiutaSubscription,
+        AutoCloseable {
+        var isClosed = false
+
+        override fun close() {
+            isClosed = true
+        }
+
         override suspend fun preload() = Unit
 
         override suspend fun getDetails(timeout: Duration): AiutaSubscriptionDetails? = null
@@ -56,5 +66,19 @@ internal class InternalAiutaSubscriptionFactoryTest {
 
         assertEquals(1, instances.toSet().size)
         assertEquals(1, created)
+    }
+
+    @Test
+    fun switchingSubscriptionClosesThePreviousInstance() {
+        val first = FakeSubscription()
+        val second = FakeSubscription()
+
+        InternalAiutaSubscriptionFactory.getOrCreate(subscriptionId = "switch-1") { first }
+        InternalAiutaSubscriptionFactory.getOrCreate(subscriptionId = "switch-1") { error("Not created again") }
+        assertFalse(first.isClosed)
+
+        InternalAiutaSubscriptionFactory.getOrCreate(subscriptionId = "switch-2") { second }
+        assertTrue(first.isClosed)
+        assertFalse(second.isClosed)
     }
 }
