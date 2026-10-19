@@ -5,13 +5,15 @@ import androidx.datastore.preferences.core.PreferenceDataStoreFactory
 import androidx.datastore.preferences.core.Preferences
 import com.aiuta.fashionsdk.internal.storage.internal.DataStoreStorage
 import kotlin.random.Random
+import kotlin.test.AfterTest
 import kotlin.test.Test
 import kotlin.test.assertEquals
 import kotlin.test.assertFailsWith
 import kotlin.test.assertNull
 import kotlinx.coroutines.test.runTest
 import kotlinx.serialization.Serializable
-import okio.Path.Companion.toPath
+import okio.FileSystem
+import okio.Path
 
 /**
  * Unit tests for [AiutaStorage] implementation.
@@ -19,7 +21,18 @@ import okio.Path.Companion.toPath
  * Tests cover all storage operations including primitives, serialization,
  * error handling, and edge cases.
  */
-class AiutaStorageTest {
+internal class AiutaStorageTest {
+
+    private val fileSystem = FileSystem.SYSTEM
+
+    // DataStore's OkioStorage requires absolute paths, so each test gets its own temp directory
+    private val testDirectory: Path =
+        FileSystem.SYSTEM_TEMPORARY_DIRECTORY / "aiuta_storage_test_${Random.nextLong().toULong()}"
+
+    @AfterTest
+    fun tearDown() {
+        fileSystem.deleteRecursively(testDirectory)
+    }
 
     @Serializable
     data class TestUser(
@@ -36,9 +49,10 @@ class AiutaStorageTest {
     )
 
     private fun createTestStorage(): AiutaStorage {
-        val testPath = "test_${Random.nextInt()}.preferences_pb"
+        fileSystem.createDirectories(testDirectory)
+        val testPath = testDirectory / "test_${Random.nextInt()}.preferences_pb"
         val dataStore: DataStore<Preferences> = PreferenceDataStoreFactory.createWithPath(
-            produceFile = { testPath.toPath() },
+            produceFile = { testPath },
         )
         return DataStoreStorage(dataStore)
     }
