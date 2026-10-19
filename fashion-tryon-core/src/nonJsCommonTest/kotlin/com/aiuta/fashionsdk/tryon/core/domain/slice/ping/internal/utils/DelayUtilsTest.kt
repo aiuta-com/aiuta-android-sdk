@@ -3,6 +3,7 @@ package com.aiuta.fashionsdk.tryon.core.domain.slice.ping.internal.utils
 import com.aiuta.fashionsdk.internal.subscription.model.AiutaOperationDelay
 import kotlin.test.Test
 import kotlin.test.assertEquals
+import kotlin.test.assertNull
 import kotlinx.serialization.builtins.ListSerializer
 import kotlinx.serialization.json.Json
 
@@ -24,9 +25,9 @@ internal class DelayUtilsTest {
     fun backendSequenceIsFollowed() {
         val delays = operationDelaySequence(
             listOf(
-                PollingDelayStep(mode = "recurring", delay = 1.0, repeat = 1),
-                PollingDelayStep(mode = "recurring", delay = 0.3, repeat = 2),
-                PollingDelayStep(mode = "infinite", delay = 2.0),
+                PollingDelayStep(mode = PollingMode.RECURRING, delay = 1.0, repeat = 1),
+                PollingDelayStep(mode = PollingMode.RECURRING, delay = 0.3, repeat = 2),
+                PollingDelayStep(mode = PollingMode.INFINITE, delay = 2.0),
             ),
         )
         assertEquals(listOf(1000L, 300L, 300L, 2000L, 2000L, 2000L), delays.take(6).toList())
@@ -34,18 +35,22 @@ internal class DelayUtilsTest {
 
     @Test
     fun sequenceWithoutInfiniteStepEndsWhichMeansTimeout() {
-        val delays = operationDelaySequence(listOf(PollingDelayStep(mode = "recurring", delay = 1.0, repeat = 2)))
+        val delays = operationDelaySequence(listOf(PollingDelayStep(mode = PollingMode.RECURRING, delay = 1.0, repeat = 2)))
         assertEquals(listOf(1000L, 1000L), delays.take(5).toList())
     }
 
     @Test
     fun unknownModesAndNonPositiveRepeatsAreSkipped() {
         val delays = operationDelaySequence(
-            listOf(
-                PollingDelayStep(mode = "exponential", delay = 5.0),
-                PollingDelayStep(mode = "recurring", delay = 5.0, repeat = 0),
-                PollingDelayStep(mode = "recurring", delay = 5.0, repeat = -3),
-                PollingDelayStep(mode = "recurring", delay = 1.0, repeat = 1),
+            backendSteps(
+                """
+                [
+                  {"mode": "exponential", "delay": 5.0},
+                  {"mode": "recurring", "delay": 5.0, "repeat": 0},
+                  {"mode": "recurring", "delay": 5.0, "repeat": -3},
+                  {"mode": "recurring", "delay": 1.0, "repeat": 1}
+                ]
+                """,
             ),
         )
         assertEquals(listOf(1000L), delays.take(5).toList())
@@ -55,10 +60,14 @@ internal class DelayUtilsTest {
     fun sequenceWithoutUsableDelaysFallsBackToTheDefault() {
         // Wrong-case mode, missing repeat and a zero repeat count: nothing usable
         val delays = operationDelaySequence(
-            listOf(
-                PollingDelayStep(mode = "Recurring", delay = 1.0, repeat = 4),
-                PollingDelayStep(mode = "recurring", delay = 1.0),
-                PollingDelayStep(mode = "recurring", delay = 1.0, repeat = 0),
+            backendSteps(
+                """
+                [
+                  {"mode": "Recurring", "delay": 1.0, "repeat": 4},
+                  {"mode": "recurring", "delay": 1.0},
+                  {"mode": "recurring", "delay": 1.0, "repeat": 0}
+                ]
+                """,
             ),
         )
         assertEquals(defaultDelays, delays.take(26).toList())
@@ -68,11 +77,11 @@ internal class DelayUtilsTest {
     fun delaysAreClampedBetweenTenthOfSecondAndOneMinute() {
         val delays = operationDelaySequence(
             listOf(
-                PollingDelayStep(mode = "recurring", delay = 0.0, repeat = 1),
-                PollingDelayStep(mode = "recurring", delay = -1.0, repeat = 1),
-                PollingDelayStep(mode = "recurring", repeat = 1),
+                PollingDelayStep(mode = PollingMode.RECURRING, delay = 0.0, repeat = 1),
+                PollingDelayStep(mode = PollingMode.RECURRING, delay = -1.0, repeat = 1),
+                PollingDelayStep(mode = PollingMode.RECURRING, repeat = 1),
                 // Milliseconds sent as seconds
-                PollingDelayStep(mode = "recurring", delay = 3000.0, repeat = 1),
+                PollingDelayStep(mode = PollingMode.RECURRING, delay = 3000.0, repeat = 1),
             ),
         )
         assertEquals(listOf(100L, 100L, 100L, 60_000L), delays.toList())
@@ -80,14 +89,28 @@ internal class DelayUtilsTest {
 
     @Test
     fun backendSequenceMapsToTheSchedule() {
-        // AiutaOperationDelay can only come from deserialization, as from the backend
-        val backendDelays = Json.decodeFromString(
-            ListSerializer(AiutaOperationDelay.serializer()),
-            """[{"mode": "recurring", "delay": 0.3, "repeat": 2}, {"mode": "infinite", "delay": 2.0}]""",
+        val delays = operationDelaySequence(
+            backendSteps("""[{"mode": "recurring", "delay": 0.3, "repeat": 2}, {"mode": "infinite", "delay": 2.0}]"""),
         )
-
-        val delays = operationDelaySequence(backendDelays.map { it.toPollingDelayStep() })
 
         assertEquals(listOf(300L, 300L, 2000L, 2000L), delays.take(4).toList())
     }
+
+    @Test
+    fun backendModesMatchExactlyLikeOnIosAndWeb() {
+        assertEquals(PollingMode.RECURRING, PollingMode.fromBackend("recurring"))
+        assertEquals(PollingMode.INFINITE, PollingMode.fromBackend("infinite"))
+
+        for (unknown in listOf("Recurring", "INFINITE", "exponential", "", null)) {
+            assertNull(PollingMode.fromBackend(unknown), "mode $unknown")
+        }
+    }
+
+    /**
+     * Steps as they come from the backend: [AiutaOperationDelay] can only be
+     * created by deserialization
+     */
+    private fun backendSteps(json: String): List<PollingDelayStep> = Json
+        .decodeFromString(ListSerializer(AiutaOperationDelay.serializer()), json)
+        .map { it.toPollingDelayStep() }
 }

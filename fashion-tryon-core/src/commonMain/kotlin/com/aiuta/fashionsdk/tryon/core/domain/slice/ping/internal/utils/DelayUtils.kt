@@ -3,27 +3,48 @@ package com.aiuta.fashionsdk.tryon.core.domain.slice.ping.internal.utils
 import com.aiuta.fashionsdk.internal.subscription.model.AiutaOperationDelay
 import kotlin.math.roundToLong
 
-private const val MODE_RECURRING = "recurring"
-private const val MODE_INFINITE = "infinite"
-
 // Guard against misconfigured delays: zero/negative ones would turn polling
 // into a busy loop, huge ones (e.g. milliseconds sent as seconds) would stall it
 private const val MIN_DELAY_MS = 100L
 private const val MAX_DELAY_MS = 60_000L
 
 /**
+ * How a step of the polling schedule repeats its delay
+ */
+internal enum class PollingMode(private val backendValue: String) {
+    /** The delay is waited `repeat` times */
+    RECURRING("recurring"),
+
+    /** The delay is waited until the operation ends */
+    INFINITE("infinite"),
+    ;
+
+    companion object {
+        /**
+         * The mode for a backend `mode` value, or null for an unknown one.
+         * The backend model keeps it as a string, so a new or misspelled
+         * value only skips that step instead of failing the whole response.
+         * Matching is exact, as on iOS and Web.
+         */
+        fun fromBackend(value: String?): PollingMode? = entries.firstOrNull { it.backendValue == value }
+    }
+}
+
+/**
  * One step of the polling schedule. The core keeps its own type instead of
  * creating [AiutaOperationDelay], whose constructor is internal to
  * internal-fashion-subscription.
+ *
+ * @property mode null for a mode this SDK doesn't know: the step is skipped
  */
 internal data class PollingDelayStep(
-    val mode: String?,
+    val mode: PollingMode?,
     val delay: Double? = null,
     val repeat: Int? = null,
 )
 
 internal fun AiutaOperationDelay.toPollingDelayStep(): PollingDelayStep = PollingDelayStep(
-    mode = mode,
+    mode = PollingMode.fromBackend(mode),
     delay = delay,
     repeat = repeat,
 )
@@ -33,9 +54,9 @@ internal fun AiutaOperationDelay.toPollingDelayStep(): PollingDelayStep = Pollin
  * 1 (4 times), 0.5 (20 times), 3 (forever)
  */
 internal val DEFAULT_OPERATION_DELAYS: List<PollingDelayStep> = listOf(
-    PollingDelayStep(mode = MODE_RECURRING, delay = 1.0, repeat = 4),
-    PollingDelayStep(mode = MODE_RECURRING, delay = 0.5, repeat = 20),
-    PollingDelayStep(mode = MODE_INFINITE, delay = 3.0),
+    PollingDelayStep(mode = PollingMode.RECURRING, delay = 1.0, repeat = 4),
+    PollingDelayStep(mode = PollingMode.RECURRING, delay = 0.5, repeat = 20),
+    PollingDelayStep(mode = PollingMode.INFINITE, delay = 3.0),
 )
 
 internal fun defaultGenerationDelaySequence(): Sequence<Long> = generationDelaySequence(DEFAULT_OPERATION_DELAYS)
@@ -66,8 +87,9 @@ private fun generationDelaySequence(steps: List<PollingDelayStep>): Sequence<Lon
         val delayMs = (delaySeconds * 1000).roundToLong().coerceIn(MIN_DELAY_MS, MAX_DELAY_MS)
 
         when (step.mode) {
-            MODE_RECURRING -> repeat((step.repeat ?: 0).coerceAtLeast(0)) { yield(delayMs) }
-            MODE_INFINITE -> while (true) yield(delayMs)
+            PollingMode.RECURRING -> repeat((step.repeat ?: 0).coerceAtLeast(0)) { yield(delayMs) }
+            PollingMode.INFINITE -> while (true) yield(delayMs)
+            null -> Unit // Unknown mode: skipped
         }
     }
 }
