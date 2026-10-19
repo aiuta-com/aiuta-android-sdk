@@ -27,6 +27,15 @@ kotlin {
                 implementation(libs.kotlinx.serialization)
 
                 implementation(projects.internal.internalFashionAnalytics)
+                implementation(projects.internal.internalFashionSubscription)
+            }
+        }
+        // Not commonTest: JS/Wasm tests would pull the npm test runners
+        // into the shared kotlin-js-store lock files
+        getByName("nonJsCommonTest") {
+            dependencies {
+                implementation(kotlin("test"))
+                implementation(libs.kotlinx.coroutines.test)
             }
         }
     }

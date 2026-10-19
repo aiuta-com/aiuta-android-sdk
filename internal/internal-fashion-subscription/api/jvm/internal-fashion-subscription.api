@@ -1,0 +1,79 @@
+public final class com/aiuta/fashionsdk/internal/subscription/DefaultInternalAiutaSubscriptionKt {
+	public static final fun getInternalAiutaSubscription (Lcom/aiuta/fashionsdk/Aiuta;)Lcom/aiuta/fashionsdk/internal/subscription/InternalAiutaSubscription;
+}
+
+public abstract interface class com/aiuta/fashionsdk/internal/subscription/InternalAiutaSubscription {
+	public abstract fun getDetails-VtjQ1oo (JLkotlin/coroutines/Continuation;)Ljava/lang/Object;
+	public abstract fun preload (Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
+}
+
+public final class com/aiuta/fashionsdk/internal/subscription/InternalAiutaSubscriptionFactory {
+	public static final field INSTANCE Lcom/aiuta/fashionsdk/internal/subscription/InternalAiutaSubscriptionFactory;
+	public final fun create (Lcom/aiuta/fashionsdk/Aiuta;)Lcom/aiuta/fashionsdk/internal/subscription/InternalAiutaSubscription;
+}
+
+public final class com/aiuta/fashionsdk/internal/subscription/model/AiutaOperationDelay {
+	public static final field Companion Lcom/aiuta/fashionsdk/internal/subscription/model/AiutaOperationDelay$Companion;
+	public fun <init> ()V
+	public final fun getDelay ()Ljava/lang/Double;
+	public final fun getMode ()Ljava/lang/String;
+	public final fun getRepeat ()Ljava/lang/Integer;
+}
+
+public final synthetic class com/aiuta/fashionsdk/internal/subscription/model/AiutaOperationDelay$$serializer : kotlinx/serialization/internal/GeneratedSerializer {
+	public static final field INSTANCE Lcom/aiuta/fashionsdk/internal/subscription/model/AiutaOperationDelay$$serializer;
+	public final fun childSerializers ()[Lkotlinx/serialization/KSerializer;
+	public final fun deserialize (Lkotlinx/serialization/encoding/Decoder;)Lcom/aiuta/fashionsdk/internal/subscription/model/AiutaOperationDelay;
+	public synthetic fun deserialize (Lkotlinx/serialization/encoding/Decoder;)Ljava/lang/Object;
+	public final fun getDescriptor ()Lkotlinx/serialization/descriptors/SerialDescriptor;
+	public final fun serialize (Lkotlinx/serialization/encoding/Encoder;Lcom/aiuta/fashionsdk/internal/subscription/model/AiutaOperationDelay;)V
+	public synthetic fun serialize (Lkotlinx/serialization/encoding/Encoder;Ljava/lang/Object;)V
+}
+
+public final class com/aiuta/fashionsdk/internal/subscription/model/AiutaOperationDelay$Companion {
+	public final fun serializer ()Lkotlinx/serialization/KSerializer;
+}
+
+public final class com/aiuta/fashionsdk/internal/subscription/model/AiutaPoweredBySticker {
+	public static final field Companion Lcom/aiuta/fashionsdk/internal/subscription/model/AiutaPoweredBySticker$Companion;
+	public fun <init> ()V
+	public final fun getUrlAndroid ()Ljava/lang/String;
+	public final fun getUrlIos ()Ljava/lang/String;
+	public final fun isVisible ()Ljava/lang/Boolean;
+}
+
+public final synthetic class com/aiuta/fashionsdk/internal/subscription/model/AiutaPoweredBySticker$$serializer : kotlinx/serialization/internal/GeneratedSerializer {
+	public static final field INSTANCE Lcom/aiuta/fashionsdk/internal/subscription/model/AiutaPoweredBySticker$$serializer;
+	public final fun childSerializers ()[Lkotlinx/serialization/KSerializer;
+	public final fun deserialize (Lkotlinx/serialization/encoding/Decoder;)Lcom/aiuta/fashionsdk/internal/subscription/model/AiutaPoweredBySticker;
+	public synthetic fun deserialize (Lkotlinx/serialization/encoding/Decoder;)Ljava/lang/Object;
+	public final fun getDescriptor ()Lkotlinx/serialization/descriptors/SerialDescriptor;
+	public final fun serialize (Lkotlinx/serialization/encoding/Encoder;Lcom/aiuta/fashionsdk/internal/subscription/model/AiutaPoweredBySticker;)V
+	public synthetic fun serialize (Lkotlinx/serialization/encoding/Encoder;Ljava/lang/Object;)V
+}
+
+public final class com/aiuta/fashionsdk/internal/subscription/model/AiutaPoweredBySticker$Companion {
+	public final fun serializer ()Lkotlinx/serialization/KSerializer;
+}
+
+public final class com/aiuta/fashionsdk/internal/subscription/model/AiutaSubscriptionDetails {
+	public static final field Companion Lcom/aiuta/fashionsdk/internal/subscription/model/AiutaSubscriptionDetails$Companion;
+	public fun <init> ()V
+	public final fun getOperationDelaysSequence ()Ljava/util/List;
+	public final fun getPoweredBySticker ()Lcom/aiuta/fashionsdk/internal/subscription/model/AiutaPoweredBySticker;
+}
+
+public final synthetic class com/aiuta/fashionsdk/internal/subscription/model/AiutaSubscriptionDetails$$serializer : kotlinx/serialization/internal/GeneratedSerializer {
+	public static final field INSTANCE Lcom/aiuta/fashionsdk/internal/subscription/model/AiutaSubscriptionDetails$$serializer;
+	public final fun childSerializers ()[Lkotlinx/serialization/KSerializer;
+	public final fun deserialize (Lkotlinx/serialization/encoding/Decoder;)Lcom/aiuta/fashionsdk/internal/subscription/model/AiutaSubscriptionDetails;
+	public synthetic fun deserialize (Lkotlinx/serialization/encoding/Decoder;)Ljava/lang/Object;
+	public final fun getDescriptor ()Lkotlinx/serialization/descriptors/SerialDescriptor;
+	public final fun serialize (Lkotlinx/serialization/encoding/Encoder;Lcom/aiuta/fashionsdk/internal/subscription/model/AiutaSubscriptionDetails;)V
+	public synthetic fun serialize (Lkotlinx/serialization/encoding/Encoder;Ljava/lang/Object;)V
+}
+
+public final class com/aiuta/fashionsdk/internal/subscription/model/AiutaSubscriptionDetails$Companion {
+	public final fun serializer ()Lkotlinx/serialization/KSerializer;
+}
+

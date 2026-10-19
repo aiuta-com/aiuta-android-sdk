@@ -3,6 +3,8 @@ package com.aiuta.fashionsdk.tryon.core.domain
 import com.aiuta.fashionsdk.Aiuta
 import com.aiuta.fashionsdk.internal.analytics.InternalAiutaAnalytic
 import com.aiuta.fashionsdk.internal.analytics.internalAiutaAnalytic
+import com.aiuta.fashionsdk.internal.subscription.InternalAiutaSubscription
+import com.aiuta.fashionsdk.internal.subscription.internalAiutaSubscription
 import com.aiuta.fashionsdk.logger.AiutaLogger
 import com.aiuta.fashionsdk.network.paging.models.PageContainer
 import com.aiuta.fashionsdk.tryon.core.AiutaTryOn
@@ -42,6 +44,7 @@ internal class AiutaTryOnImpl(
     internal val retryPolicies: AiutaTryOnRetryPolicies,
     internal val logger: AiutaLogger?,
     private val pingOperationSlice: PingOperationSlice,
+    private val subscription: InternalAiutaSubscription,
     private val uploadImageSlice: UploadImageSlice,
     private val productDataSource: FashionProductDataSource,
     private val productOperationsDataSource: FashionProductOperationsDataSource,
@@ -66,6 +69,10 @@ internal class AiutaTryOnImpl(
     override fun startProductGeneration(container: ProductGenerationContainer): Flow<ProductGenerationStatus> = flow {
         analytic.sendInitTryOnEvent(container)
         val statusId = generateStatusId()
+
+        // Refresh the subscription details (polling delays) in the background
+        // while the photo uploads; the UI flow preloads them even earlier
+        subscription.preload()
 
         errorListener(statusId = statusId) {
             val metadataBuilder = AiutaTryOnMetadata.Builder()
@@ -172,6 +179,7 @@ internal class AiutaTryOnImpl(
         fun create(aiuta: Aiuta): AiutaTryOn = AiutaTryOnImpl(
             analytic = aiuta.internalAiutaAnalytic,
             pingOperationSlice = aiuta.pingOperationSliceFactory,
+            subscription = aiuta.internalAiutaSubscription,
             uploadImageSlice = aiuta.uploadImageSliceFactory,
             productDataSource = aiuta.productDataSourceFactory,
             productOperationsDataSource = aiuta.productOperationsDataSourceFactory,

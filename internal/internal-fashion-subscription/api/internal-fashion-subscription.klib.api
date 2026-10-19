@@ -1,0 +1,92 @@
+// Klib ABI Dump
+// Targets: [iosArm64, iosSimulatorArm64, js, wasmJs]
+// Alias: ios => [iosArm64, iosSimulatorArm64]
+// Rendering settings:
+// - Signature version: 2
+// - Show manifest properties: true
+// - Show declarations: true
+
+// Library unique name: <com.aiuta:internal-fashion-subscription>
+abstract interface com.aiuta.fashionsdk.internal.subscription/InternalAiutaSubscription { // com.aiuta.fashionsdk.internal.subscription/InternalAiutaSubscription|null[0]
+    abstract suspend fun getDetails(kotlin.time/Duration): com.aiuta.fashionsdk.internal.subscription.model/AiutaSubscriptionDetails? // com.aiuta.fashionsdk.internal.subscription/InternalAiutaSubscription.getDetails|getDetails(kotlin.time.Duration){}[0]
+    abstract suspend fun preload() // com.aiuta.fashionsdk.internal.subscription/InternalAiutaSubscription.preload|preload(){}[0]
+}
+
+final class com.aiuta.fashionsdk.internal.subscription.model/AiutaOperationDelay { // com.aiuta.fashionsdk.internal.subscription.model/AiutaOperationDelay|null[0]
+    final val delay // com.aiuta.fashionsdk.internal.subscription.model/AiutaOperationDelay.delay|{}delay[0]
+        final fun <get-delay>(): kotlin/Double? // com.aiuta.fashionsdk.internal.subscription.model/AiutaOperationDelay.delay.<get-delay>|<get-delay>(){}[0]
+    final val mode // com.aiuta.fashionsdk.internal.subscription.model/AiutaOperationDelay.mode|{}mode[0]
+        final fun <get-mode>(): kotlin/String? // com.aiuta.fashionsdk.internal.subscription.model/AiutaOperationDelay.mode.<get-mode>|<get-mode>(){}[0]
+    final val repeat // com.aiuta.fashionsdk.internal.subscription.model/AiutaOperationDelay.repeat|{}repeat[0]
+        final fun <get-repeat>(): kotlin/Int? // com.aiuta.fashionsdk.internal.subscription.model/AiutaOperationDelay.repeat.<get-repeat>|<get-repeat>(){}[0]
+
+    final object $serializer : kotlinx.serialization.internal/GeneratedSerializer<com.aiuta.fashionsdk.internal.subscription.model/AiutaOperationDelay> { // com.aiuta.fashionsdk.internal.subscription.model/AiutaOperationDelay.$serializer|null[0]
+        final val descriptor // com.aiuta.fashionsdk.internal.subscription.model/AiutaOperationDelay.$serializer.descriptor|{}descriptor[0]
+            final fun <get-descriptor>(): kotlinx.serialization.descriptors/SerialDescriptor // com.aiuta.fashionsdk.internal.subscription.model/AiutaOperationDelay.$serializer.descriptor.<get-descriptor>|<get-descriptor>(){}[0]
+
+        final fun childSerializers(): kotlin/Array<kotlinx.serialization/KSerializer<*>> // com.aiuta.fashionsdk.internal.subscription.model/AiutaOperationDelay.$serializer.childSerializers|childSerializers(){}[0]
+        final fun deserialize(kotlinx.serialization.encoding/Decoder): com.aiuta.fashionsdk.internal.subscription.model/AiutaOperationDelay // com.aiuta.fashionsdk.internal.subscription.model/AiutaOperationDelay.$serializer.deserialize|deserialize(kotlinx.serialization.encoding.Decoder){}[0]
+        final fun serialize(kotlinx.serialization.encoding/Encoder, com.aiuta.fashionsdk.internal.subscription.model/AiutaOperationDelay) // com.aiuta.fashionsdk.internal.subscription.model/AiutaOperationDelay.$serializer.serialize|serialize(kotlinx.serialization.encoding.Encoder;com.aiuta.fashionsdk.internal.subscription.model.AiutaOperationDelay){}[0]
+    }
+
+    final object Companion { // com.aiuta.fashionsdk.internal.subscription.model/AiutaOperationDelay.Companion|null[0]
+        final fun serializer(): kotlinx.serialization/KSerializer<com.aiuta.fashionsdk.internal.subscription.model/AiutaOperationDelay> // com.aiuta.fashionsdk.internal.subscription.model/AiutaOperationDelay.Companion.serializer|serializer(){}[0]
+    }
+}
+
+final class com.aiuta.fashionsdk.internal.subscription.model/AiutaPoweredBySticker { // com.aiuta.fashionsdk.internal.subscription.model/AiutaPoweredBySticker|null[0]
+    final val isVisible // com.aiuta.fashionsdk.internal.subscription.model/AiutaPoweredBySticker.isVisible|{}isVisible[0]
+        final fun <get-isVisible>(): kotlin/Boolean? // com.aiuta.fashionsdk.internal.subscription.model/AiutaPoweredBySticker.isVisible.<get-isVisible>|<get-isVisible>(){}[0]
+    final val urlAndroid // com.aiuta.fashionsdk.internal.subscription.model/AiutaPoweredBySticker.urlAndroid|{}urlAndroid[0]
+        final fun <get-urlAndroid>(): kotlin/String? // com.aiuta.fashionsdk.internal.subscription.model/AiutaPoweredBySticker.urlAndroid.<get-urlAndroid>|<get-urlAndroid>(){}[0]
+    final val urlIos // com.aiuta.fashionsdk.internal.subscription.model/AiutaPoweredBySticker.urlIos|{}urlIos[0]
+        final fun <get-urlIos>(): kotlin/String? // com.aiuta.fashionsdk.internal.subscription.model/AiutaPoweredBySticker.urlIos.<get-urlIos>|<get-urlIos>(){}[0]
+
+    final object $serializer : kotlinx.serialization.internal/GeneratedSerializer<com.aiuta.fashionsdk.internal.subscription.model/AiutaPoweredBySticker> { // com.aiuta.fashionsdk.internal.subscription.model/AiutaPoweredBySticker.$serializer|null[0]
+        final val descriptor // com.aiuta.fashionsdk.internal.subscription.model/AiutaPoweredBySticker.$serializer.descriptor|{}descriptor[0]
+            final fun <get-descriptor>(): kotlinx.serialization.descriptors/SerialDescriptor // com.aiuta.fashionsdk.internal.subscription.model/AiutaPoweredBySticker.$serializer.descriptor.<get-descriptor>|<get-descriptor>(){}[0]
+
+        final fun childSerializers(): kotlin/Array<kotlinx.serialization/KSerializer<*>> // com.aiuta.fashionsdk.internal.subscription.model/AiutaPoweredBySticker.$serializer.childSerializers|childSerializers(){}[0]
+        final fun deserialize(kotlinx.serialization.encoding/Decoder): com.aiuta.fashionsdk.internal.subscription.model/AiutaPoweredBySticker // com.aiuta.fashionsdk.internal.subscription.model/AiutaPoweredBySticker.$serializer.deserialize|deserialize(kotlinx.serialization.encoding.Decoder){}[0]
+        final fun serialize(kotlinx.serialization.encoding/Encoder, com.aiuta.fashionsdk.internal.subscription.model/AiutaPoweredBySticker) // com.aiuta.fashionsdk.internal.subscription.model/AiutaPoweredBySticker.$serializer.serialize|serialize(kotlinx.serialization.encoding.Encoder;com.aiuta.fashionsdk.internal.subscription.model.AiutaPoweredBySticker){}[0]
+    }
+
+    final object Companion { // com.aiuta.fashionsdk.internal.subscription.model/AiutaPoweredBySticker.Companion|null[0]
+        final fun serializer(): kotlinx.serialization/KSerializer<com.aiuta.fashionsdk.internal.subscription.model/AiutaPoweredBySticker> // com.aiuta.fashionsdk.internal.subscription.model/AiutaPoweredBySticker.Companion.serializer|serializer(){}[0]
+    }
+}
+
+final class com.aiuta.fashionsdk.internal.subscription.model/AiutaSubscriptionDetails { // com.aiuta.fashionsdk.internal.subscription.model/AiutaSubscriptionDetails|null[0]
+    final val operationDelaysSequence // com.aiuta.fashionsdk.internal.subscription.model/AiutaSubscriptionDetails.operationDelaysSequence|{}operationDelaysSequence[0]
+        final fun <get-operationDelaysSequence>(): kotlin.collections/List<com.aiuta.fashionsdk.internal.subscription.model/AiutaOperationDelay>? // com.aiuta.fashionsdk.internal.subscription.model/AiutaSubscriptionDetails.operationDelaysSequence.<get-operationDelaysSequence>|<get-operationDelaysSequence>(){}[0]
+    final val poweredBySticker // com.aiuta.fashionsdk.internal.subscription.model/AiutaSubscriptionDetails.poweredBySticker|{}poweredBySticker[0]
+        final fun <get-poweredBySticker>(): com.aiuta.fashionsdk.internal.subscription.model/AiutaPoweredBySticker? // com.aiuta.fashionsdk.internal.subscription.model/AiutaSubscriptionDetails.poweredBySticker.<get-poweredBySticker>|<get-poweredBySticker>(){}[0]
+
+    final object $serializer : kotlinx.serialization.internal/GeneratedSerializer<com.aiuta.fashionsdk.internal.subscription.model/AiutaSubscriptionDetails> { // com.aiuta.fashionsdk.internal.subscription.model/AiutaSubscriptionDetails.$serializer|null[0]
+        final val descriptor // com.aiuta.fashionsdk.internal.subscription.model/AiutaSubscriptionDetails.$serializer.descriptor|{}descriptor[0]
+            final fun <get-descriptor>(): kotlinx.serialization.descriptors/SerialDescriptor // com.aiuta.fashionsdk.internal.subscription.model/AiutaSubscriptionDetails.$serializer.descriptor.<get-descriptor>|<get-descriptor>(){}[0]
+
+        final fun childSerializers(): kotlin/Array<kotlinx.serialization/KSerializer<*>> // com.aiuta.fashionsdk.internal.subscription.model/AiutaSubscriptionDetails.$serializer.childSerializers|childSerializers(){}[0]
+        final fun deserialize(kotlinx.serialization.encoding/Decoder): com.aiuta.fashionsdk.internal.subscription.model/AiutaSubscriptionDetails // com.aiuta.fashionsdk.internal.subscription.model/AiutaSubscriptionDetails.$serializer.deserialize|deserialize(kotlinx.serialization.encoding.Decoder){}[0]
+        final fun serialize(kotlinx.serialization.encoding/Encoder, com.aiuta.fashionsdk.internal.subscription.model/AiutaSubscriptionDetails) // com.aiuta.fashionsdk.internal.subscription.model/AiutaSubscriptionDetails.$serializer.serialize|serialize(kotlinx.serialization.encoding.Encoder;com.aiuta.fashionsdk.internal.subscription.model.AiutaSubscriptionDetails){}[0]
+    }
+
+    final object Companion { // com.aiuta.fashionsdk.internal.subscription.model/AiutaSubscriptionDetails.Companion|null[0]
+        final val $childSerializers // com.aiuta.fashionsdk.internal.subscription.model/AiutaSubscriptionDetails.Companion.$childSerializers|{}$childSerializers[0]
+
+        final fun serializer(): kotlinx.serialization/KSerializer<com.aiuta.fashionsdk.internal.subscription.model/AiutaSubscriptionDetails> // com.aiuta.fashionsdk.internal.subscription.model/AiutaSubscriptionDetails.Companion.serializer|serializer(){}[0]
+    }
+}
+
+final val com.aiuta.fashionsdk.internal.subscription/internalAiutaSubscription // com.aiuta.fashionsdk.internal.subscription/internalAiutaSubscription|@com.aiuta.fashionsdk.Aiuta{}internalAiutaSubscription[0]
+    final fun (com.aiuta.fashionsdk/Aiuta).<get-internalAiutaSubscription>(): com.aiuta.fashionsdk.internal.subscription/InternalAiutaSubscription // com.aiuta.fashionsdk.internal.subscription/internalAiutaSubscription.<get-internalAiutaSubscription>|<get-internalAiutaSubscription>@com.aiuta.fashionsdk.Aiuta(){}[0]
+
+// Targets: [ios]
+final object com.aiuta.fashionsdk.internal.subscription/InternalAiutaSubscriptionFactory : kotlinx.atomicfu.locks/SynchronizedObject { // com.aiuta.fashionsdk.internal.subscription/InternalAiutaSubscriptionFactory|null[0]
+    final fun create(com.aiuta.fashionsdk/Aiuta): com.aiuta.fashionsdk.internal.subscription/InternalAiutaSubscription // com.aiuta.fashionsdk.internal.subscription/InternalAiutaSubscriptionFactory.create|create(com.aiuta.fashionsdk.Aiuta){}[0]
+}
+
+// Targets: [js, wasmJs]
+final object com.aiuta.fashionsdk.internal.subscription/InternalAiutaSubscriptionFactory { // com.aiuta.fashionsdk.internal.subscription/InternalAiutaSubscriptionFactory|null[0]
+    final fun create(com.aiuta.fashionsdk/Aiuta): com.aiuta.fashionsdk.internal.subscription/InternalAiutaSubscription // com.aiuta.fashionsdk.internal.subscription/InternalAiutaSubscriptionFactory.create|create(com.aiuta.fashionsdk.Aiuta){}[0]
+}

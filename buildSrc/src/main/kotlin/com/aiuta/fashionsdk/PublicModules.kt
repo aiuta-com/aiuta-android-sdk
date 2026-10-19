@@ -22,6 +22,7 @@ val publicModules = setOf(
     "internal-fashion-analytics",
     "internal-fashion-navigation",
     "internal-fashion-storage",
+    "internal-fashion-subscription",
 )
 
 fun publicModulePath(moduleName: String): String = buildString {

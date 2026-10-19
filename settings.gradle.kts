@@ -24,6 +24,7 @@ include(
     ":internal:internal-fashion-analytics",
     ":internal:internal-fashion-navigation",
     ":internal:internal-fashion-storage",
+    ":internal:internal-fashion-subscription",
     ":fashion",
     ":fashion-analytics",
     ":fashion-analytics-events",
