@@ -65,6 +65,7 @@ kotlin {
                 implementation(projects.internal.internalFashionAnalytics)
                 implementation(projects.internal.internalFashionNavigation)
                 implementation(projects.internal.internalFashionStorage)
+                implementation(projects.internal.internalFashionSubscription)
             }
         }
         jvmMain {

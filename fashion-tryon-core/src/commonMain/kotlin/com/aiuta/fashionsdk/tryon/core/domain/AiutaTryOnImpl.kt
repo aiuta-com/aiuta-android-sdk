@@ -3,6 +3,8 @@ package com.aiuta.fashionsdk.tryon.core.domain
 import com.aiuta.fashionsdk.Aiuta
 import com.aiuta.fashionsdk.internal.analytics.InternalAiutaAnalytic
 import com.aiuta.fashionsdk.internal.analytics.internalAiutaAnalytic
+import com.aiuta.fashionsdk.internal.subscription.InternalAiutaSubscription
+import com.aiuta.fashionsdk.internal.subscription.internalAiutaSubscription
 import com.aiuta.fashionsdk.logger.AiutaLogger
 import com.aiuta.fashionsdk.network.paging.models.PageContainer
 import com.aiuta.fashionsdk.tryon.core.AiutaTryOn
@@ -27,7 +29,6 @@ import com.aiuta.fashionsdk.tryon.core.domain.models.policies.DefaultAiutaTryOnR
 import com.aiuta.fashionsdk.tryon.core.domain.models.toPublic
 import com.aiuta.fashionsdk.tryon.core.domain.slice.ping.PingOperationSlice
 import com.aiuta.fashionsdk.tryon.core.domain.slice.ping.exception.AiutaTryOnExceptionType
-import com.aiuta.fashionsdk.tryon.core.domain.slice.ping.internal.delays.OperationDelaysProvider
 import com.aiuta.fashionsdk.tryon.core.domain.slice.ping.pingOperationSliceFactory
 import com.aiuta.fashionsdk.tryon.core.domain.slice.upload.UploadImageSlice
 import com.aiuta.fashionsdk.tryon.core.domain.slice.upload.uploadImageSliceFactory
@@ -43,7 +44,7 @@ internal class AiutaTryOnImpl(
     internal val retryPolicies: AiutaTryOnRetryPolicies,
     internal val logger: AiutaLogger?,
     private val pingOperationSlice: PingOperationSlice,
-    private val operationDelaysProvider: OperationDelaysProvider,
+    private val subscription: InternalAiutaSubscription,
     private val uploadImageSlice: UploadImageSlice,
     private val productDataSource: FashionProductDataSource,
     private val productOperationsDataSource: FashionProductOperationsDataSource,
@@ -69,9 +70,9 @@ internal class AiutaTryOnImpl(
         analytic.sendInitTryOnEvent(container)
         val statusId = generateStatusId()
 
-        // Load the polling delays in the background while the photo uploads,
-        // so they're ready once the operation is created
-        operationDelaysProvider.prefetch()
+        // Refresh the subscription details (polling delays) in the background
+        // while the photo uploads; the UI flow preloads them even earlier
+        subscription.preload()
 
         errorListener(statusId = statusId) {
             val metadataBuilder = AiutaTryOnMetadata.Builder()
@@ -178,7 +179,7 @@ internal class AiutaTryOnImpl(
         fun create(aiuta: Aiuta): AiutaTryOn = AiutaTryOnImpl(
             analytic = aiuta.internalAiutaAnalytic,
             pingOperationSlice = aiuta.pingOperationSliceFactory,
-            operationDelaysProvider = OperationDelaysProvider.getInstance(aiuta),
+            subscription = aiuta.internalAiutaSubscription,
             uploadImageSlice = aiuta.uploadImageSliceFactory,
             productDataSource = aiuta.productDataSourceFactory,
             productOperationsDataSource = aiuta.productOperationsDataSourceFactory,
