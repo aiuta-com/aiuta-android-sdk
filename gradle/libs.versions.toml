@@ -45,7 +45,7 @@ moko = "0.20.1"
 
 spotless = "8.10.4"
 sqlite = "2.7.1"
-uiUnitAndroid = "1.11.3"
+uiUnitAndroid = "1.12.1"
 
 
 
